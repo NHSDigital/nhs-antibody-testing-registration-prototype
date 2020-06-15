@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/{{version}}/home-test-kit/delivery-address-question">Back</a>
+  <a class="govuk-back-link" href="/{{version}}/home-test-kit/email-address-confirm">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -17,6 +17,35 @@
 
       <form action="/" method="post">
 
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="identity-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                We need to confirm your identity
+              </h1>
+            </legend>
+            <span id="identity-hint" class="govuk-hint">
+              To confirm your identity, we need to share the information you've given us with an organisation called TransUnion.<br><br>
+              This will help protect fraudulent use of testing services.<br><br>
+              This is not a credit check and does not affect your credit rating.<br><br>
+              If you do not want us to check your details with TransUnion, you can start again and choose to get tested at a drive-through test site.
+            </span>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="identity-yes" name="identity" type="radio" value="Yes" {{ checked("identity", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="identity-yes">
+                  Yes, confirm my identity with TransUnion
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="identity-no" name="identity" type="radio" value="No" {{ checked("identity", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="identity-no">
+                  No, let me start again and choose to visit a test site
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
 
         <button class="govuk-button" type="submit" data-module="govuk-button">
           Continue
