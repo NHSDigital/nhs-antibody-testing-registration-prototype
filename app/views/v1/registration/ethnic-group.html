@@ -1,0 +1,85 @@
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/v1/registration/gender">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">What is your ethnic group?</h1>
+
+      <p class="govuk-body-m">This will help us understand how coronavirus is affecting people of different ethnic backgrounds.</p>
+
+      <form class="form" action="/v1/registration/ethnic-background" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-group-1" name="ethnic-group" type="radio" value="Asian or Asian British" {{ checked("ethnic-group", "Asian or Asian British") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-group-1">
+                  <strong>Asian or Asian British</strong>
+                  </br>
+                  Includes any Asian background, for example, Bangladeshi, Chinese, Indian, Pakistani or other East or South Asian
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                 <input class="govuk-radios__input" id="ethnic-group-2" name="ethnic-group" type="radio" value="Black, African, Black British or Caribbean" {{ checked("ethnic-group", "Black, African, Black British or Caribbean") }}>
+                 <label class="govuk-label govuk-radios__label" for="ethnic-group-2">
+                   <strong>Black, African, Black British or Caribbean</strong>
+                   </br>
+                   Includes any Black background
+                 </label>
+              </div>
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="ethnic-group-3" name="ethnic-group" type="radio" value="Mixed or multiple ethnic groups" {{ checked("ethnic-group", "Mixed or multiple ethnic groups") }}>
+                  <label class="govuk-label govuk-radios__label" for="ethnic-group-3">
+                    <strong>Mixed or multiple ethnic groups</strong>
+                    </br>
+                    Includes any mixed background
+                  </label>
+              </div>
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="ethnic-group-4" name="ethnic-group" type="radio" value="White" {{ checked("ethnic-group", "White") }}>
+                  <label class="govuk-label govuk-radios__label" for="ethnic-group-4">
+                    <strong>White</strong>
+                    </br>
+                    Includes any White background
+                  </label>
+              </div>
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="ethnic-group-5" name="ethnic-group" type="radio" value="Another ethnic group" {{ checked("ethnic-group", "Another ethnic group") }}>
+                  <label class="govuk-label govuk-radios__label" for="ethnic-group-5">
+                    <strong>Another ethnic group</strong>
+                    </br>
+                    Includes any other ethnic group, for example, Arab
+                  </label>
+              </div>
+  
+              <p class="govuk-body-m">or</p>
+  
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="ethnic-group-6" name="ethnic-group" type="radio" value="Prefer not to say" {{ checked("ethnic-group", "Prefer not to say") }}>
+                  <label class="govuk-label govuk-radios__label" for="ethnic-group-6">
+                      Prefer not to say
+                  </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

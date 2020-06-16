@@ -1,0 +1,50 @@
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/v1/registration/immune-status">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Do you or someone you live with have a smartphone?</h1>
+
+      <p class="govuk-body-m">Answer ‘Yes’ if you or someone in your household has a smartphone that is able to download an iOS or Android app and have a working camera.</p>
+
+      <p class="govuk-body-m">If you do not have a smartphone, you will still be able to take an antibody test.</p>
+
+      <form class="form" action="/v1/registration/postcode" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="smartphone-1" name="smartphone" type="radio" value="Yes" {{ checked("smartphone", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="smartphone-1">
+                    Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="smartphone-2" name="smartphone" type="radio" value="No" {{ checked("smartphone", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="smartphone-2">
+                    No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

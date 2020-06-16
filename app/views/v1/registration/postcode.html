@@ -1,0 +1,40 @@
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/v1/registration/smartphone">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Enter a postcode</h1>
+
+      <p class="govuk-body-m">We need this to know if you are near a test site</p>
+
+      <form class="form" action="/v1/registration/check-your-answers" method="post">
+
+        <fieldset class="govuk-fieldset">
+        
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="postcode">
+              Postcode
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="postcode" name="postcode" type="text" value={{ data['postcode'] }}>
+          </div>
+        
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

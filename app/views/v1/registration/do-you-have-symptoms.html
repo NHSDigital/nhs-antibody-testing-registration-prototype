@@ -1,0 +1,57 @@
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/v1/registration/index">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Do you currently have coronavirus symptoms?</h1>
+
+      <p class="govuk-body-m">This will help us track and trace the spread of coronavirus.</p>
+
+      <p>The main symptoms of coronavirus are:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li><strong>high temperature</strong> – this means you feel hot to touch on your chest or back (you do not need to measure your temperature)</li>
+        <li><strong>new, continuous cough</strong> – this means coughing a lot for more than an hour, or 3 or more coughing episodes in 24 hours (if you usually have a cough, it may be worse than usual)</li>
+        <li><strong>loss or change to your sense of smell or taste</strong> – this means you've noticed you cannot smell or taste anything, or things smell or taste different to normal</li>
+      </ul>
+
+      <p class="govuk-body-m">Most people with coronavirus have at least one of these symptoms.</p>
+
+      <form class="form" action="/v1/registration/test-selection" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="do-you-have-symptoms-1" name="do-you-have-symptoms" type="radio" value="Yes" {{ checked("do-you-have-symptoms", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1">
+                  Yes, I have at least one of these symptoms
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="do-you-have-symptoms-2" name="do-you-have-symptoms" type="radio" value="No" {{ checked("do-you-have-symptoms", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2">
+                  No, I do not have any of these symptoms
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

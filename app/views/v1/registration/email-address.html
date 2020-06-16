@@ -1,0 +1,56 @@
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/v1/registration/mobile-number">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Do you have an email address where you can receive your coronavirus results?</h1>
+
+      <p class="govuk-body-m">To apply for a coronavirus test online, you need an email address or mobile phone number. If you don’t have an email address, you can still get a coronavirus test.</p>
+
+      <form class="form" action="/v1/registration/occupation" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" {{ checked("email", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="email-1">
+                    Yes, I have an email address where I can receive my results
+                </label>
+                <div class="govuk-inset-text input-box">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="email-address">
+                          Email address
+                        </label>
+                        <input class="govuk-input" id="email-address" name="email-address" type="text" value={{ data['email-address'] }}>
+                    </div>
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="No" {{ checked("email", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="email-2">
+                    No, I don’t have an email address
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
