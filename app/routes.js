@@ -27,4 +27,18 @@ router.post('/v1/action/confirm-identity', function (req, res) {
 
 })
 
+// Version 1 - Registration - Email address
+router.post('/v1/action/email-address', function (req, res) {
+  var emailAddress = req.session.data['email']
+  var mobilePhoneNumber = req.session.data['mobile-number']
+  console.log(emailAddress)
+
+  if (emailAddress == "No" && mobilePhoneNumber == "No"){
+    res.redirect('/v1/registration/call-us')
+  } else {
+    res.redirect('/v1/registration/occupation')
+  }
+
+})
+
 module.exports = router
