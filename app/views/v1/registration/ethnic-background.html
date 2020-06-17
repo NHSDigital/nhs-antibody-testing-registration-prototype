@@ -1,11 +1,13 @@
+{% set version = "v1" %}
+
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  Question page
+  Which one best describes your Asian or Asian British background? - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/v1/registration/ethnic-group">Back</a>
+  <a class="govuk-back-link" href="/{{version}}/registration/ethnic-group">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -13,14 +15,18 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">Which one best describes your Asian or Asian British background?</h1>
-
-      <p class="govuk-body-m">This will help us understand how coronavirus is affecting people of different ethnic backgrounds.</p>
-
-      <form class="form" action="/v1/registration/previously-tested" method="post">
+      <form class="form" action="/{{version}}/registration/previously-tested" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
+          <fieldset class="govuk-fieldset" aria-describedby="ethnic-background-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Which one best describes your Asian or Asian British background?
+              </h1>
+            </legend>
+            <span id="ethnic-background-hint" class="govuk-hint">
+              This will help us understand how coronavirus is affecting people of different ethnic backgrounds.
+            </span>
             <div class="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="ethnic-background-1" name="ethnic-background" type="radio" value="Bangladeshi" {{ checked("ethnic-background", "Bangladeshi") }}>
@@ -29,38 +35,39 @@
                 </label>
               </div>
               <div class="govuk-radios__item">
-                 <input class="govuk-radios__input" id="ethnic-background-2" name="ethnic-background" type="radio" value="Chinese" {{ checked("ethnic-background", "Chinese") }}>
-                 <label class="govuk-label govuk-radios__label" for="ethnic-background-2">
-                   Chinese
-                 </label>
+                <input class="govuk-radios__input" id="ethnic-background-2" name="ethnic-background" type="radio" value="Chinese" {{ checked("ethnic-background", "Chinese") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-2">
+                  Chinese
+                </label>
               </div>
               <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="ethnic-background-3" name="ethnic-background" type="radio" value="Indian" {{ checked("ethnic-background", "Indian") }}>
-                  <label class="govuk-label govuk-radios__label" for="ethnic-background-3">
-                    Indian
-                  </label>
+                <input class="govuk-radios__input" id="ethnic-background-3" name="ethnic-background" type="radio" value="Indian" {{ checked("ethnic-background", "Indian") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-3">
+                  Indian
+                </label>
               </div>
               <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="ethnic-background-4" name="ethnic-background" type="radio" value="Pakistani" {{ checked("ethnic-background", "Pakistani") }}>
-                  <label class="govuk-label govuk-radios__label" for="ethnic-background-4">
-                    Pakistani
-                  </label>
+                <input class="govuk-radios__input" id="ethnic-background-4" name="ethnic-background" type="radio" value="Pakistani" {{ checked("ethnic-background", "Pakistani") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-4">
+                  Pakistani
+                </label>
               </div>
               <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="ethnic-background-5" name="ethnic-background" type="radio" value="Another Asian background" {{ checked("ethnic-background", "Another Asian background") }}>
-                  <label class="govuk-label govuk-radios__label" for="ethnic-background-5">
-                      Another Asian background
-                  </label>
+                <input class="govuk-radios__input" id="ethnic-background-5" name="ethnic-background" type="radio" value="Another Asian background" {{ checked("ethnic-background", "Another Asian background") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-5">
+                  Another Asian background
+                </label>
               </div>
   
-              <p class="govuk-body-m">or</p>
+              <div class="govuk-radios__divider">or</div>
   
               <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="ethnic-background-6" name="ethnic-background" type="radio" value="Prefer not to say" {{ checked("ethnic-background", "Prefer not to say") }}>
-                  <label class="govuk-label govuk-radios__label" for="ethnic-background-6">
-                      Prefer not to say
-                  </label>
+                <input class="govuk-radios__input" id="ethnic-background-6" name="ethnic-background" type="radio" value="Prefer not to say" {{ checked("ethnic-background", "Prefer not to say") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-6">
+                  Prefer not to say
+                </label>
               </div>
+  
             </div>
           </fieldset>
         </div>  

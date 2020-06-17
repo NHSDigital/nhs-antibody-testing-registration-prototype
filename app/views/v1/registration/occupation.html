@@ -1,7 +1,9 @@
+{% set version = "v1" %}
+
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  Question page
+  What is your occupation? - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,19 +15,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">What is your occupation?</h1>
-
-      <form class="form" action="/v1/registration/working-circumstances" method="post">
+      <form action="/{{version}}/registration/working-circumstances" method="post">
 
         <fieldset class="govuk-fieldset">
-        
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              What is your occupation?
+            </h1>
+          </legend>
+
           <div class="govuk-form-group">
             <label class="govuk-label" for="occupation">
-                Select an option from the list
+              Select an option from the list
             </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="occupation" name="occupation" type="text" value={{ data['occupation'] }}>
+            <select class="govuk-select" id="occupation" name="occupation">
+              <option value="Item 1">Item 1</option>
+              <option value="Item 2">Item 2</option>
+              <option value="Item 3">Item 3</option>
+            </select>
           </div>
-        
+
         </fieldset>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>

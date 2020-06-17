@@ -1,11 +1,13 @@
+{% set version = "v1" %}
+
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  Question page
+  Are there any factors, such as medical conditions, which affect your immune status? - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/v1/registration/household">Back</a>
+  <a class="govuk-back-link" href="/{{version}}/registration/household">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -13,25 +15,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">Immune status</h1>
-
-      <p class="govuk-body-m">Are there any factors, such as medical conditions, which affect your immune status?</p>
-
-      <form class="form" action="/v1/registration/smartphone" method="post">
+      <form class="form" action="/{{version}}/registration/smartphone" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Are there any factors, such as medical conditions, which affect your immune status?
+              </h1>
+            </legend>
             <div class="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="immune-status-1" name="immune-status" type="radio" value="Yes" {{ checked("immune-status", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="immune-status-1">
-                    Yes
+                  Yes
                 </label>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="immune-status-2" name="immune-status" type="radio" value="No" {{ checked("immune-status", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="immune-status-2">
-                    No
+                  No
                 </label>
               </div>
             </div>

@@ -1,11 +1,13 @@
+{% set version = "v1" %}
+
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  Question page
+  Are you able to provide blood? - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/v1/registration/test-selection">Back</a>
+  <a class="govuk-back-link" href="/{{version}}/registration/test-selection">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -13,27 +15,30 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">Are you able to provide blood?</h1>
-
-      <p class="govuk-body-m">The antibody test involves drawing blood. You will not be able to take an antibody test if you are not able to draw blood, for example because you have haemophilia.</p>
-
-      <p class="govuk-body-m">If you are unable to self-administer the blood test, you should…</p>
-
-      <form class="form" action="/v1/registration/name" method="post">
+      <form action="/{{version}}/registration/name" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
+          <fieldset class="govuk-fieldset" aria-describedby="blood-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Are you able to provide blood?
+              </h1>
+            </legend>
+            <span id="blood-hint" class="govuk-hint">
+              The antibody test involves drawing blood. You will not be able to take an antibody test if you are not able to draw blood, for example because you have haemophilia.<br><br>
+              If you are unable to self-administer the blood test, you should…
+            </span>
             <div class="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="blood-sample-1" name="blood-sample" type="radio" value="Yes" {{ checked("blood-sample", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="blood-sample-1">
-                    Yes, I am able to provide blood
+                  Yes, I am able to provide blood
                 </label>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="blood-sample-2" name="blood-sample" type="radio" value="No" {{ checked("blood-sample", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="blood-sample-2">
-                    No, I am not able to provide blood
+                  No, I am not able to provide blood
                 </label>
               </div>
             </div>

@@ -1,11 +1,13 @@
+{% set version = "v1" %}
+
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  Question page
+  When was your previous coronavirus test? - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/v1/registration/previously-tested">Back</a>
+  <a class="govuk-back-link" href="/{{version}}/registration/previously-tested">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -13,17 +15,18 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">When was your previous coronavirus test?</h1>
-
-      <p class="govuk-body-m">If you have had multiple tests, enter the date of your most recent test.</p>
-
-      <form class="form" action="/v1/registration/previously-tested-result" method="post">
+      <form action="/{{version}}/registration/previously-tested-result" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="previous-test-date-hint">
-            <span class="govuk-body-m">Enter the date</span>
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                When was your previous coronavirus test?
+              </h1>
+            </legend>
             <span id="previous-test-date-hint" class="govuk-hint">
-                Use the format DD MM YYYY, for example 15 04 2020
+              If you have had multiple tests, enter the date of your most recent test.<br><br>
+              For example 15 04 2020
             </span>
             <div class="govuk-date-input" id="previously-tested-date">
               <div class="govuk-date-input__item">
