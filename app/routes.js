@@ -1,8 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-// Add your routes here - above the module.exports line
-
 // Version 1 - Is your delivery address the same as your home address?
 router.post('/v1/action/delivery-address-question', function (req, res) {
   var deliveryAddressAnswer = req.session.data['delivery-address']
@@ -23,6 +21,27 @@ router.post('/v1/action/confirm-identity', function (req, res) {
     res.redirect('/v1/home-test-kit/order-summary')
   } else {
     res.redirect('/v1/home-test-kit/')
+  }
+
+})
+
+// Version 1 - Registration - Get phone number for theeEmail address route
+let mobilePhoneNumber = "";
+router.post('/v1/action/mobile-number', function (req, res) {
+  mobilePhoneNumber = req.session.data['mobile-number'];
+  res.redirect('/v1/registration/email-address');
+
+})
+
+
+// Version 1 - Registration - Email address route
+router.post('/v1/action/email-address', function (req, res) {
+  var emailAddress = req.session.data['email']
+
+  if (emailAddress == "No" && mobilePhoneNumber == "No"){
+    res.redirect('/v1/registration/call-us')
+  } else {
+    res.redirect('/v1/registration/occupation')
   }
 
 })
