@@ -1,11 +1,13 @@
+{% set version = "v1" %}
+
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  Question page
+  What are your working circumstances? - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/v1/registration/occupation">Back</a>
+  <a class="govuk-back-link" href="/{{version}}/registration/occupation">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -13,19 +15,25 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">What are your working circumstances?</h1>
-
-      <form class="form" action="/v1/registration/gender" method="post">
+      <form action="/{{version}}/registration/gender" method="post">
 
         <fieldset class="govuk-fieldset">
-        
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              What are your working circumstances?
+            </h1>
+          </legend>
+
           <div class="govuk-form-group">
             <label class="govuk-label" for="working-circumstances">
-                Select an option from the list
+              Select an option from the list
             </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="working-circumstances" name="working-circumstances" type="text" value={{ data['working-circumstances'] }}>
+            <select class="govuk-select" id="working-circumstances" name="working-circumstances">
+              <option value="Item 1">Item 1</option>
+              <option value="Item 2">Item 2</option>
+              <option value="Item 3">Item 3</option>
+            </select>
           </div>
-        
         </fieldset>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>

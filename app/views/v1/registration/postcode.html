@@ -1,11 +1,13 @@
+{% set version = "v1" %}
+
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  Question page
+  What is your postcode? - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/v1/registration/smartphone">Back</a>
+  <a class="govuk-back-link" href="/{{version}}/registration/smartphone">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -13,21 +15,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">Enter a postcode</h1>
+      <form action="/{{version}}/registration/check-your-answers" method="post">
 
-      <p class="govuk-body-m">We need this to know if you are near a test site</p>
-
-      <form class="form" action="/v1/registration/check-your-answers" method="post">
-
-        <fieldset class="govuk-fieldset">
-        
+        <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              What is your postcode?
+            </h1>
+          </legend>
+          <span id="post-code-hint" class="govuk-hint">
+            We need this to know if you are near a test site
+          </span>
           <div class="govuk-form-group">
-            <label class="govuk-label" for="postcode">
+            <label class="govuk-label" for="test-postcode">
               Postcode
             </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="postcode" name="postcode" type="text" value={{ data['postcode'] }}>
+            <input class="govuk-input govuk-input--width-10" id="test-postcode" name="test-postcode" type="text" autocomplete="postal-code" value="{{ data['test-postcode'] }}">
           </div>
-        
         </fieldset>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>

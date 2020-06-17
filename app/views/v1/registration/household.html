@@ -1,11 +1,13 @@
+{% set version = "v1" %}
+
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  Question page
+  Has anyone else in your household tested positive for coronavirus before? - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/v1/registration/previously-tested-result">Back</a>
+  <a class="govuk-back-link" href="/{{version}}/registration/previously-tested-result">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -13,23 +15,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">Has anyone else in your household tested positive for coronavirus before?</h1>
-
-      <form class="form" action="/v1/registration/immune-status" method="post">
+      <form action="/{{version}}/registration/immune-status" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Has anyone else in your household tested positive for coronavirus before?
+              </h1>
+            </legend>
             <div class="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="household-1" name="household" type="radio" value="Yes" {{ checked("household", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="household-1">
-                    Yes
+                  Yes
                 </label>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="household-2" name="household" type="radio" value="No" {{ checked("household", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="household-2">
-                    No
+                  No
                 </label>
               </div>
             </div>

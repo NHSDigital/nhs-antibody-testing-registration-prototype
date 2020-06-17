@@ -1,11 +1,13 @@
+{% set version = "v1" %}
+
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  Question page
+  What's your date of birth? - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/v1/registration/name">Back</a>
+  <a class="govuk-back-link" href="/{{version}}/registration/name">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -13,15 +15,17 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">What's your date of birth?</h1>
-
-      <p class="govuk-body-m">If you're ordering a test for someone else, enter their date of birth.</p>
-
-      <form class="form" action="/v1/registration/mobile-number" method="post">
+      <form action="/{{version}}/registration/mobile-number" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="date-of-birth-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                What's your date of birth?
+              </h1>
+            </legend>
             <span id="date-of-birth-hint" class="govuk-hint">
+              If you're ordering a test for someone else, enter their date of birth.<br><br>
               For example, 19 7 1986
             </span>
             <div class="govuk-date-input" id="date-of-birth">
