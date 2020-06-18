@@ -1,0 +1,60 @@
+{% set version = "v1" %}
+
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+Has a doctor told you that getting an infection might be very serious? - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/{{version}}/registration/household">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/{{version}}/registration/postcode" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="infection-serious-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Has a doctor told you that getting an infection might be very serious?
+              </h1>
+            </legend>
+            <span id="infection-serious-hint" class="govuk-hint">
+              This means you have a condition that weakens your immune system. For example having chemoterapy, had an organ transplant, have HIV/AIDS or had your spleen removed.
+            </span>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="infection-serious-1" name="infection-serious" type="radio" value="Yes" {{ checked("infection-serious", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="infection-serious-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="infection-serious-2" name="infection-serious" type="radio" value="No" {{ checked("infection-serious", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="infection-serious-2">
+                  No
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="infection-serious-3" name="infection-serious" type="radio" value="I'm not sure" {{ checked("infection-serious", "I'm not sure") }}>
+                <label class="govuk-label govuk-radios__label" for="infection-serious-3">
+                  I'm not sure
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
