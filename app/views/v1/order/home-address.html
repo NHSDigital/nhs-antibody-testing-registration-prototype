@@ -1,0 +1,69 @@
+{% set version = "v1" %}
+
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  What is your home address? - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/{{version}}/home-test-kit">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/{{version}}/order/home-address-results" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="home-address-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              What is your home address?
+            </h1>
+          </legend>
+          <span id="home-address-hint" class="govuk-hint">
+            We need to know your home address so we can confirm your identity.
+          </span>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="home-address-postcode">
+              Postcode
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="home-address-postcode" name="home-address-postcode" type="text" autocomplete="postal-code" value="{{ data['home-address-postcode'] | default('LS1 3BE')}}">
+          </div>
+
+        </fieldset>
+
+        <button class="govuk-button" type="submit" data-module="govuk-button">
+          Find address
+        </button>
+
+      </form>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              What if you have more than one address
+            </span>
+        </summary>
+        <div class="govuk-details__text">
+          To confirm your identity, we need to share some of the information you give us with an organisation called TransUnion.<br><br>
+          This will help protect fraudulent use of coronavirus testing services.<br><br>
+          This is not a credit check and does not affect your credit rating.<br><br>
+
+          <h3 class="govuk-heading-s">If you do not want us to check your details with TransUnion</h3>
+          <p class="govuk-body">Call the customer contact centre if you still want to order a test kit:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>England, Wales and Northern Ireland: call 119 (free from mobiles and landlines)</li>
+            <li>Scotland: call 0300 303 2713 (charged at your standard network rate)</li>
+          </ul>
+          <p class="govuk-body">This helpline is open from 7am to 11pm.</p>
+
+        </div>
+      </details>
+
+    </div>
+  </div>
+
+{% endblock %}
