@@ -5,10 +5,10 @@ const router = express.Router()
 
 // Version 1 - Is your delivery address the same as your home address?
 router.post('/v1/action/delivery-address-question', function (req, res) {
-  var deliveryAddressAnswer = req.session.data['delivery-address']
+  var deliveryAddressAnswer = req.session.data['delivery-address-same']
 
   if (deliveryAddressAnswer == "Yes"){
-    res.redirect('/v1/home-test-kit/email-address')
+    res.redirect('/v1/home-test-kit/order-summary')
   } else {
     res.redirect('/v1/home-test-kit/delivery-address')
   }

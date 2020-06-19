@@ -15,7 +15,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/{{version}}/home-test-kit/email-address" method="post">
+      <form action="/{{version}}/home-test-kit/order-summary" method="post">
 
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -23,6 +23,15 @@
               What is your delivery address?
             </h1>
           </legend>
+
+          <p>
+            <span class="govuk-!-margin-bottom-1 govuk-!-display-block">Postcode</span>
+            <strong>{{ data['delivery-postcode'] | default('LS1 3BE') }}</strong>
+            <a href="/{{version}}/home-test-kit/delivery-address" class="govuk-!-margin-left-5">
+              Change
+              <span class="govuk-visually-hidden">your postcode</span>
+            </a>
+          </p>
 
           <div class="govuk-form-group">
             <label class="govuk-label" for="delivery-address">
