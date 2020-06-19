@@ -1,0 +1,54 @@
+{% set version = "v1" %}
+
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  Do you feel comfortable doing a fingerprick blood test? - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/{{version}}/registration/consent">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/{{version}}/action/comfortable-doing-test" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="comfortable-doing-test-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Do you feel comfortable doing a fingerprick blood test?
+              </h1>
+            </legend>
+            <span id="comfortable-doing-test-hint" class="govuk-hint">
+              To do the test at home, you would need to prick your finger and squeeze out some blood droplets.
+            </span>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="comfortable-doing-test-1" name="comfortable-doing-test" type="radio" value="Yes" {{ checked("comfortable-doing-test", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="comfortable-doing-test-1">
+                  Yes, I am happy doing this
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="comfortable-doing-test-2" name="comfortable-doing-test" type="radio" value="No" {{ checked("comfortable-doing-test", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="comfortable-doing-test-2">
+                  No, I am not happy doing this
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
