@@ -17,7 +17,7 @@ router.post('/v1/action/delivery-address-question', function (req, res) {
 let emailAddress = "";
 router.post('/v1/action/email-address', function (req, res) {
   emailAddress = req.session.data['email'];
-  res.redirect('/v1/registration/mobile-number');
+  res.redirect('/v1/teacher-registration/mobile-number');
 
 })
 
@@ -27,9 +27,9 @@ router.post('/v1/action/mobile-number', function (req, res) {
   var mobilePhoneNumber = req.session.data['mobile-number']
 
   if (emailAddress == "No" && mobilePhoneNumber == "No"){
-    res.redirect('/v1/registration/call-us')
+    res.redirect('/v1/teacher-registration/call-us')
   } else {
-    res.redirect('/v1/registration/landline-number')
+    res.redirect('/v1/teacher-registration/landline-number')
   }
 
 })
@@ -38,7 +38,7 @@ router.post('/v1/action/mobile-number', function (req, res) {
 let consent = "";
 router.post('/v1/action/consent', function (req, res) {
   consent = req.session.data['consent'];
-  res.redirect('/v1/registration/comfortable-doing-test');
+  res.redirect('/v1/teacher-registration/comfortable-doing-test');
 
 })
 
@@ -47,9 +47,9 @@ router.post('/v1/action/comfortable-doing-test', function (req, res) {
   let comfortableDoingTest = req.session.data['comfortable-doing-test']
 
   if (comfortableDoingTest == "No" && consent == "No"){
-    res.redirect('/v1/registration/not-eligible')
+    res.redirect('/v1/teacher-registration/not-eligible')
   } else {
-    res.redirect('/v1/registration/do-you-have-symptoms')
+    res.redirect('/v1/teacher-registration/do-you-have-symptoms')
   }
 
 })
@@ -59,9 +59,9 @@ router.post('/v1/action/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
   if (doYouHaveSymptoms == "Yes"){
-    res.redirect('/v1/registration/when-did-symptoms-start')
+    res.redirect('/v1/teacher-registration/when-did-symptoms-start')
   } else {
-    res.redirect('/v1/registration/have-you-had-symptoms')
+    res.redirect('/v1/teacher-registration/have-you-had-symptoms')
   }
 
 })
@@ -71,9 +71,9 @@ router.post('/v1/action/have-you-had-symptoms', function (req, res) {
   let haveYouHadSymptoms = req.session.data['have-you-had-symptoms']
 
   if (haveYouHadSymptoms == "Yes"){
-    res.redirect('/v1/registration/when-did-symptoms-start')
+    res.redirect('/v1/teacher-registration/when-did-symptoms-start')
   } else {
-    res.redirect('/v1/registration/name')
+    res.redirect('/v1/teacher-registration/name')
   }
 
 })
@@ -83,9 +83,9 @@ router.post('/v1/action/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/v1/registration/ethnic-background')
+    res.redirect('/v1/teacher-registration/ethnic-background')
   } else {
-    res.redirect('/v1/registration/tested-positive')
+    res.redirect('/v1/teacher-registration/tested-positive')
   }
 
 })
@@ -95,9 +95,9 @@ router.post('/v1/action/tested-positive', function (req, res) {
   let testedPositive = req.session.data['tested-positive']
 
   if (testedPositive == "Yes"){
-    res.redirect('/v1/registration/tested-positive-date')
+    res.redirect('/v1/teacher-registration/tested-positive-date')
   } else {
-    res.redirect('/v1/registration/household')
+    res.redirect('/v1/teacher-registration/household')
   }
 
 })
