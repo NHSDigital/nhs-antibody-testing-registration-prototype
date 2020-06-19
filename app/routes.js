@@ -90,7 +90,7 @@ router.post('/v1/action/ethnic-group', function (req, res) {
 
 })
 
-// Version 1 - Registration - Tested positive route
+// Version 1 - Teacher Registration - Tested positive route
 router.post('/v1/action/tested-positive', function (req, res) {
   let testedPositive = req.session.data['tested-positive']
 
@@ -98,6 +98,42 @@ router.post('/v1/action/tested-positive', function (req, res) {
     res.redirect('/v1/teacher-registration/tested-positive-date')
   } else {
     res.redirect('/v1/teacher-registration/household')
+  }
+
+})
+
+// Version 1 - Registration - Ethnic group route
+router.post('/v1/action2/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/v1/registration/ethnic-background')
+  } else {
+    res.redirect('/v1/registration/landline-number')
+  }
+
+})
+
+// Version 1 - Registration - NHS number route
+router.post('/v1/action2/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/v1/registration/nhs-number')
+  } else {
+    res.redirect('/v1/registration/check-your-answers')
+  }
+
+})
+
+// Version 1 - Registration - Country route
+router.post('/v1/action2/country', function (req, res) {
+  let country = req.session.data['country']
+
+  if (country == "Northern Ireland"){
+    res.redirect('/v1/registration/address')
+  } else {
+    res.redirect('/v1/registration/postcode')
   }
 
 })
