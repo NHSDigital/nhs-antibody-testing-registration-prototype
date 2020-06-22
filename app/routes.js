@@ -13,27 +13,6 @@ router.post('/v1/action/delivery-address-question', function (req, res) {
 
 })
 
-// Version 1 - Teacher registration - Get email for the Mobile number route
-let emailAddress = "";
-router.post('/v1/action/email-address', function (req, res) {
-  emailAddress = req.session.data['email'];
-  res.redirect('/v1/teacher-registration/mobile-number');
-
-})
-
-
-// Version 1 - Teacher registration - Mobile phone route
-router.post('/v1/action/mobile-number', function (req, res) {
-  var mobilePhoneNumber = req.session.data['mobile-number']
-
-  if (emailAddress == "No" && mobilePhoneNumber == "No"){
-    res.redirect('/v1/teacher-registration/call-us')
-  } else {
-    res.redirect('/v1/teacher-registration/landline-number')
-  }
-
-})
-
 // Version 1 - Teacher registration - Get consent data for the Comfortable doing test route
 let consent = "";
 router.post('/v1/action/consent', function (req, res) {
