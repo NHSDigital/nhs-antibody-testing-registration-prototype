@@ -117,4 +117,11 @@ router.post('/v1/action2/country', function (req, res) {
 
 })
 
+
+// Version 1 - Registration - Country route
+router.post('/v1/action/people-confirmed', function (req, res) {
+    res.redirect('/v1/order')
+
+})
+
 module.exports = router
