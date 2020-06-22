@@ -46,7 +46,7 @@ router.post('/v1/action/consent', function (req, res) {
 router.post('/v1/action/comfortable-doing-test', function (req, res) {
   let comfortableDoingTest = req.session.data['comfortable-doing-test']
 
-  if (comfortableDoingTest == "No" && consent == "No"){
+  if (comfortableDoingTest == "No" || consent == "No"){
     res.redirect('/v1/teacher-registration/not-eligible')
   } else {
     res.redirect('/v1/teacher-registration/do-you-have-symptoms')
