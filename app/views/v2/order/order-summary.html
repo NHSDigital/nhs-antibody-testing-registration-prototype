@@ -1,0 +1,114 @@
+{% set version = "v2" %}
+{% set pageTitle = "Order summary" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+{% if data['delivery-address-same'] ==='No' %}
+  <a class="govuk-back-link" href="/{{version}}/order/home-address-results">Back</a>
+{% else %}
+  <a class="govuk-back-link" href="/{{version}}/order/delivery-address-results">Back</a>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+
+      <p>Coronavirus (COVID-19) antibody at home finger-prick blood test. </p>
+
+      <p>Quantity: 1</p>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['email'] | default('name@example.com')}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Delivery address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['delivery-address-same'] === 'No' %}{{ data['delivery-address'] }}{% else %}{{ data['home-address'] }}{% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/{{version}}/order/delivery-address">
+              Change<span class="govuk-visually-hidden"> delivery address</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Home address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['home-address'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/{{version}}/order/home-address">
+              Change<span class="govuk-visually-hidden"> home address</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <span class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Important</span>
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-0">By ordering a test kit, I confirm that:</h2>
+        </span>
+      </div>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the information I've provided is up-to-date and correct</li>
+        <li>I agree with the <a href="#">Terms and conditions</a> and <a href="#">Privacy policy</a> of this service</li>
+        <li>I am happy to be contacted about my order</li>
+        <li>to help prevent fraud, I am happy for my home address details to be checked</li>
+      </ul>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Find out more about how we prevent fraud.
+            </span>
+        </summary>
+        <div class="govuk-details__text">
+          To help make sure as many people as possible get a test kit we need to check your home address is correct.<br><br>
+          The quickest way to do this is by checking your address details with an organisation called TransUnion. <br><br>
+          This is not a credit check and does not affect your credit rating.<br><br>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>This is not a credit check </li>
+            <li>Your credit score is not affected in any way </li>
+            <li>They're not told why we're doing this </li>
+            <li>They will not keep a record of it</li>
+          </ul>
+          <p class="govuk-body">It's ok if you don’t want us to do this, you can contact us to order a test kit (we’ll check your home address information manually). </p>
+
+        </div>
+      </details>
+
+      <form action="/{{version}}/order/confirmation-page" method="post">
+
+        <button class="govuk-button" type="submit" data-module="govuk-button">
+          I agree to the checks, place my order
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% set version = "v2" %}
+{% set pageTitle = "Do you know your NHS number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/{{version}}/registration/country">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/{{version}}/action2/nhs-number-known" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="nhs-number-known-hint" class="govuk-hint">
+              It's OK if you do not, you can still continue.<br><br>
+              Your NHS number is a 10 digit number, like 485 777 3456. You can find it on any letter the NHS has sent you, on prescription, or by logging in to some GP services.
+            </span>
+            <p><a href="#">How to find your NHS number</a></p>
+            <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="nhs-number-known-1" name="nhs-number-known" type="radio" value="Yes" {{ checked("nhs-number-known", "Yes") }}>
+                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-1">
+                    Yes, I know my NHS number
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="nhs-number-known-2" name="nhs-number-known" type="radio" value="No" {{ checked("nhs-number-known", "No") }}>
+                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-2">
+                    No, I do not know my NHS number
+                  </label>
+                </div>
+              </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
