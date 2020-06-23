@@ -227,7 +227,7 @@ router.post('/v2/action2/country', function (req, res) {
   if (country == "Northern Ireland"){
     res.redirect('/v2/registration/address')
   } else {
-    res.redirect('/v2/registration/postcode')
+    res.redirect('/v2/registration/nhs-number-known')
   }
 
 })
