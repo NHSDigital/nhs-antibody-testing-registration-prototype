@@ -26,22 +26,33 @@ router.post('/v2/action/home-address-question', function (req, res) {
 
 
 // Version 1 - Teacher registration - Get consent data for the Comfortable doing test route
-let consent = "";
+
 router.post('/v1/action/consent', function (req, res) {
+  let consent = "";
   consent = req.session.data['consent'];
-  res.redirect('/v1/teacher-registration/comfortable-doing-test');
+  if (consent == "No") {
+    res.redirect('/v1/teacher-registration/not-eligible')
+  } else {
+    res.redirect('/v1/teacher-registration/comfortable-doing-test')
+  }
 
 })
 // Version 2 - Teacher registration - Get consent data for the Comfortable doing test route
-let consent = "";
-router.post('/v2/action/consent', function (req, res) {
-  consent = req.session.data['consent'];
-  res.redirect('/v2/teacher-registration/comfortable-doing-test');
 
+router.post('/v2/action/consent', function (req, res) {
+  let consent = "";
+  consent = req.session.data['consent'];
+
+  if (consent == "No") {
+    res.redirect('/v2/teacher-registration/not-eligible')
+  } else {
+    res.redirect('/v2/teacher-registration/comfortable-doing-test')
+  }
 })
 
 // Version 1 - Teacher registration - Comfortable doing test route
 router.post('/v1/action/comfortable-doing-test', function (req, res) {
+  consent = req.session.data['consent'];
   let comfortableDoingTest = req.session.data['comfortable-doing-test']
   if (comfortableDoingTest == "No" || consent == "No"){
     res.redirect('/v1/teacher-registration/not-eligible')
@@ -51,6 +62,7 @@ router.post('/v1/action/comfortable-doing-test', function (req, res) {
 })
 // Version 2 - Teacher registration - Comfortable doing test route
 router.post('/v2/action/comfortable-doing-test', function (req, res) {
+  consent = req.session.data['consent'];
   let comfortableDoingTest = req.session.data['comfortable-doing-test']
   if (comfortableDoingTest == "No" || consent == "No"){
     res.redirect('/v2/teacher-registration/not-eligible')
@@ -140,7 +152,7 @@ router.post('/v1/action/tested-positive', function (req, res) {
 
 })
 // Version 2 - Teacher Registration - Tested positive route
-router.post('/v1/action/tested-positive', function (req, res) {
+router.post('/v2/action/tested-positive', function (req, res) {
   let testedPositive = req.session.data['tested-positive']
 
   if (testedPositive == "Yes"){
