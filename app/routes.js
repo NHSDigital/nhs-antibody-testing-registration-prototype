@@ -87,7 +87,7 @@ router.post('/v2/action/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
   if (doYouHaveSymptoms == "Yes"){
-    res.redirect('/v2/teacher-registration/when-did-symptoms-start')
+    res.redirect('/v2/teacher-registration/not-eligible')
   } else {
     res.redirect('/v2/teacher-registration/have-you-had-symptoms')
   }
@@ -112,7 +112,7 @@ router.post('/v2/action/have-you-had-symptoms', function (req, res) {
   if (haveYouHadSymptoms == "Yes"){
     res.redirect('/v2/teacher-registration/when-did-symptoms-start')
   } else {
-    res.redirect('/v2/teacher-registration/name')
+    res.redirect('/v2/teacher-registration/eligible')
   }
 
 })
