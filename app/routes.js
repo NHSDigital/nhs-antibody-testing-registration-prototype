@@ -67,7 +67,7 @@ router.post('/v1/action/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
   if (doYouHaveSymptoms == "Yes"){
-    res.redirect('/v1/teacher-registration/when-did-symptoms-start')
+    res.redirect('/v1/teacher-registration/not-eligible')
   } else {
     res.redirect('/v1/teacher-registration/have-you-had-symptoms')
   }
@@ -118,6 +118,30 @@ router.post('/v1/action/when-did-symptoms-start', function (req, res) {
     res.redirect('/v1/teacher-registration/when-did-symptoms-start-error')
   } else {
     res.redirect('/v1/teacher-registration/name')
+  }
+
+})
+
+// Version 1 - Teacher registration - Mobile phone
+router.post('/v1/action/mobile-number', function (req, res) {
+  let mobileNumber = req.session.data['mobile-number']
+
+  if (mobileNumber == "Yes"){
+    res.redirect('/v1/teacher-registration/email-address')
+  } else {
+    res.redirect('/v1/teacher-registration/not-eligible')
+  }
+
+})
+
+// Version 2 - Teacher registration - Mobile phone
+router.post('/v2/action/mobile-number', function (req, res) {
+  let mobileNumber = req.session.data['mobile-number']
+
+  if (mobileNumber == "Yes"){
+    res.redirect('/v2/teacher-registration/email-address')
+  } else {
+    res.redirect('/v2/teacher-registration/not-eligible')
   }
 
 })
