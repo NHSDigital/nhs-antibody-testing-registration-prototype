@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
+// $('.govuk-error-summary').hide()
+
 // Version 1 - Is your delivery address the same as your home address?
 router.post('/v1/action/home-address-question', function (req, res) {
   var deliveryAddressAnswer = req.session.data['delivery-address-same']
@@ -43,6 +45,8 @@ router.post('/v1/action/comfortable-doing-test', function (req, res) {
   let comfortableDoingTest = req.session.data['comfortable-doing-test']
   if (comfortableDoingTest == "No"){
     res.redirect('/v1/teacher-registration/not-eligible')
+  } else if (comfortableDoingTest == undefined) {
+    res.redirect('/v1/teacher-registration/comfortable-doing-test-error')
   } else {
     res.redirect('/v1/teacher-registration/do-you-have-symptoms')
   }
@@ -100,6 +104,20 @@ router.post('/v2/action/have-you-had-symptoms', function (req, res) {
     res.redirect('/v2/teacher-registration/when-did-symptoms-start')
   } else {
     res.redirect('/v2/teacher-registration/name')
+  }
+
+})
+
+// Version 1 - Teacher registration - When did symptoms start route
+router.post('/v1/action/when-did-symptoms-start', function (req, res) {
+  let symptomsStartDay = req.session.data['symptoms-start-date-day']
+  let symptomsStartMonth = req.session.data['symptoms-start-date-month']
+  let symptomsStartYear = req.session.data['symptoms-start-date-year']
+
+  if (symptomsStartDay == "" || symptomsStartMonth == "" || symptomsStartYear == ""){
+    res.redirect('/v1/teacher-registration/when-did-symptoms-start-error')
+  } else {
+    res.redirect('/v1/teacher-registration/name')
   }
 
 })
