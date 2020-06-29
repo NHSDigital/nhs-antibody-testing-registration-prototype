@@ -56,6 +56,36 @@
             </a>
           </dd>
         </div>
+        {% if data['have-you-had-symptoms'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Previous coronavirus symptoms
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['have-you-had-symptoms'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/v1/teacher-registration/have-you-had-symptoms">
+              Change
+              <span class="govuk-visually-hidden">previous coronavirus symptoms</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date your symptoms started
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/v1/teacher-registration/when-did-symptoms-start">
+              Change
+              <span class="govuk-visually-hidden">date your symptoms started</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Occupation
@@ -154,6 +184,7 @@
             </a>
           </dd>
         </div>
+        {% if data['ethnic-group'] == "Asian or Asian British" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Ethnic background
@@ -168,6 +199,7 @@
             </a>
           </dd>
         </div>
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Ever tested positive for coronavirus
@@ -182,6 +214,7 @@
             </a>
           </dd>
         </div>
+        {% if data['tested-positive'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Date of positive test
@@ -196,6 +229,7 @@
             </a>
           </dd>
         </div>
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Household ever tested positive for coronavirus
