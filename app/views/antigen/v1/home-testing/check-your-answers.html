@@ -1,0 +1,147 @@
+{% set version = "v1" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/home-testing/app-reference-code">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you know how to return your test?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['kit-return-way-known'] }}
+            </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/home-testing/kit-return-way-known">
+              Change
+              <span class="govuk-visually-hidden">do you know how to return your test?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Order ID
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['order-id'] }}
+            </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/home-testing/order-id">
+              Change
+              <span class="govuk-visually-hidden">order ID</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name'] }} {{ data['last-name'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/home-testing/name">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/home-testing/date-of-birth">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Royal Mail barcode reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mail-barcode-reference-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/home-testing/royal-mail-barcode">
+              Change
+              <span class="govuk-visually-hidden">royal mail barcode reference</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Test kit barcode reference
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['kit-barcode-reference-1'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/home-testing/royal-mail-barcode">
+                Change
+                <span class="govuk-visually-hidden">test kit barcode reference</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['swab-test-date'] !== "different" %}
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Test date and time
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['swab-test-date'] }} : {{ data['swab-test-time'] }} {{ data['swab-test-time-ampm'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a href="/antigen/{{version}}/home-testing/swab-test-date">
+                Change
+                <span class="govuk-visually-hidden">test date and time</span>
+                </a>
+            </dd>
+            </div>
+        {% endif %}
+        {% if data['swab-test-date'] == "different" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Test date and time
+            </dt>
+            <dd class="govuk-summary-list__value">
+                {{ data['date-of-swab-test-day'] }} {{ data['date-of-swab-test-month'] }} {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }} {{ data['swab-test-time-ampm'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/home-testing/swab-test-date">
+                Change
+                <span class="govuk-visually-hidden">test date and time</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+      </dl>
+
+      <form action="/antigen/{{version}}/home-testing/confirmation" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

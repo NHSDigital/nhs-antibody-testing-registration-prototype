@@ -1,0 +1,42 @@
+{% set version = "v1" %}
+{% set pageTitle = "What's your order ID?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/home-testing/kit-return-way-known">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+
+      <form action="/antigen/{{version}}/home-testing/name" method="post">
+
+        <fieldset class="govuk-fieldset">
+
+          <span id="nhs-number-hint" class="govuk-hint">
+            You’ll find your 10 character order ID in the confirmation email you received when you ordered your test kit.<br><br>
+            If you cannot find your order ID, you may need to <a href="#">register your kit a different way.</a>
+          </span>
+        
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="order-id">
+              Order ID
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="order-id" name="order-id" type="text" value="{{ data['order-id'] }}">
+          </div>
+        
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

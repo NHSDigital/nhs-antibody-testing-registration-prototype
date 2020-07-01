@@ -1,0 +1,67 @@
+{% set version = "v1" %}
+{% set pageTitle = "What's your app reference code?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/home-testing/do-you-have-the-app">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+  
+      <form action="/antigen/{{version}}/home-testing/check-your-answers" method="post">
+  
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="app-reference-code-hint app-reference-code-2-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="app-reference-code-hint" class="govuk-hint">
+                We need your app reference code so your results can be sent to the app. This is the 8-character code which you'll see in the app. It looks like this: d23f-gre4
+            </span>
+
+            <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                Make sure you enter your code correctly, so your results can be sent to your app
+              </strong>
+            </div>
+
+            <span id="app-reference-code-2-hint" class="govuk-hint">
+                Your app reference code is unique to you, and you can only use your code once.<br><br>
+                Sharing your code here will not identify you to other app users.
+            </span>
+
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Where is my app reference code?
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body-m">To view your app reference code, go to your NHS COVID-19 app home screen. Scroll down to "More options" and click "Information about testing".</p>
+                  <img src="/public/images/reference-code.png" alt="where to find the reference code in the mobile app"/>
+              </div>
+            </details>
+  
+            <label class="govuk-label" for="app-reference-code">
+                App reference code
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="app-reference-code" name="app-reference-code" type="text" value={{ data['app-reference-code'] }}>
+          </fieldset>
+        </div>
+  
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+  
+      </form>
+  
+    </div>
+  </div>
+
+{% endblock %}

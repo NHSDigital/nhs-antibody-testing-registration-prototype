@@ -249,4 +249,18 @@ router.post('/v2/action/people-confirmed', function (req, res) {
 
 })
 
+
+// Version 1 - Antigen Home Registration - Kit return way known route
+router.post('/antigen/v1/action3/kit-return-way-known', function (req, res) {
+  let returnWayKnown = req.session.data['kit-return-way-known']
+
+  if (returnWayKnown == "Yes"){
+    res.redirect('/antigen/v1/home-testing/order-id')
+  } else {
+    res.redirect('/antigen/v1/home-testing/check-instructions')
+  }
+
+})
+
+
 module.exports = router

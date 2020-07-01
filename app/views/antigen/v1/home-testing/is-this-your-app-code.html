@@ -1,0 +1,87 @@
+{% set version = "v1" %}
+{% set pageTitle = "Is this your NHS COVID-19 app reference code?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/home-testing/swab-test-date">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+  
+      <form action="/antigen/{{version}}/home-testing/do-you-have-the-app" method="post">
+  
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="is-this-your-app-code-1-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="is-this-your-app-code-1-hint" class="govuk-hint">
+                We have matched an NHS COVID-19 app reference code with your details.
+            </span>
+
+            <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  Check this carefully. The code here needs to match the one on your app. This is so your results can be sent to your app.
+              </strong>
+            </div>
+
+            <span id="is-this-your-app-code-2-hint" class="govuk-hint">
+                Your app reference code is unique to you, and you can only use your code once.<br><br>
+                Sharing your code here will not identify you to other app users.
+            </span>
+
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                Where is my app reference code?
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body-m">To view your app reference code, go to your NHS COVID-19 app home screen. Scroll down to "More options" and click "Information about testing".</p>
+                <img src="/public/images/reference-code.png" alt="where to find the reference code in the mobile app"/>
+              </div>
+            </details>
+
+            <div class="govuk-inset-text">
+              <div class="govuk-!-margin-left-2" style="display: flex; flex-direction: row; align-items: center;">
+                <img src="/public/images/iphone-app.png" alt="iphone app icon">
+                <div style="display: inline-block" class="govuk-!-margin-left-4">
+                    <p class="govuk-body-m" style="margin-bottom: 0"><strong>{{ data['first-name'] }} {{ data['last-name'] }}</strong></p>
+                    <p class="govuk-body-m" style="margin-bottom: 0"><strong>App reference code: fgy2 - ahdv</strong></span>
+                </div>
+              </div>
+            </div>
+  
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="is-this-your-app-code-1" name="is-this-your-app-code" type="radio" value="Yes" {{ checked("is-this-your-app-code", "Yes") }}>
+                  <label class="govuk-label govuk-radios__label" for="is-this-your-app-code-1">
+                    Yes, this is my app reference code
+                  </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="is-this-your-app-code-2" name="is-this-your-app-code" type="radio" value="No" {{ checked("is-this-your-app-code", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="is-this-your-app-code-2">
+                    No, this is not my app reference code
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+  
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+  
+      </form>
+  
+    </div>
+  </div>
+
+{% endblock %}
