@@ -67,9 +67,9 @@ router.post('/v1/action/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
   if (doYouHaveSymptoms == "Yes"){
-    res.redirect('/v1/teacher-registration/when-did-symptoms-start')
+    res.redirect('/v1/teacher-registration/not-eligible')
   } else {
-    res.redirect('/v1/teacher-registration/have-you-had-symptoms')
+    res.redirect('/v1/teacher-registration/name')
   }
 
 })
@@ -92,7 +92,7 @@ router.post('/v1/action/have-you-had-symptoms', function (req, res) {
   if (haveYouHadSymptoms == "Yes"){
     res.redirect('/v1/teacher-registration/when-did-symptoms-start')
   } else {
-    res.redirect('/v1/teacher-registration/name')
+    res.redirect('/v1/teacher-registration/tested-positive')
   }
 
 })
@@ -103,7 +103,7 @@ router.post('/v2/action/have-you-had-symptoms', function (req, res) {
   if (haveYouHadSymptoms == "Yes"){
     res.redirect('/v2/teacher-registration/when-did-symptoms-start')
   } else {
-    res.redirect('/v2/teacher-registration/name')
+    res.redirect('/v2/teacher-registration/tested-positive')
   }
 
 })
@@ -117,7 +117,31 @@ router.post('/v1/action/when-did-symptoms-start', function (req, res) {
   if (symptomsStartDay == "" || symptomsStartMonth == "" || symptomsStartYear == ""){
     res.redirect('/v1/teacher-registration/when-did-symptoms-start-error')
   } else {
-    res.redirect('/v1/teacher-registration/name')
+    res.redirect('/v1/teacher-registration/tested-positive')
+  }
+
+})
+
+// Version 1 - Teacher registration - Mobile phone
+router.post('/v1/action/mobile-number', function (req, res) {
+  let mobileNumber = req.session.data['mobile-number']
+
+  if (mobileNumber == "Yes"){
+    res.redirect('/v1/teacher-registration/email-address')
+  } else {
+    res.redirect('/v1/teacher-registration/not-eligible')
+  }
+
+})
+
+// Version 2 - Teacher registration - Mobile phone
+router.post('/v2/action/mobile-number', function (req, res) {
+  let mobileNumber = req.session.data['mobile-number']
+
+  if (mobileNumber == "Yes"){
+    res.redirect('/v2/teacher-registration/email-address')
+  } else {
+    res.redirect('/v2/teacher-registration/not-eligible')
   }
 
 })
@@ -129,7 +153,7 @@ router.post('/v1/action/ethnic-group', function (req, res) {
   if (ethnicGroup == "Asian or Asian British"){
     res.redirect('/v1/teacher-registration/ethnic-background')
   } else {
-    res.redirect('/v1/teacher-registration/tested-positive')
+    res.redirect('/v1/teacher-registration/occupation')
   }
 
 })

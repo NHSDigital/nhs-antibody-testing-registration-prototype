@@ -4,7 +4,7 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/{{version}}/teacher-registration/postcode">Back</a>
+  <a class="govuk-back-link" href="/{{version}}/teacher-registration/infection-serious">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -14,34 +14,6 @@
       <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Consent to data being used
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['consent'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/v1/teacher-registration/consent">
-              Change
-              <span class="govuk-visually-hidden">consent to data being used</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Current coronavirus symptoms
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['do-you-have-symptoms'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/v1/teacher-registration/do-you-have-symptoms">
-              Change
-              <span class="govuk-visually-hidden">current coronavirus symptoms</span>
-            </a>
-          </dd>
-        </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Able to do test
@@ -56,47 +28,17 @@
             </a>
           </dd>
         </div>
-        {% if data['have-you-had-symptoms'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Previous coronavirus symptoms
+            Current coronavirus symptoms
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['have-you-had-symptoms'] }}
+            {{ data['do-you-have-symptoms'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/v1/teacher-registration/have-you-had-symptoms">
+            <a href="/v1/teacher-registration/do-you-have-symptoms">
               Change
-              <span class="govuk-visually-hidden">previous coronavirus symptoms</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Date your symptoms started
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/v1/teacher-registration/when-did-symptoms-start">
-              Change
-              <span class="govuk-visually-hidden">date your symptoms started</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Occupation
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['occupation'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/v1/teacher-registration/occupation">
-              Change
-              <span class="govuk-visually-hidden">occupation</span>
+              <span class="govuk-visually-hidden">current coronavirus symptoms</span>
             </a>
           </dd>
         </div>
@@ -142,6 +84,21 @@
             </a>
           </dd>
         </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Postcode
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['test-postcode'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/v1/teacher-registration/postcode">
+              Change
+              <span class="govuk-visually-hidden">postcode</span>
+            </a>
+          </dd>
+        </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Date of birth
@@ -202,6 +159,52 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            Occupation
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['occupation'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/v1/teacher-registration/occupation">
+              Change
+              <span class="govuk-visually-hidden">occupation</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Previous coronavirus symptoms
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['have-you-had-symptoms'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/v1/teacher-registration/have-you-had-symptoms">
+              Change
+              <span class="govuk-visually-hidden">previous coronavirus symptoms</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['have-you-had-symptoms'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date your symptoms started
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/v1/teacher-registration/when-did-symptoms-start">
+              Change
+              <span class="govuk-visually-hidden">date your symptoms started</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Ever tested positive for coronavirus
           </dt>
           <dd class="govuk-summary-list__value">
@@ -258,20 +261,7 @@
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Postcode
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['test-postcode'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/v1/teacher-registration/postcode">
-              Change
-              <span class="govuk-visually-hidden">postcode</span>
-            </a>
-          </dd>
-        </div>
+
       </dl>
 
       <form action="/v1/teacher-registration/confirmation" method="post" novalidate>
