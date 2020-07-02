@@ -1,0 +1,608 @@
+{% set version = "v2" %}
+{% set pageTitle = "What is your occuptation?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form>
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--l" for="occuptation">
+            What is your occuptation?
+          </label>
+        </h1>
+        <span id="occuptation-hint" class="govuk-hint">
+          This helps us track which occuptation are more at risk from coronavirus.<br><br>
+          Start typing and select your occuptation from the drop down. If your occuptation is not displayed select 'Other'.
+        </span>
+        <div id="occuptation-container"></div>
+      </div>
+
+      <button class="govuk-button" type="submit" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+  </div>
+<div>
+
+<style>
+.autocomplete__wrapper {
+  position: relative;
+  max-width: 25em;
+  margin-bottom: 20px;
+  font-family: "GDS Transport",Arial,sans-serif;
+}
+
+@media (min-width: 40.0625em) {
+  .autocomplete__wrapper {
+    margin-bottom: 30px;
+  }
+}
+
+.autocomplete__hint, .autocomplete__input {
+  -webkit-appearance: none;
+  border: 2px solid #0b0c0c;
+  border-radius: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.autocomplete__input {
+  background-color: transparent;
+  position: relative;
+}
+
+.autocomplete__hint {
+  color: #b1b4b6;
+  position: absolute;
+}
+
+.autocomplete__input--default {
+  padding: 5px;
+}
+
+.autocomplete__input--focused {
+  outline: 3px solid #fd0;
+  outline-offset: 0;
+  box-shadow: inset 0 0 0 2px;
+}
+
+.autocomplete__input--show-all-values {
+  padding: 5px 34px 5px 5px;
+  cursor: pointer;
+}
+
+.autocomplete__dropdown-arrow-down {
+  z-index: -1;
+  display: inline-block;
+  position: absolute;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  top: 10px;
+}
+
+.autocomplete__menu {
+  background-color: #fff;
+  border: 2px solid #0b0c0c;
+  border-top: 0;
+  color: #0b0c0c;
+  margin: 0;
+  max-height: 342px;
+  overflow-x: hidden;
+  padding: 0;
+  width: 100%;
+  width: calc(100% - 4px);
+}
+
+.autocomplete__menu--visible {
+  display: block;
+}
+
+.autocomplete__menu--hidden {
+  display: none;
+}
+
+.autocomplete__menu--overlay {
+  box-shadow: rgba(0, 0, 0, 0.256863) 0 2px 6px;
+  left: 0;
+  position: absolute;
+  top: 100%;
+  z-index: 100;
+}
+
+.autocomplete__menu--inline {
+  position: relative;
+}
+
+.autocomplete__option {
+  border-bottom: solid #b1b4b6;
+  border-width: 1px 0;
+  cursor: pointer;
+  display: block;
+  position: relative;
+}
+
+.autocomplete__option > * {
+  pointer-events: none;
+}
+
+.autocomplete__option:first-of-type {
+  border-top-width: 0;
+}
+
+.autocomplete__option:last-of-type {
+  border-bottom-width: 0;
+}
+
+.autocomplete__option--odd {
+  background-color: #fafafa;
+}
+
+.autocomplete__option--focused, .autocomplete__option:hover {
+  background-color: #1d70b8;
+  border-color: #1d70b8;
+  color: #fff;
+  outline: 0;
+}
+
+.autocomplete__option--no-results {
+  background-color: #fafafa;
+  color: #646b6f;
+  cursor: not-allowed;
+}
+
+.autocomplete__hint, .autocomplete__input, .autocomplete__option {
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.autocomplete__hint, .autocomplete__option {
+  padding: 5px;
+}
+
+@media (min-width: 641px) {
+  .autocomplete__hint, .autocomplete__input, .autocomplete__option {
+    font-size: 19px;
+    line-height: 1.31579;
+  }
+}
+</style>
+<script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script>
+  const occupations = [
+    'Chief executives and senior officials',
+    'Elected officers and representatives',
+    'Production managers and directors in manufacturing',
+    'Production managers and directors in construction',
+    'Production managers and directors in mining and energy',
+    'Financial managers and directors',
+    'Marketing, sales and advertising directors',
+    'Public relations and communications directors',
+    'Purchasing managers and directors',
+    'Charitable organisation managers and directors',
+    'Human resource managers and directors',
+    'Information technology directors',
+    'Functional managers and directors n.e.c.',
+    'Directors in logistics, warehousing and transport',
+    'Managers and directors in retail and wholesale',
+    'Officers in armed forces',
+    'Senior police officers',
+    'Senior officers in fire, ambulance, prison and related services',
+    'Health services and public health managers and directors',
+    'Social services managers and directors',
+    'Managers and proprietors in agriculture and horticulture',
+    'Managers and proprietors in forestry, fishing and related services',
+    'Hotel and accommodation managers and proprietors',
+    'Restaurant and catering establishment managers and proprietors',
+    'Publicans and managers of licensed premises',
+    'Leisure and sports managers',
+    'Travel agency managers and proprietors',
+    'Health care practice managers',
+    'Residential, day and domiciliary care managers and proprietors',
+    'Early education and childcare services proprietors',
+    'Managers in transport and distribution',
+    'Managers in storage and warehousing',
+    'Managers in logistics',
+    'Property, housing and estate managers',
+    'Garage managers and proprietors',
+    'Hairdressing and beauty salon managers and proprietors',
+    'Waste disposal and environmental services managers',
+    'Managers and directors in the creative industries',
+    'Betting shop and gambling establishment managers',
+    'Hire services managers and proprietors',
+    'Directors in consultancy services',
+    'Managers and proprietors in other services n.e.c.',
+    'Chemical scientists',
+    'Biological scientists',
+    'Biochemists and biomedical scientists',
+    'Physical scientists',
+    'Social and humanities scientists',
+    'Natural and social science professionals n.e.c.',
+    'Civil engineers',
+    'Mechanical engineers',
+    'Electrical engineers',
+    'Electronics engineers',
+    'Production and process engineers',
+    'Aerospace engineers',
+    'Engineering project managers and project engineers',
+    'Engineering professionals n.e.c.',
+    'IT project managers',
+    'IT managers',
+    'IT business analysts, architects and systems designers',
+    'Programmers and software development professionals',
+    'Cyber security professionals',
+    'IT quality and testing professionals',
+    'IT network professionals',
+    'Information technology professionals n.e.c.',
+    'Web design professionals',
+    'Graphic and multimedia designers',
+    'Conservation professionals',
+    'Environment professionals',
+    'Research and development (R&D) managers',
+    'Other researchers, unspecified discipline',
+    'Generalist medical practitioners',
+    'Specialist medical practitioners',
+    'Physiotherapists',
+    'Occupational therapists',
+    'Speech and language therapists',
+    'Psychotherapists and cognitive behaviour therapists',
+    'Clinical psychologists',
+    'Other psychologists',
+    'Therapy professionals n.e.c.',
+    'Midwifery nurses',
+    'Community nurses',
+    'Specialist nurses',
+    'Nurse practitioners',
+    'Mental health nurses',
+    'Childrens nurses',
+    'Other nursing professionals',
+    'Veterinarians',
+    'Pharmacists',
+    'Ophthalmic opticians',
+    'Dental practitioners',
+    'Medical radiographers',
+    'Paramedics',
+    'Podiatrists',
+    'Other health professionals n.e.c.',
+    'Higher education teaching professionals',
+    'Further education teaching professionals',
+    'Secondary education teaching professionals',
+    'Primary education teaching professionals',
+    'Nursery education teaching professionals',
+    'Special needs education teaching professionals',
+    'Teachers of English as a foreign language',
+    'Teaching professionals n.e.c.',
+    'Head teachers and principals',
+    'Education managers ',
+    'Education advisers and school inspectors',
+    'Early education and childcare services managers',
+    'Other educational professionals n.e.c',
+    'Barristers and judges',
+    'Solicitors and lawyers',
+    'Legal professionals n.e.c.',
+    'Chartered and certified accountants',
+    'Finance and investment analysts and advisers',
+    'Taxation experts',
+    'Management consultants and business analysts',
+    'Marketing and commercial managers',
+    'Actuaries, economists and statisticians',
+    'Business and related research professionals',
+    'Professional/Chartered company secretaries', 
+    'Business, research and administrative professionals n.e.c.',
+    'Business and financial project management professionals',
+    'Architects',
+    'Chartered architectural technologists, planning officers and consultants',
+    'Quantity surveyors',
+    'Chartered surveyors',
+    'Construction project managers and related professionals',
+    'Social workers',
+    'Probation officers',
+    'Clergy',
+    'Youth work professionals',
+    'Welfare professionals n.e.c.',
+    'Librarians',
+    'Archivists and curators',
+    'Quality control and planning engineers',
+    'Quality assurance and regulatory professionals',
+    'Environmental health professionals',
+    'Newspaper and periodical editors',
+    'Newspaper and periodical journalists and reporters',
+    'Public relations professionals',
+    'Advertising accounts managers and creative directors',
+    'Laboratory technicians',
+    'Electrical and electronics technicians',
+    'Engineering technicians', 
+    'Building and civil engineering technicians',
+    'Quality assurance technicians',
+    'Planning, process and production technicians',
+    'Science, engineering and production technicians n.e.c.',
+    'CAD, drawing and architectural technicians',
+    'IT operations technicians',
+    'IT user support technicians',
+    'Database administrators and web content technicians',
+    'Dispensing opticians',
+    'Pharmaceutical technicians',
+    'Medical and dental technicians',
+    'Complementary health associate professionals',
+    'Health associate professionals n.e.c.',
+    'Youth and community workers',
+    'Child and early years officers',
+    'Housing officers',
+    'Counsellors',
+    'Welfare and housing associate professionals n.e.c.',
+    'Higher level teaching assistants',
+    'Early education and childcare practitioners',
+    'Veterinary nurses',
+    'Non-commissioned officers and other ranks',
+    'Police officers (sergeant and below)',
+    'Fire service officers (watch manager and below)',
+    'Prison service officers (below principal officer)',
+    'Protective service associate professionals n.e.c.',
+    'Artists',
+    'Authors, writers and translators',
+    'Actors, entertainers and presenters',
+    'Dancers and choreographers',
+    'Musicians',
+    'Arts officers, producers and directors',
+    'Photographers, audio-visual and broadcasting equipment operators',
+    'Interior designers',
+    'Clothing, fashion and accessories designers',
+    'Design occupations n.e.c.',
+    'Sports players',
+    'Sports coaches, instructors and officials',
+    'Fitness and wellbeing instructors',
+    'Aircraft pilots and air traffic controllers',
+    'Ship and hovercraft officers',
+    'Legal associate professionals',
+    'Brokers',
+    'Insurance underwriters',
+    'Financial and accounting technicians',
+    'Financial accounts managers',
+    'Estimators, valuers and assessors',
+    'Importers and exporters',
+    'Project support officers',
+    'Data analysts',
+    'Business associate professionals n.e.c.',
+    'Buyers and procurement officers',
+    'Business sales executives',
+    'Merchandisers',
+    'Marketing associate professionals',
+    'Estate agents and auctioneers',
+    'Sales accounts and business development managers',
+    'Conference and exhibition managers and organisers',
+    'Public services associate professionals',
+    'Human resources and industrial relations officers',
+    'Careers advisers and vocational guidance specialists',
+    'Information technology trainers',
+    'Other vocational and industrial trainers',
+    'Inspectors of standards and regulations',
+    'Health and safety managers and officers',
+    'National government administrative occupations',
+    'Local government administrative occupations',
+    'Officers of non-governmental organisations',
+    'Credit controllers',
+    'Book-keepers, payroll managers and wages clerks',
+    'Bank and post office clerks',
+    'Finance officers',
+    'Financial administrative occupations n.e.c.',
+    'Records clerks and assistants',
+    'Pensions and insurance clerks and assistants',
+    'Stock control clerks and assistants',
+    'Transport and distribution clerks and assistants',
+    'Library clerks and assistants',
+    'Human resources administrative occupations',
+    'Office managers',
+    'Office supervisors',
+    'Customer service managers',
+    'Sales administrators',
+    'Data entry administrators',
+    'Other administrative occupations n.e.c.',
+    'Medical secretaries',
+    'Legal secretaries',
+    'School secretaries',
+    'Company secretaries and administrators',
+    'Personal assistants and other secretaries',
+    'Receptionists',
+    'Typists and related keyboard occupations',
+    'Farmers',
+    'Horticultural trades',
+    'Gardeners and landscape gardeners',
+    'Groundsmen and greenkeepers',
+    'Agricultural and fishing trades n.e.c.',
+    'Sheet metal workers',
+    'Metal plate workers, smiths, moulders and related occupations',
+    'Welding trades',
+    'Pipe fitters',
+    'Metal machining setters and setter-operators',
+    'Tool makers, tool fitters and markers-out',
+    'Metal working production and maintenance fitters',
+    'Precision instrument makers and repairers',
+    'Air-conditioning and refrigeration installers and repairers',
+    'Vehicle technicians, mechanics and electricians',
+    'Vehicle body builders and repairers',
+    'Vehicle paint technicians',
+    'Aircraft maintenance and related trades',
+    'Boat and ship builders and repairers',
+    'Rail and rolling stock builders and repairers',
+    'Electricians and electrical fitters',
+    'Telecoms and related network installers and repairers',
+    'TV, video and audio servicers and repairers',
+    'Computer system and equipment installers and servicers',
+    'Security system installers and repairers',
+    'Electrical service and maintenance mechanics and repairers',
+    'Electrical and electronic trades n.e.c.',
+    'Skilled metal, electrical and electronic trades supervisors',
+    'Steel erectors',
+    'Stonemasons and related trades',
+    'Bricklayers',
+    'Roofers, roof tilers and slaters',
+    'Plumbers & heating and ventilating installers and repairers',
+    'Carpenters and joiners',
+    'Glaziers, window fabricators and fitters',
+    'Construction and building trades n.e.c.',
+    'Plasterers',
+    'Floorers and wall tilers',
+    'Painters and decorators',
+    'Construction and building trades supervisors',
+    'Upholsterers',
+    'Footwear and leather working trades',
+    'Tailors and dressmakers',
+    'Textiles, garments and related trades n.e.c.',
+    'Pre-press technicians',
+    'Printers',
+    'Print finishing and binding workers',
+    'Butchers',
+    'Bakers and flour confectioners',
+    'Fishmongers and poultry dressers',
+    'Chefs',
+    'Cooks',
+    'Catering and bar managers',
+    'Glass and ceramics makers, decorators and finishers',
+    'Furniture makers and other craft woodworkers',
+    'Florists',
+    'Other skilled trades n.e.c.',
+    'Early education and childcare assistants',
+    'Teaching assistants',
+    'Educational support assistants',
+    'Childminders',
+    'Nannies and au pairs',
+    'Playworkers',
+    'Pest control officers',
+    'Animal care services occupations n.e.c.',
+    'Nursing auxiliaries and assistants',
+    'Ambulance staff (excluding paramedics)',
+    'Dental nurses',
+    'Houseparents and residential wardens',
+    'Care workers and home carers',
+    'Senior care workers',
+    'Care escorts',
+    'Undertakers, mortuary and crematorium assistants',
+    'Sports and leisure assistants',
+    'Travel agents',
+    'Air travel assistants',
+    'Rail travel assistants',
+    'Leisure and travel service occupations n.e.c.',
+    'Hairdressers and barbers',
+    'Beauticians and related occupations',
+    'Housekeepers and related occupations',
+    'Caretakers',
+    'Cleaning and housekeeping managers and supervisors',
+    'Bed and breakfast and guest house owners and proprietors', 
+    'Police community support officers',
+    'Parking and civil enforcement occupations',
+    'Sales and retail assistants',
+    'Retail cashiers and check-out operators',
+    'Telephone salespersons',
+    'Pharmacy and optical dispensing assistants',
+    'Vehicle and parts salespersons and advisers',
+    'Collector salespersons and credit agents',
+    'Debt, rent and other cash collectors',
+    'Roundspersons and van salespersons',
+    'Market and street traders and assistants',
+    'Visual merchandisers and related occupations',
+    'Sales related occupations n.e.c.',
+    'Shopkeepers and owners - retail and wholesale',
+    'Sales supervisors - retail and wholesale',
+    'Call and contact centre occupations',
+    'Telephonists',
+    'Communication operators',
+    'Market research interviewers',
+    'Customer service occupations n.e.c.',
+    'Customer service supervisors',
+    'Food, drink and tobacco process operatives',
+    'Textile process operatives',
+    'Chemical and related process operatives',
+    'Plastics process operatives',
+    'Metal making and treating process operatives',
+    'Process operatives n.e.c.',
+    'Metal working machine operatives',
+    'Paper and wood machine operatives',
+    'Mining and quarry workers and related operatives',
+    'Energy plant operatives',
+    'Water and sewerage plant operatives',
+    'Printing machine assistants',
+    'Plant and machine operatives n.e.c.',
+    'Assemblers (electrical and electronic products)',
+    'Assemblers (vehicles and metal goods)',
+    'Routine inspectors and testers',
+    'Weighers, graders and sorters',
+    'Tyre, exhaust and windscreen fitters',
+    'Sewing machinists',
+    'Assemblers and routine operatives n.e.c.',
+    'Scaffolders, stagers and riggers',
+    'Road construction operatives',
+    'Rail construction and maintenance operatives',
+    'Construction operatives n.e.c.',
+    'Production, factory and assembly supervisors',
+    'Large goods vehicle drivers',
+    'Bus and coach drivers',
+    'Taxi and cab drivers and chauffeurs',
+    'Delivery drivers and couriers',
+    'Driving instructors',
+    'Road transport drivers n.e.c.',
+    'Crane drivers',
+    'Fork-lift truck drivers',
+    'Mobile machine drivers and operatives n.e.c.',
+    'Train and tram drivers',
+    'Marine and waterways transport operatives',
+    'Air transport operatives',
+    'Rail transport operatives',
+    'Other drivers and transport operatives n.e.c.',
+    'Farm workers',
+    'Forestry and related workers',
+    'Fishing and other elementary agriculture occupations n.e.c.',
+    'Groundworkers',
+    'Elementary construction occupations n.e.c.',
+    'Industrial cleaning process occupations',
+    'Packers, bottlers, canners and fillers',
+    'Elementary process plant occupations n.e.c.',
+    'Postal workers, mail sorters and messengers',
+    'Elementary administration occupations n.e.c.',
+    'Window cleaners',
+    'Street cleaners',
+    'Cleaners and domestics',
+    'Launderers, dry cleaners and pressers',
+    'Refuse and salvage occupations',
+    'Vehicle valeters and cleaners',
+    'Elementary cleaning occupations n.e.c.',
+    'Security guards and related occupations',
+    'School midday and crossing patrol occupations',
+    'Exam invigilators',
+    'Shelf fillers',
+    'Elementary sales occupations n.e.c.',
+    'Elementary storage supervisors',
+    'Warehouse operatives',
+    'Delivery operatives',
+    'Elementary storage occupations n.e.c.',
+    'Bar and catering supervisors',
+    'Hospital porters',
+    'Kitchen and catering assistants',
+    'Waiters and waitresses',
+    'Bar staff',
+    'Coffee shop workers',
+    'Leisure and theme park attendants',
+    'Other elementary services occupations n.e.c.'
+  ];
+
+  accessibleAutocomplete({
+    autoselect: true,
+    element: document.querySelector('#occuptation-container'),
+    id: 'occuptation',
+    source: occupations,
+    displayMenu: 'overlay',
+    minLength: 2
+  });
+</script>
+{% endblock %}
