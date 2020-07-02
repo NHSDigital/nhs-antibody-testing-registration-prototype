@@ -286,5 +286,37 @@ router.post('/antigen/v1/action3/kit-return-way-known', function (req, res) {
 
 })
 
+// Version 1 - Antigen Refer and Triage - Call us route
+
+router.post('/antigen/v1/action3/mobile-number', function (req, res) {
+  let mobilePhoneNumber = "";
+  mobilePhoneNumber = req.session.data['mobile-number']
+  console.log(mobilePhoneNumber, 'hm')
+  res.redirect('/antigen/v1/refer-and-triage/email-address')
+})
+
+router.post('/antigen/v1/action3/email-address', function (req, res) {
+  let emailAddress = req.session.data['email']
+  mobilePhoneNumber = req.session.data['mobile-number']
+  if (emailAddress == "No" && mobilePhoneNumber == "No"){
+    res.redirect('/antigen/v1/refer-and-triage/call-us')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/reason-for-test')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - Do you have symptoms route
+
+router.post('/antigen/v1/action3/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes"){
+    res.redirect('/antigen/v1/refer-and-triage/when-did-symptoms-start')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/postcode')
+  }
+
+})
+
 
 module.exports = router

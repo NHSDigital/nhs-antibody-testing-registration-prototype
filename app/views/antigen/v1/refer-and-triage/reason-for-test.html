@@ -1,0 +1,76 @@
+{% set version = "v1" %}
+{% set pageTitle = "What is your reason for getting a test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/email-address">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/refer-and-triage/do-you-have-symptoms" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="reason-for-test-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="reason-for-test-hint" class="govuk-hint">
+              This will help us understand why different groups of people are getting tested.<br><br>
+              If you have more than one reason for getting tested, just select one answer.
+            </span>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-for-test-1" name="reason-for-test" type="radio" value="I'm an essential worker" {{ checked("reason-for-test", "I'm an essential worker") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-1">
+                  I'm an essential worker
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-for-test-2" name="reason-for-test" type="radio" value="I have coronavirus symptoms" {{ checked("reason-for-test", "I have coronavirus symptoms") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-2">
+                  I have coronavirus symptoms
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-for-test-3" name="reason-for-test" type="radio" value="I've been in contact with someone who has tested positive for coronavirus" {{ checked("reason-for-test", "I've been in contact with someone who has tested positive for coronavirus") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-3">
+                  I've been in contact with someone who has tested positive for coronavirus
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-for-test-4" name="reason-for-test" type="radio" value="I need to get tested for my work" {{ checked("reason-for-test", "I need to get tested for my work") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-4">
+                  I need to get tested for my work
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-for-test-5" name="reason-for-test" type="radio" value="I have an upcoming hospital appointment" {{ checked("reason-for-test", "I have an upcoming hospital appointment") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-5">
+                  I have an upcoming hospital appointment
+                </label>
+              </div>   
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-for-test-6" name="reason-for-test" type="radio" value="I am part of a coronavirus outbreak" {{ checked("reason-for-test", "I am part of a coronavirus outbreak") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-6">
+                  I am part of a coronavirus outbreak
+                </label>
+              </div>       
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

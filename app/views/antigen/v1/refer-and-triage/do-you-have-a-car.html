@@ -1,0 +1,51 @@
+{% set version = "v1" %}
+{% set pageTitle = "Do you or someone you live with have a car?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/postcode">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/antigen/{{version}}/refer-and-triage/how-will-you-get-test" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="do-you-have-a-car-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-fieldset__heading">
+                            {{ pageTitle }}
+                        </h1>
+                    </legend>
+                    <span id="do-you-have-a-car-hint" class="govuk-hint">
+                        This excludes taxis services and large vans. We need to know this so we can determine how it is best for you to get tested.
+                    </span>
+                    <div class="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="do-you-have-a-car-1" name="do-you-have-a-car" type="radio" value="Yes" {{ checked("do-you-have-a-car", "Yes") }}>
+                            <label class="govuk-label govuk-radios__label" for="do-you-have-a-car-1">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="do-you-have-a-car-2" name="do-you-have-a-car" type="radio" value="No" {{ checked("do-you-have-a-car", "No") }}>
+                            <label class="govuk-label govuk-radios__label" for="do-you-have-a-car-2">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
