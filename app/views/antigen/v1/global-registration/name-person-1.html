@@ -1,0 +1,44 @@
+{% set version = "v1" %}
+{% set pageTitle = "What's the name of the person you live with?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/people-confirmed">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+
+      <form action="/antigen/{{version}}/global-registration/date-of-birth-person-1" method="post">
+
+        <fieldset class="govuk-fieldset">
+        
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="first-name-person-1">
+              First name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="first-name-person-1" name="first-name-person-1" type="text" value="{{ data['first-name-person-1'] }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="last-name-person-1">
+              Last name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="last-name-person-1" name="last-name-person-1" type="text" value="{{ data['last-name-person-1'] }}">
+          </div>
+        
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

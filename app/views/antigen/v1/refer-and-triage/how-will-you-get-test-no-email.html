@@ -12,7 +12,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/antigen/{{version}}/action3/how-will-you-get-test" method="post">
+      <form action="/antigen/{{version}}/action3/how-will-you-get-test-no-email" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="ethnic-group-hint">
@@ -22,10 +22,12 @@
               </h1>
             </legend>
             <span id="how-will-you-get-test-hint" class="govuk-hint">
-              Based on the answers you gave, the following testing services are available to you.
+              Based on the answers you gave, the following testing services are available to you.<br><br>
+              You are not eligible for a home test as you told us you do not have an email address. If you do, you should <a class="govuk-link" href="/antigen/{{version}}/refer-and-triage/email-address">change your answer.</a>
             </span>
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
             <div class="govuk-radios">
-              <div class="govuk-radios__item">
+              <div class="govuk-radios__item govuk-!-margin-top-6">
                 <input class="govuk-radios__input" id="way-to-test-1" name="way-to-test" type="radio" value="drive-through" {{ checked("way-to-test", "drive-through") }} aria-describedby="drive-through-1-hint drive-through-2-hint drive-through-3-hint drive-through-4-hint">
                 <label class="govuk-label govuk-radios__label" for="way-to-test-1">
                   <span  class="govuk-body-l"><strong>At a drive-through test site</strong></span>
@@ -57,20 +59,9 @@
                       <strong>Your nearest test site is Heathrow airport (0.5 miles away)</strong><br>
                       125 testing Lane<br>
                       Highbury & Islington<br>
-                      {{ data['postcode'] }}<br>
+                      {{ data['home-postcode'] }}<br>
                       54 slots available in the next 5 days
                   </span>
-              </div>
-              <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="way-to-test-3" name="way-to-test" type="radio" value="home testing" {{ checked("way-to-test", "home testing") }} aria-describedby="home-testing-1-hint home-testing-2-hint home-testing-3-hint">
-                <label class="govuk-label govuk-radios__label" for="way-to-test-3">
-                  <span  class="govuk-body-l"><strong>Home testing</strong></span>
-                </label>
-                <ul class="govuk-list govuk-list--bullet">
-                  <li><span id="home-testing-1-hint">You can ask for a test kit for yourself and up to 3 other people you live with who have coronavirus symptoms.</span></li>
-                  <li><span id="home-testing-2-hint">Kits are sent by post and should arrive the next day.</span></li>
-                  <li><span id="home-testing-3-hint">There is an identity check for home test kits.</span></li>
-                </ul>
               </div>
             </div>
           </fieldset>

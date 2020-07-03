@@ -288,16 +288,9 @@ router.post('/antigen/v1/action3/kit-return-way-known', function (req, res) {
 
 // Version 1 - Antigen Refer and Triage - Call us route
 
-router.post('/antigen/v1/action3/mobile-number', function (req, res) {
-  let mobilePhoneNumber = "";
-  mobilePhoneNumber = req.session.data['mobile-number']
-  console.log(mobilePhoneNumber, 'hm')
-  res.redirect('/antigen/v1/refer-and-triage/email-address')
-})
-
 router.post('/antigen/v1/action3/email-address', function (req, res) {
   let emailAddress = req.session.data['email']
-  mobilePhoneNumber = req.session.data['mobile-number']
+  let mobilePhoneNumber = req.session.data['mobile-number']
   if (emailAddress == "No" && mobilePhoneNumber == "No"){
     res.redirect('/antigen/v1/refer-and-triage/call-us')
   } else {
@@ -314,6 +307,102 @@ router.post('/antigen/v1/action3/do-you-have-symptoms', function (req, res) {
     res.redirect('/antigen/v1/refer-and-triage/when-did-symptoms-start')
   } else {
     res.redirect('/antigen/v1/refer-and-triage/postcode')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - Do you have a car route
+
+router.post('/antigen/v1/action3/do-you-have-a-car', function (req, res) {
+  let postcode = req.session.data['home-postcode']
+  let emailAddress = req.session.data['email']
+  let car = req.session.data['do-you-have-a-car']
+  if (car == "Yes" && emailAddress == "No" && postcode !== "N0000"){
+    res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test-no-email')
+  } else if (car == "No" && emailAddress == "Yes" && postcode !== "N0000") {
+    res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test-no-car')
+  } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
+    res.redirect('/antigen/v1/refer-and-triage/eligible-for-home-test')
+  } else if (car == "No" && postcode !== "N0000" && emailAddress == "No") {
+    res.redirect('/antigen/v1/refer-and-triage/eligible-for-walk-in-test')
+  } else if (car == "No" && postcode == "N0000" && emailAddress == "No") {
+    res.redirect('/antigen/v1/refer-and-triage/call-us-for-test')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - How will you get test route
+
+router.post('/antigen/v1/action3/how-will-you-get-test', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "drive-through"){
+    res.redirect('/antigen/v1/refer-and-triage/visiting-drive-through')
+  } else if (wayToTest == "walk-in") {
+    res.redirect('/antigen/v1/refer-and-triage/visiting-walk-through')
+  } else if (wayToTest == "home testing") {
+    res.redirect('/antigen/v1/refer-and-triage/order-home-test-kit')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - How will you get test no car route
+
+router.post('/antigen/v1/action3/how-will-you-get-test-no-car', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "walk-in"){
+    res.redirect('/antigen/v1/refer-and-triage/visiting-walk-through')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/order-home-test-kit')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - How will you get test no car route
+
+router.post('/antigen/v1/action3/how-will-you-get-test-no-email', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "drive-through"){
+    res.redirect('/antigen/v1/refer-and-triage/visiting-drive-through')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/order-home-test-kit')
+  }
+
+})
+
+// Version 1 - Antigen Global Registration - Ethnic group route
+
+router.post('/antigen/v1/action3/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/antigen/v1/global-registration/ethnic-background')
+  } else {
+    res.redirect('/antigen/v1/global-registration/currently-in-work')
+  }
+
+})
+
+// Version 1 - Antigen Global Registration - Currently in work route
+
+router.post('/antigen/v1/action3/currently-in-work', function (req, res) {
+  let inWork = req.session.data['currently-in-work']
+  if (inWork == "No"){
+    res.redirect('/antigen/v1/global-registration/landline-number')
+  } else {
+    res.redirect('/antigen/v1/global-registration/industry')
+  }
+
+})
+
+// Version 1 - Antigen Global Registration - NHS number known route
+
+router.post('/antigen/v1/action3/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/antigen/v1/global-registration/nhs-number')
+  } else {
+    res.redirect('/antigen/v1/global-registration/check-your-answers')
   }
 
 })
