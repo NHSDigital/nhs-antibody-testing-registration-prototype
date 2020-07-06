@@ -1,10 +1,9 @@
 {% set version = "v1" %}
-{% set pageTitle = "People confirmed for testing" %}
 
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/check-your-answers">Back</a>
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/check-your-answers-person-1">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -14,13 +13,9 @@
 
       <h1 class="govuk-heading-xl">People confirmed for testing</h1>
 
-      <p>You can add up to 3 people you live with to join you for testing. They must:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>also have symptoms</li>
-        <li>live with you</li>
-      </ul>
+      <p>You can add up to 3 people you live with to join you for testing.</p>
 
-      <p>Once you’ve confirmed all people for testing, you can choose how you want to be tested.</p>
+      <p>Once you’ve confirmed all people for testing, you can continue. You cannot change the people for testing once you continue.</p>
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
@@ -42,18 +37,23 @@
             </td>
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a></p></td>
           </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] }}<br>{{ data['last-name-person-1'] }}</th>
+            <td class="govuk-table__cell">
+              {% if data['email-person-1'] == "Yes" %}
+              {{ data['email-address-person-1'] }}
+              <br>
+              {% endif %}
+              {{ data['mobile-phone-number-person-1'] }}
+            </td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers-person-1">Edit details</a></p></td>
+          </tr>
         </tbody>
       </table>
 
-      <form class="form" action="/antigen/{{version}}/global-registration/choose-test-site" method="post" style="display: inline-block;">
+      <form class="form" action="/antigen/{{version}}/site-appointment-booking/find-test-site" method="post">
 
-        <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">Choose test site</button>
-
-      </form>
-
-      <form class="form" action="/antigen/{{version}}/global-registration/name-person-1" method="post" style="display: inline-block;">
-
-        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Add person you live with</button>
+        <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">Save and continue</button>
 
       </form>
 

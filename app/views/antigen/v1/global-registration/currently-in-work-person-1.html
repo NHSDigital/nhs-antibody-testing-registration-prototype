@@ -1,0 +1,59 @@
+{% set version = "v1" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/ethnic-group-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antigen/{{version}}/action3/currently-in-work-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="currently-in-work-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Is {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }} currently in work?
+              </h1>
+            </legend>
+            <span id="currently-in-work-hint" class="govuk-hint">
+              This will help us understand how coronavirus is affecting people in different industries.<br><br>
+              This means if you are at work in the moment, not on a leave of absence. For example maternity or paternity leave, sick leave, furlough.
+            </span>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="currently-in-work-1-person-1" name="currently-in-work" type="radio" value="Yes, they work from home" {{ checked("currently-in-work-person-1", "Yes, they work from home") }}>
+                <label class="govuk-label govuk-radios__label" for="currently-in-work-1-person-1">
+                  Yes, they work from home
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="currently-in-work-2" name="currently-in-work-person-1" type="radio" value="Yes, they travel to work" {{ checked("currently-in-work-person-1", "Yes, they travel to work") }}>
+                <label class="govuk-label govuk-radios__label" for="currently-in-work-2-person-1">
+                  Yes, they travel to work
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="currently-in-work-3" name="currently-in-work-person-1" type="radio" value="No" {{ checked("currently-in-work-person-1", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="currently-in-work-3-person-1">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>  
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        <p><a class="govuk-link" href="/antigen/{{version}}/global-registration/landline-number-person-1">Prefer not to say</a></p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

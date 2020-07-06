@@ -407,5 +407,53 @@ router.post('/antigen/v1/action3/nhs-number-known', function (req, res) {
 
 })
 
+// Version 1 - Antigen Global Registration - Ethnic group person 1 route
+
+router.post('/antigen/v1/action3/ethnic-group-person-1', function (req, res) {
+  let ethnicGroupPerson1 = req.session.data['ethnic-group-person-1']
+  if (ethnicGroupPerson1 == "Asian or Asian British"){
+    res.redirect('/antigen/v1/global-registration/ethnic-background-person-1')
+  } else {
+    res.redirect('/antigen/v1/global-registration/currently-in-work-person-1')
+  }
+
+})
+
+// Version 1 - Antigen Global Registration - NHS number known person 1 route
+
+router.post('/antigen/v1/action3/nhs-number-known-person-1', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known-person-1']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/antigen/v1/global-registration/nhs-number-person-1')
+  } else {
+    res.redirect('/antigen/v1/global-registration/check-your-answers-person-1')
+  }
+
+})
+
+// Version 1 - Antigen Global Registration - Currently in work person 1 route
+
+router.post('/antigen/v1/action3/currently-in-work-person-1', function (req, res) {
+  let inWork = req.session.data['currently-in-work-person-1']
+  if (inWork == "No"){
+    res.redirect('/antigen/v1/global-registration/landline-number-person-1')
+  } else {
+    res.redirect('/antigen/v1/global-registration/industry-person-1')
+  }
+
+})
+
+// Version 1 - Antigen Site Appointment Booking - Find test site route
+
+router.post('/antigen/v1/action3/find-test-site', function (req, res) {
+  let chosenWayToTest = req.session.data['way-to-test']
+  if (chosenWayToTest == "drive-through"){
+    res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
+  } else if (chosenWayToTest == "walk-in") {
+    res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
+  }
+
+})
+
 
 module.exports = router

@@ -1,0 +1,41 @@
+{% set version = "v1" %}
+{% set pageTitle = "Find a test site" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="#">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/action3/find-test-site" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="find-test-site-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="find-test-site-hint" class="govuk-hint">
+            Enter your postcode to find a test site where you can have a coronavirus (COVID-19) test.
+          </span>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="home-postcode">
+              Postcode
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

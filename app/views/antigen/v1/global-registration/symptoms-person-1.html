@@ -1,0 +1,59 @@
+{% set version = "v1" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/reason-for-test-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/antigen/{{version}}/global-registration/mobile-number-person-1" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="symptoms-person-1-hint symptoms-2-person-1-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-fieldset__heading">
+                            Does {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }} have coronavirus symptoms?
+                        </h1>
+                    </legend>
+                    <span id="symptoms-person-1-hint" class="govuk-hint">
+                        This will help us track and trace the spread of coronavirus.<br><br>
+                        The main symptoms of coronavirus are:
+                    </span>
+                    <ul class="govuk-list govuk-list--bullet">
+                    <li>a high temperature</li>
+                        <li>a new, continuous cough</li>
+                        <li>a loss or change to your sense of smell or taste</li>
+                    </ul>
+                    <span id="symptoms-2-person-1-hint" class="govuk-hint">
+                        Most people with coronavirus have at least one of these symptoms.
+                    </span>
+                    <div class="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="symptoms-1-person-1" name="symptoms-person-1" type="radio" value="Yes" {{ checked("symptoms-person-1", "Yes") }}>
+                            <label class="govuk-label govuk-radios__label" for="symptoms-1-person-1">
+                                Yes, they have at least one of these symptoms
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="symptoms-2-person-1" name="symptoms-person-1" type="radio" value="No" {{ checked("symptoms-person-1", "No") }}>
+                            <label class="govuk-label govuk-radios__label" for="symptoms-2-person-1">
+                                No, they do not have any of these symptoms
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
