@@ -192,6 +192,29 @@ router.post('/v2/action/tested-positive', function (req, res) {
 
 })
 
+// Version 1 - Registration - Do you have symptoms route
+router.post('/v1/action2/do-you-have-symptoms', function (req, res) {
+  let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
+
+  if (doYouHaveSymptoms == "Yes"){
+    res.redirect('/v1/registration/get-antigen-test')
+  } else {
+    res.redirect('/v1/registration/landline-number')
+  }
+
+})
+// Version 2 - Registration - Do you have symptoms route
+router.post('/v2/action2/do-you-have-symptoms', function (req, res) {
+  let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
+
+  if (doYouHaveSymptoms == "Yes"){
+    res.redirect('/v2/teacher-registration/get-antigen-test')
+  } else {
+    res.redirect('/v2/registration/landline-number')
+  }
+
+})
+
 // Version 1 - Registration - Ethnic group route
 router.post('/v1/action2/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
