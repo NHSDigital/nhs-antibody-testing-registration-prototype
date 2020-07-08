@@ -1,0 +1,42 @@
+{% set version = "v1" %}
+{% set pageTitle = "What's your vehicle registration number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/site-appointment-booking/choose-time">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/site-appointment-booking/confirm-appointment" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="vehicle-registration-number-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="vehicle-registration-number-hint" class="govuk-hint">
+            Registration number (number plate). For example, CU57ABC<br><br>
+            For a drive-through test site you must provide the registration number of the vehicle you'll arrive in. It does not have to be registered in your name. It can be a car or a small van.
+          </span>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="vehicle-registration-number">
+              Vehicle registration number
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="vehicle-registration-number" name="vehicle-registration-number" type="text" value="{{ data['vehicle-registration-number'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

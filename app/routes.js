@@ -350,8 +350,8 @@ router.post('/antigen/v1/action3/do-you-have-a-car', function (req, res) {
     res.redirect('/antigen/v1/refer-and-triage/eligible-for-walk-in-test')
   } else if (car == "No" && postcode == "N0000" && emailAddress == "No") {
     res.redirect('/antigen/v1/refer-and-triage/call-us-for-test')
-  } else {
-    res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test')
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress == "Yes") {
+    res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test-wrong-postcode')
   }
 
 })
@@ -382,9 +382,21 @@ router.post('/antigen/v1/action3/how-will-you-get-test-no-car', function (req, r
 
 })
 
-// Version 1 - Antigen Refer and Triage - How will you get test no car route
+// Version 1 - Antigen Refer and Triage - How will you get test no email route
 
 router.post('/antigen/v1/action3/how-will-you-get-test-no-email', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "drive-through"){
+    res.redirect('/antigen/v1/refer-and-triage/visiting-drive-through')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/visiting-walk-through')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - How will you get test wrong postcode route
+
+router.post('/antigen/v1/action3/how-will-you-get-test-wrong-postcode', function (req, res) {
   let wayToTest = req.session.data['way-to-test']
   if (wayToTest == "drive-through"){
     res.redirect('/antigen/v1/refer-and-triage/visiting-drive-through')
@@ -466,14 +478,41 @@ router.post('/antigen/v1/action3/currently-in-work-person-1', function (req, res
 
 })
 
-// Version 1 - Antigen Site Appointment Booking - Find test site route
+// Version 1 - Antigen Global Registration - people confirmed route
 
-router.post('/antigen/v1/action3/find-test-site', function (req, res) {
+router.post('/antigen/v1/action3/people-confirmed', function (req, res) {
   let chosenWayToTest = req.session.data['way-to-test']
   if (chosenWayToTest == "drive-through"){
     res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
   } else if (chosenWayToTest == "walk-in") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
+  }
+
+})
+
+// Version 1 - Antigen Global Registration - people confirmed person 1 route
+
+router.post('/antigen/v1/action3/people-confirmed-person-1', function (req, res) {
+  let chosenWayToTest = req.session.data['way-to-test']
+  if (chosenWayToTest == "drive-through"){
+    res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
+  } else if (chosenWayToTest == "walk-in") {
+    res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
+  }
+
+})
+
+// Version 1 - Antigen Site Appointment Booking - Choose time route
+
+router.post('/antigen/v1/action3/choose-time', function (req, res) {
+  let chosenWayToTest = req.session.data['way-to-test']
+  let chosenTime = req.session.data['time']
+  if (chosenTime == "8am to 9am"){
+    res.redirect('/antigen/v1/site-appointment-booking/time-not-available')
+  } else if (chosenWayToTest == "drive-through" && chosenTime !== "8am to 9am") {
+    res.redirect('/antigen/v1/site-appointment-booking/vehicle-registration-number')
+  } else {
+    res.redirect('/antigen/v1/site-appointment-booking/confirm-appointment')
   }
 
 })
