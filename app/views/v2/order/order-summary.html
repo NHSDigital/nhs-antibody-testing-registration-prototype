@@ -95,7 +95,18 @@
 
       <form action="/{{version}}/order/confirmation-page" method="post">
 
-        <button class="govuk-button" type="submit" data-module="govuk-button">
+
+
+        <button id="button" class="govuk-button govuk-!-margin-bottom-3" type="submit" data-module="govuk-button">
+          I agree to the checks, place my order
+        </button>
+
+        <div id="spinner" style="display: none;">
+          <img src="/public/images/spinner.gif" width="16" alt=""><span class="govuk-body govuk-!-margin-left-2">Please wait...</span>
+
+        </div>
+
+        <button id="button-hidden" class="govuk-button " style="display:none" type="submit" data-module="govuk-button">
           I agree to the checks, place my order
         </button>
 
@@ -103,5 +114,35 @@
 
     </div>
   </div>
+
+<script type="text/javascript">
+  submitSpinner()
+
+  function buttonClicked(target) {
+    target.setAttribute('disabled', 'disabled')
+    // target.className += ' govik-button--save'
+    document.getElementById('spinner').style.display = 'block'
+    document.getElementById("spinner").focus();
+
+    setTimeout(function () {
+      document.getElementById('button-hidden').click()
+      // window.location.href = target.dataset.redirect;
+    }, 6000)
+  }
+
+  function submitSpinner() {
+    var selects = document.getElementById('button')
+    selects.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selects.getAttribute('disabled') === 'disabled') {
+        // console.log('already clicked')
+      } else {
+        event.preventDefault()
+        console.log(selects.getAttribute('disabled'))
+        buttonClicked(selects)
+      }
+    })
+  }
+</script>
 
 {% endblock %}
