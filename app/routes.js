@@ -517,5 +517,35 @@ router.post('/antigen/v1/action3/choose-time', function (req, res) {
 
 })
 
+// Version 1 - Antigen Site Appointment Booking - Choose time prev day route
+
+router.post('/antigen/v1/action3/choose-time-prev-day', function (req, res) {
+  let chosenWayToTest = req.session.data['way-to-test']
+  let chosenTime = req.session.data['time']
+  if (chosenTime == "8am to 9am"){
+    res.redirect('/antigen/v1/site-appointment-booking/time-not-available')
+  } else if (chosenWayToTest == "drive-through" && chosenTime !== "8am to 9am") {
+    res.redirect('/antigen/v1/site-appointment-booking/vehicle-registration-number')
+  } else {
+    res.redirect('/antigen/v1/site-appointment-booking/confirm-appointment')
+  }
+
+})
+
+// Version 1 - Antigen Site Appointment Booking - Choose time next day route
+
+router.post('/antigen/v1/action3/choose-time-next-day', function (req, res) {
+  let chosenWayToTest = req.session.data['way-to-test']
+  let chosenTime = req.session.data['time']
+  if (chosenTime == "8am to 9am"){
+    res.redirect('/antigen/v1/site-appointment-booking/time-not-available')
+  } else if (chosenWayToTest == "drive-through" && chosenTime !== "8am to 9am") {
+    res.redirect('/antigen/v1/site-appointment-booking/vehicle-registration-number')
+  } else {
+    res.redirect('/antigen/v1/site-appointment-booking/confirm-appointment')
+  }
+
+})
+
 
 module.exports = router
