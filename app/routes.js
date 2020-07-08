@@ -411,7 +411,15 @@ router.post('/antigen/v1/action3/how-will-you-get-test-wrong-postcode', function
 router.post('/antigen/v1/action3/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/antigen/v1/global-registration/ethnic-background')
+    res.redirect('/antigen/v1/global-registration/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/antigen/v1/global-registration/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/antigen/v1/global-registration/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/antigen/v1/global-registration/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/antigen/v1/global-registration/ethnic-background-another')
   } else {
     res.redirect('/antigen/v1/global-registration/currently-in-work')
   }
@@ -447,11 +455,18 @@ router.post('/antigen/v1/action3/nhs-number-known', function (req, res) {
 router.post('/antigen/v1/action3/ethnic-group-person-1', function (req, res) {
   let ethnicGroupPerson1 = req.session.data['ethnic-group-person-1']
   if (ethnicGroupPerson1 == "Asian or Asian British"){
-    res.redirect('/antigen/v1/global-registration/ethnic-background-person-1')
+    res.redirect('/antigen/v1/global-registration/ethnic-background-asian-person-1')
+  } else if (ethnicGroupPerson1 == "Black, African, Black British or Caribbean") {
+    res.redirect('/antigen/v1/global-registration/ethnic-background-black-person-1')
+  } else if (ethnicGroupPerson1 == "Mixed or multiple ethnic groups") {
+    res.redirect('/antigen/v1/global-registration/ethnic-background-mixed-person-1')
+  } else if (ethnicGroupPerson1 == "White") {
+    res.redirect('/antigen/v1/global-registration/ethnic-background-white-person-1')
+  } else if (ethnicGroupPerson1 == "Another ethnic group") {
+    res.redirect('/antigen/v1/global-registration/ethnic-background-another-person-1')
   } else {
     res.redirect('/antigen/v1/global-registration/currently-in-work-person-1')
   }
-
 })
 
 // Version 1 - Antigen Global Registration - NHS number known person 1 route
