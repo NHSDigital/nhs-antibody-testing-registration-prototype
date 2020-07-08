@@ -11,7 +11,7 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
 
       <p class="govuk-body"><strong>Appointment details</strong></p>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -74,6 +74,22 @@
             </a>
           </dd>
         </div>
+        {% if data['way-to-test'] == "drive-through" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Vehicle registration
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['vehicle-registration-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/site-appointment-booking/vehicle-registration-number">
+              Change
+              <span class="govuk-visually-hidden">vehicle registration</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
       </dl>
 
       <p class="govuk-body"><strong>People confirmed for testing</strong></p>

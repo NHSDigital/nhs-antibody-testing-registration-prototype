@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What's your home postcode?" %}
+{% set pageTitle = "First line of address and home postcode" %}
 
 {% extends "includes/layout.html" %}
 
@@ -17,12 +17,18 @@
         <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-              {{ pageTitle }}
+              What's the first line of {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }}'s address and their home postcode?
             </h1>
           </legend>
           <span id="post-code-hint" class="govuk-hint">
-            Enter your home postcode (ideally the one you used to register with your GP)
+            Enter the first line of their address and home postcode (ideally the one they gave their GP)
           </span>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address">
+              First line of address
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="address" name="address" type="text" value="{{ data['address'] }}">
+          </div>
           <div class="govuk-form-group">
             <label class="govuk-label" for="home-postcode">
               Postcode
