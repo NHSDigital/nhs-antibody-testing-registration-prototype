@@ -4,7 +4,7 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/site-appointment-booking/find-test-site">Back</a>
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/people-confirmed-person-1">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
       <form action="/antigen/{{version}}/site-appointment-booking/choose-time" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="choose-site-1-hint choose-site-2-hint choose-site-3-hint choose-site-4-hint">
+          <fieldset class="govuk-fieldset" aria-describedby="choose-site-1-hint choose-site-2-hint choose-site-3-hint choose-site-4-hint choose-site-13-hint choose-site-5-hint choose-site-6-hint choose-site-7-hint choose-site-8-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-fieldset__heading">
                 {{ pageTitle }}
@@ -27,7 +27,7 @@
             <span id="choose-site-2-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-right-4" style="display: inline-block;">
               {{ data['home-postcode'] }}
             </span>
-            <p style="display: inline-block;"><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/find-test-site">Change</a></p>
+            <span class="govuk-body" style="display: inline-block;"><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/find-test-site">Change</a></span>
             <div class="govuk-warning-text">
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text">
@@ -38,9 +38,12 @@
             <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
               <strong>Your nearest test sites:</strong><br>
             </span>
-            <span id="choose-site-4-hint" class="govuk-heading-m">
+            <span id="choose-site-4-hint" class="govuk-heading-m govuk-!-margin-right-4" style="display: inline-block;">
               <strong>Drive-through</strong>
             </span>
+            {% if data['home-postcode'] !== "N0000" %}
+            <span id="choose-site-13-hint" class="govuk-body"><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/choose-walk-through-site">Change to walk-through</a></span>
+            {% endif %}
             <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
               <li><span id="choose-site-5-hint" class="govuk-hint govuk-!-margin-bottom-0">you'll need to provide the registration number for the vehicle you arrive in</span></li>
               <li><span id="choose-site-6-hint" class="govuk-hint govuk-!-margin-bottom-0">you need to book your test slot as soon as possible</span></li>
