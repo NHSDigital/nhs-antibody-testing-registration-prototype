@@ -17,9 +17,16 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="choose-site-1-hint choose-site-2-hint choose-site-3-hint choose-site-4-hint choose-site-11-hint choose-site-6-hint choose-site-7-hint choose-site-8-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              {% if data['home-postcode'] !== "N1111" %}
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                 {{ pageTitle }}
               </h1>
+              {% endif %}
+              {% if data['home-postcode'] == "N1111" %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                We did not recognise your postcode. Choose a test site
+              </h1>
+              {% endif %}
             </legend>
             <span id="choose-site-1-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-2">
               Postcode
@@ -28,6 +35,13 @@
               {{ data['home-postcode'] }}
             </span>
             <p style="display: inline-block;"><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/find-test-site">Change</a></p>
+            {% if data['home-postcode'] == "N1111" %}
+            <p class="govuk-body">
+              <span id="postcode-not-recognised-hint">
+                Sorry but we could not recognise your postcode. Choose a test site from the options below.
+              </span>
+            </p>
+            {% endif %}
             <div class="govuk-warning-text">
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text">
@@ -35,9 +49,16 @@
                 Some test sites are for over-18s only.
               </strong>
             </div>
+            {% if data['home-postcode'] !== "N1111" %}
             <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
               <strong>Your nearest test sites:</strong><br>
             </span>
+            {% endif %}
+            {% if data['home-postcode'] == "N1111" %}
+            <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
+              <strong>Test sites:</strong><br>
+            </span>
+            {% endif %}
             <span id="choose-site-4-hint" class="govuk-heading-m govuk-!-margin-right-4" style="display: inline-block;">
               <strong>Walk-through</strong>
             </span>
