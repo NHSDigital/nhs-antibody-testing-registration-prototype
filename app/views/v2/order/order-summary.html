@@ -102,14 +102,21 @@
           I agree to the checks, place my order
         </button>
 
-        <div id="spinner" style="display: none;">
-          <img src="/public/images/spinner.gif" width="16" alt=""><span class="govuk-body govuk-!-margin-left-2">Please wait...</span>
-
-        </div>
-
         <button id="button-hidden" class="govuk-button " style="display:none" type="submit" data-module="govuk-button">
           I agree to the checks, place my order
         </button>
+
+        <button id="button-hidden-2" class="govuk-button " style="display:none" type="submit" data-module="govuk-button">
+          I agree to the checks, place my order
+        </button>
+
+        <div id="spinner" style="display: none;">
+          <img src="/public/images/spinner.gif" width="16" alt=""><span class="govuk-body govuk-!-margin-left-2">Please wait...</span>
+        </div>
+
+        <div id="tryagain" style="display: none;">
+          <span class="govuk-body govuk-!-margin-left-0">Sorry, we could not process your request. Try the button again.</span>
+        </div>
 
       </form>
 
@@ -118,6 +125,7 @@
 
 <script type="text/javascript">
   submitSpinner()
+  submitSpinner2()
 
   function buttonClicked(target) {
     target.setAttribute('disabled', 'disabled')
@@ -126,9 +134,29 @@
     document.getElementById("spinner").focus();
 
     setTimeout(function () {
-      document.getElementById('button-hidden').click()
-      // window.location.href = target.dataset.redirect;
+      // proceed
+      // document.getElementById('button-hidden').click()
+      // fail and can click again
+      // target.removeAttribute('disabled', 'disabled')
+      document.getElementById('button').style.display = 'none'
+      document.getElementById('button-hidden').style.display = 'block'
+      document.getElementById('spinner').style.display = 'none'
+      document.getElementById('tryagain').style.display = 'block'
+      document.getElementById("tryagain").focus();
     }, 6000)
+  }
+
+  function buttonClicked2(target) {
+    target.setAttribute('disabled', 'disabled')
+    // target.className += ' govik-button--save'
+    document.getElementById('spinner').style.display = 'block'
+    document.getElementById('tryagain').style.display = 'none'
+    document.getElementById("spinner").focus();
+
+    setTimeout(function () {
+      // proceed
+      document.getElementById('button-hidden-2').click()
+    }, 3000)
   }
 
   function submitSpinner() {
@@ -139,8 +167,20 @@
         // console.log('already clicked')
       } else {
         event.preventDefault()
-        console.log(selects.getAttribute('disabled'))
         buttonClicked(selects)
+      }
+    })
+  }
+
+  function submitSpinner2() {
+    var selects = document.getElementById('button-hidden')
+    selects.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selects.getAttribute('disabled') === 'disabled') {
+        // console.log('already clicked')
+      } else {
+        event.preventDefault()
+        buttonClicked2(selects)
       }
     })
   }
