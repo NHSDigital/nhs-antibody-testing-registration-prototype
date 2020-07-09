@@ -309,18 +309,30 @@ router.post('/antigen/v1/action3/kit-return-way-known', function (req, res) {
 
 })
 
-// Version 1 - Antigen Refer and Triage - Call us route
+// Version 1 - Antigen Refer and Triage - Mobile number route
 
-router.post('/antigen/v1/action3/email-address', function (req, res) {
-  let emailAddress = req.session.data['email']
+router.post('/antigen/v1/action3/mobile-number', function (req, res) {
   let mobilePhoneNumber = req.session.data['mobile-number']
-  if (emailAddress == "No" && mobilePhoneNumber == "No"){
+  if (mobilePhoneNumber == "No"){
     res.redirect('/antigen/v1/refer-and-triage/call-us')
   } else {
-    res.redirect('/antigen/v1/refer-and-triage/reason-for-test')
+    res.redirect('/antigen/v1/refer-and-triage/email-address')
   }
 
 })
+
+// Version 1 - Antigen Refer and Triage - Email address route
+
+// router.post('/antigen/v1/action3/email-address', function (req, res) {
+//   let emailAddress = req.session.data['email']
+//   let mobilePhoneNumber = req.session.data['mobile-number']
+//   if (emailAddress == "No" && mobilePhoneNumber == "No"){
+//     res.redirect('/antigen/v1/refer-and-triage/call-us')
+//   } else {
+//     res.redirect('/antigen/v1/refer-and-triage/reason-for-test')
+//   }
+
+// })
 
 // Version 1 - Antigen Refer and Triage - Do you have symptoms route
 
@@ -556,9 +568,9 @@ router.post('/antigen/v1/action3/people-confirmed-person-1', function (req, res)
 router.post('/antigen/v1/action3/choose-time', function (req, res) {
   let chosenWayToTest = req.session.data['way-to-test']
   let chosenTime = req.session.data['time']
-  if (chosenTime == "8am to 9am"){
+  if (chosenTime == "17th March: 8am to 9am" || chosenTime == "16th March: 8am to 9am" || chosenTime == "18th March: 8am to 9am"){
     res.redirect('/antigen/v1/site-appointment-booking/time-not-available')
-  } else if (chosenWayToTest == "drive-through" && chosenTime !== "8am to 9am") {
+  } else if (chosenWayToTest == "drive-through" ) {
     res.redirect('/antigen/v1/site-appointment-booking/vehicle-registration-number')
   } else {
     res.redirect('/antigen/v1/site-appointment-booking/confirm-appointment')

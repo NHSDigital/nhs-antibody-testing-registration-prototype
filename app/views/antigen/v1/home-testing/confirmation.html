@@ -9,7 +9,7 @@
   <div class="govuk-grid-column-two-thirds">
 
     <div class="govuk-panel govuk-panel--confirmation">
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+      <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
     </div>
 
     <table class="govuk-table">
@@ -31,15 +31,23 @@
 
     <h2 class="govuk-heading-m">Next steps</h2>
 
-    <p><strong>Take the swab sample at {{ data['swab-test-time'] }} {{ data['swab-test-time-ampm'] }} on 28 march</strong></p>
+    <p><strong>Take the swab sample at {{ data['swab-test-time'] }} {{ data['swab-test-time-ampm'] }} on {{ data['swab-test-date'] }}</strong></p>
 
-    <ul class="govuk-list govuk-list--bullet">
+    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
       <li>Follow the paper instructions in your home test kit for taking your sample (and samples from children).</li>
       <li>It is very important that each person takes the test registered to them to make sure they receive the correct results. You can use the table in your paper instructions to help with this.</li>
       <li>You can find further <a href="#">instructional videos here.</a></li>
     </ul>
 
-    <h2 class="govuk-heading-m">We want to hear from you</h2>
+    <form action="/antigen/{{version}}/home-testing/kit-return-way-known" method="post" novalidate>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Register another test
+      </button>
+
+    </form>
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">We want to hear from you</h2>
     <p><a href="#">What did you think of our service?</a> (takes 3 minutes)</p>
 
   </div>
