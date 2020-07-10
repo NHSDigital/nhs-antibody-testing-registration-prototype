@@ -366,6 +366,8 @@ router.post('/antigen/v1/action3/do-you-have-a-car', function (req, res) {
     res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test-wrong-postcode')
   } else if (car == "Yes" && emailAddress == "No" && postcode == "N0000"){
     res.redirect('/antigen/v1/refer-and-triage/eligible-for-drive-through-test')
+  } else if (car == "Yes" && emailAddress == "Yes" && postcode !== "N0000"){
+    res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test')
   }
 
 })
@@ -507,7 +509,7 @@ router.post('/antigen/v1/action3/ethnic-group-person-1', function (req, res) {
   }
 })
 
-// Version 1 - Antigen Global Registration - Country 1 route
+// Version 1 - Antigen Global Registration - Country route
 
 router.post('/antigen/v1/action3/country', function (req, res) {
   let country = req.session.data['country']
@@ -515,6 +517,18 @@ router.post('/antigen/v1/action3/country', function (req, res) {
     res.redirect('/antigen/v1/global-registration/address')
   } else {
     res.redirect('/antigen/v1/global-registration/postcode')
+  }
+
+})
+
+// Version 1 - Antigen Global Registration - Country person 1 route
+
+router.post('/antigen/v1/action3/country-person-1', function (req, res) {
+  let country = req.session.data['country-person-1']
+  if (country == "Northern Ireland"){
+    res.redirect('/antigen/v1/global-registration/address-person-1')
+  } else {
+    res.redirect('/antigen/v1/global-registration/postcode-person-1')
   }
 
 })
@@ -554,13 +568,13 @@ router.post('/antigen/v1/action3/people-confirmed', function (req, res) {
     res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
   } else if (chosenWayToTest == "walk-in") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
-  } else if (chosenWayToTest == "home-testing") {
+  } else if (chosenWayToTest == "home testing") {
     res.redirect('/antigen/v1/home-testing/index')
-  } else if (chosenWayToTest == undefined && car == "No" && postcode == "N0000" && emailAddress == "Yes") {
+  } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
     res.redirect('/antigen/v1/home-testing/index')
-  } else if (chosenWayToTest == undefined && car == "Yes" && postcode == "N0000" && emailAddress == "No") {
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress == "No") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
-  } else if (chosenWayToTest == undefined && car == "No" && postcode !== "N0000" && emailAddress == "No") {
+  } else if (car == "No" && postcode !== "N0000" && emailAddress == "No") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
   }
 
@@ -577,11 +591,11 @@ router.post('/antigen/v1/action3/people-confirmed-person-1', function (req, res)
     res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
   } else if (chosenWayToTest == "walk-in") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
-  } else if (chosenWayToTest == "home-testing") {
+  } else if (chosenWayToTest == "home testing") {
     res.redirect('/antigen/v1/home-testing/index')
-  } else if (chosenWayToTest == undefined && car == "No" && postcode == "N0000" && emailAddress == "Yes") {
+  } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
     res.redirect('/antigen/v1/home-testing/index')
-  } else if (chosenWayToTest == undefined && car == "Yes" && postcode == "N0000" && emailAddress == "No") {
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress == "No") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
   } else if (car == "No" && postcode !== "N0000" && emailAddress == "No") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
