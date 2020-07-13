@@ -1,0 +1,46 @@
+{% set version = "v1" %}
+{% set pageTitle = "What’s the patient’s mobile number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/name">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/elective-care-testing/{{version}}/date-of-birth" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="mobile-number-person-1-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                What's {{ data['first-name'] }} {{ data['last-name'] }}'s mobile number?
+              </h1>
+            </legend>
+            <span id="mobile-number-person-1-hint" class="govuk-hint">
+                We'll text their test results to this number.<br><br>
+                Make sure they’re happy for their test results to go to this mobile phone number. Do not use a work or shared mobile phone number unless they’re comfortable with others seeing their results.
+            </span>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mobile-phone-number-person-1">
+                Mobile phone number
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number-person-1" name="mobile-phone-number-person-1" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['mobile-phone-number-person-1'] }}">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
