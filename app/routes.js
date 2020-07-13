@@ -648,5 +648,17 @@ router.post('/antigen/v1/action3/choose-time-next-day', function (req, res) {
 
 })
 
+// Version 1 - Elective Care Testing - Request method route
+
+router.post('/elective-care-testing/action4/request-method', function (req, res) {
+  let requestMethod = req.session.data['request-method']
+  if (requestMethod == "upload"){
+    res.redirect('/elective-care-testing/v1/upload-file')
+  } else {
+    res.redirect('/elective-care-testing/v1/date-of-procedure')
+  }
+
+})
+
 
 module.exports = router
