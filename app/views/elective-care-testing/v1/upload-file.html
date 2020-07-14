@@ -1,0 +1,56 @@
+{% set version = "v1" %}
+{% set pageTitle = "Upload patient list" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/request-method">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/elective-care-testing/{{version}}/confirm-details" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="nhs-number-hint" class="govuk-body">
+                You can upload personal details of multiple patients in a spreadsheet if you have them. To upload patient details, follow these instructions:
+            </span>
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5 govuk-!-margin-bottom-6">
+              <li><a href="#" class="govuk-link"><span>Download the patient details excel template</span></a></li>
+              <li><span>Do not edit the strucutre of the file (add extra sheets or columns)</span></li>
+              <li><span>Complete the excel template with the patients details</span></li>
+              <li><span>You can add up to x patients at once</span></li>
+            </ul>
+
+            <span id="nhs-number-hint" class="govuk-body">
+                If you do not follow these instruction your file cannot be processed
+            </span>
+
+            <div class="govuk-form-group govuk-!-margin-top-8 govuk-!-margin-bottom-6">
+              <label class="govuk-label" for="file-upload-1">
+                Upload a file
+              </label>
+              <input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
