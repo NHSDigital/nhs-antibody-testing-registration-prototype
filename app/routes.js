@@ -164,10 +164,32 @@ router.post('/v2/action/ethnic-group', function (req, res) {
   if (ethnicGroup == "Asian or Asian British"){
     res.redirect('/v2/teacher-registration/ethnic-background')
   } else {
-    res.redirect('/v2/teacher-registration/tested-positive')
+    res.redirect('/v2/teacher-registration/working')
   }
 
 })
+
+// Version 1 - Teacher registration - currently working
+router.post('/v1/action/working', function (req, res) {
+  let inWork = req.session.data['currently-in-work']
+  if (inWork == "No"){
+    res.redirect('/v1/teacher-registration/occupation')
+  } else {
+    res.redirect('/v1/teacher-registration/occupation')
+  }
+})
+
+
+// Version 2 - Teacher registration - currently working
+router.post('/v2/action/working', function (req, res) {
+  let inWork = req.session.data['currently-in-work']
+  if (inWork == "No"){
+    res.redirect('/v2/teacher-registration/occupation')
+  } else {
+    res.redirect('/v2/teacher-registration/occupation')
+  }
+})
+
 
 // Version 1 - Teacher Registration - Tested positive route
 router.post('/v1/action/tested-positive', function (req, res) {
@@ -208,7 +230,7 @@ router.post('/v2/action2/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
   if (doYouHaveSymptoms == "Yes"){
-    res.redirect('/v2/teacher-registration/get-antigen-test')
+    res.redirect('/v2/registration/get-antigen-test')
   } else {
     res.redirect('/v2/registration/landline-number')
   }
@@ -226,12 +248,21 @@ router.post('/v1/action2/ethnic-group', function (req, res) {
   }
 
 })
+
 // Version 2 - Registration - Ethnic group route
 router.post('/v2/action2/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/v2/registration/ethnic-background')
+    res.redirect('/v2/teacher-registration/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/v2/teacher-registration/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/v2/teacher-registration/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/v2/teacher-registration/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/v2/teacher-registration/ethnic-background-another')
   } else {
     res.redirect('/v2/registration/landline-number')
   }
