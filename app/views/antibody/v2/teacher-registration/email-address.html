@@ -1,0 +1,59 @@
+{% set version = "v2" %}
+{% set pageTitle = "Do you have an email address where you can receive your coronavirus results?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antibody/{{version}}/teacher-registration/mobile-number">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antibody/{{version}}/teacher-registration/postcode" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="email-address-hint" class="govuk-hint">
+              If you do not have an email address, that's OK - we can use your mobile phone number.
+            </span>
+            <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="email-1">
+                  Yes, I have an email address where I can receive my results
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="email-address">
+                    Email address
+                  </label>
+                  <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="No" {{ checked("email", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="email-2">
+                  No, I do not have an email address
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

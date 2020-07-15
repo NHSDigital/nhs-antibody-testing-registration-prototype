@@ -1,0 +1,64 @@
+{% set version = "v2" %}
+{% set pageTitle = "When did you take this swab test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antibody/{{version}}/teacher-registration/tested-positive">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antibody/{{version}}/teacher-registration/household" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="tested-positive-date-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="tested-positive-date-hint" class="govuk-hint">
+              Enter the date. If you cannot remember the exact date, enter the date you think it was, roughly.<br><br>
+              Use the format DD MM YYYY, for example 15 04 2020
+            </span>
+            <div class="govuk-date-input" id="tested-positive-date">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="tested-positive-date-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="tested-positive-date-day" name="tested-positive-date-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['tested-positive-date-day'] }}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="tested-positive-date-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="tested-positive-date-month" name="tested-positive-date-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['tested-positive-date-month'] }}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="tested-positive-date-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="tested-positive-date-year" name="tested-positive-date-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['tested-positive-date-year'] }}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
