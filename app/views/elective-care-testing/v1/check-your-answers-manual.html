@@ -4,7 +4,7 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/find-address">Back</a>
+  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/delivery-address-manual">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -89,24 +89,18 @@
             Shipping address
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['address'] !== "81 Front St, HENDY, SA4 1PZ" and data['address'] !== "46 Seafield Street, LLANYCRWYS, SA19 1WS" and data['address'] !== "32 Boroughbridge Road, BISHOP, DT9 5WF" %}
-              <span>75 Nith Street<br>GLENCARSE<br>{{ data['delivery-postcode'] }}</span>
-            {% endif %}
-            {% if data['address'] == "46 Seafield Street, LLANYCRWYS, SA19 1WS" %}
-              <span>46 Seafield Street<br>LLANYCRWYS<br>SA19 1WS</span>
-            {% endif %}
-            {% if data['address'] == "32 Boroughbridge Road, BISHOP, DT9 5WF" %}
-              <span>32 Boroughbridge Road<br>BISHOP<br>DT9 5WF</span>
-            {% endif %}
-            {% if data['address'] == "81 Front St, HENDY, SA4 1PZ" %}
-              <span>81 Front St<br>HENDY<br>SA4 1PZ</span>
-            {% endif %}
-            {% if data['address'] == undefined %}
-              <span>{{ data['delivery-address-line-1'] }}<br>{{ data['delivery-address-line-2'] }}<br>{{ data['delivery-address-town'] }}<br>{{ data['delivery-address-county'] }}<br>{{ data['delivery-address-postcode'] }}</span>
-            {% endif %}
+              <span>
+                {{ data['delivery-address-line-1'] }}<br>
+                {% if data['delivery-address-line-2'] !== undefined and data['delivery-address-line-2'] !== "" %}
+                {{ data['delivery-address-line-2'] }}<br>
+                {% endif %}
+                {{ data['delivery-address-town'] }}<br>
+                {{ data['delivery-address-county'] }}<br>
+                {{ data['delivery-address-postcode'] }}
+              </span>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/find-address">
+            <a href="/elective-care-testing/{{version}}/delivery-address-manual">
               Change
               <span class="govuk-visually-hidden">shipping address</span>
             </a>
