@@ -4,326 +4,326 @@ const router = express.Router()
 // $('.govuk-error-summary').hide()
 
 // Version 1 - Is your delivery address the same as your home address?
-router.post('/v1/action/home-address-question', function (req, res) {
+router.post('/antibody/v1/action/home-address-question', function (req, res) {
   var deliveryAddressAnswer = req.session.data['delivery-address-same']
 
   if (deliveryAddressAnswer == "Yes"){
-    res.redirect('/v1/order/order-summary')
+    res.redirect('/antibody/v1/home-testing/order-summary')
   } else {
-    res.redirect('/v1/order/home-address')
+    res.redirect('/antibody/v1/home-testing/home-address')
   }
 
 })
 // Version 2 - Is your delivery address the same as your home address?
-router.post('/v2/action/home-address-question', function (req, res) {
+router.post('/antibody/v2/action/home-address-question', function (req, res) {
   var deliveryAddressAnswer = req.session.data['delivery-address-same']
 
   if (deliveryAddressAnswer == "Yes"){
-    res.redirect('/v2/order/order-summary')
+    res.redirect('/antibody/v2/home-testing/order-summary')
   } else {
-    res.redirect('/v2/order/home-address')
+    res.redirect('/antibody/v2/home-testing/home-address')
   }
 
 })
 
 // Version 2 - Teacher registration - Get consent data for the Comfortable doing test route
 
-router.post('/v2/action/consent', function (req, res) {
+router.post('/antibody/v2/action/consent', function (req, res) {
   let consent = "";
   consent = req.session.data['consent'];
 
   if (consent == "No") {
-    res.redirect('/v2/teacher-registration/not-eligible')
+    res.redirect('/antibody/v2/refer-and-triage/not-eligible')
   } else {
-    res.redirect('/v2/teacher-registration/comfortable-doing-test')
+    res.redirect('/antibody/v2/refer-and-triage/comfortable-doing-test')
   }
 })
 
 // Version 1 - Teacher registration - Comfortable doing test route
-router.post('/v1/action/comfortable-doing-test', function (req, res) {
+router.post('/antibody/v1/action/comfortable-doing-test', function (req, res) {
   consent = req.session.data['consent'];
   let comfortableDoingTest = req.session.data['comfortable-doing-test']
   if (comfortableDoingTest == "No"){
-    res.redirect('/v1/teacher-registration/not-eligible')
+    res.redirect('/antibody/v1/refer-and-triage/not-eligible')
   } else if (comfortableDoingTest == undefined) {
-    res.redirect('/v1/teacher-registration/comfortable-doing-test-error')
+    res.redirect('/antibody/v1/refer-and-triage/comfortable-doing-test-error')
   } else {
-    res.redirect('/v1/teacher-registration/do-you-have-symptoms')
+    res.redirect('/antibody/v1/refer-and-triage/do-you-have-symptoms')
   }
 })
 // Version 2 - Teacher registration - Comfortable doing test route
-router.post('/v2/action/comfortable-doing-test', function (req, res) {
+router.post('/antibody/v2/action/comfortable-doing-test', function (req, res) {
   consent = req.session.data['consent'];
   let comfortableDoingTest = req.session.data['comfortable-doing-test']
   if (comfortableDoingTest == "No" || consent == "No"){
-    res.redirect('/v2/teacher-registration/not-eligible')
+    res.redirect('/antibody/v2/refer-and-triage/not-eligible')
   } else {
-    res.redirect('/v2/teacher-registration/do-you-have-symptoms')
+    res.redirect('/antibody/v2/refer-and-triage/do-you-have-symptoms')
   }
 })
 
 // Version 1 - Teacher registration - Do you have symptoms route
-router.post('/v1/action/do-you-have-symptoms', function (req, res) {
+router.post('/antibody/v1/action/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
   if (doYouHaveSymptoms == "Yes"){
-    res.redirect('/v1/teacher-registration/not-eligible')
+    res.redirect('/antibody/v1/refer-and-triage/not-eligible')
   } else {
-    res.redirect('/v1/teacher-registration/name')
+    res.redirect('/antibody/v1/refer-and-triage/name')
   }
 
 })
 // Version 2 - Teacher registration - Do you have symptoms route
-router.post('/v2/action/do-you-have-symptoms', function (req, res) {
+router.post('/antibody/v2/action/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
   if (doYouHaveSymptoms == "Yes"){
-    res.redirect('/v2/teacher-registration/antigen-test')
+    res.redirect('/antibody/v2/refer-and-triage/antigen-test')
   } else {
-    res.redirect('/v2/teacher-registration/eligible')
+    res.redirect('/antibody/v2/refer-and-triage/eligible')
   }
 
 })
 
 // Version 1 - Teacher registration - Have you had symptoms route
-router.post('/v1/action/have-you-had-symptoms', function (req, res) {
+router.post('/antibody/v1/action/have-you-had-symptoms', function (req, res) {
   let haveYouHadSymptoms = req.session.data['have-you-had-symptoms']
 
   if (haveYouHadSymptoms == "Yes"){
-    res.redirect('/v1/teacher-registration/when-did-symptoms-start')
+    res.redirect('/antibody/v1/refer-and-triage/when-did-symptoms-start')
   } else {
-    res.redirect('/v1/teacher-registration/tested-positive')
+    res.redirect('/antibody/v1/refer-and-triage/tested-positive')
   }
 
 })
 // Version 2 - Teacher registration - Have you had symptoms route
-router.post('/v2/action/have-you-had-symptoms', function (req, res) {
+router.post('/antibody/v2/action/have-you-had-symptoms', function (req, res) {
   let haveYouHadSymptoms = req.session.data['have-you-had-symptoms']
 
   if (haveYouHadSymptoms == "Yes"){
-    res.redirect('/v2/teacher-registration/when-did-symptoms-start')
+    res.redirect('/antibody/v2/refer-and-triage/when-did-symptoms-start')
   } else {
-    res.redirect('/v2/teacher-registration/tested-positive')
+    res.redirect('/antibody/v2/refer-and-triage/tested-positive')
   }
 
 })
 
 // Version 1 - Teacher registration - When did symptoms start route
-router.post('/v1/action/when-did-symptoms-start', function (req, res) {
+router.post('/antibody/v1/action/when-did-symptoms-start', function (req, res) {
   let symptomsStartDay = req.session.data['symptoms-start-date-day']
   let symptomsStartMonth = req.session.data['symptoms-start-date-month']
   let symptomsStartYear = req.session.data['symptoms-start-date-year']
 
   if (symptomsStartDay == "" || symptomsStartMonth == "" || symptomsStartYear == ""){
-    res.redirect('/v1/teacher-registration/when-did-symptoms-start-error')
+    res.redirect('/antibody/v1/refer-and-triage/when-did-symptoms-start-error')
   } else {
-    res.redirect('/v1/teacher-registration/tested-positive')
+    res.redirect('/antibody/v1/refer-and-triage/tested-positive')
   }
 
 })
 
 // Version 1 - Teacher registration - Mobile phone
-router.post('/v1/action/mobile-number', function (req, res) {
+router.post('/antibody/v1/action/mobile-number', function (req, res) {
   let mobileNumber = req.session.data['mobile-number']
 
   if (mobileNumber == "Yes"){
-    res.redirect('/v1/teacher-registration/email-address')
+    res.redirect('/antibody/v1/refer-and-triage/email-address')
   } else {
-    res.redirect('/v1/teacher-registration/not-eligible')
+    res.redirect('/antibody/v1/refer-and-triage/not-eligible')
   }
 
 })
 
 // Version 2 - Teacher registration - Mobile phone
-router.post('/v2/action/mobile-number', function (req, res) {
+router.post('/antibody/v2/action/mobile-number', function (req, res) {
   let mobileNumber = req.session.data['mobile-number']
 
   if (mobileNumber == "Yes"){
-    res.redirect('/v2/teacher-registration/email-address')
+    res.redirect('/antibody/v2/refer-and-triage/email-address')
   } else {
-    res.redirect('/v2/teacher-registration/not-eligible')
+    res.redirect('/antibody/v2/refer-and-triage/not-eligible')
   }
 
 })
 
 // Version 1 - Teacher registration - Ethnic group route
-router.post('/v1/action/ethnic-group', function (req, res) {
+router.post('/antibody/v1/action/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/v1/teacher-registration/ethnic-background')
+    res.redirect('/antibody/v1/refer-and-triage/ethnic-background')
   } else {
-    res.redirect('/v1/teacher-registration/occupation')
+    res.redirect('/antibody/v1/refer-and-triage/occupation')
   }
 
 })
 // Version 2 - Teacher registration - Ethnic group route
-router.post('/v2/action/ethnic-group', function (req, res) {
+router.post('/antibody/v2/action/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/v2/teacher-registration/ethnic-background')
+    res.redirect('/antibody/v2/refer-and-triage/ethnic-background')
   } else {
-    res.redirect('/v2/teacher-registration/working')
+    res.redirect('/antibody/v2/refer-and-triage/working')
   }
 
 })
 
 // Version 1 - Teacher registration - currently working
-router.post('/v1/action/working', function (req, res) {
+router.post('/antibody/v1/action/working', function (req, res) {
   let inWork = req.session.data['currently-in-work']
   if (inWork == "No"){
-    res.redirect('/v1/teacher-registration/occupation')
+    res.redirect('/antibody/v1/refer-and-triage/occupation')
   } else {
-    res.redirect('/v1/teacher-registration/occupation')
+    res.redirect('/antibody/v1/refer-and-triage/occupation')
   }
 })
 
 
 // Version 2 - Teacher registration - currently working
-router.post('/v2/action/working', function (req, res) {
+router.post('/antibody/v2/action/working', function (req, res) {
   let inWork = req.session.data['currently-in-work']
   if (inWork == "No"){
-    res.redirect('/v2/teacher-registration/occupation')
+    res.redirect('/antibody/v2/refer-and-triage/occupation')
   } else {
-    res.redirect('/v2/teacher-registration/occupation')
+    res.redirect('/antibody/v2/refer-and-triage/occupation')
   }
 })
 
 
 // Version 1 - Teacher Registration - Tested positive route
-router.post('/v1/action/tested-positive', function (req, res) {
+router.post('/antibody/v1/action/tested-positive', function (req, res) {
   let testedPositive = req.session.data['tested-positive']
 
   if (testedPositive == "Yes"){
-    res.redirect('/v1/teacher-registration/tested-positive-date')
+    res.redirect('/antibody/v1/refer-and-triage/tested-positive-date')
   } else {
-    res.redirect('/v1/teacher-registration/household')
+    res.redirect('/antibody/v1/refer-and-triage/household')
   }
 
 })
 // Version 2 - Teacher Registration - Tested positive route
-router.post('/v2/action/tested-positive', function (req, res) {
+router.post('/antibody/v2/action/tested-positive', function (req, res) {
   let testedPositive = req.session.data['tested-positive']
 
   if (testedPositive == "Yes"){
-    res.redirect('/v2/teacher-registration/tested-positive-date')
+    res.redirect('/antibody/v2/refer-and-triage/tested-positive-date')
   } else {
-    res.redirect('/v2/teacher-registration/household')
+    res.redirect('/antibody/v2/refer-and-triage/household')
   }
 
 })
 
 // Version 1 - Registration - Do you have symptoms route
-router.post('/v1/action2/do-you-have-symptoms', function (req, res) {
+router.post('/antibody/v1/action2/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
   if (doYouHaveSymptoms == "Yes"){
-    res.redirect('/v1/registration/get-antigen-test')
+    res.redirect('/antibody/v1/global-registration/get-antigen-test')
   } else {
-    res.redirect('/v1/registration/landline-number')
+    res.redirect('/antibody/v1/global-registration/landline-number')
   }
 
 })
 // Version 2 - Registration - Do you have symptoms route
-router.post('/v2/action2/do-you-have-symptoms', function (req, res) {
+router.post('/antibody/v2/action2/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
   if (doYouHaveSymptoms == "Yes"){
-    res.redirect('/v2/registration/get-antigen-test')
+    res.redirect('/antibody/v2/global-registration/get-antigen-test')
   } else {
-    res.redirect('/v2/registration/landline-number')
+    res.redirect('/antibody/v2/global-registration/landline-number')
   }
 
 })
 
 // Version 1 - Registration - Ethnic group route
-router.post('/v1/action2/ethnic-group', function (req, res) {
+router.post('/antibody/v1/action2/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/v1/registration/ethnic-background')
+    res.redirect('/antibody/v1/global-registration/ethnic-background')
   } else {
-    res.redirect('/v1/registration/landline-number')
+    res.redirect('/antibody/v1/global-registration/landline-number')
   }
 
 })
 
 // Version 2 - Registration - Ethnic group route
-router.post('/v2/action2/ethnic-group', function (req, res) {
+router.post('/antibody/v2/action2/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/v2/teacher-registration/ethnic-background-asian')
+    res.redirect('/antibody/v2/refer-and-triage/ethnic-background-asian')
   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-    res.redirect('/v2/teacher-registration/ethnic-background-black')
+    res.redirect('/antibody/v2/refer-and-triage/ethnic-background-black')
   } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-    res.redirect('/v2/teacher-registration/ethnic-background-mixed')
+    res.redirect('/antibody/v2/refer-and-triage/ethnic-background-mixed')
   } else if (ethnicGroup == "White") {
-    res.redirect('/v2/teacher-registration/ethnic-background-white')
+    res.redirect('/antibody/v2/refer-and-triage/ethnic-background-white')
   } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('/v2/teacher-registration/ethnic-background-another')
+    res.redirect('/antibody/v2/refer-and-triage/ethnic-background-another')
   } else {
-    res.redirect('/v2/registration/landline-number')
+    res.redirect('/antibody/v2/refer-and-triage/occupation')
   }
 
 })
 
 // Version 1 - Registration - NHS number route
-router.post('/v1/action2/nhs-number-known', function (req, res) {
+router.post('/antibody/v1/action2/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
 
   if (nhsNumberKnown == "Yes"){
-    res.redirect('/v1/registration/nhs-number')
+    res.redirect('/antibody/v1/global-registration/nhs-number')
   } else {
-    res.redirect('/v1/registration/check-your-answers')
+    res.redirect('/antibody/v1/global-registration/check-your-answers')
   }
 
 })
 // Version 2 - Registration - NHS number route
-router.post('/v2/action2/nhs-number-known', function (req, res) {
+router.post('/antibody/v2/action2/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
 
   if (nhsNumberKnown == "Yes"){
-    res.redirect('/v2/registration/nhs-number')
+    res.redirect('/antibody/v2/global-registration/nhs-number')
   } else {
-    res.redirect('/v2/registration/check-your-answers')
+    res.redirect('/antibody/v2/global-registration/check-your-answers')
   }
 
 })
 
 // Version 1 - Registration - Country route
-router.post('/v1/action2/country', function (req, res) {
+router.post('/antibody/v1/action2/country', function (req, res) {
   let country = req.session.data['country']
 
   if (country == "Northern Ireland"){
-    res.redirect('/v1/registration/address')
+    res.redirect('/antibody/v1/global-registration/address')
   } else {
-    res.redirect('/v1/registration/postcode')
+    res.redirect('/antibody/v1/global-registration/postcode')
   }
 
 })
 // Version 2 - Registration - Country route
-router.post('/v2/action2/country', function (req, res) {
+router.post('/antibody/v2/action2/country', function (req, res) {
   let country = req.session.data['country']
 
   if (country == "Northern Ireland"){
-    res.redirect('/v2/registration/address')
+    res.redirect('/antibody/v2/global-registration/address')
   } else {
-    res.redirect('/v2/registration/nhs-number-known')
+    res.redirect('/antibody/v2/global-registration/nhs-number-known')
   }
 
 })
 
 
 // Version 1 - Registration - Country route
-router.post('/v1/action/people-confirmed', function (req, res) {
-    res.redirect('/v1/order')
+router.post('/antibody/v1/action/people-confirmed', function (req, res) {
+    res.redirect('/antibody/v1/home-testing')
 
 })
 // Version 2 - Registration - Country route
-router.post('/v2/action/people-confirmed', function (req, res) {
-  res.redirect('/v2/order')
+router.post('/antibody/v2/action/people-confirmed', function (req, res) {
+  res.redirect('/antibody/v2/home-testing')
 
 })
 
