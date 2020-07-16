@@ -1,0 +1,43 @@
+{% set version = "v1" %}
+{% set pageTitle = "Confirm your email address" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/order-home-test-kit/national-insurance-number">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/order-home-test-kit/confirm-email-code" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="email-address-hint" class="govuk-body">
+            Confirm the email address you provided. If it is incorrect you can change it below.<br><br>
+            If you're an essential worker, it would help us identify you if you enter your work email address (otherwise, a personal email address is fine).<br><br>
+            We will use this to email you a code to confirm your identity.
+          </span>
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-!-margin-top-7" for="email-address">
+                Email address
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

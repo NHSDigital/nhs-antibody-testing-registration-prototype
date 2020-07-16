@@ -600,9 +600,9 @@ router.post('/antigen/v1/action3/people-confirmed', function (req, res) {
   } else if (chosenWayToTest == "walk-in") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
   } else if (chosenWayToTest == "home testing") {
-    res.redirect('/antigen/v1/home-testing/index')
+    res.redirect('/antigen/v1/order-home-test-kit/')
   } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
-    res.redirect('/antigen/v1/home-testing/index')
+    res.redirect('/antigen/v1/order-home-test-kit/')
   } else if (car == "Yes" && postcode == "N0000" && emailAddress == "No") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
   } else if (car == "No" && postcode !== "N0000" && emailAddress == "No") {
@@ -623,9 +623,9 @@ router.post('/antigen/v1/action3/people-confirmed-person-1', function (req, res)
   } else if (chosenWayToTest == "walk-in") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
   } else if (chosenWayToTest == "home testing") {
-    res.redirect('/antigen/v1/home-testing/index')
+    res.redirect('/antigen/v1/order-home-test-kit/')
   } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
-    res.redirect('/antigen/v1/home-testing/index')
+    res.redirect('/antigen/v1/order-home-test-kit/')
   } else if (car == "Yes" && postcode == "N0000" && emailAddress == "No") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
   } else if (car == "No" && postcode !== "N0000" && emailAddress == "No") {
@@ -675,6 +675,18 @@ router.post('/antigen/v1/action3/choose-time-next-day', function (req, res) {
     res.redirect('/antigen/v1/site-appointment-booking/vehicle-registration-number')
   } else {
     res.redirect('/antigen/v1/site-appointment-booking/confirm-appointment')
+  }
+
+})
+
+// Version 1 - Antigen Order Home Test Kit - Confirm identity route
+
+router.post('/antigen/v1/action5/confirm-identity', function (req, res) {
+  let confirmIdentity = req.session.data['confirm-identity']
+  if (confirmIdentity == "Yes"){
+    res.redirect('/antigen/v1/order-home-test-kit/identity-confirmed')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/')
   }
 
 })

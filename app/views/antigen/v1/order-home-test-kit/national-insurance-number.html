@@ -1,0 +1,41 @@
+{% set version = "v1" %}
+{% set pageTitle = "What is your National Insurance number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/order-home-test-kit/">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/order-home-test-kit/postcode" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="national-insurance-number-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-!-margin-bottom-4" for="national-insurance-number">
+                National Insurance number
+            </label>
+            <span id="national-insurance-number-hint" class="govuk-hint govuk-!-margin-bottom-4">
+                It's on your National Insurance card, benefit letter, or P60. If you do not have it, leave this empty. You can still order a home test.
+            </span>
+            <input class="govuk-input govuk-input--width-10" id="national-insurance-number" name="national-insurance-number" type="text" value="{{ data['national-insurance-number'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
