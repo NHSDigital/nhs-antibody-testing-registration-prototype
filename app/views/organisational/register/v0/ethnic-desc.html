@@ -48,7 +48,41 @@
       <form class="" action="/{{ version }}/dob" method="get">
 
         {% if data.cuEthnicGroup == "Asian" %}
-        asian
+
+        {{ govukRadios({
+            idPrefix: "covidUpload",
+            name: "cuEthnicDesc",
+            items: [
+              {
+                value: "Bangladeshi",
+                html: "Bangladeshi"
+              },
+              {
+                value: "Chinese",
+                html: "Chinese"
+              },
+              {
+                value: "Indian",
+                html: "Indian"
+              },
+              {
+                value: "Pakistani",
+                html: "Pakistani"
+              },
+              {
+                value: "Another",
+                html: "Another Asian background"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "Prefer not to say",
+                text: "Prefer not to say"
+              }
+            ]
+          }) }}
+
 
         {% elif data.cuEthnicGroup == "Black" %}
 
@@ -66,7 +100,7 @@
               },
               {
                 value: "Another",
-                html: "Another black background"
+                html: "Another Black background"
               },
               {
                 divider: "or"
@@ -80,15 +114,91 @@
 
         {% elif data.cuEthnicGroup == "Mixed" %}
 
-        mixed
+        {{ govukRadios({
+            idPrefix: "covidUpload",
+            name: "cuEthnicDesc",
+            items: [
+              {
+                value: "Asian and White",
+                html: "Asian and White"
+              },
+              {
+                value: "Black African and White",
+                html: "Black African and White"
+              },
+              {
+                value: "Black Caribbean and White",
+                html: "Black Caribbean and White"
+              },
+              {
+                value: "Another",
+                html: "Another Mixed background"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "Prefer not to say",
+                text: "Prefer not to say"
+              }
+            ]
+          }) }}
 
         {% elif data.cuEthnicGroup == "White" %}
 
-        white
+        {{ govukRadios({
+            idPrefix: "covidUpload",
+            name: "cuEthnicDesc",
+            items: [
+              {
+                value: "British, English, Northern Irish, Scottish, or Welsh",
+                html: "British, English, Northern Irish, Scottish, or Welsh"
+              },
+              {
+                value: "Irish",
+                html: "Irish"
+              },
+              {
+                value: "Irish Traveller or Gypsy",
+                html: "Irish Traveller or Gypsy"
+              },
+              {
+                value: "Another",
+                html: "Another White background"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "Prefer not to say",
+                text: "Prefer not to say"
+              }
+            ]
+          }) }}
 
         {% else %}
 
-        another
+        {{ govukRadios({
+            idPrefix: "covidUpload",
+            name: "cuEthnicDesc",
+            items: [
+              {
+                value: "Arab",
+                html: "Arab"
+              },
+              {
+                value: "Another",
+                html: "Another ethnic background"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "Prefer not to say",
+                text: "Prefer not to say"
+              }
+            ]
+          }) }}
 
         {% endif %}
 
