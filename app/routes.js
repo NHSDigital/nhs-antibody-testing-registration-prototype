@@ -3,6 +3,9 @@ const router = express.Router()
 
 // $('.govuk-error-summary').hide()
 
+// Call in routes file from routes folder to keep routes.js cleaner
+router.use('/', require('./routes/org-register.js'))
+
 // Version 1 - Is your delivery address the same as your home address?
 router.post('/antibody/v1/action/home-address-question', function (req, res) {
   var deliveryAddressAnswer = req.session.data['delivery-address-same']
