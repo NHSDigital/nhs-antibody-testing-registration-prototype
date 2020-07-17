@@ -691,6 +691,18 @@ router.post('/antigen/v1/action5/confirm-identity', function (req, res) {
 
 })
 
+// Version 1 - Antigen Order Home Test Kit - Home address question route
+
+router.post('/antigen/v1/action5/home-address-question', function (req, res) {
+  let deliveryAddressSame = req.session.data['delivery-address-same']
+  if (deliveryAddressSame == "Yes"){
+    res.redirect('/antigen/v1/order-home-test-kit/confirm-email-address')
+  } else {
+    res.redirect('/antigen/v1/order-home-test-kit/delivery-postcode')
+  }
+
+})
+
 // Version 1 - Elective Care Testing - Request method route
 
 router.post('/elective-care-testing/action4/request-method', function (req, res) {
