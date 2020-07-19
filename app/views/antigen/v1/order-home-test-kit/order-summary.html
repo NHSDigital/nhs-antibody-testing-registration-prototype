@@ -4,12 +4,7 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-{% if data['delivery-address-same'] ==='No' %}
-  <a class="govuk-back-link" href="/{{version}}/order/home-address-results">Back</a>
-{% else %}
-  <a class="govuk-back-link" href="/{{version}}/order/delivery-address-results">Back</a>
-{% endif %}
-
+  <a class="govuk-back-link" href="/antigen/{{version}}/order-home-test-kit/confirm-identity">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -81,7 +76,7 @@
               {{ data['home-address'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/{{version}}/order/home-address">
+              <a class="govuk-link" href="/antigen/{{version}}/order-home-test-kit/postcode">
                 Change<span class="govuk-visually-hidden">home address</span>
               </a>
             </dd>
@@ -91,10 +86,10 @@
             Delivery address
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['delivery-address-same'] === 'No' %}{{ data['delivery-address'] }}{% else %}{{ data['home-address'] }}{% endif %}
+            {% if data['delivery-address-same'] === 'No' %}{{ data['delivery-address'] }}{% else %}Same as home address{% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/{{version}}/order/delivery-address">
+            <a class="govuk-link" href="/antigen/{{version}}/order-home-test-kit/delivery-address">
               Change<span class="govuk-visually-hidden"> delivery address</span>
             </a>
           </dd>
@@ -104,12 +99,18 @@
             Number of kits
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['home-address'] }}
+            {% if data['first-name-person-1'] !== undefined %}2{% else %}1{% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/{{version}}/order/home-address">
+            {% if data['first-name-person-1'] !== undefined %}
+            <a class="govuk-link" href="/antigen/{{version}}/global-registration/people-confirmed-person-1">
               Change<span class="govuk-visually-hidden">number of kits</span>
             </a>
+            {% else %}
+            <a class="govuk-link" href="/antigen/{{version}}/global-registration/people-confirmed">
+              Change<span class="govuk-visually-hidden">number of kits</span>
+            </a>
+            {% endif %}
           </dd>
         </div>
       </dl>
@@ -128,53 +129,24 @@
         <li>I am happy to be contacted about my order</li>
       </ul>
 
-      <details class="govuk-details" data-module="govuk-details">
-        <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-              Find out how we check your home address.
-            </span>
-        </summary>
-        <div class="govuk-details__text">
-          To help make sure as many people as possible get a test kit we need to check your home address is correct.<br><br>
-          The quickest way to do this is by checking your address details with an organisation called TransUnion. <br><br>
-
-          <ul class="govuk-list govuk-list--bullet">
-            <li>This is not a credit check and does not affect your credit rating.</li>
-            <li>Your credit score is not affected in any way </li>
-          </ul>
-
-          <p class="govuk-body">It's OK if you don't want us to do this, you can contact us to order a test kit (we'll check your home address information manually). </p>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>England, Wales and Northern Ireland: call 119 (free from mobiles and landlines)</li>
-            <li>Scotland: call 0300 303 2713 (charged at your standard network rate)</li>
-          </ul>
-          <p class="govuk-body">Write down your 16-digit invite code and have this ready before you call.</p>
-          <p class="govuk-body">This helpline is open from 7am to 11pm.</p>
-
-        </div>
-      </details>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="confirm" name="confirm" type="checkbox" value="Yes" onclick="checkBox()">
+              <label class="govuk-label govuk-checkboxes__label" for="confirm">
+                Yes, I confirm that all the above apply
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
 
       <form action="/antigen/{{version}}/order-home-test-kit/confirmation" method="post">
 
-        <button id="button" class="govuk-button govuk-!-margin-bottom-3" type="submit" data-module="govuk-button">
-          I agree to the checks, place my order
+        <button id="button" disabled class="govuk-button govuk-!-margin-bottom-3" type="submit" data-module="govuk-button">
+          Place order
         </button>
-
-        <button id="button-hidden" class="govuk-button " style="display:none" type="submit" data-module="govuk-button">
-          I agree to the checks, place my order
-        </button>
-
-        <button id="button-hidden-2" class="govuk-button " style="display:none" type="submit" data-module="govuk-button">
-          I agree to the checks, place my order
-        </button>
-
-        <div id="spinner" style="display: none;">
-          <img src="/public/images/spinner.gif" width="16" alt=""><span class="govuk-body govuk-!-margin-left-2">Please wait...</span>
-        </div>
-
-        <div id="tryagain" style="display: none;">
-          <span class="govuk-body govuk-!-margin-left-0">Sorry, we could not process your request. Try the button again in 1 minute.</span>
-        </div>
 
       </form>
 
@@ -182,78 +154,23 @@
   </div>
 
 <script type="text/javascript">
-  submitSpinner()
-  submitSpinner2()
+ 
+  resetAttributes()
 
-  function buttonClicked(target) {
-    target.setAttribute('disabled', 'disabled')
-    // target.className += ' govik-button--save'
-    document.getElementById('spinner').style.display = 'block'
-    document.getElementById("spinner").focus();
-
-    setTimeout(function () {
-      // proceed
-      // document.getElementById('button-hidden').click()
-      // fail and can click again
-      // target.removeAttribute('disabled', 'disabled')
-      // document.getElementById('button').style.display = 'none'
-      // document.getElementById('button-hidden').style.display = 'block'
-      document.getElementById('spinner').style.display = 'none'
-      document.getElementById('tryagain').style.display = 'block'
-      document.getElementById("tryagain").focus();
-    }, 3000)
-
-    setTimeout(function () {
-      // proceed
-      // document.getElementById('button-hidden').click()
-      // fail and can click again
-      target.removeAttribute('disabled', 'disabled')
-      document.getElementById('button').style.display = 'none'
-      document.getElementById('button-hidden').style.display = 'block'
-      // document.getElementById('spinner').style.display = 'none'
-      // document.getElementById('tryagain').style.display = 'block'
-      // document.getElementById("button-hidden").focus();
-    }, 6000)
+  function checkBox(target) {
+    const checkbox = document.getElementById('confirm')
+    const button = document.getElementById('button')
+    checkbox.toggleAttribute('checked')
+    button.toggleAttribute('disabled')
   }
 
-  function buttonClicked2(target) {
-    target.setAttribute('disabled', 'disabled')
-    // target.className += ' govik-button--save'
-    document.getElementById('spinner').style.display = 'block'
-    document.getElementById('tryagain').style.display = 'none'
-    document.getElementById("spinner").focus();
-
-    setTimeout(function () {
-      // proceed
-      document.getElementById('button-hidden-2').click()
-    }, 3000)
+  function resetAttributes() {
+    const checkbox = document.getElementById('confirm')
+    const button = document.getElementById('button')
+    checkbox.removeAttribute('checked')
+    button.setAttribute('disabled')
   }
 
-  function submitSpinner() {
-    var selects = document.getElementById('button')
-    selects.addEventListener('click', function (event) {
-      event.preventDefault()
-      if (selects.getAttribute('disabled') === 'disabled') {
-        // console.log('already clicked')
-      } else {
-        event.preventDefault()
-        buttonClicked(selects)
-      }
-    })
-  }
-
-  function submitSpinner2() {
-    var selects = document.getElementById('button-hidden')
-    selects.addEventListener('click', function (event) {
-      event.preventDefault()
-      if (selects.getAttribute('disabled') === 'disabled') {
-        // console.log('already clicked')
-      } else {
-        event.preventDefault()
-        buttonClicked2(selects)
-      }
-    })
-  }
 </script>
 
 {% endblock %}
