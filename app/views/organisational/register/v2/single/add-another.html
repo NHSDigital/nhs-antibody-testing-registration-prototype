@@ -25,12 +25,13 @@
     {{ "Today" | returnDateShort }}: 9am
   {% endif %}
 {% endset %}
-{% set pageHeading = "Check before you register your test kits" %}
+{% set pageHeading = "Would you like to add another test before submitting?" %}
 {% set version = "organisational/register/v2" %}
+{% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - {{ serviceName }}
+  {{ pageHeading }} - COVID-19
 {% endblock %}
 
 {% block beforeContent %}
@@ -61,21 +62,38 @@
       <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
       {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-0",
+        classes: "",
         rows: [
+        {
+          key: {
+            text: "Organisation type"
+          },
+          value: {
+            text: "Care home"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change ",
+                visuallyHiddenText: "organisation type"
+              }
+            ]
+          }
+        },
           {
             key: {
-              text: "Organisation number"
+              text: "Order ID"
             },
             value: {
-              text: data.cuOrgID or "1-123456789"
+              text: data.cuOrderID or "1-123456789"
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Name"
+                  text: "Change ",
+                  visuallyHiddenText: "order ID"
                 }
               ]
             }
@@ -91,8 +109,25 @@
               items: [
                 {
                   href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Name"
+                  text: "Change ",
+                  visuallyHiddenText: "registration type"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Number of registrations"
+            },
+            value: {
+              text: data.cuSingleCount | int or 1
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change ",
+                  visuallyHiddenText: "number of registrations"
                 }
               ]
             }
@@ -100,74 +135,16 @@
         ]
       }) }}
 
-      {{ govukSummaryList({
-        classes: "govuk-summary-list--no-border app-summary-list--border-bottom",
-        rows: [
-          {
-            key: {
-              text: "Registrations"
-            },
-            value: {
-              text: "25"
-            }
-          },
-          {
-            key: {
-              html: "<span class='govuk-visually-hidden'>Registrations</span>"
-            },
-            value: {
-              text: "Records 1 to 10"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "View or change",
-                  visuallyHiddenText: "Name"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              html: "<span class='govuk-visually-hidden'>Registrations</span>"
-            },
-            value: {
-              text: "Records 11 to 20"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "View or change",
-                  visuallyHiddenText: "Name"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              html: "<span class='govuk-visually-hidden'>Registrations</span>"
-            },
-            value: {
-              text: "Records 21 to 25"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "View or change",
-                  visuallyHiddenText: "Name"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
+      <form class="" action="/{{ version }}/single/staff?cuSingleCount={{ data.cuSingleCount | int  + 1 or 1 }}" method="post">
 
-      <form class="" action="/{{ version }}/bulk/done" method="get">
+        <input class="govuk-button govuk-button--secondary govuk-!-margin-bottom-3" type="submit" value="Register more tests">
 
-        <input class="govuk-button" type="submit" value="Confirm and send">
+      </form>
+
+
+      <form class="" action="/{{ version }}/single/done" method="get">
+
+        <input class="govuk-button" type="submit" value="Save and submit">
 
       </form>
 

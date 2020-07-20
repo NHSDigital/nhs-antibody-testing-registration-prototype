@@ -62,6 +62,19 @@ router.post('/organisational/register/v2/single/knowNHSnumber', function (req, r
     }
 });
 
+router.post('/organisational/register/v2/single/have-coronavirus', function (req, res) {
+  let answer = req.body.cuCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/register/v2/single/when-symptoms')
+    } else {
+    res.redirect('/organisational/register/v2/single/time')
+    }
+});
+
+
+
+
 
 
 
