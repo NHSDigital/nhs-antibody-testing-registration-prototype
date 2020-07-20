@@ -1,4 +1,4 @@
-{% set pageHeading = "Confirm before you register your tests" %}
+{% set pageHeading = "Upload personal details file" %}
 {% set version = "organisational/register/v2" %}
 {% extends "includes/layout.html" %}
 
@@ -35,26 +35,27 @@
         {{ pageHeading }}
       </h1>
 
-      <p>By continuing you are confirming that:</p>
+      <p>Follow these instructions to enter and upload multiple personal details using our spreadsheet template:</p>
+
       <ul class="govuk-list govuk-list--bullet">
-        <li>You have read the instructions in your guidance pack</li>
-        <li>The tests you want to register were completed today</li>
-        <li>You have booked a courier to collect your test kits today through the <a href="#">courier portal</a></li>
-        <li>You have permission from the people you want to register</li>
+        <li><a href="#">download our template</a> if you have not already</li>
+        <li>do not add any extra sheets, rows or columns</li>
+        <li>enter personal details for up 50 people you’re registering</li>
+        <li>save the completed spreadsheet and then upload it</li>
       </ul>
 
-      <form class="" action="/{{ version }}/choose-org" method="get">
-        {{ govukCheckboxes({
-          idPrefix: "covidUpload",
-          name: "cuConfirm",
-          items: [
-            {
-              value: "agreed",
-              text: "I confirm that I have done these things"
+      <form class="" action="/{{ version }}/bulk/list/1" method="get">
+
+        {{ govukFileUpload({
+            id: "file-upload-1",
+            name: "file-upload-1",
+            label: {
+              text: "Upload file",
+              classes: ""
             }
-          ]
-        }) }}
-        <input class="govuk-button" type="submit" value="Continue">
+          }) }}
+
+        <input class="govuk-button" type="submit" value="Upload file">
 
       </form>
 
