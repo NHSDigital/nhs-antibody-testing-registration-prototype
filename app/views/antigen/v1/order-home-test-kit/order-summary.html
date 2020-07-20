@@ -73,7 +73,13 @@
               Home address
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['home-address'] }}
+              {% if data['address-line-1'] == undefined %}{{ data['home-address'] }}{% endif %}
+              {% if data['address-line-1'] !== undefined %}
+              {{ data['address-line-1'] }}<br>
+              {{ data['address-line-2'] }}<br>
+              {{ data['address-town'] }}<br>
+              {{ data['home-address-postcode'] }}
+              {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/antigen/{{version}}/order-home-test-kit/postcode">
@@ -86,7 +92,14 @@
             Delivery address
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['delivery-address-same'] === 'No' %}{{ data['delivery-address'] }}{% else %}Same as home address{% endif %}
+            {% if data['delivery-address-same'] === 'No' and data['delivery-address-line-1'] == undefined %}{{ data['delivery-address'] }}{% endif %}
+            {% if data['delivery-address-same'] === 'No' and data['delivery-address-line-1'] !== undefined %}
+            {{ data['delivery-address-line-1'] }}<br>
+            {{ data['delivery-address-line-2'] }}<br>
+            {{ data['delivery-address-town'] }}<br>
+            {{ data['delivery-address-postcode'] }}
+            {% endif %}
+            {% if data['delivery-address-same'] === 'Yes' %}Same as home address{% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/antigen/{{version}}/order-home-test-kit/delivery-address">
