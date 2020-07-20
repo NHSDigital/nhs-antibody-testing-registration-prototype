@@ -3,7 +3,7 @@
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-   Enter the test details for each person - COVID-19
+   Error: {{ pageHeading }} - {{ serviceName }}
 {% endblock %}
 
 {% block phaseBanner %}
@@ -38,6 +38,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Your barcode does not match for Alun Smith",
+              href: "#cuTestKitCode1-error"
+            }
+          ]
+        }) }}
+
       <h1 class="govuk-heading-xl">
         {{ pageHeading | safe }}
       </h1>
@@ -53,7 +63,7 @@
       <form class="" action="/{{ version }}/bulk/check" method="get">
 
       <div class="card-table">
-        <div class="card-table__item" id="entry-1" role="group" aria-labelledby="entryName1">
+        <div class="card-table__item card-table__item--error" id="entry-1" role="group" aria-labelledby="entryName1">
           <div class="card-table__form">
             <h3 class="govuk-visually-hidden" id="entryName1">Alun Smith's test details</h3>
 
@@ -76,7 +86,8 @@
                 },
                 classes: "govuk-input--width-10",
                 id: "cuTestKitCode1",
-                name: "cuTestKitCode1"
+                name: "cuTestKitCode1",
+                value: "CHE00000501"
               }) }}
 
               {{ govukInput({
@@ -84,9 +95,14 @@
                   text: "Confirm test kit barcode or URN",
                   classes: "govuk-!-font-size-16 govuk-!-margin-bottom-1 govuk-!-margin-top-2"
                 },
+                errorMessage: {
+                  text: "Your barcode does not match",
+                  classes: "govuk-!-font-size-16"
+                },
                 classes: "govuk-input--width-10",
                 id: "cuTestKitCode1",
-                name: "cuTestKitCode1"
+                name: "cuTestKitCode1",
+                value: "CHE00000503"
               }) }}
             </div>
 
@@ -244,6 +260,7 @@
                       text: "Confirm test kit barcode or URN",
                       classes: "govuk-!-font-size-16 govuk-!-margin-bottom-1 govuk-!-margin-top-2"
                     },
+
                     classes: "govuk-input--width-10",
                     id: "cuTestKitCodeConfirm" + item.id,
                     name: "cuTestKitCodeConfirm" + item.id
@@ -265,33 +282,33 @@
 
                         <div class="govuk-date-input__item">
                           <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-day{{item.id}}">
+                            <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-day">
                               Day
                             </label>
 
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="covidUpload-day{{item.id}}" name="cuOrgType-day{{ item.id }}" type="text" autocomplete="bday-day" pattern="[0-9]*" inputmode="numeric">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="covidUpload-day" name="cuOrgType-day{{ item.id }}" type="text" autocomplete="bday-day" pattern="[0-9]*" inputmode="numeric">
                           </div>
                         </div>
 
                         <div class="govuk-date-input__item">
                           <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-month{{ item.id }}">
+                            <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-month">
                               Month
                             </label>
 
 
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="covidUpload-month{{ item.id }}" name="cuOrgType-month{{ item.id }}" type="text" autocomplete="bday-month" pattern="[0-9]*" inputmode="numeric">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="covidUpload-month" name="cuOrgType-month{{ item.id }}" type="text" autocomplete="bday-month" pattern="[0-9]*" inputmode="numeric">
                           </div>
                         </div>
 
                         <div class="govuk-date-input__item">
                           <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-year{{ item.id }}">
+                            <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-year">
                               Year
                             </label>
 
 
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="covidUpload-year{{ item.id }}" name="cuOrgType-year{{ item.id }}" type="text" autocomplete="bday-year" pattern="[0-9]*" inputmode="numeric">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="covidUpload-year" name="cuOrgType-year{{ item.id }}" type="text" autocomplete="bday-year" pattern="[0-9]*" inputmode="numeric">
                           </div>
                         </div>
 
@@ -310,6 +327,8 @@
                       isPageHeading: false
                     }
                   }) %}
+
+
 
                   <div class="govuk-form-group">
                     <div class="govuk-date-input__item govuk-!-margin-right-1">
