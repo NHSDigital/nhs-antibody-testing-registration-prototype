@@ -1,4 +1,4 @@
-{% set pageHeading = "<span class='govuk-caption-xl'>Page 1 of 3</span> Enter the test details for each person" %}
+{% set pageHeading = "Enter the test details for each person" %}
 {% set version = "organisational/register/v2" %}
 {% extends "includes/layout.html" %}
 
@@ -42,15 +42,15 @@
         {{ pageHeading | safe }}
       </h1>
 
-      <p>Enter each person’s test details below for up to a maximum of 10 people per page. Check their personal details are correct and change if necessary</p>
+      <p>Check their personal details are correct and change if necessary</p>
 
     </div>
   </div>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <h2 class="govuk-heading-m">Records 1 to 10</h2>
-      <form class="" action="/{{ version }}/bulk/list/2" method="get">
+      <h2 class="govuk-heading-m">Records 1 to 25</h2>
+      <form class="" action="/{{ version }}/bulk/check" method="get">
       <ul class="card-table">
 
 
@@ -73,6 +73,16 @@
                 label: {
                   text: "Enter test kit barcode or Unique Reference Number (URN)",
                   classes: "govuk-!-font-size-16 govuk-!-font-weight-bold govuk-!-margin-bottom-3"
+                },
+                classes: "govuk-input--width-10",
+                id: "cuTestKitCode1",
+                name: "cuTestKitCode1"
+              }) }}
+
+              {{ govukInput({
+                label: {
+                  text: "Confirm test kit barcode or URN",
+                  classes: "govuk-!-font-size-16 govuk-!-margin-bottom-1 govuk-!-margin-top-2"
                 },
                 classes: "govuk-input--width-10",
                 id: "cuTestKitCode1",
@@ -186,7 +196,17 @@
           { name: "Lori Foster", id: 7, dob: "18 April 1990" },
           { name: "Ruby Howard", id: 8, dob: "4 January 1987" },
           { name: "Ariannie Wright", id: 9, dob: "16 April 1976" },
-          { name: "John Smith", id: 10, dob: "24 January 1972" }
+          { name: "John Smith", id: 10, dob: "24 January 1972" },
+          { name: "Filomena Guyton", id: 11, dob: "29 June 1975" },
+          { name: "Pete Smith", id: 12, dob: "24 April 1984" },
+          { name: "Susan Watson", id: 13, dob: "23 October 1982" },
+          { name: "Dennis Long", id: 14, dob: "23 June 1969" },
+          { name: "Tariq Bin Ziyad", id: 15, dob: "24 May 1983" },
+          { name: "Lori Foster", id: 16, dob: "18 April 1990" },
+          { name: "Ruby Howard", id: 17, dob: "4 January 1987" },
+          { name: "Ariannie Wright", id: 18, dob: "16 April 1976" },
+          { name: "John Smith", id: 19, dob: "24 January 1972" },
+          { name: "Pete Smith", id: 20, dob: "24 January 1992" }
 
           ] %}
           {% for item in items %}
@@ -197,7 +217,7 @@
 
               <div class="card-table__form-column column-8">
                   <dl class="card-table__summary">
-                    <dt class="govuk-visually-hidden">Name</dt>
+                    <dt class="app-visually-hidden--desktop">Name</dt>
                     <dd>{{ item.name }}</dd>
                     <dd class="dob">{{ item.dob }}</dd>
                     <dd>
@@ -210,11 +230,21 @@
                   {{ govukInput({
                     label: {
                       text: "Test kit barcode or URN",
-                      classes: "govuk-!-font-size-16"
+                      classes: "govuk-!-font-size-16 app-bold--mobile"
                     },
                     classes: "govuk-input--width-10",
                     id: "cuTestKitCode" + item.id,
                     name: "cuTestKitCode" + item.id
+                  }) }}
+
+                  {{ govukInput({
+                    label: {
+                      text: "Confirm test kit barcode or URN",
+                      classes: "govuk-!-font-size-16 govuk-!-margin-bottom-1 govuk-!-margin-top-2"
+                    },
+                    classes: "govuk-input--width-10",
+                    id: "cuTestKitCodeConfirm" + item.id,
+                    name: "cuTestKitCodeConfirm" + item.id
                   }) }}
                 </div>
 
@@ -222,7 +252,7 @@
                   <div class="govuk-form-group">
                     <fieldset class="govuk-fieldset" role="group">
 
-                      <legend class="govuk-fieldset__legend govuk-!-font-size-16 govuk-!-font-weight-bold govuk-visually-hidden">
+                      <legend class="govuk-fieldset__legend govuk-!-font-size-16 govuk-!-font-weight-bold app-visually-hidden--desktop">
 
                         Date of swab test
 
@@ -274,7 +304,7 @@
                   {% call govukFieldset({
                     legend: {
                       text: "Time of swab test",
-                      classes: "govuk-!-font-size-16 govuk-!-font-weight-bold govuk-visually-hidden",
+                      classes: "govuk-!-font-size-16 govuk-!-font-weight-bold app-visually-hidden--desktop",
                       isPageHeading: false
                     }
                   }) %}
@@ -309,8 +339,6 @@
                   </p>
                 </div>
 
-
-
               </div>
             </li>
           {% endfor %}
@@ -319,7 +347,7 @@
 
       </ul>
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-6">Confirm records 1 to 10</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-6">Confirm records 1 to 25</h2>
 
 
 
@@ -335,7 +363,7 @@
             }
           ]
         }) }}
-          <input class="govuk-button" type="submit" value="Save and continue to records 11 to 20">
+          <input class="govuk-button" type="submit" value="Save and continue">
       </form>
 
     </div>

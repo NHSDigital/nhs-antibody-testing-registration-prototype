@@ -1,4 +1,4 @@
-{% set pageHeading = "Are you registering staff?" %}
+{% set pageHeading = "When did you take the tests?" %}
 {% set version = "organisational/register/v2" %}
 {% extends "includes/layout.html" %}
 
@@ -28,13 +28,30 @@
 
 {% block content %}
 
+{% set anotherDate %}
+{{ govukDateInput({
+  id: "cuOrgPrepopDateExact",
+  namePrefix: "cuOrgPrepopDateExact",
+  fieldset: {
+    legend: {
+      text: "Date of swab test",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: "For example, 26 3 2020"
+  }
+}) }}
+{% endset %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/{{version}}/bulk/upload" method="get">
+      <form class="" action="/{{ version }}/bulk/list/index" method="get">
         {{ govukRadios({
-            idPrefix: "cuOrgType",
-            name: "cuOrgType",
+            idPrefix: "cuOrgPrepopDate",
+            name: "cuOrgPrepopDate",
             fieldset: {
               legend: {
                 text: pageHeading,
@@ -43,21 +60,27 @@
               }
             },
             hint: {
-              html: "
-              Register staff and non-staff (for example residents or patients) separately
-              "
+              text: "We'll use your answer to fill in the date of test for you."
             },
             items: [
               {
-                value: "Yes, I'm registering staff",
-                text: "Yes, I'm registering staff"
+                value: "Today",
+                text: "Today, " + "today" | returnDate
               },
               {
-                value: "No, I'm not registering staff",
-                text: "No, I'm not registering staff"
+                value: "Yesterday",
+                text: "Yesterday, " + "-1" | returnDate
+              },
+              {
+                value: "A different date",
+                text: "A different date",
+                conditional: {
+                  html: anotherDate
+                }
               }
             ]
           }) }}
+
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
