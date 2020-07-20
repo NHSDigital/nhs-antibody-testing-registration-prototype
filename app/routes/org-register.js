@@ -58,7 +58,7 @@ router.post('/organisational/register/v2/single/knowNHSnumber', function (req, r
   if (answer == 'yes') {
     res.redirect('/organisational/register/v2/single/nhsnumber')
     } else {
-    res.redirect('/organisational/register/v2/single/testkit')
+    res.redirect('/organisational/register/v2/single/have-coronavirus')
     }
 });
 
@@ -68,7 +68,7 @@ router.post('/organisational/register/v2/single/have-coronavirus', function (req
   if (answer == 'Yes') {
     res.redirect('/organisational/register/v2/single/when-symptoms')
     } else {
-    res.redirect('/organisational/register/v2/single/time')
+    res.redirect('/organisational/register/v2/single/testkit')
     }
 });
 
