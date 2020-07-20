@@ -72,6 +72,38 @@ router.post('/organisational/register/v2/single/have-coronavirus', function (req
     }
 });
 
+router.post('/organisational/register/v2/single/occupation/index', function (req, res) {
+  let answer = req.body.cuInWork;
+
+  if (answer == 'yes home') {
+    res.redirect('/organisational/register/v2/single/occupation/area')
+  } else if (answer == 'yes travel') {
+    res.redirect('/organisational/register/v2/single/occupation/area')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/register/v2/single/country')
+  } else if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/register/v2/single/country')
+  } else {
+    res.redirect('/organisational/register/v2/single/occupation/index?error=empty')
+    }
+});
+
+router.post('/organisational/register/v2/single/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/register/v2/single/occupation/index')
+    } else if (answer) {
+      res.redirect('/organisational/register/v2/single/ethnic-desc')
+    } else {
+    res.redirect('/organisational/register/v2/single/ethnic-group?error=empty')
+    }
+});
+
+
+
+
+
 
 
 
