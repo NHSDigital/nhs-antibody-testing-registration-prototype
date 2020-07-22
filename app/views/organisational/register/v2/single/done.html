@@ -1,4 +1,4 @@
-{% set pageHeading = "Test kit registration confirmed" %}
+{% set pageHeading = "Test kit registrations confirmed" %}
 {% set version = "organisational/register/v2" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -48,10 +48,10 @@ Test time: {{ data.cuTime }}{{data.cuAMPM}}
         rows: [
           {
             key: {
-              text: "Order number"
+              text: "Organisation number"
             },
             value: {
-              text: data.cuOrderID or "1-123456789"
+              text: data.cuOrderID or "12345678"
             }
           },
           {
@@ -64,18 +64,22 @@ Test time: {{ data.cuTime }}{{data.cuAMPM}}
           },
           {
             key: {
-              text: "Registrations"
+              text: "Number registered"
             },
             value: {
-              html: doneHtml
+              html: data.cuSingleCount if data.cuSingleCount else "1"
             }
           }
         ]
       }) }}
 
+      <p>
+        <a href="#">Download full registration details for your records</a>
+      </p>
+
       {{ govukButton({
         text: "Register more test kits",
-        href: "/" + version + "/id",
+        href: "/" + version + "/single/staff",
         classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
         isStartButton: false
       }) }}

@@ -61,7 +61,7 @@
       <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
       {{ govukSummaryList({
-        classes: "",
+        classes: "govuk-!-margin-bottom-0",
         rows: [
           {
             key: {
@@ -96,19 +96,67 @@
                 }
               ]
             }
-          },
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        classes: "govuk-summary-list--no-border app-summary-list--border-bottom",
+        rows: [
           {
             key: {
               text: "Registrations"
             },
             value: {
               text: "25"
+            }
+          },
+          {
+            key: {
+              html: "<span class='govuk-visually-hidden'>Registrations</span>"
+            },
+            value: {
+              text: "Records 1 to 10"
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Change",
+                  text: "View or change",
+                  visuallyHiddenText: "Name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: "<span class='govuk-visually-hidden'>Registrations</span>"
+            },
+            value: {
+              text: "Records 11 to 20"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "View or change",
+                  visuallyHiddenText: "Name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: "<span class='govuk-visually-hidden'>Registrations</span>"
+            },
+            value: {
+              text: "Records 21 to 25"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "View or change",
                   visuallyHiddenText: "Name"
                 }
               ]
@@ -117,9 +165,9 @@
         ]
       }) }}
 
-      <form class="" action="/{{ version }}/bulk/security" method="get">
+      <form class="" action="/{{ version }}/bulk/done" method="get">
 
-        <input class="govuk-button" type="submit" value="Confirm">
+        <input class="govuk-button" type="submit" value="Confirm and send">
 
       </form>
 

@@ -5,13 +5,13 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "Do you know " + fullname | trim + "'s NHS number?" %}
+{% set pageHeading = "What is the name of " + fullname | trim + "'s employer?" %}
  {% set version = "organisational/register/v2" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - COVID-19
+  {{ pageHeading }} - {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -39,38 +39,33 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+      <form class="" action="/{{ version }}/single/country" method="get">
 
-      <p>
-        <strong>It's OK if you do not, you can still continue.</strong>
-      </p>
+        <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
-      <p>Their NHS numnber is a 10 digit number, like 867 406 5600. They can find it on any letter the NHS has sent them, on a prescription, or by logging in to some GP online services.</p>
+        <p>This helps us trace their work colleagues if they test positive for coronavirus.</p>
 
-      <p>
-        <a href="#">How to find your NHS number</a>
-      </p>
-
-      <form class="" action="" method="post">
-
-        {{ govukRadios({
-            idPrefix: "cuKnowNHSnumber",
-            name: "cuKnowNHSnumber",
-            items: [
-              {
-                value: "yes",
-                text: "Yes, I know " + fullname | trim + "'s NHS number"
-              },
-              {
-                value: "no",
-                text: "No, I do not know " + fullname | trim + "'s NHS number"
-              }
-            ]
+        {{ govukInput({
+            label: {
+              text: "Employer Name",
+              classes: "",
+              isPageHeading: true
+            },
+            classes: "",
+            hint: {
+              html: ""
+            },
+            id: "account-number",
+            name: "account-number"
           }) }}
 
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
+
+      <p>
+        <a href="/{{ version }}/single/country">Prefer not to say</a>
+      </p>
 
     </div>
   </div>

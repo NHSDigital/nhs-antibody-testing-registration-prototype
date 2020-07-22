@@ -25,7 +25,7 @@
     {{ "Today" | returnDateShort }}: 9am
   {% endif %}
 {% endset %}
-{% set pageHeading = "Check your answers" %}
+{% set pageHeading = "Personal details: Alun Smith" %}
  {% set version = "organisational/register/v2" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -65,44 +65,10 @@
         rows: [
           {
             key: {
-              text: "Organisation number"
-            },
-            value: {
-              text: data.cuOrderID or "12345678"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Care home ID"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Test kit barcode reference"
-            },
-            value: {
-              text: data.cuBarcode or "CHE00000501"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Test kit barcode reference"
-                }
-              ]
-            }
-          },
-          {
-            key: {
               text: "Name"
             },
             value: {
-              text: fullname
+              text: "Alun Smith"
             },
             actions: {
               items: [
@@ -218,27 +184,10 @@
             },
             {
               key: {
-                text: "Test date and time"
-              },
-              value: {
-                text: timeDate
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Test date and time"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
                 text: "Email"
               },
               value: {
-                text: "I do not have an email address" if data.cuHaveEmail == "no" else data.cuHaveEmailis | placeholder("john.smith@test.com")
+                text: "I do not have an email address" if data.cuHaveEmail == "no" else data.cuHaveEmailis | placeholder("alun.smith@test.com")
               },
               actions: {
                 items: [
@@ -322,9 +271,9 @@
       }) }}
 
 
-      <form class="" action="/{{ version }}/single/add-another" method="get">
+      <form class="" action="javascript:window.history.go(-1);" method="get">
 
-        <input class="govuk-button" type="submit" value="Save and continue">
+        <input class="govuk-button" type="submit" value="Save and return">
 
       </form>
 

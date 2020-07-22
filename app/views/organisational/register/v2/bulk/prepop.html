@@ -1,4 +1,4 @@
-{% set pageHeading = "Which type of organisation are you?" %}
+{% set pageHeading = "When did you take the tests?" %}
 {% set version = "organisational/register/v2" %}
 {% extends "includes/layout.html" %}
 
@@ -28,13 +28,30 @@
 
 {% block content %}
 
+{% set anotherDate %}
+{{ govukDateInput({
+  id: "cuOrgPrepopDateExact",
+  namePrefix: "cuOrgPrepopDateExact",
+  fieldset: {
+    legend: {
+      text: "Date of swab test",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: "For example, 26 3 2020"
+  }
+}) }}
+{% endset %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/{{version}}/id" method="get">
+      <form class="" action="/{{ version }}/bulk/list/index-with-confirm" method="get">
         {{ govukRadios({
-            idPrefix: "cuOrgType",
-            name: "cuOrgType",
+            idPrefix: "cuOrgPrepopDate",
+            name: "cuOrgPrepopDate",
             fieldset: {
               legend: {
                 text: pageHeading,
@@ -44,27 +61,30 @@
             },
             items: [
               {
-                value: "Care home",
-                text: "Care home"
+                value: "Today",
+                text: "Today, " + "today" | returnDate
               },
               {
-                value: "GP surgery",
-                text: "GP surgery"
+                value: "Yesterday",
+                text: "Yesterday, " + "-1" | returnDate
               },
               {
-                value: "Dental surgery",
-                text: "Dental surgery"
+                value: "A different date",
+                text: "A different date",
+                conditional: {
+                  html: anotherDate
+                }
               },
               {
-                value: "Prison",
-                text: "Prison"
+                divider: "or"
               },
               {
-                value: "Other",
-                text: "Other"
+                value: "none",
+                text: "On multiple days"
               }
             ]
           }) }}
+
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>

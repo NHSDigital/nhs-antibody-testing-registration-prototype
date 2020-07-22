@@ -1,4 +1,4 @@
-{% set pageHeading = "Upload personal details file" %}
+{% set pageHeading = "Upload personal details" %}
 {% set version = "organisational/register/v2" %}
 {% extends "includes/layout.html" %}
 
@@ -35,22 +35,23 @@
         {{ pageHeading }}
       </h1>
 
-      <p>Follow these instructions to enter and upload multiple personal details using our spreadsheet template:</p>
+      <p>To enter and upload personal details using our spreadsheet:</p>
 
       <ul class="govuk-list govuk-list--bullet">
-        <li><a href="#">download our template</a> if you have not already</li>
+        <li><a href="#">download our spreadsheet</a> if you have not already</li>
         <li>do not add any extra sheets, rows or columns</li>
-        <li>enter personal details for up 50 people you’re registering</li>
+        <li>enter personal details for up to 50 people at a time</li>
         <li>save the completed spreadsheet and then upload it</li>
       </ul>
 
-      <form class="" action="/{{ version }}/bulk/list/1" method="get">
+      <form class="" action="/{{ version }}/bulk/prepop" method="get">
 
         {{ govukFileUpload({
             id: "file-upload-1",
             name: "file-upload-1",
+            value: "Choose file",
             label: {
-              text: "Upload file",
+              text: "Upload a file",
               classes: ""
             }
           }) }}

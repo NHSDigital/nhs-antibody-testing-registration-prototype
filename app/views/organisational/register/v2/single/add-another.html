@@ -25,8 +25,9 @@
     {{ "Today" | returnDateShort }}: 9am
   {% endif %}
 {% endset %}
-{% set pageHeading = "Check before you register your test kits" %}
+{% set pageHeading = "Confirm details or register more people" %}
 {% set version = "organisational/register/v2" %}
+{% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -63,64 +64,86 @@
       {{ govukSummaryList({
         classes: "",
         rows: [
+        {
+          key: {
+            text: "Organisation type"
+          },
+          value: {
+            text: "Care home"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change ",
+                visuallyHiddenText: "organisation type"
+              }
+            ]
+          }
+        },
           {
             key: {
               text: "Organisation number"
             },
             value: {
-              text: data.cuOrgID or "12345678"
+              text: data.cuOrderID or "12345678"
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Name"
+                  text: "Change ",
+                  visuallyHiddenText: "order ID"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Registration type"
+              html: "People registered <span class='govuk-visually-hidden'>Registration 1</span>"
             },
             value: {
-              text: "Staff"
+              text: "Pete Smith " if data.cuSingleCount else fullname
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Name"
+                  text: "Change ",
+                  visuallyHiddenText: "registration type"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Registrations"
+              html: "<span class='govuk-visually-hidden'>Registration 2</span>"
             },
             value: {
-              text: "25"
+              text: fullname
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Name"
+                  text: "Change ",
+                  visuallyHiddenText: "registration type"
                 }
               ]
             }
-          }
+          } if data.cuSingleCount
         ]
       }) }}
 
-      <form class="" action="/{{ version }}/bulk/security" method="get">
+      <form class="" action="/{{ version }}/single/staff?cuSingleCount={{ data.cuSingleCount | int  + 1 or 1 }}" method="post">
 
+        <input class="govuk-button govuk-button--secondary govuk-!-margin-bottom-3" type="submit" value="Register another person">
+
+      </form>
+
+
+      <form class="" action="/{{ version }}/single/security?cuSingleCount=" method="post">
         <input class="govuk-button" type="submit" value="Confirm">
-
       </form>
 
     </div>
