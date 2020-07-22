@@ -5,6 +5,7 @@ const router = express.Router()
 
 // Call in routes file from routes folder to keep routes.js cleaner
 router.use('/', require('./routes/org-register.js'))
+router.use('/', require('./routes/antibody.js'))
 
 // Version 1 - Is your delivery address the same as your home address?
 router.post('/antibody/v1/action/home-address-question', function (req, res) {
