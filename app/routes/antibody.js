@@ -1,6 +1,54 @@
 const express = require('express')
 const router = express.Router()
 
+// Version 3 - Registration - Country route
+router.post('/antibody/v3/action2/country', function (req, res) {
+  let country = req.session.data['country']
+
+  if (country == "England"){
+    res.redirect('/antibody/v3/refer-and-triage/comfortable-doing-test')
+  } else {
+    res.redirect('/antibody/v3/refer-and-triage/not-available')
+  }
+
+})
+
+// Version 3 - Teacher registration - Comfortable doing test route
+router.post('/antibody/v3/action/comfortable-doing-test', function (req, res) {
+  consent = req.session.data['consent'];
+  let comfortableDoingTest = req.session.data['comfortable-doing-test']
+  if (comfortableDoingTest == "No" || consent == "No"){
+    res.redirect('/antibody/v3/refer-and-triage/not-eligible')
+  } else {
+    res.redirect('/antibody/v3/refer-and-triage/do-you-have-symptoms')
+  }
+})
+
+// Version 3 - Teacher registration - Do you have symptoms route
+router.post('/antibody/v3/action/do-you-have-symptoms', function (req, res) {
+  let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
+
+  if (doYouHaveSymptoms == "Yes"){
+    res.redirect('/antibody/v3/refer-and-triage/antigen-test')
+  } else {
+    res.redirect('/antibody/v3/refer-and-triage/infection-serious')
+  }
+
+})
+
+
+// Version 3 - Registration - immuno condition
+router.post('/antibody/v3/action/immunocompromised', function (req, res) {
+  let condition = req.session.data['infection-serious']
+
+  if (condition == "Yes"){
+    res.redirect('/antibody/v3/refer-and-triage/not-eligible')
+  } else {
+    res.redirect('/antibody/v3/refer-and-triage/eligible')
+  }
+
+})
+
 // Version 3 - Is your delivery address the same as your home address?
 router.post('/antibody/v3/action/home-address-question', function (req, res) {
   var deliveryAddressAnswer = req.session.data['delivery-address-same']
@@ -26,28 +74,9 @@ router.post('/antibody/v3/action/consent', function (req, res) {
   }
 })
 
-// Version 3 - Teacher registration - Comfortable doing test route
-router.post('/antibody/v3/action/comfortable-doing-test', function (req, res) {
-  consent = req.session.data['consent'];
-  let comfortableDoingTest = req.session.data['comfortable-doing-test']
-  if (comfortableDoingTest == "No" || consent == "No"){
-    res.redirect('/antibody/v3/refer-and-triage/not-eligible')
-  } else {
-    res.redirect('/antibody/v3/refer-and-triage/do-you-have-symptoms')
-  }
-})
 
-// Version 3 - Teacher registration - Do you have symptoms route
-router.post('/antibody/v3/action/do-you-have-symptoms', function (req, res) {
-  let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
-  if (doYouHaveSymptoms == "Yes"){
-    res.redirect('/antibody/v3/refer-and-triage/antigen-test')
-  } else {
-    res.redirect('/antibody/v3/refer-and-triage/eligible')
-  }
 
-})
 
 // Version 3 - Teacher registration - Have you had symptoms route
 router.post('/antibody/v3/action/have-you-had-symptoms', function (req, res) {
@@ -66,9 +95,9 @@ router.post('/antibody/v3/action/mobile-number', function (req, res) {
   let mobileNumber = req.session.data['mobile-number']
 
   if (mobileNumber == "Yes"){
-    res.redirect('/antibody/v3/refer-and-triage/email-address')
+    res.redirect('/antibody/v3/refer-and-triage/postcode')
   } else {
-    res.redirect('/antibody/v3/refer-and-triage/not-eligible')
+    res.redirect('/antibody/v3/refer-and-triage/postcode')
   }
 
 })
@@ -134,7 +163,7 @@ router.post('/antibody/v3/action2/ethnic-group', function (req, res) {
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/antibody/v3/refer-and-triage/ethnic-background-another')
   } else {
-    res.redirect('/antibody/v3/refer-and-triage/occupation')
+    res.redirect('/antibody/v3/refer-and-triage/working')
   }
 
 })
@@ -151,17 +180,7 @@ router.post('/antibody/v3/action2/nhs-number-known', function (req, res) {
 
 })
 
-// Version 3 - Registration - Country route
-router.post('/antibody/v3/action2/country', function (req, res) {
-  let country = req.session.data['country']
 
-  if (country == "Northern Ireland"){
-    res.redirect('/antibody/v3/global-registration/address')
-  } else {
-    res.redirect('/antibody/v3/global-registration/nhs-number-known')
-  }
-
-})
 
 // Version 3 - Registration - Country route
 router.post('/antibody/v3/action/people-confirmed', function (req, res) {
