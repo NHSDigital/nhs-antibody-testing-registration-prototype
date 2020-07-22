@@ -734,9 +734,9 @@ router.post('/antigen/v1/action5/home-address-question', function (req, res) {
 router.post('/elective-care-testing/action4/request-method', function (req, res) {
   let requestMethod = req.session.data['request-method']
   if (requestMethod == "upload"){
-    res.redirect('/elective-care-testing/v1/upload-file')
+    res.redirect('/elective-care-testing/v1/trust-worker-request/upload-file')
   } else {
-    res.redirect('/elective-care-testing/v1/date-of-procedure')
+    res.redirect('/elective-care-testing/v1/trust-worker-request/date-of-procedure')
   }
 
 })
