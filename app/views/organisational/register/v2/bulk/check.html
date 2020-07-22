@@ -63,19 +63,53 @@
       {{ govukSummaryList({
         classes: "",
         rows: [
+        {
+          key: {
+            text: "Organisation type"
+          },
+          value: {
+            text: data.cuOrgType or "Care home"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change ",
+                visuallyHiddenText: "organisation type"
+              }
+            ]
+          }
+        },
           {
             key: {
               text: "Organisation number"
             },
             value: {
-              text: data.cuOrgID or "12345678"
+              text: data.cuOrderID or "12345678"
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Name"
+                  text: "Change ",
+                  visuallyHiddenText: "order ID"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Organisation postcode"
+            },
+            value: {
+              text: data.cuPostcode or "LS1 4HT"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change ",
+                  visuallyHiddenText: "organisation type"
                 }
               ]
             }
@@ -99,7 +133,7 @@
           },
           {
             key: {
-              text: "Registrations"
+              text: "Number of registrations"
             },
             value: {
               text: "25"
