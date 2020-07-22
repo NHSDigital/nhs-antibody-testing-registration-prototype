@@ -75,9 +75,9 @@ router.post('/organisational/register/v2/single/have-coronavirus', function (req
 router.post('/organisational/register/v2/single/occupation/index', function (req, res) {
   let answer = req.body.cuInWork;
 
-  if (answer == 'yes home') {
+  if (answer == "Yes, and for the last 2 weeks they've worked from home") {
     res.redirect('/organisational/register/v2/single/occupation/area')
-  } else if (answer == 'yes travel') {
+  } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
     res.redirect('/organisational/register/v2/single/occupation/area')
   } else if (answer == 'no') {
     res.redirect('/organisational/register/v2/single/country')

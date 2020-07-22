@@ -2,7 +2,7 @@
   {% if data.cuFirstName and data.cuLastName %}
     {{ data.cuFirstName }} {{ data.cuLastName }}
     {% else %}
-      John Smith
+      Alun Smith
   {% endif %}
 {% endset %}
 {% set dob %}
@@ -63,131 +63,278 @@
 
       {{ govukSummaryList({
         rows: [
+        {
+          key: {
+            text: "Full name"
+          },
+          value: {
+            text: fullname
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "Name"
+              }
+            ]
+            }
+          },
           {
             key: {
-              text: "Name"
+              text: "Date of birth"
             },
             value: {
-              text: "Alun Smith"
+              text: dob
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "Name"
+                  visuallyHiddenText: "Date of birth"
                 }
               ]
-              }
+            }
+          },
+          {
+            key: {
+              text: "Gender"
             },
-            {
-              key: {
-                text: "Resident/Staff"
-              },
-              value: {
-                text: data.cuStaffOrNot or "Staff"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Resident/Staff"
-                  }
-                ]
-              }
+            value: {
+              text: data.cuGender or "Male"
             },
-            {
-              key: {
-                text: "Do they have any symptoms?"
-              },
-              value: {
-                text: data.cuCoronavirus or "Yes"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Do they have any symptoms"
-                  }
-                ]
-              }
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Gender"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Ethnic group"
             },
-            {
-              key: {
-                text: "Gender"
-              },
-              value: {
-                text: data.cuGender or "Male"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Gender"
-                  }
-                ]
-              }
+            value: {
+              text: data.cuEthnicGroup or "Black, African, Black British or Caribbean"
             },
-            {
-              key: {
-                text: "Ethnic group"
-              },
-              value: {
-                text: data.cuEthnicGroup or "Black, African, Black British or Caribbean"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Ethnic group"
-                  }
-                ]
-              }
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Ethnic background"
             },
-            {
-              key: {
-                text: "Ethnic background"
-              },
-              value: {
-                text: data.cuEthnicDesc or "Caribbean"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Ethnic background"
-                  }
-                ]
-              }
+            value: {
+              text: data.cuEthnicDesc or "Caribbean"
             },
-            {
-              key: {
-                text: "Date of birth"
-              },
-              value: {
-                text: dob
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Date of birth"
-                  }
-                ]
-              }
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic background"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "In work"
             },
+            value: {
+              text: data.cuInWork or "Yes, and for the last 2 weeks they've travelled to work"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Area of work"
+            },
+            value: {
+              text: data.cuAreaWork or "Health and social care"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Occupation"
+            },
+            value: {
+              text: "Carer"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Employer name"
+            },
+            value: {
+              text: "Blue Castle Care"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Country of residence"
+            },
+            value: {
+              text: data.cuCountry | capitalize  or "England"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Country of residence"
+                }
+              ]
+            }
+          },
+
+
+          {
+            key: {
+              text: "Postcode"
+            },
+            value: {
+              text: data.cuPostcode or "LS1 6AE"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Postcode"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "NHS number known"
+            },
+            value: {
+              text: "No" if data.cuKnowNHSnumber == "no" else "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "NHS number known"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "NHS number"
+            },
+            value: {
+              text: data.cuNHSnumber | placeholder("485 777 3456")
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "NHS number known"
+                }
+              ]
+            }
+          } if data.cuKnowNHSnumber == "yes",
+
+          {
+            key: {
+              text: "Do they have any symptoms?"
+            },
+            value: {
+              text: data.cuCoronavirus or "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Do they have any symptoms"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Symptoms start date"
+            },
+            value: {
+              text: data['bday-day'] | placeholder("20 June 2020")
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Do they have any symptoms"
+                }
+              ]
+            }
+          } if data.cuCoronavirus == "Yes",
+
             {
               key: {
                 text: "Email"
               },
               value: {
-                text: "I do not have an email address" if data.cuHaveEmail == "no" else data.cuHaveEmailis | placeholder("alun.smith@test.com")
+                text: data.cuEmail or "john.smith@test.com"
               },
               actions: {
                 items: [
@@ -204,7 +351,7 @@
                 text: "Mobile"
               },
               value: {
-                text: data.cuMobile or "07700912357"
+                text: "None provided" if data.cuMobileQuestion == "No" else data.cuMobile | placeholder("07700912357")
               },
               actions: {
                 items: [
@@ -212,57 +359,6 @@
                     href: "#",
                     text: "Change",
                     visuallyHiddenText: "Mobile"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Country of residence"
-              },
-              value: {
-                text: data.cuCountry or "England"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Country of residence"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Postcode"
-              },
-              value: {
-                text: data.cuPostcode or "LS1 6AE"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Postcode"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "NHS number known"
-              },
-              value: {
-                text: "No" if data.cuKnowNHSnumber == "no" else data.cuNHSnumber | placeholder("485 777 3456")
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "NHS number known"
                   }
                 ]
               }
