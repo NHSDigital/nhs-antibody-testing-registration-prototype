@@ -730,14 +730,61 @@ router.post('/antigen/v1/action5/home-address-question', function (req, res) {
 
 })
 
-// Version 1 - Elective Care Testing - Request method route
+// Version 1 - Elective Care Testing Trust Worker Request- Request method route
 
-router.post('/elective-care-testing/action4/request-method', function (req, res) {
+router.post('/elective-care-testing/v1/action4/request-method', function (req, res) {
   let requestMethod = req.session.data['request-method']
   if (requestMethod == "upload"){
     res.redirect('/elective-care-testing/v1/trust-worker-request/upload-file')
   } else {
     res.redirect('/elective-care-testing/v1/trust-worker-request/date-of-procedure')
+  }
+
+})
+
+
+// Version 1 - Elective Care Testing Patient Register - Ethnic group route
+
+router.post('/elective-care-testing/v1/action6/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/elective-care-testing/v1/patient-register/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/elective-care-testing/v1/patient-register/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/elective-care-testing/v1/patient-register/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/elective-care-testing/v1/patient-register/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/elective-care-testing/v1/patient-register/ethnic-background-another')
+  } else {
+    res.redirect('/elective-care-testing/v1/patient-register/currently-in-work')
+  }
+
+})
+
+// Version 1 - Elective Care Testing Patient Register - Currently in work route
+
+router.post('/elective-care-testing/v1/action6/currently-in-work', function (req, res) {
+  let inWork = req.session.data['currently-in-work']
+  if (inWork == "No"){
+    res.redirect('/elective-care-testing/v1/patient-register/do-you-have-symptoms')
+  } else if (inWork == "Prefer not to say"){
+    res.redirect('/elective-care-testing/v1/patient-register/do-you-have-symptoms')
+  } else {
+    res.redirect('/elective-care-testing/v1/patient-register/industry')
+  }
+
+})
+
+// Version 1 - Elective Care Testing Patient Register - Do you have symptoms route
+
+router.post('/elective-care-testing/v1/action6/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes"){
+    res.redirect('/elective-care-testing/v1/patient-register/when-did-symptoms-start')
+  } else {
+    res.redirect('/elective-care-testing/v1/patient-register/test-kit-barcode')
   }
 
 })
