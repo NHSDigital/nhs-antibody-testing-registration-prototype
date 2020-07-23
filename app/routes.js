@@ -5,6 +5,7 @@ const router = express.Router()
 
 // Call in routes file from routes folder to keep routes.js cleaner
 router.use('/', require('./routes/org-register.js'))
+router.use('/', require('./routes/antibody.js'))
 
 // Version 1 - Is your delivery address the same as your home address?
 router.post('/antibody/v1/action/home-address-question', function (req, res) {
@@ -734,9 +735,9 @@ router.post('/antigen/v1/action5/home-address-question', function (req, res) {
 router.post('/elective-care-testing/action4/request-method', function (req, res) {
   let requestMethod = req.session.data['request-method']
   if (requestMethod == "upload"){
-    res.redirect('/elective-care-testing/v1/upload-file')
+    res.redirect('/elective-care-testing/v1/trust-worker-request/upload-file')
   } else {
-    res.redirect('/elective-care-testing/v1/date-of-procedure')
+    res.redirect('/elective-care-testing/v1/trust-worker-request/date-of-procedure')
   }
 
 })

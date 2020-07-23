@@ -1,0 +1,45 @@
+{% set version = "v1" %}
+{% set pageTitle = "What’s your order ID?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/patient-register/">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/elective-care-testing/{{version}}/patient-register/date-of-birth" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="order-id-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="order-id-hint" class="govuk-hint">
+                Your Order ID is a 10-digit number. You can find it on the SMS you received when your test kit was sent to you.
+            </span>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="order-id">
+                Order ID
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="order-id" name="order-id" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['order-id'] }}">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
