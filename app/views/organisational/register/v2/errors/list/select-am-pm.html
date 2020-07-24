@@ -42,7 +42,7 @@
           titleText: "There is a problem",
           errorList: [
             {
-              text: "Enter a barcode for Alun Smith",
+              text: "Select am or pm for Alun Smith",
               href: "#cuTestKitCode1-error"
             }
           ]
@@ -84,13 +84,10 @@
                   text: "Enter test kit barcode or Unique Reference Number (URN)",
                   classes: "govuk-!-font-size-16 govuk-!-font-weight-bold govuk-!-margin-bottom-3"
                 },
-                errorMessage: {
-                  text: "Enter a barcode",
-                  classes: "govuk-!-font-size-16"
-                },
                 classes: "govuk-input--width-10",
                 id: "cuTestKitCode1",
-                name: "cuTestKitCode1"
+                name: "cuTestKitCode1",
+                value: "CHE00000501"
               }) }}
 
               {{ govukInput({
@@ -101,7 +98,8 @@
 
                 classes: "govuk-input--width-10",
                 id: "cuTestKitCode1",
-                name: "cuTestKitCode1"
+                name: "cuTestKitCode1",
+                value: "CHE00000501"
               }) }}
             </div>
 
@@ -166,6 +164,12 @@
                 }
               }) %}
 
+              <span id="passport-issued-error" class="govuk-error-message govuk-!-font-size-16">
+                <span class="govuk-visually-hidden ">Error:</span> Select am or pm
+              </span>
+
+
+
               <div class="govuk-form-group">
                 <div class="govuk-date-input__item govuk-!-margin-right-1">
                   <label class="govuk-label govuk-!-font-size-16" for="covidUploadHour">
@@ -178,7 +182,8 @@
                   <label class="govuk-label govuk-!-font-size-16" for="covidUploadAMPM">
                     am or pm
                   </label>
-                  <select class="govuk-select govuk-input--width-4" id="covidUploadAMPM" name="cuAMPM1">
+                  <select class="govuk-select govuk-input--width-4 govuk-select--error" id="covidUploadAMPM" name="cuAMPM1">
+                    <option value="" selected disabled hidden></option>
                     <option value="am">am</option>
                     <option value="pm">pm</option>
                   </select>

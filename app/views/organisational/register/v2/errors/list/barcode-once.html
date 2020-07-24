@@ -42,7 +42,7 @@
           titleText: "There is a problem",
           errorList: [
             {
-              text: "Enter a barcode for Alun Smith",
+              text: "Barcode can only be used once",
               href: "#cuTestKitCode1-error"
             }
           ]
@@ -85,12 +85,13 @@
                   classes: "govuk-!-font-size-16 govuk-!-font-weight-bold govuk-!-margin-bottom-3"
                 },
                 errorMessage: {
-                  text: "Enter a barcode",
+                  text: "Barcode can only be used once",
                   classes: "govuk-!-font-size-16"
                 },
                 classes: "govuk-input--width-10",
                 id: "cuTestKitCode1",
-                name: "cuTestKitCode1"
+                name: "cuTestKitCode1",
+                value: "CHE00000502"
               }) }}
 
               {{ govukInput({
@@ -101,7 +102,8 @@
 
                 classes: "govuk-input--width-10",
                 id: "cuTestKitCode1",
-                name: "cuTestKitCode1"
+                name: "cuTestKitCode1",
+                value: "CHE00000502"
               }) }}
             </div>
 
@@ -209,7 +211,7 @@
           {% for item in items %}
 
 
-            <div class="card-table__item" id="entry-{{ item.id }}" role="group" aria-labelledby="entryName{{ item.id }}">
+            <div class="card-table__item card-table__item--error" id="entry-{{ item.id }}" role="group" aria-labelledby="entryName{{ item.id }}">
               <div class="card-table__form">
                 <h3 class="govuk-visually-hidden" id="entryName{{ item.id }}">{{ item.name | trim }}'s test details</h3>
 
@@ -234,7 +236,11 @@
                     classes: "govuk-input--width-10",
                     id: "cuTestKitCode" + item.id,
                     name: "cuTestKitCode" + item.id,
-                    value: "CHE00000502"
+                    value: "CHE00000502",
+                    errorMessage: {
+                      text: "Barcode can only be used once",
+                      classes: "govuk-!-font-size-16"
+                    }
 
                   }) }}
 
