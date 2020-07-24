@@ -1,4 +1,4 @@
-{% set pageHeading = "Which type of organisation are you?" %}
+{% set pageHeading = "Who are you registering?" %}
 {% set version = "organisational/register/v2" %}
 {% extends "includes/layout.html" %}
 
@@ -35,16 +35,16 @@
           titleText: "There is a problem",
           errorList: [
             {
-              text: "Select type of organisation",
-              href: "#passport-issued-error"
+              text: "Select who you are registering",
+              href: "#cuStaff"
             }
           ]
         }) }}
 
-      <form class="" action="/{{version}}/id" method="get">
+      <form class="" action="#" method="get">
         {{ govukRadios({
-            idPrefix: "cuOrgType",
-            name: "cuOrgType",
+            idPrefix: "cuStaff",
+            name: "cuStaff",
             fieldset: {
               legend: {
                 text: pageHeading,
@@ -53,28 +53,16 @@
               }
             },
             errorMessage: {
-              text: "Select type of organisation"
+              text: "Select who you are registering"
             },
             items: [
               {
-                value: "Care home",
-                text: "Care home"
+                value: "Staff",
+                text: "Staff"
               },
               {
-                value: "GP surgery",
-                text: "GP surgery"
-              },
-              {
-                value: "Dental surgery",
-                text: "Dental surgery"
-              },
-              {
-                value: "Prison",
-                text: "Prison"
-              },
-              {
-                value: "Other",
-                text: "Other"
+                value: "Non-staff",
+                text: "Non-staff (for example residents or patients)"
               }
             ]
           }) }}
