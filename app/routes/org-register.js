@@ -102,11 +102,91 @@ router.post('/organisational/register/v2/single/ethnic-group', function (req, re
 
 
 
+// Antibody Care home routes
 
+router.post('/organisational/antibody/v1/how', function (req, res) {
+  let answer = req.body.cuUploadType;
 
+  if (answer == 'bulk') {
+    res.redirect('/organisational/antibody/v1/bulk/type')
+    } else if (answer == 'single') {
+      res.redirect('/organisational/antibody/v1/single/type')
+    } else {
+    res.redirect('/organisational/antibody/v1/how?error=empty')
+    }
+});
 
+router.post('/organisational/antibody/v1/single/type', function (req, res) {
+  let answer = req.body.cuTestType;
 
+  if (answer == 'Fingerprick blood test') {
+    res.redirect('/organisational/antibody/v1/single/staff')
+    } else if (answer == 'Swab test') {
+      res.redirect('/organisational/register/v2/single/staff')
+    } else {
+    res.redirect('/organisational/antibody/v1/single/type')
+    }
+});
 
+router.post('/organisational/antibody/v1/bulk/type', function (req, res) {
+  let answer = req.body.cuTestType;
+
+  if (answer == 'Fingerprick blood test') {
+    res.redirect('/organisational/antibody/v1/bulk/staff')
+    } else if (answer == 'Swab test') {
+      res.redirect('/organisational/register/v2/bulk/staff')
+    } else {
+    res.redirect('/organisational/antibody/v1/bulk/type')
+    }
+});
+
+router.post('/organisational/antibody/v1/single/knowNHSnumber', function (req, res) {
+  let answer = req.body.cuKnowNHSnumber;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/antibody/v1/single/nhsnumber')
+    } else {
+    res.redirect('/organisational/antibody/v1/single/have-coronavirus')
+    }
+});
+
+router.post('/organisational/antibody/v1/single/have-coronavirus', function (req, res) {
+  let answer = req.body.cuCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/antibody/v1/single/when-symptoms')
+    } else {
+    res.redirect('/organisational/antibody/v1/single/testkit')
+    }
+});
+
+router.post('/organisational/antibody/v1/single/occupation/index', function (req, res) {
+  let answer = req.body.cuInWork;
+
+  if (answer == "Yes, and for the last 2 weeks they've worked from home") {
+    res.redirect('/organisational/antibody/v1/single/occupation/area')
+  } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
+    res.redirect('/organisational/antibody/v1/single/occupation/area')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/antibody/v1/single/country')
+  } else if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/antibody/v1/single/country')
+  } else {
+    res.redirect('/organisational/antibody/v1/single/occupation/index?error=empty')
+    }
+});
+
+router.post('/organisational/antibody/v1/single/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/antibody/v1/single/occupation/index')
+    } else if (answer) {
+      res.redirect('/organisational/antibody/v1/single/ethnic-desc')
+    } else {
+    res.redirect('/organisational/antibody/v1/single/ethnic-group?error=empty')
+    }
+});
 
 
 
