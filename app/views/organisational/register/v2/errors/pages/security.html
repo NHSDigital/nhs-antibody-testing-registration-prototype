@@ -32,11 +32,27 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Please complete reCAPTCHA",
+              href: "#passport-issued-error"
+            }
+          ]
+        }) }}
+
       <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
       <p>Complete the security check to submit your application</p>
 
-      <img class="govuk-!-margin-top-6 govuk-!-margin-bottom-6" src="/public/images/cap.png" alt="Image of a reCAPTCHA" onclick="this.src='/public/images/capchecked.png'">
+      <div class="govuk-form-group govuk-form-group--error">
+
+        <span id="passport-issued-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Please complete reCAPTCHA
+        </span>
+        <img class="govuk-!-margin-top-6 govuk-!-margin-bottom-6" src="/public/images/cap.png" alt="Image of a reCAPTCHA" onclick="this.src='/public/images/capchecked.png'">
+      </div>
 
       <form class="" action="/{{ version }}/single/done" method="get">
 
