@@ -1,0 +1,43 @@
+{% set version = "v1" %}
+{% set pageTitle = "Elective care testing" %}
+
+{% extends "includes/layout.html" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/elective-care-testing/{{version}}/trust-worker-request/request-home-testing" method="post">
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="work-email-address">
+              Enter your work email address
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="work-email-addresss" name="work-email-address" type="text" value="{{ data['work-email-address'] }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="new-password">
+              Enter your password
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="new-password" name="new-password" type="text" value="{{ data['new-password'] }}">
+          </div>
+        </fieldset>
+
+        <p><a href="#">I’ve forgotten my password</a></p>
+
+        <button class="govuk-button" data-module="govuk-button">Save and continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

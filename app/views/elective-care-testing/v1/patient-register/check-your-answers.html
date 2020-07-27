@@ -15,20 +15,6 @@
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Order ID number
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['order-id'] }}
-            </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/patient-register/order-id">
-              Change
-              <span class="govuk-visually-hidden">order id number</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Date of birth
           </dt>
@@ -44,142 +30,6 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Gender
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['gender'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/patient-register/gender">
-              Change
-              <span class="govuk-visually-hidden">gender</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Ethnic group
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['ethnic-group'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/patient-register/ethnic-group">
-              Change
-              <span class="govuk-visually-hidden">ethnic group</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['ethnic-group'] !== "Prefer not to say" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Ethnic background
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['ethnic-background'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/patient-register/ethnic-group">
-              Change
-              <span class="govuk-visually-hidden">ethnic background</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Are you currently in work?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['currently-in-work'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/patient-register/currently-in-work">
-              Change
-              <span class="govuk-visually-hidden">are you currently in work?</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['currently-in-work'] == "Yes, and for the last 2 weeks I've worked from home" or data['currently-in-work'] == "Yes, and for the last 2 weeks I've had to travel to work"%}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Area of work
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['industry'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/patient-register/industry">
-              Change
-              <span class="govuk-visually-hidden">area of work</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        {% if data['currently-in-work'] == "Yes"%}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Occupation
-          </dt>
-          <dd class="govuk-summary-list__value">
-            
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/patient-register/occupation">
-              Change
-              <span class="govuk-visually-hidden">occupation</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        {% if data['currently-in-work'] == "Yes, and for the last 2 weeks I've worked from home" or data['currently-in-work'] == "Yes, and for the last 2 weeks I've had to travel to work" and data['employer'] %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Employer
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['employer'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/patient-register/employer">
-              Change
-              <span class="govuk-visually-hidden">employer</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Do you have symptoms?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['do-you-have-symptoms'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/patient-register/do-you-have-symptoms">
-              Change
-              <span class="govuk-visually-hidden">do you have symptoms</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['do-you-have-symptoms'] == "Yes" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Do you have symptoms?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/patient-register/when-did-symptoms-start">
-              Change
-              <span class="govuk-visually-hidden">do you have symptoms</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
             Test kit barcode reference
           </dt>
           <dd class="govuk-summary-list__value">
@@ -192,8 +42,7 @@
             </a>
           </dd>
         </div>
-   
-            <div class="govuk-summary-list__row">
+        <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
                 Test date and time
             </dt>

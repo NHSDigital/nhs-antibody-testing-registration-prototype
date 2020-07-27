@@ -383,7 +383,7 @@ router.post('/antigen/v1/action3/do-you-have-symptoms', function (req, res) {
 
 // Version 1 - Antigen Refer and Triage - Do you have a car route
 
-router.post('/antigen/v1/action3/do-you-have-a-car', function (req, res) {
+router.post('/antigen/v1/action3/security-check', function (req, res) {
   let postcode = req.session.data['home-postcode']
   let emailAddress = req.session.data['email']
   let car = req.session.data['do-you-have-a-car']
@@ -393,13 +393,13 @@ router.post('/antigen/v1/action3/do-you-have-a-car', function (req, res) {
     res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test-no-car')
   } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
     res.redirect('/antigen/v1/refer-and-triage/eligible-for-home-test')
-  } else if (car == "No" && postcode !== "N0000" && emailAddress == "No") {
+  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/refer-and-triage/eligible-for-walk-in-test')
-  } else if (car == "No" && postcode == "N0000" && emailAddress == "No") {
+  } else if (car == "No" && postcode == "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/refer-and-triage/call-us-for-test')
   } else if (car == "Yes" && postcode == "N0000" && emailAddress == "Yes") {
     res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test-wrong-postcode')
-  } else if (car == "Yes" && emailAddress == "No" && postcode == "N0000"){
+  } else if (car == "Yes" && emailAddress !== "Yes" && postcode == "N0000"){
     res.redirect('/antigen/v1/refer-and-triage/eligible-for-drive-through-test')
   } else if (car == "Yes" && emailAddress == "Yes" && postcode !== "N0000"){
     res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test')
@@ -419,9 +419,9 @@ router.post('/antigen/v1/action3/order-home-test-kit', function (req, res) {
     res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test-no-car')
   } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
     res.redirect('/antigen/v1/refer-and-triage/eligible-for-home-test')
-  } else if (car == "No" && postcode !== "N0000" && emailAddress == "No") {
+  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/refer-and-triage/eligible-for-walk-in-test')
-  } else if (car == "No" && postcode == "N0000" && emailAddress == "No") {
+  } else if (car == "No" && postcode == "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/refer-and-triage/call-us-for-test')
   } else if (car == "Yes" && postcode == "N0000" && emailAddress == "Yes") {
     res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test-wrong-postcode')
@@ -607,9 +607,9 @@ router.post('/antigen/v1/action3/people-confirmed', function (req, res) {
     res.redirect('/antigen/v1/order-home-test-kit/')
   } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
     res.redirect('/antigen/v1/order-home-test-kit/')
-  } else if (car == "Yes" && postcode == "N0000" && emailAddress == "No") {
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
-  } else if (car == "No" && postcode !== "N0000" && emailAddress == "No") {
+  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
   }
 
@@ -630,9 +630,9 @@ router.post('/antigen/v1/action3/people-confirmed-person-1', function (req, res)
     res.redirect('/antigen/v1/order-home-test-kit/')
   } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
     res.redirect('/antigen/v1/order-home-test-kit/')
-  } else if (car == "Yes" && postcode == "N0000" && emailAddress == "No") {
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
-  } else if (car == "No" && postcode !== "N0000" && emailAddress == "No") {
+  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
   }
 
@@ -653,9 +653,9 @@ router.post('/antigen/v1/action3/find-test-site', function (req, res) {
     res.redirect('/antigen/v1/order-home-test-kit/')
   } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
     res.redirect('/antigen/v1/order-home-test-kit/')
-  } else if (car == "Yes" && postcode == "N0000" && emailAddress == "No") {
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
-  } else if (car == "No" && postcode !== "N0000" && emailAddress == "No") {
+  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
   }
 
@@ -741,53 +741,5 @@ router.post('/elective-care-testing/v1/action4/request-method', function (req, r
   }
 
 })
-
-
-// Version 1 - Elective Care Testing Patient Register - Ethnic group route
-
-router.post('/elective-care-testing/v1/action6/ethnic-group', function (req, res) {
-  let ethnicGroup = req.session.data['ethnic-group']
-  if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/elective-care-testing/v1/patient-register/ethnic-background-asian')
-  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-    res.redirect('/elective-care-testing/v1/patient-register/ethnic-background-black')
-  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-    res.redirect('/elective-care-testing/v1/patient-register/ethnic-background-mixed')
-  } else if (ethnicGroup == "White") {
-    res.redirect('/elective-care-testing/v1/patient-register/ethnic-background-white')
-  } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('/elective-care-testing/v1/patient-register/ethnic-background-another')
-  } else {
-    res.redirect('/elective-care-testing/v1/patient-register/currently-in-work')
-  }
-
-})
-
-// Version 1 - Elective Care Testing Patient Register - Currently in work route
-
-router.post('/elective-care-testing/v1/action6/currently-in-work', function (req, res) {
-  let inWork = req.session.data['currently-in-work']
-  if (inWork == "No"){
-    res.redirect('/elective-care-testing/v1/patient-register/do-you-have-symptoms')
-  } else if (inWork == "Prefer not to say"){
-    res.redirect('/elective-care-testing/v1/patient-register/do-you-have-symptoms')
-  } else {
-    res.redirect('/elective-care-testing/v1/patient-register/industry')
-  }
-
-})
-
-// Version 1 - Elective Care Testing Patient Register - Do you have symptoms route
-
-router.post('/elective-care-testing/v1/action6/do-you-have-symptoms', function (req, res) {
-  let symptoms = req.session.data['do-you-have-symptoms']
-  if (symptoms == "Yes"){
-    res.redirect('/elective-care-testing/v1/patient-register/when-did-symptoms-start')
-  } else {
-    res.redirect('/elective-care-testing/v1/patient-register/test-kit-barcode')
-  }
-
-})
-
 
 module.exports = router
