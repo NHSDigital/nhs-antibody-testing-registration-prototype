@@ -42,9 +42,9 @@ router.post('/antibody/v3/action/immunocompromised', function (req, res) {
   let condition = req.session.data['infection-serious']
 
   if (condition == "Yes"){
-    res.redirect('/antibody/v3/refer-and-triage/not-eligible')
+    res.redirect('/antibody/v3/refer-and-triage/immunocompromised')
   } else {
-    res.redirect('/antibody/v3/refer-and-triage/eligible')
+    res.redirect('/antibody/v3/refer-and-triage/name')
   }
 
 })
@@ -73,10 +73,6 @@ router.post('/antibody/v3/action/consent', function (req, res) {
     res.redirect('/antibody/v3/refer-and-triage/comfortable-doing-test')
   }
 })
-
-
-
-
 
 // Version 3 - Teacher registration - Have you had symptoms route
 router.post('/antibody/v3/action/have-you-had-symptoms', function (req, res) {
