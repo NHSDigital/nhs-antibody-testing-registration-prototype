@@ -146,17 +146,37 @@ router.post('/organisational/antibody/v1/single/knowNHSnumber', function (req, r
   if (answer == 'yes') {
     res.redirect('/organisational/antibody/v1/single/nhsnumber')
     } else {
-    res.redirect('/organisational/antibody/v1/single/have-coronavirus')
+    res.redirect('/organisational/antibody/v1/single/questions/index')
     }
 });
 
 router.post('/organisational/antibody/v1/single/have-coronavirus', function (req, res) {
+  let answer = req.body.cuHaveCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/antibody/v1/single/symptoms-end')
+    } else {
+    res.redirect('/organisational/antibody/v1/single/dob')
+    }
+});
+
+router.post('/organisational/antibody/v1/single/questions/index', function (req, res) {
   let answer = req.body.cuCoronavirus;
 
   if (answer == 'Yes') {
-    res.redirect('/organisational/antibody/v1/single/when-symptoms')
+    res.redirect('/organisational/antibody/v1/single/questions/when-symptoms')
     } else {
-    res.redirect('/organisational/antibody/v1/single/testkit')
+    res.redirect('/organisational/antibody/v1/single/questions/tested-positive')
+    }
+});
+
+router.post('/organisational/antibody/v1/single/questions/tested-positive', function (req, res) {
+  let answer = req.body.cuTestedBefore;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/antibody/v1/single/questions/swab-test')
+    } else {
+    res.redirect('/organisational/antibody/v1/single/questions/lived-with')
     }
 });
 

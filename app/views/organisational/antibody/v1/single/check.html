@@ -64,6 +64,23 @@
       {{ govukSummaryList({
         rows: [
         {
+          key: {
+            text: "Test type"
+          },
+          value: {
+            text: data.cuTestType | placeholder("Fingerprick blood test")
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "Name"
+              }
+            ]
+          }
+        },
+        {
             key: {
               text: "Are they staff?"
             },
@@ -95,6 +112,23 @@
                 visuallyHiddenText: "Name"
               }
             ]
+            }
+          },
+          {
+            key: {
+              text: "Do they have any symptoms?"
+            },
+            value: {
+              text: data.cuHaveCoronavirus or "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Do they have any symptoms"
+                }
+              ]
             }
           },
           {
@@ -312,17 +346,17 @@
 
           {
             key: {
-              text: "Do they have any symptoms?"
+              text: "Previous coronavirus symptoms"
             },
             value: {
-              text: data.cuCoronavirus or "Yes"
+              text: data.cuCoronavirus or "No"
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "Do they have any symptoms"
+                  visuallyHiddenText: "Previous coronavirus symptoms"
                 }
               ]
             }
@@ -330,24 +364,94 @@
 
           {
             key: {
-              text: "Symptoms start date"
+              text: "Date your symptoms started"
             },
             value: {
-              text: data['bday-day'] | placeholder("20 June 2020")
+              text: data["cuSymptomsStart"] | placeholder("22 July 2020")
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "Do they have any symptoms"
+                  visuallyHiddenText: "Previous coronavirus symptoms"
                 }
               ]
             }
-          } if data.cuCoronavirus == "Yes",
+          } if data["cuSymptomsStart-day"],
 
 
+          {
+            key: {
+              text: "Ever tested positive for coronavirus"
+            },
+            value: {
+              text: data.cuTestedBefore or "No"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ever tested positive for coronavirus"
+                }
+              ]
+            }
+          },
 
+          {
+            key: {
+              text: "Date of positive test"
+            },
+            value: {
+              text: data["cuSwabDate"] | placeholder("22 June 2020")
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Date of positive test"
+                }
+              ]
+            }
+          } if data["cuSwabDate-day"],
+
+          {
+            key: {
+              text: "Household ever tested positive for coronavirus"
+            },
+            value: {
+              text: data.cuLivedWith or "No"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Household ever tested positive for coronavirus"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Immune condition"
+            },
+            value: {
+              text: data.cuCondition or "No"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Immune condition"
+                }
+              ]
+            }
+          },
 
           {
             key: {

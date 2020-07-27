@@ -1,4 +1,4 @@
-{% set pageHeading = "Enter your unique test kit barcode or Randox URN" %}
+{% set pageHeading = "Enter your test kit barcode" %}
  {% set version = "organisational/antibody/v1" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -32,37 +32,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        {{ pageHeading }}
-      </h1>
-
-      <p>There are 2 types of home test kit, one of which is branded Randox.</p>
-
-      <p>If you have a non-Randox test, use the camera on your phone or computer to scan one of the identical barcodes inside your test kit. You'll either find them attached to the plastic vial, biohazard bag and return box or loose for you to stick on yourself (please read instructions).</p>
-      <p>You can also manually enter the 11 charcter reference below the barcode.</p>
-      <p>If you have a Randox test kit, manually enter the 9 or 10 character unique reference number (URN) on the label.</p>
-
-      <p>If you are a GP or dental surgery enter your relevant surgery ID.</p>
-
-      {{ govukDetails({
-          summaryText: "What does the barcode look like?",
-          text: "[image]"
-        }) }}
-
-        {{ govukDetails({
-          summaryText: "What does the Randox URN look like?",
-          text: "[image]"
-        }) }}
-
-        <form class="" action="/{{ version }}/single/scan" method="get">
-          <input class="govuk-button govuk-button--secondary" type="submit" value="Scan my barcode">
-        </form>
-
       <form class="" action="/{{ version }}/single/time" method="get">
+
+        {% call govukFieldset({
+            legend: {
+              text: pageHeading,
+              classes: "govuk-fieldset__legend--xl",
+              isPageHeading: true
+            }
+          }) %}
+
+          <span class="govuk-hint">
+          The test kit barcode is a 12 character reference that you can find on your testkit. For example, ‘123456789THR’.
+          </span>
 
             {{ govukInput({
               label: {
-                html: 'Test kit barcode reference or URN'
+                html: 'Test kit barcode reference'
               },
               classes: "govuk-input--width-20",
               id: "covidUpload",
@@ -71,12 +57,14 @@
 
             {{ govukInput({
               label: {
-                html: 'Confirm test kit barcode reference or URN'
+                html: 'Confirm test kit barcode reference'
               },
               classes: "govuk-input--width-20",
               id: "covidUpload",
               name: "cuBarcodeConfirm"
             }) }}
+
+          {% endcall %}
 
         <input class="govuk-button" type="submit" value="Continue">
 

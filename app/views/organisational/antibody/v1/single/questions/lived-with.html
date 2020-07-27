@@ -5,7 +5,7 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "Does " + fullname + "currently have coronavirus symptoms?" %}
+{% set pageHeading = "Has " + fullname + "lived with anyone who has tested positive for coronavirus before?" %}
  {% set version = "organisational/antibody/v1" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -39,40 +39,41 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        {{ pageHeading }}
-      </h1>
-
-      <p>The main symptoms of coronavirus are:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          a high temperature
-        </li>
-        <li>
-          a new, continuous cough
-        </li>
-        <li>
-          a loss or change to your sense of smell or taste
-        </li>
-      </ul>
-
-      <p>Most people with coronavirus have at least one of these symptoms.</p>
-
-      <form class="" action="" method="post">
+      <form class="" action="/{{version}}/single/questions/condition" method="get">
 
         {{ govukRadios({
-            idPrefix: "cuHaveCoronavirus",
-            name: "cuHaveCoronavirus",
-            items: [
-              {
-                value: "Yes",
-                text: "Yes, they have at least one of these symptoms"
-              },
-              {
-                value: "No",
-                text: "No, they do not have any of these symptoms"
-              }
-            ]
+          idPrefix: "cuLivedWith",
+          name: "cuLivedWith",
+          fieldset: {
+            legend: {
+              text: pageHeading,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          hint: {
+            html: "<p>This means you had the virus at the time of the swab test.</p>
+            <p>We need to know this for clinical research</p>"
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            },
+            {
+              value: "Not sure",
+              text: "I'm not sure"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+
+
           }) }}
 
         <input class="govuk-button" type="submit" value="Continue">

@@ -5,13 +5,12 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "Does " + fullname + "currently have coronavirus symptoms?" %}
+{% set pageHeading = "When did " + fullname | trim + "'s symptoms start?" %}
  {% set version = "organisational/antibody/v1" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
-
 {% block pageTitle %}
-  {{ pageHeading }} - COVID-19
+  {{ pageHeading }} - {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -39,38 +38,36 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        {{ pageHeading }}
-      </h1>
+      <form class="" action="/{{ version }}/single/questions/tested-positive" method="get">
 
-      <p>The main symptoms of coronavirus are:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          a high temperature
-        </li>
-        <li>
-          a new, continuous cough
-        </li>
-        <li>
-          a loss or change to your sense of smell or taste
-        </li>
-      </ul>
-
-      <p>Most people with coronavirus have at least one of these symptoms.</p>
-
-      <form class="" action="" method="post">
-
-        {{ govukRadios({
-            idPrefix: "cuHaveCoronavirus",
-            name: "cuHaveCoronavirus",
+        {{ govukDateInput({
+            id: "cuSymptomsStart",
+            namePrefix: "cuSymptomsStart",
+            fieldset: {
+              legend: {
+                html: pageHeading,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            hint: {
+              html: "<p>Enter the date. If you cannot remember the exact date, enter the date you think it was, roughly.</p><p>Use the format DD MM YYYY, for example 15 04 2020</p>"
+            },
             items: [
               {
-                value: "Yes",
-                text: "Yes, they have at least one of these symptoms"
+                name: "day",
+                classes: "govuk-input--width-2",
+                autocomplete: "bday-day"
               },
               {
-                value: "No",
-                text: "No, they do not have any of these symptoms"
+                name: "month",
+                classes: "govuk-input--width-2",
+                autocomplete: "bday-month"
+              },
+              {
+                name: "year",
+                classes: "govuk-input--width-4",
+                autocomplete: "bday-year"
               }
             ]
           }) }}
