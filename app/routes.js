@@ -387,45 +387,35 @@ router.post('/antigen/v1/action3/security-check', function (req, res) {
   let postcode = req.session.data['home-postcode']
   let emailAddress = req.session.data['email']
   let car = req.session.data['do-you-have-a-car']
-  if (car == "Yes" && emailAddress == "No" && postcode !== "N0000"){
-    res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test-no-email')
-  } else if (car == "No" && emailAddress == "Yes" && postcode !== "N0000") {
-    res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test-no-car')
-  } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
+  if (car == "No" && postcode == "N0000" && emailAddress == "Yes"){
     res.redirect('/antigen/v1/refer-and-triage/eligible-for-home-test')
   } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/refer-and-triage/eligible-for-walk-in-test')
   } else if (car == "No" && postcode == "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/refer-and-triage/call-us-for-test')
-  } else if (car == "Yes" && postcode == "N0000" && emailAddress == "Yes") {
-    res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test-wrong-postcode')
   } else if (car == "Yes" && emailAddress !== "Yes" && postcode == "N0000"){
     res.redirect('/antigen/v1/refer-and-triage/eligible-for-drive-through-test')
-  } else if (car == "Yes" && emailAddress == "Yes" && postcode !== "N0000"){
+  } else {
     res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test')
   }
 
 })
 
-// Version 1 - Antigen Refer and Triage - Do you have a car route
+// Version 1 - Antigen Refer and Triage - Order home test kit route
 
 router.post('/antigen/v1/action3/order-home-test-kit', function (req, res) {
   let postcode = req.session.data['home-postcode']
   let emailAddress = req.session.data['email']
   let car = req.session.data['do-you-have-a-car']
-  if (car == "Yes" && emailAddress == "No" && postcode == "N0000"){
-    res.redirect('/antigen/v1/refer-and-triage/eligible-for-drive-through-test')
-  } else if (car == "No" && emailAddress == "Yes" && postcode !== "N0000") {
-    res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test-no-car')
-  } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
+  if (car == "No" && postcode == "N0000" && emailAddress == "Yes"){
     res.redirect('/antigen/v1/refer-and-triage/eligible-for-home-test')
   } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/refer-and-triage/eligible-for-walk-in-test')
   } else if (car == "No" && postcode == "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/refer-and-triage/call-us-for-test')
-  } else if (car == "Yes" && postcode == "N0000" && emailAddress == "Yes") {
-    res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test-wrong-postcode')
-  } else if (car == "Yes" && postcode !== "N0000" && emailAddress == "Yes") {
+  } else if (car == "Yes" && emailAddress !== "Yes" && postcode == "N0000"){
+    res.redirect('/antigen/v1/refer-and-triage/eligible-for-drive-through-test')
+  } else {
     res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test')
   }
 
@@ -525,6 +515,18 @@ router.post('/antigen/v1/action3/nhs-number-known', function (req, res) {
 
 })
 
+// Version 1 - Antigen Global Registration - Do you have symptoms person 1 route
+
+router.post('/antigen/v1/action3/do-you-have-symptoms-person-1', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms-person-1']
+  if (symptoms == "Yes"){
+    res.redirect('/antigen/v1/global-registration/when-did-symptoms-start-person-1')
+  } else {
+    res.redirect('/antigen/v1/global-registration/postcode-person-1')
+  }
+
+})
+
 // Version 1 - Antigen Global Registration - Ethnic group person 1 route
 
 router.post('/antigen/v1/action3/ethnic-group-person-1', function (req, res) {
@@ -551,7 +553,7 @@ router.post('/antigen/v1/action3/country', function (req, res) {
   if (country == "Northern Ireland"){
     res.redirect('/antigen/v1/global-registration/address')
   } else {
-    res.redirect('/antigen/v1/global-registration/postcode')
+    res.redirect('/antigen/v1/global-registration/nhs-number-known')
   }
 
 })
@@ -563,7 +565,7 @@ router.post('/antigen/v1/action3/country-person-1', function (req, res) {
   if (country == "Northern Ireland"){
     res.redirect('/antigen/v1/global-registration/address-person-1')
   } else {
-    res.redirect('/antigen/v1/global-registration/postcode-person-1')
+    res.redirect('/antigen/v1/global-registration/nhs-number-known-1')
   }
 
 })
