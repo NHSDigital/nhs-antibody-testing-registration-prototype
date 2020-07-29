@@ -199,6 +199,18 @@ router.post('/antibody/v4/action/comfortable-doing-test', function (req, res) {
   }
 })
 
+// Version 3 - Registration - Country route
+router.post('/antibody/v4/action2/country', function (req, res) {
+  let country = req.session.data['country']
+
+  if (country == "England"){
+    res.redirect('/antibody/v3/refer-and-triage/name')
+  } else {
+    res.redirect('/antibody/v3/refer-and-triage/not-available')
+  }
+
+})
+
 // Version 3 - Teacher registration - Do you have symptoms route
 router.post('/antibody/v4/action/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
@@ -219,7 +231,7 @@ router.post('/antibody/v4/action/immunocompromised', function (req, res) {
   if (condition == "Yes"){
     res.redirect('/antibody/v4/refer-and-triage/immunocompromised')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/name')
+    res.redirect('/antibody/v4/refer-and-triage/country')
   }
 
 })
