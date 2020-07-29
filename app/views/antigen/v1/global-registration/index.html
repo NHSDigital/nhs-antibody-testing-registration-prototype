@@ -15,7 +15,20 @@
     </p>
   </div> 
   
-  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/do-you-have-a-car">Back</a>
+  {% if data['way-to-test'] == "drive-through" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/visiting-drive-through">Back</a>
+  {% elseif data['way-to-test'] == "walk-in" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/visiting-walk-through">Back</a>
+  {% elseif data['way-to-test'] == "home testing" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/ordering-home-test-kit">Back</a>
+  {% elseif data['way-to-test'] == undefined and data['email'] !== "Yes" and data['do-you-have-a-car'] == "Yes" and data['home-postcode'] == "N0000" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/visiting-drive-through">Back</a>
+  {% elseif data['way-to-test'] == undefined and data['email'] !== "Yes" and data['do-you-have-a-car'] == "No" and data['home-postcode'] !== "N0000" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/visiting-walk-through">Back</a>
+  {% elseif data['way-to-test'] == undefined and data['email'] == "Yes" and data['do-you-have-a-car'] == "No" and data['home-postcode'] == "N0000" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/ordering-home-test-kit">Back</a>
+  {% endif %}
+
 {% endblock %}
 
 {% block content %}
@@ -23,12 +36,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/antigen/{{version}}/global-registration/gender" method="post">
+      <form action="/antigen/{{version}}/global-registration/landline-number" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="date-of-birth-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
                 {{ pageTitle }}
               </h1>
             </legend>

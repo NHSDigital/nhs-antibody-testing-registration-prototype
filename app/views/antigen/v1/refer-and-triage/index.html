@@ -1,182 +1,55 @@
 {% set version = "v1" %}
-{% set pageTitle = "What tests are available" %}
+{% set pageTitle = "What’s your name?" %}
 
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/govuk/essential-workers">Back</a>
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/govuk/get-coronavirus-test">Back</a>
 {% endblock %}
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-l govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
 
-    <p class="govuk-body">There are two ways to get a coronavirus test: going to a test site and getting a test kit delivered to your home.</p>
-    <p class="govuk-body">You'll be able to choose which one you want later.</p>
-    <p class="govuk-body">If the type of test you would like is not available, please try again later.</p>
+      <form action="/antigen/{{version}}/refer-and-triage/mobile-number" method="post">
 
-    <h2 class="govuk-heading-m govuk-!-margin-bottom-5">Test sites</h2>
+        <fieldset class="govuk-fieldset">
+        
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="first-name">
+              First name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="first-name" name="first-name" type="text" value="{{ data['first-name'] }}">
+          </div>
 
-    <!-- <h3 class="govuk-heading-s govuk-!-margin-bottom-5">England</h3>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="last-name">
+              Last name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="last-name" name="last-name" type="text" value="{{ data['last-name'] }}">
+          </div>
+        
+        </fieldset>
 
-    <p class="govuk-body">East Midlands</p>
-    <p class="govuk-body">East of England</p>
-    <p class="govuk-body">London</p>
-    <p class="govuk-body">North East</p>
-    <p class="govuk-body">North West</p>
-    <p class="govuk-body">South East</p>
-    <p class="govuk-body">South West</p>
-    <p class="govuk-body">West Midlands</p>
-    <p class="govuk-body">Yorkshire and the Humber</p> -->
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
 
-    <table class="govuk-table">
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th class="govuk-table__header" style="border: none" scope="col"> England </th>
-          <th class="govuk-table__header" style="border: none" scope="col"></th>
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell" style="border: none">
-            East Midlands
-          </td>
-          <td class="govuk-table__cell" style="border: none">
-            <strong class="govuk-tag govuk-tag--green">
-              AVAILABLE
-            </strong>
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell" style="border: none">
-            East of England
-          </td>
-          <td class="govuk-table__cell" style="border: none">
-            <strong class="govuk-tag govuk-tag--green">
-              AVAILABLE
-            </strong>
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell" style="border: none">
-            London
-          </td>
-          <td class="govuk-table__cell" style="border: none">
-            <strong class="govuk-tag govuk-tag--red">
-              NONE AVAILABLE
-            </strong>
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell" style="border: none">
-            North East
-          </td>
-          <td class="govuk-table__cell" style="border: none">
-            <strong class="govuk-tag govuk-tag--red">
-              NONE AVAILABLE
-            </strong>
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell" style="border: none">
-            North West
-          </td>
-          <td class="govuk-table__cell" style="border: none">
-            <strong class="govuk-tag govuk-tag--red">
-              NONE AVAILABLE
-            </strong>
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell" style="border: none">
-            South East
-          </td>
-          <td class="govuk-table__cell" style="border: none">
-            <strong class="govuk-tag govuk-tag--red">
-              NONE AVAILABLE
-            </strong>
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell" style="border: none">
-            South West
-          </td>
-          <td class="govuk-table__cell" style="border: none">
-            <strong class="govuk-tag govuk-tag--red">
-              NONE AVAILABLE
-            </strong>
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell" style="border: none">
-            West Midlands
-          </td>
-          <td class="govuk-table__cell" style="border: none">
-            <strong class="govuk-tag govuk-tag--red">
-              NONE AVAILABLE
-            </strong>
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell" style="border: none">
-            Yorkshire and the Humber
-          </td>
-          <td class="govuk-table__cell" style="border: none">
-            <strong class="govuk-tag govuk-tag--red">
-              NONE AVAILABLE
-            </strong>
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th class="govuk-table__header" style="border: none" scope="col"></th>
-          <th class="govuk-table__header" style="border: none" scope="col"></th>
-        </tr>
-        <tr class="govuk-table__row">
-          <th class="govuk-table__header" style="border: none" scope="col">Scotland</th>
-          <th class="govuk-table__header" style="border: none" scope="col"><strong class="govuk-tag govuk-tag--green">
-            AVAILABLE
-          </strong></th>
-        </tr>
-        <tr class="govuk-table__row">
-          <th class="govuk-table__header" style="border: none" scope="col"></th>
-          <th class="govuk-table__header" style="border: none" scope="col"></th>
-        </tr>
-        <tr class="govuk-table__row">
-          <th class="govuk-table__header" style="border: none" scope="col">Wales</th>
-          <th class="govuk-table__header" style="border: none" scope="col"><strong class="govuk-tag govuk-tag--green">
-            AVAILABLE
-          </strong></th>
-        </tr>
-        <tr class="govuk-table__row">
-          <th class="govuk-table__header" style="border: none" scope="col"></th>
-          <th class="govuk-table__header" style="border: none" scope="col"></th>
-        </tr>
-        <tr class="govuk-table__row">
-          <th class="govuk-table__header" style="border: none" scope="col">Northern Ireland</th>
-          <th class="govuk-table__header" style="border: none" scope="col"><strong class="govuk-tag govuk-tag--red">
-            NONE AVAILABLE
-          </strong></th>
-        </tr>
-        <tr class="govuk-table__row">
-          <th class="govuk-table__header" style="border: none" scope="col"></th>
-          <th class="govuk-table__header" style="border: none" scope="col"></th>
-        </tr>
-        <tr class="govuk-table__row">
-          <th class="govuk-table__header" style="border: none" scope="col">Home test</th>
-          <th class="govuk-table__header" style="border: none" scope="col"><strong class="govuk-tag govuk-tag--green">
-            AVAILABLE
-          </strong></th>
-        </tr>
-      </tbody>
-    </table>
+      </form>
 
-
-    <a href="/antigen/{{version}}/refer-and-triage/name" role="button" draggable="false" class="govuk-button govuk-!-margin-top-8" data-module="govuk-button">continue</a>
-
+    </div>
   </div>
-</div>
 
 {% endblock %}

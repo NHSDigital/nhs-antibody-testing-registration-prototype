@@ -33,7 +33,7 @@
             {{ data['first-name'] }} {{ data['last-name'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/name">
+            <a href="/antigen/{{version}}/refer-and-triage/">
               Change
               <span class="govuk-visually-hidden">name</span>
             </a>
@@ -97,6 +97,22 @@
             </a>
           </dd>
         </div>
+        {% if data['do-you-have-symptoms'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date when symptoms started
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">
+              Change
+              <span class="govuk-visually-hidden">date when symptoms started</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Postcode
