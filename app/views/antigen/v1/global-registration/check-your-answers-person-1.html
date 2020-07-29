@@ -55,7 +55,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Do they have symptoms?
+            Do they have any symptoms
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['symptoms-person-1'] }}
@@ -63,108 +63,22 @@
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/symptoms-person-1">
               Change
-              <span class="govuk-visually-hidden">do they have symptoms</span>
+              <span class="govuk-visually-hidden">do they have any symptoms</span>
             </a>
           </dd>
         </div>
+        {% if data['do-you-have-symptoms-person-1'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Gender
+            Date of onset
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['gender-person-1'] }}
+            {{ data['symptoms-start-date-day-person-1'] }} {{ data['symptoms-start-date-month-person-1'] }} {{ data['symptoms-start-date-year-person-1'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/gender-person-1">
+            <a href="/antigen/{{version}}/global-registration/when-did-symptoms-start-person-1">
               Change
-              <span class="govuk-visually-hidden">gender</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Ethnic group
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['ethnic-group-person-1'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/ethnic-group-person-1">
-              Change
-              <span class="govuk-visually-hidden">ethnic group</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['ethnic-group-person-1'] !== "Prefer not to say" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Ethnic background
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['ethnic-background-person-1'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/ethnic-background-person-1">
-              Change
-              <span class="govuk-visually-hidden">ethnic background</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Are they currently in work?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['currently-in-work-person-1'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/currently-in-work-person-1">
-              Change
-              <span class="govuk-visually-hidden">are they currently in work?</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['currently-in-work'] == "Yes and I work from Home" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Area of work
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['industry-person-1'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/industry-person-1">
-              Change
-              <span class="govuk-visually-hidden">area of work</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Occupation
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['occupation-person-1'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/occupation-person-1">
-              Change
-              <span class="govuk-visually-hidden">occupation</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Employer
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['employer-person-1'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/employer-person-1">
-              Change
-              <span class="govuk-visually-hidden">employer</span>
+              <span class="govuk-visually-hidden">date of onset</span>
             </a>
           </dd>
         </div>
@@ -229,7 +143,6 @@
           </dd>
         </div>
         {% endif %}
-        {% if data['email-person-1'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Email address
@@ -241,6 +154,105 @@
             <a href="/antigen/{{version}}/global-registration/email-address-person-1">
               Change
               <span class="govuk-visually-hidden">email address</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Gender
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['gender-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/gender-person-1">
+              Change
+              <span class="govuk-visually-hidden">gender</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnic group
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ethnic-group-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/ethnic-group-person-1">
+              Change
+              <span class="govuk-visually-hidden">ethnic group</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnic background
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ethnic-background-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/ethnic-group-person-1">
+              Change
+              <span class="govuk-visually-hidden">ethnic background</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Are they currently in work?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['currently-in-work-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/currently-in-work-person-1">
+              Change
+              <span class="govuk-visually-hidden">are they currently in work?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['currently-in-work'] !== "No" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Area of work
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['industry-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/industry-person-1">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Occupation
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['occupation-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/occupation-person-1">
+              Change
+              <span class="govuk-visually-hidden">occupation</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Employer
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['employer-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/employer-person-1">
+              Change
+              <span class="govuk-visually-hidden">employer</span>
             </a>
           </dd>
         </div>
@@ -274,8 +286,7 @@
             </a>
           </dd>
         </div>
-        {% endif %}
-        {% if data['postcode-person-1'] == "Different" %}
+        {% else %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Postcode
