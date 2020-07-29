@@ -146,7 +146,7 @@ router.post('/organisational/antibody/v1/single/knowNHSnumber', function (req, r
   if (answer == 'yes') {
     res.redirect('/organisational/antibody/v1/single/nhsnumber')
     } else {
-    res.redirect('/organisational/antibody/v1/single/questions/index')
+    res.redirect('/organisational/antibody/v1/single/testkit')
     }
 });
 
@@ -156,7 +156,7 @@ router.post('/organisational/antibody/v1/single/have-coronavirus', function (req
   if (answer == 'Yes') {
     res.redirect('/organisational/antibody/v1/single/symptoms-end')
     } else {
-    res.redirect('/organisational/antibody/v1/single/dob')
+    res.redirect('/organisational/antibody/v1/single/questions/condition')
     }
 });
 
@@ -167,6 +167,16 @@ router.post('/organisational/antibody/v1/single/questions/index', function (req,
     res.redirect('/organisational/antibody/v1/single/questions/when-symptoms')
     } else {
     res.redirect('/organisational/antibody/v1/single/questions/tested-positive')
+    }
+});
+
+router.post('/organisational/antibody/v1/single/questions/condition', function (req, res) {
+  let answer = req.body.cuCondition;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/antibody/v1/single/questions/condition-end')
+    } else {
+    res.redirect('/organisational/antibody/v1/single/questions/index')
     }
 });
 

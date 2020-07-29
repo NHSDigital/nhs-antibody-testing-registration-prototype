@@ -5,7 +5,7 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "What's " + fullname | trim + "'s home postcode?" %}
+{% set pageHeading = "What's " + fullname | trim + "'s home address?" %}
  {% set version = "organisational/antibody/v1" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -79,12 +79,12 @@
 
       <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
-      <p>For residents, enter the organisation’s postcode.</p>
-      <p>For patients of a GP or dental surgery, enter their personal home postcode.</p>
-      <p>For staff, enter their personal home postcode. </p>
+      <p>For residents, enter the organisation’s address.</p>
+      <p>For patients of a GP or dental surgery, enter their personal home address.</p>
+      <p>For staff, enter their personal home address. </p>
 
 
-      <form class="" action="/{{ version }}/single/knowNHSnumber" method="get">
+      <form class="" action="/{{ version }}/single/postcode/results" method="get">
 
         {{ govukInput({
             label: {
@@ -97,7 +97,7 @@
             name: "cuPostcode"
           }) }}
 
-        <input class="govuk-button" type="submit" value="Continue">
+        <input class="govuk-button" type="submit" value="Find address">
 
       </form>
 

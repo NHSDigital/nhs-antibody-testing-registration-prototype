@@ -89,6 +89,18 @@ router.post('/antibody/v2/action/do-you-have-symptoms', function (req, res) {
 
 })
 
+// Version 4 - Social care worker - Do you have an immune condition > country route
+router.post('/antibody/v4/action/infection-serious', function (req, res) {
+  let immunnoCompromised = req.session.data['infection-serious']
+
+  if (immunnoCompromised == "Yes"){
+    res.redirect('/antibody/v4/refer-and-triage/immunocompromised')
+  } else {
+    res.redirect('/antibody/v4/refer-and-triage/country')
+  }
+
+})
+
 // Version 1 - Teacher registration - Have you had symptoms route
 router.post('/antibody/v1/action/have-you-had-symptoms', function (req, res) {
   let haveYouHadSymptoms = req.session.data['have-you-had-symptoms']
