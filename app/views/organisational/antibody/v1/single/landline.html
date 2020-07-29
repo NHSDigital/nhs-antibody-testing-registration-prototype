@@ -5,13 +5,13 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "Has " + fullname + "lived with anyone who has tested positive for coronavirus before?" %}
+{% set pageHeading = "Do you want to add a landline phone number?" %}
  {% set version = "organisational/antibody/v1" %}
-{% set serviceName = "Get a coronavirus test" %}
+ {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - COVID-19
+  {{ pageHeading }} - {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -39,11 +39,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/{{version}}/single/dob" method="get">
+      <form class="" action="/{{ version }}/single/check" method="get">
+
+        {% set landlineHtml %}
+        {{ govukInput({
+          id: "contact-by-email",
+          name: "cuHaveLandlineis",
+          type: "tel",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Landline telephone number"
+          }
+        }) }}
+        {% endset -%}
 
         {{ govukRadios({
-          idPrefix: "cuLivedWith",
-          name: "cuLivedWith",
+          idPrefix: "cuHaveLandline",
+          name: "cuHaveLandline",
           fieldset: {
             legend: {
               text: pageHeading,
@@ -52,29 +64,23 @@
             }
           },
           hint: {
-            html: "<p>This means you had the virus at the time of the swab test.</p>
-            <p>We need to know this for clinical research</p>"
+            text: ""
           },
           items: [
             {
-              value: "Yes",
-              text: "Yes"
+              value: "yes",
+              text: "Yes, they have their own landline phone number",
+              conditional: {
+                html: landlineHtml
+              }
             },
             {
-              value: "No",
-              text: "No"
-            },
-            {
-              value: "Not sure",
-              text: "I'm not sure"
+              value: "no",
+              text: "No, they do not have a landline phone number"
             }
           ]
         }) }}
 
-        {{ govukRadios({
-
-
-          }) }}
 
         <input class="govuk-button" type="submit" value="Continue">
 
