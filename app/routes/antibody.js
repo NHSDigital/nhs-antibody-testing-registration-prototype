@@ -204,9 +204,9 @@ router.post('/antibody/v4/action2/country', function (req, res) {
   let country = req.session.data['country']
 
   if (country == "England"){
-    res.redirect('/antibody/v3/refer-and-triage/name')
+    res.redirect('/antibody/v4/refer-and-triage/name')
   } else {
-    res.redirect('/antibody/v3/refer-and-triage/not-available')
+    res.redirect('/antibody/v4/refer-and-triage/not-available')
   }
 
 })
