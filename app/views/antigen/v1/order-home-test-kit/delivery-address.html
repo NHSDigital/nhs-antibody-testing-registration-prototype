@@ -16,13 +16,13 @@
 
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-fieldset__heading">
+            <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-5">
               {{ pageTitle }}
             </h1>
           </legend>
 
           <p>
-            <span class="govuk-!-margin-bottom-1 govuk-!-display-block">Postcode</span>
+            <strong class="govuk-!-margin-bottom-4 govuk-!-display-block govuk-!-font-size-24">Postcode</strong>
             <strong>{{ data['delivery-address-postcode'] | default('LS1 3BE') }}</strong>
             <a href="/antigen/{{version}}/order-home-test-kit/postcode" class="govuk-!-margin-left-5">
               Change
@@ -31,10 +31,11 @@
           </p>
 
           <div class="govuk-form-group">
-            <label class="govuk-label" for="delivery-address">
-              Address
+            <label class="govuk-label govuk-!-font-size-24" for="delivery-address">
+              <strong class="govuk-!-font-size-24">Address</strong>
             </label>
             <select class="govuk-select" id="delivery-address" name="delivery-address">
+              <option>Select from 5 addresses</option>
               <option value="Oxford House, Oxford Row, Leeds, {{ data['delivery-address-postcode'] | default('LS1 3BE') }}">Oxford House, Oxford Row, Leeds, {{ data['delivery-address-postcode'] | default('LS1 3BE') }}</option>
               <option value="Office 14 New Station St, Leeds, LS1 5DL">Office 14 New Station St, Leeds, LS1 5DL</option>
               <option value="38 Park Square North, Leeds, LS1 2NY">38 Park Square North, Leeds, LS1 2NY</option>
