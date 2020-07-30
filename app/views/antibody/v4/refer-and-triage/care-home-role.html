@@ -1,0 +1,52 @@
+{% set version = "v4" %}
+{% set pageTitle = "Are you a member of care home staff or a resident?"%}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/infection-serious">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antibody/{{version}}/refer-and-triage/email-address" method="post">
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+
+          <span id="nhs-number-hint" class="govuk-hint">
+            This will help us prioritise you for a test
+          </span>
+
+          <div class="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="ethnic-background-1" name="ethnic-background" type="radio" value="Bangladeshi" {{ checked("ethnic-background", "Bangladeshi") }}>
+              <label class="govuk-label govuk-radios__label" for="ethnic-background-1">
+                Staff
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="ethnic-background-2" name="ethnic-background" type="radio" value="Chinese" {{ checked("ethnic-background", "Chinese") }}>
+              <label class="govuk-label govuk-radios__label" for="ethnic-background-2">
+                Resident
+              </label>
+            </div>
+          </div>
+        
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
