@@ -275,7 +275,7 @@ router.post('/antibody/v4/action/have-you-had-symptoms', function (req, res) {
 
 // Version 4 - Teacher registration - Email address
 router.post('/antibody/v4/action/email-address', function (req, res) {
-  let emailAddress = req.session.data['email-address']
+  let emailAddress = req.session.data['email']
   if (emailAddress == "Yes"){
     res.redirect('/antibody/v4/refer-and-triage/mobile-number')
   } else {
@@ -286,7 +286,7 @@ router.post('/antibody/v4/action/email-address', function (req, res) {
 // Version 4 - Teacher registration - Mobile phone
 router.post('/antibody/v4/action/mobile-number', function (req, res) {
   let mobileNumber = req.session.data['mobile-number']
-  let emailAddress = req.session.data['email-address']
+  let emailAddress = req.session.data['email']
 
   if (mobileNumber == "Yes"){
     res.redirect('/antibody/v4/refer-and-triage/postcode')
