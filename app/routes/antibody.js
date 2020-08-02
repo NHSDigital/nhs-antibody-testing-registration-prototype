@@ -199,7 +199,7 @@ router.post('/antibody/v4/action/comfortable-doing-test', function (req, res) {
   }
 })
 
-// Version 3 - Registration - Country route
+// Version 4 - Registration - Country route
 router.post('/antibody/v4/action2/country', function (req, res) {
   let country = req.session.data['country']
 
@@ -211,7 +211,7 @@ router.post('/antibody/v4/action2/country', function (req, res) {
 
 })
 
-// Version 3 - Teacher registration - Do you have symptoms route
+// Version 4 - Teacher registration - Do you have symptoms route
 router.post('/antibody/v4/action/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
@@ -224,7 +224,7 @@ router.post('/antibody/v4/action/do-you-have-symptoms', function (req, res) {
 })
 
 
-// Version 3 - Registration - immuno condition
+// Version 4 - Registration - immuno condition
 router.post('/antibody/v4/action/immunocompromised', function (req, res) {
   let condition = req.session.data['infection-serious']
 
@@ -236,7 +236,7 @@ router.post('/antibody/v4/action/immunocompromised', function (req, res) {
 
 })
 
-// Version 3 - Is your delivery address the same as your home address?
+// Version 4 - Is your delivery address the same as your home address?
 router.post('/antibody/v4/action/home-address-question', function (req, res) {
   var deliveryAddressAnswer = req.session.data['delivery-address-same']
 
@@ -248,7 +248,7 @@ router.post('/antibody/v4/action/home-address-question', function (req, res) {
 
 })
 
-// Version 3 - Teacher registration - Get consent data for the Comfortable doing test route
+// Version 4 - Teacher registration - Get consent data for the Comfortable doing test route
 
 router.post('/antibody/v4/action/consent', function (req, res) {
   let consent = "";
@@ -261,7 +261,7 @@ router.post('/antibody/v4/action/consent', function (req, res) {
   }
 })
 
-// Version 3 - Teacher registration - Have you had symptoms route
+// Version 4 - Teacher registration - Have you had symptoms route
 router.post('/antibody/v4/action/have-you-had-symptoms', function (req, res) {
   let haveYouHadSymptoms = req.session.data['have-you-had-symptoms']
 
@@ -273,19 +273,33 @@ router.post('/antibody/v4/action/have-you-had-symptoms', function (req, res) {
 
 })
 
-// Version 3 - Teacher registration - Mobile phone
+// Version 4 - Teacher registration - Email address
+router.post('/antibody/v4/action/mobile-number', function (req, res) {
+  let emailAddress = req.session.data['email-address']
+  if (emailAddress == "Yes"){
+    res.redirect('/antibody/v4/refer-and-triage/mobile-number')
+  } else {
+    res.redirect('/antibody/v4/refer-and-triage/mobile-number')
+  }
+})
+
+// Version 4 - Teacher registration - Mobile phone
 router.post('/antibody/v4/action/mobile-number', function (req, res) {
   let mobileNumber = req.session.data['mobile-number']
+  let emailAddress = req.session.data['email-address']
 
   if (mobileNumber == "Yes"){
     res.redirect('/antibody/v4/refer-and-triage/postcode')
-  } else {
+  } 
+  if (emailAddress == "No" && mobileNumber == "No") {
+    res.redirect('/antibody/v4/refer-and-triage/not-eligible')
+  }
+  else {
     res.redirect('/antibody/v4/refer-and-triage/postcode')
   }
-
 })
 
-// Version 3 - Teacher registration - Ethnic group route
+// Version 4 - Teacher registration - Ethnic group route
 router.post('/antibody/v4/action/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
@@ -297,7 +311,7 @@ router.post('/antibody/v4/action/ethnic-group', function (req, res) {
 
 })
 
-// Version 3 - Teacher registration - currently working
+// Version 4 - Teacher registration - currently working
 router.post('/antibody/v4/action/working', function (req, res) {
   let inWork = req.session.data['currently-in-work']
   if (inWork == "No"){
@@ -307,7 +321,7 @@ router.post('/antibody/v4/action/working', function (req, res) {
   }
 })
 
-// Version 3 - Teacher Registration - Tested positive route
+// Version 4 - Teacher Registration - Tested positive route
 router.post('/antibody/v4/action/tested-positive', function (req, res) {
   let testedPositive = req.session.data['tested-positive']
 
@@ -319,7 +333,7 @@ router.post('/antibody/v4/action/tested-positive', function (req, res) {
 
 })
 
-// Version 3 - Registration - Do you have symptoms route
+// Version 4 - Registration - Do you have symptoms route
 router.post('/antibody/v4/action2/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
@@ -331,7 +345,7 @@ router.post('/antibody/v4/action2/do-you-have-symptoms', function (req, res) {
 
 })
 
-// Version 3 - Registration - Ethnic group route
+// Version 4 - Registration - Ethnic group route
 router.post('/antibody/v4/action2/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
@@ -346,12 +360,11 @@ router.post('/antibody/v4/action2/ethnic-group', function (req, res) {
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/antibody/v4/refer-and-triage/ethnic-background-another')
   } else {
-    res.redirect('/antibody/v3/refer-and-triage/working')
+    res.redirect('/antibody/v4/refer-and-triage/working')
   }
-
 })
 
-// Version 3 - Registration - NHS number route
+// Version 4 - Registration - NHS number route
 router.post('/antibody/v4/action2/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
 
@@ -360,15 +373,11 @@ router.post('/antibody/v4/action2/nhs-number-known', function (req, res) {
   } else {
     res.redirect('/antibody/v4/global-registration/check-your-answers')
   }
-
 })
 
-
-
-// Version 3 - Registration - Country route
+// Version 4 - Registration - Country route
 router.post('/antibody/v3/action/people-confirmed', function (req, res) {
   res.redirect('/antibody/v3/home-testing')
-
 })
 
 
