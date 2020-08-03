@@ -792,4 +792,16 @@ router.post('/elective-care-testing/v1/action4/request-method', function (req, r
 
 })
 
+// Version 1 - Elective Care Testing Trust Worker Request- Request method route
+
+router.post('/elective-care-testing/v1/action5/symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes"){
+    res.redirect('/elective-care-testing/v1/trust-worker-request/symptoms-start')
+  } else {
+    res.redirect('/elective-care-testing/v1/trust-worker-request/mobile-number')
+  }
+
+})
+
 module.exports = router

@@ -17,7 +17,7 @@
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-              What’s {{ data['first-name'] }} {{ data['last-name'] }}’s delivery address?
+              What’s {{ data['first-name'] | default('Pete') }} {{ data['last-name'] | default('Smith') }}’s delivery address?
             </h1>
           </legend>
 
@@ -45,17 +45,38 @@
           </div>
 
           <div class="govuk-form-group">
-            <label class="govuk-label" for="delivery-address-county">
-              County
-            </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="delivery-address-county" name="delivery-address-county" type="text" autocomplete="address-level3" value="{{ data['delivery-address-county'] }}">
-          </div>
-
-          <div class="govuk-form-group">
             <label class="govuk-label" for="delivery-address-postcode">
               Postcode
             </label>
             <input class="govuk-input govuk-!-width-two-thirds" id="delivery-address-postcode" name="delivery-address-postcode" type="text" autocomplete="address-level4" value="{{ data['delivery-address-postcode'] }}">
+          </div>
+
+          <p class="govuk-body">Country</p>
+          <div class="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }}>
+              <label class="govuk-label govuk-radios__label" for="country-1">
+                England
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="Wales" {{ checked("country", "Wales") }}>
+              <label class="govuk-label govuk-radios__label" for="country-2">
+                Wales
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="Northern Ireland" {{ checked("country", "Northern Ireland") }}>
+              <label class="govuk-label govuk-radios__label" for="country-3">
+                Northern Ireland
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="Scotland" {{ checked("country", "Scotland") }}>
+              <label class="govuk-label govuk-radios__label" for="country-4">
+                Scotland
+              </label>
+            </div>
           </div>
 
         </fieldset>

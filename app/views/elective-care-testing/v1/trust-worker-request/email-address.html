@@ -1,0 +1,41 @@
+{% set version = "v1" %}
+{% set pageTitle = "What's your email address?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/trust-worker-request/login-temporary">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/elective-care-testing/{{version}}/trust-worker-request/check-email" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="post-code-hint" class="govuk-hint">
+            Enter the email address registered to your account. We'll send you a code which you'll need to reset your password.
+          </span>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="work-email-address">
+              Work email address
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="work-email-address" name="work-email-address" type="text" value="{{ data['work-email-address'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
