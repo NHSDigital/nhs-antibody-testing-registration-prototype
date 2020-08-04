@@ -228,9 +228,9 @@ router.post('/antibody/v4/action/care-home-working-pattern', function (req, res)
   let domiciliaryCare = req.session.data['domiciliary-care']
 
   if (domiciliaryCare == "Yes"){
-    res.redirect('/antibody/v4/refer-and-triage/care-home-id')
-  } else {
     res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
+  } else {
+    res.redirect('/antibody/v4/refer-and-triage/care-home-id')
   }
 
 })
