@@ -223,18 +223,6 @@ router.post('/antibody/v4/action/do-you-have-symptoms', function (req, res) {
 
 })
 
-// Version 4 - care home data collection logic
-router.post('/antibody/v4/action/care-home-working-pattern', function (req, res) {
-  let domiciliaryCare = req.session.data['domiciliary-care']
-
-  if (domiciliaryCare == "Yes"){
-    res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
-  } else {
-    res.redirect('/antibody/v4/refer-and-triage/care-home-id')
-  }
-
-})
-
 
 // Version 4 - Registration - immuno condition
 router.post('/antibody/v4/action/immunocompromised', function (req, res) {
