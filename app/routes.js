@@ -792,7 +792,7 @@ router.post('/elective-care-testing/v1/action4/request-method', function (req, r
 
 })
 
-// Version 1 - Elective Care Testing Trust Worker Request- Request method route
+// Version 1 - Elective Care Testing Trust Worker Request - Symptoms route
 
 router.post('/elective-care-testing/v1/action5/symptoms', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
@@ -800,6 +800,18 @@ router.post('/elective-care-testing/v1/action5/symptoms', function (req, res) {
     res.redirect('/elective-care-testing/v1/trust-worker-request/symptoms-start')
   } else {
     res.redirect('/elective-care-testing/v1/trust-worker-request/mobile-number')
+  }
+
+})
+
+// Version 1 - Elective Care Testing Trust Worker Request - Symptoms patient 1 route
+
+router.post('/elective-care-testing/v1/action5/symptoms-patient-1', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms-patient-1']
+  if (symptoms == "Yes"){
+    res.redirect('/elective-care-testing/v1/trust-worker-request/symptoms-start-patient-1')
+  } else {
+    res.redirect('/elective-care-testing/v1/trust-worker-request/check-your-answers-patient-1')
   }
 
 })
