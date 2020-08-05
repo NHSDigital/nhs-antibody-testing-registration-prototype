@@ -4,7 +4,7 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/care-home-id">Back</a>
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/occupation">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/antibody/{{version}}/refer-and-triage/have-you-had-symptoms" method="post">
+      <form action="/antibody/{{version}}/refer-and-triage/care-home-id" method="post">
 
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -27,15 +27,27 @@
         
           <div class="govuk-form-group">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="multiple-sites" name="ethnic-background" type="radio" value="Multiple test sites">
+              <input class="govuk-radios__input" id="multiple-sites" name="care-home" type="radio" value="Multiple test sites">
               <label class="govuk-label govuk-radios__label" for="multiple-sites">
-                I work with residents across multiple sites
+                I work with residents across multiple care homes
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="care-home" name="care-home" type="radio" value="Care home">
-              <label class="govuk-label govuk-radios__label" for="care-home">
-                I work with residents in a care home
+              <input class="govuk-radios__input" id="single-care-home" name="care-home" type="radio" value="Care home">
+              <label class="govuk-label govuk-radios__label" for="single-care-home">
+                I work with residents in a single care home
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="non-resident-facing" name="care-home" type="radio" value="Non resident-facing">
+              <label class="govuk-label govuk-radios__label" for="non-resident-facing">
+                I work in a non resident-facing capacity within a care home 
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="domiciliary-care" name="care-home" type="radio" value="Domiciliary care">
+              <label class="govuk-label govuk-radios__label" for="domiciliary-care">
+                I provide domiciliary care to people in their homes
               </label>
             </div>
           </div>

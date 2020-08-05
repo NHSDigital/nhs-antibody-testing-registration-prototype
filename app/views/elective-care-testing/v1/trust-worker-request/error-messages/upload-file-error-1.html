@@ -1,0 +1,75 @@
+{% set version = "v1" %}
+{% set pageTitle = "Upload personal details" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/trust-worker-request/request-method">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/elective-care-testing/{{version}}/trust-worker-request/confirm-details" method="post">
+
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+              There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+              <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                  <a href="#error-1">Row D is missing 5 required fields</a>, <a href="#error-2">Row E is missing 5 required fields</a>, <a href="#error-2">Row L is missing 5 required fields</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="upload-patient-list-1-hint upload-patient-list-2-hint upload-patient-list-3-hint upload-patient-list-4-hint upload-patient-list-5-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="upload-patient-list-1-hint" class="govuk-body">
+              To enter and upload personal details using our spreadsheet
+            </span>
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5 govuk-!-margin-bottom-6">
+              <li><span id="upload-patient-list-2-hint"><a href="#" class="govuk-link">Download our spreadsheet</a> if you have not already</span></li>
+              <li><span id="upload-patient-list-3-hint">Do not add any sheets, rows or columns</span></li>
+              <li><span id="upload-patient-list-4-hint">Enter personal details for up to 50 people at a time</span></li>
+              <li><span id="upload-patient-list-5-hint">Save the completed sheet and then upload it</span></li>
+            </ul>
+
+            <div class="govuk-form-group govuk-form-group--error">
+              <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint passport-issued-error">
+                <p class="govuk-body">
+                  <span id="passport-issued-hint">
+                    Upload a file
+                  </span>
+                </p>
+                <span id="passport-issued-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span>
+                  Row D is missing 5 required fields, Row E is missing 5 required fields, Row L is missing 5 required fields
+                </span>
+                <div class="govuk-form-group govuk-!-margin-top-4 govuk-!-margin-bottom-6">
+                  <input class="govuk-file-upload govuk-input--error govuk-!-padding-left-1" id="file-upload-1" name="file-upload-1" type="file">
+                </div>
+              </fieldset>
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

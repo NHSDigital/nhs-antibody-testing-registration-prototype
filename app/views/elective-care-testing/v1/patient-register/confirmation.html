@@ -3,6 +3,19 @@
 
 {% extends "includes/layout.html" %}
 
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{% endblock %}
+
 {% block content %}
 
 <div class="govuk-grid-row">
@@ -17,7 +30,7 @@
       </thead>
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">Bob<br>Smith</th>
+          <th scope="row" class="govuk-table__header">{{ data['first-name'] | default('Bob') }}<br>{{ data['last-name'] | default('Smith') }}</th>
           {% if data['date-of-swab-test-month'] == "1" and data['swab-test-date'] == "different" or data['date-of-swab-test-month'] == "01" and data['swab-test-date'] == "different" %}
           <td class="govuk-table__cell">
             07765435553<br><br>
