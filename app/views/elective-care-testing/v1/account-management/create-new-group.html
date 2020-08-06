@@ -1,0 +1,98 @@
+{% set version = "v1" %}
+{% set pageTitle = "Create a new group" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/account-management/groups">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/elective-care-testing/{{version}}/account-management/check-your-answers" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="create-group-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          
+          <span id="create-group-hint" class="govuk-body">
+              Create a group within your organisation, for example, Oncology.<br><br>
+              Then enter a shared group email address. We'll send the patient results for this group to this email address.
+          </span>
+
+          {% if data['group-1-name'] == undefined %}
+          <div class="govuk-form-group govuk-!-margin-top-5">
+            <label class="govuk-label" for="group-1-name">
+              Group name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="group-1-name" name="group-1-name" type="text" value="{{ data['group-1-name'] }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-!-margin-bottom-2" for="shared-email-address-1">
+              Email address
+            </label>
+            <span class="govuk-hint">This should be a shared group email address</span>
+            <input class="govuk-input govuk-!-width-two-thirds" id="shared-email-address-1" name="shared-email-address-1" type="text" value="{{ data['shared-email-address-1'] }}">
+          </div>
+          {% elseif data['group-1-name'] and data['group-2-name'] == undefined %}
+          <div class="govuk-form-group govuk-!-margin-top-5">
+            <label class="govuk-label" for="group-2-name">
+              Group name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="group-2-name" name="group-2-name" type="text" value="{{ data['group-2-name'] }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-!-margin-bottom-2" for="shared-email-address-2">
+              Email address
+            </label>
+            <span class="govuk-hint">This should be a shared group email address</span>
+            <input class="govuk-input govuk-!-width-two-thirds" id="shared-email-address-2" name="shared-email-address-2" type="text" value="{{ data['shared-email-address-2'] }}">
+          </div>
+          {% else %}
+          <div class="govuk-form-group govuk-!-margin-top-5">
+            <label class="govuk-label" for="group-3-name">
+              Group name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="group-3-name" name="group-3-name" type="text" value="{{ data['group-3-name'] }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-!-margin-bottom-2" for="shared-email-address-3">
+              Email address
+            </label>
+            <span class="govuk-hint">This should be a shared group email address</span>
+            <input class="govuk-input govuk-!-width-two-thirds" id="shared-email-address-3" name="shared-email-address-3" type="text" value="{{ data['shared-email-address-3'] }}">
+          </div>
+          {% endif %}
+
+        </fieldset>
+
+        <button class="govuk-button  govuk-!-margin-top-6" type="submit" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
