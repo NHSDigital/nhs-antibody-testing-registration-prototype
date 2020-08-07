@@ -229,9 +229,9 @@ router.post('/antibody/v4/action/immunocompromised', function (req, res) {
   let condition = req.session.data['infection-serious']
 
   if (condition == "Yes"){
-    res.redirect('/antibody/v4/refer-and-triage/immunocompromised')
+    res.redirect('/antibody/v4/refer-and-triage/not-eligible')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/country')
+    res.redirect('/antibody/v4/refer-and-triage/name')
   }
 
 })
