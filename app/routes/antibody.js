@@ -204,9 +204,9 @@ router.post('/antibody/v4/action2/country', function (req, res) {
   let country = req.session.data['country']
 
   if (country == "England"){
-    res.redirect('/antibody/v4/refer-and-triage/name')
+    res.redirect('/antibody/v4/refer-and-triage/postcode')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/not-available')
+    res.redirect('/antibody/v4/refer-and-triage/postcode')
   }
 
 })
@@ -229,9 +229,9 @@ router.post('/antibody/v4/action/immunocompromised', function (req, res) {
   let condition = req.session.data['infection-serious']
 
   if (condition == "Yes"){
-    res.redirect('/antibody/v4/refer-and-triage/immunocompromised')
+    res.redirect('/antibody/v4/refer-and-triage/not-eligible')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/country')
+    res.redirect('/antibody/v4/refer-and-triage/name')
   }
 
 })
@@ -363,6 +363,19 @@ router.post('/antibody/v4/action2/ethnic-group', function (req, res) {
     res.redirect('/antibody/v4/refer-and-triage/working')
   }
 })
+
+// Version 4 - Registration - Ethnic group route
+router.post('/antibody/v4/action/occupation', function (req, res) {
+  let occupation = req.session.data['input-autocomplete']
+
+  if (occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
+    res.redirect('/antibody/v4/refer-and-triage/care-home-working-pattern')
+  } else {
+    res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
+  }
+})
+
+
 
 // Version 4 - Registration - NHS number route
 router.post('/antibody/v4/action2/nhs-number-known', function (req, res) {
