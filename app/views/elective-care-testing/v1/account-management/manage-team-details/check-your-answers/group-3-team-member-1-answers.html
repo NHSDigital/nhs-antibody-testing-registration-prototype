@@ -1,0 +1,85 @@
+{% set version = "v1" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-1">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['group-3-team-member-1-first-name'] }} {{ data['group-3-team-member-1-last-name'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-1">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Group
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['group-3-team-member-1-group'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-1">
+              Change
+              <span class="govuk-visually-hidden">group</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['group-3-team-member-1-status'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-1">
+                Status
+                <span class="govuk-visually-hidden">status</span>
+              </a>
+            </dd>
+          </div>
+      </dl>
+    
+
+      <form action="/elective-care-testing/{{version}}/account-management/manage-team-details/confirmation/group-3-team-member-1-confirmation" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

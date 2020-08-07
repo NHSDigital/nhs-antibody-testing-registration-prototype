@@ -23,7 +23,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/elective-care-testing/{{version}}/account-management/groups" method="post">
+      <form action="/elective-care-testing/{{version}}/account-management/manage-team-details/check-your-answers/group-1-team-member-1-answers" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="status-hint group-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -61,18 +61,22 @@
                 {{ data['group-1-name'] }}
               </label>
             </div>
+            {% if data['group-2-name'] %}
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="group-2" name="group-1-team-member-1-group" type="radio" value="{{ data['group-2-name'] }}" {{ checked("group-1-team-member-1-group", data['group-2-name'] ) }}>
               <label class="govuk-label govuk-radios__label" for="group-2">
                 {{ data['group-2-name'] }}
               </label>
             </div>
+            {% endif %}
+            {% if data['group-3-name'] %}
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="group-3" name="group-1-team-member-1-group" type="radio" value="{{ data['group-3-name'] }}" {{ checked("group-1-team-member-1-group", data['group-3-name'] ) }}>
               <label class="govuk-label govuk-radios__label" for="group-3">
                 {{ data['group-3-name'] }}
               </label>
             </div>
+            {% endif %}
           </div>
 
           <div class="govuk-checkboxes govuk-!-margin-top-8">

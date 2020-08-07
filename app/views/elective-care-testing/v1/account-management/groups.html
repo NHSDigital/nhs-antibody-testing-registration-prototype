@@ -42,7 +42,7 @@
           </tr>
         </thead>
         <tbody class="govuk-table__body">
-          {% if data['group-1-team-member-1-first-name'] and data['group-1-team-member-1-group'] !== data['group-2-name'] and data['group-1-team-member-1-group'] !== data['group-3-name'] %}
+          {% if data['group-1-team-member-1-first-name'] and data['group-1-team-member-1-group'] == undefined or data['group-1-team-member-1-first-name'] and data['group-1-team-member-1-group'] == data['group-1-name'] %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header"><strong>{{ data['group-1-team-member-1-first-name'] }} {{ data['group-1-team-member-1-last-name'] }}</strong></th>
             <td scope="row" class="govuk-table__cell">{{ data['group-1-team-member-1-email-address'] }}</td>
@@ -50,7 +50,7 @@
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-1-team-member-1">Manage</a></p></td>
           </tr>
           {% endif %}
-          {% if data['group-1-team-member-2-first-name'] and data['group-1-team-member-2-group'] !== data['group-2-name'] and data['group-1-team-member-2-group'] !== data['group-3-name'] %}
+          {% if data['group-1-team-member-2-first-name'] and data['group-1-team-member-2-group'] == undefined or data['group-1-team-member-2-first-name'] and data['group-1-team-member-2-group'] == data['group-1-name'] %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header"><strong>{{ data['group-1-team-member-2-first-name'] }} {{ data['group-1-team-member-2-last-name'] }}</strong></th>
             <td scope="row" class="govuk-table__cell">{{ data['group-1-team-member-2-email-address'] }}</td>
@@ -58,7 +58,7 @@
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-1-team-member-2">Manage</a></p></td>
           </tr>
           {% endif %}
-          {% if data['group-1-team-member-3-first-name'] and data['group-1-team-member-3-group'] !== data['group-2-name'] and data['group-1-team-member-3-group'] !== data['group-3-name'] %}
+          {% if data['group-1-team-member-3-first-name'] and data['group-1-team-member-3-group'] == undefined or data['group-1-team-member-3-first-name'] and data['group-1-team-member-3-group'] == data['group-1-name'] %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header"><strong>{{ data['group-1-team-member-3-first-name'] }} {{ data['group-1-team-member-3-last-name'] }}</strong></th>
             <td scope="row" class="govuk-table__cell">{{ data['group-1-team-member-3-email-address'] }}</td>
@@ -66,7 +66,7 @@
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-1-team-member-3">Manage</a></p></td>
           </tr>
           {% endif %}
-          {% if data['group-1-team-member-4-first-name'] and data['group-1-team-member-4-group'] !== data['group-2-name'] and data['group-1-team-member-4-group'] !== data['group-3-name'] %}
+          {% if data['group-1-team-member-4-first-name'] and data['group-1-team-member-4-group'] == undefined or data['group-1-team-member-4-first-name'] and data['group-1-team-member-4-group'] == data['group-1-name'] %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header"><strong>{{ data['group-1-team-member-4-first-name'] }} {{ data['group-1-team-member-4-last-name'] }}</strong></th>
             <td scope="row" class="govuk-table__cell">{{ data['group-1-team-member-4-email-address'] }}</td>
@@ -107,6 +107,39 @@
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-2-team-member-4">Manage</a></p></td>
           </tr>
           {% endif %}
+
+          {% if data['group-3-team-member-1-first-name'] and data['group-3-team-member-1-group'] == data['group-1-name'] %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><strong>{{ data['group-3-team-member-1-first-name'] }} {{ data['group-3-team-member-1-last-name'] }}</strong></th>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-1-email-address'] }}</td>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-1-status'] | default('Pending') }}</td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-1">Manage</a></p></td>
+          </tr>
+          {% endif %}
+          {% if data['group-3-team-member-2-first-name'] and data['group-3-team-member-2-group'] == data['group-1-name'] %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><strong>{{ data['group-3-team-member-2-first-name'] }} {{ data['group-3-team-member-2-last-name'] }}</strong></th>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-2-email-address'] }}</td>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-2-status'] | default('Pending') }}</td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-2">Manage</a></p></td>
+          </tr>
+          {% endif %}
+          {% if data['group-3-team-member-3-first-name'] and data['group-3-team-member-3-group'] == data['group-1-name'] %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><strong>{{ data['group-3-team-member-3-first-name'] }} {{ data['group-3-team-member-3-last-name'] }}</strong></th>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-3-email-address'] }}</td>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-3-status'] | default('Pending') }}</td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-3">Manage</a></p></td>
+          </tr>
+          {% endif %}
+          {% if data['group-3-team-member-4-first-name'] and data['group-3-team-member-4-group'] == data['group-1-name'] %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><strong>{{ data['group-3-team-member-4-first-name'] }} {{ data['group-3-team-member-4-last-name'] }}</strong></th>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-4-email-address'] }}</td>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-4-status'] | default('Pending') }}</td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-4">Manage</a></p></td>
+          </tr>
+          {% endif %}
         </tbody>
       </table>
       {% if data['group-1-team-member-1-first-name'] == undefined %}
@@ -132,7 +165,7 @@
           </tr>
         </thead>
         <tbody class="govuk-table__body">
-          {% if data['group-2-team-member-1-first-name'] and data['group-2-team-member-1-group'] !== data['group-1-name'] and data['group-2-team-member-1-group'] !== data['group-3-name'] %}
+          {% if data['group-2-team-member-1-first-name'] and data['group-2-team-member-1-group'] == undefined or data['group-2-team-member-1-first-name'] and data['group-2-team-member-1-group'] == data['group-2-name'] %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header"><strong>{{ data['group-2-team-member-1-first-name'] }} {{ data['group-2-team-member-1-last-name'] }}</strong></th>
             <td scope="row" class="govuk-table__cell">{{ data['group-2-team-member-1-email-address'] }}</td>
@@ -140,7 +173,7 @@
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-2-team-member-1">Manage</a></p></td>
           </tr>
           {% endif %}
-          {% if data['group-2-team-member-2-first-name'] and data['group-2-team-member-2-group'] !== data['group-1-name'] and data['group-2-team-member-2-group'] !== data['group-3-name'] %}
+          {% if data['group-2-team-member-2-first-name'] and data['group-2-team-member-2-group'] == undefined or data['group-2-team-member-2-first-name'] and data['group-2-team-member-2-group'] == data['group-2-name'] %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header"><strong>{{ data['group-2-team-member-2-first-name'] }} {{ data['group-2-team-member-2-last-name'] }}</strong></th>
             <td scope="row" class="govuk-table__cell">{{ data['group-2-team-member-2-email-address'] }}</td>
@@ -148,7 +181,7 @@
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-2-team-member-2">Manage</a></p></td>
           </tr>
           {% endif %}
-          {% if data['group-2-team-member-3-first-name'] and data['group-2-team-member-3-group'] !== data['group-1-name'] and data['group-2-team-member-3-group'] !== data['group-3-name'] %}
+          {% if data['group-2-team-member-3-first-name'] and data['group-2-team-member-3-group'] == undefined or data['group-2-team-member-3-first-name'] and data['group-2-team-member-3-group'] == data['group-2-name'] %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header"><strong>{{ data['group-2-team-member-3-first-name'] }} {{ data['group-2-team-member-3-last-name'] }}</strong></th>
             <td scope="row" class="govuk-table__cell">{{ data['group-2-team-member-3-email-address'] }}</td>
@@ -156,7 +189,7 @@
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-2-team-member-3">Manage</a></p></td>
           </tr>
           {% endif %}
-          {% if data['group-2-team-member-4-first-name'] and data['group-2-team-member-4-group'] !== data['group-1-name'] and data['group-2-team-member-4-group'] !== data['group-3-name'] %}
+          {% if data['group-2-team-member-4-first-name'] and data['group-2-team-member-4-group'] == undefined or data['group-2-team-member-4-first-name'] and data['group-2-team-member-4-group'] == data['group-2-name'] %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header"><strong>{{ data['group-2-team-member-4-first-name'] }} {{ data['group-2-team-member-4-last-name'] }}</strong></th>
             <td scope="row" class="govuk-table__cell">{{ data['group-2-team-member-4-email-address'] }}</td>
@@ -197,6 +230,39 @@
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-1-team-member-4">Manage</a></p></td>
           </tr>
           {% endif %}
+
+          {% if data['group-3-team-member-1-first-name'] and data['group-3-team-member-1-group'] == data['group-2-name'] %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><strong>{{ data['group-3-team-member-1-first-name'] }} {{ data['group-3-team-member-1-last-name'] }}</strong></th>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-1-email-address'] }}</td>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-1-status'] | default('Pending') }}</td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-1">Manage</a></p></td>
+          </tr>
+          {% endif %}
+          {% if data['group-3-team-member-2-first-name'] and data['group-3-team-member-2-group'] == data['group-2-name'] %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><strong>{{ data['group-3-team-member-2-first-name'] }} {{ data['group-3-team-member-2-last-name'] }}</strong></th>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-2-email-address'] }}</td>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-2-status'] | default('Pending') }}</td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-2">Manage</a></p></td>
+          </tr>
+          {% endif %}
+          {% if data['group-3-team-member-3-first-name'] and data['group-3-team-member-3-group'] == data['group-2-name'] %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><strong>{{ data['group-3-team-member-3-first-name'] }} {{ data['group-3-team-member-3-last-name'] }}</strong></th>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-3-email-address'] }}</td>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-3-status'] | default('Pending') }}</td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-3">Manage</a></p></td>
+          </tr>
+          {% endif %}
+          {% if data['group-3-team-member-4-first-name'] and data['group-3-team-member-4-group'] == data['group-2-name'] %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><strong>{{ data['group-3-team-member-4-first-name'] }} {{ data['group-3-team-member-4-last-name'] }}</strong></th>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-4-email-address'] }}</td>
+            <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-4-status'] | default('Pending') }}</td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-4">Manage</a></p></td>
+          </tr>
+          {% endif %}
         </tbody>
       </table>
       {% if data['group-2-team-member-1-first-name'] == undefined %}
@@ -221,36 +287,36 @@
           </tr>
         </thead>
         <tbody class="govuk-table__body">
-          {% if data['group-3-team-member-1-first-name'] %}
+          {% if data['group-3-team-member-1-first-name'] and data['group-3-team-member-1-group'] == undefined or data['group-3-team-member-1-first-name'] and data['group-3-team-member-1-group'] == data['group-3-name'] %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header"><strong>{{ data['group-3-team-member-1-first-name'] }} {{ data['group-3-team-member-1-last-name'] }}</strong></th>
             <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-1-email-address'] }}</td>
             <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-1-status'] | default('Pending') }}</td>
-            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/check-your-answers-member-1">Manage</a></p></td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-1">Manage</a></p></td>
           </tr>
           {% endif %}
-          {% if data['group-3-team-member-2-first-name'] %}
+          {% if data['group-3-team-member-2-first-name'] and data['group-3-team-member-2-group'] == undefined or data['group-3-team-member-2-first-name'] and data['group-3-team-member-2-group'] == data['group-3-name'] %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header"><strong>{{ data['group-3-team-member-2-first-name'] }} {{ data['group-3-team-member-2-last-name'] }}</strong></th>
             <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-2-email-address'] }}</td>
             <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-2-status'] | default('Pending') }}</td>
-            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/check-your-answers-member-2">Manage</a></p></td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-2">Manage</a></p></td>
           </tr>
           {% endif %}
-          {% if data['group-3-team-member-3-first-name'] %}
+          {% if data['group-3-team-member-3-first-name'] and data['group-3-team-member-3-group'] == undefined or data['group-3-team-member-3-first-name'] and data['group-3-team-member-3-group'] == data['group-3-name'] %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header"><strong>{{ data['group-3-team-member-3-first-name'] }} {{ data['group-3-team-member-3-last-name'] }}</strong></th>
             <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-3-email-address'] }}</td>
             <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-3-status'] | default('Pending') }}</td>
-            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/check-your-answers-member-3">Manage</a></p></td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-3">Manage</a></p></td>
           </tr>
           {% endif %}
-          {% if data['group-3-team-member-4-first-name'] %}
+          {% if data['group-3-team-member-4-first-name'] and data['group-3-team-member-4-group'] == undefined or data['group-3-team-member-4-first-name'] and data['group-3-team-member-4-group'] == data['group-3-name'] %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header"><strong>{{ data['group-3-team-member-4-first-name'] }} {{ data['group-3-team-member-4-last-name'] }}</strong></th>
             <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-4-email-address'] }}</td>
             <td scope="row" class="govuk-table__cell">{{ data['group-3-team-member-4-status'] | default('Pending') }}</td>
-            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/check-your-answers-member-4">Manage</a></p></td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/elective-care-testing/{{version}}/account-management/manage-team-details/group-3-team-member-4">Manage</a></p></td>
           </tr>
           {% endif %}
 
