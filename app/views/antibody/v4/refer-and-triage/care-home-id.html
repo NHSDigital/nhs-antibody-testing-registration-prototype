@@ -4,7 +4,7 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/occupation">Back</a>
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/care-home-working-pattern">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/antibody/{{version}}/refer-and-triage/comfortable-doing-test" method="post">
+    <form action="/antibody/{{version}}/refer-and-triage/have-you-had-symptoms" method="post">
 
       <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -26,12 +26,16 @@
             If you work in more than one, tell us your main one
           </span>
 
-        <div class="govuk-form-group">
-          <label class="govuk-label" for="first-name">
-            Care home
-          </label>
-          <input class="govuk-input govuk-!-width-two-thirds" id="care-home-id" name="care-home-id" type="text" value="{{ data['first-name'] }}">
-        </div>
+        <label class="govuk-label" for="carehome">Care home</label>
+
+        <div id="carehome-container"></div>
+
+<!--        <div class="govuk-form-group">-->
+<!--          <label class="govuk-label" for="first-name">-->
+<!--            Care home-->
+<!--          </label>-->
+<!--          <input class="govuk-input govuk-!-width-two-thirds" id="care-home-id" name="care-home-id" type="text" value="{{ data['first-name'] }}">-->
+<!--        </div>-->
 
       </fieldset>
 
@@ -190,7 +194,7 @@
 </style>
 <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
 <script>
-  const occupations = [
+  const carehomes = [
     "Sunny view care",
     "Sunshine care",
     "Other"
@@ -198,9 +202,10 @@
 
   accessibleAutocomplete({
     autoselect: true,
-    element: document.querySelector('#occupation-container'),
-    id: 'occupation',
-    source: occupations,
+    element: document.querySelector('#carehome-container'),
+    id: 'carehome',
+    source: carehomes,
+    name: 'carehome-autocomplete',
     displayMenu: 'overlay',
     minLength: 2
   });
