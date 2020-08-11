@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Check your answers" %}
+{% set pageTitle = "Your details do not match our records" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,14 +15,16 @@
   </p>
 </div>
 
-  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/patient-register/swab-test-date">Back</a>
+  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/patient-register/date-of-birth">Back</a>
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+
+      <p class="govuk-body">Check that you’ve entered your details correctly. They should match the details on your appointment letter and the text we sent you. If you continue to have problems, contact your hospital.</p>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
@@ -67,45 +69,7 @@
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Test kit barcode reference
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['test-kit-barcode-reference-1'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/patient-register/test-kit-barcode">
-              Change
-              <span class="govuk-visually-hidden">test kit barcode reference</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-                Test date and time
-            </dt>
-            <dd class="govuk-summary-list__value">
-              2 July 2020 : {{ data['swab-test-time'] }}am
-            </dd>
-            <dd class="govuk-summary-list__actions">
-                <a href="/elective-care-testing/{{version}}/patient-register/swab-test-date">
-                Change
-                <span class="govuk-visually-hidden">test date and time</span>
-                </a>
-            </dd>
-          </div>
       </dl>
-
-      <form action="/elective-care-testing/{{version}}/patient-register/confirmation" method="post" novalidate>
-
-        <input type="hidden" name="answers-checked" value="true">
-
-        <button type="submit" class="govuk-button" data-module="govuk-button">
-          Save and continue
-        </button>
-
-      </form>
 
     </div>
   </div>
