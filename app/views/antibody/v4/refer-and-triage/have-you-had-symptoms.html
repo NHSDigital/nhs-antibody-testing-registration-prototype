@@ -4,7 +4,11 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/occupation">Back</a>
+  {% if data['care-home'] !== "" %}
+    <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/care-home-id">Back</a>
+  {% else %}
+    <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/occupation">Back</a>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -24,7 +28,7 @@
             <span id="symptoms-hint" class="">
               <p class="govuk-body">The main symptoms of coronavirus are:</p>
               <ul class="govuk-list govuk-list--bullet">
-              <li>a high temperature</li>
+                <li>a high temperature</li>
                 <li>a new, continuous cough</li>
                 <li>a loss or change to your sense of smell or taste</li>
               </ul>
