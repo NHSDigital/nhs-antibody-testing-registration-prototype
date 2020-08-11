@@ -37,9 +37,19 @@
 
 {% block bodyEnd %}
 <div class="proto-action">
+  {% if data['mobile-phone-number'] !== "" %}
   <a href="/antibody/{{version}}/sms/order-confirmed">
     <div class="proto-action-icon"></div>
     <div class="proto-action-text">Check SMS</div>
   </a>
+  {% else %}
+  <a href="/antibody/{{version}}/email/order-confirmed">
+    <div class="proto-action-icon"></div>
+    <div class="proto-action-text">Check Email</div>
+  </a>
+  {% endif %}
 </div>
+
+
+
 {% endblock %}
