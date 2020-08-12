@@ -289,13 +289,13 @@ router.post('/antibody/v4/action/mobile-number', function (req, res) {
   let emailAddress = req.session.data['email']
 
   if (mobileNumber == "Yes"){
-    res.redirect('/antibody/v4/refer-and-triage/postcode')
+    res.redirect('/antibody/v4/refer-and-triage/country')
   } 
   if (emailAddress == "No" && mobileNumber == "No") {
     res.redirect('/antibody/v4/refer-and-triage/not-eligible')
   }
   else {
-    res.redirect('/antibody/v4/refer-and-triage/postcode')
+    res.redirect('/antibody/v4/refer-and-triage/country')
   }
 })
 
