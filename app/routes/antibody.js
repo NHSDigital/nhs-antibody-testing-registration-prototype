@@ -373,7 +373,7 @@ router.post('/antibody/v4/action/tested-positive', function (req, res) {
 
 // Version 4 - Registration - Do you have symptoms route
 router.post('/antibody/v4/action2/do-you-have-symptoms', function (req, res) {
-  let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
+  let doYouHaveSymptoms = req.session.data['do-you-have-symptoms-2']
 
   if (doYouHaveSymptoms == "Yes"){
     res.redirect('/antibody/v4/global-registration/get-antigen-test')
