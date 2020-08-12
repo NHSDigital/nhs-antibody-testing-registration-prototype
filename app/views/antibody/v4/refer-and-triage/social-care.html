@@ -1,0 +1,63 @@
+{% set version = "v4" %}
+{% set pageTitle = "Do you work in social care?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+{% if data['ethnic-group'] === "Black, African, Black British or Caribbean" %}
+<a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/ethnic-background-black">Back</a>
+{% elif data['ethnic-group'] === "Asian or Asian British" %}
+<a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/ethnic-background-asian">Back</a>
+{% elif data['ethnic-group'] === "Mixed or multiple ethnic groups" %}
+<a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/ethnic-background-mixed">Back</a>
+{% elif data['ethnic-group'] === "White" %}
+<a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/ethnic-background-white">Back</a>
+{% elif data['ethnic-group'] === "Another ethnic group" %}
+<a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/ethnic-background-another">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/ethnic-group">Back</a>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antibody/{{version}}/action/social-care" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="social-care-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="social-care-hint" class="govuk-hint">
+              For example, domiciliary care worker or care home staff
+            </span>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="social-care-1" name="social-care" type="radio" value="Yes" {{ checked("social-care", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="social-care-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="social-care-2" name="social-care" type="radio" value="No" {{ checked("social-care", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="social-care-2">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
