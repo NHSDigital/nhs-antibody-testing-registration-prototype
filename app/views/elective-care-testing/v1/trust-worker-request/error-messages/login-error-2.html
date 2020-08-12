@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Forgot your password?" %}
+{% set pageTitle = "Sign in with your username and password" %}
 <!DOCTYPE html>
 <html lang="en"  style="height: 100%; background-color: #909090">
 
@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="description" content="Find information on coronavirus, including guidance, support, announcements and statistics.">
         <meta charset="utf-8">
-        <title>Forgot your password? - GOV.UK</title>
+        <title>Log in - GOV.UK</title>
         <!--[if gt IE 8]><!-->
         <link rel="stylesheet" media="screen" href="https://www.gov.uk/assets/static/govuk-template-ec01c15a0e8793975bcaf519e4eb3ec0d68a99610c6b262fa7a1b3c7f76f6176.css">
         <!--<![endif]-->
@@ -66,7 +66,7 @@
   <div class="govuk-grid-row">
     <div style="padding: 2.5rem 3rem 0rem 3rem;">
 
-      <form action="/elective-care-testing/{{version}}/trust-worker-request/reset-password-code" method="post">
+      <form action="/elective-care-testing/{{version}}/trust-worker-request/request-home-testing" method="post">
 
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -74,16 +74,29 @@
               {{ pageTitle }}
             </h1>
           </legend>
-          <span class="govuk-body">Enter your username below and we will send a message to reset your password</span>
-          <div class="govuk-form-group govuk-!-margin-top-4">
+
+          <div style="border: 5px solid #d4351c; padding: .8rem 1rem; margin: 1rem 0 2rem 0; line-height: 2.5rem">
+            <p style="color: #d4351c; font-size: 2rem; font-weight: bold">User is disabled</p>
+          </div>
+
+          <div class="govuk-form-group">
             <label class="govuk-label" for="username">
               Username
             </label>
             <input class="govuk-input govuk-!-width-full" id="username" name="username" type="text" value="{{ data['username'] }}">
           </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="password">
+              Password
+            </label>
+            <input class="govuk-input govuk-!-width-full" id="password" name="password" type="text" value="{{ data['password'] }}">
+          </div>
         </fieldset>
 
-        <button class="govuk-button govuk-!-width-full" data-module="govuk-button">Reset my password</button>
+        <p class="govuk-body"><a href="/elective-care-testing/{{version}}/trust-worker-request/forgot-password">Forgot your password?</a></p>
+
+        <button class="govuk-button govuk-!-width-full" data-module="govuk-button">Sign in</button>
 
       </form>
 
