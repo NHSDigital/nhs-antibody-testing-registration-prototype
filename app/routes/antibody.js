@@ -326,9 +326,9 @@ router.post('/antibody/v4/action/social-care', function (req, res) {
   let socialCareWorker = req.session.data['social-care']
 
   if (socialCareWorker == "Yes"){
-    res.redirect('/antibody/v4/global-registration/occupation')
+    res.redirect('/antibody/v4/refer-and-triage/occupation')
   } else {
-    res.redirect('/antibody/v4/global-registration/occupation')
+    res.redirect('/antibody/v4/refer-and-triage/occupation')
   }
 
 })
@@ -338,11 +338,11 @@ router.post('/antibody/v4/action/social-role', function (req, res) {
   let socialCareRole = req.session.data['social-role']
 
   if (socialCareRole == "single"){
-    res.redirect('/antibody/v4/global-registration/social-contact')
+    res.redirect('/antibody/v4/refer-and-triage/social-contact')
   } else if (socialCareRole == "multiple") {
-    res.redirect('/antibody/v4/global-registration/social-contact')
+    res.redirect('/antibody/v4/refer-and-triage/social-contact')
   } else {
-    res.redirect('/antibody/v4/global-registration/have-you-had-symptoms')
+    res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
   }
 
 })
@@ -352,9 +352,9 @@ router.post('/antibody/v4/action/social-contact', function (req, res) {
   let socialCareContact = req.session.data['social-contact']
 
   if (socialCareContact == "Yes"){
-    res.redirect('/antibody/v4/global-registration/care-home-id')
+    res.redirect('/antibody/v4/refer-and-triage/care-home-id')
   } else {
-    res.redirect('/antibody/v4/global-registration/care-home-id')
+    res.redirect('/antibody/v4/refer-and-triage/care-home-id')
   }
 
 })
