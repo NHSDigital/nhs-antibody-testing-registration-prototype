@@ -321,6 +321,44 @@ router.post('/antibody/v4/action/working', function (req, res) {
   }
 })
 
+// Version 4 - Registration - Social care
+router.post('/antibody/v4/action/social-care', function (req, res) {
+  let socialCareWorker = req.session.data['social-care']
+
+  if (socialCareWorker == "Yes"){
+    res.redirect('/antibody/v4/global-registration/occupation')
+  } else {
+    res.redirect('/antibody/v4/global-registration/occupation')
+  }
+
+})
+
+// Version 4 - Registration - Social role
+router.post('/antibody/v4/action/social-role', function (req, res) {
+  let socialCareRole = req.session.data['social-role']
+
+  if (socialCareRole == "single"){
+    res.redirect('/antibody/v4/global-registration/social-contact')
+  } else if (socialCareRole == "multiple") {
+    res.redirect('/antibody/v4/global-registration/social-contact')
+  } else {
+    res.redirect('/antibody/v4/global-registration/have-you-had-symptoms')
+  }
+
+})
+
+// Version 4 - Registration - Social contact
+router.post('/antibody/v4/action/social-contact', function (req, res) {
+  let socialCareContact = req.session.data['social-contact']
+
+  if (socialCareContact == "Yes"){
+    res.redirect('/antibody/v4/global-registration/care-home-id')
+  } else {
+    res.redirect('/antibody/v4/global-registration/care-home-id')
+  }
+
+})
+
 // Version 4 - Teacher Registration - Tested positive route
 router.post('/antibody/v4/action/tested-positive', function (req, res) {
   let testedPositive = req.session.data['tested-positive']

@@ -1,0 +1,61 @@
+{% set version = "v4" %}
+{% set pageTitle = "What social care role do you perform?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/occupation">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antibody/{{version}}/action/social-role" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="social-care-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="social-care-hint" class="govuk-hint">
+<!--              For example, if you:-->
+<!--              <ul>-->
+<!--                <li>are a care worker in a care home</li>-->
+<!--                <li>etc etc</li>-->
+<!--              </ul>-->
+            </span>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="social-role-1" name="social-role" type="radio" value="single" {{ checked("social-role", "single") }}>
+                <label class="govuk-label govuk-radios__label" for="social-role-1">
+                  I work in a care home
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="social-role-2" name="social-role" type="radio" value="multiple" {{ checked("social-role", "multiple") }}>
+                <label class="govuk-label govuk-radios__label" for="social-role-2">
+                  I work in more than one care home
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="social-role-3" name="social-role" type="radio" value="neither" {{ checked("social-role", "neither") }}>
+                <label class="govuk-label govuk-radios__label" for="social-role-3">
+                  I work in more than one care home
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
