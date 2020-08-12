@@ -407,7 +407,7 @@ router.post('/antibody/v4/action/occupation', function (req, res) {
   let occupation = req.session.data['input-autocomplete']
 
   if (occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
-    res.redirect('/antibody/v4/refer-and-triage/care-home-working-pattern')
+    res.redirect('/antibody/v4/refer-and-triage/social-role')
   } else {
     res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
   }
