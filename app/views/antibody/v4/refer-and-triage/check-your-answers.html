@@ -57,15 +57,50 @@
             </a>
           </dd>
         </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Country
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['country'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/country">
+              Change
+              <span class="govuk-visually-hidden">postcode</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            First line of address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['address'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/postcode-ni">
+              Change
+              <span class="govuk-visually-hidden">postcode</span>
+            </a>
+          </dd>
+        </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Postcode
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['test-postcode'] }}
+            {{ data['postcode'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
+            {% if country === "Northern Ireland" %}
+            <a href="/antibody/{{version}}/refer-and-triage/postcode-ni">
+            {% else %}
             <a href="/antibody/{{version}}/refer-and-triage/postcode">
+            {% endif %}
               Change
               <span class="govuk-visually-hidden">postcode</span>
             </a>
@@ -131,17 +166,32 @@
         </div>
         {% endif %}
 
+<!--        <div class="govuk-summary-list__row">-->
+<!--          <dt class="govuk-summary-list__key">-->
+<!--            Currently working-->
+<!--          </dt>-->
+<!--          <dd class="govuk-summary-list__value">-->
+<!--            {{ data['currently-in-work'] }}-->
+<!--          </dd>-->
+<!--          <dd class="govuk-summary-list__actions">-->
+<!--            <a href="/antibody/{{version}}/refer-and-triage/occupation">-->
+<!--              Change-->
+<!--              <span class="govuk-visually-hidden"> working status</span>-->
+<!--            </a>-->
+<!--          </dd>-->
+<!--        </div>-->
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Currently working
+            Work in social care
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['currently-in-work'] }}
+            {{ data['social-care'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antibody/{{version}}/refer-and-triage/occupation">
+            <a href="/antibody/{{version}}/refer-and-triage/social-care">
               Change
-              <span class="govuk-visually-hidden"> working status</span>
+              <span class="govuk-visually-hidden"> whether you work in social-care</span>
             </a>
           </dd>
         </div>
@@ -151,7 +201,7 @@
             Occupation
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['occupation'] }}
+            {{ data['occupation-autocomplete'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antibody/{{version}}/refer-and-triage/occupation">
@@ -160,6 +210,59 @@
             </a>
           </dd>
         </div>
+
+        {% if data['social-care'] %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            How you provide care
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['social-role'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/social-role">
+              Change
+              <span class="govuk-visually-hidden"> how you provide care</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Work in close contact
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['social-contact'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/social-role">
+              Change
+              <span class="govuk-visually-hidden"> if you work in close contact</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['social-role'] !== "Provide domiciliary care" %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Care home name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['carehome-autocomplete'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/social-role">
+              Change
+              <span class="govuk-visually-hidden"> your care home</span>
+            </a>
+          </dd>
+        </div>
+
+        {% endif %}
+
+        {% endif %}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -224,7 +327,7 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Household ever tested positive for coronavirus
+            Anyone you live with ever tested positive for coronavirus
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['household'] }}
@@ -232,7 +335,7 @@
           <dd class="govuk-summary-list__actions">
             <a href="/antibody/{{version}}/refer-and-triage/household">
               Change
-              <span class="govuk-visually-hidden">household ever tested positive for coronavirus</span>
+              <span class="govuk-visually-hidden"> whether anyone you live with has ever tested positive for coronavirus</span>
             </a>
           </dd>
         </div>
