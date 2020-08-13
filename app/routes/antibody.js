@@ -203,8 +203,8 @@ router.post('/antibody/v4/action/comfortable-doing-test', function (req, res) {
 router.post('/antibody/v4/action2/country', function (req, res) {
   let country = req.session.data['country']
 
-  if (country == "England"){
-    res.redirect('/antibody/v4/refer-and-triage/postcode')
+  if (country == "Northern Ireland"){
+    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
   } else {
     res.redirect('/antibody/v4/refer-and-triage/postcode')
   }
