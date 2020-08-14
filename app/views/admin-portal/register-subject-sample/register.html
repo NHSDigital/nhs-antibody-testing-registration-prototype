@@ -15,14 +15,14 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="../superuser-home">Back</a>
+  <a class="govuk-back-link" href="../superuser-home">Service desk actions</a>
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="result" method="post">
+      <form action="confirmation" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -33,7 +33,7 @@
           
           <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper">
-              <label class="govuk-label govuk-label--m" for="event-name">Name</label>
+              <label class="govuk-label govuk-label--m" for="first-name">Name</label>
             </h1> 
             <label class="govuk-label" for="first-name">
               First name
@@ -130,12 +130,9 @@
             </h1>
             <select class="govuk-select" style="width: 19.5em" id="sort" name="sort">
               <option id="ethnic-background" name="ethnic-background" type="radio" value="Please select" {{ checked("ethnic-group", "Please select") }}>Please select</option>
-              <!-- <option id="ethnic-group-1" name="ethnic-group" type="radio" value="Asian or Asian British" {{ checked("ethnic-group", "Asian or Asian British") }}>Asian or Asian British</option>
-              <option id="ethnic-group-2" name="ethnic-group" type="radio" value="Black, African, Black British or Caribbean" {{ checked("ethnic-group", "Black, African, Black British or Caribbean") }}>Black, African, Black British or Caribbean</option>
-              <option id="ethnic-group-3" name="ethnic-group" type="radio" value="Mixed or multiple ethnic groups" {{ checked("ethnic-group", "Mixed or multiple ethnic groups") }}>Mixed or multiple ethnic groups</option>
-              <option id="ethnic-group-4" name="ethnic-group" type="radio" value="White" {{ checked("ethnic-group", "White") }}>White</option>
+              <option id="ethnic-group-1" name="ethnic-group" type="radio" value="Arab" {{ checked("ethnic-group", "Arab") }}>Arab</option>
               <option id="ethnic-group-5" name="ethnic-group" type="radio" value="Another ethnic group" {{ checked("ethnic-group", "Another ethnic group") }}>Another ethnic group</option>
-              <option id="ethnic-group-6" name="ethnic-group" type="radio" value="Prefer not to say" {{ checked("ethnic-group", "Prefer not to say") }}>Prefer not to say</option> -->
+              <option id="ethnic-group-6" name="ethnic-group" type="radio" value="Prefer not to say" {{ checked("ethnic-group", "Prefer not to say") }}>Prefer not to say</option>
             </select>
           </div>
           
@@ -183,7 +180,7 @@
           
           <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper">
-              <label class="govuk-label govuk-label--m" for="event-name">Home postcode</label>
+              <label class="govuk-label govuk-label--m" for="postcode">Home postcode</label>
             </h1> 
             <span id="postcode-hint" class="govuk-hint">
               If the subject is registered with a GP surgery, enter the home postcode they used to register with the surgery.
@@ -196,7 +193,7 @@
           
           <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper">
-              <label class="govuk-label govuk-label--m" for="event-name">Mobile number</label>
+              <label class="govuk-label govuk-label--m" for="mobile-number">Mobile number</label>
             </h1> 
             <span id="mobile-hint" class="govuk-hint">
               We'll text the subject's registration confirmation and COVID-19 test results to this number.
@@ -209,7 +206,7 @@
           
           <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper">
-              <label class="govuk-label govuk-label--m" for="event-name">Landline phone number (if the subject has one)</label>
+              <label class="govuk-label govuk-label--m" for="landline-number">Landline phone number (if the subject has one)</label>
             </h1> 
             <span id="landline-hint" class="govuk-hint">
               If the subject has one, we may use this number to call them if they have had contact with someone who has tested positive with coronavirus.
@@ -222,12 +219,12 @@
           
           <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper">
-              <label class="govuk-label govuk-label--m" for="event-name">Email address (if the subject has one)</label>
+              <label class="govuk-label govuk-label--m" for="email-address">Email address (if the subject has one)</label>
             </h1> 
             <span id="landline-hint" class="govuk-hint">
               If the subject has an email address, we'll email them their test results to this address.
             </span>
-            <label class="govuk-label" for="landline-number">
+            <label class="govuk-label" for="email-address">
               Email address
             </label>
             <input class="govuk-input govuk-input--width-10" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
@@ -235,7 +232,7 @@
           
           <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper">
-              <label class="govuk-label govuk-label--m" for="event-name">NHS number (if known)</label>
+              <label class="govuk-label govuk-label--m" for="nhs-number">NHS number (if known)</label>
             </h1> 
             <span id="landline-hint" class="govuk-hint">
               The subject’s NHS number is a 10 digit number. For example 485 777 3456. The registration can still be processed if this is not known.
@@ -247,50 +244,114 @@
           </div>
           
           <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+              <label class="govuk-label govuk-label--m" for="home">Which test is the subject having?</label>
+            </h1> 
+            <span id="test-site-hint" class="govuk-hint">
+              Select whether they are taking a test at home or at a test site.
+            </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
-              
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="landline-number-3-person-1" name="landline-number-person-1" type="radio" value="I do not have a landline" {{ checked("landline-number-person-1", "I do not have a landline") }}>
-                <label class="govuk-label govuk-radios__label" for="landline-number-3-person-1">
-                  No, they do not have a landline telephone number
+                <input class="govuk-radios__input" id="home" name="home" type="radio" value="Yes" data-aria-controls="conditional-home" {{ checked("home", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="home">
+                  At home
                 </label>
               </div>
-              
-              <!-- {% if data['landline-number'] == "Yes" %}
+
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="landline-number-1-person-1" name="landline-number-person-1" type="radio" value="Yes, same as me" {{ checked("landline-number-person-1", "Yes, same as me") }}>
-                <label class="govuk-label govuk-radios__label" for="landline-number-1-person-1">
-                  Yes, it's {{ data['landline-telephone-number'] }} (same as {{ data['first-name'] }} {{ data['last-name'] }})
+                <input class="govuk-radios__input" id="test-site" name="test-site" type="radio" value="Yes" data-aria-controls="conditional-test-site" {{ checked("test-site", "At a test site") }}>
+                <label class="govuk-label govuk-radios__label" for="test-site">
+                  At a test site
                 </label>
               </div>
-              {% endif %} -->
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="landline-number-2-person-1" name="landline-number-person-1" type="radio" value="Yes" data-aria-controls="conditional-landline-number" {{ checked("landline-number-person-1", "Yes") }}>
-                <label class="govuk-label govuk-radios__label" for="landline-number-2-person-1">
-                  Yes, they have their own landline telephone number
-                </label>
-              </div>
-              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-landline-number">
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-test-site">
                 <div class="govuk-form-group">
-                  <label class="govuk-label" for="landline-telephone-number-person-1">
-                    Landline phone number
+                  <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--m" for="test-site">Your visit to the test site</label>
+                  </h1> 
+                  <span id="postcode-hint" class="govuk-hint">
+                    Confirm which test site you’re visiting, or visited, and when.
+                  </span>
+                  <div class="govuk-warning-text">
+                    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                    <strong class="govuk-warning-text__text">
+                      <span class="govuk-warning-text__assistive">Warning</span>
+                      Some test sites are for over 18s only
+                    </strong>
+                  </div>
+                  <label class="govuk-label" for="test-site-1">
+                    Test site
                   </label>
-                  <input class="govuk-input govuk-!-width-one-third" id="landline-telephone-number-person-1" name="landline-telephone-number-person-1" type="tel" value="{{ data['landline-telephone-number-person-1'] }}">
+                  <input class="govuk-input govuk-!-width-one-third" id="test-site-1" name="test-site-1" type="tel" value="{{ data['test-site-1'] }}">
                 </div>
               </div>
-              
+
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="landline-number-3-person-1" name="landline-number-person-1" type="radio" value="I do not have a landline" {{ checked("landline-number-person-1", "I do not have a landline") }}>
-                <label class="govuk-label govuk-radios__label" for="landline-number-3-person-1">
-                  No, they do not have a landline telephone number
+                <input class="govuk-radios__input" id="care-home" name="care-home" type="radio" value="At a care home" {{ checked("care-home", "At a care home") }}>
+                <label class="govuk-label govuk-radios__label" for="care-home">
+                  At a care home
                 </label>
               </div>
             </div>
           </div>
+
+
+          <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+              <label class="govuk-label govuk-label--m" for="date-of-test">Date of test</label>
+            </h1>
+            <span id="date-of-test" class="govuk-hint">
+              For example, 30 6 2020
+            </span>
+            <div class="govuk-date-input" id="date-of-test">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-of-test-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-test-day" name="date-of-test-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-test-day'] }}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-of-test-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-test-month" name="date-of-test-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-test-month'] }}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-of-test-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-of-test-year" name="date-of-test-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-test-year'] }}">
+                </div>
+              </div>
+            </div>
+          </div>
           
+          <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+              <label class="govuk-label govuk-label--m" for="barcode-number">Name</label>
+            </h1> 
+            <label class="govuk-label" for="barcode-number">
+              Barcode number
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="barcode-number" name="barcode-number" type="text" value="{{ data['barcode-number'] }}">
+          </div>
+          
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="barcode-number-1">
+              Last name
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="barcode-number-1" name="barcode-number-1" type="text" value="{{ data['barcode-number-1'] }}">
+          </div>
         </fieldset>
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <p class="govuk-body govuk-!-font-weight-bold">Double check the information you have entered above before confirming the registration.</p>
+
+        <button class="govuk-button" data-module="govuk-button">Confirm registration</button>
 
       </form>
 
