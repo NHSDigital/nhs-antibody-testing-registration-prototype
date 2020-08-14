@@ -760,4 +760,25 @@ router.post('/lite-registration/v1/action6/test-place', function (req, res) {
 
 })
 
+// Version 1 - Antigen Global Registration - Ethnic group route
+
+router.post('/lite-registration/{{version}}/action6/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/antigen/v1/global-registration/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/antigen/v1/global-registration/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/antigen/v1/global-registration/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/antigen/v1/global-registration/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/antigen/v1/global-registration/ethnic-background-another')
+  } else {
+    res.redirect('/antigen/v1/global-registration/currently-in-work')
+  }
+
+})
+
+
 module.exports = router
