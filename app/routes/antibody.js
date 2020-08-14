@@ -203,8 +203,8 @@ router.post('/antibody/v4/action/comfortable-doing-test', function (req, res) {
 router.post('/antibody/v4/action2/country', function (req, res) {
   let country = req.session.data['country']
 
-  if (country == "England"){
-    res.redirect('/antibody/v4/refer-and-triage/postcode')
+  if (country == "Northern Ireland"){
+    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
   } else {
     res.redirect('/antibody/v4/refer-and-triage/postcode')
   }
@@ -289,13 +289,13 @@ router.post('/antibody/v4/action/mobile-number', function (req, res) {
   let emailAddress = req.session.data['email']
 
   if (mobileNumber == "Yes"){
-    res.redirect('/antibody/v4/refer-and-triage/postcode')
+    res.redirect('/antibody/v4/refer-and-triage/country')
   } 
   if (emailAddress == "No" && mobileNumber == "No") {
     res.redirect('/antibody/v4/refer-and-triage/not-eligible')
   }
   else {
-    res.redirect('/antibody/v4/refer-and-triage/postcode')
+    res.redirect('/antibody/v4/refer-and-triage/country')
   }
 })
 
@@ -321,6 +321,56 @@ router.post('/antibody/v4/action/working', function (req, res) {
   }
 })
 
+// Version 4 - Registration - Social care
+router.post('/antibody/v4/action/social-care', function (req, res) {
+  let socialCareWorker = req.session.data['social-care']
+
+  if (socialCareWorker == "Yes"){
+    res.redirect('/antibody/v4/refer-and-triage/occupation')
+  } else {
+    res.redirect('/antibody/v4/refer-and-triage/occupation')
+  }
+
+})
+
+// Version 4 - Registration - Ethnic group route
+router.post('/antibody/v4/action/occupation', function (req, res) {
+  let occupation = req.session.data['occupation-autocomplete']
+
+  if (occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
+    res.redirect('/antibody/v4/refer-and-triage/social-role')
+  } else {
+    res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
+  }
+})
+
+
+// Version 4 - Registration - Social role
+router.post('/antibody/v4/action/social-role', function (req, res) {
+  let socialCareRole = req.session.data['social-role']
+
+  if (socialCareRole == "Work in a single care home"){
+    res.redirect('/antibody/v4/refer-and-triage/social-contact')
+  } else if (socialCareRole == "Work in more than one care home") {
+    res.redirect('/antibody/v4/refer-and-triage/social-contact')
+  } else {
+    res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
+  }
+
+})
+
+// Version 4 - Registration - Social contact
+router.post('/antibody/v4/action/social-contact', function (req, res) {
+  let socialCareContact = req.session.data['social-contact']
+
+  if (socialCareContact == "Yes"){
+    res.redirect('/antibody/v4/refer-and-triage/care-home-id')
+  } else {
+    res.redirect('/antibody/v4/refer-and-triage/care-home-id')
+  }
+
+})
+
 // Version 4 - Teacher Registration - Tested positive route
 router.post('/antibody/v4/action/tested-positive', function (req, res) {
   let testedPositive = req.session.data['tested-positive']
@@ -335,7 +385,7 @@ router.post('/antibody/v4/action/tested-positive', function (req, res) {
 
 // Version 4 - Registration - Do you have symptoms route
 router.post('/antibody/v4/action2/do-you-have-symptoms', function (req, res) {
-  let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
+  let doYouHaveSymptoms = req.session.data['do-you-have-symptoms-2']
 
   if (doYouHaveSymptoms == "Yes"){
     res.redirect('/antibody/v4/global-registration/get-antigen-test')
@@ -360,18 +410,7 @@ router.post('/antibody/v4/action2/ethnic-group', function (req, res) {
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/antibody/v4/refer-and-triage/ethnic-background-another')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/working')
-  }
-})
-
-// Version 4 - Registration - Ethnic group route
-router.post('/antibody/v4/action/occupation', function (req, res) {
-  let occupation = req.session.data['input-autocomplete']
-
-  if (occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
-    res.redirect('/antibody/v4/refer-and-triage/care-home-working-pattern')
-  } else {
-    res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
+    res.redirect('/antibody/v4/refer-and-triage/social-care')
   }
 })
 
