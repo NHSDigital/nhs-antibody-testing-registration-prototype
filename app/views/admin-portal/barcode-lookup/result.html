@@ -1,0 +1,82 @@
+{% set version = "v1" %}
+{% set pageTitle = "Confirm if a subject's details match" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="search">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+      <p class="govuk-body">The registered subject information for this sample is shown below. Ask the subject to confirm their full name and date of birth to see if it matches.</p>
+
+      <h2 class="govuk-heading-m">Information registered to this test sample barcode</h2>
+
+      <p class="govuk-body govuk-!-font-weight-bold">Barcode entered for look up:</p>
+      
+      <p class="govuk-body">  {{ data['barcode-number'] }}</p>
+
+      <div class="govuk-warning-text govuk-!-margin-top-1">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          To protect data privacy, do not read out the registered name and date of birth shown below. This should be confirmed by the subject.
+        </strong>
+      </div>
+      
+      <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">First name</p>
+      <p class="govuk-body">Jane</p>
+      
+      <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">Last name</p>
+      <p class="govuk-body">Smith</p>
+      
+      <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">Date of birth</p>
+      <p class="govuk-body">19/07/1986</p>
+      
+      <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">Mobile number</p>
+      <p class="govuk-body">07700 900 982</p>
+      
+      <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">Email address</p>
+      <p class="govuk-body">janesmith@email.com</p>
+      
+      <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">Test centre ID</p>
+      <p class="govuk-body">GRE</p>
+      
+      <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">Test centre appointment date</p>
+      <p class="govuk-body">28/04/2020</p>
+      
+      <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">Date and time of barcode registration</p>
+      <p class="govuk-body">29/04/2020, 19:05</p>
+      
+      <hr class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+      
+      <h2 class="govuk-heading-m">Instructions if the information above does not match</h2>
+      
+      <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">To the caller:</p>
+      <p class="govuk-body">Advise the subject to contact their employer to request a re-test.</p>
+      
+      <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">For internal escalation:</p>
+      <p class="govuk-body">Log a barcode exception with the technical service desk.</p>
+
+      <form action="search" method="post">
+        <button class="govuk-button" data-module="govuk-button">Try again</button>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
