@@ -25,7 +25,7 @@
             Delivery address
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['delivery-address-same'] === 'No' %}{{ data['delivery-address'] }}{% else %}{{ data['home-address'] }}{% endif %}
+            {{ data['delivery-address'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/antibody/{{version}}/home-testing/delivery-address">
@@ -38,7 +38,7 @@
             Home address
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['home-address'] }}
+            {% if data['delivery-address-same'] === 'Yes' %}{{ data['delivery-address'] }}{% else %}{{ data['home-address'] }}{% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/antibody/{{version}}/home-testing/home-address">

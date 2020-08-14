@@ -203,8 +203,8 @@ router.post('/antibody/v4/action/comfortable-doing-test', function (req, res) {
 router.post('/antibody/v4/action2/country', function (req, res) {
   let country = req.session.data['country']
 
-  if (country == "England"){
-    res.redirect('/antibody/v4/refer-and-triage/postcode')
+  if (country == "Northern Ireland"){
+    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
   } else {
     res.redirect('/antibody/v4/refer-and-triage/postcode')
   }
@@ -333,13 +333,25 @@ router.post('/antibody/v4/action/social-care', function (req, res) {
 
 })
 
+// Version 4 - Registration - Ethnic group route
+router.post('/antibody/v4/action/occupation', function (req, res) {
+  let occupation = req.session.data['occupation-autocomplete']
+
+  if (occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
+    res.redirect('/antibody/v4/refer-and-triage/social-role')
+  } else {
+    res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
+  }
+})
+
+
 // Version 4 - Registration - Social role
 router.post('/antibody/v4/action/social-role', function (req, res) {
   let socialCareRole = req.session.data['social-role']
 
-  if (socialCareRole == "single"){
+  if (socialCareRole == "Work in a single care home"){
     res.redirect('/antibody/v4/refer-and-triage/social-contact')
-  } else if (socialCareRole == "multiple") {
+  } else if (socialCareRole == "Work in more than one care home") {
     res.redirect('/antibody/v4/refer-and-triage/social-contact')
   } else {
     res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
@@ -399,17 +411,6 @@ router.post('/antibody/v4/action2/ethnic-group', function (req, res) {
     res.redirect('/antibody/v4/refer-and-triage/ethnic-background-another')
   } else {
     res.redirect('/antibody/v4/refer-and-triage/social-care')
-  }
-})
-
-// Version 4 - Registration - Ethnic group route
-router.post('/antibody/v4/action/occupation', function (req, res) {
-  let occupation = req.session.data['input-autocomplete']
-
-  if (occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
-    res.redirect('/antibody/v4/refer-and-triage/social-role')
-  } else {
-    res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
   }
 })
 
