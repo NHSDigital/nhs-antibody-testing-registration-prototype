@@ -344,6 +344,18 @@ router.post('/antibody/v4/action/occupation', function (req, res) {
   }
 })
 
+// Version 4 - Global Registration - NHS number
+router.post('/antibody/v4/action/landline-number', function (req, res) {
+  let country = req.session.data['country']
+
+  if (country == "England"){
+    res.redirect('/antibody/v4/refer-and-triage/nhs-number-known')
+  } else if (country = "Scotland") {
+    res.redirect('/antibody/v4/refer-and-triage/chi-number-known')
+  } else if (country = "Northern Ireland") {
+    res.redirect('/antibody/v4/refer-and-triage/h&c-number-known')
+  }
+})
 
 // Version 4 - Registration - Social role
 router.post('/antibody/v4/action/social-role', function (req, res) {
