@@ -323,7 +323,7 @@ router.post('/antibody/v4/action/working', function (req, res) {
 
 // Version 4 - Registration - Social care
 router.post('/antibody/v4/action/industry', function (req, res) {  
-let socialCareWorker = req.session.data['industry, Social_care']
+let socialCareWorker = req.session.data['industry']
     
 if (socialCareWorker = "Yes") {
   res.redirect('/antibody/v4/refer-and-triage/occupation')
@@ -334,10 +334,10 @@ if (socialCareWorker = "Yes") {
 
 // Version 4 - Registration - Ethnic group route
 router.post('/antibody/v4/action/occupation', function (req, res) {
-  let socialCareWorker = req.session.data['industry, Social_care']
+  let industry = req.session.data['industry']
   let occupation = req.session.data['occupation-autocomplete']
 
-  if (socialCareWorker = "Yes" || occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
+  if (industry = "Social_care" || occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
     res.redirect('/antibody/v4/refer-and-triage/social-role')
   } else {
     res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
