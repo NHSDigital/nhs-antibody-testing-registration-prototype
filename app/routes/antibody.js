@@ -206,7 +206,7 @@ router.post('/antibody/v4/action2/country', function (req, res) {
   if (country == "Northern Ireland"){
     res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/postcode')
+    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
   }
 
 })
