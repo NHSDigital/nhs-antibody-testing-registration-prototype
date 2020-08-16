@@ -337,7 +337,7 @@ router.post('/antibody/v4/action/occupation', function (req, res) {
   let industry = req.session.data['industry']
   let occupation = req.session.data['occupation-autocomplete']
 
-  if (industry = "Social_care" || occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
+  if (industry = "Social care" || occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
     res.redirect('/antibody/v4/refer-and-triage/social-role')
   } else {
     res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
