@@ -354,6 +354,8 @@ router.post('/antibody/v4/action/landline-number', function (req, res) {
     res.redirect('/antibody/v4/global-registration/chi-number-known')
   } else if (country = "Northern Ireland") {
     res.redirect('/antibody/v4/global-registration/h&c-number-known')
+  } else {
+    res.redirect('/antibody/v4/global-registration/nhs-number-known')
   }
 })
 
