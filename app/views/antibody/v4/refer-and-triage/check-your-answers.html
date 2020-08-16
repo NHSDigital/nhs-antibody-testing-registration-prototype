@@ -99,7 +99,7 @@
             {% if country === "Northern Ireland" %}
             <a href="/antibody/{{version}}/refer-and-triage/postcode-ni">
             {% else %}
-            <a href="/antibody/{{version}}/refer-and-triage/postcode">
+            <a href="/antibody/{{version}}/refer-and-triage/postcode-ni">
             {% endif %}
               Change
               <span class="govuk-visually-hidden">postcode</span>
@@ -183,15 +183,15 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Work in social care
+            Area of work
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['social-care'] }}
+            {{ data['industry'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antibody/{{version}}/refer-and-triage/social-care">
+            <a href="/antibody/{{version}}/refer-and-triage/industry">
               Change
-              <span class="govuk-visually-hidden"> whether you work in social-care</span>
+              <span class="govuk-visually-hidden">Your area of work</span>
             </a>
           </dd>
         </div>
@@ -211,7 +211,7 @@
           </dd>
         </div>
 
-        {% if data['social-care'] %}
+        {% if data['industry'] == "Social care" || if data['occupation'] == "Care worker or home carer" || if data['occupation'] == "Residential, day or domiciliary care manager and proprietor" || if data['occupation'] == "Care escort" || if data['occupation'] == "Senior care worker"%}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -223,7 +223,7 @@
           <dd class="govuk-summary-list__actions">
             <a href="/antibody/{{version}}/refer-and-triage/social-role">
               Change
-              <span class="govuk-visually-hidden"> how you provide care</span>
+              <span class="govuk-visually-hidden">how you provide care</span>
             </a>
           </dd>
         </div>
@@ -238,7 +238,7 @@
           <dd class="govuk-summary-list__actions">
             <a href="/antibody/{{version}}/refer-and-triage/social-role">
               Change
-              <span class="govuk-visually-hidden"> if you work in close contact</span>
+              <span class="govuk-visually-hidden">if you work in close contact with people who need care</span>
             </a>
           </dd>
         </div>
@@ -255,7 +255,7 @@
           <dd class="govuk-summary-list__actions">
             <a href="/antibody/{{version}}/refer-and-triage/social-role">
               Change
-              <span class="govuk-visually-hidden"> your care home</span>
+              <span class="govuk-visually-hidden">your care home</span>
             </a>
           </dd>
         </div>
