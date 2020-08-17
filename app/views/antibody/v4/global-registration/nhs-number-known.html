@@ -28,11 +28,18 @@
             <p><a href="#">How to find your NHS number</a></p>
             <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="nhs-number-known-1" name="nhs-number-known" type="radio" value="Yes" {{ checked("nhs-number-known", "Yes") }}>
+                  <input class="govuk-radios__input" id="nhs-number-known-1" name="nhs-number-known" type="radio" value="Yes" data-aria-controls="conditional-nhs-number-known" {{ checked("nhs-number-known", "Yes") }}>
                   <label class="govuk-label govuk-radios__label" for="nhs-number-known-1">
                     Yes, I know my NHS number
                   </label>
                 </div>
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-nhs-number-known">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="nhs-number">
+                      NHS number
+                    </label>
+                    <input class="govuk-input govuk-!-width-one-third" id="nhs-number" name="nhs-number" type="number" value = "{{ data['nhs-number'] }}" aria-describedby="nhs-number-known-hint">
+                  </div>
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="nhs-number-known-2" name="nhs-number-known" type="radio" value="No" {{ checked("nhs-number-known", "No") }}>
                   <label class="govuk-label govuk-radios__label" for="nhs-number-known-2">
