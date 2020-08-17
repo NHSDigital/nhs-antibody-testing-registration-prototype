@@ -206,7 +206,7 @@ router.post('/antibody/v4/action2/country', function (req, res) {
   if (country == "Northern Ireland"){
     res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/postcode')
+    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
   }
 
 })
@@ -322,28 +322,42 @@ router.post('/antibody/v4/action/working', function (req, res) {
 })
 
 // Version 4 - Registration - Social care
-router.post('/antibody/v4/action/social-care', function (req, res) {
-  let socialCareWorker = req.session.data['social-care']
-
-  if (socialCareWorker == "Yes"){
-    res.redirect('/antibody/v4/refer-and-triage/occupation')
-  } else {
-    res.redirect('/antibody/v4/refer-and-triage/occupation')
-  }
-
+router.post('/antibody/v4/action/industry', function (req, res) {  
+let socialCareWorker = req.session.data['industry']
+    
+if (socialCareWorker = "Yes") {
+  res.redirect('/antibody/v4/refer-and-triage/occupation')
+} else {
+  res.redirect('/antibody/v4/refer-and-triage/occupation')
+}
 })
 
 // Version 4 - Registration - Ethnic group route
 router.post('/antibody/v4/action/occupation', function (req, res) {
+  let industry = req.session.data['industry']
   let occupation = req.session.data['occupation-autocomplete']
 
-  if (occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
+  if (industry == "Social care" || occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
     res.redirect('/antibody/v4/refer-and-triage/social-role')
   } else {
     res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
   }
 })
 
+// Version 4 - Global Registration - NHS number
+router.post('/antibody/v4/action/landline-number', function (req, res) {
+  let country = req.session.data['country']
+
+  if (country == "England"){
+    res.redirect('/antibody/v4/global-registration/nhs-number-known')
+  } else if (country = "Scotland") {
+    res.redirect('/antibody/v4/global-registration/chi-number-known')
+  } else if (country = "Northern Ireland") {
+    res.redirect('/antibody/v4/global-registration/h&c-number-known')
+  } else {
+    res.redirect('/antibody/v4/global-registration/nhs-number-known')
+  }
+})
 
 // Version 4 - Registration - Social role
 router.post('/antibody/v4/action/social-role', function (req, res) {
@@ -410,22 +424,21 @@ router.post('/antibody/v4/action2/ethnic-group', function (req, res) {
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/antibody/v4/refer-and-triage/ethnic-background-another')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/social-care')
+    res.redirect('/antibody/v4/refer-and-triage/industry')
   }
 })
 
 
 
 // Version 4 - Registration - NHS number route
-router.post('/antibody/v4/action2/nhs-number-known', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
-
-  if (nhsNumberKnown == "Yes"){
-    res.redirect('/antibody/v4/global-registration/nhs-number')
-  } else {
-    res.redirect('/antibody/v4/global-registration/check-your-answers')
-  }
-})
+// router.post('/antibody/v4/action2/nhs-number-known', function (req, res) {
+//  let nhsNumberKnown = req.session.data['nhs-number-known']
+//  if (nhsNumberKnown == "Yes"){
+//    res.redirect('/antibody/v4/global-registration/nhs-number')
+//  } else {
+//    res.redirect('/antibody/v4/global-registration/check-your-answers')
+//  }
+// }) 
 
 // Version 4 - Registration - Country route
 router.post('/antibody/v3/action/people-confirmed', function (req, res) {
