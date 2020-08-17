@@ -1,5 +1,5 @@
 {% set version = "v4" %}
-{% set pageTitle = "Do you know your CHI number?" %}
+{% set pageTitle = "Do you know your H&C number?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -12,34 +12,42 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/antibody/{{version}}/action2/nhs-number-known" method="post">
+      <form action="/antibody/{{version}}/action2/h&c-number-known" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint">
+          <fieldset class="govuk-fieldset" aria-describedby="h&c-number-known-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-fieldset__heading">
                 {{ pageTitle }}
               </h1>
             </legend>
-            <span id="nhs-number-known-hint" class="govuk-hint">
+            <span id="h&c-number-known-hint" class="govuk-hint">
               It's OK if you do not, you can still continue.<br><br>
               Your H&C number is a 10 digit number. You can find it on any letter the HSC has sent you, on prescription, or by logging in to some GP services.
             </span>
             <p><a href="#">How to find your H&C number</a></p>
             <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="nhs-number-known-1" name="nhs-number-known" type="radio" value="Yes" {{ checked("h&c-number-known", "Yes") }}>
-                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-1">
+                  <input class="govuk-radios__input" id="h&c-number-known-1" name="h&c-number-known" type="radio" value="Yes" data-aria-controls="conditional-h&c-number-known" {{ checked("h&c-number-known", "Yes") }}>
+                  <label class="govuk-label govuk-radios__label" for="h&c-number-known-1">
                     Yes, I know my H&C number
                   </label>
                 </div>
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-h&c-number-known">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="h&c-number">
+                      H&C number
+                    </label>
+                    <input class="govuk-input govuk-!-width-one-third" id="h&c-number" name="h&c-number" type="number" value = "{{ data['h&c-number'] }}" aria-describedby="h&c-number-known-hint">
+                  </div>
+                </div>
                 <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="nhs-number-known-2" name="nhs-number-known" type="radio" value="No" {{ checked("h&c-number-known", "No") }}>
-                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-2">
+                  <input class="govuk-radios__input" id="h&c-number-known-2" name="h&c-number-known" type="radio" value="No" {{ checked("h&c-number-known", "No") }}>
+                  <label class="govuk-label govuk-radios__label" for="h&c-number-known-2">
                     No, I do not know my H&C number
                   </label>
                 </div>
-              </div>
+            </div>
           </fieldset>
         </div>
 
