@@ -431,15 +431,14 @@ router.post('/antibody/v4/action2/ethnic-group', function (req, res) {
 
 
 // Version 4 - Registration - NHS number route
-router.post('/antibody/v4/action2/nhs-number-known', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
-
-  if (nhsNumberKnown == "Yes"){
-    res.redirect('/antibody/v4/global-registration/nhs-number')
-  } else {
-    res.redirect('/antibody/v4/global-registration/check-your-answers')
-  }
-})
+// router.post('/antibody/v4/action2/nhs-number-known', function (req, res) {
+//  let nhsNumberKnown = req.session.data['nhs-number-known']
+//  if (nhsNumberKnown == "Yes"){
+//    res.redirect('/antibody/v4/global-registration/nhs-number')
+//  } else {
+//    res.redirect('/antibody/v4/global-registration/check-your-answers')
+//  }
+// }) 
 
 // Version 4 - Registration - Country route
 router.post('/antibody/v3/action/people-confirmed', function (req, res) {
