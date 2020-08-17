@@ -155,6 +155,8 @@
 <!--            </a>-->
 <!--          </dd>-->
 <!--        </div>-->
+
+        {% if data['country'] == "England" or data ['country'] == "Wales" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             NHS number known
@@ -184,6 +186,71 @@
           </dd>
         </div>
       </dl>
+      {% endif %}
+
+      {% if data['country'] == "Scotland" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            CHI number known
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['chi-number-known'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/chi-number-known">
+              Change
+              <span class="govuk-visually-hidden">CHI number known</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            CHI number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['chi-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/chi-number">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+      {% endif %}
+
+      {% if data['country'] == "Northern Ireland" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            H&C number known
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['h&C-number-known'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/h&c-number-known">
+              Change
+              <span class="govuk-visually-hidden">H&C number known</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            H&C number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['h&c-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/h&c-number">
+              Change
+              <span class="govuk-visually-hidden">H&C number</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+      {% endif %}
 
       <form action="/antibody/{{version}}/global-registration/confirm-person" method="post" novalidate>
 
