@@ -1,5 +1,5 @@
 {% set version = "v4" %}
-{% set pageTitle = "Find your care home" %}
+{% set pageTitle = "About your care home" %}
 
 {% extends "includes/layout.html" %}
 
@@ -22,20 +22,24 @@
         </legend>
 
         <span id="nhs-number-hint" class="govuk-hint">
-            Start typing and select your care home from the drop down. If your care home is not displayed select 'Other'.<br><br>
-            If you work in more than one, tell us your main one
-          </span>
-
-        <label class="govuk-label" for="carehome">Care home</label>
-
-        <div id="carehome-container"></div>
-
-<!--        <div class="govuk-form-group">-->
-<!--          <label class="govuk-label" for="first-name">-->
-<!--            Care home-->
-<!--          </label>-->
-<!--          <input class="govuk-input govuk-!-width-two-thirds" id="care-home-id" name="care-home-id" type="text" value="{{ data['first-name'] }}">-->
-<!--        </div>-->
+            Please enter the name and postcode of the care home you work at.
+            <br><br>
+            If you work in more than one, tell us about the main one. 
+        </span>
+          
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address-line-1">
+            Care home name<span class="govuk-visually-hidden">line 1 of 2</span>
+          </label>
+          <input class="govuk-input" id="address-line-1" name="address-line-1" type="text" value="{{ data['care-home-name'] }}">
+        </div>
+      
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address-line-2">
+            Care home postcode<span class="govuk-visually-hidden">Building and street line 2 of 2</span>
+          </label>
+          <input class="govuk-input" id="address-line-2" name="address-line-2" type="text" value="{{ data['care-home-postcode'] }}">
+        </div>
 
       </fieldset>
 
@@ -45,188 +49,5 @@
 
   </div>
 </div>
-
-<style>
-  .autocomplete__wrapper {
-    position: relative;
-    max-width: 35em;
-    margin-bottom: 20px;
-    font-family: "GDS Transport",Arial,sans-serif;
-  }
-
-  @media (min-width: 40.0625em) {
-    .autocomplete__wrapper {
-      margin-bottom: 30px;
-    }
-  }
-
-  .autocomplete__hint, .autocomplete__input {
-    -webkit-appearance: none;
-    border: 2px solid #0b0c0c;
-    border-radius: 0;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    margin-bottom: 0;
-    width: 100%;
-  }
-
-  .autocomplete__input {
-    background-color: transparent;
-    position: relative;
-  }
-
-  .autocomplete__hint {
-    color: #b1b4b6;
-    position: absolute;
-  }
-
-  .autocomplete__input--default {
-    padding: 5px;
-  }
-
-  .autocomplete__input--focused {
-    outline: 3px solid #fd0;
-    outline-offset: 0;
-    box-shadow: inset 0 0 0 2px;
-  }
-
-  .autocomplete__input--show-all-values {
-    padding: 5px 34px 5px 5px;
-    cursor: pointer;
-  }
-
-  .autocomplete__dropdown-arrow-down {
-    z-index: -1;
-    display: inline-block;
-    position: absolute;
-    right: 8px;
-    width: 24px;
-    height: 24px;
-    top: 10px;
-  }
-
-  .autocomplete__menu {
-    background-color: #fff;
-    border: 2px solid #0b0c0c;
-    border-top: 0;
-    color: #0b0c0c;
-    margin: 0;
-    max-height: 342px;
-    overflow-x: hidden;
-    padding: 0;
-    width: 100%;
-    width: calc(100% - 4px);
-  }
-
-  .autocomplete__menu--visible {
-    display: block;
-  }
-
-  .autocomplete__menu--hidden {
-    display: none;
-  }
-
-  .autocomplete__menu--overlay {
-    box-shadow: rgba(0, 0, 0, 0.256863) 0 2px 6px;
-    left: 0;
-    position: absolute;
-    top: 100%;
-    z-index: 100;
-  }
-
-  .autocomplete__menu--inline {
-    position: relative;
-  }
-
-  .autocomplete__option {
-    border-bottom: solid #b1b4b6;
-    border-width: 1px 0;
-    cursor: pointer;
-    display: block;
-    position: relative;
-  }
-
-  .autocomplete__option > * {
-    pointer-events: none;
-  }
-
-  .autocomplete__option:first-of-type {
-    border-top-width: 0;
-  }
-
-  .autocomplete__option:last-of-type {
-    border-bottom-width: 0;
-  }
-
-  .autocomplete__option--odd {
-    background-color: #fafafa;
-  }
-
-  .autocomplete__option--focused, .autocomplete__option:hover {
-    background-color: #1d70b8;
-    border-color: #1d70b8;
-    color: #fff;
-    outline: 0;
-  }
-
-  .autocomplete__option--no-results {
-    background-color: #fafafa;
-    color: #646b6f;
-    cursor: not-allowed;
-  }
-
-  .autocomplete__hint, .autocomplete__input, .autocomplete__option {
-    font-size: 16px;
-    line-height: 1.25;
-  }
-
-  .autocomplete__hint, .autocomplete__option {
-    padding: 5px;
-  }
-
-  @media (min-width: 641px) {
-    .autocomplete__hint, .autocomplete__input, .autocomplete__option {
-      font-size: 19px;
-      line-height: 1.31579;
-    }
-  }
-</style>
-<script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
-<script>
-  const carehomes = [
-          "The Meadow - London",
-          "The Meadows - Loughborough",
-          "Meadow View - Sheffield",
-          "Clifton Meadows",
-          "Meadow Lodge - Nottingham",
-          "High Meadows - pinner",
-          "Meadow View - Alcester",
-          "The Meadows - Bristol",
-          "The Meadows - Leyland",
-          "The Meadows - Bideford",
-          "The Meadows - Norwich",
-          "Meadows - Braintree",
-          "The Meadows - Stoke On Trent",
-          "The Meadows - Coalville",
-          "Meadow Bank Care Home - Preston",
-          "Meadow Lodge Care Home - Goole",
-          "Swallows Meadow Court - Solihull",
-          "The Meadows Short Break Centre - Welwyn Garden City",
-          "Meadow View Residential and Community Care Centre - Matlock",
-          "Disabilities Trust - 3 Water Meadows - Cullompton"
-  ];
-
-  accessibleAutocomplete({
-    autoselect: true,
-    element: document.querySelector('#carehome-container'),
-    id: 'carehome',
-    source: carehomes,
-    name: 'carehome-autocomplete',
-    defaultValue: '{{ data['carehome-autocomplete'] }}',
-    displayMenu: 'overlay',
-    minLength: 2
-  });
-</script>
 
 {% endblock %}
