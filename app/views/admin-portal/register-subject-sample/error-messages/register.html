@@ -22,6 +22,67 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-three-quarters">
 
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#first-name">Enter first name</a>
+            </li>
+            <li>
+              <a href="#last-name">Enter last name</a>
+            </li>
+            <li>
+              <a href="#gender-1">Select gender</a>
+            </li>
+            <li>
+              <a href="#date-of-birth-person-1-day">Enter a valid date of birth</a>
+            </li>
+            <li>
+              <a href="#ethnicity-dropdown">Select an ethnicity or prefer not to say</a>
+            </li>
+            <li>
+              <a href="#ethnic-background-dropdown">Select an ethnic background or prefer not to say</a>
+            </li>
+            <li>
+              <a href="#symptoms-1">Select whether they have symptoms</a>
+            </li>
+            <li>
+              <a href="#country-dropdown">Select a country</a>
+            </li>
+            <li>
+              <a href="#postcode">Enter a valid postcode</a>
+            </li>
+            <li>
+              <a href="#mobile-number">Enter a valid mobile number</a>
+            </li>
+            <li>
+              <a href="#email-address">Enter an email address in the correct format, like name@exanple.com</a>
+            </li>
+            <li>
+              <a href="#nhs-number">Enter a valid NHS number</a>
+            </li>
+            <li>
+              <a href="#home">Select which test the subject is having</a>
+            </li>
+            <li>
+              <a href="#test-site-1">Select a test site </a>
+            </li>
+            <li>
+              <a href="#date-of-test-day">Enter the date of visit</a>
+            </li>
+            <li>
+              <a href="#barcode-number">Enter a barcode</a>
+            </li>
+            <li>
+              <a href="#barcode-number-1">Re-enter barcode</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <form action="confirmation" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
@@ -29,50 +90,62 @@
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
               {{ pageTitle }}
             </h1>
-            <p class="govuk-heading-m">Subject’s personal information</p>
+            <p class="govuk-heading-l">Subject’s personal information</p>
           </legend>
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="first-name">Name</label>
             </h1> 
             <label class="govuk-label" for="first-name">
               First name
             </label>
-            <input class="govuk-input govuk-input--width-10" id="first-name" name="first-name" type="text" value="{{ data['first-name'] }}">
+            <span id="first-name-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter first name
+            </span>
+            <input class="govuk-input govuk-input--width-10 govuk-input--error" id="first-name" name="first-name" type="text" value="{{ data['first-name'] }}">
           </div>
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <label class="govuk-label" for="last-name">
               Last name
             </label>
-            <input class="govuk-input govuk-input--width-10" id="last-name" name="last-name" type="text" value="{{ data['last-name'] }}">
+            <span id="last-name-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter last name
+            </span>
+            <input class="govuk-input govuk-input--width-10 govuk-input--error" id="last-name" name="last-name" type="text" value="{{ data['last-name'] }}">
           </div>
           
-          <div class="govuk-form-group govuk-radios">
+          <div class="govuk-form-group govuk-radios govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="gender">Gender</label>
             </h1> 
+            <span id="gender-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select gender
+            </span>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="Male" {{ checked("gender", "Male") }}>
+              <input class="govuk-radios__input govuk-input--error" id="gender-1" name="gender" type="radio" value="Male" {{ checked("gender", "Male") }}>
               <label class="govuk-label govuk-radios__label" for="gender-1">
                 Male
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="gender-2" name="gender" type="radio" value="Female" {{ checked("gender", "Female") }}>
+              <input class="govuk-radios__input govuk-input--error" id="gender-2" name="gender" type="radio" value="Female" {{ checked("gender", "Female") }}>
               <label class="govuk-label govuk-radios__label" for="gender-2">
                 Female
               </label>
             </div>
           </div>
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="date-of-birth">Date of birth</label>
             </h1>
             <span id="date-of-birth-hint" class="govuk-hint">
               For example, 31 3 1980
+            </span>
+            <span id="dob-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter a valid date of birth
             </span>
             <div class="govuk-date-input" id="date-of-birth">
               <div class="govuk-date-input__item">
@@ -80,7 +153,7 @@
                   <label class="govuk-label govuk-date-input__label" for="date-of-birth-person-1-day">
                     Day
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-birth-person-1-day" name="date-of-birth-person-1-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-birth-person-1-day'] }}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="date-of-birth-person-1-day" name="date-of-birth-person-1-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-birth-person-1-day'] }}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -88,7 +161,7 @@
                   <label class="govuk-label govuk-date-input__label" for="date-of-birth-person-1-month">
                     Month
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-birth-person-1-month" name="date-of-birth-person-1-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-birth-person-1-month'] }}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="date-of-birth-person-1-month" name="date-of-birth-person-1-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-birth-person-1-month'] }}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -96,7 +169,7 @@
                   <label class="govuk-label govuk-date-input__label" for="date-of-birth-person-1-year">
                     Year
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-of-birth-person-1-year" name="date-of-birth-person-1-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-birth-person-1-year'] }}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="date-of-birth-person-1-year" name="date-of-birth-person-1-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-birth-person-1-year'] }}">
                 </div>
               </div>
             </div>
@@ -104,7 +177,7 @@
           
         
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="gender">Ethnicity</label>
             </h1>
@@ -114,6 +187,9 @@
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--s" for="ethnic-group">Ethnic group</label>
             </h1>
+            <span id="ethnicity-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select an ethnicity or prefer not to say
+            </span>
             <select class="govuk-select" id="ethnicity-dropdown" name="ethnicity-dropdown">
               <option id="ethnic-group" name="ethnic-group" type="radio" value="Please select" {{ checked("ethnic-group", "Please select") }}>Please select</option>
               <option id="ethnic-group-1" name="ethnic-group" type="radio" value="Asian or Asian British" {{ checked("ethnic-group", "Asian or Asian British") }}>Asian or Asian British</option>
@@ -125,10 +201,13 @@
             </select>
           </div>
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--s" for="ethnic-background">Specific ethnic background</label>
             </h1>
+            <span id="ethnic-background-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select an ethnic background or prefer not to say
+            </span>
             <select class="govuk-select" style="width: 19.5em" id="ethnic-background-dropdown" name="ethnic-background-dropdown">
               <option id="ethnic-background" name="ethnic-background" type="radio" value="Please select" {{ checked("ethnic-group", "Please select") }}>Please select</option>
               <option id="ethnic-group-1" name="ethnic-group" type="radio" value="Arab" {{ checked("ethnic-group", "Arab") }}>Arab</option>
@@ -137,7 +216,7 @@
             </select>
           </div>
           
-          <div class="govuk-form-group govuk-radios">
+          <div class="govuk-form-group govuk-radios govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="symptoms">Is the subject experiencing symptoms of COVID-19?</label>
             </h1> 
@@ -151,24 +230,30 @@
               </ul>
               Most people with coronavirus have at least one of these symptoms.
             </span>
+            <span id="symptoms-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select whether they have symptoms
+            </span>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="symptoms-1" name="symptoms" type="radio" value="Yes, they have at least one of these symptoms" {{ checked("symptoms", "Yes, they have at least one of these symptoms") }}>
+              <input class="govuk-radios__input govuk-input--error" id="symptoms-1" name="symptoms" type="radio" value="Yes, they have at least one of these symptoms" {{ checked("symptoms", "Yes, they have at least one of these symptoms") }}>
               <label class="govuk-label govuk-radios__label" for="symptoms-1">
                 Yes, they have at least one of these symptoms
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="symptoms-2" name="symptoms" type="radio" value="No, they do not have any of these symptoms" {{ checked("symptoms", "No, they do not have any of these symptoms") }}>
+              <input class="govuk-radios__input govuk-input--error" id="symptoms-2" name="symptoms" type="radio" value="No, they do not have any of these symptoms" {{ checked("symptoms", "No, they do not have any of these symptoms") }}>
               <label class="govuk-label govuk-radios__label" for="symptoms-2">
                 No, they do not have any of these symptoms
               </label>
             </div>
           </div>
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="country">Country of residence</label>
             </h1>
+            <span id="country-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select a country
+            </span>
             <select class="govuk-select" style="width: 19.5em" id="country-dropdown" name="country-dropdown">
               <option id="country" name="country" type="radio" value="Please select" {{ checked("country", "Please select") }}>Please select</option>
               <option id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }}>England</option>
@@ -179,7 +264,7 @@
             </select>
           </div>
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="postcode">Home postcode</label>
             </h1> 
@@ -189,10 +274,13 @@
             <label class="govuk-label" for="postcode">
               Enter a UK postcode
             </label>
-            <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text" value="{{ data['postcode'] }}">
+            <span id="postcode-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter a valid postcode
+            </span>
+            <input class="govuk-input govuk-input--width-10 govuk-input--error" id="postcode" name="postcode" type="text" value="{{ data['postcode'] }}">
           </div>
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="mobile-number">Mobile number</label>
             </h1> 
@@ -202,23 +290,29 @@
             <label class="govuk-label" for="mobile-number">
               Mobile number
             </label>
-            <input class="govuk-input govuk-input--width-10" id="mobile-number" name="mobile-number" type="text" value="{{ data['mobile-number'] }}">
+            <span id="mobile-number-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter a valid mobile number
+            </span>
+            <input class="govuk-input govuk-input--width-10 govuk-input--error" id="mobile-number" name="mobile-number" type="text" value="{{ data['mobile-number'] }}">
           </div>
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="landline-number">Landline phone number (if the subject has one)</label>
             </h1> 
-            <span id="landline-hint" class="govuk-hint">
-              If the subject has one, we may use this number to call them if they have had contact with someone who has tested positive with coronavirus.
-            </span>
             <label class="govuk-label" for="landline-number">
               Landline phone number
             </label>
-            <input class="govuk-input govuk-input--width-10" id="landline-number" name="landline-number" type="text" value="{{ data['landline-number'] }}">
+            <span id="landline-hint" class="govuk-hint">
+              If the subject has one, we may use this number to call them if they have had contact with someone who has tested positive with coronavirus.
+            </span>
+            <span id="landline-number-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter a  landline telephone number, like 01632 960 001
+            </span>
+            <input class="govuk-input govuk-input--width-10 govuk-input--error" id="landline-number" name="landline-number" type="text" value="{{ data['landline-number'] }}">
           </div>
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="email-address">Email address (if the subject has one)</label>
             </h1> 
@@ -228,10 +322,13 @@
             <label class="govuk-label" for="email-address">
               Email address
             </label>
-            <input class="govuk-input govuk-input--width-10" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+            <span id="mobile-number-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter an email address in the correct format, like name@example.com
+            </span>
+            <input class="govuk-input govuk-input--width-10 govuk-input--error" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
           </div>
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="nhs-number">NHS number (if known)</label>
             </h1> 
@@ -241,32 +338,38 @@
             <label class="govuk-label" for="nhs-number">
               NHS number
             </label>
-            <input class="govuk-input govuk-input--width-10" id="nhs-number" name="nhs-number" type="text" value="{{ data['nhs-number'] }}">
+            <span id="nhs-number-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter a valid NHS number
+            </span>
+            <input class="govuk-input govuk-input--width-10 govuk-input--error" id="nhs-number" name="nhs-number" type="text" value="{{ data['nhs-number'] }}">
           </div>
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="home">Which test is the subject having?</label>
             </h1> 
             <span id="test-site-hint" class="govuk-hint">
               Select whether they are taking a test at home or at a test site.
             </span>
+            <span id="test-site-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select which test the subject is having
+            </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="home" name="home" type="radio" value="Yes" data-aria-controls="conditional-home" {{ checked("home", "Yes") }}>
+                <input class="govuk-radios__input govuk-input--error" id="home" name="home" type="radio" value="Yes" data-aria-controls="conditional-home" {{ checked("home", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="home">
                   At home
                 </label>
               </div>
 
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-site" name="test-site" type="radio" value="Yes" data-aria-controls="conditional-test-site" {{ checked("test-site", "At a test site") }} checked>
+                <input class="govuk-radios__input govuk-input--error" id="test-site" name="test-site" type="radio" value="Yes" data-aria-controls="conditional-test-site" {{ checked("test-site", "At a test site") }} checked>
                 <label class="govuk-label govuk-radios__label" for="test-site">
                   At a test site
                 </label>
               </div>
-              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-test-site">
-                <div class="govuk-form-group">
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden " id="conditional-test-site">
+                <div class="govuk-form-group ">
                   <h1 class="govuk-label-wrapper">
                     <label class="govuk-label govuk-label--m" for="test-site">Your visit to the test site</label>
                   </h1> 
@@ -283,12 +386,15 @@
                   <label class="govuk-label" for="test-site-1">
                     Test site
                   </label>
-                  <input class="govuk-input govuk-!-width-one-third" id="test-site-1" name="test-site-1" type="tel" value="{{ data['test-site-1'] }}">
+                  <span id="test-site-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> Select a test site
+                  </span>
+                  <input class="govuk-input govuk-!-width-one-third govuk-input--error" id="test-site-1" name="test-site-1" type="tel" value="{{ data['test-site-1'] }}">
                 </div>
               </div>
 
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="care-home" name="care-home" type="radio" value="At a care home" {{ checked("care-home", "At a care home") }}>
+                <input class="govuk-radios__input govuk-input--error" id="care-home" name="care-home" type="radio" value="At a care home" {{ checked("care-home", "At a care home") }}>
                 <label class="govuk-label govuk-radios__label" for="care-home">
                   At a care home
                 </label>
@@ -297,12 +403,15 @@
           </div>
 
 
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="date-of-test">Date of test</label>
             </h1>
             <span id="date-of-test" class="govuk-hint">
               For example, 30 6 2020
+            </span>
+            <span id="date-visit-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter the date of visit
             </span>
             <div class="govuk-date-input" id="date-of-test">
               <div class="govuk-date-input__item">
@@ -310,7 +419,7 @@
                   <label class="govuk-label govuk-date-input__label" for="date-of-test-day">
                     Day
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-test-day" name="date-of-test-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-test-day'] }}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="date-of-test-day" name="date-of-test-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-test-day'] }}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -318,7 +427,7 @@
                   <label class="govuk-label govuk-date-input__label" for="date-of-test-month">
                     Month
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-test-month" name="date-of-test-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-test-month'] }}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="date-of-test-month" name="date-of-test-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-test-month'] }}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -326,27 +435,33 @@
                   <label class="govuk-label govuk-date-input__label" for="date-of-test-year">
                     Year
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-of-test-year" name="date-of-test-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-test-year'] }}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="date-of-test-year" name="date-of-test-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-test-year'] }}">
                 </div>
               </div>
             </div>
           </div>
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <h1 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="barcode-number">Subject’s test sample barcode</label>
             </h1> 
             <label class="govuk-label" for="barcode-number">
               Barcode number
             </label>
-            <input class="govuk-input govuk-input--width-10" id="barcode-number" name="barcode-number" type="text" value="{{ data['barcode-number'] }}">
+            <span id="barcode-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter a barcode
+            </span>
+            <input class="govuk-input govuk-input--width-10 govuk-input--error" id="barcode-number" name="barcode-number" type="text" value="{{ data['barcode-number'] }}">
           </div>
           
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <label class="govuk-label" for="barcode-number-1">
               Re-enter barcode
             </label>
-            <input class="govuk-input govuk-input--width-10" id="barcode-number-1" name="barcode-number-1" type="text" value="{{ data['barcode-number-1'] }}">
+            <span id="barcode-confirm-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Re-enter barcode
+            </span>
+            <input class="govuk-input govuk-input--width-10 govuk-input--error" id="barcode-number-1" name="barcode-number-1" type="text" value="{{ data['barcode-number-1'] }}">
           </div>
         </fieldset>
 
