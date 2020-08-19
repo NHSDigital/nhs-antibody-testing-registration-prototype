@@ -424,7 +424,7 @@ router.post('/antibody/v4/action2/ethnic-group', function (req, res) {
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/antibody/v4/refer-and-triage/ethnic-background-another')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/industry')
+    res.redirect('/antibody/v4/refer-and-triage/working')
   }
 })
 
