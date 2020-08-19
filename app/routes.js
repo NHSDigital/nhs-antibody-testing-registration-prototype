@@ -781,4 +781,5 @@ router.post('/lite-registration/v1/action6/ethnic-group', function (req, res) {
 })
 
 
+
 module.exports = router
