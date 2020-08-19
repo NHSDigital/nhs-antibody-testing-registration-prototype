@@ -317,7 +317,7 @@ router.post('/antibody/v4/action/working', function (req, res) {
   if (inWork == "No"){
     res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/indust5y')
+    res.redirect('/antibody/v4/refer-and-triage/industry')
   }
 })
 
