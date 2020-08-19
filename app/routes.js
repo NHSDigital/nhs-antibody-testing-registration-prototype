@@ -780,6 +780,30 @@ router.post('/lite-registration/v1/action6/ethnic-group', function (req, res) {
 
 })
 
+// Version 1 - Antigen Global Registration - Currently in work route
+
+router.post('/lite-registration/v1/action3/currently-in-work', function (req, res) {
+  let inWork = req.session.data['currently-in-work']
+  if (inWork == "No"){
+    res.redirect('/lite-registration/v1/do-you-have-symptoms')
+  } else {
+    res.redirect('/lite-registration/v1/industry')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - Do you have symptoms route
+
+router.post('/lite-registration/v1/action3/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes"){
+    res.redirect('/lite-registration/v1/when-did-symptoms-start')
+  } else {
+    res.redirect('/lite-registration/v1/email-address')
+  }
+
+})
+
 
 
 module.exports = router
