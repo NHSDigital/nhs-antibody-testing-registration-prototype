@@ -315,9 +315,9 @@ router.post('/antibody/v4/action/ethnic-group', function (req, res) {
 router.post('/antibody/v4/action/working', function (req, res) {
   let inWork = req.session.data['currently-in-work']
   if (inWork == "No"){
-    res.redirect('/antibody/v4/refer-and-triage/occupation')
+    res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/occupation')
+    res.redirect('/antibody/v4/refer-and-triage/indust5y')
   }
 })
 
