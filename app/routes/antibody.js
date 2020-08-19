@@ -204,9 +204,9 @@ router.post('/antibody/v4/action2/country', function (req, res) {
   let country = req.session.data['country']
 
   if (country == "Northern Ireland"){
-    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
+    res.redirect('/antibody/v4/refer-and-triage/comfortable-doing-test')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
+    res.redirect('/antibody/v4/refer-and-triage/comfortable-doing-test')
   }
 
 })
@@ -289,13 +289,13 @@ router.post('/antibody/v4/action/mobile-number', function (req, res) {
   let emailAddress = req.session.data['email']
 
   if (mobileNumber == "Yes"){
-    res.redirect('/antibody/v4/refer-and-triage/country')
+    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
   } 
   if (emailAddress == "No" && mobileNumber == "No") {
     res.redirect('/antibody/v4/refer-and-triage/not-eligible')
   }
   else {
-    res.redirect('/antibody/v4/refer-and-triage/country')
+    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
   }
 })
 
