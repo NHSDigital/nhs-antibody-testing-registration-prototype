@@ -1,0 +1,64 @@
+{% set version = "v1" %}
+{% set pageTitle = "Confirm text message" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  
+  <a class="govuk-back-link" href="/admin-portal/bulk-sms/check-your-answers">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+
+        <p class="govuk-body">You’re about to send approximately 500 people this message. Check the information and <a href="/admin-portal/bulk-sms/check-your-answers">change any incorrect details here.</a></p>
+
+        <p id="how-will-you-get-test-hint" class="govuk-body govuk-!-font-weight-bold">
+            Message 
+        </p>
+
+        <div class="govuk-inset-text">
+          Sorry we’ve had to cancel your appointment as {{ data['test-site'] }} is closed on 30 August 2020.<br><br>
+
+          Book a new test and pick a location, date or time that suits you at <br><a href="https://www.nhs.uk/ask-for-a-coronavirus-test" target="_blank" rel="noopener noreferrer">https://www.nhs.uk/ask-for-a-coronavirus-test.</a><br><br>
+
+          If you cannot get online, call 119 if you’re in England, Wales or Northern Ireland or 0300 303 2713 if you're in Scotland.
+        </div>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="ethnic-group-hint">
+            <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="correct-message" name="correct-message" type="checkbox" value="I’ve checked that this text message is correct" {{ checked("correct-message", "I’ve checked that this text message is correct") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="time-1">
+                  I’ve checked that this text message is correct.
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+      <form action="#" method="post" class="govuk-!-margin-top-6">
+
+        <button class="govuk-button" data-module="govuk-button">Request text message</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+

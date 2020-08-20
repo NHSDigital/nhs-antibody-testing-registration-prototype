@@ -1,0 +1,66 @@
+{% set version = "v1" %}
+{% set pageTitle = "How are appointments changing at this site?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/admin-portal/bulk-sms/check-and-confirm">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/admin-portal/bulk-sms/new-postcode" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="reason-for-test-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            
+            <div class="govuk-form-group govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-1" name="reason-for-change" type="radio" value="Its address has changed and people can either visit this location or book a new test (MTU only)" {{ checked("reason-1", "Its address has changed and people can either visit this location or book a new test (MTU only)") }} aria-describedby="test-site-location-changed">
+                <label class="govuk-label govuk-radios__label" for="reason-1">
+                  Its address has changed and people can either visit this location or book a new test (MTU only)
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-2" name="reason-for-change" type="radio" value="Its closed and people must book a new test" {{ checked("reason-2", "Its closed and people must book a new test") }} aria-describedby="test-site-closed">
+                <label class="govuk-label govuk-radios__label" for="reason-1">
+                  Its closed and people must book a new test
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-3" name="reason-for-change" type="radio" value="Its operating hours have changed and people can either visit within these hours or book a new test" {{ checked("reason-3", "Its operating hours have changed and people can either visit within these hours or book a new test") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-1" aria-describedby="Test site hours changed">
+                  Its operating hours have changed and people can either visit within these hours or book a new test
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% set version = "v1" %}
+{% set pageTitle = "Enter the new test site's postcode" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/admin-portal/bulk-sms/check-and-confirm">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/admin-portal/bulk-sms/select-new-test-site" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text">
+              <span class="govuk-warning-text__assistive govuk-body">Warning</span>
+              Check that the new site is not affected by the same issue as the current site.
+            </strong>
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="new-postcode">
+              New test site postcode
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="new-postcode" name="new-postcode" type="text" autocomplete="postal-code" value="{{ data['new-postcode'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

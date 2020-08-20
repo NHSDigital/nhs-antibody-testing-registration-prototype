@@ -1,0 +1,85 @@
+{% set version = "v1" %}
+{% set pageTitle = "Check and confirm test site details" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/admin-portal/bulk-sms/appointment-change">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Estimated number of people affected
+          </dt>
+          <dd class="govuk-summary-list__value">
+            500
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test site
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['test-site'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="select-test-site">
+              Change
+              <span class="govuk-visually-hidden">enter postcode</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['day-affected'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="appointment-change">
+              Change
+              <span class="govuk-visually-hidden">date appointments are affected</span>
+            </a>
+          </dd>
+        </div>
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Time range
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['time'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="appointment-change">
+              Change
+              <span class="govuk-visually-hidden">time appointments are affected</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <form action="/admin-portal/bulk-sms/reason-for-change" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
