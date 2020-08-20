@@ -762,23 +762,48 @@ router.post('/lite-registration/v1/action6/test-place', function (req, res) {
 
 // Version 1 - Antigen Global Registration - Ethnic group route
 
-router.post('/lite-registration/{{version}}/action6/ethnic-group', function (req, res) {
+router.post('/lite-registration/v1/action6/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/antigen/v1/global-registration/ethnic-background-asian')
+    res.redirect('/lite-registration/v1/ethnic-background-asian')
   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-    res.redirect('/antigen/v1/global-registration/ethnic-background-black')
+    res.redirect('/lite-registration/v1/ethnic-background-black')
   } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-    res.redirect('/antigen/v1/global-registration/ethnic-background-mixed')
+    res.redirect('/lite-registration/v1/ethnic-background-mixed')
   } else if (ethnicGroup == "White") {
-    res.redirect('/antigen/v1/global-registration/ethnic-background-white')
+    res.redirect('/lite-registration/v1/ethnic-background-white')
   } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('/antigen/v1/global-registration/ethnic-background-another')
+    res.redirect('/lite-registration/v1/ethnic-background-another')
   } else {
-    res.redirect('/antigen/v1/global-registration/currently-in-work')
+    res.redirect('/lite-registration/v1/currently-in-work')
   }
 
 })
+
+// Version 1 - Antigen Global Registration - Currently in work route
+
+router.post('/lite-registration/v1/action3/currently-in-work', function (req, res) {
+  let inWork = req.session.data['currently-in-work']
+  if (inWork == "No"){
+    res.redirect('/lite-registration/v1/do-you-have-symptoms')
+  } else {
+    res.redirect('/lite-registration/v1/industry')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - Do you have symptoms route
+
+router.post('/lite-registration/v1/action3/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes"){
+    res.redirect('/lite-registration/v1/when-did-symptoms-start')
+  } else {
+    res.redirect('/lite-registration/v1/email-address')
+  }
+
+})
+
 
 
 //Admin portal - Bulk SMS - Reason for appointment change route

@@ -204,9 +204,9 @@ router.post('/antibody/v4/action2/country', function (req, res) {
   let country = req.session.data['country']
 
   if (country == "Northern Ireland"){
-    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
+    res.redirect('/antibody/v4/refer-and-triage/comfortable-doing-test')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
+    res.redirect('/antibody/v4/refer-and-triage/comfortable-doing-test')
   }
 
 })
@@ -289,13 +289,13 @@ router.post('/antibody/v4/action/mobile-number', function (req, res) {
   let emailAddress = req.session.data['email']
 
   if (mobileNumber == "Yes"){
-    res.redirect('/antibody/v4/refer-and-triage/country')
+    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
   } 
   if (emailAddress == "No" && mobileNumber == "No") {
     res.redirect('/antibody/v4/refer-and-triage/not-eligible')
   }
   else {
-    res.redirect('/antibody/v4/refer-and-triage/country')
+    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
   }
 })
 
@@ -315,9 +315,9 @@ router.post('/antibody/v4/action/ethnic-group', function (req, res) {
 router.post('/antibody/v4/action/working', function (req, res) {
   let inWork = req.session.data['currently-in-work']
   if (inWork == "No"){
-    res.redirect('/antibody/v4/refer-and-triage/occupation')
+    res.redirect('/antibody/v4/refer-and-triage/have-you-had-symptoms')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/occupation')
+    res.redirect('/antibody/v4/refer-and-triage/industry')
   }
 })
 
@@ -424,7 +424,7 @@ router.post('/antibody/v4/action2/ethnic-group', function (req, res) {
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/antibody/v4/refer-and-triage/ethnic-background-another')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/industry')
+    res.redirect('/antibody/v4/refer-and-triage/working')
   }
 })
 
