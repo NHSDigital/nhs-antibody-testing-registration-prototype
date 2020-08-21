@@ -1,0 +1,53 @@
+{% set version = "v4" %}
+{% set pageTitle = "Which is your care home?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/social-role">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/antibody/{{version}}/refer-and-triage/have-you-had-symptoms" method="post">
+
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            {{ pageTitle }}
+          </h1>
+        </legend>
+
+        <span id="nhs-number-hint" class="govuk-hint">
+            Enter the name and postcode of the care home you work in.
+            <br><br>
+            If you work in more than one, tell us the main one. 
+        </span>
+          
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address-line-1">
+            Care home name<span class="govuk-visually-hidden">line 1 of 2</span>
+          </label>
+          <input class="govuk-input govuk-input--width-20" id="address-line-1" name="address-line-1" type="text" value="{{ data['care-home-name'] }}">
+        </div>
+      
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address-line-2">
+            Care home postcode<span class="govuk-visually-hidden">Building and street line 2 of 2</span>
+          </label>
+          <input class="govuk-input govuk-input--width-10" id="address-line-2" name="address-line-2" type="text" value="{{ data['care-home-postcode'] }}">
+        </div>
+
+      </fieldset>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
