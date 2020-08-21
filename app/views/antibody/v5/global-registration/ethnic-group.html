@@ -1,0 +1,94 @@
+{% set version = "v4" %}
+{% set pageTitle = "What is your ethnic group?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antibody/{{version}}/global-registration/gender">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antibody/{{version}}/action2/ethnic-group" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="ethnic-group-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="ethnic-group-hint" class="govuk-hint">
+              This will help us understand how coronavirus is affecting people of different ethnic backgrounds.
+            </span>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-group-1" name="ethnic-group" type="radio" value="Asian or Asian British" {{ checked("ethnic-group", "Asian or Asian British") }} aria-describedby="asian-british-hint">
+                <label class="govuk-label govuk-radios__label" for="ethnic-group-1">
+                  Asian or Asian British
+                </label>
+                <span id="asian-british-hint" class="govuk-hint govuk-radios__hint">
+                  Includes any Asian background, for example, Bangladeshi, Chinese, Indian, Pakistani or other East or South Asian
+                </span>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-group-2" name="ethnic-group" type="radio" value="Black, African, Black British or Caribbean" {{ checked("ethnic-group", "Black, African, Black British or Caribbean") }} aria-describedby="black-african-black-british-caribbean-hint">
+                <label class="govuk-label govuk-radios__label" for="ethnic-group-2">
+                  Black, African, Black British or Caribbean
+                </label>
+                <span id="black-african-black-british-caribbean-hint" class="govuk-hint govuk-radios__hint">
+                  Includes any Black background
+                </span>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-group-3" name="ethnic-group" type="radio" value="Mixed or multiple ethnic groups" {{ checked("ethnic-group", "Mixed or multiple ethnic groups") }} aria-describedby="mixed-hint">
+                <label class="govuk-label govuk-radios__label" for="ethnic-group-3">
+                  Mixed or multiple ethnic groups
+                </label>
+                <span id="mixed-hint" class="govuk-hint govuk-radios__hint">
+                  Includes any mixed background
+                </span>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-group-4" name="ethnic-group" type="radio" value="White" {{ checked("ethnic-group", "White") }} aria-describedby="white-hint">
+                <label class="govuk-label govuk-radios__label" for="ethnic-group-4">
+                  White
+                </label>
+                <span id="white-hint" class="govuk-hint govuk-radios__hint">
+                  Includes any White background
+                </span>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-group-5" name="ethnic-group" type="radio" value="Another ethnic group" {{ checked("ethnic-group", "Another ethnic group") }} aria-describedby="other-hint">
+                <label class="govuk-label govuk-radios__label" for="ethnic-group-5">
+                  Another ethnic group
+                </label>
+                <span id="other-hint" class="govuk-hint govuk-radios__hint">
+                  Includes any other ethnic group, for example, Arab
+                </span>
+              </div>
+  
+              <div class="govuk-radios__divider">or</div>
+  
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-group-6" name="ethnic-group" type="radio" value="Prefer not to say" {{ checked("ethnic-group", "Prefer not to say") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-group-6">
+                  Prefer not to say
+                </label>
+              </div>
+              
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

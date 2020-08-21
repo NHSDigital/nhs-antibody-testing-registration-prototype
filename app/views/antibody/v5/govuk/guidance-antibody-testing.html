@@ -1,0 +1,509 @@
+{% set version = "v4" %}
+
+{% set serviceName %}
+{% endset%}
+
+{% set pageTitle = "Your coronavirus (COVID-19) antibody test result" %}
+
+{% extends "includes/layout.html" %}
+{% block beforeContent %}
+
+<style>
+    .show-global-bar #global-header-bar {
+        display:none
+    }
+
+    .global-bar {
+        font-family: "nta", Arial, sans-serif;
+        font-weight: 400;
+        text-transform: none;
+        font-size: 16px;
+        line-height: 1.25;
+        background-color: #0b0c0c;
+        border-top: 10px solid #fff500;
+        border-bottom: 1px solid #ffffff;
+        display:none
+    }
+
+    @media (min-width: 641px) {
+        .global-bar {
+            font-size: 19px;
+            line-height:1.3157894737
+        }
+    }
+
+    .show-global-bar .global-bar {
+        display:block
+    }
+
+    .global-bar .govuk-link, .global-bar .govuk-link:link {
+        color:#ffffff
+    }
+
+    .global-bar .govuk-link:visited, .global-bar .govuk-link:link:visited {
+        color:#ffffff
+    }
+
+    .global-bar .govuk-link:focus, .global-bar .govuk-link:link:focus {
+        color:#0b0c0c
+    }
+
+    .global-bar-message {
+        margin-bottom: 0;
+        margin-top: 0;
+        padding:20px 0
+    }
+
+    .global-bar-title {
+        font-weight: 700;
+        margin-right: 10px;
+        margin-bottom:5px
+    }
+
+    .global-bar-title:only-child {
+        margin:0
+    }
+
+    .global-bar-title, .global-bar-text {
+        color:#ffffff
+    }
+
+    .global-bar-title + .global-bar-covid-wrapper, .global-bar-text + .global-bar-covid-wrapper {
+        margin-top:10px
+    }
+
+    .global-bar-title__nowrap {
+        white-space:nowrap
+    }
+
+    .global-bar-dismiss-wrapper {
+        margin-top:20px
+    }
+
+    .global-bar__dismiss {
+        display:none
+    }
+
+    .global-bar__dismiss--show {
+        display:inline-block
+    }
+</style>
+<div class="global-bar dont-print" data-global-bar-permanent="true" data-module="global-bar" data-nosnippet="" id="global-bar">
+    <div class="global-bar-message govuk-width-container">
+
+
+        <div class="global-bar-covid-wrapper">
+            <div class="gem-c-action-link gem-c-action-link--light-text gem-c-action-link--with-subtext govuk-!-margin-bottom-0">
+
+      <span class="gem-c-action-link__contents-wrapper">      <span class="gem-c-action-link__link-wrapper">
+
+          <a class="govuk-link gem-c-action-link__link js-call-to-action" href="/coronavirus">
+                      Coronavirus (COVID-19)
+
+
+</a>      </span>
+
+        <span class="gem-c-action-link__subtext-wrapper">
+            <span class="gem-c-action-link__subtext">Guidance and support</span>
+        </span>
+</span>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="govuk-breadcrumbs ">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="#">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/antibody/{{ version }}/govuk">Coronavirus (COVID-19)</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/antibody/{{ version }}/govuk/testing-for-coronavirus">Testing for coronavirus (COVID-19)</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/antibody/{{ version }}/govuk/guidance-antibody-testing">Coronavirus (COVID-19): antibody testing</a>
+        </li>
+    </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .gem-c-inverse-header {
+        width: 100%;
+        background-color: #1d70b8;
+        color: #ffffff;
+        margin-bottom: 30px;
+        padding: 15px 30px 30px;
+        box-sizing: border-box;
+    }
+
+    .gem-c-title--inverse {
+        color: #ffffff;
+    }
+    .gem-c-title--inverse .gem-c-title__context {
+        color: inherit;
+    }
+
+    .gem-c-title__text, .gem-c-title--inverse .gem-c-title__context {
+        color: inherit;
+    }
+
+    .gem-c-title__text {
+        color: #ffffff;
+        font-family: "GDS Transport", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 1.09375;
+        display: block;
+        margin-top: 0;
+        margin-bottom: 30px;
+        font-size: 48px;
+        line-height: 1.0416666667;
+    }
+
+    .publication-header__last-changed {
+        font-family: "nta", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.25;
+        margin-top: 15px;
+        font-size: 19px;
+        line-height: 1.3157894737;
+        color: #ffffff;
+        margin: 0;
+    }
+
+    .publication-external {
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .organisation-logos {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        list-style-type: none;
+        margin-top: 10px;
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .organisation-logos__logo {
+        padding-bottom: 15px;
+        flex-basis: 25%;
+        min-width: 130px;
+    }
+
+    .organisation-logo__inner {
+        max-width: 215px;
+        padding-right: 15px;
+    }
+
+    .gem-c-organisation-logo {
+        font-size: 13px;
+        line-height: 1.1538461538;
+        font-weight: 400;
+    }
+
+    @media (min-width: 40.0625em) {
+        .gem-c-organisation-logo {
+            font-size: 18px;
+            line-height: 20px;
+            font-weight: 400;
+        }
+    }
+
+    .gem-c-organisation-logo__link {
+        font-family: "nta", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+    }
+
+    .gem-c-organisation-logo__crest {
+        border-left: 2px solid #0b0c0c;
+        padding-top: 20px;
+        padding-left: 6px;
+    }
+
+    @media (min-width: 40.0625em) {
+        .gem-c-organisation-logo__crest {
+            padding-top: 25px;
+            padding-left: 7px;
+        }
+    }
+
+    .gem-c-organisation-logo__container {
+        text-transform: none;
+        text-decoration: none;
+        display: block;
+        color: #0b0c0c;
+        height: auto;
+        width: auto;
+        direction: ltr;
+    }
+
+    .gem-c-organisation-logo__crest--single-identity {
+        background: url(/public/images/org_crest_13px.png) no-repeat 5px 0;
+        background-size: auto 20px;
+    }
+
+    @media (min-width: 40.0625em) {
+        .gem-c-organisation-logo__crest--single-identity {
+            background: url(/public/images/org_crest_18px.png) no-repeat 6px 0;
+            background-size: auto 26px;
+        }
+    }
+
+    .gem-c-organisation-logo__link:link, .gem-c-organisation-logo__link:visited {
+        color: #0b0c0c;
+    }
+
+    .brand--department-of-health .brand__border-color {
+        border-color: #00ad93;
+    }
+
+    .gem-c-organisation-logo__name {
+        position: relative;
+        top: 3px;
+        font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+    }
+
+
+</style>
+
+
+<div class="publication-external">
+    <ol class="organisation-logos">
+        <li class="organisation-logos__logo">
+            <div class="organisation-logo__inner">
+                <div class="gem-c-organisation-logo brand--department-of-health">
+                    <a class="gem-c-organisation-logo__container gem-c-organisation-logo__link gem-c-organisation-logo__crest gem-c-organisation-logo__crest--single-identity brand__border-color" href="/government/organisations/department-of-health-and-social-care">
+                        <span class="gem-c-organisation-logo__name">Department<br>of Health &amp;<br>Social Care</span>
+                    </a>
+                </div>
+
+            </div>
+        </li>
+    </ol>
+</div>
+
+<header class="gem-c-inverse-header  gem-c-inverse-header--padding-top ">
+
+    <div class="gem-c-title gem-c-title--inverse govuk-!-margin-top-8 govuk-!-margin-bottom-0">
+    <span class="govuk-caption-xl gem-c-title__context">
+      Guidance
+    </span>
+        <h1 class="gem-c-title__text ">
+            Coronavirus (COVID-19): antibody testing
+        </h1>
+    </div>
+    <p class="publication-header__last-changed">Published 31 August 2020</p>
+
+</header>
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-one-quarter">
+
+        <!-- The Related items component is not part of GOV.UK Frontend but will be styled if used in the Prototype Kit -->
+
+        <aside class="app-related-items" role="complementary">
+            <h2 class="govuk-heading-s" id="subsection-title">
+                Contents
+            </h2>
+            <nav role="navigation" aria-labelledby="subsection-title">
+                <ul class="govuk-list govuk-!-font-size-16">
+                    <li>
+                        <a class="govuk-link" href="#about">
+                            About antibody testing
+                        </a>
+                    </li>
+                    <li>
+                        <a class="govuk-link" href="#eligible">
+                            Check you’re eligible for a test
+                        </a>
+                    </li>
+                    <li>
+                        <a class="govuk-link" href="#signup">
+                            Sign up for an antibody test
+                        </a>
+                    </li>
+                    <li>
+                        <a class="govuk-link" href="#whatmeans">
+                            What your antibody test result means
+                        </a>
+                    </li>
+                    <li>
+                        <a class="govuk-link" href="#protect">
+                            Protect yourself and other from the virus
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+    <div class="govuk-grid-column-three-quarters">
+
+    <p class = "govuk-body">Guidance on coronavirus (COVID-19) antibody testing including who can get an antibody test, antibody test results and what you must do when you get your results. </p>
+
+    <h2 class="govuk-heading-l" id="about">Antibody testing</h2>
+
+        <p class="govuk-body">Antibody tests are used to detect antibodies to the COVID-19 virus to see if it’s likely that you have had the virus before.</p>
+
+        <p class="govuk-body">The test works by taking a blood sample and testing for the presence of antibodies to see if you have developed an immune response to the virus.
+        </p>
+
+        <p class="govuk-body"><a href="#">Antibody tests differ to virus swab tests</a>, which test to see if you currently have the virus.</p>
+
+        <div class="govuk-inset-text" role="note" aria-label="Information">
+            <p>There is no strong evidence yet to suggest that those who have had the virus develop long-lasting immunity which would prevent them from getting the virus again.</p>
+        </div>
+
+        <h3 class="govuk-heading-m">Why antibody tests are needed</h3>
+
+        <p class="govuk-body">The value of antibody tests is currently limited to:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>answering the question of whether someone has had the virus before</li>
+            <li>providing data and a greater understanding on the spread of the virus</li>
+        </ul>
+
+        <h3 class="govuk-heading-m">What an antibody test cannot tell you</h3>
+
+        <p class="govuk-body">An antibody test cannot tell you:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>if you're immune to coronavirus</li>
+            <li>if you can or cannot spread the virus to other people</li>
+            <li>if you have the virus at the time you take the test (a "current infection")</li>
+        </ul>
+
+        <p class="govuk-body">There is a different test to <a href="#">check if you have coronavirus now.</a></p>
+
+        <div class="govuk-inset-text" role="note" aria-label="Information">
+            <p>Whatever your antibody test result, you must continue to follow the same guidelines as everyone else to
+                <a href="#protect">protect yourself and others from the virus.</a></p>
+        </div>
+
+
+
+        <h2 class="govuk-heading-l" id="eligible">Check you're eligible for an antibody test</h2>
+
+        <p class="govuk-body">This is the start of the UK’s antibody testing programme, stocks are limited and tests need to be prioritised.</p>
+
+        <p class="govuk-body">There are different rules for different parts of the UK.</p>
+
+        <p class="govuk-body">In England, you can get an antibody test if:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>you're 18 or over</li>
+            <li>you work in social care</li>
+            <li>you cannot get to an NHS test site to take the test</li>
+        </ul>
+
+        <p class="govuk-body">In Scotland, you can get an antibody test if:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>you're 18 or over</li>
+            <li>you're working in primary care (includes eye doctors), a pharmacist, or a carer (in care homes or domiciliary care)</li>
+        </ul>
+
+        <div class="govuk-inset-text" role="note" aria-label="Information">
+            <p>Clinicians will always be able to request the tests for patients in both hospital and social care settings if they think it's appropriate.</p>
+        </div>
+
+        <h2 class="govuk-heading-l" id="signup">Sign up for an antibody test</h2>
+
+        <p class="govuk-body">Tests are prioritised and even if you’re eligible you will not get a test immediately.</p>
+
+        <p class="govuk-body">It can take several weeks to be invited to order a test and another 5 days for the test kit to be delivered to your address.</p>
+
+        <p class="govuk-body"><a href="/antibody/{{ version }}/refer-and-triage">Find out more about the actual test and sign up for one </a></p>
+
+        <h2 class="govuk-heading-l" id="whatmeans">What your antibody test result means</h2>
+
+        <p class="govuk-body">If you've had a coronavirus antibody test there are 3 types of result you can get:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>positive</li>
+            <li>negative</li>
+            <li>void</li>
+        </ul>
+
+        <p class="govuk-body">You should get your result within 3 to 7 days of taking the test (usually by text message). If you do not get your result, call the coronavirus testing call centre (details in the emails and text the service sends you).</p>
+
+        <h3 class="govuk-heading-m">Positive antibody test result</h3>
+
+        <p class="govuk-body">A positive result means the test did detect COVID-19 coronavirus antibodies so it is likely you’ve had coronavirus before. It is not possible to say when.</p>
+
+        <p class="govuk-body">It does not mean you are guaranteed to be immune (protected) from further infection. You might get the virus again or spread it.</p>
+
+        <h3 class="govuk-heading-m">Negative antibody test result</h3>
+
+        <p class="govuk-body">A negative result means the test did not detect COVID-19 coronavirus antibodies so it is unlikely you’ve had the coronavirus before.</p>
+
+        <h3 class="govuk-heading-m">Void antibody test result</h3>
+
+        <p class="govuk-body">A void result means the test did not work.</p>
+
+        <p class="govuk-body">There are many reasons for this and it's not possible to tell you the exact one. For example, it could be a problem with the test kit, how the test was carried out (like the blood sample collected was too small) or there was a delay between taking the sample and the lab checking it.</p>
+
+        <p class="govuk-body">A void result is still important for research purposes.</p>
+
+        <h3 class="govuk-heading-m">If you think your result is wrong</h3>
+
+        <p class="govuk-body">The test is accurate but no at-home test is 100% reliable all of the time.  </p>
+
+        <p class="govuk-body">COVID-19 is new and more research needs to be done to understand how our bodies respond to it. For example, if antibodies are always produced and how long they last. </p>
+
+        <p class="govuk-body">If you know you’ve had the virus before, it’s still possible to get a negative antibody result. This can happen for some people because they do not develop antibodies, or their level of antibodies is too low for the test to detect. </p>
+
+        <p class="govuk-body">If you think you’ve not had the virus, it’s still possible to get a positive antibody result. This can happen for some people because they did not have symptoms or only had very mild ones. </p>
+
+        <p class="govuk-body">If you have any concerns about your test result, get advice from a health professional.</p>
+
+        <p class="govuk-body"><a href="https://www.nhs.uk/oneyou/every-mind-matters/">Support if you feel anxious or worried about your result</a><br>
+            <a href="https://www.mind.org.uk/information-support/coronavirus/coronavirus-and-your-wellbeing/#collapse058da">Coronavirus and your well-being</a> </p>
+
+
+        <h2 class="govuk-heading-l" id="protect">Protect yourself and others from the virus</h2>
+    <p class = "govuk-body">Regardless of your test result you must continue to follow the same guidelines as everyone else to protect yourself and others from the virus. For example:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>wash your hands often</li>
+        <li>follow social distancing and face covering advice </li>
+        <li>follow any local lockdown restrictions in your area</li>
+        <li>self-isolate and get tested if you (or someone you live with) get symptoms, or you are advised to by NHS Test and Trace</li>
+    </ul>
+    <p class = "govuk-body"><a href="/antibody/{{ version }}/govuk">Get the latest advice - how to protect yourself and others from the virus</a></p>
+
+        
+            <!--        <h3 class="govuk-heading-m govuk-!-margin-top-9">Downloadable documents</h3>-->
+
+<!--        <ul class="govuk-list govuk-list&#45;&#45;bullet">-->
+<!--            <li><span id="attachment_4366190" class="attachment-inline"><a href="#" class="govuk-link">Printed instructions: Taking an antibody blood sample </a> (<span class="type"><abbr title="Portable Document Format">PDF</abbr></span>, <span class="file-size">3.55MB</span>, <span class="page-length">19 pages</span>)</span></li>-->
+<!--        </ul>-->
+
+
+    </div>
+
+
+
+</div>
+
+{% endblock %}
