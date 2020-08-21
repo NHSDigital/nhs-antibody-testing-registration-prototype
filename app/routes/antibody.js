@@ -273,31 +273,29 @@ router.post('/antibody/v4/action/have-you-had-symptoms', function (req, res) {
 
 })
 
-// Version 4 - Teacher registration - Email address
-router.post('/antibody/v4/action/email-address', function (req, res) {
-  let emailAddress = req.session.data['email']
-  if (emailAddress == "Yes"){
-    res.redirect('/antibody/v4/refer-and-triage/mobile-number')
-  } else {
-    res.redirect('/antibody/v4/refer-and-triage/mobile-number')
-  }
-})
-
 // Version 4 - Teacher registration - Mobile phone
 router.post('/antibody/v4/action/mobile-number', function (req, res) {
   let mobileNumber = req.session.data['mobile-number']
   let emailAddress = req.session.data['email']
 
-  if (mobileNumber == "Yes"){
-    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
-  } 
-  if (emailAddress == "No" && mobileNumber == "No") {
+  if (mobileNumber == "Yes") {
+    res.redirect('/antibody/v4/refer-and-triage/email-address')
+  } else {
     res.redirect('/antibody/v4/refer-and-triage/not-eligible')
   }
-  else {
+})
+
+// Version 4 - Teacher registration - Email address
+router.post('/antibody/v4/action/email-address', function (req, res) {
+  let emailAddress = req.session.data['email']
+  if (emailAddress == "Yes"){
+    res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
+  } else {
     res.redirect('/antibody/v4/refer-and-triage/postcode-ni')
   }
 })
+
+
 
 // Version 4 - Teacher registration - Ethnic group route
 router.post('/antibody/v4/action/ethnic-group', function (req, res) {
@@ -404,7 +402,7 @@ router.post('/antibody/v4/action2/do-you-have-symptoms', function (req, res) {
   if (doYouHaveSymptoms == "Yes"){
     res.redirect('/antibody/v4/global-registration/get-antigen-test')
   } else {
-    res.redirect('/antibody/v4/global-registration/landline-number')
+    res.redirect('/antibody/v4/global-registration/nhs-number-known')
   }
 
 })
@@ -414,18 +412,31 @@ router.post('/antibody/v4/action2/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/antibody/v4/refer-and-triage/ethnic-background-asian')
+    res.redirect('/antibody/v4/global-registration/ethnic-background-asian')
   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-    res.redirect('/antibody/v4/refer-and-triage/ethnic-background-black')
+    res.redirect('/antibody/v4/global-registration/ethnic-background-black')
   } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-    res.redirect('/antibody/v4/refer-and-triage/ethnic-background-mixed')
+    res.redirect('/antibody/v4/global-registration/ethnic-background-mixed')
   } else if (ethnicGroup == "White") {
-    res.redirect('/antibody/v4/refer-and-triage/ethnic-background-white')
+    res.redirect('/antibody/v4/global-registration/ethnic-background-white')
   } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('/antibody/v4/refer-and-triage/ethnic-background-another')
+    res.redirect('/antibody/v4/global-registration/ethnic-background-another')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/working')
+    res.redirect('/antibody/v4/global-registration/working')
   }
+})
+
+
+// Version 4 - Registration - NHS number route
+router.post('/antibody/v4/action2/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/antibody/v4/global-registration/nhs-number')
+  } else {
+    res.redirect('/antibody/v4/global-registration/check-your-answers')
+  }
+
 })
 
 
