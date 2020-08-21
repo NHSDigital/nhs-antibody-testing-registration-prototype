@@ -806,4 +806,21 @@ router.post('/lite-registration/v1/action3/do-you-have-symptoms', function (req,
 
 
 
+//Admin portal - Bulk SMS - Reason for appointment change route
+// router.post('/admin-portal/bulk-sms/reason-for-change', function (req, res) {
+//   let reasonForTest = req.session.data['reasonForTest']
+
+//   if (reasonForTest == "reason-1"){
+//     res.redirect('/admin-portal/bulk-sms/new-postcode')
+//   } else if (reasonForTest == "reason-2") {
+//     res.redirect('/admin-portal/bulk-sms/confirm-message-cancelled')
+//   } else if (reasonForTest == "reason-3") {
+//     res.redirect('/admin-portal/bulk-sms/new-operating-hours')
+//   } else {
+//     res.redirect('/admin-portal/bulk-sms/new-postcode')
+//   }
+
+// })
+
+
 module.exports = router
