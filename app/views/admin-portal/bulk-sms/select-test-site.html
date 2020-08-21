@@ -1,21 +1,26 @@
 {% set version = "v1" %}
 {% set pageTitle = "Select the test site" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-admin-portal.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-    </p>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
   </div>
 
-  <a class="govuk-back-link" href="/admin-portal/bulk-sms/enter-postcode">Back</a>
+  <!-- <a class="govuk-back-link" href="/admin-portal/bulk-sms/enter-postcode">Back</a> -->
 {% endblock %}
 
 {% block content %}

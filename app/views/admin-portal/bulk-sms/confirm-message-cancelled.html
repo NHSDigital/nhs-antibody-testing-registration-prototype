@@ -4,18 +4,23 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-<div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-    </p>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
   </div>
   
-  <a class="govuk-back-link" href="/admin-portal/bulk-sms/check-your-answers">Back</a>
+  <!-- <a class="govuk-back-link" href="/admin-portal/bulk-sms/reason-for-change">Back</a> -->
 {% endblock %}
 
 {% block content %}
@@ -25,7 +30,7 @@
 
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
 
-        <p class="govuk-body">You’re about to send approximately 500 people this message. Check the information and <a href="/admin-portal/bulk-sms/check-your-answers">change any incorrect details here.</a></p>
+        <p class="govuk-body">You’re about to send approximately 500 people this message. Check the information and <a href="/admin-portal/bulk-sms/reason-for-change">change any incorrect details here.</a></p>
 
         <p id="how-will-you-get-test-hint" class="govuk-body govuk-!-font-weight-bold">
             Message 
@@ -51,7 +56,7 @@
           </fieldset>
         </div>
 
-      <form action="#" method="post" class="govuk-!-margin-top-6">
+      <form action="/admin-portal/bulk-sms/confirmation-cancelled" method="post" class="govuk-!-margin-top-6">
 
         <button class="govuk-button" data-module="govuk-button">Request text message</button>
 
