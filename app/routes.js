@@ -7,6 +7,15 @@ const router = express.Router()
 router.use('/', require('./routes/org-register.js'))
 router.use('/', require('./routes/antibody.js'))
 
+// Pull scope into the homepage to show/hide sections
+// 'SCOPE' is either pulled in from the Heroku App settings or settin in a local .env file
+router.get('/', function (req, res) {
+  var scope = process.env.SCOPE
+  return res.render('index', {
+    'scope': scope
+  });
+})
+
 // Version 1 - Is your delivery address the same as your home address?
 router.post('/antibody/v1/action/home-address-question', function (req, res) {
   var deliveryAddressAnswer = req.session.data['delivery-address-same']
