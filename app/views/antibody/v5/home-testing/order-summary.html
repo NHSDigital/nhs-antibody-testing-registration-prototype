@@ -1,4 +1,4 @@
-{% set version = "v4" %}
+{% set version = "v5" %}
 {% set pageTitle = "Order summary" %}
 
 {% extends "includes/layout.html" %}
@@ -123,7 +123,6 @@
 
 <script type="text/javascript">
   submitSpinner()
-  submitSpinner2()
 
   function buttonClicked(target) {
     target.setAttribute('disabled', 'disabled')
@@ -133,40 +132,8 @@
 
     setTimeout(function () {
       // proceed
-      // document.getElementById('button-hidden').click()
-      // fail and can click again
-      // target.removeAttribute('disabled', 'disabled')
-      // document.getElementById('button').style.display = 'none'
-      // document.getElementById('button-hidden').style.display = 'block'
-      document.getElementById('spinner').style.display = 'none'
-      document.getElementById('tryagain').style.display = 'block'
-      document.getElementById("tryagain").focus();
-    }, 3000)
-
-    setTimeout(function () {
-      // proceed
-      // document.getElementById('button-hidden').click()
-      // fail and can click again
-      target.removeAttribute('disabled', 'disabled')
-      document.getElementById('button').style.display = 'none'
-      document.getElementById('button-hidden').style.display = 'block'
-      // document.getElementById('spinner').style.display = 'none'
-      // document.getElementById('tryagain').style.display = 'block'
-      // document.getElementById("button-hidden").focus();
-    }, 6000)
-  }
-
-  function buttonClicked2(target) {
-    target.setAttribute('disabled', 'disabled')
-    // target.className += ' govik-button--save'
-    document.getElementById('spinner').style.display = 'block'
-    document.getElementById('tryagain').style.display = 'none'
-    document.getElementById("spinner").focus();
-
-    setTimeout(function () {
-      // proceed
       document.getElementById('button-hidden-2').click()
-    }, 3000)
+    }, 2000)
   }
 
   function submitSpinner() {
@@ -182,18 +149,6 @@
     })
   }
 
-  function submitSpinner2() {
-    var selects = document.getElementById('button-hidden')
-    selects.addEventListener('click', function (event) {
-      event.preventDefault()
-      if (selects.getAttribute('disabled') === 'disabled') {
-        // console.log('already clicked')
-      } else {
-        event.preventDefault()
-        buttonClicked2(selects)
-      }
-    })
-  }
 </script>
 
 {% endblock %}

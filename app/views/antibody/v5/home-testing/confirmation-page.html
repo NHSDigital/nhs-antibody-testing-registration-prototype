@@ -1,4 +1,4 @@
-{% set version = "v4" %}
+{% set version = "v5" %}
 {% set pageTitle = "Order received" %}
 
 {% extends "includes/layout.html" %}
@@ -22,7 +22,7 @@
       <p class="govuk-body">Everything you need to take the test is in the kit. </p>
       <p class="govuk-body">To get your results, send your blood sample for analysis using the pre-paid return packaging.</p>
 
-      <p class="govuk-body"><a href="/antibody/{{ version }}/govuk/taking-antibody-blood-sample">Watch a video on how to collect your blood sample.</a></p>
+      <p class="govuk-body"><a href="#">Watch a video on how to collect your blood sample.</a></p>
 
       <h2 class="govuk-heading-m">If your kit does not arrive</h2>
       <p class="govuk-body">Wait 7 working days and contact us to organise a replacement.</p>
@@ -38,10 +38,17 @@
 
 {% block bodyEnd %}
 <div class="proto-action">
+  {% if data['email-address'] !== "" %}
+  <a href="/antibody/{{version}}/email/order-confirmed">
+    <div class="proto-action-icon"></div>
+    <div class="proto-action-text">Check Email</div>
+  </a>
+  {% else %}
   <a href="/antibody/{{version}}/sms/order-confirmed">
     <div class="proto-action-icon"></div>
     <div class="proto-action-text">Check SMS</div>
   </a>
+  {% endif %}
 </div>
 
 
