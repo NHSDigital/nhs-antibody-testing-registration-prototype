@@ -1,10 +1,10 @@
 {% set version = "v6" %}
-{% set pageTitle = "Do you work in close contact with people who need care?" %}
+{% set pageTitle = "Do you have a mobile phone or tablet device which can take photos?" %}
 
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/social-role">Back</a>
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/household">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -12,26 +12,28 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/antibody/{{version}}/action/social-contact" method="post">
+      <form action="/antibody/{{version}}/refer-and-triage/check-your-answers" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="social-care-hint">
+          <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-fieldset__heading">
                 {{ pageTitle }}
               </h1>
             </legend>
-
+            <span id="delivery-address-hint" class="govuk-hint">
+              Hint text if needed (tbc)
+            </span>
             <div class="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="social-contact-1" name="social-contact" type="radio" value="Yes" {{ checked("social-contact", "Yes") }}>
-                <label class="govuk-label govuk-radios__label" for="social-contact-1">
+                <input class="govuk-radios__input" id="device-1" name="device" type="radio" value="Yes" {{ checked("device", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="household-1">
                   Yes
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="social-contact-2" name="social-contact" type="radio" value="No" {{ checked("social-contact", "No") }}>
-                <label class="govuk-label govuk-radios__label" for="social-contact-2">
+                <input class="govuk-radios__input" id="device-2" name="device" type="radio" value="No" {{ checked("device", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="household-2">
                   No
                 </label>
               </div>
