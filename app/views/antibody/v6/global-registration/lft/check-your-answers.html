@@ -1,0 +1,268 @@
+{% set version = "v6" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antibody/{{version}}/global-registration/nhs-number-known">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name'] }} {{ data['last-name'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/name?return=true">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['email-address'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/email-address">
+              Change
+              <span class="govuk-visually-hidden">email address</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Mobile number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mobile-phone-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/mobile-number">
+              Change
+              <span class="govuk-visually-hidden">mobile number</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/date-of-birth">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Do you have symptoms
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['do-you-have-symptoms-2'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/do-you-have-symptoms">
+              Change
+              <span class="govuk-visually-hidden">do you have symptoms</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Gender
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['gender'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/gender">
+              Change
+              <span class="govuk-visually-hidden">gender</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnic group
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ethnic-group'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/ethnic-group">
+              Change
+              <span class="govuk-visually-hidden">ethnic group</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnic background
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ethnic-background'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/ethnic-background">
+              Change
+              <span class="govuk-visually-hidden">ethnic background</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Landline number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['landline-telephone-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/landline-number">
+              Change
+              <span class="govuk-visually-hidden">landline number</span>
+            </a>
+          </dd>
+        </div>
+<!--        <div class="govuk-summary-list__row">-->
+<!--          <dt class="govuk-summary-list__key">-->
+<!--            Address-->
+<!--          </dt>-->
+<!--          <dd class="govuk-summary-list__value">-->
+<!--            {{ data['postcode'] }}-->
+<!--          </dd>-->
+<!--          <dd class="govuk-summary-list__actions">-->
+<!--            <a href="/antibody/{{version}}/global-registration/postcode">-->
+<!--              Change-->
+<!--              <span class="govuk-visually-hidden">Address</span>-->
+<!--            </a>-->
+<!--          </dd>-->
+<!--        </div>-->
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            NHS number known
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['nhs-number-known'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/nhs-number-known">
+              Change
+              <span class="govuk-visually-hidden">NHS number known</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['nhs-number-known'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            NHS number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['nhs-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/nhs-number-known">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+      </dl>
+
+
+<!--    {% if data['country'] == "Scotland" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            CHI number known
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['chi-number-known'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/chi-number-known">
+              Change
+              <span class="govuk-visually-hidden">CHI number known</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            CHI number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['chi-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/global-registration/chi-number">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+      {% endif %} -->
+
+<!--       {% if data['country'] == "Northern Ireland" %} -->
+<!--         <div class="govuk-summary-list__row"> -->
+<!--           <dt class="govuk-summary-list__key"> -->
+<!--             H&C number known -->
+<!--           </dt> -->
+<!--           <dd class="govuk-summary-list__value"> -->
+<!--             {{ data['h&C-number-known'] }} -->
+<!--           </dd> -->
+<!--           <dd class="govuk-summary-list__actions"> -->
+<!--             <a href="/antibody/{{version}}/global-registration/h&c-number-known"> -->
+<!--               Change -->
+<!--               <span class="govuk-visually-hidden">H&C number known</span> -->
+<!--             </a> -->
+<!--           </dd> -->
+<!--         </div> -->
+<!--         <div class="govuk-summary-list__row"> -->
+<!--           <dt class="govuk-summary-list__key"> -->
+<!--             H&C number -->
+<!--           </dt> -->
+<!--           <dd class="govuk-summary-list__value"> -->
+<!--             {{ data['h&c-number'] }} -->
+<!--           </dd> -->
+<!--           <dd class="govuk-summary-list__actions"> -->
+<!--             <a href="/antibody/{{version}}/global-registration/h&c-number"> -->
+<!--               Change -->
+<!--               <span class="govuk-visually-hidden">H&C number</span> -->
+<!--             </a> -->
+<!--           </dd> -->
+<!--         </div> -->
+<!--   </dl> -->
+<!-- {% endif %} -->
+
+      <form action="/antibody/{{version}}/global-registration/confirm-person" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
