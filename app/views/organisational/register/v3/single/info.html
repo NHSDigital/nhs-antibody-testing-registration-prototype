@@ -1,5 +1,6 @@
-{% set pageHeading = "Who are you registering?" %}
+{% set pageHeading = "You need to register each group that took their test" %}
 {% set version = "organisational/register/v3" %}
+{% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -31,28 +32,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/{{version}}/bulk/upload" method="get">
-        {{ govukRadios({
-            idPrefix: "cuStaff",
-            name: "cuStaff",
-            fieldset: {
-              legend: {
-                text: pageHeading,
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--xl"
-              }
-            },
-            items: [
-              {
-                value: "Staff",
-                text: "Staff"
-              },
-              {
-                value: "Non-staff",
-                text: "Non-staff (for example residents or patients)"
-              }
-            ]
-          }) }}
+      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+      <p>To register a group of people's swabs being returned in one testkit, you need to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+
+        <li>
+          Know the barcode for the group
+        </li>
+        <li>
+          Have the details of each person being registered
+        </li>
+        <li>
+          Have agreement from the whole group if the results will go to the same single email. For example, a carehome manager's email
+        </li>
+      </ul>
+
+
+      <form class="" action="/{{ version }}/single/staff" method="get">
+
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>

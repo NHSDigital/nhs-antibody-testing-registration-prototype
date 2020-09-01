@@ -103,13 +103,23 @@ router.post('/organisational/register/v2/single/ethnic-group', function (req, re
 
 // v3 routes
 
+router.post('/organisational/register/v3/type', function (req, res) {
+  let answer = req.body.cuTestType;
+
+  if (answer == 'single') {
+    res.redirect('/organisational/register/v2/how')
+    } else {
+    res.redirect('/organisational/register/v3/how')
+    }
+});
+
 router.post('/organisational/register/v3/how', function (req, res) {
   let answer = req.body.cuUploadType;
 
   if (answer == 'bulk') {
-    res.redirect('/organisational/register/v3/bulk/staff')
+    res.redirect('/organisational/register/v3/bulk/info')
     } else if (answer == 'single') {
-      res.redirect('/organisational/register/v3/single/staff')
+      res.redirect('/organisational/register/v3/single/info')
     } else {
     res.redirect('/organisational/register/v3/how?error=empty')
     }
@@ -121,7 +131,7 @@ router.post('/organisational/register/v3/single/knowNHSnumber', function (req, r
   if (answer == 'yes') {
     res.redirect('/organisational/register/v3/single/nhsnumber')
     } else {
-    res.redirect('/organisational/register/v3/single/have-coronavirus')
+    res.redirect('/organisational/register/v3/single/email')
     }
 });
 
@@ -131,7 +141,7 @@ router.post('/organisational/register/v3/single/have-coronavirus', function (req
   if (answer == 'Yes') {
     res.redirect('/organisational/register/v3/single/when-symptoms')
     } else {
-    res.redirect('/organisational/register/v3/single/testkit')
+    res.redirect('/organisational/register/v3/single/dob')
     }
 });
 
@@ -162,6 +172,22 @@ router.post('/organisational/register/v3/single/ethnic-group', function (req, re
     res.redirect('/organisational/register/v3/single/ethnic-group?error=empty')
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Antibody Care home routes
