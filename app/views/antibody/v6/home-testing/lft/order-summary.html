@@ -1,4 +1,4 @@
-{% set version = "v5" %}
+{% set version = "v6" %}
 {% set pageTitle = "Order summary" %}
 
 {% extends "includes/layout.html" %}
@@ -15,11 +15,24 @@
 
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
 
-<!--      <p>Coronavirus (COVID-19) antibody home fingerprick blood test. </p>-->
+  <!--  <p>Coronavirus (COVID-19) antibody home fingerprick blood test. </p>
 
-<!--      <p>Quantity: 1</p>-->
+    <p>Quantity: 1</p> -->
 
       <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test kit type
+          </dt>
+          <dd class="govuk-summary-list__value">
+            1 COVID-19 rapid antibody test
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <!-- <a class="govuk-link" href="/antibody/{{version}}/home-testing/delivery-address">
+              Change<span class="govuk-visually-hidden"> delivery address</span>
+            </a> -->
+          </dd>
+        </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Delivery address
@@ -28,7 +41,7 @@
             {{ data['delivery-address'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/antibody/{{version}}/home-testing/delivery-address">
+            <a class="govuk-link" href="/antibody/{{version}}/home-testing/lft/delivery-address">
               Change<span class="govuk-visually-hidden"> delivery address</span>
             </a>
           </dd>
@@ -41,7 +54,7 @@
             {% if data['delivery-address-same'] === 'Yes' %}{{ data['delivery-address'] }}{% else %}{{ data['home-address'] }}{% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/antibody/{{version}}/home-testing/home-address">
+            <a class="govuk-link" href="/antibody/{{version}}/home-testing/lft/home-address">
               Change<span class="govuk-visually-hidden"> home address</span>
             </a>
           </dd>
@@ -90,7 +103,7 @@
         </div>
       </details>
 
-      <form action="/antibody/{{version}}/home-testing/confirmation-page" method="post">
+      <form action="/antibody/{{version}}/home-testing/lft/confirmation-page" method="post">
 
 
 
