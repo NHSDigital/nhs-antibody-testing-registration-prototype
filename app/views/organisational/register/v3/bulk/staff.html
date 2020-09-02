@@ -1,6 +1,5 @@
-{% set pageHeading = "You need to register the groups that took their test" %}
+{% set pageHeading = "Who are you registering?" %}
 {% set version = "organisational/register/v3" %}
-{% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -32,26 +31,28 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
-
-      <p>To register the groups of people whose swabs are being returned in one test kit, you need to:</p>
-
-      <ul class="govuk-list govuk-list--bullet">
-
-        <li>
-          have a completed spreadsheet for the all people who were tested
-        </li>
-        <li>
-          tell us each group in your spreadsheet by adding a number in the group column
-        </li>
-        <li>
-          have agreement from any groups if the results will go to the same single email. For example, a group where the results go to the same carehome manager's email
-        </li>
-      </ul>
-
-
-      <form class="" action="/{{ version }}/bulk/staff" method="get">
-
+      <form class="" action="/{{version}}/bulk/upload" method="get">
+        {{ govukRadios({
+            idPrefix: "cuStaff",
+            name: "cuStaff",
+            fieldset: {
+              legend: {
+                text: pageHeading,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            items: [
+              {
+                value: "Staff",
+                text: "Staff"
+              },
+              {
+                value: "Non-staff",
+                text: "Non-staff (for example residents or patients)"
+              }
+            ]
+          }) }}
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
