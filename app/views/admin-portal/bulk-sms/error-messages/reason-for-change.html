@@ -1,0 +1,86 @@
+{% set version = "v1" %}
+{% set pageTitle = "How are appointments changing at this site?" %}
+
+{% extends "includes/layout-admin-portal.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+
+  <!-- <a class="govuk-back-link" href="/admin-portal/bulk-sms/check-and-confirm">Back</a> -->
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#test-site-1">Select an option</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form action="/admin-portal/bulk-sms/action1/reason-for-change" method="post">
+
+        <div class="govuk-form-group ">
+          <fieldset class="govuk-fieldset" aria-describedby="reason-for-test-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            
+            <div class="govuk-form-group govuk-form-group--error govuk-radios">
+              <span id="postcode-not-entered-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Select an option
+              </span>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-1" name="reason-for-change" type="radio" value="Its address has changed and people can either visit this location or book a new test (MTU only)" {{ checked("reason-for-change", "Its address has changed and people can either visit this location or book a new test (MTU only)") }} aria-describedby="test-site-location-changed">
+                <label class="govuk-label govuk-radios__label" for="reason-1">
+                  Its address has changed and people can either visit this location or book a new test (MTU only)
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-2" name="reason-for-change" type="radio" value="Its closed and people must book a new test" {{ checked("reason-for-change", "Its closed and people must book a new test") }} aria-describedby="test-site-closed">
+                <label class="govuk-label govuk-radios__label" for="reason-1">
+                  Its closed and people must book a new test
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-3" name="reason-for-change" type="radio" value="Its operating hours have changed and people can either visit within these hours or book a new test" {{ checked("reason-for-change", "Its operating hours have changed and people can either visit within these hours or book a new test") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-1" aria-describedby="Test site hours changed">
+                  Its operating hours have changed and people can either visit within these hours or book a new test
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
