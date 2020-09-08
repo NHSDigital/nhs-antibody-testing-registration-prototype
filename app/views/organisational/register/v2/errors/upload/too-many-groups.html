@@ -31,6 +31,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "File cannot have more than 5 people in a test group",
+              href: "#file-upload-1"
+            }
+          ]
+        }) }}
+
       <h1 class="govuk-heading-xl">
         {{ pageHeading }}
       </h1>
@@ -41,7 +51,6 @@
         <li><a href="#">download our record keeping spreadsheet</a> if you have not already</li>
         <li>do not add any extra sheets, rows or columns</li>
         <li>enter personal details for up to 50 people at a time</li>
-        <li>add each group whose swabs were combined in your spreadsheet by adding a number in the group column</li>
         <li>save the completed spreadsheet and then upload it</li>
       </ul>
 
@@ -54,6 +63,9 @@
             label: {
               text: "Upload a file",
               classes: ""
+            },
+            errorMessage: {
+              text: "File cannot have more than 5 people in a test group"
             }
           }) }}
 
