@@ -8,7 +8,7 @@ router.use('/', require('./routes/org-register.js'))
 router.use('/', require('./routes/antibody.js'))
 
 // Pull scope into the homepage to show/hide sections
-// 'SCOPE' is either pulled in from the Heroku App settings or settin in a local .env file
+// 'SCOPE' is either pulled in from the Heroku App settings or setting in a local .env file eg. SCOPE=antibody
 router.get('/', function (req, res) {
   var scope = process.env.SCOPE
   return res.render('index', {
@@ -94,18 +94,6 @@ router.post('/antibody/v2/action/do-you-have-symptoms', function (req, res) {
     res.redirect('/antibody/v2/refer-and-triage/antigen-test')
   } else {
     res.redirect('/antibody/v2/refer-and-triage/eligible')
-  }
-
-})
-
-// Version 4 - Social care worker - Do you have an immune condition > country route
-router.post('/antibody/v4/action/infection-serious', function (req, res) {
-  let immunnoCompromised = req.session.data['infection-serious']
-
-  if (immunnoCompromised == "Yes"){
-    res.redirect('/antibody/v4/refer-and-triage/immunocompromised')
-  } else {
-    res.redirect('/antibody/v4/refer-and-triage/country')
   }
 
 })

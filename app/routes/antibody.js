@@ -216,7 +216,7 @@ router.post('/antibody/v4/action/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
   if (doYouHaveSymptoms == "Yes"){
-    res.redirect('/antibody/v4/refer-and-triage/antigen-test')
+    res.redirect('/antibody/v4/refer-and-triage/not-eligible')
   } else {
     res.redirect('/antibody/v4/refer-and-triage/infection-serious')
   }
