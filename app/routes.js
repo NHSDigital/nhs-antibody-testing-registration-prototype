@@ -813,8 +813,6 @@ router.post('/lite-registration/v1/action3/do-you-have-symptoms', function (req,
 
 })
 
-
-
 //Admin portal - Bulk SMS - Reason for appointment change route
 router.post('/admin-portal/bulk-sms/action1/reason-for-change', function (req, res) {
   let reasonForTest = req.session.data['reason-for-change']
@@ -828,6 +826,117 @@ router.post('/admin-portal/bulk-sms/action1/reason-for-change', function (req, r
   } else {
     res.redirect('/admin-portal/bulk-sms/new-postcode')
   }
+})
+
+// Version 1 - Moonshot GOVUK - testing account route
+router.post('/moonshot/v1/action7/testing-account', function (req, res) {
+  let testingAccount = req.session.data['testing-account']
+
+  if (testingAccount == "No"){
+    res.redirect('/moonshot/v1/refer-and-triage/')
+  } else {
+    res.redirect('/moonshot/v1/user-account/login-email')
+  }
+
+})
+
+// Version 1 - Moonshot User account - Login email route
+router.post('/moonshot/v1/action7/login-email', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+
+  if (nhsNumberKnown){
+    res.redirect('/moonshot/v1/user-account/enter-password')
+  } else {
+    res.redirect('/moonshot/v1/user-account/create-password')
+  }
+
+})
+
+// Version 1 - Moonshot User account - Home page testing route
+router.post('/moonshot/v1/action7/home-page-get-tested', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+
+  if (nhsNumberKnown){
+    res.redirect('/moonshot/v1/refer-and-triage/reason-for-test')
+  } else {
+    res.redirect('/moonshot/v1/refer-and-triage/')
+  }
+
+})
+
+// Version 1 - Moonshot User account - Home page personal details route
+router.post('/moonshot/v1/action7/home-page-personal-details', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+
+  if (nhsNumberKnown){
+    res.redirect('/moonshot/v1/household-members/')
+  } else {
+    res.redirect('/moonshot/v1/household-members/')
+  }
+
+})
+
+// Version 1 - Moonshot User account - Home page personal details route
+router.post('/moonshot/v1/action7/home-page-household-members', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+
+  if (nhsNumberKnown){
+    res.redirect('/moonshot/v1/household-members/')
+  } else {
+    res.redirect('/moonshot/v1/household-members/')
+  }
+
+})
+
+// Version 1 - Moonshot Refer and triage - name route
+router.post('/moonshot/v1/action7/', function (req, res) {
+  let testingAccount = req.session.data['testing-account']
+
+  if (testingAccount == "No"){
+    res.redirect('/moonshot/v1/refer-and-triage/mobile-number')
+  } else {
+    res.redirect('/moonshot/v1/refer-and-triage/reason-for-test')
+  }
+
+})
+
+// Version 1 - Moonshot Refer and triage - Visiting a drive-through site route
+router.post('/moonshot/v1/action7/visiting-drive-through', function (req, res) {
+  let testingAccount = req.session.data['testing-account']
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+
+  if (testingAccount == "Yes" && nhsNumberKnown){
+    res.redirect('/moonshot/v1/add-household-members/')
+  } else {
+    res.redirect('/moonshot/v1/global-registration/')
+  }
+
+})
+
+// Version 1 - Moonshot Refer and triage - Visiting a walk-through site route
+router.post('/moonshot/v1/action7/visiting-walk-through', function (req, res) {
+  let testingAccount = req.session.data['testing-account']
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+
+  if (testingAccount == "Yes" && nhsNumberKnown){
+    res.redirect('/moonshot/v1/add-household-members/')
+  } else {
+    res.redirect('/moonshot/v1/global-registration/')
+  }
+
+})
+
+// Version 1 - Moonshot Refer and triage - Ordering a home test kit route
+router.post('/moonshot/v1/action7/order-home-test-kit', function (req, res) {
+  let testingAccount = req.session.data['testing-account']
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+
+  if (testingAccount == "Yes" && nhsNumberKnown){
+    res.redirect('/moonshot/v1/add-household-members/')
+  } else {
+    res.redirect('/moonshot/v1/global-registration/')
+  }
+
 })
 
 

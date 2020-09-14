@@ -1,0 +1,69 @@
+{% set version = "v1" %}
+{% set pageTitle = "Coronavirus testing account" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div> 
+
+  <a class="govuk-back-link" href="/moonshot/{{version}}/govuk/">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/moonshot/{{version}}/action7/testing-account" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="testing-account-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="testing-account-hint" class="govuk-body">
+              Creating an account will make it quicker for you to get tested in the future.
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-6">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="testing-account-1" name="testing-account" type="radio" value="Yes" {{ checked("testing-account", "Yes") }} aria-describedby="testing-account-1-hint">
+                <label class="govuk-label govuk-radios__label" for="testing-account-1">
+                  Create an account or sign in with NHS login
+                </label>
+                <span id="testing-account-1-hint" class="govuk-hint govuk-radios__hint">
+                  You will need an email address and a mobile phone
+                </span>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="testing-account-2" name="testing-account" type="radio" value="No" {{ checked("testing-account", "No") }} aria-describedby="testing-account-2-hint">
+                <label class="govuk-label govuk-radios__label" for="testing-account-2">
+                  Continue without creating an account
+                </label>
+                <span id="testing-account-2-hint" class="govuk-hint govuk-radios__hint">
+                  None of your details will be saved for future tests
+                </span>
+              </div>
+              
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Save and continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
