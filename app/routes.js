@@ -816,18 +816,6 @@ router.post('/admin-portal/bulk-sms/action1/reason-for-change', function (req, r
   }
 })
 
-// Version 1 - Moonshot GOVUK - testing account route
-router.post('/moonshot/v1/action7/testing-account', function (req, res) {
-  let testingAccount = req.session.data['testing-account']
-
-  if (testingAccount == "No"){
-    res.redirect('/moonshot/v1/refer-and-triage/')
-  } else {
-    res.redirect('/moonshot/v1/user-account/login-email')
-  }
-
-})
-
 // Version 1 - Moonshot User account - Login email route
 router.post('/moonshot/v1/action7/login-email', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
@@ -927,5 +915,72 @@ router.post('/moonshot/v1/action7/order-home-test-kit', function (req, res) {
 
 })
 
+// Version 1 - Is your delivery address the same as your home address?
+router.post('/moonshot/v1/action5/home-address-question', function (req, res) {
+  var deliveryAddressAnswer = req.session.data['delivery-address-same']
+
+  if (deliveryAddressAnswer == "Yes"){
+    res.redirect('/moonshot/v1/order-home-test-kit/confirm-email-address')
+  } else {
+    res.redirect('/moonshot/v1/order-home-test-kit/delivery-postcode')
+  }
+
+})
+
+// Version 1 - Moonshot Order Home Test Kit - Confirm identity route
+
+router.post('/moonshot/v1/action5/confirm-identity', function (req, res) {
+  let confirmIdentity = req.session.data['confirm-identity']
+  if (confirmIdentity == "Yes"){
+    res.redirect('/moonshot/v1/order-home-test-kit/identity-confirmed')
+  } else {
+    res.redirect('/moonshot/v1/refer-and-triage/')
+  }
+
+})
+
+// Version 1 - Moonshot Global Registration - Ethnic group route
+
+router.post('/moonshot/v1/action3/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/moonshot/v1/global-registration/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/moonshot/v1/global-registration/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/moonshot/v1/global-registration/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/moonshot/v1/global-registration/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/moonshot/v1/gelobal-registration/ethnic-background-another')
+  } else {
+    res.redirect('/moonshot/v1/global-registration/currently-in-work')
+  }
+
+})
+
+// Version 2 - Registration - Country route
+router.post('/moonshot/v1/action3/country', function (req, res) {
+  let country = req.session.data['country']
+
+  if (country == "Northern Ireland"){
+    res.redirect('/moonshot/v1/global-registration/address')
+  } else {
+    res.redirect('/moonshot/v1/global-registration/nhs-number-known')
+  }
+
+})
+
+// Version 1 - Moonshot Global Registration - Currently in work route
+
+router.post('/moonshot/v1/action3/currently-in-work', function (req, res) {
+  let inWork = req.session.data['currently-in-work']
+  if (inWork == "No"){
+    res.redirect('/moonshot/v1/global-registration/country')
+  } else {
+    res.redirect('/moonshot/v1/global-registration/industry')
+  }
+
+})
 
 module.exports = router
