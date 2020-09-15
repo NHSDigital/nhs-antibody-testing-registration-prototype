@@ -816,18 +816,6 @@ router.post('/admin-portal/bulk-sms/action1/reason-for-change', function (req, r
   }
 })
 
-// Version 1 - Moonshot GOVUK - testing account route
-router.post('/moonshot/v1/action7/testing-account', function (req, res) {
-  let testingAccount = req.session.data['testing-account']
-
-  if (testingAccount == "No"){
-    res.redirect('/moonshot/v1/refer-and-triage/')
-  } else {
-    res.redirect('/moonshot/v1/user-account/login-email')
-  }
-
-})
-
 // Version 1 - Moonshot User account - Login email route
 router.post('/moonshot/v1/action7/login-email', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
