@@ -1,4 +1,4 @@
-{% set pageHeading = "Are the swab tests single or in groups?" %}
+{% set pageHeading = "What did you do with the swabs after testing?" %}
 {% set version = "organisational/register/v3" %}
 {% extends "includes/layout.html" %}
 
@@ -30,7 +30,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
+        
       <form class="" action="" method="post">
         {{ govukRadios({
             idPrefix: "cuTestType",
@@ -42,19 +42,22 @@
                 classes: "govuk-fieldset__legend--xl"
               }
             },
+            hint: {
+              text: "You can only register either single swabs or group swabs on one go. You can come back later to register other tests."
+            },
             items: [
               {
                 value: "single",
                 text: "Single swab tests",
                 hint: {
-                  html: "Each person's swab is in a separate vial"
+                  html: "Each person’s swab is in a separate vial"
                 }
               },
               {
                 value: "grouped",
                 text: "Group swab tests",
                 hint: {
-                  html: "Each person's swab is in the same vial"
+                  html: "Each person in the group’s swab is in the same vial. You can include up to 5 swabs in one vial."
                 }
               }
             ]

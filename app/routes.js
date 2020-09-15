@@ -915,5 +915,28 @@ router.post('/moonshot/v1/action7/order-home-test-kit', function (req, res) {
 
 })
 
+// Version 1 - Is your delivery address the same as your home address?
+router.post('/moonshot/v1/action5/home-address-question', function (req, res) {
+  var deliveryAddressAnswer = req.session.data['delivery-address-same']
+
+  if (deliveryAddressAnswer == "Yes"){
+    res.redirect('/moonshot/v1/order-home-test-kit/confirm-email-address')
+  } else {
+    res.redirect('/moonshot/v1/order-home-test-kit/delivery-postcode')
+  }
+
+})
+
+// Version 1 - Antigen Order Home Test Kit - Confirm identity route
+
+router.post('/moonshot/v1/action5/confirm-identity', function (req, res) {
+  let confirmIdentity = req.session.data['confirm-identity']
+  if (confirmIdentity == "Yes"){
+    res.redirect('/moonshot/v1/order-home-test-kit/identity-confirmed')
+  } else {
+    res.redirect('/moonshot/v1/refer-and-triage/')
+  }
+
+})
 
 module.exports = router
