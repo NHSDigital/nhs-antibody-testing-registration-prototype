@@ -15,7 +15,11 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/moonshot/{{version}}/site-appointment-booking/choose-time-prev-day-drive">Back</a>
+  {% if data['nhs-number-known-person-1'] %}
+  <a class="govuk-back-link" href="/moonshot/{{version}}/household-members/people-confirmed-person-1">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/moonshot/{{version}}/household-members/people-confirmed">Back</a>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -23,7 +27,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/moonshot/{{version}}/site-appointment-booking/confirm-appointment" method="post">
+      <form action="/moonshot/{{version}}/site-appointment-booking/find-test-site" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="vehicle-registration-number-hint vehicle-registration-number-hint-2">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
