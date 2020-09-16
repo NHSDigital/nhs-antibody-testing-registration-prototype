@@ -818,9 +818,9 @@ router.post('/admin-portal/bulk-sms/action1/reason-for-change', function (req, r
 
 // Version 1 - Moonshot User account - Login email route
 router.post('/moonshot/v1/action7/login-email', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
+  let loginEmail = req.session.data['login-email']
 
-  if (nhsNumberKnown){
+  if (loginEmail == "user@testing.co.uk"){
     res.redirect('/moonshot/v1/user-account/enter-password')
   } else {
     res.redirect('/moonshot/v1/user-account/create-password')
