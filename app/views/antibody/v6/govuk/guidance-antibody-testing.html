@@ -1,4 +1,4 @@
-{% set version = "v5" %}
+{% set version = "v6" %}
 
 {% set serviceName %}
 {% endset%}
@@ -284,6 +284,17 @@
         font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
     }
 
+    .js-enabled .govuk-sticky-element--stuck-to-window {
+    bottom: 0;
+    position: fixed;
+    }
+
+    .app-c-back-to-top {
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
 
 </style>
 
@@ -313,13 +324,13 @@
             Coronavirus (COVID-19): antibody testing
         </h1>
     </div>
-    <p class="publication-header__last-changed">Published 31 August 2020</p>
+    <p class="publication-header__last-changed">Updated 17 September 2020</p>
 
 </header>
 
 <div class="govuk-grid-row">
 
-    <div class="govuk-grid-column-one-quarter">
+    <div id ="contents" class="govuk-grid-column-one-quarter">
 
         <!-- The Related items component is not part of GOV.UK Frontend but will be styled if used in the Prototype Kit -->
 
@@ -360,19 +371,23 @@
     </div>
     <div class="govuk-grid-column-three-quarters">
 
-    <p class = "govuk-body">Guidance on coronavirus (COVID-19) antibody testing including who can get an antibody test, antibody test results and what you must do when you get your results. </p>
+      <div class="govuk-inset-text" role="note" aria-label="Information">
+        <p>Applies to: England and Wales</p>
+      </div>
+
+    <p clas ="govuk-body">Guidance on coronavirus (COVID-19) antibody testing, including who can get an antibody test, antibody test results and what you must do when you get your results.</p>
 
     <h2 class="govuk-heading-l" id="about">Antibody testing</h2>
 
         <p class="govuk-body">Antibody tests are used to detect antibodies to the COVID-19 virus to see if it’s likely that you have had the virus before.</p>
 
-        <p class="govuk-body">The test works by taking a blood sample and testing for the presence of antibodies to see if you have developed an immune response to the virus.
+        <p class="govuk-body">The test works by <a href="/antibody/{{ version }}/govuk/taking-antibody-blood-sample">taking a blood sample</a> and testing for the presence of antibodies to see if you have developed an immune response to the virus.
         </p>
 
-        <p class="govuk-body"><a href="#">Antibody tests differ to virus swab tests</a>, which test to see if you currently have the virus.</p>
+        <p class="govuk-body">Antibody tests differ to <a href="/antigen/v1/govuk/get-coronavirus-test">virus swab tests</a>, which test to see if you currently have the virus. An antibody test cannot test if you currently have the virus.</p>
 
         <div class="govuk-inset-text" role="note" aria-label="Information">
-            <p>There is no strong evidence yet to suggest that those who have had the virus develop long-lasting immunity which would prevent them from getting the virus again.</p>
+            <p>There is no strong evidence yet to suggest that those who have had the virus develop long-lasting immunity that would prevent them from getting the virus again.</p>
         </div>
 
         <h3 class="govuk-heading-m">Why antibody tests are needed</h3>
@@ -391,14 +406,14 @@
         <ul class="govuk-list govuk-list--bullet">
             <li>if you're immune to coronavirus</li>
             <li>if you can or cannot spread the virus to other people</li>
-            <li>if you have the virus at the time you take the test (a "current infection")</li>
+            <li>if you have the virus at the time you take the test (a 'current infection')</li>
         </ul>
 
-        <p class="govuk-body">There is a different test to <a href="#">check if you have coronavirus now.</a></p>
+        <p class="govuk-body">There is a different test to <a href="/antigen/v1/govuk/get-coronavirus-test">check if you have coronavirus now.</a></p>
 
         <div class="govuk-inset-text" role="note" aria-label="Information">
             <p>Whatever your antibody test result, you must continue to follow the same guidelines as everyone else to
-                <a href="#protect">protect yourself and others from the virus.</a></p>
+                protect yourself and others from the virus.</p>
         </div>
 
 
@@ -407,34 +422,32 @@
 
         <p class="govuk-body">This is the start of the UK’s antibody testing programme, stocks are limited and tests need to be prioritised.</p>
 
-        <p class="govuk-body">There are different rules for different parts of the UK.</p>
+        <p class="govuk-body">You can sign up for a free NHS antibody test if all of these apply:.</p>
 
         <p class="govuk-body">In England, you can get an antibody test if:</p>
 
         <ul class="govuk-list govuk-list--bullet">
+            <li>you live in England or Wales</li>
             <li>you're 18 or over</li>
             <li>you work in social care</li>
             <li>you cannot get to an NHS test site to take the test</li>
         </ul>
 
-        <p class="govuk-body">In Scotland, you can get an antibody test if:</p>
-
-        <ul class="govuk-list govuk-list--bullet">
-            <li>you're 18 or over</li>
-            <li>you're working in primary care (includes eye doctors), a pharmacist, or a carer (in care homes or domiciliary care)</li>
-        </ul>
+        <p class="govuk-body">Care home staff in England and Wales should be tested at an NHS test site where possible. Talk to your care home manager to find your nearest test site.</p>
 
         <div class="govuk-inset-text" role="note" aria-label="Information">
             <p>Clinicians will always be able to request the tests for patients in both hospital and social care settings if they think it's appropriate.</p>
         </div>
+        <br>
+        <br>
 
-        <h2 class="govuk-heading-l" id="signup">Sign up for an antibody test</h2>
+        <h2 class="govuk-heading-l" id="signup">How to get an antibody test</h2>
 
-        <p class="govuk-body">Tests are prioritised and even if you’re eligible you will not get a test immediately.</p>
+        <p class="govuk-body">DHSC is engaging directly with organisations in the adult social care sector. People who are eligible to request a test will be given details on how to register.</p>
+
+        <p class="govuk-body">Tests are prioritised and even if you’re eligible, you will not get a test immediately.</p>
 
         <p class="govuk-body">It can take several weeks to be invited to order a test and another 5 days for the test kit to be delivered to your address.</p>
-
-        <p class="govuk-body"><a href="/antibody/{{ version }}/refer-and-triage">Find out more about the actual test and sign up for one </a></p>
 
         <h2 class="govuk-heading-l" id="whatmeans">What your antibody test result means</h2>
 
@@ -446,17 +459,21 @@
             <li>void</li>
         </ul>
 
-        <p class="govuk-body">You should get your result within 3 to 7 days of taking the test (usually by text message). If you do not get your result, call the coronavirus testing call centre (details in the emails and text the service sends you).</p>
+        <p class="govuk-body">You should get your result within 3 to 7 days of taking the test (usually by text message).</p>
 
         <h3 class="govuk-heading-m">Positive antibody test result</h3>
 
-        <p class="govuk-body">A positive result means the test did detect COVID-19 coronavirus antibodies so it is likely you’ve had coronavirus before. It is not possible to say when.</p>
+        <p class="govuk-body">A positive result means the test did detect COVID-19 coronavirus antibodies so it is likely you’ve had coronavirus before (even if you can’t recall having symptoms). It is not possible to say when.</p>
 
-        <p class="govuk-body">It does not mean you are guaranteed to be immune (protected) from further infection. You might get the virus again or spread it.</p>
+        <p class="govuk-body">It does not mean you are guaranteed to be immune (protected) from further infection. You might get the virus again.</p>
+
+        <p class="govuk-body">It does not mean you cannot spread the virus to others.</p>
 
         <h3 class="govuk-heading-m">Negative antibody test result</h3>
 
         <p class="govuk-body">A negative result means the test did not detect COVID-19 coronavirus antibodies so it is unlikely you’ve had the coronavirus before.</p>
+
+        <p class="govuk-body">However, it is possible to have had the virus and receive a negative antibody result. This can happen for some people because they do not develop antibodies, or their level of antibodies is too low for the test to detect.</p>
 
         <h3 class="govuk-heading-m">Void antibody test result</h3>
 
@@ -492,7 +509,7 @@
     </ul>
     <p class = "govuk-body"><a href="/antibody/{{ version }}/govuk">Get the latest advice - how to protect yourself and others from the virus</a></p>
 
-        
+
             <!--        <h3 class="govuk-heading-m govuk-!-margin-top-9">Downloadable documents</h3>-->
 
 <!--        <ul class="govuk-list govuk-list&#45;&#45;bullet">-->
@@ -500,6 +517,15 @@
 <!--        </ul>-->
 
 
+    </div>
+
+    <div data-sticky-element="" class="govuk-sticky-element govuk-sticky-element--enabled govuk-sticky-element--stuck-to-window">
+      <a class="govuk-link app-c-back-to-top dont-print" href="#contents">
+      <svg class="app-c-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 13 17">
+        <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
+      </svg>
+      Contents
+      </a>
     </div>
 
 
