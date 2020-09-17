@@ -833,7 +833,7 @@ router.post('/moonshot/v1/action7/home-page-get-tested', function (req, res) {
   let loginEmail = req.session.data['email-address']
 
   if (loginEmail == 'user@testing.co.uk'){
-    res.redirect('/moonshot/v1/refer-and-triage/reason-for-test')
+    res.redirect('/moonshot/v1/household-members/select-household-member')
   } else {
     res.redirect('/moonshot/v1/refer-and-triage/')
   }
@@ -868,7 +868,7 @@ router.post('/moonshot/v1/action7/home-page-personal-details', function (req, re
 router.post('/moonshot/v1/action7/', function (req, res) {
   let password = req.session.data['password']
 
-  if (!password){
+  if (password == undefined){
     res.redirect('/moonshot/v1/refer-and-triage/mobile-number')
   } else {
     res.redirect('/moonshot/v1/refer-and-triage/reason-for-test')
@@ -1230,7 +1230,7 @@ router.post('/moonshot/v1/action3/currently-in-work-person-1', function (req, re
 
 router.post('/moonshot/v1/action7/check-your-answers-person-1', function (req, res) {
   let password = req.session.data['password']
-  if (password){
+  if (password !== undefined){
     res.redirect('/moonshot/v1/household-members/add-to-household-person-1')
   } else {
     res.redirect('/moonshot/v1/household-members/people-confirmed-person-1')
@@ -1327,7 +1327,13 @@ router.post('/moonshot/v1/action7/add-person', function (req, res) {
 
 router.post('/moonshot/v1/action7/select-household-member', function (req, res) {
   let selectedPerson = req.session.data['select-person']
-  if (selectedPerson == "1" || selectedPerson == "2" || selectedPerson == "3" ){
+  let password = req.session.data['password']
+  let loginEmail = req.session.data['email-address']
+  if (loginEmail == "user@testing.co.uk" && selectedPerson == "1" ){
+    res.redirect('/moonshot/v1/refer-and-triage/reason-for-test')
+  } else if (password !== undefined && selectedPerson == "4" ){
+    res.redirect('/moonshot/v1/household-members/do-you-have-symptoms-person-1')
+  } else if (selectedPerson == "1" && loginEmail == "user@testing.co.uk" || selectedPerson == "2" && loginEmail == "user@testing.co.uk" || selectedPerson == "3" && loginEmail == "user@testing.co.uk" ){
     res.redirect('/moonshot/v1/household-members/do-you-have-symptoms-person-1')
   } else {
     res.redirect('/moonshot/v1/household-members/name-person-1')
