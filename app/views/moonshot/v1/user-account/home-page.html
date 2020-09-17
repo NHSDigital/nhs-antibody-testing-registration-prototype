@@ -55,11 +55,11 @@
         
             
             {% block content %}
-            {% if data['first-name'] %}
-            <h1 class="nhsuk-heading-l nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-2">{{ data['first-name'] }} {{ data['last-name'] }}</h1>
-            <h2 class="nhsuk-heading-s nhsuk-u-margin-top-2 nhsuk-u-margin-bottom-6">{{ pageTitle }}</h2>
+            {% if data['email-address'] == 'user@testing.co.uk' %}
+            <h1 class="nhsuk-heading-l nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-4">{{ data['first-name'] | default('Bob') }} {{ data['last-name'] | default('Smith') }}</h1>
+            <h2 class="nhsuk-heading-s nhsuk-u-margin-top-2 nhsuk-u-margin-bottom-4">{{ pageTitle }}</h2>
             {% else %}
-            <h2 class="nhsuk-heading-s nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-6">{{ pageTitle }}</h2>
+            <h2 class="nhsuk-heading-s nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-4">{{ pageTitle }}</h2>
             {% endif %}
 
 
@@ -91,7 +91,7 @@
               </button>
             </form>
 
-            <form action="/moonshot/{{version}}/action7/home-page-household-members" method="post">
+            <form action="/moonshot/{{version}}/household-members/household-members-list" method="post">
               <button class="nhsuk-u-margin-bottom-4" style="width: 70%; position: relative; text-align: left; display: flex; align-items: center; text-decoration: none; background-color: #ffffff; border: 1px solid #4c6272; padding: 1rem; cursor: pointer">
                 <p class="nhsuk-grid-column-two-thirds nhsuk-u-margin-bottom-0">
                   <strong style="color: #005eb8">My household members</strong><br><br>
