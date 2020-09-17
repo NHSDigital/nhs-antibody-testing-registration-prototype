@@ -15,7 +15,7 @@
     </p>
   </div>
   
-  <a class="govuk-back-link" href="/moonshot/{{version}}/refer-and-triage/do-you-have-a-car">Back</a>
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/do-you-have-a-car">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -30,10 +30,10 @@
             Name
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['first-name'] | default('Bob') }} {{ data['last-name'] | default('Smith') }}
+            {{ data['first-name'] }} {{ data['last-name'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/moonshot/{{version}}/refer-and-triage/">
+            <a href="/antigen/{{version}}/refer-and-triage/">
               Change
               <span class="govuk-visually-hidden">name</span>
             </a>
@@ -44,15 +44,16 @@
             Mobile number
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['mobile-phone-number'] | default('123456789') }}
+            {{ data['mobile-phone-number'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/moonshot/{{version}}/refer-and-triage/mobile-number">
+            <a href="/antigen/{{version}}/refer-and-triage/mobile-number">
               Change
               <span class="govuk-visually-hidden">mobile number</span>
             </a>
           </dd>
         </div>
+        {% if data['email'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Email address
@@ -61,12 +62,13 @@
             {{ data['email-address'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/moonshot/{{version}}/refer-and-triage/email-address">
+            <a href="/antigen/{{version}}/refer-and-triage/email-address">
               Change
               <span class="govuk-visually-hidden">email address</span>
             </a>
           </dd>
         </div>
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Reason for being tested
@@ -75,7 +77,7 @@
             {{ data['reason-for-test'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/moonshot/{{version}}/refer-and-triage/reason-for-test">
+            <a href="/antigen/{{version}}/refer-and-triage/reason-for-test">
               Change
               <span class="govuk-visually-hidden">reason for being tested</span>
             </a>
@@ -89,7 +91,7 @@
             {{ data['do-you-have-symptoms'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/moonshot/{{version}}/refer-and-triage/do-you-have-symptoms">
+            <a href="/antigen/{{version}}/refer-and-triage/do-you-have-symptoms">
               Change
               <span class="govuk-visually-hidden">do you have symptoms</span>
             </a>
@@ -104,7 +106,7 @@
             {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/moonshot/{{version}}/refer-and-triage/when-did-symptoms-start">
+            <a href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">
               Change
               <span class="govuk-visually-hidden">date when symptoms started</span>
             </a>
@@ -116,10 +118,10 @@
             Postcode
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['home-postcode'] | default('N5000') }}
+            {{ data['home-postcode'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/moonshot/{{version}}/refer-and-triage/postcode">
+            <a href="/antigen/{{version}}/refer-and-triage/postcode">
               Change
               <span class="govuk-visually-hidden">postcode</span>
             </a>
@@ -133,7 +135,7 @@
               {{ data['do-you-have-a-car'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/moonshot/{{version}}/refer-and-triage/do-you-have-a-car">
+              <a href="/antigen/{{version}}/refer-and-triage/do-you-have-a-car">
                 Change
                 <span class="govuk-visually-hidden">access to a car</span>
               </a>
@@ -141,7 +143,7 @@
           </div>
       </dl>
 
-      <form action="/moonshot/{{version}}/refer-and-triage/security-check" method="post" novalidate>
+      <form action="/antigen/{{version}}/refer-and-triage/security-check" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 
