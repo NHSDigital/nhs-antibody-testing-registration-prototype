@@ -39,13 +39,11 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name'] }} {{ data['last-name'] }}</th>
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] | default('Bob') }} {{ data['last-name'] | default('Smith')}}</th>
             <td class="govuk-table__cell">
-              {% if data['email'] == "Yes" %}
-              {{ data['email-address'] }}
+              {{ data['email-address'] | default('user@testing.co.uk') }}
               <br>
-              {% endif %}
-              {{ data['mobile-phone-number'] }}
+              {{ data['mobile-phone-number'] | default('123456789') }}
             </td>
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/moonshot/{{version}}/global-registration/check-your-answers">Edit details</a></p></td>
           </tr>
@@ -58,7 +56,7 @@
 
       </form>
 
-      <form class="form" action="/moonshot/{{version}}/household-members/name-person-1" method="post" style="display: inline-block;">
+      <form class="form" action="/moonshot/{{version}}/action7/add-person" method="post" style="display: inline-block;">
 
         <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Add person you live with</button>
 

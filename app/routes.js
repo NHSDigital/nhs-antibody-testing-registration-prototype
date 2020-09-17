@@ -818,9 +818,9 @@ router.post('/admin-portal/bulk-sms/action1/reason-for-change', function (req, r
 
 // Version 1 - Moonshot User account - Login email route
 router.post('/moonshot/v1/action7/login-email', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
+  let loginEmail = req.session.data['email-address']
 
-  if (nhsNumberKnown){
+  if (loginEmail == "user@testing.co.uk"){
     res.redirect('/moonshot/v1/user-account/enter-password')
   } else {
     res.redirect('/moonshot/v1/user-account/create-password')
@@ -830,9 +830,9 @@ router.post('/moonshot/v1/action7/login-email', function (req, res) {
 
 // Version 1 - Moonshot User account - Home page testing route
 router.post('/moonshot/v1/action7/home-page-get-tested', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
+  let loginEmail = req.session.data['email-address']
 
-  if (nhsNumberKnown){
+  if (loginEmail == 'user@testing.co.uk'){
     res.redirect('/moonshot/v1/refer-and-triage/reason-for-test')
   } else {
     res.redirect('/moonshot/v1/refer-and-triage/')
@@ -842,9 +842,9 @@ router.post('/moonshot/v1/action7/home-page-get-tested', function (req, res) {
 
 // Version 1 - Moonshot User account - Home page personal details route
 router.post('/moonshot/v1/action7/home-page-personal-details', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
+  let loginEmail = req.session.data['email-address']
 
-  if (nhsNumberKnown){
+  if (loginEmail){
     res.redirect('/moonshot/v1/household-members/')
   } else {
     res.redirect('/moonshot/v1/household-members/')
@@ -853,16 +853,16 @@ router.post('/moonshot/v1/action7/home-page-personal-details', function (req, re
 })
 
 // Version 1 - Moonshot User account - Home page personal details route
-router.post('/moonshot/v1/action7/home-page-household-members', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
+// router.post('/moonshot/v1/action7/home-page-household-members', function (req, res) {
+//   let loginEmail = req.session.data['email-address']
 
-  if (nhsNumberKnown){
-    res.redirect('/moonshot/v1/household-members/')
-  } else {
-    res.redirect('/moonshot/v1/household-members/')
-  }
+//   if (loginEmail == "user@testing.co.uk"){
+//     res.redirect('/moonshot/v1/household-members/household-members-list')
+//   } else {
+//     res.redirect('/moonshot/v1/household-members/')
+//   }
 
-})
+// })
 
 // Version 1 - Moonshot Refer and triage - name route
 router.post('/moonshot/v1/action7/', function (req, res) {
@@ -891,28 +891,43 @@ router.post('/moonshot/v1/action7/mobile-number', function (req, res) {
 // Version 1 - Moonshot Refer and triage - do you have symptoms route
 router.post('/moonshot/v1/action7/do-you-have-symptoms', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
+  let loginEmail = req.session.data['email-address']
 
   if (symptoms == "Yes"){
     res.redirect('/moonshot/v1/refer-and-triage/when-did-symptoms-start')
+  } else if(symptoms == "No" && loginEmail == "user@testing.co.uk") {
+    res.redirect('/moonshot/v1/refer-and-triage/do-you-have-a-car')
   } else {
     res.redirect('/moonshot/v1/refer-and-triage/postcode')
   }
 
 })
 
-// Version 1 - Moonshot Refer and Triage - Do you have a car route
+// Version 1 - Moonshot Refer and triage - when did symptoms start route
+router.post('/moonshot/v1/action7/when-did-symptoms-start', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/moonshot/v1/refer-and-triage/do-you-have-a-car')
+  } else {
+    res.redirect('/moonshot/v1/refer-and-triage/postcode')
+  }
+
+})
+
+// Version 1 - Moonshot Refer and Triage - Security check route
 
 router.post('/moonshot/v1/action7/security-check', function (req, res) {
   let postcode = req.session.data['home-postcode']
-  let emailAddress = req.session.data['email']
+  let emailAddress = req.session.data['email-address']
   let car = req.session.data['do-you-have-a-car']
-  if (car == "No" && postcode == "N0000" && emailAddress == "Yes"){
+  if (car == "No" && postcode == "N0000" && emailAddress !== undefined){
     res.redirect('/moonshot/v1/refer-and-triage/eligible-for-home-test')
-  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
+  } else if (car == "No" && postcode !== "N0000" && emailAddress == undefined) {
     res.redirect('/moonshot/v1/refer-and-triage/eligible-for-walk-in-test')
-  } else if (car == "No" && postcode == "N0000" && emailAddress !== "Yes") {
+  } else if (car == "No" && postcode == "N0000" && emailAddress == undefined) {
     res.redirect('/moonshot/v1/refer-and-triage/call-us-for-test')
-  } else if (car == "Yes" && emailAddress !== "Yes" && postcode == "N0000"){
+  } else if (car == "Yes" && emailAddress == undefined && postcode == "N0000"){
     res.redirect('/moonshot/v1/refer-and-triage/eligible-for-drive-through-test')
   } else {
     res.redirect('/moonshot/v1/refer-and-triage/how-will-you-get-test')
@@ -972,11 +987,10 @@ router.post('/moonshot/v1/action7/how-will-you-get-test-wrong-postcode', functio
 
 // Version 1 - Moonshot Refer and triage - Visiting a drive-through site route
 router.post('/moonshot/v1/action7/visiting-drive-through', function (req, res) {
-  let testingAccount = req.session.data['testing-account']
-  let nhsNumberKnown = req.session.data['nhs-number-known']
+  let loginEmail = req.session.data['email-address']
 
-  if (testingAccount == "Yes" && nhsNumberKnown){
-    res.redirect('/moonshot/v1/add-household-members/')
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/moonshot/v1/household-members/')
   } else {
     res.redirect('/moonshot/v1/global-registration/')
   }
@@ -985,30 +999,29 @@ router.post('/moonshot/v1/action7/visiting-drive-through', function (req, res) {
 
 // Version 1 - Moonshot Refer and triage - Visiting a walk-through site route
 router.post('/moonshot/v1/action7/visiting-walk-through', function (req, res) {
-  let testingAccount = req.session.data['testing-account']
-  let nhsNumberKnown = req.session.data['nhs-number-known']
+  let loginEmail = req.session.data['email-address']
 
-  if (testingAccount == "Yes" && nhsNumberKnown){
-    res.redirect('/moonshot/v1/add-household-members/')
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/moonshot/v1/household-members/')
   } else {
     res.redirect('/moonshot/v1/global-registration/')
   }
 
 })
 
-// Version 1 - Antigen Refer and Triage - Order home test kit route
+// Version 1 - Moonshot Refer and Triage - Order home test kit route
 
 router.post('/moonshot/v1/action7/order-home-test-kit', function (req, res) {
   let postcode = req.session.data['home-postcode']
-  let emailAddress = req.session.data['email']
+  let emailAddress = req.session.data['email-address']
   let car = req.session.data['do-you-have-a-car']
-  if (car == "No" && postcode == "N0000" && emailAddress == "Yes"){
+  if (car == "No" && postcode == "N0000" && emailAddress !== undefined){
     res.redirect('/moonshot/v1/refer-and-triage/eligible-for-home-test')
-  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
+  } else if (car == "No" && postcode !== "N0000" && emailAddress == undefined) {
     res.redirect('/moonshot/v1/refer-and-triage/eligible-for-walk-in-test')
-  } else if (car == "No" && postcode == "N0000" && emailAddress !== "Yes") {
+  } else if (car == "No" && postcode == "N0000" && emailAddress == undefined) {
     res.redirect('/moonshot/v1/refer-and-triage/call-us-for-test')
-  } else if (car == "Yes" && emailAddress !== "Yes" && postcode == "N0000"){
+  } else if (car == "Yes" && emailAddress == undefined && postcode == "N0000"){
     res.redirect('/moonshot/v1/refer-and-triage/eligible-for-drive-through-test')
   } else {
     res.redirect('/moonshot/v1/refer-and-triage/how-will-you-get-test')
@@ -1100,20 +1113,20 @@ router.post('/moonshot/v1/action7/nhs-number-known', function (req, res) {
 
 router.post('/moonshot/v1/action7/people-confirmed', function (req, res) {
   let postcode = req.session.data['home-postcode']
-  let emailAddress = req.session.data['email']
+  let emailAddress = req.session.data['email-address']
   let car = req.session.data['do-you-have-a-car']
   let chosenWayToTest = req.session.data['way-to-test']
   if (chosenWayToTest == "drive-through"){
-    res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
+    res.redirect('/moonshot/v1/site-appointment-booking/vehicle-registration-number')
   } else if (chosenWayToTest == "walk-in") {
     res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
   } else if (chosenWayToTest == "home testing") {
     res.redirect('/moonshot/v1/order-home-test-kit/')
-  } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
+  } else if (car == "No" && postcode == "N0000" && emailAddress !== undefined) {
     res.redirect('/moonshot/v1/order-home-test-kit/')
-  } else if (car == "Yes" && postcode == "N0000" && emailAddress !== "Yes") {
-    res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
-  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress == undefined) {
+    res.redirect('/moonshot/v1/site-appointment-booking/vehicle-registration-number')
+  } else if (car == "No" && postcode !== "N0000" && emailAddress == undefined) {
     res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
   }
 
@@ -1215,7 +1228,7 @@ router.post('/moonshot/v1/action3/currently-in-work-person-1', function (req, re
 router.post('/moonshot/v1/action7/check-your-answers-person-1', function (req, res) {
   let password = req.session.data['password']
   if (password){
-    res.redirect('/moonshot/v1/household-members/add-to-household')
+    res.redirect('/moonshot/v1/household-members/add-to-household-person-1')
   } else {
     res.redirect('/moonshot/v1/household-members/people-confirmed-person-1')
   }
@@ -1273,7 +1286,7 @@ router.post('/moonshot/v1/action7/choose-time-walk', function (req, res) {
 
 router.post('/moonshot/v1/action7/find-test-site', function (req, res) {
   let postcode = req.session.data['home-postcode']
-  let emailAddress = req.session.data['email']
+  let emailAddress = req.session.data['email-address']
   let car = req.session.data['do-you-have-a-car']
   let chosenWayToTest = req.session.data['way-to-test']
   if (chosenWayToTest == "drive-through"){
@@ -1282,12 +1295,36 @@ router.post('/moonshot/v1/action7/find-test-site', function (req, res) {
     res.redirect('/moonshot/v1/site-appointment-booking/choose-walk-through-site')
   } else if (chosenWayToTest == "home testing") {
     res.redirect('/moonshot/v1/order-home-test-kit/')
-  } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
+  } else if (car == "No" && postcode == "N0000" && emailAddress !== undefined) {
     res.redirect('/moonshot/v1/order-home-test-kit/')
-  } else if (car == "Yes" && postcode == "N0000" && emailAddress !== "Yes") {
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress == undefined) {
     res.redirect('/moonshot/v1/site-appointment-booking/choose-drive-through-site')
-  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
+  } else if (car == "No" && postcode !== "N0000" && emailAddress == undefined) {
     res.redirect('/moonshot/v1/site-appointment-booking/choose-walk-through-site')
+  }
+
+})
+
+// Version 1 - Moonshot Household members - Add person route
+
+router.post('/moonshot/v1/action7/add-person', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/moonshot/v1/household-members/select-household-member')
+  } else {
+    res.redirect('/moonshot/v1/household-members/name-person-1')
+  }
+
+})
+
+// Version 1 - Moonshot Household members - Select household member route
+
+router.post('/moonshot/v1/action7/select-household-member', function (req, res) {
+  let selectedPerson = req.session.data['select-person']
+  if (selectedPerson == "1" || selectedPerson == "2" || selectedPerson == "3" ){
+    res.redirect('/moonshot/v1/household-members/do-you-have-symptoms-person-1')
+  } else {
+    res.redirect('/moonshot/v1/household-members/name-person-1')
   }
 
 })

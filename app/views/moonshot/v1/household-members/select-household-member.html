@@ -1,0 +1,71 @@
+{% set version = "v1" %}
+{% set pageTitle = "Who do you want to add?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/moonshot/{{version}}/global-registration/gender">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/moonshot/{{version}}/action7/select-household-member" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="select-person-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="select-person-hint" class="govuk-body">
+              Select someone from your household. You will be able to select another household member later.
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-6">
+              {% if data['add-to-household-person-1'] == "Yes" %}
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="select-person-1" name="select-person" type="radio" value="1" {{ checked("select-person", "1") }} aria-describedby="select-person-1-hint">
+                <label class="govuk-label govuk-radios__label" for="select-person-1">
+                  {{ data['first-name-person-1'] | default('Pete') }} {{ data['last-name-person-1'] | default('Smith') }}
+                </label>
+                <span id="select-person-1-hint" class="govuk-hint govuk-radios__hint">
+                  {{ data['date-of-birth-day-person-1'] | default('7') }} {{ data['date-of-birth-month-person-1'] | default('11') }} {{ data['date-of-birth-year-person-1'] | default('1989') }}
+                </span>
+              </div>
+              {% endif %}
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="select-person-4" name="select-person" type="radio" value="4" {{ checked("select-person", "4") }} >
+                <label class="govuk-label govuk-radios__label" for="select-person-4">
+                  {% if data['add-to-household-person-1'] == "Yes" %}
+                  Someone else
+                  {% else %}
+                  Add a person you live with
+                  {% endif %}
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
