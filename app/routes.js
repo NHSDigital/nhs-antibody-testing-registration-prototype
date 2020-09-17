@@ -1116,8 +1116,11 @@ router.post('/moonshot/v1/action7/people-confirmed', function (req, res) {
   let emailAddress = req.session.data['email-address']
   let car = req.session.data['do-you-have-a-car']
   let chosenWayToTest = req.session.data['way-to-test']
-  if (chosenWayToTest == "drive-through"){
+  let loginEmail = req.session.data['email-address']
+  if (chosenWayToTest == "drive-through" && loginEmail !== "user@testing.co.uk"){
     res.redirect('/moonshot/v1/site-appointment-booking/vehicle-registration-number')
+  } else if (chosenWayToTest == "drive-through" && loginEmail == "user@testing.co.uk") {
+    res.redirect('/moonshot/v1/site-appointment-booking/is-your-vehicle-registration-number')
   } else if (chosenWayToTest == "walk-in") {
     res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
   } else if (chosenWayToTest == "home testing") {
@@ -1128,7 +1131,7 @@ router.post('/moonshot/v1/action7/people-confirmed', function (req, res) {
     res.redirect('/moonshot/v1/site-appointment-booking/vehicle-registration-number')
   } else if (car == "No" && postcode !== "N0000" && emailAddress == undefined) {
     res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
-  }
+  } 
 
 })
 
@@ -1242,8 +1245,11 @@ router.post('/moonshot/v1/action7/people-confirmed-person-1', function (req, res
   let emailAddress = req.session.data['email']
   let car = req.session.data['do-you-have-a-car']
   let chosenWayToTest = req.session.data['way-to-test']
-  if (chosenWayToTest == "drive-through"){
+  let loginEmail = req.session.data['email-address']
+  if (chosenWayToTest == "drive-through" && loginEmail !== "user@testing.co.uk" ){
     res.redirect('/moonshot/v1/site-appointment-booking/vehicle-registration-number')
+  } else if (chosenWayToTest == "drive-through" && loginEmail == "user@testing.co.uk") {
+    res.redirect('/moonshot/v1/site-appointment-booking/is-your-vehicle-registration-number')
   } else if (chosenWayToTest == "walk-in") {
     res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
   } else if (chosenWayToTest == "home testing") {
@@ -1325,6 +1331,18 @@ router.post('/moonshot/v1/action7/select-household-member', function (req, res) 
     res.redirect('/moonshot/v1/household-members/do-you-have-symptoms-person-1')
   } else {
     res.redirect('/moonshot/v1/household-members/name-person-1')
+  }
+
+})
+
+// Version 1 - Moonshot Household members - is your vehicle registration number route
+
+router.post('/moonshot/v1/action7/is-your-vehicle-registration-number', function (req, res) {
+  let regNumber = req.session.data['is-your-reg']
+  if (regNumber == "Yes" ){
+    res.redirect('/moonshot/v1/site-appointment-booking/choose-drive-through-site')
+  } else {
+    res.redirect('/moonshot/v1/site-appointment-booking/vehicle-registration-number')
   }
 
 })

@@ -40,12 +40,24 @@
           <p class="govuk-body govuk-!-margin-bottom-8">If you do not have an email account, you'll need to create one. Or you can <button class="govuk-body button-styled-link" data-module="govuk-button">choose to go to a test site.</button></p>
           
         </form>
+
+        {% if data['email-address'] == "user@testing.co.uk" %}
         
+        <form action="/moonshot/{{version}}/household-members/" method="post">
+
+          <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+        {% else %}
+
         <form action="/moonshot/{{version}}/global-registration/" method="post">
 
           <button class="govuk-button" data-module="govuk-button">Continue</button>
 
         </form>
+
+        {% endif%}
 
     </div>
   </div>

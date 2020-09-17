@@ -14,6 +14,29 @@
 
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
 
+      {% if data['email-address'] == "user@testing.co.uk" %}
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Delivery address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['delivery-address-line-1'] | default('Flat 44') }}<br>
+            {{ data['delivery-address-line-2'] | default('Testing Lane 23') }}<br>
+            {{ data['delivery-address-town'] | default('Hihgbury & Islington') }}<br>
+            {{ data['delivery-address-postcode'] | default('RM4 3RS') }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/moonshot/v1/order-home-test-kit/delivery-address">
+              Change<span class="govuk-visually-hidden"> delivery address</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      {% else %}
+
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -128,6 +151,8 @@
         </div>
       </dl>
 
+      {% endif %}
+
       <div class="govuk-warning-text">
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
         <span class="govuk-warning-text__text">
@@ -156,7 +181,7 @@
         </fieldset>
       </div>
 
-      <form action="/moonshot/v1/order-home-test-kit/confirmation" method="post">
+      <form action="/moonshot/{{version}}/order-home-test-kit/confirmation" method="post">
 
         <button id="button" disabled class="govuk-button govuk-!-margin-bottom-3" type="submit" data-module="govuk-button">
           Place order

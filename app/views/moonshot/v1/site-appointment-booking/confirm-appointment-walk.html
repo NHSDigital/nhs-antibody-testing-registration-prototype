@@ -114,12 +114,12 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name'] }} {{ data['last-name'] }}</th>
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] | default('Bob') }} {{ data['last-name'] | default('Smith') }}</th>
             <td class="govuk-table__cell">
-              {{ data['mobile-phone-number'] }}
+              {{ data['mobile-phone-number'] | default('123456789') }}
             </td>
             <td class="govuk-table__cell">
-              {{ data['email-address'] }}
+              {{ data['email-address'] | default('bobsmith@testing.co.uk') }}
             </td>
           </tr>
           {% if data['first-name-person-1'] !== undefined %}
