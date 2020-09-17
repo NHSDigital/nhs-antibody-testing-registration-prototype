@@ -1,0 +1,67 @@
+{% set version = "v1" %}
+{% set pageTitle = "Is your vehicle registration number" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['nhs-number-known-person-1'] %}
+  <a class="govuk-back-link" href="/moonshot/{{version}}/household-members/people-confirmed-person-1">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/moonshot/{{version}}/household-members/people-confirmed">Back</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/moonshot/{{version}}/site-appointment-booking/find-test-site" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="vehicle-registration-number-hint vehicle-registration-number-hint-2">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+              {{ pageTitle }} {{ data['vehicle-registration-number'] | default('1234556') }}
+            </h1>
+
+          </legend>
+          <span id="vehicle-registration-number-hint-2" class="govuk-hint">
+            For a drive-through test site you must provide the registration number of the vehicle you'll arrive in. It does not have to be registered in your name. It can be a car or a small van.
+          </span>
+          <div class="govuk-form-group govuk-!-margin-top-4">
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="is-your-reg-1" name="is-your-reg" type="radio" value="Yes">
+                <label class="govuk-label govuk-radios__label" for="currently-in-work-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="is-your-reg-2" name="is-your-reg" type="radio" value="No">
+                <label class="govuk-label govuk-radios__label" for="currently-in-work-2">
+                  No
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
