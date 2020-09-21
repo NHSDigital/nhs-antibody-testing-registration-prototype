@@ -833,7 +833,7 @@ router.post('/moonshot/v1/action7/home-page-get-tested', function (req, res) {
   let loginEmail = req.session.data['email-address']
 
   if (loginEmail == 'user@testing.co.uk'){
-    res.redirect('/moonshot/v1/household-members/select-household-member')
+    res.redirect('/moonshot/v1/refer-and-triage/reason-for-test')
   } else {
     res.redirect('/moonshot/v1/refer-and-triage/')
   }
@@ -1123,6 +1123,8 @@ router.post('/moonshot/v1/action7/people-confirmed', function (req, res) {
     res.redirect('/moonshot/v1/site-appointment-booking/is-your-vehicle-registration-number')
   } else if (chosenWayToTest == "walk-in") {
     res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
+  } else if (chosenWayToTest == "home testing" && loginEmail == "user@testing.co.uk") {
+    res.redirect('/moonshot/v1/order-home-test-kit/order-summary')
   } else if (chosenWayToTest == "home testing") {
     res.redirect('/moonshot/v1/order-home-test-kit/')
   } else if (car == "No" && postcode == "N0000" && emailAddress !== undefined) {
@@ -1216,21 +1218,25 @@ router.post('/moonshot/v1/action7/nhs-number-known-person-1', function (req, res
 
 // Version 1 - Moonshot Global Registration - Currently in work person 1 route
 
-router.post('/moonshot/v1/action3/currently-in-work-person-1', function (req, res) {
-  let inWork = req.session.data['currently-in-work-person-1']
-  if (inWork == "No"){
-    res.redirect('/moonshot/v1/household-members/country-person-1')
-  } else {
-    res.redirect('/moonshot/v1/household-members/industry-person-1')
-  }
+// router.post('/moonshot/v1/action3/currently-in-work-person-1', function (req, res) {
+//   let inWork = req.session.data['currently-in-work-person-1']
+//   if (inWork == "No"){
+//     res.redirect('/moonshot/v1/household-members/country-person-1')
+//   } else {
+//     res.redirect('/moonshot/v1/household-members/industry-person-1')
+//   }
 
-})
+// })
 
 // Version 1 - Moonshot Global Registration - check your answers person 1 route
 
 router.post('/moonshot/v1/action7/check-your-answers-person-1', function (req, res) {
   let password = req.session.data['password']
-  if (password !== undefined){
+  let loginEmail = req.session.data['email-address']
+  let addPerson1 = req.session.data['add-to-household-person-1']
+  if (loginEmail == "user@testing.co.uk" && addPerson1 !== "Yes"){
+    res.redirect('/moonshot/v1/household-members/add-to-household-person-1')
+  } else if (password !== undefined && addPerson1 !== "Yes"){
     res.redirect('/moonshot/v1/household-members/add-to-household-person-1')
   } else {
     res.redirect('/moonshot/v1/household-members/people-confirmed-person-1')
@@ -1242,7 +1248,7 @@ router.post('/moonshot/v1/action7/check-your-answers-person-1', function (req, r
 
 router.post('/moonshot/v1/action7/people-confirmed-person-1', function (req, res) {
   let postcode = req.session.data['home-postcode']
-  let emailAddress = req.session.data['email']
+  let emailAddress = req.session.data['email-address']
   let car = req.session.data['do-you-have-a-car']
   let chosenWayToTest = req.session.data['way-to-test']
   let loginEmail = req.session.data['email-address']
@@ -1254,11 +1260,121 @@ router.post('/moonshot/v1/action7/people-confirmed-person-1', function (req, res
     res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
   } else if (chosenWayToTest == "home testing") {
     res.redirect('/moonshot/v1/order-home-test-kit/')
-  } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
+  } else if (car == "No" && postcode == "N0000" && emailAddress !== undefined) {
     res.redirect('/moonshot/v1/order-home-test-kit/')
-  } else if (car == "Yes" && postcode == "N0000" && emailAddress !== "Yes") {
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress == undefined) {
     res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
-  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
+  } else if (car == "No" && postcode !== "N0000" && emailAddress == undefined) {
+    res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
+  }
+
+})
+
+// Version 1 - Moonshot Global Registration - Do you have symptoms person 2 route
+
+router.post('/moonshot/v1/action7/do-you-have-symptoms-person-2', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms-person-2']
+  if (symptoms == "Yes"){
+    res.redirect('/moonshot/v1/household-members/when-did-symptoms-start-person-2')
+  } else {
+    res.redirect('/moonshot/v1/household-members/mobile-number-person-2')
+  }
+
+})
+
+// Version 1 - Moonshot Global Registration - Ethnic group person 2 route
+
+router.post('/moonshot/v1/action7/ethnic-group-person-2', function (req, res) {
+  let ethnicGroupPerson1 = req.session.data['ethnic-group-person-2']
+  if (ethnicGroupPerson1 == "Asian or Asian British"){
+    res.redirect('/moonshot/v1/household-members/ethnic-background-asian-person-2')
+  } else if (ethnicGroupPerson1 == "Black, African, Black British or Caribbean") {
+    res.redirect('/moonshot/v1/household-members/ethnic-background-black-person-2')
+  } else if (ethnicGroupPerson1 == "Mixed or multiple ethnic groups") {
+    res.redirect('/moonshot/v1/household-members/ethnic-background-mixed-person-2')
+  } else if (ethnicGroupPerson1 == "White") {
+    res.redirect('/moonshot/v1/household-members/ethnic-background-white-person-2')
+  } else if (ethnicGroupPerson1 == "Another ethnic group") {
+    res.redirect('/moonshot/v1/household-members/ethnic-background-another-person-2')
+  } else {
+    res.redirect('/moonshot/v1/household-members/currently-in-work-person-2')
+  }
+
+})
+
+// Version 1 - Moonshot Global Registration - Currently in work person 2 route
+
+router.post('/moonshot/v1/action7/currently-in-work-person-2', function (req, res) {
+  let inWork = req.session.data['currently-in-work-person-2']
+  if (inWork == "No"){
+    res.redirect('/moonshot/v1/household-members/country-person-2')
+  } else {
+    res.redirect('/moonshot/v1/household-members/industry-person-2')
+  }
+
+})
+
+// Version 1 - Moonshot Global Registration - Country person 2 route
+
+router.post('/moonshot/v1/action7/country-person-2', function (req, res) {
+  let country = req.session.data['country-person-2']
+  if (country == "Northern Ireland"){
+    res.redirect('/moonshot/v1/household-members/address-person-2')
+  } else {
+    res.redirect('/moonshot/v1/household-members/postcode-person-2')
+  }
+
+})
+
+// Version 1 - Moonshot Global Registration - NHS number known person 2 route
+
+router.post('/moonshot/v1/action7/nhs-number-known-person-2', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known-person-2']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/moonshot/v1/household-members/nhs-number-person-2')
+  } else {
+    res.redirect('/moonshot/v1/household-members/check-your-answers-person-2')
+  }
+
+})
+
+// Version 1 - Moonshot Global Registration - check your answers person 1 route
+
+router.post('/moonshot/v1/action7/check-your-answers-person-2', function (req, res) {
+  let password = req.session.data['password']
+  let loginEmail = req.session.data['email-address']
+  let addPerson1 = req.session.data['add-to-household-person-2']
+  if (loginEmail == "user@testing.co.uk" && addPerson1 !== "Yes"){
+    res.redirect('/moonshot/v1/household-members/add-to-household-person-2')
+  } else if (password !== undefined && addPerson1 !== "Yes"){
+    res.redirect('/moonshot/v1/household-members/add-to-household-person-2')
+  } else {
+    res.redirect('/moonshot/v1/household-members/people-confirmed-person-2')
+  }
+
+})
+
+// Version 1 - Moonshot Global Registration - people confirmed person 1 route
+
+router.post('/moonshot/v1/action7/people-confirmed-person-2', function (req, res) {
+  let postcode = req.session.data['home-postcode']
+  let emailAddress = req.session.data['email-address']
+  let car = req.session.data['do-you-have-a-car']
+  let chosenWayToTest = req.session.data['way-to-test']
+  let loginEmail = req.session.data['email-address']
+  if (chosenWayToTest == "drive-through" && loginEmail !== "user@testing.co.uk" ){
+    res.redirect('/moonshot/v1/site-appointment-booking/vehicle-registration-number')
+  } else if (chosenWayToTest == "drive-through" && loginEmail == "user@testing.co.uk") {
+    res.redirect('/moonshot/v1/site-appointment-booking/is-your-vehicle-registration-number')
+  } else if (chosenWayToTest == "walk-in") {
+    res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
+  } else if (chosenWayToTest == "home testing") {
+    res.redirect('/moonshot/v1/order-home-test-kit/')
+  } else if (car == "No" && postcode == "N0000" && emailAddress !== undefined) {
+    res.redirect('/moonshot/v1/order-home-test-kit/')
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress == undefined) {
+    res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
+  } else if (car == "No" && postcode !== "N0000" && emailAddress == undefined) {
     res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
   }
 
