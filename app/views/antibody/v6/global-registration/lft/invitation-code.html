@@ -35,38 +35,38 @@
           <li>book an appointment for a swab test</li>
         </ul> -->
 
-      <form action="/antibody/{{version}}/global-registration/lft/" method="post">
+      <form method="post" role="form" id="passForm" action="/antibody/{{version}}/global-registration/lft/">
 
-        <div class="govuk-form-group govuk-!-margin-top-6">
-          <fieldset class="govuk-fieldset" role="group" aria-describedby="invitation-code-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-              Enter your invite code
-            </legend>
-            <span id="invitation-code-hint" class="govuk-hint">
-              This is the 16 digit code sent to you in an email or text message.
-            </span>
+      <div class="govuk-form-group govuk-!-margin-top-6">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="invitation-code-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            Enter your invite code
+          </legend>
+          <span id="invitation-code-hint" class="govuk-hint">
+            This is the 16 digit code sent to you in an email or text message.
+          </span>
 
-            <div class="govuk-!-display-inline-block govuk-!-margin-top-5 uppercase govuk-form-group">
-              <label for="invitation-code-1" class="govuk-label govuk-visually-hidden"> Invitation code field 1</label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="invitation-code-1" name="invitation-code-1" type="text" spellcheck="false" value="{{ data['invitation-code-1'] }}">
-            </div>
-            -
-            <div class="govuk-!-display-inline-block govuk-!-margin-top-5 uppercase govuk-form-group">
-              <label for="invitation-code-2" class="govuk-label govuk-visually-hidden"> Invitation code field 2</label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="invitation-code-2" name="invitation-code-2" spellcheck="false" value="{{ data['invitation-code-2'] }}">
-            </div>
-            -
-            <div class="govuk-!-display-inline-block govuk-!-margin-top-5 uppercase govuk-form-group">
-              <label for="invitation-code-3" class="govuk-label govuk-visually-hidden"> Invitation code field 3</label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="invitation-code-3" name="invitation-code-3" type="text" spellcheck="false" value="{{ data['invitation-code-3'] }}">
-            </div> -
-            <div class="govuk-!-display-inline-block govuk-!-margin-top-5 uppercase govuk-form-group">
-              <label for="invitation-code-4" class="govuk-label govuk-visually-hidden"> Invitation code field 4</label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="invitation-code-4" name="invitation-code-4" type="text" spellcheck="false" value="{{ data['invitation-code-4'] }}">
-            </div>
+          <div class="govuk-!-display-inline-block govuk-!-margin-top-5 uppercase govuk-form-group">
+            <label for="invitation-code-1" class="govuk-label govuk-visually-hidden"> Invitation code field 1</label>
+            <input class="passInput govuk-input govuk-date-input__input govuk-input--width-3"  maxlength="4" autocomplete="off" required pattern="\d{4}" id="invitation-code-1" name="invitation-code-1" type="text" spellcheck="false" value="{{ data['invitation-code-1'] }}">
+          </div>
+          -
+          <div class="govuk-!-display-inline-block govuk-!-margin-top-5 uppercase govuk-form-group">
+            <label for="invitation-code-2" class="govuk-label govuk-visually-hidden"> Invitation code field 2</label>
+            <input class="passInput govuk-input govuk-date-input__input govuk-input--width-3"  maxlength="4" autocomplete="off" required pattern="\d{4}" id="invitation-code-2" name="invitation-code-2" spellcheck="false" value="{{ data['invitation-code-2'] }}">
+          </div>
+          -
+          <div class="govuk-!-display-inline-block govuk-!-margin-top-5 uppercase govuk-form-group">
+            <label for="invitation-code-3" class="govuk-label govuk-visually-hidden"> Invitation code field 3</label>
+            <input class="passInput govuk-input govuk-date-input__input govuk-input--width-3"  maxlength="4" autocomplete="off" required pattern="\d{4}" id="invitation-code-3" name="invitation-code-3" type="text" spellcheck="false" value="{{ data['invitation-code-3'] }}">
+          </div> -
+          <div class="govuk-!-display-inline-block govuk-!-margin-top-5 uppercase govuk-form-group">
+            <label for="invitation-code-4" class="govuk-label govuk-visually-hidden"> Invitation code field 4</label>
+            <input class="passInput govuk-input govuk-date-input__input govuk-input--width-3" maxlength="4" autocomplete="off" required pattern="\d{4}" id="invitation-code-4" name="invitation-code-4" type="text" spellcheck="false" value="{{ data['invitation-code-4'] }}">
+          </div>
 
-          </fieldset>
-        </div>
+        </fieldset>
+      </div>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
@@ -82,5 +82,31 @@
 
     </div>
   </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+  const $inp = $(".passInput");
+
+  $inp.on({
+    paste(ev) { // Handle Pasting
+
+      const clip = ev.originalEvent.clipboardData.getData('text').trim();
+      // Allow numbers only
+      if (!/\d{16}/.test(clip)) return ev.preventDefault(); // Invalid. Exit here
+      // Split string to Array or characters
+      const s = [...clip];
+      // Populate inputs. Focus last input.
+      $inp.val(i => s[i]).eq(4).focus();
+    }
+  });
+
+
+</script>
 
 {% endblock %}
