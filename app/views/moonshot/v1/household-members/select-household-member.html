@@ -57,6 +57,17 @@
                 </span>
               </div>
               {% endif %}
+              {% if data['add-to-household-person-2'] == "Yes" %}
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="select-person-2" name="select-person" type="radio" value="2" {{ checked("select-person", "2") }} aria-describedby="select-person-1-hint">
+                <label class="govuk-label govuk-radios__label" for="select-person-2">
+                  {{ data['first-name-person-2'] | default('Jane') }} {{ data['last-name-person-2'] | default('Wilson') }}
+                </label>
+                <span id="select-person-1-hint" class="govuk-hint govuk-radios__hint">
+                  {{ data['date-of-birth-day-person-2'] | default('12') }} {{ data['date-of-birth-month-person-2'] | default('10') }} {{ data['date-of-birth-year-person-2'] | default('1985') }}
+                </span>
+              </div>
+              {% endif %}
               {% if data['add-to-household-person-1'] == undefined and data['add-to-household-person-2'] == undefined and data['add-to-household-person-3'] == undefined %}
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="select-person-4" name="select-person" type="radio" value="4" {{ checked("select-person", "4") }} aria-describedby="select-person-1-hint">

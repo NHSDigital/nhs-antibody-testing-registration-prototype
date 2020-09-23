@@ -801,6 +801,30 @@ router.post('/lite-registration/v1/action3/do-you-have-symptoms', function (req,
 
 })
 
+// Version 1 - Antigen Global Registration - Country route
+
+router.post('/lite-registration/v1/action6/country', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "Northern Ireland"){
+    res.redirect('/lite-registration/v1/address')
+  } else {
+    res.redirect('/lite-registration/v1/nhs-number-known')
+  }
+
+})
+
+// Version 1 - Lite Registration - NHS number known route
+
+router.post('/lite-registration/v1/action6/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/lite-registration/v1/nhs-number')
+  } else {
+    res.redirect('/lite-registration/v1/check-your-answers')
+  }
+
+})
+
 //Admin portal - Bulk SMS - Reason for appointment change route
 router.post('/admin-portal/bulk-sms/action1/reason-for-change', function (req, res) {
   let reasonForTest = req.session.data['reason-for-change']
@@ -1338,7 +1362,7 @@ router.post('/moonshot/v1/action7/nhs-number-known-person-2', function (req, res
 
 })
 
-// Version 1 - Moonshot Global Registration - check your answers person 1 route
+// Version 1 - Moonshot Global Registration - check your answers person 2 route
 
 router.post('/moonshot/v1/action7/check-your-answers-person-2', function (req, res) {
   let password = req.session.data['password']
@@ -1354,7 +1378,7 @@ router.post('/moonshot/v1/action7/check-your-answers-person-2', function (req, r
 
 })
 
-// Version 1 - Moonshot Global Registration - people confirmed person 1 route
+// Version 1 - Moonshot Global Registration - people confirmed person 2 route
 
 router.post('/moonshot/v1/action7/people-confirmed-person-2', function (req, res) {
   let postcode = req.session.data['home-postcode']
@@ -1376,6 +1400,142 @@ router.post('/moonshot/v1/action7/people-confirmed-person-2', function (req, res
     res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
   } else if (car == "No" && postcode !== "N0000" && emailAddress == undefined) {
     res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
+  }
+
+})
+
+// Version 1 - Moonshot Household Members List - Do you have symptoms person 1 route
+
+router.post('/moonshot/v1/action7/household-members-list-add-people/do-you-have-symptoms-person-1', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms-person-1']
+  if (symptoms == "Yes"){
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/when-did-symptoms-start-person-1')
+  } else {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/mobile-number-person-1')
+  }
+
+})
+
+// Version 1 - Moonshot Household Members List - Do you have symptoms person 2 route
+
+router.post('/moonshot/v1/action7/household-members-list-add-people/do-you-have-symptoms-person-2', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms-person-2']
+  if (symptoms == "Yes"){
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/when-did-symptoms-start-person-2')
+  } else {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/mobile-number-person-2')
+  }
+
+})
+
+// Version 1 - Moonshot Household Members List - Ethnic group person 1 route
+
+router.post('/moonshot/v1/action7/household-members-list-add-people/ethnic-group-person-1', function (req, res) {
+  let ethnicGroupPerson1 = req.session.data['ethnic-group-person-1']
+  if (ethnicGroupPerson1 == "Asian or Asian British"){
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/ethnic-background-asian-person-1')
+  } else if (ethnicGroupPerson1 == "Black, African, Black British or Caribbean") {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/ethnic-background-black-person-1')
+  } else if (ethnicGroupPerson1 == "Mixed or multiple ethnic groups") {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/ethnic-background-mixed-person-1')
+  } else if (ethnicGroupPerson1 == "White") {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/ethnic-background-white-person-1')
+  } else if (ethnicGroupPerson1 == "Another ethnic group") {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/ethnic-background-another-person-1')
+  } else {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/currently-in-work-person-1')
+  }
+
+})
+
+// Version 1 - Moonshot Household Members List - Ethnic group person 2 route
+
+router.post('/moonshot/v1/action7/household-members-list-add-people/ethnic-group-person-2', function (req, res) {
+  let ethnicGroupPerson1 = req.session.data['ethnic-group-person-2']
+  if (ethnicGroupPerson1 == "Asian or Asian British"){
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/ethnic-background-asian-person-2')
+  } else if (ethnicGroupPerson1 == "Black, African, Black British or Caribbean") {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/ethnic-background-black-person-2')
+  } else if (ethnicGroupPerson1 == "Mixed or multiple ethnic groups") {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/ethnic-background-mixed-person-2')
+  } else if (ethnicGroupPerson1 == "White") {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/ethnic-background-white-person-2')
+  } else if (ethnicGroupPerson1 == "Another ethnic group") {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/ethnic-background-another-person-2')
+  } else {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/currently-in-work-person-2')
+  }
+
+})
+
+// Version 1 - Moonshot Household Members List - Currently in work person 1 route
+
+router.post('/moonshot/v1/action7/household-members-list-add-people/currently-in-work-person-1', function (req, res) {
+  let inWork = req.session.data['currently-in-work-person-1']
+  if (inWork == "No"){
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/country-person-1')
+  } else {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/industry-person-1')
+  }
+
+})
+
+// Version 1 - Moonshot Household Members List - Currently in work person 2 route
+
+router.post('/moonshot/v1/action7/household-members-list-add-people/currently-in-work-person-2', function (req, res) {
+  let inWork = req.session.data['currently-in-work-person-2']
+  if (inWork == "No"){
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/country-person-2')
+  } else {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/industry-person-2')
+  }
+
+})
+
+// Version 1 - Moonshot Household Members List - Country person 1 route
+
+router.post('/moonshot/v1/action7/household-members-list-add-people/country-person-1', function (req, res) {
+  let country = req.session.data['country-person-1']
+  if (country == "Northern Ireland"){
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/address-person-1')
+  } else {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/postcode-person-1')
+  }
+
+})
+
+// Version 1 - Moonshot Household Members List - Country person 2 route
+
+router.post('/moonshot/v1/action7/household-members-list-add-people/country-person-2', function (req, res) {
+  let country = req.session.data['country-person-2']
+  if (country == "Northern Ireland"){
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/address-person-2')
+  } else {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/postcode-person-2')
+  }
+
+})
+
+// Version 1 - Moonshot Household Members List - NHS number known person 1 route
+
+router.post('/moonshot/v1/action7/household-members-list-add-people/nhs-number-known-person-1', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known-person-1']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/nhs-number-person-1')
+  } else {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/check-your-answers-person-1')
+  }
+
+})
+
+// Version 1 - Moonshot Household Members List - NHS number known person 2 route
+
+router.post('/moonshot/v1/action7/household-members-list-add-people/nhs-number-known-person-2', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known-person-2']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/nhs-number-person-2')
+  } else {
+    res.redirect('/moonshot/v1/household-members/household-members-list-add-people/check-your-answers-person-2')
   }
 
 })
