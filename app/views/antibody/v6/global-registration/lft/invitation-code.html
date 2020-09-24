@@ -97,7 +97,8 @@
       paste(ev) { // Handle Pasting
         const clip = ev.originalEvent.clipboardData.getData('text').trim();
         // Allow numbers only
-        if (!/\d{16}/.test(clip)) return ev.preventDefault(); // Invalid. Exit here
+        // if (!/\d{16}/.test(clip)) return ev.preventDefault(); // Invalid. Exit here
+        if (!/[0-9,A-Z]{16}/.test(clip)) return ev.preventDefault(); // Invalid. Exit here
         // Split string to Array or characters
         // Populate inputs. Focus last input.
         $inp.val(i => clip.slice(i * 4, i * 4 + 4)).eq(4).focus();
