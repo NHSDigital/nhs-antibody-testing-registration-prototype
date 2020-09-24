@@ -934,7 +934,7 @@ router.post('/moonshot/v1/action7/security-check', function (req, res) {
   }
 
 })
-  
+
   // Version 1 - Moonshot Refer and Triage - How will you get test route
 
 router.post('/moonshot/v1/action7/how-will-you-get-test', function (req, res) {
@@ -1133,7 +1133,7 @@ router.post('/moonshot/v1/action7/people-confirmed', function (req, res) {
     res.redirect('/moonshot/v1/site-appointment-booking/vehicle-registration-number')
   } else if (car == "No" && postcode !== "N0000" && emailAddress == undefined) {
     res.redirect('/moonshot/v1/site-appointment-booking/find-test-site')
-  } 
+  }
 
 })
 
@@ -1468,5 +1468,22 @@ router.post('/moonshot/v1/action7/is-your-vehicle-registration-number', function
   }
 
 })
+
+// Version 1 - Moonshot Household members - is your vehicle registration number route
+
+router.post('/moonshot/v1/action3/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+
+  if (password == "" && confirmPassword == "") {
+    console.log("both empty")
+  } else if (password == "") {
+    console.log("password empty")
+  } else if (confirmPassword == "") {
+    console.log("confirm password empty")
+  }
+})
+
+
 
 module.exports = router
