@@ -1,0 +1,51 @@
+{% set version = "v1" %}
+{% set pageTitle = "Do you want to remove this person from your household?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/moonshot/{{version}}/household-members/household-members-list">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/moonshot/{{version}}/household-members/household-members-list" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="remove-from-household-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                Do you want to remove {{ data['first-name-person-1'] | default('Pete') }} {{ data['last-name-person-1'] | default('Smith') }} from your household?
+              </h1>
+            </legend>
+            <span id="remove-from-household-hint" class="govuk-body">
+                Their details will be removed. If you want to get them tested in the future, you'll need to re enter their details.
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="add-to-household-1-person-1" name="add-to-household-person-1" type="radio" value="No">
+                <label class="govuk-label govuk-radios__label" for="add-to-household-1-person-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="add-to-household-2-person-1" name="add-to-household-person-1" type="radio" value="Yes">
+                <label class="govuk-label govuk-radios__label" for="add-to-household-2-person-1">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

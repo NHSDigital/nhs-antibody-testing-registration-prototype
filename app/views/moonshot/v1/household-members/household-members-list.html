@@ -25,17 +25,17 @@
 
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
 
-        {% if data['add-to-household-person-1'] == undefined or data['add-to-household-person-1'] == "No" %}
+        {% if data['add-to-household-person-1'] == undefined or data['add-to-household-person-1'] == "No" and data['add-to-household-person-2'] == "No" %}
 
         <p class="govuk-body">You have no household members. Add household members here so you can use their details to get tested quickly next time.</p>
 
-        <form action="/moonshot/{{version}}/household-members/name-person-1" method="post">
+        <form action="/moonshot/{{version}}/household-members/household-members-list-add-people/name-person-1" method="post">
 
             <button class="govuk-button" data-module="govuk-button">Add household member</button>
 
         </form>
 
-        {% elseif data['add-to-household-person-2'] == undefined or data['add-to-household-person-2'] == "No" %}
+        {% else %}
 
         <p class="govuk-body">Add household members here so you can use their details to get tested quickly next time.</p>
 
@@ -48,6 +48,7 @@
               </tr>
             </thead>
             <tbody class="govuk-table__body">
+              {% if data['add-to-household-person-1'] == "Yes" %}
               <tr class="govuk-table__row">
                 <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] }}<br>{{ data['last-name-person-1'] }}</th>
                 <td class="govuk-table__cell">
@@ -57,49 +58,15 @@
                 </td>
                 <td class="govuk-table__cell">
                   <p class="govuk-body-m">
-                    <a href="/moonshot/{{version}}/household-members/check-your-answers-person-1">Edit details</a>
-                    <a href="/moonshot/{{version}}/household-members/people-confirmed">Remove</a>
+                    <a href="/moonshot/{{version}}/household-members/household-members-list-add-people/check-your-answers-person-1">Edit details</a>
+                    <a href="/moonshot/{{version}}/household-members/remove-household-member-person-1">Remove</a>
                   </p>
                 </td>
               </tr>
-            </tbody>
-          </table>
-
-        <form action="/moonshot/{{version}}/household-members/name-person-2" method="post">
-
-            <button class="govuk-button" data-module="govuk-button">Add household member</button>
-
-        </form>
-
-        {% elseif data['add-to-household-person-3'] == undefined or data['add-to-household-person-3'] == "No" %}
-
-        <p class="govuk-body">Add household members here so you can use their details to get tested quickly next time.</p>
-
-        <table class="govuk-table">
-            <thead class="govuk-table__head">
+              {% endif %}
+              {% if data['add-to-household-person-2'] == "Yes" %}
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
-                <th scope="col" class="govuk-table__header govuk-!-width-one-half"></th>
-                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] }}<br>{{ data['last-name-person-1'] }}</th>
-                <td class="govuk-table__cell">
-                  {{ data['email-address-person-1'] }}
-                  <br>
-                  {{ data['mobile-phone-number-person-1'] }}
-                </td>
-                <td class="govuk-table__cell">
-                  <p class="govuk-body-m">
-                    <a href="/moonshot/{{version}}/household-members/check-your-answers-person-1">Edit details</a>
-                    <a href="/moonshot/{{version}}/household-members/people-confirmed">Remove</a>
-                  </p>
-                </td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] }}<br>{{ data['last-name-person-1'] }}</th>
+                <th scope="row" class="govuk-table__header">{{ data['first-name-person-2'] }}<br>{{ data['last-name-person-2'] }}</th>
                 <td class="govuk-table__cell">
                   {{ data['email-address-person-2'] }}
                   <br>
@@ -107,15 +74,16 @@
                 </td>
                 <td class="govuk-table__cell">
                   <p class="govuk-body-m">
-                    <a href="/moonshot/{{version}}/household-members/check-your-answers-person-1">Edit details</a>
-                    <a href="/moonshot/{{version}}/household-members/people-confirmed">Remove</a>
+                    <a href="/moonshot/{{version}}/household-members/household-members-list-add-people/check-your-answers-person-1">Edit details</a>
+                    <a href="/moonshot/{{version}}/household-members/remove-household-member-person-2">Remove</a>
                   </p>
                 </td>
               </tr>
+              {% endif %}
             </tbody>
           </table>
 
-        <form action="/moonshot/{{version}}/refer-and-triage/mobile-number" method="post">
+        <form action="/moonshot/{{version}}/household-members/household-members-list-add-people/name-person-2" method="post">
 
             <button class="govuk-button" data-module="govuk-button">Add household member</button>
 

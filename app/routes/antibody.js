@@ -918,6 +918,18 @@ router.post('/antibody/v6/action2/do-you-have-symptoms', function (req, res) {
 
 })
 
+// Version 6 - Registration - Do you have symptoms route for LFT
+router.post('/antibody/v6/action2/do-you-have-symptoms-lft', function (req, res) {
+  let doYouHaveSymptoms = req.session.data['do-you-have-symptoms-2-lft']
+
+  if (doYouHaveSymptoms == "Yes"){
+    res.redirect('/antibody/v6/global-registration/get-antigen-test')
+  } else {
+    res.redirect('/antibody/v6/global-registration/lft/nhs-number-known')
+  }
+
+})
+
 // Version 6 - Registration - Ethnic group route
 router.post('/antibody/v6/action2/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
