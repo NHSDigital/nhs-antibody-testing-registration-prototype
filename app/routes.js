@@ -1608,11 +1608,37 @@ router.post('/moonshot/v1/action7/select-household-member', function (req, res) 
   if (loginEmail == "user@testing.co.uk" && selectedPerson == "1" ){
     res.redirect('/moonshot/v1/refer-and-triage/reason-for-test')
   } else if (password !== undefined && selectedPerson == "4" ){
-    res.redirect('/moonshot/v1/household-members/do-you-have-symptoms-person-1')
-  } else if (selectedPerson == "1" && loginEmail == "user@testing.co.uk" || selectedPerson == "2" && loginEmail == "user@testing.co.uk" || selectedPerson == "3" && loginEmail == "user@testing.co.uk" ){
-    res.redirect('/moonshot/v1/household-members/do-you-have-symptoms-person-1')
+    res.redirect('/moonshot/v1/household-members/add-existing-member-to-test/do-you-have-symptoms-person-1')
+  } else if (selectedPerson == "2" && loginEmail == "user@testing.co.uk" ){
+    res.redirect('/moonshot/v1/household-members/add-existing-member-to-test/do-you-have-symptoms-person-1')
+  } else if (selectedPerson == "3" && loginEmail == "user@testing.co.uk" ){
+    res.redirect('/moonshot/v1/household-members/add-existing-member-to-test/do-you-have-symptoms-person-2')
   } else {
     res.redirect('/moonshot/v1/household-members/name-person-1')
+  }
+
+})
+
+// Version 1 - Moonshot Household Members List - Do you have symptoms person 1 route
+
+router.post('/moonshot/v1/action7/add-existing-member-to-test/do-you-have-symptoms-person-1', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms-person-1']
+  if (symptoms == "Yes"){
+    res.redirect('/moonshot/v1/household-members/add-existing-member-to-test/when-did-symptoms-start-person-1')
+  } else {
+    res.redirect('/moonshot/v1/household-members/add-existing-member-to-test/email-address-person-1')
+  }
+
+})
+
+// Version 1 - Moonshot Household Members List - Do you have symptoms person 1 route
+
+router.post('/moonshot/v1/action7/add-existing-member-to-test/do-you-have-symptoms-person-2', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms-person-2']
+  if (symptoms == "Yes"){
+    res.redirect('/moonshot/v1/household-members/add-existing-member-to-test/when-did-symptoms-start-person-2')
+  } else {
+    res.redirect('/moonshot/v1/household-members/add-existing-member-to-test/email-address-person-2')
   }
 
 })
