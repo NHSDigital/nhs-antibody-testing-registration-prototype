@@ -1591,7 +1591,8 @@ router.post('/moonshot/v1/action7/find-test-site', function (req, res) {
 
 router.post('/moonshot/v1/action7/add-person', function (req, res) {
   let loginEmail = req.session.data['email-address']
-  if (loginEmail == "user@testing.co.uk"){
+  let password = req.session.data['password']
+  if (loginEmail == "user@testing.co.uk" || password !== undefined){
     res.redirect('/moonshot/v1/household-members/select-household-member')
   } else {
     res.redirect('/moonshot/v1/household-members/name-person-1')
@@ -1608,6 +1609,8 @@ router.post('/moonshot/v1/action7/select-household-member', function (req, res) 
   if (loginEmail == "user@testing.co.uk" && selectedPerson == "1" ){
     res.redirect('/moonshot/v1/refer-and-triage/reason-for-test')
   } else if (password !== undefined && selectedPerson == "4" ){
+    res.redirect('/moonshot/v1/household-members/add-existing-member-to-test/do-you-have-symptoms-person-1')
+  } else if (password !== undefined && selectedPerson == "2" ){
     res.redirect('/moonshot/v1/household-members/add-existing-member-to-test/do-you-have-symptoms-person-1')
   } else if (selectedPerson == "2" && loginEmail == "user@testing.co.uk" ){
     res.redirect('/moonshot/v1/household-members/add-existing-member-to-test/do-you-have-symptoms-person-1')
