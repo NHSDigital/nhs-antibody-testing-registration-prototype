@@ -1666,5 +1666,15 @@ router.post('/moonshot/v1/action3/create-password', function (req, res) {
   }
 })
 
+// Version 1 - Moonshot check mobile validation
+router.post('/moonshot/v1/action3/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/moonshot/v1/user-account/check-mobile-error')
+  } else {
+    res.redirect('/moonshot/v1/user-account/agreement')
+  }
+})
+
 
 module.exports = router
