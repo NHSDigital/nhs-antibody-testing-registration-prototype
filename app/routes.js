@@ -1629,21 +1629,16 @@ router.post('/moonshot/v1/action7/is-your-vehicle-registration-number', function
 
 })
 
-// Version 1 - Moonshot Household members - is your vehicle registration number route
-
+// Version 1 - Moonshot create password validation
 router.post('/moonshot/v1/action3/create-password', function (req, res) {
   let password = req.session.data['password']
   let confirmPassword = req.session.data['confirm-password']
-
-  if (password == "" && confirmPassword == "") {
-    console.log("both empty")
-  } else if (password == "") {
-    console.log("password empty")
-  } else if (confirmPassword == "") {
-    console.log("confirm password empty")
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/moonshot/v1/user-account/create-password-error')
+  } else {
+    res.redirect('/moonshot/v1/user-account/check-email')
   }
 })
-
 
 
 module.exports = router
