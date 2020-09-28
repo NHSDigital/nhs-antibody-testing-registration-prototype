@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What's your date of birth?" %}
+{% set pageTitle = "What's the date of birth of the person needing a test?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -14,8 +14,13 @@
       </span>
     </p>
   </div> 
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
   
-  {% if data['way-to-test'] == "drive-through" %}
+  <!-- {% if data['way-to-test'] == "drive-through" %}
   <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/visiting-drive-through">Back</a>
   {% elseif data['way-to-test'] == "walk-in" %}
   <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/visiting-walk-through">Back</a>
@@ -27,7 +32,7 @@
   <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/visiting-walk-through">Back</a>
   {% elseif data['way-to-test'] == undefined and data['email'] == "Yes" and data['do-you-have-a-car'] == "No" and data['home-postcode'] == "N0000" %}
   <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/ordering-home-test-kit">Back</a>
-  {% endif %}
+  {% endif %} -->
 
 {% endblock %}
 

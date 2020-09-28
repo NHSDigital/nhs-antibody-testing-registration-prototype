@@ -41,10 +41,8 @@
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">{{ data['first-name'] }}<br>{{ data['last-name'] }}</th>
             <td class="govuk-table__cell">
-              {% if data['email'] == "Yes" %}
               {{ data['email-address'] }}
               <br>
-              {% endif %}
               {{ data['mobile-phone-number'] }}
             </td>
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a></p></td>
@@ -52,10 +50,8 @@
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] }}<br>{{ data['last-name-person-1'] }}</th>
             <td class="govuk-table__cell">
-              {% if data['email-person-1'] == "Yes" %}
               {{ data['email-address-person-1'] }}
               <br>
-              {% endif %}
               {{ data['mobile-phone-number-person-1'] }}
             </td>
             <td class="govuk-table__cell">
@@ -68,9 +64,23 @@
         </tbody>
       </table>
 
-      <form class="form" action="/antigen/{{version}}/action3/people-confirmed-person-1" method="post">
+      <div class="govuk-warning-text govuk-!-margin-bottom-6 govuk-!-margin-top-5">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text govuk-!-font-size-19">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          People you live with who do not have symptoms are not eligible for this test. Do not order tests for them, unless you've been asked to. Ordering unnecessary tests is wasting NHS resources.
+        </strong>
+      </div>
+
+      <form class="form" action="/antigen/{{version}}/action3/people-confirmed-person-1" method="post" style="display: inline-block;">
 
         <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">Save and continue</button>
+
+      </form>
+
+      <form class="form" action="#" method="post" style="display: inline-block;">
+
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Add person you live with</button>
 
       </form>
 

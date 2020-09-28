@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Do you have a landline telephone number?" %}
+{% set pageTitle = "Do you have a landline phone number?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,7 +15,12 @@
     </p>
   </div> 
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/">Back</a>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+
+  <!-- <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/">Back</a> -->
 {% endblock %}
 
 {% block content %}
@@ -28,7 +33,7 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="landline-number-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
                 {{ pageTitle }}
               </h1>
             </legend>
@@ -39,13 +44,13 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="landline-number-1" name="landline-number" type="radio" value="Yes" data-aria-controls="conditional-landline-number" {{ checked("landline-number", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="landline-number-1">
-                  Yes, I do have a landline telephone number
+                  Yes, I do have a landline phone number
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-landline-number">
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="landline-telephone-number">
-                    Landline telephone number
+                    Landline phone number
                   </label>
                   <input class="govuk-input govuk-!-width-one-third" id="landline-telephone-number" name="landline-telephone-number" type="tel" value="{{ data['landline-telephone-number'] }}">
                 </div>
@@ -53,7 +58,7 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="landline-number-2" name="landline-number" type="radio" value="I do not have a landline" {{ checked("landline-number", "I do not have a landline") }}>
                 <label class="govuk-label govuk-radios__label" for="landline-number-2">
-                  No, I do not have a landline telephone number
+                  No, I do not have a landline phone number
                 </label>
               </div>
             </div>

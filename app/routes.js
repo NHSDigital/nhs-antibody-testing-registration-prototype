@@ -690,7 +690,7 @@ router.post('/antigen/v1/action5/confirm-identity', function (req, res) {
   if (confirmIdentity == "Yes"){
     res.redirect('/antigen/v1/order-home-test-kit/identity-confirmed')
   } else {
-    res.redirect('/antigen/v1/refer-and-triage/')
+    res.redirect('/antigen/v1/govuk/get-coronavirus-test')
   }
 
 })
