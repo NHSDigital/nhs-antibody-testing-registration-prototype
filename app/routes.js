@@ -6,6 +6,7 @@ const router = express.Router()
 // Call in routes file from routes folder to keep routes.js cleaner
 router.use('/', require('./routes/org-register.js'))
 router.use('/', require('./routes/antibody.js'))
+router.use('/', require('./routes/antigen.js'))
 
 // Pull scope into the homepage to show/hide sections
 // 'SCOPE' is either pulled in from the Heroku App settings or setting in a local .env file eg. SCOPE=antibody
