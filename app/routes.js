@@ -865,7 +865,7 @@ router.post('/moonshot/v1/action7/home-page-get-tested', function (req, res) {
 })
 
 // Version 1 - Moonshot User account - Home page personal details route
-router.post('/moonshot/v1/action7/home-page-personal-details', function (req, res) {
+/*router.post('/moonshot/v1/action7/home-page-personal-details', function (req, res) {
   let loginEmail = req.session.data['email-address']
 
   if (loginEmail){
@@ -875,6 +875,7 @@ router.post('/moonshot/v1/action7/home-page-personal-details', function (req, re
   }
 
 })
+*/
 
 // Version 1 - Moonshot User account - Home page personal details route
 // router.post('/moonshot/v1/action7/home-page-household-members', function (req, res) {
