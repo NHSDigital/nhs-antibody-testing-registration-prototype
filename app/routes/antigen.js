@@ -10,45 +10,11 @@ function loadJSONFromFile(fileName, path = "app/data/") {
   return JSON.parse(jsonFile) // Return JSON as object
 }
 
-router.post("/", function (req, res) {
-
-  let prototype = {} || req.session.data['prototype']
-
-  // pull in JSON data file
-  delete req.session.data['idv']
-  let idvFile = 'verification-requests.json'
-  let path = 'app/data/'
-  req.session.data['idv'] = loadJSONFromFile(idvFile, path)
-
-  prototype.version = req.session.data.version
-  prototype.total = req.session.data['idv'].length
-  prototype.inprogress = 0
-  prototype.inholding = 0
-  prototype.count = 0
-
-  req.session.data['prototype'] = prototype
-
-  res.redirect('/' + prototype.version + '/dashboard')
-
-})
-
 // Version 2 - Antigen Refer and Triage - Do you have a car route
 
 router.post('/antigen/v2/action3/security-check', function (req, res) {
 
-  let prototype = {} || req.session.data['prototype']
 
-  // pull in JSON data file
-  delete req.session.data['centres']
-  let idvFile = 'test-centres.json'
-  let path = 'app/data/'
-  req.session.data['centres'] = loadJSONFromFile(idvFile, path)
-
-  prototype.version = req.session.data.version
-  prototype.total = req.session.data['centres'].length
-  prototype.count = 0
-
-  req.session.data['prototype'] = prototype
 
   let postcode = req.session.data['home-postcode']
   let emailAddress = req.session.data['email']
@@ -156,7 +122,7 @@ router.post('/antigen/v2/action3/how-will-you-get-test-wrong-postcode', function
 
 })
 
-// Version 1 - Antigen Refer and Triage - Order home test kit route
+// Version 2 - Antigen Refer and Triage - Order home test kit route
 
 router.post('/antigen/v2/action3/order-home-test-kit', function (req, res) {
   let postcode = req.session.data['home-postcode']
@@ -176,9 +142,24 @@ router.post('/antigen/v2/action3/order-home-test-kit', function (req, res) {
 
 })
 
-// Version 1 - Antigen Site Appointment Booking - find a test site route
+// Version 2 - Antigen Site Appointment Booking - find a test site route
 
 router.post('/antigen/v2/action3/please-wait', function (req, res) {
+
+  let prototype = {} || req.session.data['prototype']
+
+  // pull in JSON data file
+  delete req.session.data['centres']
+  let idvFile = 'test-centres.json'
+  let path = 'app/data/'
+  req.session.data['centres'] = loadJSONFromFile(idvFile, path)
+
+  prototype.version = req.session.data.version
+  prototype.total = req.session.data['centres'].length
+  prototype.count = 0
+
+  req.session.data['prototype'] = prototype
+
   let postcode = req.session.data['home-postcode']
   let emailAddress = req.session.data['email']
   let car = req.session.data['do-you-have-a-car']
@@ -198,6 +179,20 @@ router.post('/antigen/v2/action3/please-wait', function (req, res) {
   } else {
     res.redirect('/antigen/v2/site-appointment-booking/choose-drive-through-site')
   }
+
+})
+
+// Version 2 - Antigen Site Appointment Booking - Choose time prev day route
+
+router.post('/antigen/v2/action3/choose-time-drive', function (req, res) {
+  let chosenType = req.session.data['type']
+  if (chosenType == "Drive-through"){
+    res.redirect('/antigen/v2/site-appointment-booking/vehicle-registration-number')
+  } else {
+    res.redirect('/antigen/v2/site-appointment-booking/confirm-appointment-drive')
+  }
+
+  // res.redirect('/antigen/v2/site-appointment-booking/vehicle-registration-number')
 
 })
 
