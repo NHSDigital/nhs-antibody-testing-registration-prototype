@@ -610,6 +610,8 @@ router.post('/antigen/v1/action3/people-confirmed', function (req, res) {
     res.redirect('/antigen/v1/site-appointment-booking/find-test-site')
   } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/site-appointment-booking/find-test-site')
+  } else {
+    res.redirect('/antigen/v1/site-appointment-booking/find-test-site')
   }
 
 })
@@ -656,6 +658,8 @@ router.post('/antigen/v1/action3/find-test-site', function (req, res) {
     res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
   } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
+  } else {
+    res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
   }
 
 })

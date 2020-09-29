@@ -11,6 +11,8 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
+      <form action="/antigen/{{version}}/global-registration/people-confirmed" method="post" novalidate>
+
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -19,7 +21,7 @@
             Name
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['first-name'] }} {{ data['last-name'] }}
+            {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/refer-and-triage/">
@@ -33,7 +35,7 @@
             Date of birth
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+            {{ data['date-of-birth-day'] or '15 March 1988' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/index">
@@ -42,13 +44,56 @@
             </a>
           </dd>
         </div>
-        {% if data['landline-number'] == "Yes" %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Any symptoms?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['do-you-have-symptoms'] or 'Yes' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/refer-and-triage/do-you-have-symptoms">
+              Change
+              <span class="govuk-visually-hidden">do you have any symptoms</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of onset
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['symptoms-start-date-day'] or '27 September 2020' }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">
+              Change
+              <span class="govuk-visually-hidden">date of onset</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Mobile
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mobile-number'] or '+447782808451' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/mobile-number-person-1">
+              Change
+              <span class="govuk-visually-hidden">mobile number</span>
+            </a>
+          </dd>
+        </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Landline number
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['landline-telephone-number'] }}
+            {{ data['landline-number'] or 'I do not have a landline number'}}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/landline-number">
@@ -57,59 +102,29 @@
             </a>
           </dd>
         </div>
-        {% else %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Landline number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['landline-number'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/landline-number">
-              Change
-              <span class="govuk-visually-hidden">landline number</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        {% if data['email'] == "Yes" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Email address
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['email-address'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/email-address">
-              Change
-              <span class="govuk-visually-hidden">email address</span>
-            </a>
-          </dd>
-        </div>
-        {% else %}
+
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Email
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['email'] }}
+            {{ data['email-address'] or 'email@example.com' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/email-address">
+            <a href="/antigen/{{version}}/global-registration/email-address">
               Change
-              <span class="govuk-visually-hidden">email</span>
+              <span class="govuk-visually-hidden">email address</span>
             </a>
           </dd>
         </div>
-        {% endif %}
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Gender
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['gender'] }}
+            {{ data['gender'] or 'male' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/gender">
@@ -123,7 +138,7 @@
             Ethnic group
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['ethnic-group'] }}
+            {{ data['ethnic-group'] or 'white' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/ethnic-group">
@@ -138,7 +153,7 @@
             Ethnic background
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['ethnic-background'] }}
+            {{ data['ethnic-background'] or 'Prefer not to say' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/ethnic-background">
@@ -148,56 +163,12 @@
           </dd>
         </div>
         {% endif %}
-        <!-- <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Do you have any symptoms
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['do-you-have-symptoms'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/do-you-have-symptoms">
-              Change
-              <span class="govuk-visually-hidden">do you have any symptoms</span>
-            </a>
-          </dd>
-        </div> -->
-        <!-- {% if data['do-you-have-symptoms'] == "Yes" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Date of onset
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">
-              Change
-              <span class="govuk-visually-hidden">date of onset</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %} -->
-        <!-- <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Mobile number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['mobile-phone-number'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/mobile-number">
-              Change
-              <span class="govuk-visually-hidden">mobile number</span>
-            </a>
-          </dd>
-        </div> -->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Currently in work?
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['currently-in-work'] }}
+            {{ data['currently-in-work'] or 'Yes and I work from home' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/currently-in-work">
@@ -212,7 +183,7 @@
             Area of work
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['industry'] }}
+            {{ data['industry'] or 'Heath and social care' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/industry">
@@ -226,7 +197,7 @@
             Occupation
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['occupation'] | default('Prefer not to say') }}
+            {{ data['occupation'] or 'Prefer not to say' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/occupation">
@@ -240,7 +211,7 @@
             Employer
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['employer'] | default('Prefer not to say')}}
+            {{ data['employer'] or 'Prefer not to say'}}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/employer">
@@ -255,7 +226,7 @@
             Country of residence
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['country'] }}
+            {{ data['country'] or 'England' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/country">
@@ -269,7 +240,7 @@
             Postcode
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['home-postcode'] }}
+            {{ data['home-postcode'] or 'LS1 3BE' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/postcode">
@@ -283,7 +254,7 @@
             NHS number known
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['nhs-number-known'] }}
+            {{ data['nhs-number-known'] or 'No' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/nhs-number-known">
@@ -310,7 +281,7 @@
         {% endif %}
       </dl>
 
-      <form action="/antigen/{{version}}/global-registration/people-confirmed" method="post" novalidate>
+
 
         <input type="hidden" name="answers-checked" value="true">
 
@@ -321,5 +292,7 @@
       </form>
 
     </div>
+
+
   </div>
 {% endblock %}
