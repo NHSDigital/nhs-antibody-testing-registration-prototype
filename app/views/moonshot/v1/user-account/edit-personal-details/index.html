@@ -1,19 +1,28 @@
 {% set version = "v1" %}
-{% set pageTitle = "Check your answers" %}
+{% set pageTitle = "Edit Personal Details" %}
 
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/nhs-number-known">Back</a>
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/moonshot/{{version}}/user-account/edit-personal-details">Back</a>
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <form action="/antigen/{{version}}/global-registration/people-confirmed" method="post" novalidate>
-
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
@@ -21,10 +30,10 @@
             Name
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}
+            {{ data['first-name'] }} {{ data['last-name'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/name">
               Change
               <span class="govuk-visually-hidden">name</span>
             </a>
@@ -35,99 +44,113 @@
             Date of birth
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['date-of-birth-day'] or '15 March 1988' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+            {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/index">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/date-of-birth">
               Change
               <span class="govuk-visually-hidden">date of birth</span>
             </a>
           </dd>
         </div>
-
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Any symptoms?
+            Do you have any symptoms
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['do-you-have-symptoms'] or 'Yes' }}
+            {{ data['do-you-have-symptoms'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/do-you-have-symptoms">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/do-you-have-symptoms">
               Change
               <span class="govuk-visually-hidden">do you have any symptoms</span>
             </a>
           </dd>
         </div>
+        {% if data['do-you-have-symptoms'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Date of onset
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['symptoms-start-date-day'] or '27 September 2020' }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
+            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/when-did-symptoms-start">
               Change
               <span class="govuk-visually-hidden">date of onset</span>
             </a>
           </dd>
         </div>
-
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Mobile
+            Mobile number
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['mobile-number'] or '+447782808451' }}
+            {{ data['mobile-phone-number'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/mobile-number-person-1">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/mobile-number">
               Change
               <span class="govuk-visually-hidden">mobile number</span>
             </a>
           </dd>
         </div>
+        {% if data['landline-number'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Landline number
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['landline-number'] or 'I do not have a landline number'}}
+            {{ data['landline-telephone-number'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/landline-number">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/landline-number">
               Change
               <span class="govuk-visually-hidden">landline number</span>
             </a>
           </dd>
         </div>
-
-
+        {% elseif data['landline-number'] !== "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Email
+            Landline number
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['email-address'] or 'email@example.com' }}
+            {{ data['landline-number'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/email-address">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/landline-number">
+              Change
+              <span class="govuk-visually-hidden">landline number</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['email-address'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/email-address">
               Change
               <span class="govuk-visually-hidden">email address</span>
             </a>
           </dd>
         </div>
-
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Gender
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['gender'] or 'male' }}
+            {{ data['gender'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/gender">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/gender">
               Change
               <span class="govuk-visually-hidden">gender</span>
             </a>
@@ -138,10 +161,10 @@
             Ethnic group
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['ethnic-group'] or 'white' }}
+            {{ data['ethnic-group'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/ethnic-group">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/ethnic-group">
               Change
               <span class="govuk-visually-hidden">ethnic group</span>
             </a>
@@ -153,10 +176,10 @@
             Ethnic background
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['ethnic-background'] or 'Prefer not to say' }}
+            {{ data['ethnic-background'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/ethnic-background">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/ethnic-background">
               Change
               <span class="govuk-visually-hidden">ethnic background</span>
             </a>
@@ -165,15 +188,15 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Currently in work?
+            Are you currently in work?
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['currently-in-work'] or 'Yes and I work from home' }}
+            {{ data['currently-in-work'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/currently-in-work">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/currently-in-work">
               Change
-              <span class="govuk-visually-hidden">currently in work?</span>
+              <span class="govuk-visually-hidden">are you currently in work?</span>
             </a>
           </dd>
         </div>
@@ -183,10 +206,10 @@
             Area of work
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['industry'] or 'Heath and social care' }}
+            {{ data['industry'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/industry">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/industry">
               Change
               <span class="govuk-visually-hidden">area of work</span>
             </a>
@@ -197,10 +220,10 @@
             Occupation
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['occupation'] or 'Prefer not to say' }}
+            {{ data['occupation'] | default('Prefer not to say') }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/occupation">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/occupation">
               Change
               <span class="govuk-visually-hidden">occupation</span>
             </a>
@@ -211,10 +234,10 @@
             Employer
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['employer'] or 'Prefer not to say'}}
+            {{ data['employer'] | default('Prefer not to say')}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/employer">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/employer">
               Change
               <span class="govuk-visually-hidden">employer</span>
             </a>
@@ -226,10 +249,10 @@
             Country of residence
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['country'] or 'England' }}
+            {{ data['country'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/country">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/country">
               Change
               <span class="govuk-visually-hidden">country of residence</span>
             </a>
@@ -240,10 +263,10 @@
             Postcode
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['home-postcode'] or 'LS1 3BE' }}
+            {{ data['home-postcode'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/postcode">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/postcode">
               Change
               <span class="govuk-visually-hidden">postcode</span>
             </a>
@@ -254,10 +277,10 @@
             NHS number known
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['nhs-number-known'] or 'No' }}
+            {{ data['nhs-number-known'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/nhs-number-known">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/nhs-number-known">
               Change
               <span class="govuk-visually-hidden">NHS number known</span>
             </a>
@@ -272,7 +295,7 @@
             {{ data['nhs-number'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/nhs-number">
+            <a href="/moonshot/{{version}}/user-account/edit-personal-details/nhs-number">
               Change
               <span class="govuk-visually-hidden">NHS number</span>
             </a>
@@ -281,7 +304,7 @@
         {% endif %}
       </dl>
 
-
+      <form action="/moonshot/{{version}}/user-account/home-page" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 
@@ -292,7 +315,5 @@
       </form>
 
     </div>
-
-
   </div>
 {% endblock %}

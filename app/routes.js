@@ -610,6 +610,8 @@ router.post('/antigen/v1/action3/people-confirmed', function (req, res) {
     res.redirect('/antigen/v1/site-appointment-booking/find-test-site')
   } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/site-appointment-booking/find-test-site')
+  } else {
+    res.redirect('/antigen/v1/site-appointment-booking/find-test-site')
   }
 
 })
@@ -656,6 +658,8 @@ router.post('/antigen/v1/action3/find-test-site', function (req, res) {
     res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
   } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
+  } else {
+    res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
   }
 
 })
@@ -866,7 +870,7 @@ router.post('/moonshot/v1/action7/home-page-get-tested', function (req, res) {
 })
 
 // Version 1 - Moonshot User account - Home page personal details route
-router.post('/moonshot/v1/action7/home-page-personal-details', function (req, res) {
+/*router.post('/moonshot/v1/action7/home-page-personal-details', function (req, res) {
   let loginEmail = req.session.data['email-address']
 
   if (loginEmail){
@@ -876,6 +880,7 @@ router.post('/moonshot/v1/action7/home-page-personal-details', function (req, re
   }
 
 })
+*/
 
 // Version 1 - Moonshot User account - Home page personal details route
 // router.post('/moonshot/v1/action7/home-page-household-members', function (req, res) {

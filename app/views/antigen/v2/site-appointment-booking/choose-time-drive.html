@@ -38,7 +38,7 @@
             <span id="time-1-hint" class="govuk-body govuk-!-margin-bottom-2">
               <strong>{{ data.centres[site-1].name }} ({{ data.centres[site-1].type }})</strong><br>
                 {{ data.centres[site-1].address_1 }}, {{ data.centres[site-1].address_2 }}, {{ data.centres[site-1].postcode }}<br><br>
-              <strong>{{ data.centres[site-1].distance }} miles by road.</strong> {{ data.centres[site-1].drive_time }} mins in current traffic
+              <strong>{{ data.centres[site-1].distance }} miles </strong>(by car). Driving time is currently <strong>{{ data.centres[site-1].drive_time }}</strong> mins.
             </span>
 
             <input type="hidden" id="type" name="type" value="{{ data.centres[site-1].type }}">
@@ -58,7 +58,7 @@
                 <input class="govuk-radios__input" id="time-{{i}}" name="time" type="radio" value="{{ slots[i].time}}" {{ checked("time", slots[i].time) }}>
                 <label class="govuk-label govuk-radios__label" for="time-{{i}}">
                   {{ slots[i].time}}
-                  {% if slots[i].open == 0 %}<br> Warning: driving time{% endif %}
+                  {% if slots[i].open == 0 %}<br> <span class="govuk-hint">Warning: Current driving time may mean you miss this appointment</span>{% endif %}
                 </label>
               </div>
 
