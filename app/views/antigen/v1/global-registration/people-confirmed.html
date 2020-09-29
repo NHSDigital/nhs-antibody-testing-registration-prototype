@@ -39,18 +39,24 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name'] }} {{ data['last-name'] }}</th>
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}</th>
             <td class="govuk-table__cell">
-              {% if data['email'] == "Yes" %}
-              {{ data['email-address'] }}
+              {{ data['email-address'] or 'email@example.com' }}
               <br>
-              {% endif %}
-              {{ data['mobile-phone-number'] }}
+              {{ data['mobile-phone-number'] or '+447782808451' }}
             </td>
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a></p></td>
           </tr>
         </tbody>
       </table>
+
+      <div class="govuk-warning-text govuk-!-margin-bottom-6 govuk-!-margin-top-5">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text govuk-!-font-size-19">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          People you live with who do not have symptoms are not eligible for this test. Do not order tests for them, unless you've been asked to. Ordering unnecessary tests is wasting NHS resources.
+        </strong>
+      </div>
 
       <form class="form" action="/antigen/{{version}}/action3/people-confirmed" method="post" style="display: inline-block;">
 

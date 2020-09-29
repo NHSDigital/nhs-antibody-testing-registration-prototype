@@ -6,6 +6,7 @@ const router = express.Router()
 // Call in routes file from routes folder to keep routes.js cleaner
 router.use('/', require('./routes/org-register.js'))
 router.use('/', require('./routes/antibody.js'))
+router.use('/', require('./routes/antigen.js'))
 
 // Pull scope into the homepage to show/hide sections
 // 'SCOPE' is either pulled in from the Heroku App settings or setting in a local .env file eg. SCOPE=antibody
@@ -609,6 +610,8 @@ router.post('/antigen/v1/action3/people-confirmed', function (req, res) {
     res.redirect('/antigen/v1/site-appointment-booking/find-test-site')
   } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/site-appointment-booking/find-test-site')
+  } else {
+    res.redirect('/antigen/v1/site-appointment-booking/find-test-site')
   }
 
 })
@@ -655,6 +658,8 @@ router.post('/antigen/v1/action3/find-test-site', function (req, res) {
     res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
   } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v1/site-appointment-booking/choose-walk-through-site')
+  } else {
+    res.redirect('/antigen/v1/site-appointment-booking/choose-drive-through-site')
   }
 
 })
@@ -690,7 +695,7 @@ router.post('/antigen/v1/action5/confirm-identity', function (req, res) {
   if (confirmIdentity == "Yes"){
     res.redirect('/antigen/v1/order-home-test-kit/identity-confirmed')
   } else {
-    res.redirect('/antigen/v1/refer-and-triage/')
+    res.redirect('/antigen/v1/govuk/get-coronavirus-test')
   }
 
 })
@@ -1592,7 +1597,8 @@ router.post('/moonshot/v1/action7/find-test-site', function (req, res) {
 
 router.post('/moonshot/v1/action7/add-person', function (req, res) {
   let loginEmail = req.session.data['email-address']
-  if (loginEmail == "user@testing.co.uk"){
+  let password = req.session.data['password']
+  if (loginEmail == "user@testing.co.uk" || password !== undefined){
     res.redirect('/moonshot/v1/household-members/select-household-member')
   } else {
     res.redirect('/moonshot/v1/household-members/name-person-1')
@@ -1609,6 +1615,8 @@ router.post('/moonshot/v1/action7/select-household-member', function (req, res) 
   if (loginEmail == "user@testing.co.uk" && selectedPerson == "1" ){
     res.redirect('/moonshot/v1/refer-and-triage/reason-for-test')
   } else if (password !== undefined && selectedPerson == "4" ){
+    res.redirect('/moonshot/v1/household-members/add-existing-member-to-test/do-you-have-symptoms-person-1')
+  } else if (password !== undefined && selectedPerson == "2" ){
     res.redirect('/moonshot/v1/household-members/add-existing-member-to-test/do-you-have-symptoms-person-1')
   } else if (selectedPerson == "2" && loginEmail == "user@testing.co.uk" ){
     res.redirect('/moonshot/v1/household-members/add-existing-member-to-test/do-you-have-symptoms-person-1')
