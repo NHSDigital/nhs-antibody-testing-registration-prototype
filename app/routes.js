@@ -1705,24 +1705,6 @@ router.post('/moonshot/v1/action7/ethnic-group', function (req, res) {
 
 })
 
-// Version 1 - Moonshot Edit Peronsal Details - Ethnic Background Change Link
-router.post('/moonshot/v1/action3/home-page', function (req, res) {
-  let ethnicGroup = req.session.data['ethnic-group']
-
-  if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/moonshot/v1/user-account/edit-personal-details/ethnic-background-asian')
-  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-    res.redirect('/moonshot/v1/user-account/edit-personal-details/ethnic-background-black')
-  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-    res.redirect('/moonshot/v1/user-account/edit-personal-details//ethnic-background-mixed')
-  } else if (ethnicGroup == "White") {
-    res.redirect('/moonshot/v1/user-account/edit-personal-details/ethnic-background-white')
-  } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('/moonshot/v1/user-account/edit-personal-details/ethnic-background-another')
-  }
-})
-
-
 
 
 module.exports = router
