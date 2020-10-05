@@ -864,7 +864,7 @@ router.post('/moonshot/v1/action7/home-page-get-tested', function (req, res) {
   if (loginEmail == 'user@testing.co.uk'){
     res.redirect('/moonshot/v1/refer-and-triage/reason-for-test')
   } else {
-    res.redirect('/moonshot/v1/refer-and-triage/')
+    res.redirect('/moonshot/v1/refer-and-triage/status-page')
   }
 
 })
@@ -1078,7 +1078,7 @@ router.post('/moonshot/v1/action5/confirm-identity', function (req, res) {
   if (confirmIdentity == "Yes"){
     res.redirect('/moonshot/v1/order-home-test-kit/identity-confirmed')
   } else {
-    res.redirect('/moonshot/v1/refer-and-triage/')
+    res.redirect('/moonshot/v1/refer-and-triage/status-page')
   }
 
 })
