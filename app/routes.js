@@ -899,9 +899,9 @@ router.post('/moonshot/v1/action7/', function (req, res) {
   let password = req.session.data['password']
 
   if (password == undefined){
-    res.redirect('/moonshot/v1/refer-and-triage/mobile-number')
+    res.redirect('/moonshot/v1/refer-and-triage/email-address')
   } else {
-    res.redirect('/moonshot/v1/refer-and-triage/reason-for-test')
+    res.redirect('/moonshot/v1/refer-and-triage/essential-worker')
   }
 
 })
@@ -911,7 +911,7 @@ router.post('/moonshot/v1/action7/mobile-number', function (req, res) {
   let mobileNumber = req.session.data['mobile-number']
 
   if (mobileNumber == "Yes"){
-    res.redirect('/moonshot/v1/refer-and-triage/email-address')
+    res.redirect('/moonshot/v1/refer-and-triage/do-you-have-a-car')
   } else {
     res.redirect('/moonshot/v1/refer-and-triage/call-us')
   }
@@ -928,7 +928,7 @@ router.post('/moonshot/v1/action7/do-you-have-symptoms', function (req, res) {
   } else if(symptoms == "No" && loginEmail == "user@testing.co.uk") {
     res.redirect('/moonshot/v1/refer-and-triage/do-you-have-a-car')
   } else {
-    res.redirect('/moonshot/v1/refer-and-triage/postcode')
+    res.redirect('/moonshot/v1/refer-and-triage/professional-pilot')
   }
 
 })
