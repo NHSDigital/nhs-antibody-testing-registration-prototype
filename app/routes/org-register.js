@@ -107,7 +107,7 @@ router.post('/organisational/register/v3/type', function (req, res) {
   let answer = req.body.cuTestType;
 
   if (answer == 'single') {
-    res.redirect('/organisational/register/v2/how')
+    res.redirect('/organisational/register/v2/retest')
     } else {
     res.redirect('/organisational/register/v3/how')
     }
