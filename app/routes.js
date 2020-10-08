@@ -378,6 +378,18 @@ router.post('/antigen/v1/action3/do-you-have-symptoms', function (req, res) {
 
 })
 
+// Version 1 - Antigen Refer and Triage - Essential worker route
+
+router.post('/antigen/v1/action3/essential-worker', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes"){
+    res.redirect('/antigen/v1/refer-and-triage/')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/reason-for-test')
+  }
+
+})
+
 // Version 1 - Antigen Refer and Triage - Reason for test route
 
 router.post('/antigen/v1/action3/reason-for-test', function (req, res) {
