@@ -373,7 +373,7 @@ router.post('/antigen/v1/action3/do-you-have-symptoms', function (req, res) {
   if (symptoms == "Yes"){
     res.redirect('/antigen/v1/refer-and-triage/when-did-symptoms-start')
   } else {
-    res.redirect('/antigen/v1/refer-and-triage/postcode')
+    res.redirect('/antigen/v1/refer-and-triage/essential-worker')
   }
 
 })
