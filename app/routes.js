@@ -373,12 +373,24 @@ router.post('/antigen/v1/action3/do-you-have-symptoms', function (req, res) {
   if (symptoms == "Yes"){
     res.redirect('/antigen/v1/refer-and-triage/when-did-symptoms-start')
   } else {
-    res.redirect('/antigen/v1/refer-and-triage/postcode')
+    res.redirect('/antigen/v1/refer-and-triage/essential-worker')
   }
 
 })
 
-// Version 1 - Antigen Refer and Triage - Do you have a car route
+// Version 1 - Antigen Refer and Triage - Reason for test route
+
+router.post('/antigen/v1/action3/reason-for-test', function (req, res) {
+  let reason = req.session.data['reason-for-test']
+  if (reason == "None of the above"){
+    res.redirect('/antigen/v1/refer-and-triage/cannot-have-test')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - Security check route
 
 router.post('/antigen/v1/action3/security-check', function (req, res) {
   let postcode = req.session.data['home-postcode']
