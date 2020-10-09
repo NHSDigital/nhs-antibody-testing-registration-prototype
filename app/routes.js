@@ -854,6 +854,18 @@ router.post('/lite-registration/v1/action6/nhs-number-known', function (req, res
 
 })
 
+// Version 1 - Lite Registration Accounts - Email address first route
+
+router.post('/lite-registration-accounts/v1/action8/email-address-first', function (req, res) {
+  let emailAddress = req.session.data['email']
+  if (emailAddress == "Yes"){
+    res.redirect('/lite-registration-accounts/v1/nhs-login')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/reason-for-test')
+  }
+
+})
+
 //Admin portal - Bulk SMS - Reason for appointment change route
 router.post('/admin-portal/bulk-sms/action1/reason-for-change', function (req, res) {
   let reasonForTest = req.session.data['reason-for-change']

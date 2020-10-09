@@ -1,0 +1,66 @@
+{% set version = "v1" %}
+{% set pageTitle = "NHS login" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div> 
+
+  <a class="govuk-back-link" href="/">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% if data['email-address'] == "user@testing.co.uk" %}
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">Access testing services quicker by using NHS login</h1>
+        {% else %}
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">Access testing services quicker by creating a coronavirus account</h1>
+        {% endif %}
+
+        <p class="govuk-body">Creating an NHS coronavirus testing account enables you to save your details. This means you do not need to enter them next time you get a test.</p>
+        <p class="govuk-body">You just need an email address and a mobile number to create an account.</p>
+        <p class="govuk-body">Continue without NHS login if you're registering a test for someone else or if you don't have a mobile phone and email address.</p>
+
+        <button class="govuk-!-font-size-19 govuk-!-margin-bottom-7" type="submit" style="
+        background-color: #235fb3;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        box-shadow: 0 4px 0 #0c3282;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        margin-top: 0;
+        padding: 12px 16px;
+        position: relative;
+        text-align: center;
+        vertical-align: top;
+        width: auto;
+        ">
+          NHS Continue with NHS login
+        </button>
+
+        <form class="form" action="/lite-registration-accounts/{{version}}/reason-for-test" method="post">
+          <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Continue without an account
+          </button>
+        </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
