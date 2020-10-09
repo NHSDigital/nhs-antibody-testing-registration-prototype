@@ -1718,5 +1718,89 @@ router.post('/moonshot/v1/action7/ethnic-group', function (req, res) {
 })
 
 
+// Version 1 - Lite registration account -  route
+
+router.post('/lite-registration-accounts/v1/action6/test-place', function (req, res) {
+  let testPlace = req.session.data['test-place']
+  if (testPlace == "drive-through") {
+    res.redirect('/lite-registration-accounts/v1/find-test-site-drive')
+  } else if (testPlace == "walk-through") {
+    res.redirect('/lite-registration-accounts/v1/find-test-site-walk')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/enter-barcode')
+  }
+
+})
+
+// Version 1 - Antigen Global Registration - Ethnic group route
+
+router.post('/lite-registration-accounts/v1/action6/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/lite-registration-accounts/v1/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/lite-registration-accounts/v1/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/lite-registration-accounts/v1/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/lite-registration-accounts/v1/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/lite-registration-accounts/v1/ethnic-background-another')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/currently-in-work')
+  }
+
+})
+
+// Version 1 - Antigen Global Registration - Currently in work route
+
+router.post('/lite-registration-accounts/v1/action3/currently-in-work', function (req, res) {
+  let inWork = req.session.data['currently-in-work']
+  if (inWork == "No"){
+    res.redirect('/lite-registration-accounts/v1/do-you-have-symptoms')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/industry')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - Do you have symptoms route
+
+router.post('/lite-registration-accounts/v1/action3/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes"){
+    res.redirect('/lite-registration-accounts/v1/when-did-symptoms-start')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/email-address')
+  }
+
+})
+
+// Version 1 - Antigen Global Registration - Country route
+
+router.post('/lite-registration-accounts/v1/action6/country', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "Northern Ireland"){
+    res.redirect('/lite-registration-accounts/v1/address')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/nhs-number-known')
+  }
+
+})
+
+// Version 1 - Lite Registration account - NHS number known route
+
+router.post('/lite-registration-accounts/v1/action6/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/lite-registration-accounts/v1/nhs-number')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/check-your-answers')
+  }
+
+})
+
+
+
 
 module.exports = router
