@@ -39,11 +39,11 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name'] }}<br>{{ data['last-name'] }}</th>
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] | default('John')}}<br>{{ data['last-name'] | default('Appleseed')}}</th>
             <td class="govuk-table__cell">
-              {{ data['email-address'] }}
+              {{ data['email-address'] | default('example@example.co.uk')}}
               <br>
-              {{ data['mobile-phone-number'] }}
+              {{ data['mobile-phone-number'] | default('+44123456789')}}
             </td>
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a></p></td>
           </tr>

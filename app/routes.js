@@ -492,6 +492,18 @@ router.post('/antigen/v1/action3/how-will-you-get-test-wrong-postcode', function
 
 })
 
+// Version 1 - Antigen Global Registration - Currently in work route
+
+router.post('/antigen/v1/action3/landline-number', function (req, res) {
+  let email = req.session.data['email']
+  if (email == "No"){
+    res.redirect('/antigen/v1/global-registration/email-address')
+  } else {
+    res.redirect('/antigen/v1/global-registration/gender')
+  }
+
+})
+
 // Version 1 - Antigen Global Registration - Ethnic group route
 
 router.post('/antigen/v1/action3/ethnic-group', function (req, res) {
