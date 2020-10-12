@@ -854,18 +854,6 @@ router.post('/lite-registration/v1/action6/nhs-number-known', function (req, res
 
 })
 
-// Version 1 - Lite Registration Accounts - Email address first route
-
-router.post('/lite-registration-accounts/v1/action8/email-address-first', function (req, res) {
-  let emailAddress = req.session.data['email']
-  if (emailAddress == "Yes"){
-    res.redirect('/lite-registration-accounts/v1/nhs-login')
-  } else {
-    res.redirect('/lite-registration-accounts/v1/reason-for-test')
-  }
-
-})
-
 //Admin portal - Bulk SMS - Reason for appointment change route
 router.post('/admin-portal/bulk-sms/action1/reason-for-change', function (req, res) {
   let reasonForTest = req.session.data['reason-for-change']
@@ -1739,6 +1727,51 @@ router.post('/moonshot/v1/action7/ethnic-group', function (req, res) {
     res.redirect('/moonshot/v1/user-account/edit-personal-details')
   }
 
+})
+
+// Version 1 - Lite Registration Accounts - Email address first route
+
+router.post('/lite-registration-accounts/v1/action8/email-address-first', function (req, res) {
+  let emailAddress = req.session.data['email']
+  if (emailAddress == "Yes"){
+    res.redirect('/lite-registration-accounts/v1/nhs-login')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/reason-for-test')
+  }
+
+})
+
+// Version 1 - Lite Registration Accounts - NHS login route
+
+router.post('/lite-registration-accounts/v1/action8/nhs-login', function (req, res) {
+  let emailAddress = req.session.data['email-address']
+  if (emailAddress == "user@testing.co.uk"){
+    res.redirect('/lite-registration-accounts/v1/user-account/create-password')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/user-account/create-password')
+  }
+
+})
+
+// Version 1 - Lite Registration Accounts - Create password route
+router.post('/lite-registration-accounts/v1/action8/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/lite-registration-accounts/v1/user-account/create-password-error')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/user-account/check-email')
+  }
+})
+
+// Version 1 - Lite Registration Accounts - check mobile route
+router.post('/lite-registration-accounts/v1/action8/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/lite-registration-accounts/v1/user-account/check-mobile-error')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/user-account/agreement')
+  }
 })
 
 

@@ -27,6 +27,50 @@
       <dl class="govuk-summary-list govuk-!-margin-bottom6">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            Current coronavirus symptoms
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['do-you-have-symptoms'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/refer-and-triage/do-you-have-symptoms">
+              Change
+              <span class="govuk-visually-hidden">current coronavirus symptoms</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['do-you-have-symptoms'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date when symptoms started
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">
+              Change
+              <span class="govuk-visually-hidden">date when symptoms started</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Essential worker
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['essential-worker'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/refer-and-triage/essential-worker">
+              Change
+              <span class="govuk-visually-hidden">essential worker</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Name
           </dt>
           <dd class="govuk-summary-list__value">
@@ -87,36 +131,6 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Current coronavirus symptoms
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['do-you-have-symptoms'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/do-you-have-symptoms">
-              Change
-              <span class="govuk-visually-hidden">do you have symptoms</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['do-you-have-symptoms'] == "Yes" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Date when symptoms started
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">
-              Change
-              <span class="govuk-visually-hidden">date when symptoms started</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
             Postcode
           </dt>
           <dd class="govuk-summary-list__value">
@@ -144,14 +158,6 @@
             </dd>
           </div>
       </dl>
-
-      <div class="govuk-warning-text govuk-!-margin-bottom-7">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text govuk-!-font-size-19">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          Only continue if you have coronavirus symptoms or have been asked to get tested. Ordering unnecessary tests is wasting NHS resources.
-        </strong>
-      </div>
 
       <form action="/antigen/{{version}}/refer-and-triage/security-check" method="post" novalidate>
 
