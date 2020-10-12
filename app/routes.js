@@ -729,7 +729,7 @@ router.post('/antigen/v1/action3/choose-time-walk', function (req, res) {
 router.post('/antigen/v1/action5/confirm-identity', function (req, res) {
   let confirmIdentity = req.session.data['confirm-identity']
   if (confirmIdentity == "Yes"){
-    res.redirect('/antigen/v1/order-home-test-kit/identity-confirmed')
+    res.redirect('/antigen/v1/order-home-test-kit/order-summary')
   } else {
     res.redirect('/antigen/v1/govuk/get-coronavirus-test')
   }
