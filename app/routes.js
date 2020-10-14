@@ -1741,6 +1741,30 @@ router.post('/moonshot/v1/action7/ethnic-group', function (req, res) {
 
 })
 
+// Version 1 - Lite registration account MVP - Mobile number route
+
+router.post('/lite-registration-accounts-mvp/v1/action9/mobile-number', function (req, res) {
+  let mobileNumber = req.session.data['mobile-number']
+  if (mobileNumber == "Yes") {
+    res.redirect('/lite-registration-accounts-mvp/v1/test-place')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v1/call-us')
+  }
+
+})
+
+// Version 1 - Lite registration account MVP - Test place route
+
+router.post('/lite-registration-accounts-mvp/v1/action9/test-place', function (req, res) {
+  let testPlace = req.session.data['test-place']
+  if (testPlace == "drive-through" || testPlace == "walk-through") {
+    res.redirect('/lite-registration-accounts-mvp/v1/find-test-site')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v1/enter-barcode')
+  }
+
+})
+
 // Version 1 - Lite Registration Accounts - Email address first route
 
 router.post('/lite-registration-accounts/v1/action8/email-address-first', function (req, res) {
