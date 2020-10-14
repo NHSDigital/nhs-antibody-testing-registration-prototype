@@ -704,7 +704,7 @@ router.post('/antigen/v1/action3/find-test-site', function (req, res) {
 
 router.post('/antigen/v1/action3/choose-time-drive', function (req, res) {
   let chosenTime = req.session.data['time']
-  if (chosenTime == "17th October: 8:30am to 9:00am" || chosenTime == "16th October: 8:30am to 9:00am" || chosenTime == "18th October: 8:30am to 9:00am"){
+  if (chosenTime == "8:30am to 9:00am"){
     res.redirect('/antigen/v1/site-appointment-booking/time-not-available-drive')
   } else {
     res.redirect('/antigen/v1/site-appointment-booking/vehicle-registration-number')
@@ -716,7 +716,7 @@ router.post('/antigen/v1/action3/choose-time-drive', function (req, res) {
 
 router.post('/antigen/v1/action3/choose-time-walk', function (req, res) {
   let chosenTime = req.session.data['time']
-  if (chosenTime == "17th October: 8:30am to 9:00am" || chosenTime == "16th October: 8:30am to 9:00am" || chosenTime == "18th October: 8:30am to 9:00am"){
+  if (chosenTime == "8:30am to 9:00am"){
     res.redirect('/antigen/v1/site-appointment-booking/time-not-available-walk')
   } else {
     res.redirect('/antigen/v1/site-appointment-booking/confirm-appointment-walk')
