@@ -1888,7 +1888,7 @@ router.post('/lite-registration-accounts/v1/action6/home-page', function (req, r
   if (loginEmail == 'user@testing.co.uk'){
     res.redirect('/lite-registration-accounts/v1/test-place')
   } else {
-    res.redirect('/lite-registration-accounts/v1/email-address')
+    res.redirect('/lite-registration-accounts/v1/email-results')
   }
 
 })
