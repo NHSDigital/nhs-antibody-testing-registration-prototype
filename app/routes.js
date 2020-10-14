@@ -1857,7 +1857,7 @@ router.post('/lite-registration-accounts/v1/action6/country', function (req, res
 
 })
 
-// Version 1 - Lite Registration account - NHS number known route
+// Version 1 - Lite Registration Accounts - NHS number known route
 
 router.post('/lite-registration-accounts/v1/action6/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
@@ -1869,7 +1869,29 @@ router.post('/lite-registration-accounts/v1/action6/nhs-number-known', function 
 
 })
 
+// Version 1 - Lite Registration Accounts User Account - Login email route
+router.post('/lite-registration-accounts/v1/user-account/action5/login-email', function (req, res) {
+  let loginEmail = req.session.data['email-address']
 
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/lite-registration-accounts/v1/user-account/enter-password')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/user-account/create-password')
+  }
+
+})
+
+// Version 1 - Moonshot User account - Home page testing route
+router.post('/lite-registration-accounts/v1/action6/home-page', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == 'user@testing.co.uk'){
+    res.redirect('/lite-registration-accounts/v1/test-place')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/email-address')
+  }
+
+})
 
 
 module.exports = router
