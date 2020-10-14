@@ -1881,7 +1881,7 @@ router.post('/lite-registration-accounts/v1/user-account/action5/login-email', f
 
 })
 
-// Version 1 - Moonshot User account - Home page testing route
+// Version 1 - Lite Registration Acccounts User account - Home page testing route
 router.post('/lite-registration-accounts/v1/action6/home-page', function (req, res) {
   let loginEmail = req.session.data['email-address']
 
@@ -1889,6 +1889,30 @@ router.post('/lite-registration-accounts/v1/action6/home-page', function (req, r
     res.redirect('/lite-registration-accounts/v1/test-place')
   } else {
     res.redirect('/lite-registration-accounts/v1/email-results')
+  }
+
+})
+
+// Version 1 - Lite Registration Acccounts - Test date
+router.post('/lite-registration-accounts/v1/action5/test-date', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == 'user@testing.co.uk'){
+    res.redirect('/lite-registration-accounts/v1/do-you-have-symptoms')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/name')
+  }
+
+})
+
+// Version 1 - Lite Registration Acccounts - Test date
+router.post('/lite-registration-accounts/v1/action6/do-you-have-symptoms', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == 'user@testing.co.uk'){
+    res.redirect('/lite-registration-accounts/v1/check-your-answers')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/landline-number')
   }
 
 })
