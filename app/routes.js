@@ -2042,5 +2042,26 @@ router.post('/lite-registration-accounts/v1/action6/do-you-have-symptoms', funct
 
 })
 
+// Version 1 - Lite Registration Accounts - Create password route
+router.post('/lite-registration-accounts/v1/action9/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/lite-registration-accounts/v1/account-provisioning/create-password-error')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/account-provisioning/mobile-number')
+  }
+})
+
+// Version 1 - Lite Registration Accounts - check mobile route
+router.post('/lite-registration-accounts/v1/action9/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/lite-registration-accounts/v1/account-provisioning/check-mobile-error')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/account-provisioning/')
+  }
+})
+
 
 module.exports = router
