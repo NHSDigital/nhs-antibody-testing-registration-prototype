@@ -704,7 +704,7 @@ router.post('/antigen/v1/action3/find-test-site', function (req, res) {
 
 router.post('/antigen/v1/action3/choose-time-drive', function (req, res) {
   let chosenTime = req.session.data['time']
-  if (chosenTime == "17th October: 8:30am to 9:00am" || chosenTime == "16th October: 8:30am to 9:00am" || chosenTime == "18th October: 8:30am to 9:00am"){
+  if (chosenTime == "8:30am to 9:00am"){
     res.redirect('/antigen/v1/site-appointment-booking/time-not-available-drive')
   } else {
     res.redirect('/antigen/v1/site-appointment-booking/vehicle-registration-number')
@@ -716,7 +716,7 @@ router.post('/antigen/v1/action3/choose-time-drive', function (req, res) {
 
 router.post('/antigen/v1/action3/choose-time-walk', function (req, res) {
   let chosenTime = req.session.data['time']
-  if (chosenTime == "17th October: 8:30am to 9:00am" || chosenTime == "16th October: 8:30am to 9:00am" || chosenTime == "18th October: 8:30am to 9:00am"){
+  if (chosenTime == "8:30am to 9:00am"){
     res.redirect('/antigen/v1/site-appointment-booking/time-not-available-walk')
   } else {
     res.redirect('/antigen/v1/site-appointment-booking/confirm-appointment-walk')
@@ -1857,7 +1857,7 @@ router.post('/lite-registration-accounts/v1/action6/country', function (req, res
 
 })
 
-// Version 1 - Lite Registration account - NHS number known route
+// Version 1 - Lite Registration Accounts - NHS number known route
 
 router.post('/lite-registration-accounts/v1/action6/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
@@ -1869,7 +1869,53 @@ router.post('/lite-registration-accounts/v1/action6/nhs-number-known', function 
 
 })
 
+// Version 1 - Lite Registration Accounts User Account - Login email route
+router.post('/lite-registration-accounts/v1/user-account/action5/login-email', function (req, res) {
+  let loginEmail = req.session.data['email-address']
 
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/lite-registration-accounts/v1/user-account/enter-password')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/user-account/create-password')
+  }
+
+})
+
+// Version 1 - Lite Registration Acccounts User account - Home page testing route
+router.post('/lite-registration-accounts/v1/action6/home-page', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == 'user@testing.co.uk'){
+    res.redirect('/lite-registration-accounts/v1/test-place')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/email-results')
+  }
+
+})
+
+// Version 1 - Lite Registration Acccounts - Test date
+router.post('/lite-registration-accounts/v1/action5/test-date', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == 'user@testing.co.uk'){
+    res.redirect('/lite-registration-accounts/v1/do-you-have-symptoms')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/name')
+  }
+
+})
+
+// Version 1 - Lite Registration Acccounts - Test date
+router.post('/lite-registration-accounts/v1/action6/do-you-have-symptoms', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == 'user@testing.co.uk'){
+    res.redirect('/lite-registration-accounts/v1/check-your-answers')
+  } else {
+    res.redirect('/lite-registration-accounts/v1/landline-number')
+  }
+
+})
 
 
 module.exports = router

@@ -1,0 +1,59 @@
+{% set version = "v1" %}
+{% set pageTitle = "Which mobile number should we text your results to?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+  {% if data['do-you-have-symptoms'] == "Yes" %}
+  <a class="govuk-back-link" href="/lite-registration-accounts/{{version}}/when-did-symptoms-start">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/lite-registration-accounts/{{version}}/do-you-have-symptoms">Back</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/lite-registration-accounts/{{version}}/test-place" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="mobile-number-hint" class="govuk-body">
+                Make sure you're happy for your test results to go to this mobile number.
+            </span>
+
+
+
+          </fieldset>
+        </div>
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-3" for="mobile-number">
+            Mobile number
+          </label>
+          <input class="govuk-input govuk-!-width-one-third" id="mobile-number" name="mobile-number" type="tel" value="{{ data['mobile-number'] }}">
+        </div>
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
