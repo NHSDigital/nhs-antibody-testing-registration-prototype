@@ -15,11 +15,10 @@
     </p>
   </div>
 
-  {% if data['nhs-number-known'] == "Yes" %}
-  <a class="govuk-back-link" href="/lite-registration-accounts/{{version}}/nhs-number">Back</a>
-  {% else %}
-  <a class="govuk-back-link" href="/lite-registration-accounts/{{version}}/nhs-number-known">Back</a>
-  {% endif %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
 
 {% endblock %}
 
@@ -35,10 +34,10 @@
             Name
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['first-name'] }} {{ data['last-name'] }}
+            {{ data['first-name'] | default('Pete') }} {{ data['last-name'] | default('Smith') }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/name">
+            <a href="/lite-registration-accounts-mvp/{{version}}/name">
               Change
               <span class="govuk-visually-hidden">name</span>
             </a>
@@ -52,7 +51,7 @@
             {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/date-of-birth">
+            <a href="/lite-registration-accounts-mvp/{{version}}/date-of-birth">
               Change
               <span class="govuk-visually-hidden">date of birth</span>
             </a>
@@ -63,16 +62,16 @@
             Do you have any symptoms
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['do-you-have-symptoms'] }}
+            {{ data['do-you-have-symptoms'] | default('Yes') }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/do-you-have-symptoms">
+            <a href="/lite-registration-accounts-mvp/{{version}}/do-you-have-symptoms">
               Change
               <span class="govuk-visually-hidden">do you have any symptoms</span>
             </a>
           </dd>
         </div>
-        {% if data['do-you-have-symptoms'] == "Yes" %}
+        <!-- {% if data['do-you-have-symptoms'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Date of onset
@@ -87,7 +86,7 @@
             </a>
           </dd>
         </div>
-        {% endif %}
+        {% endif %} -->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Mobile number
@@ -96,7 +95,7 @@
             {{ data['mobile-phone-number'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/mobile-number">
+            <a href="/lite-registration-accounts-mvp/{{version}}/mobile-number">
               Change
               <span class="govuk-visually-hidden">mobile number</span>
             </a>
@@ -111,7 +110,7 @@
             {{ data['landline-telephone-number'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/landline-number">
+            <a href="/lite-registration-accounts-mvp/{{version}}/landline-number">
               Change
               <span class="govuk-visually-hidden">landline number</span>
             </a>
@@ -126,7 +125,7 @@
             {{ data['landline-number'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/landline-number">
+            <a href="/lite-registration-accounts-mvp/{{version}}/landline-number">
               Change
               <span class="govuk-visually-hidden">landline number</span>
             </a>
@@ -142,7 +141,7 @@
             {{ data['email-address'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/email-address">
+            <a href="/lite-registration-accounts-mvp/{{version}}/email-address">
               Change
               <span class="govuk-visually-hidden">email address</span>
             </a>
@@ -157,7 +156,7 @@
             {{ data['email'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/email-address">
+            <a href="/lite-registration-accounts-mvp/{{version}}/email-address">
               Change
               <span class="govuk-visually-hidden">email address</span>
             </a>
@@ -169,10 +168,10 @@
             Gender
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['gender'] }}
+            {{ data['gender'] | default('Male') }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/global-registration/gender">
+            <a href="/lite-registration-accounts-mvp/{{version}}/global-registration/gender">
               Change
               <span class="govuk-visually-hidden">gender</span>
             </a>
@@ -183,10 +182,10 @@
             Ethnic group
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['ethnic-group'] }}
+            {{ data['ethnic-group'] | default('White') }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/ethnic-group">
+            <a href="/lite-registration-accounts-mvp/{{version}}/ethnic-group">
               Change
               <span class="govuk-visually-hidden">ethnic group</span>
             </a>
@@ -198,10 +197,10 @@
             Ethnic background
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['ethnic-background'] }}
+            {{ data['ethnic-background'] | default('Irish') }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/ethnic-background">
+            <a href="/lite-registration-accounts-mvp/{{version}}/ethnic-background">
               Change
               <span class="govuk-visually-hidden">ethnic background</span>
             </a>
@@ -216,7 +215,7 @@
             {{ data['currently-in-work'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/currently-in-work">
+            <a href="/lite-registration-accounts-mvp/{{version}}/currently-in-work">
               Change
               <span class="govuk-visually-hidden">are you currently in work?</span>
             </a>
@@ -231,7 +230,7 @@
             {{ data['industry'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/global-registration/industry">
+            <a href="/lite-registration-accounts-mvp/{{version}}/global-registration/industry">
               Change
               <span class="govuk-visually-hidden">area of work</span>
             </a>
@@ -245,7 +244,7 @@
             {{ data['occupation'] | default('Prefer not to say') }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/global-registration/occupation">
+            <a href="/lite-registration-accounts-mvp/{{version}}/global-registration/occupation">
               Change
               <span class="govuk-visually-hidden">occupation</span>
             </a>
@@ -259,7 +258,7 @@
             {{ data['employer'] | default('Prefer not to say')}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/global-registration/employer">
+            <a href="/lite-registration-accounts-mvp/{{version}}/global-registration/employer">
               Change
               <span class="govuk-visually-hidden">employer</span>
             </a>
@@ -274,7 +273,7 @@
             {{ data['country'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/global-registration/country">
+            <a href="/lite-registration-accounts-mvp/{{version}}/global-registration/country">
               Change
               <span class="govuk-visually-hidden">country of residence</span>
             </a>
@@ -288,7 +287,7 @@
             {{ data['home-postcode'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/global-registration/postcode">
+            <a href="/lite-registration-accounts-mvp/{{version}}/global-registration/postcode">
               Change
               <span class="govuk-visually-hidden">postcode</span>
             </a>
@@ -302,7 +301,7 @@
             {{ data['nhs-number-known'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/global-registration/nhs-number-known">
+            <a href="/lite-registration-accounts-mvp/{{version}}/global-registration/nhs-number-known">
               Change
               <span class="govuk-visually-hidden">NHS number known</span>
             </a>
@@ -317,7 +316,7 @@
             {{ data['nhs-number'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-accounts/{{version}}/global-registration/nhs-number">
+            <a href="/lite-registration-accounts-mvp/{{version}}/global-registration/nhs-number">
               Change
               <span class="govuk-visually-hidden">NHS number</span>
             </a>
@@ -326,7 +325,7 @@
         {% endif %}
       </dl>
 
-      <form action="/lite-registration-accounts/{{version}}/security-check" method="post" novalidate>
+      <form action="/lite-registration-accounts-mvp/{{version}}/confirmation" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 
