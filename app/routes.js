@@ -1757,10 +1757,34 @@ router.post('/lite-registration-accounts-mvp/v1/action9/mobile-number', function
 
 router.post('/lite-registration-accounts-mvp/v1/action9/test-place', function (req, res) {
   let testPlace = req.session.data['test-place']
-  if (testPlace == "drive-through" || testPlace == "walk-through") {
-    res.redirect('/lite-registration-accounts-mvp/v1/find-test-site')
-  } else {
+  if (testPlace == "home") {
     res.redirect('/lite-registration-accounts-mvp/v1/enter-barcode')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v1/find-test-site')
+  }
+
+})
+
+// Version 1 - Lite registration account MVP - Test date route
+
+router.post('/lite-registration-accounts-mvp/v1/action9/test-date', function (req, res) {
+  let emailAddress = req.session.data['email-address']
+  if (emailAddress == "user@testing.co.uk") {
+    res.redirect('/lite-registration-accounts-mvp/v1/do-you-have-symptoms')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v1/name')
+  }
+
+})
+
+// Version 1 - Lite registration account MVP - Do you have symptoms route
+
+router.post('/lite-registration-accounts-mvp/v1/action9/do-you-have-symptoms', function (req, res) {
+  let emailAddress = req.session.data['email-address']
+  if (emailAddress == "user@testing.co.uk") {
+    res.redirect('/lite-registration-accounts-mvp/v1/check-your-answers')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v1/landline-number')
   }
 
 })
