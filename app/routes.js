@@ -1802,9 +1802,9 @@ router.post('/lite-registration-accounts-mvp/v1/action9/ethnic-group', function 
   } else if (ethnicGroup == "White") {
     res.redirect('/lite-registration-accounts-mvp/v1/ethnic-background-white')
   } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('lite-registration-accounts-mvp/v1/ethnic-background-another')
+    res.redirect('/lite-registration-accounts-mvp/v1/ethnic-background-white')
   } else {
-    res.redirect('lite-registration-accounts-mvp/v1/edit-personal-details')
+    res.redirect('/lite-registration-accounts-mvp/v1/currently-in-work')
   }
 
 })
@@ -1864,7 +1864,7 @@ router.post('/lite-registration-accounts-mvp/v1/action9/home-page', function (re
   if (loginEmail == 'user@testing.co.uk'){
     res.redirect('/lite-registration-accounts-mvp/v1/test-place')
   } else {
-    res.redirect('/lite-registration-accounts-mvp/v1/email-results')
+    res.redirect('/lite-registration-accounts-mvp/v1/email-address-account')
   }
 
 })
