@@ -1934,7 +1934,7 @@ router.post('/lite-registration-accounts/v1/action9/check-mobile', function (req
   if (securityCode == "") {
     res.redirect('/lite-registration-accounts/v1/account-provisioning/check-mobile-error')
   } else {
-    res.redirect('/lite-registration-accounts/v1/account-provisioning/')
+    res.redirect('/lite-registration-accounts/v1/account-provisioning/agreement')
   }
 })
 
