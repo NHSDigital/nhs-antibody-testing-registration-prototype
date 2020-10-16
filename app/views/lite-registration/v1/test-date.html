@@ -13,7 +13,7 @@
       This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
     </span>
   </p>
-</div> 
+</div>
 
   <a class="govuk-back-link" href="/lite-registration/{{version}}/enter-barcode">Back</a>
 {% endblock %}
@@ -23,7 +23,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/lite-registration/{{version}}/name" method="post">
+      <form action="/lite-registration/{{version}}/date-of-birth" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="swab-test-date-1-hint swab-test-date-2-hint">
@@ -37,7 +37,7 @@
               We need to know this so the lab can work out when the test is due to expire. Selecting the wrong date and time could mean you getting an incorrect result.<br><br>
             </span>
             <span id="swab-test-date-2-hint" class="govuk-body">
-              Select a date
+              <b>Select a date</b>
             </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
@@ -94,20 +94,20 @@
               </div>
               <div class="govuk-form-group govuk-!-margin-top-6">
                 <label class="govuk-label govuk-date-input__label" for="swab-test-time">
-                  Enter a time<br>
+                  <b>Enter a time</b><br>
                   <span class="govuk-hint govuk-!-margin-top-2">For example, 9pm</span>
                   Hour
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="swab-test-time" name="swab-test-time" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['swab-test-time'] }}">
               </div>
               <div class="govuk-radios" data-module="govuk-radios">
-                <div class="govuk-radios__item" style="display: inline-block">
+                <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="swab-test-time-am" name="swab-test-time-ampm" type="radio" value="am" {{ checked("swab-test-time-ampm", "am") }}>
                   <label class="govuk-label govuk-radios__label" for="swab-test-time-am">
                     am
                   </label>
                 </div>
-                <div class="govuk-radios__item govuk-!-margin-left-2" style="display: inline-block">
+                <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="swab-test-time-pm" name="swab-test-time-ampm" type="radio" value="pm" {{ checked("swab-test-time-ampm", "pm") }}>
                   <label class="govuk-label govuk-radios__label" for="swab-test-time-pm">
                     pm
@@ -126,4 +126,3 @@
   </div>
 
 {% endblock %}
-
