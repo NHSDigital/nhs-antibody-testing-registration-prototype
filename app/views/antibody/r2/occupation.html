@@ -1,5 +1,5 @@
 {% set version = "v6" %}
-{% set pageTitle = "What is your occupation?" %}
+{% set pageTitle = "What sort of job do you do?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -19,9 +19,40 @@
           </h1>
         </legend>
         <span id="occupation-hint" class="govuk-hint">
-          People working in certain occupations will be prioritised for a test.<br><br>
-          Start typing and select your occupation from the drop down. If your occupation is not displayed, select 'Other'.
-        </span>
+      
+      To help:
+
+        <ul>
+            <li>you do not need to find an exact match</li>
+            <li>do not try to find your specific job title</li>
+            <li>use general or simpler words for your job</li>
+            <li>if, after a few goes, you cannot find something select “I cannot find the correct occupation”</li>
+        </ul>
+
+        Start typing and select an option that roughly matches.
+      </span>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Why is this information needed?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          Your registration details will be used to help the NHS and UK understand more about how the virus has affected different people and parts of the UK. For example, by their: 
+          <ul>
+            <li>age, gender, ethnic background </li>
+            <li>type of job and sector</li>
+            <li>region, city, town or rural area</li>
+          </ul>
+          Any information you provide is anonymised. And your personal identifiable information is kept safe and protected at all times.  
+           <br><br>
+          <a href="https://www.gov.uk/government/publications/coronavirus-covid-19-testing-privacy-information/antibody-testing-for-coronavirus-privacy-information" target="_blank"> How your data is used and kept safe</a>
+                
+        </div>
+      </details>
+
+
         <div id="occupation-container"></div>
       </div>
 
@@ -594,7 +625,7 @@
     "Window cleaner",
     "Youth or community worker",
     "Youth work professional",
-    "Other"
+    "I cannot find the correct occupation"
   ];
 
   accessibleAutocomplete({
@@ -607,7 +638,7 @@
     displayMenu: 'overlay',
     minLength: 2,
     tNoResults: function() {
-      return "Other"
+      return "I cannot find the correct occupation"
     }
   });
 </script>
