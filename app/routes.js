@@ -1758,7 +1758,7 @@ router.post('/lite-registration-accounts-mvp/v1/action9/mobile-number', function
 router.post('/lite-registration-accounts-mvp/v1/action9/test-place', function (req, res) {
   let testPlace = req.session.data['test-place']
   if (testPlace == "home") {
-    res.redirect('/lite-registration-accounts-mvp/v1/enter-barcode')
+    res.redirect('/lite-registration-accounts-mvp/v1/royal-mail-barcode')
   } else {
     res.redirect('/lite-registration-accounts-mvp/v1/find-test-site')
   }
@@ -1780,6 +1780,21 @@ router.post('/lite-registration-accounts-mvp/v1/action9/test-date', function (re
 // Version 1 - Lite registration account MVP - Do you have symptoms route
 
 router.post('/lite-registration-accounts-mvp/v1/action9/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  let emailAddress = req.session.data['email-address']
+  if (symptoms == "Yes") {
+    res.redirect('/lite-registration-accounts-mvp/v1/when-did-symptoms-start')
+  } else if ((symptoms == "No") && emailAddress == "user@testing.co.uk") {
+    res.redirect('/lite-registration-accounts-mvp/v1/check-your-answers')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v1/landline-number')
+  }
+
+})
+
+// Version 1 - Lite registration account MVP - When did symptoms start route
+
+router.post('/lite-registration-accounts-mvp/v1/action9/when-did-symptoms-start', function (req, res) {
   let emailAddress = req.session.data['email-address']
   if (emailAddress == "user@testing.co.uk") {
     res.redirect('/lite-registration-accounts-mvp/v1/check-your-answers')
@@ -1802,7 +1817,7 @@ router.post('/lite-registration-accounts-mvp/v1/action9/ethnic-group', function 
   } else if (ethnicGroup == "White") {
     res.redirect('/lite-registration-accounts-mvp/v1/ethnic-background-white')
   } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('/lite-registration-accounts-mvp/v1/ethnic-background-white')
+    res.redirect('/lite-registration-accounts-mvp/v1/ethnic-background-another')
   } else {
     res.redirect('/lite-registration-accounts-mvp/v1/currently-in-work')
   }
@@ -1814,7 +1829,7 @@ router.post('/lite-registration-accounts-mvp/v1/action9/ethnic-group', function 
 router.post('/lite-registration-accounts-mvp/v1/action9/currently-in-work', function (req, res) {
   let inWork = req.session.data['currently-in-work']
   if (inWork == "No"){
-    res.redirect('/lite-registration-accounts-mvp/v1/country')
+    res.redirect('/lite-registration-accounts-mvp/v1/do-you-have-symptoms')
   } else {
     res.redirect('/lite-registration-accounts-mvp/v1/industry')
   }
