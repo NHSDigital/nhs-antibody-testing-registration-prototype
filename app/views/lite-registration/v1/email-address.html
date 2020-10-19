@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Do you have an email address where you can get your test results?" %}
+{% set pageTitle = "Do you have an email address?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -36,18 +36,19 @@
               </h1>
             </legend>
             <span id="mobile-number-hint" class="govuk-body">
-                You need an email address to order a home test kit. If you do not have an email address, you can still get a test at a test site.
+              If you have one, we’ll email your registration confirmation and test results to this email address.
             </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="email-1">
-                  Yes, I have an email address where I can get my results
+                  Yes, I have an email address
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="email-address">
+                    Make sure you’re happy for your test results to go to this email address. Do not use a work or shared email address unless you’re comfortable with others seeing your results.<br><br>
                     Email address
                   </label>
                   <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}" aria-describedby="conditional-email-address-hint">

@@ -784,16 +784,14 @@ router.post('/elective-care-testing/v1/action5/symptoms-patient-1', function (re
 
 })
 
-// Version 1 - Lite registration -  route
+// Version 1 - Lite registration - test place route
 
 router.post('/lite-registration/v1/action6/test-place', function (req, res) {
   let testPlace = req.session.data['test-place']
-  if (testPlace == "drive-through") {
-    res.redirect('/lite-registration/v1/find-test-site-drive')
-  } else if (testPlace == "walk-through") {
-    res.redirect('/lite-registration/v1/find-test-site-walk')
-  } else {
+  if (testPlace == "home") {
     res.redirect('/lite-registration/v1/enter-barcode')
+  } else {
+    res.redirect('/lite-registration/v1/find-test-site')
   }
 
 })
@@ -849,7 +847,7 @@ router.post('/lite-registration/v1/action6/country', function (req, res) {
   if (country == "Northern Ireland"){
     res.redirect('/lite-registration/v1/address')
   } else {
-    res.redirect('/lite-registration/v1/nhs-number-known')
+    res.redirect('/lite-registration/v1/postcode')
   }
 
 })
