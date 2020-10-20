@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What's the name of the person taking the test?" %}
+{% set pageTitle = "What's the email address or phone number you used to register?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -25,26 +25,24 @@
 
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
 
-      <form action="/antigen/{{version}}/home-testing/date-of-birth" method="post">
+      <form action="/antigen/{{version}}/home-testing/enter-order-id" method="post">
 
         <fieldset class="govuk-fieldset">
-
-          <span id="nhs-number-hint" class="govuk-body">
-            We need to confirm the identity of the person taking the test. Enter this name exactly the same way you entered it on your application.
-          </span>
         
           <div class="govuk-form-group govuk-!-margin-top-6">
-            <label class="govuk-label" for="first-name">
-              First name
+            <label class="govuk-label" for="register-email-address">
+              Email address
             </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="first-name" name="first-name" type="text" value="{{ data['first-name'] }}">
+            <input class="govuk-input govuk-!-width-two-thirds" id="register-email-address" name="register-email-address" type="text" value="{{ data['register-email-address'] }}">
           </div>
 
+          <p class="govuk-body"><strong>or</strong></p>
+
           <div class="govuk-form-group">
-            <label class="govuk-label" for="last-name">
-              Last name
+            <label class="govuk-label" for="register-mobile-number">
+              Mobile number
             </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="last-name" name="last-name" type="text" value="{{ data['last-name'] }}">
+            <input class="govuk-input govuk-!-width-two-thirds" id="register-mobile-number" name="register-mobile-number" type="text" value="{{ data['register-mobile-number'] }}">
           </div>
         
         </fieldset>
