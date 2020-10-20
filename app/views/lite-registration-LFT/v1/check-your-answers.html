@@ -15,10 +15,11 @@
     </p>
   </div>
 
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  {% if data['nhs-number-known'] == "Yes" %}
+  <a class="govuk-back-link" href="/lite-registration-lft/{{version}}/nhs-number">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/lite-registration-lft/{{version}}/nhs-number-known">Back</a>
+  {% endif %}
 
 {% endblock %}
 
