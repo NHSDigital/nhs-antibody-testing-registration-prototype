@@ -840,58 +840,58 @@ router.post('/lite-registration/v1/action6/nhs-number-known', function (req, res
 
 })
 
-// Version 1 - Lite registration LFT - test place route
+// Version 1 - Lite registration lateral flow - test place route
 
-router.post('/lite-registration-lft/v1/action6/test-place', function (req, res) {
+router.post('/lite-registration-lateral-flow/v1/action6/test-place', function (req, res) {
   let testPlace = req.session.data['test-place']
   if (testPlace == "home") {
-    res.redirect('/lite-registration-lft/v1/enter-barcode')
+    res.redirect('/lite-registration-lateral-flow/v1/enter-barcode')
   } else {
-    res.redirect('/lite-registration-lft/v1/find-test-site')
+    res.redirect('/lite-registration-lateral-flow/v1/find-test-site')
   }
 
 })
 
-// Version 1 - Lite Registration LFT - Ethnic group route
+// Version 1 - Lite Registration lateral flow - Ethnic group route
 
-router.post('/lite-registration-lft/v1/action6/ethnic-group', function (req, res) {
+router.post('/lite-registration-lateral-flow/v1/action6/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/lite-registration-lft/v1/ethnic-background-asian')
+    res.redirect('/lite-registration-lateral-flow/v1/ethnic-background-asian')
   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-    res.redirect('/lite-registration-lft/v1/ethnic-background-black')
+    res.redirect('/lite-registration-lateral-flow/v1/ethnic-background-black')
   } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-    res.redirect('/lite-registration-lft/v1/ethnic-background-mixed')
+    res.redirect('/lite-registration-lateral-flow/v1/ethnic-background-mixed')
   } else if (ethnicGroup == "White") {
-    res.redirect('/lite-registration-lft/v1/ethnic-background-white')
+    res.redirect('/lite-registration-lateral-flow/v1/ethnic-background-white')
   } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('/lite-registration-lft/v1/ethnic-background-another')
+    res.redirect('/lite-registration-lateral-flow/v1/ethnic-background-another')
   } else {
-    res.redirect('/lite-registration-lft/v1/do-you-have-symptoms')
+    res.redirect('/lite-registration-lateral-flow/v1/do-you-have-symptoms')
   }
 
 })
 
-// Version 1 - Lite Registration LFT - Country route
+// Version 1 - Lite Registration lateral flow - Country route
 
-router.post('/lite-registration-lft/v1/action6/country', function (req, res) {
+router.post('/lite-registration-lateral-flow/v1/action6/country', function (req, res) {
   let country = req.session.data['country']
   if (country == "Northern Ireland"){
-    res.redirect('/lite-registration-lft/v1/address')
+    res.redirect('/lite-registration-lateral-flow/v1/address')
   } else {
-    res.redirect('/lite-registration-lft/v1/postcode')
+    res.redirect('/lite-registration-lateral-flow/v1/postcode')
   }
 
 })
 
-// Version 1 - Lite Registration LFT - NHS number known route
+// Version 1 - Lite Registration lateral flow - NHS number known route
 
-router.post('/lite-registration-lft/v1/action6/nhs-number-known', function (req, res) {
+router.post('/lite-registration-lateral-flow/v1/action6/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
   if (nhsNumberKnown == "Yes"){
-    res.redirect('/lite-registration-lft/v1/nhs-number')
+    res.redirect('/lite-registration-lateral-flow/v1/nhs-number')
   } else {
-    res.redirect('/lite-registration-lft/v1/check-your-answers')
+    res.redirect('/lite-registration-lateral-flow/v1/check-your-answers')
   }
 
 })
