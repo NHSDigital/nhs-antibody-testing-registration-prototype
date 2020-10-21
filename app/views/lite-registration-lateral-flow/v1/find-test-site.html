@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Find a test site" %}
+{% set pageTitle = "What's the test site's postcode?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,11 +15,7 @@
     </p>
   </div>
 
-  {% if data['nhs-number-known-person-1'] %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/people-confirmed-person-1">Back</a>
-  {% else %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/people-confirmed">Back</a>
-  {% endif %}
+  <a class="govuk-back-link" href="/lite-registration-lateral-flow/{{version}}/test-place">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -27,7 +23,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/antigen/{{version}}/site-appointment-booking/choose-walk-through-site" method="post">
+      <form action="/lite-registration-lateral-flow/{{version}}/choose-site" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="find-test-site-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -36,7 +32,7 @@
             </h1>
           </legend>
           <span id="find-test-site-hint" class="govuk-body">
-            Enter your postcode to find a test site where you can have a coronavirus (COVID-19) test.
+            Enter the postcode of the test site where you're getting a test. If you're not sure, please ask a staff member.
           </span>
           <div class="govuk-form-group govuk-!-margin-top-6">
             <label class="govuk-label" for="home-postcode">
@@ -47,15 +43,15 @@
         </fieldset>
 
         <button id="button" class="govuk-button govuk-!-margin-bottom-6 govuk-!-margin-top-4" type="submit" data-module="govuk-button">
-          Find a test site
+          Find a site
         </button>
-
-        <!-- <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" style="display:none" type="submit" data-module="govuk-button">
-          Find a test site
+<!-- 
+        <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" style="display:none" type="submit" data-module="govuk-button">
+          Find a site
         </button>
 
         <button id="button-hidden-2" class="govuk-button govuk-!-margin-top-4" style="display:none" type="submit" data-module="govuk-button">
-          Find a test site 
+          Find a site 
         </button>
 
         <div id="spinner" style="display: none;">
@@ -65,14 +61,6 @@
         <div id="tryagain" style="display: none;">
           <span class="govuk-body govuk-!-margin-left-0">Sorry, we could not process your request. Try the button again in 1 minute.</span>
         </div> -->
-
-        <div class="govuk-warning-text">
-          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-          <strong class="govuk-warning-text__text">
-            <span class="govuk-warning-text__assistive">Warning</span>
-            We are currently experiencing a very high demand for test site appointments. It may take up to a minute to show test sites near you. If a list is not presented, please click the ‘Find a test site’ button again.
-          </strong>
-        </div>
 
       </form>
 
