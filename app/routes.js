@@ -383,7 +383,19 @@ router.post('/antigen/v1/action3/do-you-have-symptoms', function (req, res) {
 router.post('/antigen/v1/action3/essential-worker', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
   if (symptoms == "Yes"){
-    res.redirect('/antigen/v1/refer-and-triage/')
+    res.redirect('/antigen/v1/refer-and-triage/government-pilot')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/do-you-have-symptoms')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - Government pilot route
+
+router.post('/antigen/v1/action3/government-pilot', function (req, res) {
+  let governmentPilot = req.session.data['government-pilot']
+  if (governmentPilot == "Yes"){
+    res.redirect('/antigen/v1/refer-and-triage/which-pilot')
   } else {
     res.redirect('/antigen/v1/refer-and-triage/reason-for-test')
   }

@@ -43,13 +43,25 @@
                     <span id="symptoms-2-hint" class="govuk-body">
                         Most people with coronavirus have at least one of these symptoms.
                     </span>
-                    <div class="govuk-radios govuk-!-margin-top-5">
+                    <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="do-you-have-symptoms-1" name="do-you-have-symptoms" type="radio" value="Yes" {{ checked("do-you-have-symptoms", "Yes") }}>
+                            <input class="govuk-radios__input" id="do-you-have-symptoms-1" name="do-you-have-symptoms" data-aria-controls="conditional-do-you-have-symptoms-1" type="radio" value="Yes" {{ checked("do-you-have-symptoms", "Yes") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1">
                                 Yes, at least one of these symptoms
                             </label>
                         </div>
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-do-you-have-symptoms-1">
+                          <div class="govuk-warning-text">
+                            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                            <strong class="govuk-warning-text__text">
+                              <span class="govuk-warning-text__assistive">Warning</span>
+                              People with symptoms are prioritised for tests. If you do not have symptoms, please say so and help NHS tests go to those who need them most.
+                            </strong>
+                          </div>
+
+                        </div>
+
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="do-you-have-symptoms-2" name="do-you-have-symptoms" type="radio" value="No" {{ checked("do-you-have-symptoms", "No") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2">
