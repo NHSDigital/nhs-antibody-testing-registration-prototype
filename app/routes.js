@@ -378,26 +378,29 @@ router.post('/antigen/v1/action3/do-you-have-symptoms', function (req, res) {
 
 })
 
-// Version 1 - Antigen Refer and Triage - Essential worker route
+// // Version 1 - Antigen Refer and Triage - Essential worker route
 
-router.post('/antigen/v1/action3/essential-worker', function (req, res) {
-  let symptoms = req.session.data['do-you-have-symptoms']
-  if (symptoms == "Yes"){
-    res.redirect('/antigen/v1/refer-and-triage/government-pilot')
-  } else {
-    res.redirect('/antigen/v1/refer-and-triage/do-you-have-symptoms')
-  }
+// router.post('/antigen/v1/action3/essential-worker', function (req, res) {
+//   let symptoms = req.session.data['do-you-have-symptoms']
+//   if (symptoms == "Yes"){
+//     res.redirect('/antigen/v1/refer-and-triage/government-pilot')
+//   } else {
+//     res.redirect('/antigen/v1/refer-and-triage/do-you-have-symptoms')
+//   }
 
-})
+// })
 
 // Version 1 - Antigen Refer and Triage - Government pilot route
 
 router.post('/antigen/v1/action3/government-pilot', function (req, res) {
   let governmentPilot = req.session.data['government-pilot']
+  let symptoms = req.session.data['do-you-have-symptoms']
   if (governmentPilot == "Yes"){
     res.redirect('/antigen/v1/refer-and-triage/which-pilot')
-  } else {
+  } else if (governmentPilot == "No" && symptoms == "No") {
     res.redirect('/antigen/v1/refer-and-triage/reason-for-test')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/')
   }
 
 })
