@@ -1806,7 +1806,7 @@ router.post('/lite-registration-accounts-mvp/v1/action9/test-place', function (r
   if (testPlace == "home") {
     res.redirect('/lite-registration-accounts-mvp/v1/royal-mail-barcode')
   } else {
-    res.redirect('/lite-registration-accounts-mvp/v1/find-test-site')
+    res.redirect('/lite-registration-accounts-mvp/v1/site-id')
   }
 
 })
