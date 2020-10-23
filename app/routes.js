@@ -1951,6 +1951,172 @@ router.post('/lite-registration-accounts-mvp/v1/action9/check-mobile', function 
   }
 })
 
+
+// Version 2 - Lite registration account MVP - Mobile number route
+
+router.post('/lite-registration-accounts-mvp/v2/action9/mobile-number', function (req, res) {
+  let mobileNumber = req.session.data['mobile-number']
+  if (mobileNumber == "Yes") {
+    res.redirect('/lite-registration-accounts-mvp/v2/test-place')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v2/call-us')
+  }
+
+})
+
+// Version 2 - Lite registration account MVP - Test place route
+
+router.post('/lite-registration-accounts-mvp/v2/action9/test-place', function (req, res) {
+  let testPlace = req.session.data['test-place']
+  if (testPlace == "home") {
+    res.redirect('/lite-registration-accounts-mvp/v2/royal-mail-barcode')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v2/find-test-site')
+  }
+
+})
+
+// Version 2 - Lite registration account MVP - Test date route
+
+router.post('/lite-registration-accounts-mvp/v2/action9/test-date', function (req, res) {
+  let emailAddress = req.session.data['email-address']
+  if (emailAddress == "user@testing.co.uk") {
+    res.redirect('/lite-registration-accounts-mvp/v2/do-you-have-symptoms')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v2/name')
+  }
+
+})
+
+// Version 2 - Lite registration account MVP - Do you have symptoms route
+
+router.post('/lite-registration-accounts-mvp/v2/action9/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  let emailAddress = req.session.data['email-address']
+  if (symptoms == "Yes") {
+    res.redirect('/lite-registration-accounts-mvp/v2/when-did-symptoms-start')
+  } else if ((symptoms == "No") && emailAddress == "user@testing.co.uk") {
+    res.redirect('/lite-registration-accounts-mvp/v2/check-your-answers')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v2/landline-number')
+  }
+
+})
+
+// Version 2 - Lite registration account MVP - When did symptoms start route
+
+router.post('/lite-registration-accounts-mvp/v2/action9/when-did-symptoms-start', function (req, res) {
+  let emailAddress = req.session.data['email-address']
+  if (emailAddress == "user@testing.co.uk") {
+    res.redirect('/lite-registration-accounts-mvp/v2/check-your-answers')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v2/landline-number')
+  }
+
+})
+
+// Version 2 - Lite registration account MVP - Ethnic group route
+router.post('/lite-registration-accounts-mvp/v2/action9/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/lite-registration-accounts-mvp/v2/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/lite-registration-accounts-mvp/v2/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/lite-registration-accounts-mvp/v2/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/lite-registration-accounts-mvp/v2/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/lite-registration-accounts-mvp/v2/ethnic-background-another')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v2/currently-in-work')
+  }
+
+})
+
+// Version 2 - Lite registration account MVP - Currently in work route
+
+router.post('/lite-registration-accounts-mvp/v2/action9/currently-in-work', function (req, res) {
+  let inWork = req.session.data['currently-in-work']
+  if (inWork == "No"){
+    res.redirect('/lite-registration-accounts-mvp/v2/do-you-have-symptoms')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v2/industry')
+  }
+
+})
+
+// Version 2 - Lite registration account MVP - Country route
+
+router.post('/lite-registration-accounts-mvp/v2/action9/country', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "Northern Ireland"){
+    res.redirect('/lite-registration-accounts-mvp/v2/address')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v2/postcode')
+  }
+
+})
+
+// Version 2 - Lite Registration Accounts MVP - NHS number known route
+
+router.post('/lite-registration-accounts-mvp/v2/action9/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/lite-registration-accounts-mvp/v2/nhs-number')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v2/check-your-answers')
+  }
+
+})
+
+// Version 2 - Lite Registration Accounts MVP User Account - Login email route
+router.post('/lite-registration-accounts-mvp/v2/user-account/action9/login-email', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/lite-registration-accounts-mvp/v2/user-account/enter-password')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v2/user-account/create-password')
+  }
+
+})
+
+// Version 2 - Lite Registration Acccounts MVP User account - Home page testing route
+router.post('/lite-registration-accounts-mvp/v2/action9/home-page', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == 'user@testing.co.uk'){
+    res.redirect('/lite-registration-accounts-mvp/v2/test-place')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v2/email-address-account')
+  }
+
+})
+
+// Version 2 - Lite Registration Acccounts MVP User account - Create password route
+router.post('/lite-registration-accounts-mvp/v2/action9/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/lite-registration-accounts-mvp/v2/user-account/create-password-error')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v2/user-account/check-email')
+  }
+})
+
+// Version 2 - Lite Registration Accounts MVP User account - check mobile route
+router.post('/lite-registration-accounts-mvp/v2/action9/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/lite-registration-accounts-mvp/v2/user-account/check-mobile-error')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v2/user-account/agreement')
+  }
+})
+
+
 // Version 1 - Lite Registration Accounts - Email address first route
 
 router.post('/lite-registration-accounts/v1/action8/email-address-first', function (req, res) {
