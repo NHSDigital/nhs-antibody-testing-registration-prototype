@@ -596,27 +596,27 @@ router.post('/antigen/v1/action3/ethnic-group-person-1', function (req, res) {
 
 // Version 1 - Antigen Global Registration - Country route
 
-router.post('/antigen/v1/action3/country', function (req, res) {
-  let country = req.session.data['country']
-  if (country == "Northern Ireland"){
-    res.redirect('/antigen/v1/global-registration/address')
-  } else {
-    res.redirect('/antigen/v1/global-registration/nhs-number-known')
-  }
+// router.post('/antigen/v1/action3/country', function (req, res) {
+//   let country = req.session.data['country']
+//   if (country == "Northern Ireland"){
+//     res.redirect('/antigen/v1/global-registration/address')
+//   } else {
+//     res.redirect('/antigen/v1/global-registration/nhs-number-known')
+//   }
 
-})
+// })
 
 // Version 1 - Antigen Global Registration - Country person 1 route
 
-router.post('/antigen/v1/action3/country-person-1', function (req, res) {
-  let country = req.session.data['country-person-1']
-  if (country == "Northern Ireland"){
-    res.redirect('/antigen/v1/global-registration/address-person-1')
-  } else {
-    res.redirect('/antigen/v1/global-registration/postcode-person-1')
-  }
+// router.post('/antigen/v1/action3/country-person-1', function (req, res) {
+//   let country = req.session.data['country-person-1']
+//   if (country == "Northern Ireland"){
+//     res.redirect('/antigen/v1/global-registration/address-person-1')
+//   } else {
+//     res.redirect('/antigen/v1/global-registration/postcode-person-1')
+//   }
 
-})
+// })
 
 // Version 1 - Antigen Global Registration - NHS number known person 1 route
 
