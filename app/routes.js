@@ -511,10 +511,10 @@ router.post('/antigen/v1/action3/how-will-you-get-test-wrong-postcode', function
 
 router.post('/antigen/v1/action3/landline-number', function (req, res) {
   let email = req.session.data['email']
-  if (email == "No"){
+  if (email == "No" || email == undefined ){
     res.redirect('/antigen/v1/global-registration/email-address')
   } else {
-    res.redirect('/antigen/v1/global-registration/gender')
+    res.redirect('/antigen/v1/global-registration/sex')
   }
 
 })
