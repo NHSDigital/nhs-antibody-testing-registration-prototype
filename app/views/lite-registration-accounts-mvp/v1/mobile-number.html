@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Do you have a mobile number to get your test results?" %}
+{% set pageTitle = "What's your mobile number?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -26,32 +26,31 @@
       <form action="/lite-registration-accounts-mvp/{{version}}/action9/mobile-number" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
+          <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                 {{ pageTitle }}
               </h1>
             </legend>
-            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="mobile-number-1" name="mobile-number" type="radio" value="Yes" data-aria-controls="conditional-mobile-number" {{ checked("mobile-number", "Yes") }}>
-                <label class="govuk-label govuk-radios__label" for="mobile-number-1">
-                  Yes, I have a mobile phone number where I can get my results
-                </label>
-              </div>
-              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mobile-number">
-                <div class="govuk-form-group">
-                  <label class="govuk-label" for="mobile-phone-number">
-                    Make sure you’re happy for your test results to go to this mobile number.<br><br>
-                    Mobile phone number
-                  </label>
-                  <input class="govuk-input" id="mobile-phone-number" name="mobile-phone-number" type="text" value="{{ data['mobile-phone-number'] }}" aria-describedby="conditional-mobile-number-hint">
-                </div>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="mobile-number-2" name="mobile-number" type="radio" value="No" {{ checked("mobile-number", "No") }}>
-                <label class="govuk-label govuk-radios__label" for="mobile-number-2">
-                  No, I do not have a mobile phone number
+            <span id="mobile-number-hint" class="govuk-body">
+              We'll text your test results to this number. If you're registering a test kit for someone else, enter their mobile number. If you do not have an email/mobile you need to enter one of a trusted person in order to get tested at this time.
+            </span>
+            <div class="govuk-form-group govuk-!-margin-top-5">
+              <label class="govuk-label" for="mobile-phone-number">
+                Mobile phone number
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number" name="mobile-phone-number" type="text" value="{{ data['mobile-phone-number'] }}">
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="confirm" name="confirm" type="checkbox" value="Yes">
+                <label class="govuk-label govuk-checkboxes__label" for="confirm">
+                  I am happy to be contacted by text message about opportunities for clinical evaluation.
                 </label>
               </div>
             </div>
