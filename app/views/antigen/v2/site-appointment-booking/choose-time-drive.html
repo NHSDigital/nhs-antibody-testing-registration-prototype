@@ -1,5 +1,5 @@
-{% set version = "v2" %}
-{% set pageTitle = "Choose a test time" %}
+{% set version = "v1" %}
+{% set pageTitle = "Choose a time" %}
 
 {% extends "includes/layout.html" %}
 
@@ -32,48 +32,131 @@
                 {{ pageTitle }}
               </h1>
             </legend>
-
-            {% set site = data['test-site'].slice(5) | int %}
-
+            {% if data['test-site'] == "Heathrow airport test site, 125 testing lane, RM4 3RS" %}
             <span id="time-1-hint" class="govuk-body govuk-!-margin-bottom-2">
-              <strong>{{ data.centres[site-1].name }} ({{ data.centres[site-1].type }})</strong><br>
-                {{ data.centres[site-1].address_1 }}, {{ data.centres[site-1].address_2 }}, {{ data.centres[site-1].postcode }}<br><br>
-              <strong>{{ data.centres[site-1].distance }} miles </strong>(by car). Driving time is currently <strong>{{ data.centres[site-1].drive_time }}</strong> mins.
+                Heathrow airport test site<br>
+                125 testing Lane<br>
+                Highbury & Islington<br>
+                RM4 3RS<br>
+              <!-- <strong>0.5 miles away (driving distance)</strong> 22 mins in current traffic -->
             </span>
-
-            <input type="hidden" id="type" name="type" value="{{ data.centres[site-1].type }}">
-
+            {% endif %}
+            {% if data['test-site'] == "South London test site, 125 Sun road, RM 3RS" %}
+            <span id="time-8-hint" class="govuk-body govuk-!-margin-bottom-2">
+                South London test site<br>
+                125 Sun road<br>
+                Edgware<br>
+                RM4 3RS<br>
+              <!-- <strong>0.8 miles away (driving distance)</strong> 22 mins in current traffic -->
+            </span>
+            {% endif %}
+            {% if data['test-site'] == "East London test site, 125 testing Lane, RM4 3RS" %}
+            <span id="time-9-hint" class="govuk-body govuk-!-margin-bottom-2">
+                East London test site<br>
+                125 testing Lane<br>
+                Highbury & Islington<br>
+                RM4 3RS<br>
+              <!-- <strong>2 miles away (driving distance)</strong> 22 mins in current traffic -->
+            </span>
+            {% endif %}
+            {% if data['test-site'] == "West London test site, 125 testing Lane, RM4 3RS" %}
+            <span id="time-10-hint" class="govuk-body govuk-!-margin-bottom-2">
+                West London test site<br>
+                125 testing Lane<br>
+                Chelsea<br>
+                RM4 3RS<br>
+              <!-- <strong>5 miles away (driving distance)</strong> 22 mins in current traffic -->
+            </span>
+            {% endif %}
 
             <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+  
+            <p class="govuk-body-l govuk-!-margin-bottom-2"">
+              <span id="time-2-hint">
+                Available test times for your household
+              </span>
+            </p>
+            <br>
+            <span id="time-3-hint" class="govuk-body">
+              When booking a test, please be aware that:
+            </span>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4 govuk-!-margin-top-4">
+              <li><span id="time-4-hint" class="govuk-body govuk-!-margin-bottom-0">you must turn up at the start time of your appointment and not arrive early or late</span></li>
+              <li><span id="time-5-hint" class="govuk-body govuk-!-margin-bottom-0">it usually takes no more than 10 minutes to test each person</span></li>
+              <li><span id="time-6-hint" class="govuk-body govuk-!-margin-bottom-0">if there are more than one of you for testing, you'll have to wait a bit longer</span></li>
+              <li><span id="time-7-hint" class="govuk-body">you should not expect to be at the site for any more than an hour</span></li>
+            </ul>
 
-            <p class="govuk-body"><strong>Tuesday 29th September</strong></p>
+            <p><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/choose-time-prev-day-drive">See previous day</a></p>
+
+            <p class="govuk-body"><strong>Saturday 17 October</strong></p>
 
             <div class="govuk-radios">
-
-              {% set slots = data.centres[site-1].slots %}
-
-              {% for i in range(0, slots.length) -%}
-
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="time-{{i}}" name="time" type="radio" value="{{ slots[i].time}}" {{ checked("time", slots[i].time) }}>
-                <label class="govuk-label govuk-radios__label" for="time-{{i}}">
-                  {{ slots[i].time}}
-                  {% if slots[i].open == 0 %}<br> <span class="govuk-hint">Warning: Current driving time may mean you miss this appointment</span>{% endif %}
+                <input class="govuk-radios__input" id="time-1" name="time" type="radio" value="8:30am to 9:00am" {{ checked("time", "8:30am to 9:00am") }}>
+                <label class="govuk-label govuk-radios__label" for="time-1">
+                    8:30am to 9:00am
                 </label>
               </div>
-
-              {%- endfor %}
-
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="time-2" name="time" type="radio" value="9:30am to 10:00" {{ checked("time", "9:30am to 10:00") }}>
+                <label class="govuk-label govuk-radios__label" for="time-2">
+                    9:30am to 10:00
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="time-3" name="time" type="radio" value="10:00am to 10:30am" {{ checked("time", "10:00am to 10:30am") }}>
+                <label class="govuk-label govuk-radios__label" for="time-3">
+                    10:00am to 10:30am
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="time-4" name="time" type="radio" value="11:30am to 12:00pm" {{ checked("time", "11:30am to 12:00pm") }}>
+                <label class="govuk-label govuk-radios__label" for="time-4">
+                    11:30am to 12:00pm
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="time-5" name="time" type="radio" value="1:30pm to 2:00pm" {{ checked("time", "1:30pm to 2:00pm") }}>
+                <label class="govuk-label govuk-radios__label" for="time-5">
+                  1:30pm to 2:00pm
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="time-6" name="time" type="radio" value="4:30pm to 5:00pm" {{ checked("time", "4:30pm to 5:00pm") }}>
+                <label class="govuk-label govuk-radios__label" for="time-6">
+                  4:30pm to 5:00pm
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="time-7" name="time" type="radio" value="5:00pm to 5:30pm" {{ checked("time", "5:00pm to 5:30pm") }}>
+                <label class="govuk-label govuk-radios__label" for="time-7">
+                  5:00pm to 5:30pm
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="time-8" name="time" type="radio" value="6:30pm to 7:00pm" {{ checked("time", "6:30pm to 7:00pm") }}>
+                <label class="govuk-label govuk-radios__label" for="time-8">
+                  6:30pm to 7:00pm
+                </label>
+              </div>
             </div>
-
-
-<!--            <p class="govuk-!-margin-top-4"><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/choose-time-next-day-drive">See next day</a></p>-->
+            <p class="govuk-!-margin-top-4"><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/choose-time-next-day-drive">See next day</a></p>
           </fieldset>
+        </div>
+
+        <div class="govuk-radios" style="display: none;">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="appointment-date" name="appointment-date" type="radio" value="17 October" checked >
+            <label class="govuk-label govuk-radios__label" for="appointment-date">
+                17 October
+            </label>
+          </div>
         </div>
 
         <button class="govuk-button govuk-!-margin-right-6" data-module="govuk-button">Continue</button>
 
-        <p style="display: inline-block;"><a class="govuk-button govuk-button--secondary" href="/antigen/{{version}}/site-appointment-booking/choose-drive-through-site">Change test site</a></p>
+        <p style="display: inline-block;"><a class="govuk-button govuk-button--secondary" href="/antigen/{{version}}/global-registration/choose-drive-through-site">Change test site</a></p>
 
       </form>
 
