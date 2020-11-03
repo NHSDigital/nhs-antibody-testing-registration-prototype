@@ -1,4 +1,4 @@
-{% set version = "v2" %}
+{% set version = "v1" %}
 {% set pageTitle = "Confirm your appointment" %}
 
 {% extends "includes/layout.html" %}
@@ -85,22 +85,6 @@
             </a>
           </dd>
         </div>
-        {% if data['way-to-test'] == "drive-through" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Vehicle registration
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['vehicle-registration-number'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/site-appointment-booking/vehicle-registration-number">
-              Change
-              <span class="govuk-visually-hidden">vehicle registration</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
       </dl>
 
       <p class="govuk-body"><strong>People confirmed for testing</strong></p>
@@ -114,12 +98,12 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name'] }} {{ data['last-name'] }}</th>
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] | default('John') }} {{ data['last-name'] | default('Appleseed')}}</th>
             <td class="govuk-table__cell">
-              {{ data['mobile-phone-number'] }}
+              {{ data['mobile-phone-number'] | default('+4463324655') }}
             </td>
             <td class="govuk-table__cell">
-              {{ data['email-address'] }}
+              {{ data['email-address'] | default('john.appleseed@test.co.uk')}}
             </td>
           </tr>
           {% if data['first-name-person-1'] !== undefined %}
