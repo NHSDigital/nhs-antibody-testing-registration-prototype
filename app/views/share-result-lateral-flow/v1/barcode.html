@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Enter your unique test kit barcode" %}
+{% set pageTitle = "Enter your test kit barcode" %}
 
 {% extends "includes/layout.html" %}
 
@@ -28,15 +28,12 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
                 {{ pageTitle }}
               </h1>
             </legend>
             <span id="enter-barcode-number-hint" class="govuk-body">
-              Use the camera on your phone or computer to scan your test kit barcode. Or you can manually enter the 11 character reference below the barcode.<br><br>
-              If you're using a home test kit, you'll find the identical barcodes inside your home test kit, either attached to the plastic vial, biohazard bag and return box or loose for you to stick on yourself (please read the instructions).<br><br>
-              These are different from your pre-paid Royal Mail return package barcode on your box.<br><br>
-              If you have a Randox test kit, manually enter the 9 or 10 character unique reference number (URN) on the label.<br><br>
+            The barcode reference is 11 characters. You can find it on the test kit
             </span>
 
             <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
@@ -49,32 +46,22 @@
                 <img src="/public/images/barcode-number.png" alt="barcode number"/>
               </div>
             </details>
+            <br>
 
-            <details class="govuk-details" data-module="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                  What does the Randox URN look like?
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-                <img src="/public/images/randox-number.png" alt="randox number"/>
-              </div>
-            </details>
-
-            <a href="/share-result-lateral-flow/{{version}}/scan-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        <!--    <a href="/share-result-lateral-flow/{{version}}/scan-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
               Scan my barcode
-            </a>
+            </a> -->
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="kit-barcode-reference-1">
-                Test kit barcode reference or URN
+                Test kit barcode reference
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
             </div>
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="kit-barcode-reference-2">
-                Confirm test kit barcode reference or URN
+                Confirm test kit barcode reference
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }}>
             </div>
