@@ -534,7 +534,7 @@ router.post('/antigen/v1/action3/ethnic-group', function (req, res) {
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/antigen/v1/global-registration/ethnic-background-another')
   } else {
-    res.redirect('/antigen/v1/global-registration/currently-in-work')
+    res.redirect('/antigen/v1/global-registration/work-or-study')
   }
 
 })
@@ -590,7 +590,7 @@ router.post('/antigen/v1/action3/ethnic-group-person-1', function (req, res) {
   } else if (ethnicGroupPerson1 == "Another ethnic group") {
     res.redirect('/antigen/v1/global-registration/ethnic-background-another-person-1')
   } else {
-    res.redirect('/antigen/v1/global-registration/currently-in-work-person-1')
+    res.redirect('/antigen/v1/global-registration/work-or-study-person-1')
   }
 })
 
@@ -2863,6 +2863,31 @@ router.post('/lite-registration-accounts/v1/action9/check-mobile', function (req
     res.redirect('/lite-registration-accounts/v1/account-provisioning/check-mobile-error')
   } else {
     res.redirect('/lite-registration-accounts/v1/account-provisioning/agreement')
+  }
+})
+
+// Version 1 - Antigen Work or Study
+router.post('/antigen/v1/action3/work-or-study', function (req, res) {
+  let workOrStudy = req.session.data['work-or-study']
+  if (workOrStudy == "Yes - they travel to a workplace") {
+    res.redirect('/antigen/v1/global-registration/industry')
+  } else if (workOrStudy == "Yes - they go to nursery, school, college or university") {
+    res.redirect('/antigen/v1/global-registration/study-grade')
+  } else {
+    res.redirect('/antigen/v1/global-registration/country')
+  }
+})
+
+
+// Version 1 - Antigen Work or Study Person 1
+router.post('/antigen/v1/action3/work-or-study-person-1', function (req, res) {
+  let workOrStudy = req.session.data['work-or-study']
+  if (workOrStudy == "Yes - they travel to a workplace") {
+    res.redirect('/antigen/v1/global-registration/industry-person-1')
+  } else if (workOrStudy == "Yes - they go to nursery, school, college or university") {
+    res.redirect('/antigen/v1/global-registration/study-grade-person-1')
+  } else {
+    res.redirect('/antigen/v1/global-registration/country-person-1')
   }
 })
 
