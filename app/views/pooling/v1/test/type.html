@@ -1,0 +1,71 @@
+{% set pageHeading = "We need to confirm the type of test kit you have" %}
+{% set version = "v1" %}
+{% set folder = "pooling" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        We need to confirm the type of test kit you have
+      </h1>
+
+      <p>This is so you get the right results</p>
+
+      <form class="" action="" method="post">
+        {{ govukRadios({
+            idPrefix: "poolTestType",
+            name: "poolTestType",
+            fieldset: {
+              legend: {
+                text: "Do you have the test kit with you?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                html: "Yes, I have the test kit with me"
+              },
+              {
+                value: "No",
+                html: "No, I have returned the test kit"
+              }
+            ]
+          }) }}
+        <input class="govuk-button" type="submit" value="Continue">
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
