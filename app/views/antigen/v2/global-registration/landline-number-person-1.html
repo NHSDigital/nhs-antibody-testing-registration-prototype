@@ -1,4 +1,4 @@
-{% set version = "v1" %}
+{% set version = "v2" %}
 {% set pageTitle = "Landline telephone number" %}
 
 {% extends "includes/layout.html" %}
@@ -29,7 +29,7 @@
           <fieldset class="govuk-fieldset" aria-describedby="landline-number-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                Does {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }} have a landline phone number?
+                Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} have a landline phone number?
               </h1>
             </legend>
             <span id="landline-number-hint" class="govuk-body">
@@ -40,7 +40,7 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="landline-number-1-person-1" name="landline-number-person-1" type="radio" value="Yes, same as me" {{ checked("landline-number-person-1", "Yes, same as me") }}>
                 <label class="govuk-label govuk-radios__label" for="landline-number-1-person-1">
-                  Yes, it's {{ data['landline-telephone-number'] }} (same as {{ data['first-name'] }} {{ data['last-name'] }})
+                  Yes, it's {{ data['landline-telephone-number'] }} (same as {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }})
                 </label>
               </div>
               {% endif %}
@@ -59,7 +59,7 @@
                 </div>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="landline-number-3-person-1" name="landline-number-person-1" type="radio" value="I do not have a landline" {{ checked("landline-number-person-1", "I do not have a landline") }}>
+                <input class="govuk-radios__input" id="landline-number-3-person-1" name="landline-number-person-1" type="radio" value="They do not have a landline" {{ checked("landline-number-person-1", "They do not have a landline") }}>
                 <label class="govuk-label govuk-radios__label" for="landline-number-3-person-1">
                   No, they do not have a landline phone number
                 </label>

@@ -954,10 +954,10 @@ router.post('/antigen/v2/action3/ethnic-group', function (req, res) {
 
 router.post('/antigen/v2/action3/currently-in-work', function (req, res) {
   let inWork = req.session.data['currently-in-work']
-  if (inWork == "No"){
-    res.redirect('/antigen/v2/global-registration/country')
-  } else {
+  if (inWork == "Yes, they travel to a workplace"){
     res.redirect('/antigen/v2/global-registration/industry')
+  } else {
+    res.redirect('/antigen/v2/global-registration/country')
   }
 
 })
@@ -1021,10 +1021,10 @@ router.post('/antigen/v2/action3/nhs-number-known-person-1', function (req, res)
 
 router.post('/antigen/v2/action3/currently-in-work-person-1', function (req, res) {
   let inWork = req.session.data['currently-in-work-person-1']
-  if (inWork == "No"){
-    res.redirect('/antigen/v2/global-registration/country-person-1')
-  } else {
+  if (inWork == "Yes, they travel to a workplace"){
     res.redirect('/antigen/v2/global-registration/industry-person-1')
+  } else {
+    res.redirect('/antigen/v2/global-registration/country-person-1')
   }
 
 })
