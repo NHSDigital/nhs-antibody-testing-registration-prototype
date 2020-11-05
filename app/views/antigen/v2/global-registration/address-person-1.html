@@ -36,13 +36,13 @@
           </span>
           <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6 govuk-!-margin-bottom-7" data-module="govuk-radios">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="address-1-person-1" name="landline-number-person-1" type="radio" value="Yes" {{ checked("address-person-1", "Yes") }}>
+              <input class="govuk-radios__input" id="address-1-person-1" name="address-person-1" type="radio" value="{{data['address']}}" {{ checked("address-person-1", "data['address']") }}>
               <label class="govuk-label govuk-radios__label" for="address-1-person-1">
                 {{ data['address'] or '24 Green Lane' }} (the same as {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }})
               </label>
             </div>
             <div class="govuk-radios__item govuk-!-margin-bottom-6">
-              <input class="govuk-radios__input" id="address-1-person-1" name="address-person-1" type="radio" value="Yes" data-aria-controls="conditional-address" {{ checked("address-person-1", "data['address']") }}>
+              <input class="govuk-radios__input" id="address-1-person-1" name="address-person-1" type="radio" value="Somewhere else" data-aria-controls="conditional-address" {{ checked("address-person-1", "Somewhere else") }}>
               <label class="govuk-label govuk-radios__label" for="address-1-person-1">
                 Somewhere else
               </label>
@@ -55,39 +55,30 @@
                 <input class="govuk-input govuk-!-width-one-third" id="address-other-person-1" name="address-other-person-1" type="tel" value="{{ data['address-other-person-1'] }}">
               </div>
             </div>
+          </div>
+
+          <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6 govuk-!-margin-bottom-7" data-module="govuk-radios">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="address-1-person-1" name="landline-number-person-1" type="radio" value="Yes" {{ checked("address-person-1", "Yes") }}>
-              <label class="govuk-label govuk-radios__label" for="address-1-person-1">
+              <input class="govuk-radios__input" id="home-postcode-1-person-1" name="home-postcode-person-1" type="radio" value="Yes" {{ checked("home-postcode-person-1", "Yes") }}>
+              <label class="govuk-label govuk-radios__label" for="home-postcode-1-person-1">
                 {{ data['home-postcode'] or 'LS1 3BE' }} (the same as {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }})
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="address-1-person-1" name="landline-number-person-1" type="radio" value="Yes" data-aria-controls="conditional-address" {{ checked("address-person-1", "Yes") }}>
+              <input class="govuk-radios__input" id="home-postcode-2-person-1" name="home-postcode-person-1" type="radio" value="Somewhere else" data-aria-controls="conditional-home-postcode-person-1" {{ checked("home-postcode-person-1", "Somewhere else") }}>
               <label class="govuk-label govuk-radios__label" for="address-1-person-1">
                 Somewhere else
               </label>
             </div>
-            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-landline-number">
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-home-postcode-person-1">
               <div class="govuk-form-group">
-                <label class="govuk-label" for="landline-telephone-number-person-1">
-                  Landline phone number
+                <label class="govuk-label" for="postcode-other-person-1">
+                  Postcode
                 </label>
-                <input class="govuk-input govuk-!-width-one-third" id="landline-telephone-number-person-1" name="landline-telephone-number-person-1" type="tel" value="{{ data['landline-telephone-number-person-1'] }}">
+                <input class="govuk-input govuk-!-width-one-third" id="home-postcode-other-person-1" name="home-postcode-other-person-1" type="tel" value="{{ data['home-postcode-other-person-1'] }}">
               </div>
             </div>
           </div>
-          <!-- <div class="govuk-form-group govuk-!-margin-top-5">
-            <label class="govuk-label" for="address-person-1">
-              First line of address
-            </label>
-            <input class="govuk-input govuk-input--width-10" id="address-person-1" name="address-person-1" type="text" value="{{ data['address-person-1'] }}">
-          </div>
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="home-postcode-person-1">
-              Postcode
-            </label>
-            <input class="govuk-input govuk-input--width-10" id="home-postcode-person-1" name="home-postcode-person-1" type="text" autocomplete="postal-code" value="{{ data['home-postcode-person-1'] }}">
-          </div> -->
         </fieldset>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
