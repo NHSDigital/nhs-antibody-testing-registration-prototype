@@ -24,45 +24,48 @@
 
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">{{ pageTitle }}</h1>
 
-      <div class="govuk-warning-text govuk-!-margin-top-6">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive govuk-body">Warning</span>
-          Check these details carefully before you confirm your appointment. You cannot change the appointment once it's been confirmed.
-        </strong>
-      </div>
-
-      <h2 class="govuk-heading-m">Appointment details</h2>
+      <p class="govuk-heading-m"><strong>Appointment details</strong></p>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Test centre type
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <span id="choose-site-1-hint" class="govuk-body govuk-!-margin-bottom-2">
-                {{ data['type'] }}
-            </span>
-          </dd>
-          <dd class="govuk-summary-list__actions">
- 
-          </dd>
-        </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Test site
           </dt>
           <dd class="govuk-summary-list__value">
+            {% if data['test-site'] == "Heathrow airport test site, 125 testing lane, RM4 3RS" %}
             <span id="choose-site-1-hint" class="govuk-body govuk-!-margin-bottom-2">
-
-              {% set site = data['test-site'].slice(5) | int %}
-                {{ data.centres[site-1].name }}<br>
-                {{ data.centres[site-1].address_1 }}<br>
-                {{ data.centres[site-1].address_2 }}<br>
-                {{ data.centres[site-1].postcode }}
+                Heathrow airport test site<br>
+                125 testing Lane<br>
+                Highbury & Islington<br>
+                RM4 3RS
             </span>
+            {% endif %}
+            {% if data['test-site'] == "South London test site, 125 Sun road, RM 3RS" %}
+            <span id="choose-site-1-hint" class="govuk-body govuk-!-margin-bottom-2">
+                South London test site<br>
+                125 Sun road<br>
+                Edgware<br>
+                RM4 3RS
+            </span>
+            {% endif %}
+            {% if data['test-site'] == "East London test site, 125 testing Lane, RM4 3RS" %}
+            <span id="choose-site-1-hint" class="govuk-body govuk-!-margin-bottom-2">
+                East London test site<br>
+                125 testing Lane<br>
+                Highbury & Islington<br>
+                RM4 3RS
+            </span>
+            {% endif %}
+            {% if data['test-site'] == "West London test site, 125 testing Lane, RM4 3RS" %}
+            <span id="choose-site-1-hint" class="govuk-body govuk-!-margin-bottom-2">
+                West London test site<br>
+                125 testing Lane<br>
+                Chelsea<br>
+                RM4 3RS
+            </span>
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/site-appointment-booking/choose-drive-through-site">
+            <a href="/antigen/{{version}}/global-registration/people-confirmed-person-1">
               Change
               <span class="govuk-visually-hidden">test site</span>
             </a>
@@ -73,22 +76,23 @@
             Date and time
           </dt>
           <dd class="govuk-summary-list__value">
-            Tuesday 29th September<br>{{ data['time'] }}
+            {{ data['appointment-date'] '30 October' }} 2020<br>
+            {{ data['time'] or '9:30am to 10:00am'}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/site-appointment-booking/choose-time-drive">
+            <a href="/antigen/{{version}}/site-appointment-booking/choose-time">
               Change
               <span class="govuk-visually-hidden">date and time</span>
             </a>
           </dd>
         </div>
-        {% if data['type'] == "Drive-through" %}
+        {% if data['way-to-test'] == "drive-through" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Vehicle registration
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['vehicle-registration-number'] }}
+            {{ data['vehicle-registration-number'] or 'CU57ABC' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/site-appointment-booking/vehicle-registration-number">
@@ -100,8 +104,7 @@
         {% endif %}
       </dl>
 
-      <h2 class="govuk-heading-m">People confirmed for testing</h2>
-
+      <p class="govuk-body"><strong>People confirmed for testing</strong></p>
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -112,12 +115,12 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'Firstname' }} {{ data['last-name'] or 'Lastname' }}</th>
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}</th>
             <td class="govuk-table__cell">
-              {{ data['mobile-phone-number'] or '07472398473' }}
+              {{ data['mobile-phone-number'] or '+447782808451' }}
             </td>
             <td class="govuk-table__cell">
-              {{ data['email-address'] or 'name@email.com' }}
+              {{ data['email-address'] or 'name@example.com' }}
             </td>
           </tr>
           {% if data['first-name-person-1'] !== undefined %}
@@ -135,15 +138,7 @@
       </table>
 
       <div class="govuk-inset-text">
-        <span id="time-3-hint" class="govuk-body">
-           Before confirming, please be aware that:
-        </span>
-        <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-4">
-          <li><span id="time-4-hint" class="govuk-body govuk-!-margin-bottom-0">you must turn up at the start time of your appointment and not arrive early or late</span></li>
-          <li><span id="time-5-hint" class="govuk-body govuk-!-margin-bottom-0">it usually takes no more than 10 minutes to test each person</span></li>
-          <li><span id="time-6-hint" class="govuk-body govuk-!-margin-bottom-0">if there are more than one of you for testing, you'll have to wait a bit longer</span></li>
-          <li><span id="time-7-hint" class="govuk-body">you should not expect to be at the site for any more than an hour</span></li>
-        </ul>
+        Check these details carefully before you confirm your appointment. You cannot change the appointment once it's been confirmed.
       </div>
 
       <form action="/antigen/{{version}}/site-appointment-booking/confirmation" method="post" novalidate>
@@ -151,7 +146,7 @@
         <input type="hidden" name="answers-checked" value="true">
 
         <button type="submit" class="govuk-button" data-module="govuk-button">
-          Confirm and continue
+          Save and continue
         </button>
 
       </form>

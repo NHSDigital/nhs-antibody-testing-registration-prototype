@@ -4,25 +4,14 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
-
   <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/nhs-number-known">Back</a>
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
 
-    <form action="/antigen/{{version}}/global-registration/people-confirmed" method="post" novalidate>
+      <form action="/antigen/{{version}}/global-registration/people-confirmed" method="post" novalidate>
 
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
 
@@ -80,7 +69,7 @@
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">
               Change
-              <span class="govuk-visually-hidden">date of onset</span>
+              <span class="govuk-visually-hidden">date symptoms started</span>
             </a>
           </dd>
         </div>
@@ -113,8 +102,6 @@
             </a>
           </dd>
         </div>
-
-
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Email
@@ -129,13 +116,27 @@
             </a>
           </dd>
         </div>
-
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sex
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sex'] or 'male' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/sex">
+              Change
+              <span class="govuk-visually-hidden">sex</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['gender'] == "No" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Gender
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['gender'] or 'male' }}
+            {{ data['gender-other'] or 'female' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/gender">
@@ -144,6 +145,22 @@
             </a>
           </dd>
         </div>
+        {% else %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Gender
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['gender'] or 'female' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/gender">
+              Change
+              <span class="govuk-visually-hidden">gender</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Ethnic group
@@ -176,10 +193,10 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Currently in work?
+            Travels to nursery, work or place of education
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['currently-in-work'] or 'Yes and I work from home' }}
+            {{ data['currently-in-work'] or 'Prefer not to say / not applicable' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/currently-in-work">
@@ -188,7 +205,7 @@
             </a>
           </dd>
         </div>
-        {% if data['currently-in-work'] !== "No" %}
+        {% if data['currently-in-work'] == "Yes, they travel to a workplace" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Area of work
@@ -225,7 +242,7 @@
             {{ data['employer'] or 'Prefer not to say'}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/employer">
+            <a href="/antigen/{{version}}/global-registration/occupation">
               Change
               <span class="govuk-visually-hidden">employer</span>
             </a>
@@ -246,20 +263,39 @@
             </a>
           </dd>
         </div>
+        {% if data['country'] == "Northern Ireland" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Postcode
+            First line of address and postcode
           </dt>
           <dd class="govuk-summary-list__value">
+            {{ data['address'] or 'Chancery Lane' }}<br>
             {{ data['home-postcode'] or 'LS1 3BE' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/postcode">
+            <a href="/antigen/{{version}}/global-registration/address">
               Change
-              <span class="govuk-visually-hidden">postcode</span>
+              <span class="govuk-visually-hidden">first line of address and postcode</span>
             </a>
           </dd>
         </div>
+        {% else %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            First line of address and postcode
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['address'] or '24 Green Lane' }}<br>
+            {{ data['home-postcode'] or 'LS1 3BE' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/address">
+              Change
+              <span class="govuk-visually-hidden">first line of address and postcode</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             NHS number known
@@ -294,14 +330,16 @@
 
 
 
-      <input type="hidden" name="answers-checked" value="true">
+        <input type="hidden" name="answers-checked" value="true">
 
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Save and continue
-      </button>
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
 
-    </form>
+      </form>
 
-  </div>
+    </div>
+
+
   </div>
 {% endblock %}
