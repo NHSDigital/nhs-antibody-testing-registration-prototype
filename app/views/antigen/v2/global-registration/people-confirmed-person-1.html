@@ -1,4 +1,4 @@
-{% set version = "v1" %}
+{% set version = "v2" %}
 {% set pageTitle = "Confirm people for testing" %}
 
 {% extends "includes/layout.html" %}
@@ -27,6 +27,8 @@
 
       <p>You can add up to 3 people you live with for testing.</p>
 
+      <p>A maximum of 2 people can arrive on the same motorbike. If you plan to travel by motorbike, you can only get a test for you and one other person you live with.</p>
+
       <p>Once you’ve confirmed who needs testing, you can continue.</p>
 
       <table class="govuk-table">
@@ -48,11 +50,11 @@
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a></p></td>
           </tr>
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] }}<br>{{ data['last-name-person-1'] }}</th>
+            <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] or 'Jane' }}<br>{{ data['last-name-person-1'] or 'Wilson' }}</th>
             <td class="govuk-table__cell">
-              {{ data['email-address-person-1'] }}
+              {{ data['email-address-person-1'] or 'jane.wilson@example.co.uk' }}
               <br>
-              {{ data['mobile-phone-number-person-1'] }}
+              {{ data['mobile-phone-number-person-1'] or '+44663233456' }}
             </td>
             <td class="govuk-table__cell">
               <p class="govuk-body-m">
