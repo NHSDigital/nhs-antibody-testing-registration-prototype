@@ -59,4 +59,15 @@ router.post('/pooling/v1/action6/nhs-number-known', function (req, res) {
 })
 
 
+router.post('/pooling/v1/test/type', function (req, res) {
+  let answer = req.session.data['poolTestType']
+  if (answer == "Yes"){
+    res.redirect('/pooling/v1/test/check-kit')
+  } else {
+    res.redirect('/pooling/v1/test/how-took')
+  }
+
+})
+
+
 module.exports = router

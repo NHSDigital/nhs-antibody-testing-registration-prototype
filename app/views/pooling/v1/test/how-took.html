@@ -1,0 +1,75 @@
+{% set pageHeading = "Confirm how you took your test" %}
+{% set version = "v1" %}
+{% set folder = "pooling" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set hintHTML %}
+      {{ govukDetails({
+        summaryText: "Why we're asking this",
+        html: "<p>We need to confirm if you used an individual test kit or a pooled test kit.</p><p>A pooled test kit contains 5 swabs.</p><p>Each person uses a separate swab that gets put into 1 plastic tube.</p><p>This lets a whole household get tested with 1 test kit.</p>"
+      }) }}
+      {% endset %}
+
+      <form class="" action="/{{folder}}/{{version}}/date-of-birth" method="get">
+        {{ govukRadios({
+            idPrefix: "poolTestType",
+            name: "poolTestType",
+            fieldset: {
+              legend: {
+                text: "Did your swab go into the plastic tube on its own?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            hint: {
+              html: hintHTML
+            },
+            items: [
+              {
+                value: "Yes",
+                html: "Yes, my swab went into its own plastic tube"
+              },
+              {
+                value: "No",
+                html: "No, my swab was placed into a plastic tube with other swabs"
+              }
+            ]
+          }) }}
+        <input class="govuk-button" type="submit" value="Continue">
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
