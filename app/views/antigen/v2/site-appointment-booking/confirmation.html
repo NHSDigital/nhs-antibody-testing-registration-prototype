@@ -1,22 +1,7 @@
-{% set version = "v2" %}
+set version = "v2" %}
 {% set pageTitle = "Appointment booked" %}
-{% set site = data['test-site'].slice(5) | int %}
 
 {% extends "includes/layout.html" %}
-
-{% block beforeContent %}
-<div class="govuk-phase-banner">
-  <p class="govuk-phase-banner__content">
-    <strong class="govuk-tag govuk-phase-banner__content__tag">
-      alpha
-    </strong>
-    <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-  </p>
-</div>
-
-{% endblock %}
 
 {% block content %}
 
@@ -25,22 +10,20 @@
 
     <div class="govuk-panel govuk-panel--confirmation">
       <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
-      <p class="govuk-body" style="color: #ffffff"><strong>
-        {{ data.centres[site-1].name }},
-        {{ data.centres[site-1].address_1 }},
-        {{ data.centres[site-1].address_2 }},
-        {{ data.centres[site-1].postcode }}</strong></p>
-
+      <p class="govuk-body" style="color: #ffffff"><strong>{{ data['test-site'] }}</strong></p>
       <p class="govuk-body" style="color: #ffffff">
-        <span class="govuk-!-margin-right-8">Date: 29th September 2020</span>
-        <span>Time: {{ data['time'] }}</span>
+        {% if data['vehicle-registration-number'] !== undefined %}
+        <span class="govuk-!-margin-right-3">Vehicle: {{ data['vehicle-registration-number'] or 'CU57ABC' }}</span>
+        {% endif %}
+        <span class="govuk-!-margin-right-3">Date: {{ data['appointment-date'] or '30 October' }} 2020</span>
+        <span>Time: {{ data['time'] or '9:30am to 10:00am' }}</span>
       </p>
 
     </div>
 
     <h2 class="govuk-heading-m">Your test site pass</h2>
 
-    <p class="govuk-body">You can view and print your pass (and any passes for people you live with) using the link shown below. Each pass contains a QR code and an I.D number.</p>
+    <p class="govuk-body">You can view and print your pass (and any passes for people you live with) using the link shown below. Each pass contains a QR code and an ID number.</p>
 
     <hr>
 
@@ -51,6 +34,16 @@
     <p class="govuk-body"><a href="#">View or print pass</a></p>
 
     <hr>
+
+    {% if data['first-name-person-1'] !== undefined %}
+    <p class="govuk-body govuk-!-margin-top-4"><strong>{{ data['first-name-person-1'] or 'Firstname' }} {{ data['last-name-person-1'] or 'Lastname' }}</strong></p>
+    <p class="govuk-body">{{ data['email-address-person-1'] or 'name@email.com' }}<br>
+      {{ data['mobile-phone-number-person-1'] or '07472398473' }}</p>
+
+    <p class="govuk-body"><a href="#">View or print pass</a></p>
+
+    <hr>
+    {% endif %}
 
     <p class="govuk-body govuk-!-margin-top-4">If you provided an email address, the pass has also been emailed to you.</p>
 
@@ -71,7 +64,7 @@
     <h2 class="govuk-heading-m">What you'll need to bring to the test site</h2>
 
     <ul class="govuk-list govuk-list--bullet">
-      <li>a copy of your test site pass (and passes for any children getting a test) which we've sent by text (and also by email, if you gave us your email address)</li>
+      <li>a copy of your test site pass (and passes for any children getting a test) - have the QR code in the pass ready to display (on the email or text, printed off or as a screenshot) or it could delay your entry to the test site</li>
       <li>photo ID - a driving licence or passport for each person getting a test</li>
       <li>hand sanitiser or antiseptic wipes - because we may ask you to do the test yourself, so you'll need clean hands (if you have neither, we'll provide you with a pair of latex-free gloves)</li>
       <li>face coverings for each person aged 3 years and over, if you are visiting a walk-through site</li>
@@ -97,12 +90,12 @@
 
     <p class="govuk-body">
       Watch these videos to see what happens at the test sites.<br>
-      <a class="govuk-link" href="#">learn about self testing</a><br>
-      <a class="govuk-link" href="#">learn about walk-through sites</a>
+      <a class="govuk-link" href="#">Learn about self testing.</a><br>
+      <a class="govuk-link" href="#">Learn about walk-through sites.</a>
     </p>
 
-    <p class="govuk-body">It usually takes no more 10 minutes to perform the test. You may have to wait to be tested, but you would not usually be at the test centre for more than an hour.</p>
-    
+    <p class="govuk-body">It usually takes no more 10 minutes to perform the test. You may have to wait to be tested, but you would not usually be at the test site for more than an hour.</p>
+
     <p class="govuk-body">You'll receive your test results by text message. Most people get their results within 48 hours, but it could take up to 5 days.</p>
 
     <h2 class="govuk-heading-m">If you're bringing a baby or a child</h2>

@@ -121,15 +121,15 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Gender
+            Sex
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['gender'] or 'male' }}
+            {{ data['sex'] or 'male' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/gender">
+            <a href="/antigen/{{version}}/global-registration/sex">
               Change
-              <span class="govuk-visually-hidden">gender</span>
+              <span class="govuk-visually-hidden">sex</span>
             </a>
           </dd>
         </div>
@@ -235,6 +235,23 @@
             </a>
           </dd>
         </div>
+        {% if data['country'] == "Northern Ireland" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            First line of address and postcode
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['address'] or 'Chancery Lane' }}<br>
+            {{ data['home-postcode'] or 'LS1 3BE' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/address">
+              Change
+              <span class="govuk-visually-hidden">first line of address and postcode</span>
+            </a>
+          </dd>
+        </div>
+        {% else %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Postcode
@@ -249,6 +266,7 @@
             </a>
           </dd>
         </div>
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             NHS number known

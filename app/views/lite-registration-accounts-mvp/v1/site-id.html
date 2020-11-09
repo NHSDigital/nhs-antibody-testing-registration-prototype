@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What is your site ID or name?" %}
+{% set pageTitle = "What's your test site's ID or name?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -22,19 +22,22 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form lass="form" action="" method="post">
+    <form lass="form" action="/lite-registration-accounts-mvp/{{version}}/enter-barcode" method="post">
       <div class="govuk-form-group">
         <h1 class="govuk-label-wrapper govuk-!-margin-bottom-8">
-          <label class="govuk-label govuk-label--xl" for="occupation">
+          <label class="govuk-label govuk-label--xl" for="siteID">
             {{ pageTitle }}
           </label>
         </h1>
-        <span id="occupation-hint" class="govuk-body">
-          Search for the four character site ID, or the name of your site below. If you can't find your site, ask a member of staff.<br><br>
-          Site ID or name
+        <span id="siteID-hint" class="govuk-body">
+          Start entering either your test site’s ID or name and then choose from the options provided.<br>If you cannot find your test site, please ask a member of staff.<br><br>
         </span>
+        <label class="govuk-label" for="mail-barcode-reference-1">
+          Test site ID or name<br>
+          <span class="govuk-hint">For example, 'LEA4' or 'Leicester Library'</span>
+        </label>
 
-        <div id="occupation-container" class="govuk-!-margin-top-1"></div>
+        <div id="siteID-container" class="govuk-!-margin-top-1"></div>
       </div>
 
       <button class="govuk-button" type="submit" data-module="govuk-button">
@@ -200,19 +203,18 @@
   }
 </script> -->
 <script>
-  const occupations = [
-"LEA- Leicester students union",
-"LEB- Leicester sports hall",
-"LEC- Leicester library",
-"LED- Leicester town centre",
-
+  const siteIDs = [
+    "LEA- Leicester students union",
+    "LEB- Leicester sports hall",
+    "LEC- Leicester library",
+    "LED- Leicester town centre"
   ];
 
   accessibleAutocomplete({
     autoselect: true,
-    element: document.querySelector('#occupation-container'),
-    id: 'occupation',
-    source: occupations,
+    element: document.querySelector('#siteID-container'),
+    id: 'siteID',
+    source: siteIDs,
     displayMenu: 'overlay',
     minLength: 2
   });
