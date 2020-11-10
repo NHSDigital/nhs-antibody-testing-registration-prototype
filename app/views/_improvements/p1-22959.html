@@ -1,0 +1,74 @@
+{% set pageHeading = "Register test kits for your care home, GP or dental surgery" %}
+ {% set version = "organisational/register/v0" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          This coronavirus test kit registration service will be replaced by a new service on DD Month 2020. This page will automatically take you to the new service from that date.<br /><a href="https://organisations.test-for-coronavirus.service.gov.uk/register-organisation-tests/" class="govuk-link">Start using the new service now.</a></p>
+        </strong>
+      </div>
+
+      <p>Use this service to register coronavirus (COVID-19) test kits for:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>care home residents and staff</li>
+        <li>people tested at their GP or dental surgery</li>
+      </ul>
+      <p>after they take the swab test.</p>
+      <p>If a member of staff gets coronavirus symptoms, send them home immediately to self isolate. Then they'll need to <a href="#">apply for a coronavirus test here</a>.</p>
+      <h2 class="govuk-heading-l">To complete this form, you'll need</h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the test kit you are registering</li>
+        <li>your mobile number, or a mobile number for the person you're registering it for</li>
+        <li>the permission of the person being tested to enter their personal details</li>
+      </ul>
+
+      {{ govukButton({
+        text: "Register test kit",
+        href: "/" + version + "/id",
+        classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
+        isStartButton: true
+      }) }}
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+  </div>
+
+{% endblock %}
