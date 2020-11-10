@@ -36,6 +36,16 @@ router.post('/antigen/v2/action3/do-you-have-symptoms', function (req, res) {
 
 })
 
+router.post('/antigen/v2/action3/do-you-have-symptoms-person-1', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms-person-1']
+  if (symptoms == "Yes"){
+    res.redirect('/antigen/v2/global-registration/when-did-symptoms-start-person-1')
+  } else {
+    res.redirect('/antigen/v2/global-registration/mobile-number-person-1')
+  }
+
+})
+
 // Version 2 - Antigen Refer and Triage - Government pilot route
 
 router.post('/antigen/v2/action3/government-pilot', function (req, res) {
@@ -129,6 +139,23 @@ router.post('/antigen/v2/action3/ethnic-group', function (req, res) {
     res.redirect('/antigen/v2/global-registration/currently-in-work')
   }
 
+})
+
+router.post('/antigen/v2/action3/ethnic-group-person-1', function (req, res) {
+  let ethnicGroupPerson1 = req.session.data['ethnic-group-person-1']
+  if (ethnicGroupPerson1 == "Asian or Asian British"){
+    res.redirect('/antigen/v2/global-registration/ethnic-background-asian-person-1')
+  } else if (ethnicGroupPerson1 == "Black, African, Black British or Caribbean") {
+    res.redirect('/antigen/v2/global-registration/ethnic-background-black-person-1')
+  } else if (ethnicGroupPerson1 == "Mixed or multiple ethnic groups") {
+    res.redirect('/antigen/v2/global-registration/ethnic-background-mixed-person-1')
+  } else if (ethnicGroupPerson1 == "White") {
+    res.redirect('/antigen/v2/global-registration/ethnic-background-white-person-1')
+  } else if (ethnicGroupPerson1 == "Another ethnic group") {
+    res.redirect('/antigen/v2/global-registration/ethnic-background-another-person-1')
+  } else {
+    res.redirect('/antigen/v2/global-registration/currently-in-work-person-1')
+  }
 })
 
 // Version 2 - Antigen Global registration - Currently in work
