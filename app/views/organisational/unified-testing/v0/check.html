@@ -1,0 +1,85 @@
+{% set pageHeading = "Check your details" %}
+ {% set version = "organisational/unified-testing/v0" %}
+{% set serviceName = "Organisation testing" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+      {{ govukSummaryList({
+        rows: [
+
+          {
+            key: {
+              text: "Organisation number"
+            },
+            value: {
+              text: "12345678"
+            }
+          },
+          {
+            key: {
+              text: "Organisation name"
+            },
+            value: {
+              text: "Blue Castle Care"
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "72 Guild Street<br> London<br> SE23 6FH"
+            }
+          },
+          {
+            key: {
+              text: "Email"
+            },
+            value: {
+              text: data.cuEmail or "blue.castle@test.com"
+            }
+          }
+        ]
+      }) }}
+
+
+      <form class="" action="/{{ version }}/verify-account" method="get">
+
+        <input class="govuk-button" type="submit" value="Continue">
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

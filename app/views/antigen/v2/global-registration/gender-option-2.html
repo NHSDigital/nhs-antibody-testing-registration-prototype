@@ -1,0 +1,83 @@
+{% set version = "v2" %}
+{% set pageTitle = "What's the sex of the person who needs a test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div> 
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/global-registration/ethnic-group" method="post">
+      
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-!-margin-top-6" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="Male" {{ checked("gender", "Male") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-1">
+                  Male
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-2" name="gender" type="radio" value="Female" {{ checked("gender", "Female") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-2">
+                  Female
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Why aren't there more options?
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            If the person who needs a test is non-binary, transgender or has variations of sex characteristics (sometimes also known as intersex), the answer you give can be different from what is on their birth certificate.<br><br>
+            If you're not sure how to answer, use the sex registered on their official documents, such as passport or driving licence.
+          </div>
+        </details>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action">
+  <a href="/antigen/{{version}}/global-registration/gender">
+    <div class="proto-action-text govuk-!-margin-left-3">Option 2</div>
+  </a>
+</div>
+
+{% endblock %}

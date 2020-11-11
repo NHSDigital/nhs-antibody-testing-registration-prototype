@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Is your gender the same as the sex you were registered with at birth?" %}
+{% set pageTitle = "What's the gender of the person who needs a test?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,7 +15,10 @@
     </p>
   </div> 
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/sex">Back</a>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -32,37 +35,35 @@
                 {{ pageTitle }}
               </h1>
             </legend>
-            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+            <div class="govuk-radios govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="Yes" {{ checked("gender", "Yes") }}>
+                <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="Male" {{ checked("gender", "Male") }}>
                 <label class="govuk-label govuk-radios__label" for="gender-1">
-                  Yes
+                  Male
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="gender-2" name="gender" type="radio" value="No" data-aria-controls="conditional-gender" {{ checked("gender", "No") }}>
+                <input class="govuk-radios__input" id="gender-2" name="gender" type="radio" value="Female" {{ checked("gender", "Female") }}>
                 <label class="govuk-label govuk-radios__label" for="gender-2">
-                  No
-                </label>
-              </div>
-              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-gender">
-                <div class="govuk-form-group">
-                  <label class="govuk-label" for="gender-other">
-                    Please write in gender
-                  </label>
-                  <input class="govuk-input govuk-!-width-one-third" id="gender-other" name="gender-other" type="tel" value="{{ data['gender-other'] }}">
-                </div>
-              </div>
-              <p class="govuk-body">or</p>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="gender-3" name="gender" type="radio" value="Prefer not to say" {{ checked("gender", "Prefer not to say") }}>
-                <label class="govuk-label govuk-radios__label" for="gender-3">
-                  Prefer not to say
+                  Female
                 </label>
               </div>
             </div>
           </fieldset>
         </div>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Why aren't there more options?
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            At the moment GP records only say if a person is 'male' or 'female'.<br><br>
+            If the person does not identify as either male or female, please tell us their sex registered at birth (written on their birth certificate).<br><br>
+            If the person has had gender surgery and updated their GP record, please tell us the gender they recorded.
+          </div>
+        </details>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
@@ -70,5 +71,14 @@
 
     </div>
   </div>
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action">
+  <a href="/antigen/{{version}}/global-registration/gender-option-2">
+    <div class="proto-action-text govuk-!-margin-left-3">Option 2</div>
+  </a>
+</div>
 
 {% endblock %}

@@ -1,0 +1,80 @@
+{% set pageHeading = "Check your test kit" %}
+{% set version = "v1" %}
+{% set folder = "pooling" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
+
+      <p>If you have a pooled test kit, it will have:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>5 swabs</li>
+        <li>1 plastic tube</li>
+        <li>have the word pooled on the front of the instructions</li>
+      </ul>
+
+      <form class="" action="/{{folder}}/{{version}}/date-of-birth" method="get">
+        {{ govukRadios({
+            idPrefix: "poolTestType",
+            name: "poolTestType",
+            fieldset: {
+              legend: {
+                text: "Do you have a pooled kit?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                html: "Yes, I have a pooled test kit"
+              },
+              {
+                value: "No",
+                html: "No, I do not have a pooled test kit"
+              },
+              {
+                value: "Unsure",
+                html: "I'm unsure"
+              }
+            ]
+          }) }}
+        <input class="govuk-button" type="submit" value="Continue">
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
