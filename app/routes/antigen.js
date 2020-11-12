@@ -315,14 +315,12 @@ router.post('/antigen/v2/action3/please-wait', function (req, res) {
 // Version 2 - Antigen Site Appointment Booking - Choose time prev day route
 
 router.post('/antigen/v2/action3/choose-time-drive', function (req, res) {
-  let chosenType = req.session.data['type']
-  if (chosenType == "Drive-through"){
+  let chosenType = req.session.data['way-to-test']
+  if (chosenType == "drive-through"){
     res.redirect('/antigen/v2/site-appointment-booking/vehicle-registration-number')
   } else {
     res.redirect('/antigen/v2/site-appointment-booking/confirm-appointment-drive')
   }
-
-  // res.redirect('/antigen/v2/site-appointment-booking/vehicle-registration-number')
 
 })
 
