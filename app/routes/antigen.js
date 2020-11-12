@@ -227,6 +227,29 @@ router.post('/antigen/v2/action3/people-confirmed', function (req, res) {
 
 })
 
+router.post('/antigen/v2/action3/people-confirmed-person-1', function (req, res) {
+  let postcode = req.session.data['home-postcode']
+  let emailAddress = req.session.data['email']
+  let car = req.session.data['do-you-have-a-car']
+  let chosenWayToTest = req.session.data['way-to-test']
+  if (chosenWayToTest == "drive-through"){
+    res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
+  } else if (chosenWayToTest == "walk-in") {
+    res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
+  } else if (chosenWayToTest == "home testing") {
+    res.redirect('/antigen/v2/order-home-test-kit/')
+  } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
+    res.redirect('/antigen/v2/order-home-test-kit/')
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress !== "Yes") {
+    res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
+  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
+    res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
+  } else {
+    res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
+  }
+
+})
+
 // Version 2 - Antigen Site Appointment Booking - find a test site route
 
 router.post('/antigen/v2/action3/find-test-site', function (req, res) {
@@ -315,14 +338,12 @@ router.post('/antigen/v2/action3/please-wait', function (req, res) {
 // Version 2 - Antigen Site Appointment Booking - Choose time prev day route
 
 router.post('/antigen/v2/action3/choose-time-drive', function (req, res) {
-  let chosenType = req.session.data['type']
-  if (chosenType == "Drive-through"){
+  let chosenType = req.session.data['way-to-test']
+  if (chosenType == "drive-through"){
     res.redirect('/antigen/v2/site-appointment-booking/vehicle-registration-number')
   } else {
     res.redirect('/antigen/v2/site-appointment-booking/confirm-appointment-drive')
   }
-
-  // res.redirect('/antigen/v2/site-appointment-booking/vehicle-registration-number')
 
 })
 
