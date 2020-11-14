@@ -48,18 +48,18 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/mobile-number',
   
   // Version 1 - Lite Registration lateral flow with Accounts - Do you have symptoms route
   
-  router.post('/lite-registration-lateral-flow-accounts/v1/action9/do-you-have-symptoms', function (req, res) {
-    let symptoms = req.session.data['do-you-have-symptoms']
-    let emailAddress = req.session.data['email-address']
-    if (symptoms == "Yes") {
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/when-did-symptoms-start')
-    } else if ((symptoms == "No") && emailAddress == "user@testing.co.uk") {
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/check-your-answers')
-    } else {
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/landline-number')
-    }
+  // router.post('/lite-registration-lateral-flow-accounts/v1/action9/do-you-have-symptoms', function (req, res) {
+  //   let symptoms = req.session.data['do-you-have-symptoms']
+  //   let emailAddress = req.session.data['email-address']
+  //   if (symptoms == "Yes") {
+  //     res.redirect('/lite-registration-lateral-flow-accounts/v1/when-did-symptoms-start')
+  //   } else if ((symptoms == "No") && emailAddress == "user@testing.co.uk") {
+  //     res.redirect('/lite-registration-lateral-flow-accounts/v1/check-your-answers')
+  //   } else {
+  //     res.redirect('/lite-registration-lateral-flow-accounts/v1/landline-number')
+  //   }
   
-  })
+  // })
   
   // Version 1 - Lite Registration lateral flow with Accounts - When did symptoms start route
   
@@ -97,12 +97,14 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/mobile-number',
   
   router.post('/lite-registration-lateral-flow-accounts/v1/action9/currently-in-work', function (req, res) {
     let inWork = req.session.data['currently-in-work']
-    if (inWork == "No"){
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/do-you-have-symptoms')
-    } else {
+    if (inWork == "Yes, they travel to a workplace"){
       res.redirect('/lite-registration-lateral-flow-accounts/v1/industry')
+    } else if (inWork == "Yes, they go to nursery, school, college or university"){
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/study-grade')
+    } else {
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/do-you-have-symptoms')
     }
-  
+
   })
   
   // Version 1 - Lite Registration lateral flow with Accounts - Country route

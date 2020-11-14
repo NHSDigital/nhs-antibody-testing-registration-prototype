@@ -26,23 +26,25 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        <form action="/lite-registration-lateral-flow-accounts/{{version}}/action9/do-you-have-symptoms" method="post">
+        <form action="/lite-registration-lateral-flow-accounts/{{version}}/email-address" method="post">
 
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="symptoms-hint symptoms-2-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                            {{ pageTitle }}
-                        </h1>
+                        {% if data['whos-taking-the-test'] == "myself" %}
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ pageTitle }}</h1>
+                        {% else %}
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have coronavirus symptoms?</h1>
+                        {% endif %}
                     </legend>
                     <span id="symptoms-hint" class="govuk-body">
                         This will help us track and trace the spread of coronavirus.<br><br>
                         The main coronavirus symptoms are:
                     </span>
                     <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
-                        <li><b>high temperature -</b> this means you feel hot to touch on your chest or back (you do not need to measure your temperature)</li>
-                        <li><b>new, continuous cough -</b> this means coughing a lot for more than an hour, or 3 or more coughing episodes in 24 hours (if you usually have a cough it may be worse than usual)</li>
-                        <li><b>loss or change to your sense of smell or taste -</b> this means you've noticed you cannot smell or taste anything, or things smell or taste different to normal</li>
+                        <li>a high temperature</li>
+                        <li>new, continuous cough</li>
+                        <li>loss or change to your sense of smell or taste</li>
                     </ul>
                     <span id="symptoms-2-hint" class="govuk-body">
                         Most people with coronavirus have at least one of these symptoms.
@@ -51,13 +53,21 @@
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="do-you-have-symptoms-1" name="do-you-have-symptoms" type="radio" value="Yes" {{ checked("do-you-have-symptoms", "Yes") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1">
+                                {% if data['whos-taking-the-test'] == "myself" %}
                                 Yes, I have at least one of these symptoms
+                                {% else %}
+                                Yes, they have at least one of these symptoms
+                                {% endif %}
                             </label>
                         </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="do-you-have-symptoms-2" name="do-you-have-symptoms" type="radio" value="No" {{ checked("do-you-have-symptoms", "No") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2">
+                                {% if data['whos-taking-the-test'] == "myself" %}
                                 No, I do not have any of these symptoms
+                                {% else %}
+                                No, they do not have any of these symptoms
+                                {% endif %}
                             </label>
                         </div>
                     </div>

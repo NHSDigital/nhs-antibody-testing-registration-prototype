@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What is your ethnic group?" %}
+{% set pageTitle = "What's your ethnic group?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -28,9 +28,11 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="ethnic-group-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                {{ pageTitle }}
-              </h1>
+              {% if data['whos-taking-the-test'] == "myself" %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+              {% else %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">What's {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s ethnic group?</h1>
+              {% endif %}
             </legend>
             <span id="ethnic-group-hint" class="govuk-body">
               This will help us understand how coronavirus is affecting people of different ethnic backgrounds.

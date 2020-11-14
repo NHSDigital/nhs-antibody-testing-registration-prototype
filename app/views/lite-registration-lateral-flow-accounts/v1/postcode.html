@@ -27,12 +27,14 @@
 
         <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-              {{ pageTitle }}
-            </h1>
+            {% if data['whos-taking-the-test'] == "myself" %}
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ pageTitle }}</h1>
+            {% else %}
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">What's {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s home postcode?</h1>
+            {% endif %}
           </legend>
           <span id="post-code-hint" class="govuk-hint">
-            Enter your home postcode (ideally the one you used to register with your GP)
+            Enter their home postcode (ideally the one registered with a GP).
           </span>
           <div class="govuk-form-group">
             <label class="govuk-label" for="home-postcode">
