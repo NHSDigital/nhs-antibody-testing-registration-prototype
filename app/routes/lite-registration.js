@@ -54,9 +54,9 @@ function loadJSONFromFile(fileName, path = "app/data/") {
     if (emailAddress == "user@testing.co.uk") {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/check-you-answers')
     } else if (emailAddress != "user@testing.co.uk" && password != " " || emailAddress != "user@testing.co.uk" && password != undefined) {
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/email-address')
-    } else {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/email-address-account')
+    } else {
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/email-address')
     }
   
   })
@@ -97,9 +97,9 @@ function loadJSONFromFile(fileName, path = "app/data/") {
   
   router.post('/lite-registration-lateral-flow-accounts/v1/action9/currently-in-work', function (req, res) {
     let inWork = req.session.data['currently-in-work']
-    if (inWork == "Yes, they travel to a workplace"){
+    if (inWork == "Yes, they travel to a workplace" || inWork == "Yes, I travel to a workplace"){
       res.redirect('/lite-registration-lateral-flow-accounts/v1/industry')
-    } else if (inWork == "Yes, they go to nursery, school, college or university"){
+    } else if (inWork == "Yes, they go to nursery, school, college or university" || inWork == "Yes, I go to nursery, school, college or university"){
       res.redirect('/lite-registration-lateral-flow-accounts/v1/study-grade')
     } else {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/do-you-have-symptoms')
