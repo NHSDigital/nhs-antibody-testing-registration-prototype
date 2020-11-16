@@ -12,22 +12,22 @@ function loadJSONFromFile(fileName, path = "app/data/") {
 
 // Version 1 - Lite Registration lateral flow with Accounts- Mobile number route
 
-router.post('/lite-registration-lateral-flow-accounts/v1/action9/mobile-number', function (req, res) {
-    let mobileNumber = req.session.data['mobile-number']
-    if (mobileNumber == "Yes") {
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/test-place')
-    } else {
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/call-us')
-    }
+// router.post('/lite-registration-lateral-flow-accounts/v1/action9/mobile-number', function (req, res) {
+//     let mobileNumber = req.session.data['mobile-number']
+//     if (mobileNumber == "Yes") {
+//       res.redirect('/lite-registration-lateral-flow-accounts/v1/test-place')
+//     } else {
+//       res.redirect('/lite-registration-lateral-flow-accounts/v1/call-us')
+//     }
   
-  })
+//   })
+
+  // Version 1 - Lite Registration lateral flow with Accounts - Who's taking the test route
   
-  // Version 1 - Lite Registration lateral flow with Accounts - Test place route
-  
-  router.post('/lite-registration-lateral-flow-accounts/v1/action9/test-place', function (req, res) {
-    let testPlace = req.session.data['test-place']
-    if (testPlace == "home") {
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/royal-mail-barcode')
+  router.post('/lite-registration-lateral-flow-accounts/v1/action9/whos-taking-the-test', function (req, res) {
+    let person = req.session.data['whos-taking-the-test']
+    if (person == "myself") {
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/coronavirus-account')
     } else {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/site-id')
     }
@@ -48,18 +48,18 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/mobile-number',
   
   // Version 1 - Lite Registration lateral flow with Accounts - Do you have symptoms route
   
-  // router.post('/lite-registration-lateral-flow-accounts/v1/action9/do-you-have-symptoms', function (req, res) {
-  //   let symptoms = req.session.data['do-you-have-symptoms']
-  //   let emailAddress = req.session.data['email-address']
-  //   if (symptoms == "Yes") {
-  //     res.redirect('/lite-registration-lateral-flow-accounts/v1/when-did-symptoms-start')
-  //   } else if ((symptoms == "No") && emailAddress == "user@testing.co.uk") {
-  //     res.redirect('/lite-registration-lateral-flow-accounts/v1/check-your-answers')
-  //   } else {
-  //     res.redirect('/lite-registration-lateral-flow-accounts/v1/landline-number')
-  //   }
+  router.post('/lite-registration-lateral-flow-accounts/v1/action9/do-you-have-symptoms', function (req, res) {
+    let emailAddress = req.session.data['email-address']
+    let password = req.session.data['password']
+    if (emailAddress == "user@testing.co.uk") {
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/check-you-answers')
+    } else if (emailAddress != "user@testing.co.uk" && password != " " || emailAddress != "user@testing.co.uk" && password != undefined) {
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/email-address-account')
+    } else {
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/email-address')
+    }
   
-  // })
+  })
   
   // Version 1 - Lite Registration lateral flow with Accounts - When did symptoms start route
   
@@ -97,9 +97,9 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/mobile-number',
   
   router.post('/lite-registration-lateral-flow-accounts/v1/action9/currently-in-work', function (req, res) {
     let inWork = req.session.data['currently-in-work']
-    if (inWork == "Yes, they travel to a workplace"){
+    if (inWork == "Yes, they travel to a workplace" || inWork == "Yes, I travel to a workplace"){
       res.redirect('/lite-registration-lateral-flow-accounts/v1/industry')
-    } else if (inWork == "Yes, they go to nursery, school, college or university"){
+    } else if (inWork == "Yes, they go to nursery, school, college or university" || inWork == "Yes, I go to nursery, school, college or university"){
       res.redirect('/lite-registration-lateral-flow-accounts/v1/study-grade')
     } else {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/do-you-have-symptoms')
