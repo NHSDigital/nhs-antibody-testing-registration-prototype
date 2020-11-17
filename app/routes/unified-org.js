@@ -6,11 +6,11 @@ const router = express.Router()
 router.post('/organisational/unified-testing/v0/choose-org', function (req, res) {
   let answer = req.body.cuChooseOrg;
 
-  if (answer == 'uon') {
+  if (answer == 'UON') {
     res.redirect('/organisational/unified-testing/v0/uon-number')
-    } else if (answer == 'company') {
+    } else if (answer == 'Company') {
       res.redirect('/organisational/unified-testing/v0/company-number')
-    } else if (answer == 'other') {
+    } else if (answer == 'Other') {
       res.redirect('/organisational/unified-testing/v0/nhs-org-id')
     } else {
     res.redirect('/organisational/unified-testing/v0/choose-org?error=empty')
