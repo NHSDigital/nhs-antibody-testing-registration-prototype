@@ -2832,7 +2832,7 @@ router.post('/lite-registration-accounts/v1/action9/check-mobile', function (req
 })
 
 // Version 1 - Antigen Work or Study
-router.post('/antigen/v1/action3/work-or-study', function (req, res) {
+router.post('/antigen/v1/action4/work-or-study', function (req, res) {
   let workOrStudy = req.session.data['work-or-study']
   if (workOrStudy == "Yes - they travel to a workplace") {
     res.redirect('/antigen/v1/global-registration/industry')
@@ -2845,7 +2845,7 @@ router.post('/antigen/v1/action3/work-or-study', function (req, res) {
 
 
 // Version 1 - Antigen Work or Study Person 1
-router.post('/antigen/v1/action3/work-or-study-person-1', function (req, res) {
+router.post('/antigen/v1/action4/work-or-study-person-1', function (req, res) {
   let workOrStudy = req.session.data['work-or-study']
   if (workOrStudy == "Yes - they travel to a workplace") {
     res.redirect('/antigen/v1/global-registration/industry-person-1')
@@ -2856,5 +2856,24 @@ router.post('/antigen/v1/action3/work-or-study-person-1', function (req, res) {
   }
 })
 
+// Version 1 - Antigen Study Grade
+router.post('/antigen/v1/action5/study-grade', function (req, res) {
+  let studyGrade = req.session.data['study-grade']
+  if (studyGrade == "Prefer not to say") {
+    res.redirect('/antigen/v1/global-registration/country')
+  } else {
+    res.redirect('/antigen/v1/global-registration/institution')
+  }
+})
+
+// Version 1 - Antigen Study Grade Person 1
+router.post('/antigen/v1/action5/study-grade-person-1', function (req, res) {
+  let studyGrade = req.session.data['study-grade']
+  if (studyGrade == "Prefer not to say") {
+    res.redirect('/antigen/v1/global-registration/country')
+  } else {
+    res.redirect('/antigen/v1/global-registration/institution')
+  }
+})
 
 module.exports = router
