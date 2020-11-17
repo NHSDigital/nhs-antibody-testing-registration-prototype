@@ -26,15 +26,14 @@
       <form action="/lite-registration-lateral-flow-accounts/{{version}}/ethnic-group" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" role="group" aria-describedby="date-of-birth-hint">
+          <fieldset class="govuk-fieldset" role="group">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                {{ pageTitle }}
-              </h1>
+              {% if data['whos-taking-the-test'] == "myself" %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+              {% else %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">What's {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s date of birth?</h1>
+              {% endif %}
             </legend>
-            <span id="date-of-birth-hint" class="govuk-body">
-              If you're registering a test kit on behalf of your child, enter their date of birth below. Do not enter your date of birth.
-            </span>
             <span id="date-of-birth-hint" class="govuk-hint govuk-!-margin-top-5">
               For example, 31 3 1980
             </span>

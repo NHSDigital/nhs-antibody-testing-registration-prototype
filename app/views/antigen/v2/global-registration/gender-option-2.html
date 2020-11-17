@@ -1,0 +1,86 @@
+{% set version = "v2" %}
+{% set pageTitle = "What's the sex of the person who needs a test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div> 
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/global-registration/ethnic-group" method="post">
+      
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="gender-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="gender-hint" class="govuk-body">
+              We need to know if the person is male or female on their GP record so we can save their test result there.
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-6" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="Male" {{ checked("gender", "Male") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-1">
+                  Male
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-2" name="gender" type="radio" value="Female" {{ checked("gender", "Female") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-2">
+                  Female
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              I don’t know how to answer this
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            If you’re not sure how to answer, use the sex registered on the person's official documents, such as passport or driving licence.<br><br>
+            We’re sorry this question is not inclusive. We want to improve the service in the future so it works for everyone.
+          </div>
+        </details>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action">
+  <a href="/antigen/{{version}}/global-registration/gender">
+    <div class="proto-action-text govuk-!-margin-left-3">Option 1</div>
+  </a>
+</div>
+
+{% endblock %}

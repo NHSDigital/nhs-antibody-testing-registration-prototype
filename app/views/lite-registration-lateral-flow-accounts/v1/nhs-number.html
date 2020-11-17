@@ -27,12 +27,14 @@
 
         <fieldset class="govuk-fieldset" aria-describedby="nhs-number-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-              {{ pageTitle }}
-            </h1>
+            {% if data['whos-taking-the-test'] == "myself" %}
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ pageTitle }}</h1>
+            {% else %}
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">What's {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?</h1>
+            {% endif %}
           </legend>
           <span id="nhs-number-hint" class="govuk-body">
-            Your NHS number is a 10 digit number. For example 485 777 3456.
+            NHS numbers contain 10 digits. For example 485 777 3456.
           </span>
           <div class="govuk-form-group govuk-!-margin-top-5">
             <label class="govuk-label" for="nhs-number">

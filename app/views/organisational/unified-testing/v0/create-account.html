@@ -1,0 +1,86 @@
+{% set pageHeading = "Create an account" %}
+{% set version = "organisational/unified-testing/v0" %}
+{% set serviceName = "Organisation testing" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">
+       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis porttitor velit. 
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis porttitor velit. Aliquam imperdiet convallis tempus. Curabitur volutpat lacus nec faucibus.
+      </p>
+
+      <h2 class="govuk-heading-m">
+        Who can create an account
+      </h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </p>
+
+      <h2 class="govuk-heading-m">
+        What you'll need
+      </h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          bulletpoint 1
+        </li>
+        <li>
+          bulletpoint 2
+        </li>
+        <li>
+          bulletpoint 3
+        </li>
+      </ul>
+
+      {{ govukButton({
+        text: "Start now",
+        href: "/" + version + "/choose-org",
+        classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
+        isStartButton: true
+      }) }}
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+  </div>
+
+{% endblock %}

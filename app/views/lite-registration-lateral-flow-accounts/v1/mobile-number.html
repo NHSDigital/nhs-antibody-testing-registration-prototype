@@ -23,36 +23,25 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/lite-registration-lateral-flow-accounts/{{version}}/action9/mobile-number" method="post">
+      <form action="/lite-registration-lateral-flow-accounts/{{version}}/landline-number" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                {{ pageTitle }}
-              </h1>
+              {% if data['whos-taking-the-test'] == "myself" %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ pageTitle }}</h1>
+              {% else %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">What's {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s mobile number?</h1>
+              {% endif %}
             </legend>
             <span id="mobile-number-hint" class="govuk-body">
-              We'll text your test results to this number. If you're registering a test kit for someone else, enter their mobile number. If you do not have an email/mobile you need to enter one of a trusted person in order to get tested at this time.
+              We'll text the test results to this number.
             </span>
             <div class="govuk-form-group govuk-!-margin-top-5">
               <label class="govuk-label" for="mobile-phone-number">
                 Mobile phone number
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number" name="mobile-phone-number" type="text" value="{{ data['mobile-phone-number'] }}">
-            </div>
-          </fieldset>
-        </div>
-
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
-            <div class="govuk-checkboxes">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="confirm" name="confirm" type="checkbox" value="Yes">
-                <label class="govuk-label govuk-checkboxes__label" for="confirm">
-                  I am happy to be contacted by text message about opportunities for clinical evaluation.
-                </label>
-              </div>
             </div>
           </fieldset>
         </div>

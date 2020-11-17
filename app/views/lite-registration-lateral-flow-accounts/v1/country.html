@@ -28,9 +28,11 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                {{ pageTitle }}
-              </h1>
+              {% if data['whos-taking-the-test'] == "myself" %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ pageTitle }}</h1>
+              {% else %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">What country does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} live in?</h1>
+              {% endif %}
             </legend>
             <div class="govuk-radios">
               <div class="govuk-radios__item">
