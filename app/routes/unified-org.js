@@ -17,4 +17,26 @@ router.post('/organisational/unified-testing/v0/choose-org', function (req, res)
     }
 });
 
+router.post('/organisational/unified-testing/v0/single/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/unified-testing/v0/single/country')
+    } else if (answer) {
+      res.redirect('/organisational/unified-testing/v0/single/ethnic-desc')
+    } else {
+    res.redirect('/organisational/unified-testing/v0/single/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/unified-testing/v0/single/knowNHSnumber', function (req, res) {
+  let answer = req.body.cuKnowNHSnumber;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/unified-testing/v0/single/nhsnumber')
+    } else {
+    res.redirect('/organisational/unified-testing/v0/single/check')
+    }
+});
+
 module.exports = router

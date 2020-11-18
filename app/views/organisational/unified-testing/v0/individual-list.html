@@ -21,7 +21,7 @@
 
       {{ govukBackLink({
         text: "Back",
-        href: "javascript:window.history.go(-1);"
+        href: "/" + version + "/dashboard"
       }) }}
     </div>
   </div>
@@ -42,6 +42,7 @@
       <p>You can find all the individuals associated to your organisation here. You can add a new person or change an existing individuals details.</p>
 
       {{ govukButton({
+        href: "/" + version + "/single/confirm-before",
         text: "Add new person"
       }) }}
     </div>
@@ -57,7 +58,8 @@
             <th scope="col" class="govuk-table__header">DOB</th>
             <th scope="col" class="govuk-table__header">Gender</th>
             <th scope="col" class="govuk-table__header">Ethnic group</th>
-            <th scope="col" class="govuk-table__header">Address</th>
+            <th scope="col" class="govuk-table__header">Country</th>
+            <th scope="col" class="govuk-table__header">Postcode</th>
             <th scope="col" class="govuk-table__header">NHS number</th>
             <th scope="col" class="govuk-table__header"> </th>
           </tr>
@@ -67,11 +69,12 @@
             <td scope="row" class="govuk-table__cell govuk-body-s">Giacomo Guilizzoni</td>
             <td class="govuk-table__cell govuk-body-s">Staff</td>
             <td class="govuk-table__cell govuk-body-s">11/04/1980</td>
-            <td class="govuk-table__cell govuk-body-s">Female</td>
-            <td class="govuk-table__cell govuk-body-s">Mixed or multiple ethnic groups</td>
-            <td class="govuk-table__cell govuk-body-s">72 Guild Street<br>London<br>SE23 6FH</td>
-            <td class="govuk-table__cell govuk-body-s">01849258</td>
-            <td class="govuk-table__cell govuk-body-s"><a href="">Edit</a></td>
+            <td class="govuk-table__cell govuk-body-s">Male</td>
+            <td class="govuk-table__cell govuk-body-s">Another Mixed background</td>
+            <td class="govuk-table__cell govuk-body-s">England</td>
+            <td class="govuk-table__cell govuk-body-s">SE23 6FH</td>
+            <td class="govuk-table__cell govuk-body-s">0184925861</td>
+            <td class="govuk-table__cell govuk-body-s"><a href="edit-details">Edit</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__cell govuk-body-s">Marc Botton</td>
@@ -79,7 +82,8 @@
             <td class="govuk-table__cell govuk-body-s">03/06/1982</td>
             <td class="govuk-table__cell govuk-body-s">Male</td>
             <td class="govuk-table__cell govuk-body-s">Irish</td>
-            <td class="govuk-table__cell govuk-body-s">54 Isle Park<br>London<br>N1 1PX</td>
+            <td class="govuk-table__cell govuk-body-s">Northern Ireland</td>
+            <td class="govuk-table__cell govuk-body-s">N1 1PX</td>
             <td class="govuk-table__cell govuk-body-s"> </td>
             <td class="govuk-table__cell govuk-body-s"><a href="">Edit</a></td>
           </tr>
@@ -89,8 +93,9 @@
             <td class="govuk-table__cell govuk-body-s">26/08/1979</td>
             <td class="govuk-table__cell govuk-body-s">Female</td>
             <td class="govuk-table__cell govuk-body-s">Black African and White</td>
-            <td class="govuk-table__cell govuk-body-s">60 Cross Road<br>London<br>N1 2BA</td>
-            <td class="govuk-table__cell govuk-body-s">32452345</td>
+            <td class="govuk-table__cell govuk-body-s">England</td>
+            <td class="govuk-table__cell govuk-body-s">N1 2BA</td>
+            <td class="govuk-table__cell govuk-body-s">3245234576</td>
             <td class="govuk-table__cell govuk-body-s"><a href="">Edit</a></td>
           </tr>
           <tr class="govuk-table__row">
@@ -99,8 +104,9 @@
             <td class="govuk-table__cell govuk-body-s">26/08/1939</td>
             <td class="govuk-table__cell govuk-body-s">Female</td>
             <td class="govuk-table__cell govuk-body-s">British, English, Northern Irish, Scottish, or Welsh</td>
-            <td class="govuk-table__cell govuk-body-s">Westgate Road<br>London<br>N1 8PT</td>
-            <td class="govuk-table__cell govuk-body-s">08459331</td>
+            <td class="govuk-table__cell govuk-body-s">Wales</td>
+            <td class="govuk-table__cell govuk-body-s">N1 8PT</td>
+            <td class="govuk-table__cell govuk-body-s">0845933194</td>
             <td class="govuk-table__cell govuk-body-s"><a href="">Edit</a></td>
           </tr>
           <tr class="govuk-table__row">
@@ -109,8 +115,9 @@
             <td class="govuk-table__cell govuk-body-s">06/10/1960</td>
             <td class="govuk-table__cell govuk-body-s">Female</td>
             <td class="govuk-table__cell govuk-body-s">British, English, Northern Irish, Scottish, or Welsh</td>
-            <td class="govuk-table__cell govuk-body-s">5 Guild Street<br>London<br>NW8 5RN</td>
-            <td class="govuk-table__cell govuk-body-s">19274850</td>
+            <td class="govuk-table__cell govuk-body-s">Scotland</td>
+            <td class="govuk-table__cell govuk-body-s">NW8 5RN</td>
+            <td class="govuk-table__cell govuk-body-s">1927485036</td>
             <td class="govuk-table__cell govuk-body-s"><a href="">Edit</a></td>
           </tr>
           <tr class="govuk-table__row">
@@ -119,8 +126,9 @@
             <td class="govuk-table__cell govuk-body-s">12/07/1962</td>
             <td class="govuk-table__cell govuk-body-s">Male</td>
             <td class="govuk-table__cell govuk-body-s">Indian</td>
-            <td class="govuk-table__cell govuk-body-s">30 Union Terrace<br>London<br>E13 6UF</td>
-            <td class="govuk-table__cell govuk-body-s">27047394</td>
+            <td class="govuk-table__cell govuk-body-s">England</td>
+            <td class="govuk-table__cell govuk-body-s">E13 6UF</td>
+            <td class="govuk-table__cell govuk-body-s">2704739466</td>
             <td class="govuk-table__cell govuk-body-s"><a href="">Edit</a></td>
           </tr>
           <tr class="govuk-table__row">
@@ -129,8 +137,9 @@
             <td class="govuk-table__cell govuk-body-s">26/10/1989</td>
             <td class="govuk-table__cell govuk-body-s">Female</td>
             <td class="govuk-table__cell govuk-body-s">Another White background</td>
-            <td class="govuk-table__cell govuk-body-s">93 Crown Street<br>London<br>WC1H 7EQ</td>
-            <td class="govuk-table__cell govuk-body-s">27495395</td>
+            <td class="govuk-table__cell govuk-body-s">England</td>
+            <td class="govuk-table__cell govuk-body-s">WC1H 7EQ</td>
+            <td class="govuk-table__cell govuk-body-s">2749539509</td>
             <td class="govuk-table__cell govuk-body-s"><a href="">Edit</a></td>
           </tr>
           <tr class="govuk-table__row">
@@ -139,8 +148,9 @@
             <td class="govuk-table__cell govuk-body-s">08/08/1975</td>
             <td class="govuk-table__cell govuk-body-s">Female</td>
             <td class="govuk-table__cell govuk-body-s">British, English, Northern Irish, Scottish, or Welsh</td>
-            <td class="govuk-table__cell govuk-body-s">100 Upper Street<br>London<br>N1 0NP</td>
-            <td class="govuk-table__cell govuk-body-s">72639463</td>
+            <td class="govuk-table__cell govuk-body-s">Scotland</td>
+            <td class="govuk-table__cell govuk-body-s">N1 0NP</td>
+            <td class="govuk-table__cell govuk-body-s">7263946312</td>
             <td class="govuk-table__cell govuk-body-s"><a href="">Edit</a></td>
           </tr>
           <tr class="govuk-table__row">
@@ -149,8 +159,9 @@
             <td class="govuk-table__cell govuk-body-s">03/02/1952</td>
             <td class="govuk-table__cell govuk-body-s">Male</td>
             <td class="govuk-table__cell govuk-body-s">Irish</td>
-            <td class="govuk-table__cell govuk-body-s">59 Essex Road<br>London<br>ES1 2SF</td>
-            <td class="govuk-table__cell govuk-body-s">38274595</td>
+            <td class="govuk-table__cell govuk-body-s">Northern Ireland</td>
+            <td class="govuk-table__cell govuk-body-s">ES1 2SF</td>
+            <td class="govuk-table__cell govuk-body-s">3827459552</td>
             <td class="govuk-table__cell govuk-body-s"><a href="">Edit</a></td>
           </tr>
           <tr class="govuk-table__row">
@@ -159,8 +170,9 @@
             <td class="govuk-table__cell govuk-body-s">28/09/1988</td>
             <td class="govuk-table__cell govuk-body-s">Male</td>
             <td class="govuk-table__cell govuk-body-s">African</td>
-            <td class="govuk-table__cell govuk-body-s">61 Richmond Avenue<br>London<br>SE21 2DL</td>
-            <td class="govuk-table__cell govuk-body-s">48572047</td>
+            <td class="govuk-table__cell govuk-body-s">England</td>
+            <td class="govuk-table__cell govuk-body-s">SE21 2DL</td>
+            <td class="govuk-table__cell govuk-body-s">4857204787</td>
             <td class="govuk-table__cell govuk-body-s"><a href="">Edit</a></td>
           </tr>
         </tbody>
