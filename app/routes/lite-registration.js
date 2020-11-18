@@ -52,23 +52,11 @@ function loadJSONFromFile(fileName, path = "app/data/") {
     let emailAddress = req.session.data['email-address']
     let password = req.session.data['password']
     if (emailAddress == "user@testing.co.uk") {
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/check-you-answers')
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/check-your-answers')
     } else if (emailAddress != "user@testing.co.uk" && password != " " || emailAddress != "user@testing.co.uk" && password != undefined) {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/email-address-account')
     } else {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/email-address')
-    }
-  
-  })
-  
-  // Version 1 - Lite Registration lateral flow with Accounts - When did symptoms start route
-  
-  router.post('/lite-registration-lateral-flow-accounts/v1/action9/when-did-symptoms-start', function (req, res) {
-    let emailAddress = req.session.data['email-address']
-    if (emailAddress == "user@testing.co.uk") {
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/check-your-answers')
-    } else {
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/landline-number')
     }
   
   })
@@ -109,15 +97,15 @@ function loadJSONFromFile(fileName, path = "app/data/") {
   
   // Version 1 - Lite Registration lateral flow with Accounts - Country route
   
-  router.post('/lite-registration-lateral-flow-accounts/v1/action9/country', function (req, res) {
-    let country = req.session.data['country']
-    if (country == "Northern Ireland"){
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/address')
-    } else {
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/postcode')
-    }
+  // router.post('/lite-registration-lateral-flow-accounts/v1/action9/country', function (req, res) {
+  //   let country = req.session.data['country']
+  //   if (country == "Northern Ireland"){
+  //     res.redirect('/lite-registration-lateral-flow-accounts/v1/address')
+  //   } else {
+  //     res.redirect('/lite-registration-lateral-flow-accounts/v1/postcode')
+  //   }
   
-  })
+  // })
   
   // Version 1 - Lite Registration lateral flow with Accounts - NHS number known route
   
