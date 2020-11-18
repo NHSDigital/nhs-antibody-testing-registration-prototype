@@ -1,4 +1,4 @@
-{% set pageHeading = "Sign in" %}
+{% set pageHeading = "Sign in or create an account" %}
 {% set version = "organisational/unified-testing/v0" %}
 {% set serviceName = "Organisation testing" %}
 {% extends "includes/layout.html" %}
@@ -34,6 +34,7 @@
       <h1 class="govuk-heading-xl">
         {{ pageHeading }}
       </h1>
+      <p>Enter your details below to sign in to your organisation account.</p>
     </div>
   </div>
 
@@ -49,29 +50,30 @@
         name: "email"
       }) }}
 
-      {{ govukInput({
+      {# {{ govukInput({
         label: {
           text: "Password"
         },
         classes: "govuk-!-width-two-thirds",
         id: "password",
         name: "password"
-      }) }}
+      }) }} #}
 
       {{ govukButton({
+        href: "/" + version + "/dashboard",
         text: "Sign in"
       }) }}
 
       <p>
-        <a href="create-account">Create sign in details</a>
+        Don’t have an account? <a href="create-account">Create an account</a>
       </p>
 
-      <h2 class="govuk-heading-m">
+      {# <h2 class="govuk-heading-m">
         Problems signing in
       </h2>
       <p>
         <a href="">I have forgotten my password</a>
-      </ul>
+      </ul> #}
 
     </div>
 

@@ -1,3 +1,11 @@
+{% set orgtype %}
+  {% if data.cuChooseOrg %}
+    {{ data.cuChooseOrg }} 
+    {% else %}
+      Care home
+  {% endif %}
+{% endset %}
+
 {% set pageHeading = "Check your details" %}
  {% set version = "organisational/unified-testing/v0" %}
 {% set serviceName = "Organisation testing" %}
@@ -33,24 +41,33 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
-
+      
+      <h2 class="govuk-heading-l">Organisation details</h2>
       {{ govukSummaryList({
         rows: [
-
           {
             key: {
-              text: "Organisation number"
+              text: "Organisation type"
             },
             value: {
-              text: "12345678"
-            }
-          },
+              text: orgtype
+            },
+            actions: {
+              items: [
+                {
+                  href: "/" + version + "/choose-org",
+                  text: "Change",
+                  visuallyHiddenText: "Name"
+                }
+              ]
+              }
+            },
           {
             key: {
-              text: "Organisation name"
+              text: "Name"
             },
             value: {
-              text: "Blue Castle Care"
+              text: "Blue Hills Care"
             }
           },
           {
@@ -63,19 +80,47 @@
           },
           {
             key: {
-              text: "Email"
+              text: "contact details"
             },
             value: {
-              text: data.cuEmail or "blue.castle@test.com"
+              html: "07700 900457<br> blue.hills@test.com"
             }
           }
         ]
       }) }}
 
 
-      <form class="" action="/{{ version }}/verify-account" method="get">
+      
+      <h2 class="govuk-heading-l">Verification details</h2>
+      {{ govukSummaryList({
+        rows: [
+        {
+          key: {
+            text: "Email address"
+          },
+          value: {
+            text: "sarah.philips@example.com"
+          },
+          actions: {
+            items: [
+              {
+                href: "/" + version + "/email",
+                text: "Change",
+                visuallyHiddenText: "Name"
+              }
+            ]
+            }
+          }
+        ]
+      }) }}
 
-        <input class="govuk-button" type="submit" value="Continue">
+      <h2 class="govuk-heading-l">Verify account</h2>
+      <p>By submitting these details you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+
+      <form class="" action="/{{ version }}/done" method="get">
+
+        <input class="govuk-button" type="submit" value="Confirm">
 
       </form>
 
