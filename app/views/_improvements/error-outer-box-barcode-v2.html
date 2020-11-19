@@ -1,4 +1,4 @@
-{% set version = "v1" %}
+{% set version = "v2" %}
 {% set pageTitle = "Enter the barcode on the outer return box" %}
 {% extends "includes/layout.html" %}
 
@@ -20,7 +20,30 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#field-1">Error message field 1</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          You can be fined up to £5,000 if you do not register.
+        </strong>
+      </div>
       <div id="changed-name-hint" class="govuk-hint">
         This is the box to use if you're sending more than 1 test kit at a time. It's OK if you cannot find this, you can still continue.
       </div>
@@ -41,19 +64,23 @@
         </button>
       </form>
 
-      <div class="govuk-form-group">
-        <form action="#">
-        <label class="govuk-label" for="width-20">
-          16-digit barcode
-        </label>
-        <input class="govuk-input govuk-input--width-20" id="width-20" name="width-20" type="text" value="">
-      </form>
+      <div class="govuk-form-group govuk-form-group--error">
+        <form action="outer-box-barcode-scan">
+          <label class="govuk-label" for="width-20">
+            16-digit barcode
+          </label>
+          <span class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Error message field 1
+          </span>
+          <input id="field-1" class="govuk-input govuk-input--width-20 govuk-input--error" id="width-20" name="width-20" type="text" value="">
+        </form>
       </div>
 
-      <button class="govuk-button" data-module="govuk-button">
-        Continue
-      </button>
-    </div>
+
+        <button class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+      </div>
 
 
 {% endblock %}
