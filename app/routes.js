@@ -9,6 +9,7 @@ router.use('/', require('./routes/antibody.js'))
 router.use('/', require('./routes/antigen.js'))
 router.use('/', require('./routes/lite-registration.js'))
 router.use('/', require('./routes/unified-org.js'))
+router.use('/', require('./routes/logresults-web-service.js'))
 
 // Pull scope into the homepage to show/hide sections
 // 'SCOPE' is either pulled in from the Heroku App settings or setting in a local .env file eg. SCOPE=antibody
