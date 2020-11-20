@@ -39,4 +39,16 @@ router.post('/organisational/unified-testing/v0/single/knowNHSnumber', function 
     }
 });
 
+router.post('/organisational/unified-testing/v0/order-tests/kit-type', function (req, res) {
+  let answer = req.body.cuTestKit;
+
+  if (answer == 'home') {
+    res.redirect('/organisational/unified-testing/v0/order-tests/home-kit-list')
+    } else if (answer == 'site') {
+      res.redirect('/organisational/unified-testing/v0/order-tests/site-kit-list')
+    } else {
+    res.redirect('/organisational/unified-testing/v0/order-tests/site-kit-list?error=empty')
+    }
+});
+
 module.exports = router
