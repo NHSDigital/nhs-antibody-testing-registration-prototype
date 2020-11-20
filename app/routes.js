@@ -2877,4 +2877,19 @@ router.post('/antigen/v1/action5/study-grade-person-1', function (req, res) {
   }
 })
 
+// Version 1 - Lite Registration Lateral Flow Accounts
+router.post('/lite-registration-lateral-flow-accounts/v1/action4/mobile-number-accounts', function (req, res) {
+   let mobileNumber = req.session.data['mobile-number']
+   let email = req.session.data['email']
+   if (mobileNumber == "No" && email == "No") {
+     res.redirect('/lite-registration-lateral-flow-accounts/v1/call-us')
+   } else {
+     res.redirect('/lite-registration-lateral-flow-accounts/v1/landline-number')
+   }
+})
+
+
+
+
+
 module.exports = router
