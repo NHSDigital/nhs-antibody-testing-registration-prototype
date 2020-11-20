@@ -1,0 +1,70 @@
+{% set pageHeading = "Check your details" %}
+{% set version = "organisational/unified-testing/v0" %}
+{% set serviceName = "Organisation testing" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
+      <p>Check the details of the people who will be recieving the home test kits and their home address the kits will be delivered to</p>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption"></caption>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell govuk-body">Giacomo Guilizzoni</td>
+            <td class="govuk-table__cell govuk-body">72 Guild Street, London, England, SE23 6FH</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell govuk-body">Marc Botton</td>
+            <td class="govuk-table__cell govuk-body">54 Isle Park, London, England, N1 1PX</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell govuk-body">Mariah Maclachlan</td>
+            <td class="govuk-table__cell govuk-body">60 Cross Road, London, England, N1 2BA</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell govuk-body">Valerie Liberty</td>
+            <td class="govuk-table__cell govuk-body">Westgate Road, London, England, N1 8PT</td>
+          </tr>
+        </tbody>
+      </table>
+      {{ govukButton({
+        href: "/" + version + "/order-tests/home-order-summary",
+        text: "Save and continue"
+      }) }}
+    </div>
+  </div>
+
+  
+
+{% endblock %}

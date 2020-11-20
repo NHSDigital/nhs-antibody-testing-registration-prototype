@@ -1,10 +1,17 @@
-{% set pageHeading = "Enter an email address" %}
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      John Smith
+  {% endif %}
+{% endset %}
+{% set pageHeading = "What's " + fullname | trim + "'s NHS number?" %}
 {% set version = "organisational/unified-testing/v0" %}
 {% set serviceName = "Organisation testing" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - {{ serviceName }}
+  {{ pageHeading }} - COVID-19
 {% endblock %}
 
 {% block beforeContent %}
@@ -32,31 +39,22 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        {{ pageHeading }}
-      </h1>
+      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dictum iaculis nunc, ac iaculis metus viverra ac. Phasellus eget dui suscipit mi aliquam interdum.</p>
-      
-      <form class="" action="/{{ version }}/password" method="get">
+      <p>Your NHS number is a 10 digit number. Please enter the number with no spaces, for example 8674065600</p>
+
+      <form class="" action="/{{ version }}/single/check" method="get">
 
         {{ govukInput({
-          label: {
-            html: 'Email address'
-          },
-          classes: "govuk-!-width-two-thirds",
-          id: "cuEmail",
-          name: "cuEmail"
-        }) }}
-
-        {{ govukInput({
-          label: {
-            html: 'Confirm email address'
-          },
-          classes: "govuk-!-width-two-thirds",
-          id: "cuEmailConfirm",
-          name: "cuEmailConfirm"
-        }) }}
+            label: {
+              text: "NHS number",
+              classes: "",
+              isPageHeading: false
+            },
+            classes: "govuk-input--width-10",
+            id: "covidUpload",
+            name: "cuNHSnumber"
+          }) }}
 
         <input class="govuk-button" type="submit" value="Continue">
 
