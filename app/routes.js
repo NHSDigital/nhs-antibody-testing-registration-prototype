@@ -9,6 +9,7 @@ router.use('/', require('./routes/antibody.js'))
 router.use('/', require('./routes/antigen.js'))
 router.use('/', require('./routes/lite-registration.js'))
 router.use('/', require('./routes/unified-org.js'))
+router.use('/', require('./routes/logresults-web-service.js'))
 
 // Pull scope into the homepage to show/hide sections
 // 'SCOPE' is either pulled in from the Heroku App settings or setting in a local .env file eg. SCOPE=antibody
@@ -2876,5 +2877,20 @@ router.post('/antigen/v1/action5/study-grade-person-1', function (req, res) {
     res.redirect('/antigen/v1/global-registration/institution')
   }
 })
+
+// Version 1 - Lite Registration Lateral Flow Accounts
+router.post('/lite-registration-lateral-flow-accounts/v1/action4/mobile-number-accounts', function (req, res) {
+   let mobileNumber = req.session.data['mobile-number']
+   let email = req.session.data['email']
+   if (mobileNumber == "No" && email == "No") {
+     res.redirect('/lite-registration-lateral-flow-accounts/v1/call-us')
+   } else {
+     res.redirect('/lite-registration-lateral-flow-accounts/v1/landline-number')
+   }
+})
+
+
+
+
 
 module.exports = router
