@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What's your mobile number?" %}
+{% set pageTitle = "Do you have a mobile number where you can get the test results?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -31,17 +31,51 @@
               {% if data['whos-taking-the-test'] == "myself" %}
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ pageTitle }}</h1>
               {% else %}
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">What's {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s mobile number?</h1>
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have access to a mobile phone number where they can get the test results?</h1>
               {% endif %}
             </legend>
             <span id="mobile-number-hint" class="govuk-body">
-              We'll text the test results to this number.
+              {% if data['whos-taking-the-test'] == "myself" %}
+              We need a mobile number or email address to send your test results to.<br><br>You can provide a mobile number that either belongs to you or to someone you trust.
+              {% else %}
+              We need a mobile number or email address to send their test results to.<br><br>You can provide a mobile number that either belongs to them or to someone they trust.
+              {% endif %}
             </span>
-            <div class="govuk-form-group govuk-!-margin-top-5">
-              <label class="govuk-label" for="mobile-phone-number">
-                Mobile phone number
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number" name="mobile-phone-number" type="text" value="{{ data['mobile-phone-number'] }}">
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mobile-number-1" name="mobile-number" type="radio" value="Yes" data-aria-controls="conditional-mobile-number" {{ checked("mobile-number", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="mobile-number-1">
+                  {% if data['whos-taking-the-test'] == "myself" %}
+                  Yes, I have a mobile phone number where I can get the results
+                  {% else %}
+                  Yes, they have a mobile phone number where they can get the results
+                  {% endif %}
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mobile-number">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="mobile-phone-number">
+                    {% if data['whos-taking-the-test'] == "myself" %}
+                    Make sure you’re happy for your test results to go to this mobile number<br><br>
+                    Mobile number
+                    {% else %}
+                    Make sure they’re happy for their test results to go to this mobile number<br><br>
+                    Mobile number
+                    {% endif %}
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-third" id="mobile-phone-number" name="mobile-phone-number" type="tel" value="{{ data['mobile-phone-number'] }}">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mobile-number-2" name="mobile-number" type="radio" value="No" {{ checked("mobile-number", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="mobile-number-2">
+                  {% if data['whos-taking-the-test'] == "myself" %}
+                  No, I do not have a mobile phone number
+                  {% else %}
+                  No, they do not have a mobile phone number
+                  {% endif %}
+                </label>
+              </div>
             </div>
           </fieldset>
         </div>
@@ -54,3 +88,4 @@
   </div>
 
 {% endblock %}
+

@@ -12,15 +12,16 @@ function loadJSONFromFile(fileName, path = "app/data/") {
 
 // Version 1 - Lite Registration lateral flow with Accounts- Mobile number route
 
-// router.post('/lite-registration-lateral-flow-accounts/v1/action9/mobile-number', function (req, res) {
-//     let mobileNumber = req.session.data['mobile-number']
-//     if (mobileNumber == "Yes") {
-//       res.redirect('/lite-registration-lateral-flow-accounts/v1/test-place')
-//     } else {
-//       res.redirect('/lite-registration-lateral-flow-accounts/v1/call-us')
-//     }
+router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number', function (req, res) {
+    let mobileNumber = req.session.data['mobile-number']
+    let emailAddress = req.session.data['email']
+    if (mobileNumber == "No" && emailAddress == "No" ) {
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/call-us')
+    } else {
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/nhs-number-known')
+    }
   
-//   })
+  })
 
   // Version 1 - Lite Registration lateral flow with Accounts - Who's taking the test route
   
@@ -47,16 +48,54 @@ function loadJSONFromFile(fileName, path = "app/data/") {
   })
   
   // Version 1 - Lite Registration lateral flow with Accounts - Do you have symptoms route
-  
+
   router.post('/lite-registration-lateral-flow-accounts/v1/action9/do-you-have-symptoms', function (req, res) {
     let emailAddress = req.session.data['email-address']
-    let password = req.session.data['password']
-    if (emailAddress == "user@testing.co.uk") {
+    let symptoms = req.session.data['do-you-have-symptoms']
+    if (symptoms == "Yes") {
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/when-did-symptoms-start')
+    } else if (emailAddress == "user@testing.co.uk" && symptoms == "No") {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/check-your-answers')
-    } else if (emailAddress != "user@testing.co.uk" && password != " " || emailAddress != "user@testing.co.uk" && password != undefined) {
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/email-address-account')
     } else {
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/country')
+    }
+  
+  })
+
+    // Version 1 - Lite Registration lateral flow with Accounts - Do you have symptoms route
+
+    router.post('/lite-registration-lateral-flow-accounts/v1/action9/when-did-symptoms-start', function (req, res) {
+      let emailAddress = req.session.data['email-address']
+      if (emailAddress == "user@testing.co.uk") {
+        res.redirect('/lite-registration-lateral-flow-accounts/v1/check-your-answers')
+      } else {
+        res.redirect('/lite-registration-lateral-flow-accounts/v1/country')
+      }
+    
+    })
+  
+  // router.post('/lite-registration-lateral-flow-accounts/v1/action9/do-you-have-symptoms', function (req, res) {
+  //   let emailAddress = req.session.data['email-address']
+  //   let password = req.session.data['password']
+  //   if (emailAddress == "user@testing.co.uk") {
+  //     res.redirect('/lite-registration-lateral-flow-accounts/v1/check-your-answers')
+  //   } else if (emailAddress != "user@testing.co.uk" && password == " " || emailAddress != "user@testing.co.uk" && password == undefined) {
+  //     res.redirect('/lite-registration-lateral-flow-accounts/v1/email-address')
+  //   } else {
+  //     res.redirect('/lite-registration-lateral-flow-accounts/v1/email-address-account')
+  //   }
+  
+  // })
+
+  // Version 1 - Lite Registration lateral flow with Accounts - First line of address and postcode route
+
+    router.post('/lite-registration-lateral-flow-accounts/v1/action9/address', function (req, res) {
+    let emailAddress = req.session.data['email-address']
+    let password = req.session.data['password']
+    if (emailAddress != "user@testing.co.uk" && password == " " || emailAddress != "user@testing.co.uk" && password == undefined) {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/email-address')
+    } else {
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/email-address-account')
     }
   
   })
@@ -85,9 +124,9 @@ function loadJSONFromFile(fileName, path = "app/data/") {
   
   router.post('/lite-registration-lateral-flow-accounts/v1/action9/currently-in-work', function (req, res) {
     let inWork = req.session.data['currently-in-work']
-    if (inWork == "Yes, they travel to a workplace" || inWork == "Yes, I travel to a workplace"){
+    if (inWork == "Yes - they travel to a workplace" || inWork == "Yes - I travel to a workplace"){
       res.redirect('/lite-registration-lateral-flow-accounts/v1/industry')
-    } else if (inWork == "Yes, they go to nursery, school, college or university" || inWork == "Yes, I go to nursery, school, college or university"){
+    } else if (inWork == "Yes - they go to nursery, school, college or university" || inWork == "Yes - I go to nursery, school, college or university"){
       res.redirect('/lite-registration-lateral-flow-accounts/v1/study-grade')
     } else {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/do-you-have-symptoms')
