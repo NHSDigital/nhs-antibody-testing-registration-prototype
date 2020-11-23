@@ -76,7 +76,7 @@ function loadJSONFromFile(fileName, path = "app/data/") {
     } else if (ethnicGroup == "Another ethnic group") {
       res.redirect('/share-result-lateral-flow/v3/ethnic-background-another')
     } else {
-      res.redirect('/share-result-lateral-flow/v3/dob')
+      res.redirect('/share-result-lateral-flow/v3/address')
     }
 
   })
