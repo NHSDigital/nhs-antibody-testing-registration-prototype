@@ -5,6 +5,7 @@ const router = express.Router()
 
 // Call in routes file from routes folder to keep routes.js cleaner
 router.use('/', require('./routes/org-register.js'))
+router.use('/', require('./routes/pooling.js'))
 router.use('/', require('./routes/antibody.js'))
 router.use('/', require('./routes/antigen.js'))
 router.use('/', require('./routes/lite-registration.js'))
