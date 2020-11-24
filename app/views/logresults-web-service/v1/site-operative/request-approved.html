@@ -1,0 +1,56 @@
+{% set version = "v1" %}
+{% set pageTitle = "Request status" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+<a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/site-id">Change site</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ data['full-name'] or 'Pete Smith' }}</h1>
+
+          <p class="govuk-body">Coventry University: Department of physics</p>
+
+          <p>
+            <strong class="govuk-tag govuk-tag--green">
+                Approved
+            </strong>
+          </p>
+
+          <div style="padding: 0">
+            <form action="/logresults-web-service/{{version}}/site-operative/enter-barcode" method="post">
+              <button class="govuk-!-margin-bottom-4 account-home-button">
+                <div>
+                  <p class="govuk-!-margin-bottom-2">
+                    <strong style="color: #005eb8">Log test results</strong>
+                  </p>
+                  <p class="govuk-!-margin-bottom-0">
+                    You can now start to log COVID-19 test results at this test site.
+                  </p>
+                </div>
+              </button>
+            </form>
+          </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

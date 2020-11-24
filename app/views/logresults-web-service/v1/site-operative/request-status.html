@@ -1,0 +1,53 @@
+{% set version = "v1" %}
+{% set pageTitle = "Request status" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+<a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/site-id">Change site</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ data['full-name'] or 'Pete Smith' }}</h1>
+
+          <p class="govuk-body">Coventry University: Department of physics</p>
+
+          <p>
+            <strong class="govuk-tag govuk-tag--yellow">
+                Awaiting approval
+            </strong>
+          </p>
+
+          <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+          <p class="govuk-body">Your team leader has not yet given you access to this test site. If they approve access, you can start logging results.</p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action" style="width: 150px;">
+  <a href="/logresults-web-service/{{version}}/site-operative/request-approved">
+    <div class="proto-action-text govuk-!-margin-left-3">Request approved</div>
+  </a>
+</div>
+{% endblock %}
