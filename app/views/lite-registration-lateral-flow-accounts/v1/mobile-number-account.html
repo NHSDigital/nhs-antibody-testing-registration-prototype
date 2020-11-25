@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Do you have a mobile number where you can get the test results?" %}
+{% set pageTitle = "Where should we text your results?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,7 +15,7 @@
   </p>
 </div>
 
-  <a class="govuk-back-link" href="/lite-registration-lateral-flow-accounts/{{version}}/mobile-address-account-account">Back</a>
+  <a class="govuk-back-link" href="/lite-registration-lateral-flow-accounts/{{version}}/email-address-account">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -23,7 +23,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/lite-registration-lateral-flow-accounts/{{version}}/action4/mobile-number-accounts" method="post">
+      <form class="form" action="/lite-registration-lateral-flow-accounts/{{version}}/landline-number" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint">
@@ -33,31 +33,15 @@
               </h1>
             </legend>
             <span id="mobile-number-hint" class="govuk-body">
-                We'll text the test results to this number.
+                Make sure you're happy for your test results to go to this mobile number.
             </span>
           </fieldset>
         </div>
-        <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-mobile-address-account" {{ checked("email", "Yes") }}>
-            <label class="govuk-label govuk-radios__label" for="email-1">
-              Yes, I have a mobile number where I can get the results
-            </label>
-          </div>
-          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mobile-address-account">
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="mobile-address-account">
-                Mobile number
-              </label>
-              <input class="govuk-input" id="mobile-address-account" name="mobile-address-account" type="text" value="{{ data['mobile-address-account'] }}" aria-describedby="conditional-mobile-address-account-hint">
-            </div>
-          </div>
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="No" {{ checked("email", "No") }}>
-            <label class="govuk-label govuk-radios__label" for="email-2">
-              No, I do not have a mobile number
-            </label>
-          </div>
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-3" for="mobile-phone-number">
+            Mobile phone number
+          </label>
+          <input class="govuk-input govuk-!-width-one-third" id="mobile-phone-number" name="mobile-phone-number" typw="text" value="{{ data['mobile-phone-number'] }}">
         </div>
         <button class="govuk-button govuk-!-margin-top-5" data-module="govuk-button">Continue</button>
 
