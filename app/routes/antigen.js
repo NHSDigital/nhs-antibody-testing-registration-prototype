@@ -31,7 +31,7 @@ router.post('/antigen/v2/action3/do-you-have-symptoms', function (req, res) {
   if (symptoms == "Yes"){
     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start')
   } else {
-    res.redirect('/antigen/v2/refer-and-triage/essential-worker')
+    res.redirect('/antigen/v2/refer-and-triage/follow-up-test')
   }
 
 })
@@ -46,14 +46,29 @@ router.post('/antigen/v2/action3/do-you-have-symptoms-person-1', function (req, 
 
 })
 
+// Version 2 - Antigen Refer and Triage - Follow up test route
+
+router.post('/antigen/v2/action3/follow-up-test', function (req, res) {
+  let followUpTest = req.session.data['follow-up-test']
+  if (followUpTest == "Yes"){
+    res.redirect('/antigen/v2/refer-and-triage/follow-up-test-reason')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/essential-worker')
+  }
+
+})
+
 // Version 2 - Antigen Refer and Triage - Government pilot route
 
 router.post('/antigen/v2/action3/government-pilot', function (req, res) {
   let governmentPilot = req.session.data['government-pilot']
   let symptoms = req.session.data['do-you-have-symptoms']
+  let followUpTest = req.session.data['follow-up-test']
   if (governmentPilot == "Yes"){
     res.redirect('/antigen/v2/refer-and-triage/which-pilot')
-  } else if (governmentPilot == "No" && symptoms == "No") {
+  } else if (followUpTest == "Yes") {
+    res.redirect('/antigen/v2/refer-and-triage/')
+  } else if (governmentPilot == "No" && symptoms == "No" || followUpTest == "No") {
     res.redirect('/antigen/v2/refer-and-triage/reason-for-test')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/')
@@ -162,9 +177,9 @@ router.post('/antigen/v2/action3/ethnic-group-person-1', function (req, res) {
 
 router.post('/antigen/v2/action3/currently-in-work', function (req, res) {
   let inWork = req.session.data['currently-in-work']
-  if (inWork == "Yes, they travel to a workplace"){
+  if (inWork == "Yes - they travel to a workplace"){
     res.redirect('/antigen/v2/global-registration/industry')
-  } else if (inWork == "Yes, they go to nursery, school, college or university"){
+  } else if (inWork == "Yes - they go to nursery, school, college or university"){
     res.redirect('/antigen/v2/global-registration/study-grade')
   } else {
     res.redirect('/antigen/v2/global-registration/country')
@@ -173,9 +188,9 @@ router.post('/antigen/v2/action3/currently-in-work', function (req, res) {
 
 router.post('/antigen/v2/action3/currently-in-work-person-1', function (req, res) {
   let inWork = req.session.data['currently-in-work-person-1']
-  if (inWork == "Yes, they travel to a workplace"){
+  if (inWork == "Yes - they travel to a workplace"){
     res.redirect('/antigen/v2/global-registration/industry-person-1')
-  } else if (inWork == "Yes, they go to nursery, school, college or university"){
+  } else if (inWork == "Yes - they go to nursery, school, college or university"){
     res.redirect('/antigen/v2/global-registration/study-grade-person-1')
   } else {
     res.redirect('/antigen/v2/global-registration/country-person-1')
