@@ -176,7 +176,7 @@
             Ethnic group
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['ethnic-group-person-1'] }}
+            {{ data['ethnic-group-person-1'] or 'Prefer not to say' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/ethnic-group-person-1">
@@ -185,13 +185,12 @@
             </a>
           </dd>
         </div>
-        {% if data['ethnic-group-person-1'] !== "Prefer not to say" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Ethnic background
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['ethnic-background-person-1'] }}
+            {{ data['ethnic-background-person-1'] or 'Prefer not to say' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/ethnic-group-person-1">
@@ -200,7 +199,6 @@
             </a>
           </dd>
         </div>
-        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Travels to nursery, work or place of education
@@ -215,7 +213,7 @@
             </a>
           </dd>
         </div>
-        {% if data['currently-in-work-person-1'] == "Yes, they travel to a workplace" %}
+        {% if data['currently-in-work-person-1'] == "Yes - they travel to a workplace" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Area of work
