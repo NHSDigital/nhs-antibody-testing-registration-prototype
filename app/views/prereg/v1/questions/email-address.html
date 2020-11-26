@@ -1,6 +1,7 @@
 {% set version = "v1" %}
 {% set folder = "prereg" %}
-{% set pageTitle = "Do you have an email address?" %}
+{% set name = data['first-name'] or 'John Smith' %}
+{% set pageTitle = "Does " + name + " have an email address?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -42,7 +43,7 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="email-1">
-                  Yes, I have an email address
+                  Yes, they have an email address
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
@@ -57,7 +58,7 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="I do not have an email address" {{ checked("email", "I do not have an email address") }}>
                 <label class="govuk-label govuk-radios__label" for="email-2">
-                  No, I don’t have an email address
+                  No, they do not have an email address
                 </label>
               </div>
             </div>

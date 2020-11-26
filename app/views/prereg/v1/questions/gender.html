@@ -1,6 +1,7 @@
 {% set version = "v1" %}
 {% set folder = "prereg" %}
-{% set pageTitle = "What's their gender?" %}
+{% set name = data['first-name'] or 'John Smith' %}
+{% set pageTitle = "What best describes " + name + "?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -36,6 +37,7 @@
                 {{ pageTitle }}
               </h1>
             </legend>
+            <p>Your answer should match what is in {{ name }}'s GP records.</p>
             <div class="govuk-radios govuk-!-margin-top-5">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="Male" {{ checked("gender", "Male") }}>
