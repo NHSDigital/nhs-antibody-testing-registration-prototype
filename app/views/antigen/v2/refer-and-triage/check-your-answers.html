@@ -69,38 +69,37 @@
             </a>
           </dd>
         </div>
-        {% if data['government-pilot'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Part of pilot or trial
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['government-pilot'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/refer-and-triage/government-pilot">
+              Change
+              <span class="govuk-visually-hidden">part of pilot or trial</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['government-pilot'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Which pilot or trial
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['professional-pilot'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/government-pilot">
+            <a href="/antigen/{{version}}/refer-and-triage/which-pilot">
               Change
-              <span class="govuk-visually-hidden">part of pilot or trial</span>
-            </a>
-          </dd>
-        </div>
-        {% else %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Part of pilot or trial
-          </dt>
-          <dd class="govuk-summary-list__value">
-            No
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/government-pilot">
-              Change
-              <span class="govuk-visually-hidden">part of pilot or trial</span>
+              <span class="govuk-visually-hidden">which pilot or trial</span>
             </a>
           </dd>
         </div>
         {% endif %}
-        {% if data['do-you-have-symptoms'] == "No" %}
+        {% if data['do-you-have-symptoms'] == "No" and data['follow-up-test'] == "No" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Reason for being tested
