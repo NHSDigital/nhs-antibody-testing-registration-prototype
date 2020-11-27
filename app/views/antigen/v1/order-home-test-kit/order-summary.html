@@ -4,7 +4,18 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/order-home-test-kit/confirm-identity">Back</a>
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/order-home-test-kit/confirm-email-code">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -15,21 +26,7 @@
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
 
       <dl class="govuk-summary-list">
-        {% if data['national-insurance-number'] !== undefined or data['national-insurance-number'] !== "" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            National Insurance number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['national-insurance-number'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/antigen/{{version}}/order-home-test-kit/national-insurance-number">
-              Change<span class="govuk-visually-hidden">national insurance number</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Email address
@@ -126,7 +123,7 @@
   </div>
 
 <script type="text/javascript">
- 
+
   resetAttributes()
 
   function checkBox(target) {

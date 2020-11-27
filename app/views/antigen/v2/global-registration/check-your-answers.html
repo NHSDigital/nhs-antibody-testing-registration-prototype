@@ -59,6 +59,7 @@
             </a>
           </dd>
         </div>
+        {% if data['do-you-have-symptoms'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Date of onset
@@ -73,7 +74,7 @@
             </a>
           </dd>
         </div>
-
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Mobile
@@ -118,25 +119,10 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Sex
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['sex'] or 'male' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/sex">
-              Change
-              <span class="govuk-visually-hidden">sex</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['gender'] == "No" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
             Gender
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['gender-other'] or 'female' }}
+            {{ data['gender'] or 'male' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/gender">
@@ -145,22 +131,6 @@
             </a>
           </dd>
         </div>
-        {% else %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Gender
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['gender'] or 'female' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/gender">
-              Change
-              <span class="govuk-visually-hidden">gender</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Ethnic group
@@ -175,7 +145,6 @@
             </a>
           </dd>
         </div>
-        {% if data['ethnic-group'] !== "Prefer not to say" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Ethnic background
@@ -190,22 +159,21 @@
             </a>
           </dd>
         </div>
-        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Travels to nursery, work or place of education
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['currently-in-work'] or 'Prefer not to say / not applicable' }}
+            {{ data['currently-on-work'] or 'Prefer not to say / not applicable' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/currently-in-work">
+            <a href="/antigen/{{version}}/global-registration/currently-on-work">
               Change
               <span class="govuk-visually-hidden">currently in work?</span>
             </a>
           </dd>
         </div>
-        {% if data['currently-in-work'] == "Yes, they travel to a workplace" %}
+        {% if data['currently-on-work'] == "Yes - they travel to a workplace" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Area of work
@@ -245,6 +213,36 @@
             <a href="/antigen/{{version}}/global-registration/occupation">
               Change
               <span class="govuk-visually-hidden">employer</span>
+            </a>
+          </dd>
+        </div>
+        {% elseif data['currently-on-work'] == "Yes - they go to nursery, school, college or university" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Nursery, school or college
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['study-grade'] or 'University' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/study-grade">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Institution details
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['name'] or "King's university" }}<br>
+            {{ data['town'] or "London" }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/institution">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
             </a>
           </dd>
         </div>

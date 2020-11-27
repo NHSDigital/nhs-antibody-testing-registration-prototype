@@ -68,18 +68,63 @@
     <h2 class="govuk-heading-m">Next steps</h2>
 
     <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
-      <li>if you have registered multiple kits, it is very important that each person takes the test registered to them to make sure they receive the correct results. You can use the table in your paper instructions to help with this.</li>
-      <li>if you've not yet done the swab test, you may want to watch <a class="govuk-link" href="#">these instructional videos.</a></li>
+      <li>if you've registered multiple kits, it's very important that each person takes the test registered to them to make sure they receive the correct results.</li>
+      <li>if you're doing the swab test yourself,you can watch <a class="govuk-link" href="#">this instructional video.</a></li>
     </ul>
+
+    {% if data['whos-taking-the-test'] == "myself" %}
+    <p class="govuk-body">If you did not provide an email address, or mobile number, you can get the results by calling:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>119 if you're in England, Wales or Northern Ireland</li>
+      <li>0300 303 2713 if you're in Scotland</li>
+    </ul>
+    <p class="govuk-body">Lines are open 7am to 11pm.</p>
+    <p class="govuk-body">You'll need to provide their:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Test kit barcode reference</li>
+      <li>Name</li>
+      <li>Date of birth</li>
+      <li>First line of address and postcode</li>
+    </ul>
+    {% elseif data['whos-taking-the-test'] == "someone-else" %}
+    <p class="govuk-body">If they did not provide an email address, or mobile number, they can get the results by calling:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>119 if they're in England, Wales or Northern Ireland</li>
+      <li>0300 303 2713 if they're in Scotland</li>
+    </ul>
+    <p class="govuk-body">Lines are open 7am to 11pm.</p>
+    <p class="govuk-body">They'll need to provide their:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Test kit barcode reference</li>
+      <li>Name</li>
+      <li>Date of birth</li>
+      <li>First line of address and postcode</li>
+    </ul>
+    {% else %}
+    <p class="govuk-body">If they did not provide an email address, or mobile number, they can get the results by calling:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>119 if they're in England, Wales or Northern Ireland</li>
+      <li>0300 303 2713 if they're in Scotland</li>
+    </ul>
+    <p class="govuk-body">Lines are open 7am to 11pm.</p>
+    <p class="govuk-body">They'll need to provide their:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Test kit barcode reference</li>
+      <li>Name</li>
+      <li>Date of birth</li>
+      <li>First line of address and postcode</li>
+    </ul>
+    {% endif %}
+    
 
     <h2 class="govuk-heading-m">We want to hear from you</h2>
 
     <p class="govuk-body govuk-!-margin-bottom-8"><a class="govuk-link govuk-!-margin-right-2" href="#">What did you think of our service?</a> (takes 3 minutes)</p>
 
-    <form action="/lite-registration-lateral-flow-accounts/{{version}}/user-account/home-page" method="post" novalidate>
+    <form action="/lite-registration-lateral-flow-accounts/{{version}}/whos-taking-the-test" method="post" novalidate>
 
       <button type="submit" class="govuk-button" data-module="govuk-button">
-        Finish
+        Register someone else
       </button>
 
     </form>

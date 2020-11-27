@@ -48,39 +48,49 @@
           <div class="govuk-width-container covid__page" data-module="coronavirus-landing-page">
               <div class="govuk-grid-row">
                 <div class="govuk-width-container">
-                    <p class="govuk-body govuk-!-padding-top-9">
-                        {% if data['first-name'] !== undefined and data['first-name'] !== "" %}
-                            Dear {{ data['first-name'] }} {{ data['last-name'] }}
+                  <p class="govuk-body govuk-!-padding-top-9">
+                    {% if data['first-name'] !== undefined and data['first-name'] !== "" %}
+                        Dear {{ data['first-name'] }} {{ data['last-name'] }}
+                    {% else %}
+                        Dear (Full name)
+                    {% endif %}
+                    <br>
+                    {% if data['date-of-birth-day'] !== undefined and data['first-name'] !== "" %}
+                        Birth date - {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+                    {% else %}
+                        Birth date - (Date of birth)
+                    {% endif %}
+                    <br>
+                    {% if data['swab-test-date'] !== undefined %}
+                        {% if data['swab-test-date'] !== "different" %}
+                            {{ data['swab-test-date'] }}
                         {% else %}
-                            Dear (Full name)
+                            {{ data['date-of-swab-test-day'] }} {{ data['date-of-swab-test-month'] }} {{ data['date-of-swab-test-year'] }}
                         {% endif %}
-                    </p>
-                    <p class="govuk-body">
-                        {% if data['date-of-birth-day'] !== undefined and data['first-name'] !== "" %}
-                            {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
-                        {% else %}
-                            Birth date (Date of birth)
-                        {% endif %}
-                    </p>
+                    {% else %}
+                        (Date of test)
+                    {% endif %}
+                  </p>
 
                     <p class="govuk-body">
-                        Your coronavirus test result is positive. It means you had the virus when the test was done.<br>
-                        Try not to worry. You can often ease symptoms at home until you recover.<br>
-                        You may be contacted for contact testing.<br>
+                        Your coronavirus test result is positive. It means you had the virus when the test was done.<br><br>
+                        Try not to worry. You can often ease symptoms at home until you recover.<br><br>
+                        You may be contacted for contact testing.<br><br>
                         You must, by law, self-isolate for 10 days from your symptoms starting. If you've not had symptoms, self-isolate for 10 days from your test.<br>
                         You may return to work on day 11 if you've not had a high temperature for 48 hours and are well. Talk to your employer first.<br>
-                        People you live with should self-isolate for 14 days from your symptoms starting or 10 days from their symptoms starting.<br>
+                        People you live with should self-isolate for 14 days from your symptoms starting or 10 days from their symptoms starting.<br><br>
                         For a care home resident, follow relevant guidelines.<br>
                         For a child or staff at a school or nursery, tell the school/nursery.<br>
                         For medical help, contact 111. In an emergency dial 999.<br>
                         More advice: <a href="www.gov.uk/coronavirus">www.gov.uk/coronavirus</a>
                     </p>
 
-                    <p class="govuk-body">Help the NHS with coronavirus vaccine research</p>
-
-                    <p class="govuk-body">Sign up below to be contacted about taking part in coronavirus vaccine studies</p>
-
-                    <p class="govuk-body"><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/research/coronavirus-vaccine-research/">https://www.nhs.uk/conditions/coronavirus-covid-19/research/coronavirus-vaccine-research/</a></p>
+                    <p class="govuk-body">
+                      Help the NHS with coronavirus research.<br>
+                      Sign up to take part in coronavirus studies on the National Institute for Health Research.<br>
+                      Health Research (NIHR) website:<br>
+                      <a href="https://bepartofresearch.nihr.ac.uk/campaigns/COVID-19-research-studies/">https://bepartofresearch.nihr.ac.uk/campaigns/COVID-19-research-studies/</a>
+                    </p>
 
                 </div>
             </div>

@@ -69,13 +69,12 @@
             </a>
           </dd>
         </div>
-        {% if data['government-pilot'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Part of pilot or trial
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['professional-pilot'] }}
+            {{ data['government-pilot'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/refer-and-triage/government-pilot">
@@ -84,18 +83,34 @@
             </a>
           </dd>
         </div>
-        {% else %}
+        {% if data['government-pilot'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Part of pilot or trial
+            Which pilot or trial
           </dt>
           <dd class="govuk-summary-list__value">
-            No
+            {{ data['professional-pilot'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/government-pilot">
+            <a href="/antigen/{{version}}/refer-and-triage/which-pilot">
               Change
-              <span class="govuk-visually-hidden">part of pilot or trial</span>
+              <span class="govuk-visually-hidden">which pilot or trial</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        {% if data['do-you-have-symptoms'] == "No" and data['follow-up-test'] == "No" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reason for being tested
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['reason-for-test'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/refer-and-triage/reason-for-test">
+              Change
+              <span class="govuk-visually-hidden">reason for being tested</span>
             </a>
           </dd>
         </div>
@@ -140,22 +155,6 @@
             <a href="/antigen/{{version}}/refer-and-triage/email-address">
               Change
               <span class="govuk-visually-hidden">email address</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        {% if data['do-you-have-symptoms'] == "No" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Reason for being tested
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['reason-for-test'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/reason-for-test">
-              Change
-              <span class="govuk-visually-hidden">reason for being tested</span>
             </a>
           </dd>
         </div>
