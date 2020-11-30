@@ -9,11 +9,11 @@
 
       <div class="govuk-panel govuk-panel--confirmation govuk-!-padding-8 govuk-!-margin-bottom-8">
         <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
-        <p class="govuk-body govuk-!-font-size-27 govuk-!-margin-bottom-1" style="color: #ffffff">{{ data['kit-barcode-reference-1'] }}</p>
-        <p class="govuk-body govuk-!-font-size-27" style="color: #ffffff">{{ data['test-result'] }}</p>
+        <p class="govuk-body govuk-!-font-size-27 govuk-!-margin-bottom-1" style="color: #ffffff">{{ data['kit-barcode-reference-1'] or 'CHE00000501' }}</p>
+        <p class="govuk-body govuk-!-font-size-27" style="color: #ffffff">{{ data['test-result'] or 'Negative'}}</p>
       </div>
 
-        <form action="/logresults-web-service/{{version}}/site-operative/enter-barcode" method="post">
+        <form action="/logresults-web-service/{{version}}/site-operative/scan-barcode" method="post">
             <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
                 <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="test-result" name="test-result" type="radio" value="" checked>
