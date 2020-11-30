@@ -1,5 +1,7 @@
 {% set version = "v1" %}
-{% set pageTitle = "What is your sex?" %}
+{% set folder = "prereg" %}
+{% set name = data['first-name'] or 'John Smith' %}
+{% set pageTitle = "What best describes " + name + "?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -13,9 +15,12 @@
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
       </span>
     </p>
-  </div> 
+  </div>
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/email-address">Back</a>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -23,29 +28,27 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/antigen/{{version}}/global-registration/gender" method="post">
-      
+      <form action="/{{folder}}/{{version}}/questions/ethnic-group" method="post">
+
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="sex-hint">
+          <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
                 {{ pageTitle }}
               </h1>
             </legend>
-            <span id="sex-hint" class="govuk-body">
-                NOTE: A question about gender will follow later if you are aged 16 or over.
-             </span>
-            <div class="govuk-radios__item govuk-!-margin-top-5">
-                <input class="govuk-radios__input" id="sex-1" name="sex" type="radio" value="Female" {{ checked("sex", "Female") }}>
-                <label class="govuk-label govuk-radios__label" for="sex-1">
-                  Female
+            <p>Your answer should match what is in {{ name }}'s GP records.</p>
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="Male" {{ checked("gender", "Male") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-1">
+                  Male
                 </label>
               </div>
-            <div class="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="sex-2" name="sex" type="radio" value="Male" {{ checked("sex", "Male") }}>
-                <label class="govuk-label govuk-radios__label" for="sex-2">
-                  Male
+                <input class="govuk-radios__input" id="gender-2" name="gender" type="radio" value="Female" {{ checked("gender", "Female") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-2">
+                  Female
                 </label>
               </div>
             </div>

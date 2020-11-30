@@ -6,6 +6,7 @@ const router = express.Router()
 // Call in routes file from routes folder to keep routes.js cleaner
 router.use('/', require('./routes/org-register.js'))
 router.use('/', require('./routes/pooling.js'))
+router.use('/', require('./routes/prereg.js'))
 router.use('/', require('./routes/antibody.js'))
 router.use('/', require('./routes/antigen.js'))
 router.use('/', require('./routes/lite-registration.js'))
@@ -598,30 +599,6 @@ router.post('/antigen/v1/action3/ethnic-group-person-1', function (req, res) {
   }
 })
 
-// Version 1 - Antigen Global Registration - Country route
-
-// router.post('/antigen/v1/action3/country', function (req, res) {
-//   let country = req.session.data['country']
-//   if (country == "Northern Ireland"){
-//     res.redirect('/antigen/v1/global-registration/address')
-//   } else {
-//     res.redirect('/antigen/v1/global-registration/nhs-number-known')
-//   }
-
-// })
-
-// Version 1 - Antigen Global Registration - Country person 1 route
-
-// router.post('/antigen/v1/action3/country-person-1', function (req, res) {
-//   let country = req.session.data['country-person-1']
-//   if (country == "Northern Ireland"){
-//     res.redirect('/antigen/v1/global-registration/address-person-1')
-//   } else {
-//     res.redirect('/antigen/v1/global-registration/postcode-person-1')
-//   }
-
-// })
-
 // Version 1 - Antigen Global Registration - NHS number known person 1 route
 
 router.post('/antigen/v1/action3/nhs-number-known-person-1', function (req, res) {
@@ -636,14 +613,15 @@ router.post('/antigen/v1/action3/nhs-number-known-person-1', function (req, res)
 
 // Version 1 - Antigen Global Registration - Currently in work person 1 route
 
-router.post('/antigen/v1/action3/currently-in-work-person-1', function (req, res) {
-  let inWork = req.session.data['currently-in-work-person-1']
-  if (inWork == "No"){
-    res.redirect('/antigen/v1/global-registration/country-person-1')
-  } else {
+router.post('/antigen/v1/action4/work-or-study-person-1', function (req, res) {
+  let inWork = req.session.data['work-or-study-person-1']
+  if (inWork == "Yes - they travel to a workplace"){
     res.redirect('/antigen/v1/global-registration/industry-person-1')
+  } else if (inWork == "Yes - they go to nursery, school, college or university"){
+    res.redirect('/antigen/v1/global-registration/study-grade-person-1')
+  } else {
+    res.redirect('/antigen/v1/global-registration/country-person-1')
   }
-
 })
 
 // Version 1 - Antigen Global Registration - people confirmed route
@@ -2859,25 +2837,6 @@ router.post('/antigen/v1/action4/work-or-study-person-1', function (req, res) {
   }
 })
 
-// Version 1 - Antigen Study Grade
-router.post('/antigen/v1/action5/study-grade', function (req, res) {
-  let studyGrade = req.session.data['study-grade']
-  if (studyGrade == "Prefer not to say") {
-    res.redirect('/antigen/v1/global-registration/country')
-  } else {
-    res.redirect('/antigen/v1/global-registration/institution')
-  }
-})
-
-// Version 1 - Antigen Study Grade Person 1
-router.post('/antigen/v1/action5/study-grade-person-1', function (req, res) {
-  let studyGrade = req.session.data['study-grade']
-  if (studyGrade == "Prefer not to say") {
-    res.redirect('/antigen/v1/global-registration/country')
-  } else {
-    res.redirect('/antigen/v1/global-registration/institution')
-  }
-})
 
 // Version 1 - Lite Registration Lateral Flow Accounts
 router.post('/lite-registration-lateral-flow-accounts/v1/action4/mobile-number-accounts', function (req, res) {
