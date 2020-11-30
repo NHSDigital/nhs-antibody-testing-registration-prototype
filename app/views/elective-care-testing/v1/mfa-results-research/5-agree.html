@@ -1,5 +1,6 @@
 {% set version = "v1" %}
-{% set pageTitle = "Enter your mobile number" %}
+{% set serviceName = "Elective Care" %}
+{% set pageTitle = "Agree to share your login information" %}
 
 {% extends "includes/layout.html" %}
 
@@ -27,22 +28,21 @@
   <div class="govuk-grid-column-two-thirds">
 
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+    <p class="govuk-body">To continue, you need to agree to share your NHS login information with GOV.UK</p>
 
-    {{ govukInput({
-      label: {
-        text: "Mobile number",
-        isPageHeading: false
-      },
-      hint: {
-        text: "You must enter a UK mobile number so we can send you a 6 digit security code."
-      },
-      id: "mobile-number",
-      name: "mobile-number"
-    }) }}
+    <p class="govuk-body">GOV.UK will use your:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Email address</li>
+      <li>Mobile number</li>
+    </ul>
+
+    <p class="govuk-body">If you agree, read their terms and use of privacy policy to check how your information will be used</p>
+
+    <p><a href="">I do not agree to share this information</a></p>
 
     {{ govukButton({
-      href: "/elective-care-testing/" + version + "/mfa/check-mobile",
-      text: "Continue"
+      href: "/elective-care-testing/" + version + "/mfa-results-research/6-overview",
+      text: "Confirm"
     }) }}
 
   </div>
