@@ -15,7 +15,10 @@
   </p>
 </div>
 
-  <a class="govuk-back-link" href="/lite-registration/{{version}}/enter-barcode">Back</a>
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
 {% endblock %}
 
 {% block content %}
@@ -23,7 +26,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/lite-registration/{{version}}/date-of-birth" method="post">
+      <form action="/lite-registration/{{version}}/name" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="swab-test-date-1-hint swab-test-date-2-hint">
@@ -36,6 +39,13 @@
               Select the date and time you'll take your coronavirus test. If you've already taken the coronavirus test, tell us the date and time you took it.<br><br>
               We need to know this so the lab can work out when the test is due to expire. Selecting the wrong date and time could mean you getting an incorrect result.<br><br>
             </span>
+            <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text govuk-!-font-size-19">
+                <span class="govuk-warning-text__assistive">Warning</span>
+              Do not take or post your test on a bank holiday
+              </strong>
+            </div>
             <span id="swab-test-date-2-hint" class="govuk-body">
               <strong>Select a date</strong>
             </span>
