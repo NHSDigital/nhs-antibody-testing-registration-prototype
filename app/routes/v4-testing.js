@@ -1,3 +1,5 @@
+const express = require('express')
+const router = express.Router()
 
 // Version 1 - Antigen Home Registration - Kit return way known route
   router.post('/antigen/v4/action3/kit-return-way-known', function (req, res) {
@@ -409,3 +411,5 @@ router.post('/antigen/v4/action4/work-or-study', function (req, res) {
       res.redirect('/antigen/v4/global-registration/country-person-1')
     }
   })
+
+  module.exports = router
