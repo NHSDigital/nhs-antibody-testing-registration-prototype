@@ -54,7 +54,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
     let symptoms = req.session.data['do-you-have-symptoms']
     if (symptoms == "Yes") {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/when-did-symptoms-start')
-    } else if (emailAddress == "user@testing.co.uk" && symptoms == "No") {
+    } else if (emailAddress == "user@testing.co.uk") {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/check-your-answers')
     } else {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/country')
