@@ -1,5 +1,4 @@
 {% set version = "v1" %}
-{% set folder = "pooling" %}
 {% set pageTitle = "Registration confirmed" %}
 
 {% extends "includes/layout.html" %}
@@ -38,46 +37,35 @@
           <th scope="row" class="govuk-table__header">{{ data['first-name'] | default('Bob') }} {{ data['last-name'] | default('Smith') }}</th>
           {% if data['swab-test-date'] == "different" %}
           <td class="govuk-table__cell">
-            {{ data['mobile-phone-number'] | default('123456789') }}<br>
             {{ data['email-address'] | default('bobsmith@test.co.uk') }}<br>
+            {{ data['mobile-phone-number'] | default('123456789') }}<br>
             Test kit barcode reference: {{ data['kit-barcode-reference-1'] | default('CHE00000501') }}<br>
             Test date and time: {{ data['date-of-swab-test-day'] | default('4') }} {{ data['date-of-swab-test-month'] | default('9') }} {{ data['date-of-swab-test-year'] | default('2020') }}, {{ data['swab-test-time'] | default('7') }}{{ data['swab-test-time-ampm'] | default('am') }}
           </td>
           {% else %}
           <td class="govuk-table__cell">
-            {{ data['mobile-phone-number'] | default('123456789') }}<br>
             {{ data['email-address'] | default('bobsmith@test.co.uk') }}<br>
+            {{ data['mobile-phone-number'] | default('123456789') }}<br>
             Test kit barcode reference: {{ data['kit-barcode-reference-1'] | default('CHE00000501') }}<br>
             Test date and time: {{ data['swab-test-date'] | default('28 March 2020') }}, {{ data['swab-test-time'] | default('7') }}{{ data['swab-test-time-ampm'] | default('am') }}
           </td>
           {% endif %}
         </tr>
-        {% if data['first-name-person-1'] !== undefined %}
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }}</th>
-          <td class="govuk-table__cell">
-            {{ data['mobile-phone-number-person-1'] }}
-          </td>
-          <td class="govuk-table__cell">
-            {{ data['email-address-person-1'] }}
-          </td>
-        </tr>
-        {% endif %}
       </tbody>
     </table>
 
     <h2 class="govuk-heading-m">Next steps</h2>
 
     <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
-      <li>Everyone you live with must register their test kit. If they cannot do this themselves, you need to register their kit for them.</li>
-      <li>Take the test in a group. Make sure to place each person's swab in the same plastic tube.  <a class="govuk-link" href="#">Watch this instructional video to see how to take the swab test</a></li>
+      <li>if you have registered multiple test kits, it's very important that each person takes the test registered to them to make sure they receive the correct results.</li>
+      <li>if you're doing the swab test yourself, you can watch <a class="govuk-link" href="#">this instructional video.</a></li>
     </ul>
 
     <h2 class="govuk-heading-m">We want to hear from you</h2>
 
     <p class="govuk-body govuk-!-margin-bottom-8"><a class="govuk-link govuk-!-margin-right-2" href="#">What did you think of our service?</a> (takes 3 minutes)</p>
 
-    <form action="/{{folder}}/{{version}}/" method="post" novalidate>
+    <form action="/lite-registration-lateral-flow/{{version}}/" method="post" novalidate>
 
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Register someone else

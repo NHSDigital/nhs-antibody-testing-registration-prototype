@@ -1,5 +1,6 @@
 {% set version = "v1" %}
-{% set pageTitle = "Enter your mobile number" %}
+{% set serviceName = "Elective Care" %}
+{% set pageTitle = "Check your mobile phone" %}
 
 {% extends "includes/layout.html" %}
 
@@ -27,23 +28,27 @@
   <div class="govuk-grid-column-two-thirds">
 
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+    <p class="govuk-body">Enter the 6-digit security code we've sent to +447443320366</p>
 
     {{ govukInput({
       label: {
-        text: "Mobile number",
+        text: "Security code",
         isPageHeading: false
       },
       hint: {
-        text: "You must enter a UK mobile number so we can send you a 6 digit security code."
+        text: "This is 6 numbers"
       },
+      classes: "govuk-input--width-10",
       id: "mobile-number",
       name: "mobile-number"
     }) }}
 
     {{ govukButton({
-      href: "/elective-care-testing/" + version + "/mfa/check-mobile",
+      href: "/elective-care-testing/" + version + "/mfa-results-research/6-overview",
       text: "Continue"
     }) }}
+
+    <p>If you do not get a code, you can <a href="/elective-care-testing/v1/mfa-results-research/3-enter-mobile">enter your mobile number to try again.</a></p>
 
   </div>
 </div>

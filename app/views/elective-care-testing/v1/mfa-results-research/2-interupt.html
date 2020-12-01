@@ -1,5 +1,6 @@
 {% set version = "v1" %}
-{% set pageTitle = "Enter your mobile number" %}
+{% set serviceName = "Elective Care" %}
+{% set pageTitle = "Changes to the way you sign in" %}
 
 {% extends "includes/layout.html" %}
 
@@ -14,11 +15,7 @@
       </span>
     </p>
   </div>
-
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -28,22 +25,13 @@
 
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
 
-    {{ govukInput({
-      label: {
-        text: "Mobile number",
-        isPageHeading: false
-      },
-      hint: {
-        text: "You must enter a UK mobile number so we can send you a 6 digit security code."
-      },
-      id: "mobile-number",
-      name: "mobile-number"
-    }) }}
+    <p class="govuk-body">We've added an extra step for your security. From now on, we'll send a code to your mobile phone each time you sign in.</p>
 
     {{ govukButton({
-      href: "/elective-care-testing/" + version + "/mfa/check-mobile",
-      text: "Continue"
+        href: "/elective-care-testing/" + version + "/mfa-results-research/3-enter-mobile",
+        text: "Continue"
     }) }}
+
 
   </div>
 </div>
