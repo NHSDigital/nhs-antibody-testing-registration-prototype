@@ -12,6 +12,7 @@ router.use('/', require('./routes/antigen.js'))
 router.use('/', require('./routes/lite-registration.js'))
 router.use('/', require('./routes/unified-org.js'))
 router.use('/', require('./routes/logresults-web-service.js'))
+router.use('/', require('./routes/v4-testing.js'))
 
 // Pull scope into the homepage to show/hide sections
 // 'SCOPE' is either pulled in from the Heroku App settings or setting in a local .env file eg. SCOPE=antibody
@@ -599,30 +600,6 @@ router.post('/antigen/v1/action3/ethnic-group-person-1', function (req, res) {
   }
 })
 
-// Version 1 - Antigen Global Registration - Country route
-
-// router.post('/antigen/v1/action3/country', function (req, res) {
-//   let country = req.session.data['country']
-//   if (country == "Northern Ireland"){
-//     res.redirect('/antigen/v1/global-registration/address')
-//   } else {
-//     res.redirect('/antigen/v1/global-registration/nhs-number-known')
-//   }
-
-// })
-
-// Version 1 - Antigen Global Registration - Country person 1 route
-
-// router.post('/antigen/v1/action3/country-person-1', function (req, res) {
-//   let country = req.session.data['country-person-1']
-//   if (country == "Northern Ireland"){
-//     res.redirect('/antigen/v1/global-registration/address-person-1')
-//   } else {
-//     res.redirect('/antigen/v1/global-registration/postcode-person-1')
-//   }
-
-// })
-
 // Version 1 - Antigen Global Registration - NHS number known person 1 route
 
 router.post('/antigen/v1/action3/nhs-number-known-person-1', function (req, res) {
@@ -637,14 +614,15 @@ router.post('/antigen/v1/action3/nhs-number-known-person-1', function (req, res)
 
 // Version 1 - Antigen Global Registration - Currently in work person 1 route
 
-router.post('/antigen/v1/action3/currently-in-work-person-1', function (req, res) {
-  let inWork = req.session.data['currently-in-work-person-1']
-  if (inWork == "No"){
-    res.redirect('/antigen/v1/global-registration/country-person-1')
-  } else {
+router.post('/antigen/v1/action4/work-or-study-person-1', function (req, res) {
+  let inWork = req.session.data['work-or-study-person-1']
+  if (inWork == "Yes - they travel to a workplace"){
     res.redirect('/antigen/v1/global-registration/industry-person-1')
+  } else if (inWork == "Yes - they go to nursery, school, college or university"){
+    res.redirect('/antigen/v1/global-registration/study-grade-person-1')
+  } else {
+    res.redirect('/antigen/v1/global-registration/country-person-1')
   }
-
 })
 
 // Version 1 - Antigen Global Registration - people confirmed route
@@ -1160,7 +1138,7 @@ router.post('/elective-care-testing/v1/action5/symptoms-patient-1', function (re
 router.post('/lite-registration/v1/action6/test-place', function (req, res) {
   let testPlace = req.session.data['test-place']
   if (testPlace == "home") {
-    res.redirect('/lite-registration/v1/enter-barcode')
+    res.redirect('/lite-registration/v1/test-date')
   } else {
     res.redirect('/lite-registration/v1/find-test-site')
   }
@@ -1182,7 +1160,7 @@ router.post('/lite-registration/v1/action6/ethnic-group', function (req, res) {
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/lite-registration/v1/ethnic-background-another')
   } else {
-    res.redirect('/lite-registration/v1/do-you-have-symptoms')
+    res.redirect('/lite-registration/v1/work-or-study')
   }
 
 })
@@ -2860,25 +2838,6 @@ router.post('/antigen/v1/action4/work-or-study-person-1', function (req, res) {
   }
 })
 
-// Version 1 - Antigen Study Grade
-router.post('/antigen/v1/action5/study-grade', function (req, res) {
-  let studyGrade = req.session.data['study-grade']
-  if (studyGrade == "Prefer not to say") {
-    res.redirect('/antigen/v1/global-registration/country')
-  } else {
-    res.redirect('/antigen/v1/global-registration/institution')
-  }
-})
-
-// Version 1 - Antigen Study Grade Person 1
-router.post('/antigen/v1/action5/study-grade-person-1', function (req, res) {
-  let studyGrade = req.session.data['study-grade']
-  if (studyGrade == "Prefer not to say") {
-    res.redirect('/antigen/v1/global-registration/country')
-  } else {
-    res.redirect('/antigen/v1/global-registration/institution')
-  }
-})
 
 // Version 1 - Lite Registration Lateral Flow Accounts
 router.post('/lite-registration-lateral-flow-accounts/v1/action4/mobile-number-accounts', function (req, res) {
@@ -2889,6 +2848,28 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action4/mobile-number-a
    } else {
      res.redirect('/lite-registration-lateral-flow-accounts/v1/landline-number')
    }
+})
+
+// Version 1 - Lite Registration Work or Study
+router.post('/lite-registration/v1/action4/work-or-study', function (req, res) {
+  let workOrStudy = req.session.data['work-or-study']
+  if (workOrStudy == "Yes - they travel to a workplace") {
+    res.redirect('/lite-registration/v1/industry')
+  } else if (workOrStudy == "Yes - they go to nursery, school, college or university") {
+    res.redirect('/lite-registration/v1/study-grade')
+  } else {
+    res.redirect('/lite-registration/v1/do-you-have-symptoms')
+  }
+})
+
+// Version 1 - Lite Registration Study Grade
+router.post('/lite-registration/v1/action5/study-grade', function (req, res) {
+  let studyGrade = req.session.data['study-grade']
+  if (studyGrade == "Prefer not to say") {
+    res.redirect('/lite-registration/v1/do-you-have-symptoms')
+  } else {
+    res.redirect('/lite-registration/v1/institution')
+  }
 })
 
 
