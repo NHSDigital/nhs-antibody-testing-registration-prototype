@@ -1,5 +1,5 @@
 {% set version = "v4" %}
-{% set pageTitle = "Select your reason for taking this test" %}
+{% set pageTitle = "Select the NHS England setting" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -23,7 +23,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/share-result-lateral-flow/{{version}}/social-care-uon" method="post">
+      <form action="/share-result-lateral-flow/{{version}}/country" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
@@ -34,21 +34,33 @@
             </legend>
             <div class="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="nhs-primary" {{ checked("country", "England") }}>
+                <input class="govuk-radios__input" id="country-1" name="country" type="radio"  {{ checked("country", "England") }}>
                 <label class="govuk-label govuk-radios__label" for="country-1">
-                  I'm a visitor
+                  General Practitioner (GP)
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="nhs-secondary" o {{ checked("country", "Scotland") }}>
+                <input class="govuk-radios__input" id="country-4" name="country" type="radio"  {{ checked("country", "Scotland") }}>
                 <label class="govuk-label govuk-radios__label" for="country-4">
-                  I work here
+                  Dental practice providing NHS services
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="social-care" {{ checked("country", "Northern Ireland") }}>
+                <input class="govuk-radios__input" id="country-3" name="country" type="radio"  {{ checked("country", "Northern Ireland") }}>
                 <label class="govuk-label govuk-radios__label" for="country-3">
-                  I'm a resident
+                  NHS Pharmacy
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-2" name="country" type="radio"  {{ checked("country", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-2">
+                  Ophthalmology
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-5" name="country" type="radio" value="nhs-england-none" onclick="setLocation(this);"  {{ checked("country", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-5">
+                  None of these
                 </label>
               </div>
             </div>
