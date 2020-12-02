@@ -204,7 +204,7 @@ router.post('/antigen/v2/action3/nhs-number-known', function (req, res) {
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antigen/v2/global-registration/nhs-number')
   } else {
-    res.redirect('/antigen/v2/global-registration/check-your-answers')
+    res.redirect('/antigen/v2/global-registration/coronavirus-vaccine')
   }
 })
 
@@ -214,6 +214,17 @@ router.post('/antigen/v2/action3/nhs-number-known-person-1', function (req, res)
     res.redirect('/antigen/v2/global-registration/nhs-number-person-1')
   } else {
     res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
+  }
+})
+
+// Version 2 - Antigen Global Registration - Coronavirus vaccine route
+
+router.post('/antigen/v2/action9/coronavirus-vaccine', function (req, res) {
+  let vaccine = req.session.data['vaccine']
+  if (vaccine == "Yes"){
+    res.redirect('/antigen/v2/global-registration/coronavirus-vaccine-date')
+  } else {
+    res.redirect('/antigen/v2/global-registration/check-your-answers')
   }
 })
 
