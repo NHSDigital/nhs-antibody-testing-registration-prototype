@@ -15,7 +15,10 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/nhs-number-known-person-1">Back</a>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -30,7 +33,7 @@
             Name
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }}
+            {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/name-person-1">
@@ -148,7 +151,7 @@
             Email
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['email-address-person-1'] }}
+            {{ data['email-address-person-1'] or 'jwilson@testing.co.uk' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/email-address-person-1">
@@ -162,7 +165,7 @@
             Gender
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['gender-person-1'] or 'Male' }}
+            {{ data['gender-person-1'] or 'Female' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/gender-person-1">
@@ -333,6 +336,81 @@
             </a>
           </dd>
         </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Coronavirus vaccine received
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['vaccine-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/coronavirus-vaccine-person-1">
+              Change
+              <span class="govuk-visually-hidden">coronavirus vaccine received</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['vaccine-person-1'] != "No" %}
+
+          {% if data['vaccine-date-person-1'] == "More than 14 days ago" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Most recent vaccine dose
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['vaccine-month-person-1'] == "1" or data['vaccine-month-person-1'] == "01" %}
+              January {{ data['vaccine-year-person-1'] or '2020' }}
+              {% elseif data['vaccine-month-person-1'] == "2" or data['vaccine-month-person-1'] == "02" %}
+              February {{ data['vaccine-year-person-1'] or '2020' }}
+              {% elseif data['vaccine-month-person-1'] == "3" or data['vaccine-month-person-1'] == "03" %}
+              March {{ data['vaccine-year-person-1'] or '2020' }}
+              {% elseif data['vaccine-month-person-1'] == "4" or data['vaccine-month-person-1'] == "04" %}
+              April {{ data['vaccine-year-person-1'] or '2020' }}
+              {% elseif data['vaccine-month-person-1'] == "5" or data['vaccine-month-person-1'] == "05" %}
+              May {{ data['vaccine-year-person-1'] or '2020' }}
+              {% elseif data['vaccine-month-person-1'] == "6" or data['vaccine-month-person-1'] == "06" %}
+              June {{ data['vaccine-year-person-1'] or '2020' }}
+              {% elseif data['vaccine-month-person-1'] == "7" or data['vaccine-month-person-1'] == "07" %}
+              July {{ data['vaccine-year-person-1'] or '2020' }}
+              {% elseif data['vaccine-month-person-1'] == "8" or data['vaccine-month-person-1'] == "08" %}
+              August {{ data['vaccine-year-person-1'] or '2020' }}
+              {% elseif data['vaccine-month-person-1'] == "9" or data['vaccine-month-person-1'] == "09" %}
+              September {{ data['vaccine-year-person-1'] or '2020' }}
+              {% elseif data['vaccine-month-person-1'] == "10" %}
+              October {{ data['vaccine-year-person-1'] or '2020' }}
+              {% elseif data['vaccine-month-person-1'] == "11" %}
+              November {{ data['vaccine-year-person-1'] or '2020' }}
+              {% elseif data['vaccine-month-person-1'] == "12" %}
+              December {{ data['vaccine-year-person-1'] or '2020' }}
+              {% else %}
+              {{ data['vaccine-month-person-1'] or 'December' }} {{ data['vaccine-year-person-1'] or '2020' }}
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/coronavirus-vaccine-date-person-1">
+                Change
+                <span class="govuk-visually-hidden">coronavirus vaccine</span>
+              </a>
+            </dd>
+          </div>
+          {% else %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Most recent vaccine dose
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['vaccine-date-person-1'] or 'Less than 7 days ago' }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/coronavirus-vaccine-date-person-1">
+                Change
+                <span class="govuk-visually-hidden">coronavirus vaccine</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+
         {% endif %}
       </dl>
 
