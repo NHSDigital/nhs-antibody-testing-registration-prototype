@@ -36,9 +36,9 @@
             </legend>
             <span id="mobile-number-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "myself" %}
-              We need a mobile number or email address to send your test results to.<br><br>You can provide a mobile number that either belongs to you or to someone you trust.
+              We need a mobile number or email address to send your test results to. This is the quickest way to get the results.<br><br>You can provide a mobile number that either belongs to you or to someone you trust.
               {% else %}
-              We need a mobile number or email address to send their test results to.<br><br>You can provide a mobile number that either belongs to them or to someone they trust.
+              We need a mobile number or email address to send their test results to. This is the quickest way to get the results.<br><br>You can provide a mobile number that either belongs to them or to someone they trust.
               {% endif %}
             </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
@@ -67,7 +67,7 @@
                 </div>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="mobile-number-2" name="mobile-number" type="radio" value="No" {{ checked("mobile-number", "No") }}>
+                <input class="govuk-radios__input" id="mobile-number-2" name="mobile-number" type="radio" value="No" data-aria-controls="conditional-mobile-number-no" {{ checked("mobile-number", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="mobile-number-2">
                   {% if data['whos-taking-the-test'] == "myself" %}
                   No, I do not have a mobile phone number
@@ -75,6 +75,17 @@
                   No, they do not have a mobile phone number
                   {% endif %}
                 </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mobile-number-no">
+                <div class="govuk-form-group govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+                  <span class="govuk-body">
+                    {% if data['whos-taking-the-test'] == "myself" %}
+                    If you do not provide a mobile number or an email address, you'll need to speak to the customer contact centre to get the results.
+                    {% else %}
+                    If you do not provide a mobile number or an email address, they'll need to speak to the customer contact centre to get the results.
+                    {% endif %}
+                  </span>
+                </div>
               </div>
             </div>
           </fieldset>
