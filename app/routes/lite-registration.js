@@ -20,7 +20,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
     } else {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/nhs-number-known')
     }
-  
+
   })
 
   // Version 1 - Lite Registration lateral flow with Accounts - Who's taking the test route
@@ -59,7 +59,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
     } else {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/country')
     }
-  
+
   })
 
     // Version 1 - Lite Registration lateral flow with Accounts - Do you have symptoms route
@@ -71,9 +71,9 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
       } else {
         res.redirect('/lite-registration-lateral-flow-accounts/v1/country')
       }
-    
+
     })
-  
+
   // router.post('/lite-registration-lateral-flow-accounts/v1/action9/do-you-have-symptoms', function (req, res) {
   //   let emailAddress = req.session.data['email-address']
   //   let password = req.session.data['password']
@@ -84,7 +84,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
   //   } else {
   //     res.redirect('/lite-registration-lateral-flow-accounts/v1/email-address-account')
   //   }
-  
+
   // })
 
   // Version 1 - Lite Registration lateral flow with Accounts - First line of address and postcode route
@@ -116,6 +116,46 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
       res.redirect('/share-result-lateral-flow/v3/ethnic-background-another')
     } else {
       res.redirect('/share-result-lateral-flow/v3/address')
+    }
+
+  })
+
+  // Version 4 - LFD Results sharing - Ethnic group route
+  router.post('/share-result-lateral-flow/v4/action6/ethnic-group', function (req, res) {
+    let ethnicGroup = req.session.data['ethnic-group']
+
+    if (ethnicGroup == "Asian or Asian British"){
+      res.redirect('/share-result-lateral-flow/v4/ethnic-background-asian')
+    } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+      res.redirect('/share-result-lateral-flow/v4/ethnic-background-black')
+    } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+      res.redirect('/share-result-lateral-flow/v4/ethnic-background-mixed')
+    } else if (ethnicGroup == "White") {
+      res.redirect('/share-result-lateral-flow/v4/ethnic-background-white')
+    } else if (ethnicGroup == "Another ethnic group") {
+      res.redirect('/share-result-lateral-flow/v4/ethnic-background-another')
+    } else {
+      res.redirect('/share-result-lateral-flow/v4/address')
+    }
+
+  })
+
+  // Version 5 - LFD Results sharing - Ethnic group route
+  router.post('/share-result-lateral-flow/v5/action6/ethnic-group', function (req, res) {
+    let ethnicGroup = req.session.data['ethnic-group']
+
+    if (ethnicGroup == "Asian or Asian British"){
+      res.redirect('/share-result-lateral-flow/v5/ethnic-background-asian')
+    } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+      res.redirect('/share-result-lateral-flow/v5/ethnic-background-black')
+    } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+      res.redirect('/share-result-lateral-flow/v5/ethnic-background-mixed')
+    } else if (ethnicGroup == "White") {
+      res.redirect('/share-result-lateral-flow/v5/ethnic-background-white')
+    } else if (ethnicGroup == "Another ethnic group") {
+      res.redirect('/share-result-lateral-flow/v5/ethnic-background-another')
+    } else {
+      res.redirect('/share-result-lateral-flow/v5/address')
     }
 
   })
