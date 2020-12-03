@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "When did your symptoms start?" %}
+{% set pageTitle = "When did these symptoms start?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -34,7 +34,11 @@
             </legend>
             <p class="govuk-body">
               <span id="symptoms-start-date-1-hint">
+                {% if data['whos-taking-the-test'] == "myself" %}
                 If you cannot remember the exact date, enter the date you think it was roughly.
+                {% else %}
+                If they cannot remember the exact date, enter the date they think it was roughly.
+                {% endif %}
               </span>
             </p>
             <span id="symptoms-start-date-1-hint" class="govuk-hint">

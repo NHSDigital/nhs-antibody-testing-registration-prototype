@@ -30,7 +30,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
     if (person == "myself") {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/coronavirus-account')
     } else {
-      res.redirect('/lite-registration-lateral-flow-accounts/v1/site-id')
+      res.redirect('/lite-registration-lateral-flow-accounts/v1/enter-barcode')
     }
 
   })
