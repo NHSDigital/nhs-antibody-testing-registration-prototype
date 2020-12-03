@@ -1,4 +1,4 @@
-{% set pageHeading = "Who are you registering?" %}
+{% set pageHeading = "Enter an email address" %}
 {% set version = "organisational/unified-testing/v0" %}
 {% set serviceName = "Organisation testing" %}
 {% extends "includes/layout.html" %}
@@ -32,32 +32,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/{{version}}/single/name" method="get">
-        {{ govukRadios({
-            idPrefix: "cuStaff",
-            name: "cuStaff",
-            fieldset: {
-              legend: {
-                text: pageHeading,
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--xl"
-              }
-            },
-            items: [
-              {
-                value: "Staff",
-                text: "Staff"
-              },
-              {
-                value: "Resident",
-                text: "Resident"
-              },
-              {
-                value: "Patient",
-                text: "Patient"
-              }
-            ]
-          }) }}
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
+
+      <p>This email address will be used to verfy your account and will be used to sign in, we will send a confirmation email to this email address.</p>
+      
+      <form class="" action="/{{ version }}/mfa/password" method="get">
+
+        {{ govukInput({
+          label: {
+            html: 'Email address'
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "cuEmail",
+          name: "cuEmail"
+        }) }}
+
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>

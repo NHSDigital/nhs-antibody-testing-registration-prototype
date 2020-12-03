@@ -39,16 +39,38 @@
       <p>Select all individuals who require a test kit sent to your site address</p>
 
       {{ govukButton({
-        href: "/" + version + "/order-tests/site-kit-check",
+        href: "/" + version + "/order-tests/site-order-summary",
         text: "Save and continue"
       }) }}
     </div>
   </div>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-      {{ govukButton({
-        text: "Select all",
-        classes: "govuk-button--secondary"
+      {{ govukSelect({
+        id: "sort",
+        name: "sort",
+        label: {
+          text: "Select"
+        },
+        items: [
+          {
+            value: "none",
+            text: "None",
+            selected: true
+          },
+          {
+            value: "staff",
+            text: "All staff"
+          },
+          {
+            value: "residents",
+            text: "All residents"
+          },
+          {
+            value: "all",
+            text: "Select all"
+          }
+        ]
       }) }}
       <table class="govuk-table">
         <caption class="govuk-table__caption">Records 1 to 10</caption>

@@ -1,4 +1,4 @@
-{% set pageHeading = "Create a password" %}
+{% set pageHeading = "Confirm you have taken appropriate action" %}
 {% set version = "organisational/unified-testing/v0" %}
 {% set serviceName = "Organisation testing" %}
 {% extends "includes/layout.html" %}
@@ -36,29 +36,26 @@
         {{ pageHeading }}
       </h1>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dictum iaculis nunc, ac iaculis metus viverra ac. Phasellus eget dui suscipit mi aliquam interdum.</p>
-      
-      <form class="" action="/{{ version }}/done" method="get">
-
-        {{ govukInput({
-          label: {
-            html: 'New password'
-          },
-          classes: "govuk-!-width-two-thirds",
-          id: "cuEmail",
-          name: "cuEmail"
+      <form class="" action="/{{ version }}/test-results" method="get">
+        {{ govukCheckboxes({
+          idPrefix: "covidUpload",
+          name: "cuConfirm",
+          items: [
+            {
+              value: "informed",
+              text: "I confirm that the individual has been informed of their test status"
+            },
+            {
+              value: "isolate",
+              text: "I confirm that the individual has been sent home to self isolate for 14 days"
+            },
+            {
+              value: "parties",
+              text: "I confirm that the relevant parties have been informed of the test result for Track & Trace"
+            }
+          ]
         }) }}
-
-        {{ govukInput({
-          label: {
-            html: 'Confirm new password'
-          },
-          classes: "govuk-!-width-two-thirds",
-          id: "cuEmailConfirm",
-          name: "cuEmailConfirm"
-        }) }}
-
-        <input class="govuk-button" type="submit" value="Continue">
+        <input class="govuk-button" type="submit" value="Confirm">
 
       </form>
 
