@@ -1201,45 +1201,6 @@ router.post('/lite-registration-lateral-flow/v1/action6/test-place', function (r
 
 })
 
-//<<<<<<< HEAD
-// Admin portal Refer and Triage - Do you have a car route
-
-router.post('/antigen/v1/action3/security-check', function (req, res) {
-  let postcode = req.session.data['home-postcode']
-  let emailAddress = req.session.data['email']
-  let car = req.session.data['do-you-have-a-car']
-  if (car == "No" && postcode == "N0000" && emailAddress == "Yes"){
-    res.redirect('/antigen/v1/refer-and-triage/eligible-for-home-test')
-  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
-    res.redirect('/antigen/v1/refer-and-triage/eligible-for-walk-in-test')
-  } else if (car == "No" && postcode == "N0000" && emailAddress !== "Yes") {
-    res.redirect('/antigen/v1/refer-and-triage/call-us-for-test')
-  } else if (car == "Yes" && emailAddress !== "Yes" && postcode == "N0000"){
-    res.redirect('/antigen/v1/refer-and-triage/eligible-for-drive-through-test')
-  } else {
-    res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test')
-  }
-
-})
-
-// Admin portal Refer and Triage - Order home test kit route
-
-router.post('/antigen/v1/action3/order-home-test-kit', function (req, res) {
-  let postcode = req.session.data['home-postcode']
-  let emailAddress = req.session.data['email']
-  let car = req.session.data['do-you-have-a-car']
-  if (car == "No" && postcode == "N0000" && emailAddress == "Yes"){
-    res.redirect('/admin-portal/119-referral/refer-and-triage/eligible-for-home-test')
-  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
-    res.redirect('/admin-portal/119-referral/refer-and-triage/eligible-for-walk-in-test')
-  } else if (car == "Yes" && emailAddress !== "Yes" && postcode == "N0000"){
-    res.redirect('/antigen/v1/refer-and-triage/eligible-for-drive-through-test')
-  } else {
-    res.redirect('/admin-portal/119-referral/refer-and-triage/how-will-you-get-test')
-  }
-
-})
-
 // Admin portal Refer and Triage - How will you get test route
 
 router.post('/admin-portal/119-referral/refer-and-triage/action3/how-will-you-get-test', function (req, res) {
@@ -1291,13 +1252,7 @@ router.post('/admin-portal/119-referral/refer-and-triage/action3/how-will-you-ge
 })
 
 
-
-// Version 1 - Moonshot User account - Login email route
-router.post('/moonshot/v1/action7/login-email', function (req, res) {
-  let loginEmail = req.session.data['email-address']
-=======
 // Version 1 - Lite Registration lateral flow - Ethnic group route
->>>>>>> 871b0e8f098a975c43b192b95933c1c3b73813d9
 
 router.post('/lite-registration-lateral-flow/v1/action6/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
