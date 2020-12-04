@@ -14,11 +14,10 @@
       </span>
     </p>
   </div>
-  {% if data['currently-in-work-person-1'] !== "No" %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/employer-person-1">Back</a>
-  {% else %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/currently-in-work-person-1">Back</a>
-  {% endif %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -26,8 +25,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/antigen/{{version}}/action3/country-person-1" method="post">
-      
+      <form action="/antigen/{{version}}/global-registration/address-person-1" method="post">
+
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">

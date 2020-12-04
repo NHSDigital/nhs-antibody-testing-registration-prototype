@@ -1,0 +1,150 @@
+{% set version = "v4" %}
+{% set pageTitle = "What sector do you mainly work in?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antibody/r2/occupation">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antibody/r2/thank-you" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="industry-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+            <span id="industry-hint" class="govuk-hint">
+              If you cannot select your sector,  please do not continue because test kits are limited and currently only available to certain sectors.  
+              <a href="/antibody/v4/govuk/guidance-antibody-testing">Eligibility for antibody test kits</a>.
+            </span>
+
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="industry-1" name="industry" type="radio" value="Teaching and education" {{ checked("industry", "Teaching and education") }}>
+                <label class="govuk-label govuk-radios__label" for="industry-1">
+                  Teaching and education
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="industry-2" name="industry" type="radio" value="Health care" {{ checked("industry", "Health") }}>
+                <label class="govuk-label govuk-radios__label" for="industry-2">
+                  Health
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="industry-2" name="industry" type="radio" value="Social care" {{ checked("industry", "Social care") }}>
+                <label class="govuk-label govuk-radios__label" for="industry-3">
+                  Social care
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="industry-3" name="industry" type="radio" value="Transport (including storage and logistics)" {{ checked("industry", "Transport (including storage and logistics)") }} disabled="disabled">
+                <label class="govuk-label govuk-radios__label" for="industry-4">
+                  Transport
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="industry-4" name="industry" type="radio" value="Retail" {{ checked("industry", "Retail") }} disabled="disabled">
+                <label class="govuk-label govuk-radios__label" for="industry-5">
+                  Retail
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="industry-5" name="industry" type="radio" value="Hospitality" {{ checked("industry", "Hospitality") }} disabled="disabled">
+                <label class="govuk-label govuk-radios__label" for="industry-6">
+                  Hospitality
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="industry-6" name="industry" type="radio" value="Personal services (e.g. hairdressers, tatooists)" {{ checked("industry", "Personal services (e.g._hairdressers,_tatooists)") }} disabled="disabled">
+                <label class="govuk-label govuk-radios__label" for="industry-7">
+                  Hair and beauty professionals
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="industry-7" name="industry" type="radio" value="Information and communication" {{ checked("industry", "Information and communication") }} disabled="disabled">
+                <label class="govuk-label govuk-radios__label" for="industry-8">
+                  Information and communication
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="industry-8" name="industry" type="radio" value="Financial services and insurance" {{ checked("industry", "Financial services and insurance") }} disabled="disabled">
+                <label class="govuk-label govuk-radios__label" for="industry-9">
+                  Financial services and insurance
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="industry-9" name="industry" type="radio" value="Manufacturing or construction" {{ checked("industry", "Manufacturing or construction") }} disabled="disabled">
+                <label class="govuk-label govuk-radios__label" for="industry-10">
+                  Manufacturing or construction
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="industry-10" name="industry" type="radio" value="Civil service or local government" {{ checked("industry", "Civil service or local government") }} disabled="disabled">
+                <label class="govuk-label govuk-radios__label" for="industry-11">
+                  Civil services or local government
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="industry-11" name="industry" type="radio" value="Arts, entertainment or recreation" {{ checked("industry", "Arts, entertainment or recreation") }} disabled="disabled">
+                <label class="govuk-label govuk-radios__label" for="industry-12"> 
+                  Arts, entertainment or recreation
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="industry-12" name="industry" type="radio" value="Other" {{ checked("industry", "Other") }} disabled="disabled">
+                <label class="govuk-label govuk-radios__label" for="industry-13">
+                  Other
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+       <!-- <div class="govuk-warning-text govuk-!-margin-top-6">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive govuk-body">Warning</span>
+            If you cannot select your sector, do not continue. Unfortunately, we cannot give you a test kit at this time. 
+            <a href="/antibody/v4/govuk/guidance-antibody-testing">Eligibility for antibody test kits</a>.
+          </strong>
+        </div> -->
+
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Why is this information needed?
+            </span> 
+          </summary>
+          <div class="govuk-details__text">
+            Your registration details will be used to help the NHS and UK understand more about how the virus has affected different people and parts of the UK. For example, by their: 
+            <ul>
+              <li>age, gender, ethnic background </li>
+              <li>type of job and sector</li>
+              <li>region, city, town or rural area</li>
+            </ul>
+            Any information you provide is anonymised. And your personal identifiable information is kept safe and protected at all times.  
+             <br><br>
+            <a href="https://www.gov.uk/government/publications/coronavirus-covid-19-testing-privacy-information/antibody-testing-for-coronavirus-privacy-information" target="_blank"> How your data is used and kept safe</a>
+                  
+          </div>
+        </details> 
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

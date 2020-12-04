@@ -1,0 +1,74 @@
+{% set version = "v4" %}
+{% set pageTitle = "Is the person who needs a test an essential worker?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['do-you-have-symptoms'] == "Yes" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/do-you-have-symptoms">Back</a>
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/antigen/{{version}}/refer-and-triage/government-pilot" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="symptoms-hint symptoms-2-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                            {{ pageTitle }}
+                        </h1>
+                    </legend>
+                    <span id="essential-worker-hint" class="govuk-body">
+                        Essential workers include NHS staff, teachers and transport staff.<br>
+                        Check the <a target="blank" href="https://www.gov.uk/guidance/coronavirus-covid-19-getting-tested#list-of-essential-workers-and-those-prioritised-for-testing-england-only">full list of essential workers on GOV.UK.</a>
+                    </span>
+                    <div class="govuk-radios govuk-!-margin-top-5">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="essential-worker-1" name="essential-worker" type="radio" value="Yes" {{ checked("essential-worker", "Yes") }}>
+                            <label class="govuk-label govuk-radios__label" for="essential-worker-1">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="essential-worker-2" name="essential-worker" type="radio" value="No" {{ checked("essential-worker", "No") }}>
+                            <label class="govuk-label govuk-radios__label" for="essential-worker-2">
+                                No
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="essential-worker-3" name="essential-worker" type="radio" value="I dont know" {{ checked("essential-worker", "I dont know") }}>
+                            <label class="govuk-label govuk-radios__label" for="essential-worker-3">
+                                I don't know
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

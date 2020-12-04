@@ -4,6 +4,17 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
   <a class="govuk-back-link" href="/antigen/{{version}}/order-home-test-kit/confirm-email-address">Back</a>
 {% endblock %}
 
@@ -12,7 +23,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/antigen/{{version}}/order-home-test-kit/confirm-identity" method="post">
+      <form action="/antigen/{{version}}/order-home-test-kit/order-summary" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="email-code-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -22,11 +33,11 @@
           </legend>
           <span id="email-code-hint" class="govuk-body">
             We sent a confirmation code to {{ data['email-address'] }}<br><br>
-            Enter the code that we emailed you.
+            Enter the code that we emailed you
           </span>
           <div class="govuk-form-group">
-            <label class="govuk-label govuk-!-margin-top-7" for="email-code">
-                Code
+            <label class="govuk-label govuk-!-margin-top-7 govuk-!-font-size-24" for="email-code">
+                <strong>Code</strong>
             </label>
             <input class="govuk-input govuk-input--width-10" id="email-code" name="email-code" type="text" value="{{ data['email-code'] }}">
           </div>

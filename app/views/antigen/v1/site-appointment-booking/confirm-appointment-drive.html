@@ -49,7 +49,7 @@
             {% endif %}
             {% if data['test-site'] == "East London test site, 125 testing Lane, RM4 3RS" %}
             <span id="choose-site-1-hint" class="govuk-body govuk-!-margin-bottom-2">
-                South London test site<br>
+                East London test site<br>
                 125 testing Lane<br>
                 Highbury & Islington<br>
                 RM4 3RS
@@ -57,7 +57,7 @@
             {% endif %}
             {% if data['test-site'] == "West London test site, 125 testing Lane, RM4 3RS" %}
             <span id="choose-site-1-hint" class="govuk-body govuk-!-margin-bottom-2">
-                South London test site<br>
+                West London test site<br>
                 125 testing Lane<br>
                 Chelsea<br>
                 RM4 3RS
@@ -76,7 +76,8 @@
             Date and time
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['time'] }}
+            {{ data['appointment-date'] or '30 October' }} 2020<br>
+            {{ data['time'] or '9:30am to 10:00am' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/site-appointment-booking/choose-time">
@@ -91,7 +92,7 @@
             Vehicle registration
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['vehicle-registration-number'] }}
+            {{ data['vehicle-registration-number'] or 'CU57ABC' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/site-appointment-booking/vehicle-registration-number">

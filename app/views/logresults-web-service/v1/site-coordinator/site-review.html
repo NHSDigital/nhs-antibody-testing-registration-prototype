@@ -1,0 +1,52 @@
+{% set version = "v1" %}
+{% set pageTitle = "Test site" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-coordinator/site-id">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    
+    <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper govuk-!-margin-bottom-8">
+            <label class="govuk-label govuk-label--xl" for="siteID">
+            Coventry University: Department of Physics
+            </label>
+        </h1>
+        <span id="siteID-hint" class="govuk-body">
+            Approve or deny test site access for new staff.<br><br>
+            Approve or remove test site access for current staff and view if they're active or inactive.
+        </span>
+    </div>
+
+    <form lass="form" action="/logresults-web-service/{{version}}/site-coordinator/manage-site" method="post">
+      <button class="govuk-button" type="submit" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+    <form lass="form" action="/logresults-web-service/{{version}}/site-coordinator/site-id" method="post">
+      <button class="govuk-button govuk-button--secondary" type="submit" data-module="govuk-button">
+        Change Site ID
+      </button>
+    </form>
+
+
+  </div>
+</div>
+{% endblock %}

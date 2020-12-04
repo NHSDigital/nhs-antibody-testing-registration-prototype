@@ -23,7 +23,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/antigen/{{version}}/action3/choose-time-walk" method="post">
+      <form action="/antigen/{{version}}/site-appointment-booking/confirm-appointment-walk" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="time-1-hint time-2-hint time-3-hint time-4-hint time-5-hint time-6-hint time-7-hint time-8-hint time-9-hint time-10-hint">
@@ -37,7 +37,8 @@
                 Heathrow airport test site<br>
                 125 testing Lane<br>
                 Highbury & Islington<br>
-                RM4 3RS
+                RM4 3RS<br>
+              <!-- <strong>0.5 miles</strong> away (by road) 22 mins in current traffic -->
             </span>
             {% endif %}
             {% if data['test-site'] == "South London test site, 125 Sun road, RM 3RS" %}
@@ -45,23 +46,26 @@
                 South London test site<br>
                 125 Sun road<br>
                 Edgware<br>
-                RM4 3RS
+                RM4 3RS<br>
+              <!-- <strong>8 miles away</strong> (by road) 40 mins in current traffic -->
             </span>
             {% endif %}
             {% if data['test-site'] == "East London test site, 125 testing Lane, RM4 3RS" %}
             <span id="time-9-hint" class="govuk-body govuk-!-margin-bottom-2">
-                South London test site<br>
+                East London test site<br>
                 125 testing Lane<br>
                 Highbury & Islington<br>
-                RM4 3RS
+                RM4 3RS<br>
+              <!-- <strong>2 miles away</strong> (by road) 8 mins in current traffic -->
             </span>
             {% endif %}
             {% if data['test-site'] == "West London test site, 125 testing Lane, RM4 3RS" %}
             <span id="time-10-hint" class="govuk-body govuk-!-margin-bottom-2">
-                South London test site<br>
-                125 testing Lane<br>
-                Chelsea<br>
-                RM4 3RS
+                West London test site<br>
+                125 testing Lane,
+                Chelsea,
+                RM4 3RS<br>
+              <!-- <strong>5 miles away</strong> (by road) 39 mins in current traffic -->
             </span>
             {% endif %}
 
@@ -83,84 +87,45 @@
               <li><span id="time-7-hint" class="govuk-body">you should not expect to be at the site for any more than an hour</span></li>
             </ul>
 
-            <p class="govuk-body"><strong>Friday 16th March</strong></p>
+            <p class="govuk-body"><strong>Friday 16 October</strong></p>
 
             <div class="govuk-radios">
-              <!-- <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="time-1" name="time" type="radio" value="16th Mar: 8am to 9am" {{ checked("time", "16th Mar:8am to 9am") }}>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="time-1" name="time" type="radio" value="8:30am to 9:00am" {{ checked("time", "8:30am to 9:00am") }}>
                 <label class="govuk-label govuk-radios__label" for="time-1">
-                    8am to 9am
+                    8:30am to 9:00am
                 </label>
               </div>
               <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="time-2" name="time" type="radio" value="16th Mar: 9am to 10am" {{ checked("time", "16th Mar: 9am to 10am") }}>
+                <input class="govuk-radios__input" id="time-2" name="time" type="radio" value="9:00am to 9:30am" {{ checked("time", "9:00am to 9:30am") }}>
                 <label class="govuk-label govuk-radios__label" for="time-2">
-                    9am to 10am
+                    9:00am to 9:30am
                 </label>
-              </div> -->
+              </div>
               <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="time-3" name="time" type="radio" value="16th March: 10am to 11am" {{ checked("time", "16th March: 10am to 11am") }}>
+                <input class="govuk-radios__input" id="time-3" name="time" type="radio" value="10:00am to 10:30am" {{ checked("time", "10:00am to 10:30am") }}>
                 <label class="govuk-label govuk-radios__label" for="time-3">
-                    10am to 11am
+                    10:00am to 10:30am
                 </label>
               </div>
-              <!-- <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="time-4" name="time" type="radio" value="16th Mar: 11am to 12pm" {{ checked("time", "16th Mar: 11am to 12pm") }}>
-                <label class="govuk-label govuk-radios__label" for="time-4">
-                    11am to 12pm
-                </label>
-              </div> -->
               <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="time-5" name="time" type="radio" value="16th March: 1pm to 2pm" {{ checked("time", "16th March: 1pm to 2pm") }}>
+                <input class="govuk-radios__input" id="time-5" name="time" type="radio" value="1:30pm to 2:00pm" {{ checked("time", "1:30pm to 2:00pm") }}>
                 <label class="govuk-label govuk-radios__label" for="time-5">
-                  1pm to 2pm
+                  1:30pm to 2:00pm
                 </label>
               </div>
-              <!-- <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="time-6" name="time" type="radio" value="16th Mar: 4pm to 5pm" {{ checked("time", "16th Mar: 4pm to 5pm") }}>
-                <label class="govuk-label govuk-radios__label" for="time-6">
-                  4pm to 5pm
-                </label>
-              </div> -->
-              <!-- <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="time-7" name="time" type="radio" value="16th Mar: 5pm to 6pm" {{ checked("time", "16th Mar: 5pm to 6pm") }}>
-                <label class="govuk-label govuk-radios__label" for="time-7">
-                  5pm to 6pm
-                </label>
-              </div> -->
-              <!-- <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="time-8" name="time" type="radio" value="16th Mar: 6pm to 7pm" {{ checked("time", "16th Mar: 6pm to 7pm") }}>
-                <label class="govuk-label govuk-radios__label" for="time-8">
-                  6pm to 7pm
-                </label>
-              </div> -->
-              <!-- <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="time-9" name="time" type="radio" value="16th March: 7pm to 8pm" {{ checked("time", "16th March: 7pm to 8pm") }}>
-                <label class="govuk-label govuk-radios__label" for="time-9">
-                  7pm to 8pm
-                </label>
-              </div> -->
-              <!-- <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="time-10" name="time" type="radio" value="16th Mar: 9pm to 10pm" {{ checked("time", "16th Mar: 9pm to 10pm") }}>
-                <label class="govuk-label govuk-radios__label" for="time-10">
-                  9pm to 10pm
-                </label>
-              </div> -->
-              <!-- <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="time-11" name="time" type="radio" value="16th Mar: 10pm to 11pm" {{ checked("time", "16th Mar: 10pm to 11pm") }}>
-                <label class="govuk-label govuk-radios__label" for="time-11">
-                  10pm to 11pm
-                </label>
-              </div> -->
-              <!-- <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="time-12" name="time" type="radio" value="16th March: 11pm to 12am" {{ checked("time", "16th March: 11pm to 12am") }}>
-                <label class="govuk-label govuk-radios__label" for="time-12">
-                  11pm to 12am
-                </label>
-              </div> -->
             </div>
             <p class="govuk-!-margin-top-4"><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/choose-time-walk">See next day</a></p>
           </fieldset>
+        </div>
+
+        <div class="govuk-radios" style="display: none;">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="appointment-date" name="appointment-date" type="radio" value="16 October" checked >
+            <label class="govuk-label govuk-radios__label" for="appointment-date">
+                16 October
+            </label>
+          </div>
         </div>
 
         <button class="govuk-button govuk-!-margin-right-6" data-module="govuk-button">Continue</button>

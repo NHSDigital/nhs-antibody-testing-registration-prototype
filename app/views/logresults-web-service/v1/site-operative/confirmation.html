@@ -1,0 +1,39 @@
+{% set version = "v1" %}
+{% set pageTitle = "Test result logged" %}
+
+{% extends "includes/layout.html" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-panel govuk-panel--confirmation govuk-!-padding-8 govuk-!-margin-bottom-8">
+        <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
+        <p class="govuk-body govuk-!-font-size-27 govuk-!-margin-bottom-1" style="color: #ffffff">{{ data['kit-barcode-reference-1'] or 'CHE00000501' }}</p>
+        <p class="govuk-body govuk-!-font-size-27" style="color: #ffffff">{{ data['test-result'] or 'Negative'}}</p>
+      </div>
+
+        <form action="/logresults-web-service/{{version}}/site-operative/scan-barcode" method="post">
+            <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
+                <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-result" name="test-result" type="radio" value="" checked>
+                </div>
+            </div>
+            <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value="" style="display: none;">
+            <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value="" style="display: none;">
+            <button class="govuk-button" data-module="govuk-button">Enter another result</button>
+        </form>
+        <form action="/logresults-web-service/{{version}}/site-operative/request-approved" method="post">
+            <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
+                <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-result" name="test-result" type="radio" value="" checked>
+                </div>
+            </div>
+            <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value="" style="display: none;">
+            <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value="" style="display: none;">
+            <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Exit</button>
+        </form>
+      
+    </div>
+  </div>
+{% endblock %}

@@ -4,25 +4,29 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div> 
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/nhs-number-known">Back</a>
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
 
-    <form action="/antigen/{{version}}/global-registration/people-confirmed" method="post" novalidate>
+      <form action="/antigen/{{version}}/global-registration/people-confirmed" method="post" novalidate>
 
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
 
@@ -70,6 +74,7 @@
             </a>
           </dd>
         </div>
+        {% if data['do-you-have-symptoms'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Date of onset
@@ -80,11 +85,11 @@
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">
               Change
-              <span class="govuk-visually-hidden">date of onset</span>
+              <span class="govuk-visually-hidden">date symptoms started</span>
             </a>
           </dd>
         </div>
-
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Mobile
@@ -113,8 +118,6 @@
             </a>
           </dd>
         </div>
-
-
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Email
@@ -129,7 +132,6 @@
             </a>
           </dd>
         </div>
-
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Gender
@@ -158,7 +160,6 @@
             </a>
           </dd>
         </div>
-        {% if data['ethnic-group'] !== "Prefer not to say" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Ethnic background
@@ -173,13 +174,12 @@
             </a>
           </dd>
         </div>
-        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Currently in work?
+            Travels to nursery, work or place of education
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['currently-in-work'] or 'Yes and I work from home' }}
+            {{ data['currently-in-work'] or 'Prefer not to say / not applicable' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/currently-in-work">
@@ -188,7 +188,7 @@
             </a>
           </dd>
         </div>
-        {% if data['currently-in-work'] !== "No" %}
+        {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Area of work
@@ -225,9 +225,39 @@
             {{ data['employer'] or 'Prefer not to say'}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/employer">
+            <a href="/antigen/{{version}}/global-registration/occupation">
               Change
               <span class="govuk-visually-hidden">employer</span>
+            </a>
+          </dd>
+        </div>
+        {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Nursery, school or college
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['study-grade'] or 'University' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/study-grade">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Institution details
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['name'] or "King's university" }}<br>
+            {{ data['town'] or "London" }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/institution">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
             </a>
           </dd>
         </div>
@@ -246,20 +276,39 @@
             </a>
           </dd>
         </div>
+        {% if data['country'] == "Northern Ireland" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Postcode
+            First line of address and postcode
           </dt>
           <dd class="govuk-summary-list__value">
+            {{ data['address'] or 'Chancery Lane' }}<br>
             {{ data['home-postcode'] or 'LS1 3BE' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/postcode">
+            <a href="/antigen/{{version}}/global-registration/address">
               Change
-              <span class="govuk-visually-hidden">postcode</span>
+              <span class="govuk-visually-hidden">first line of address and postcode</span>
             </a>
           </dd>
         </div>
+        {% else %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            First line of address and postcode
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['address'] or '24 Green Lane' }}<br>
+            {{ data['home-postcode'] or 'LS1 3BE' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/address">
+              Change
+              <span class="govuk-visually-hidden">first line of address and postcode</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             NHS number known
@@ -290,18 +339,95 @@
           </dd>
         </div>
         {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Coronavirus vaccine received
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['vaccine'] or 'No' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/coronavirus-vaccine">
+              Change
+              <span class="govuk-visually-hidden">coronavirus vaccine received</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['vaccine'] != "No" %}
+
+          {% if data['vaccine-date'] == "More than 14 days ago" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Most recent vaccine dose
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
+              January {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
+              February {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
+              March {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
+              April {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
+              May {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
+              June {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
+              July {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
+              August {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
+              September {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "10" %}
+              October {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "11" %}
+              November {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "12" %}
+              December {{ data['vaccine-year'] or '2020' }}
+              {% else %}
+              {{ data['vaccine-month'] or 'December' }} {{ data['vaccine-year'] or '2020' }}
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/coronavirus-vaccine-date">
+                Change
+                <span class="govuk-visually-hidden">coronavirus vaccine</span>
+              </a>
+            </dd>
+          </div>
+          {% else %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Most recent vaccine dose
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['vaccine-date'] or 'Less than 7 days ago' }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/coronavirus-vaccine-date">
+                Change
+                <span class="govuk-visually-hidden">coronavirus vaccine</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+
+        {% endif %}
       </dl>
 
 
 
-      <input type="hidden" name="answers-checked" value="true">
+        <input type="hidden" name="answers-checked" value="true">
 
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Save and continue
-      </button>
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
 
-    </form>
+      </form>
 
-  </div>
+    </div>
+
+
   </div>
 {% endblock %}

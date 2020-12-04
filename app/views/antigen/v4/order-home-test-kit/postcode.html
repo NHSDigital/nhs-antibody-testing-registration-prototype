@@ -1,0 +1,52 @@
+{% set version = "v4" %}
+{% set pageTitle = "What is your home address?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/order-home-test-kit/">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/order-home-test-kit/home-address" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="home-address-postcode-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="home-address-postcode-hint" class="govuk-hint govuk-!-margin-bottom-6">
+            We need to know your home address so we can confirm the identity of the person needing the test.
+          </span>
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-!-font-size-24" for="home-postcode">
+                <strong>Postcode</strong>
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Find address</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

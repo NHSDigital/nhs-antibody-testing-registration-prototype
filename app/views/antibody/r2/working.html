@@ -1,0 +1,91 @@
+{% set version = "v6" %}
+{% set pageTitle = "Are you currently in work?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {% if data['ethnic-group'] === "Black, African, Black British or Caribbean" %}
+    <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/ethnic-background-black">Back</a>
+  {% elif data['ethnic-group'] === "Asian or Asian British" %}
+    <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/ethnic-background-asian">Back</a>
+  {% elif data['ethnic-group'] === "Mixed or multiple ethnic groups" %}
+    <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/ethnic-background-mixed">Back</a>
+  {% elif data['ethnic-group'] === "White" %}
+    <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/ethnic-background-white">Back</a>
+  {% elif data['ethnic-group'] === "Another ethnic group" %}
+    <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/ethnic-background-another">Back</a>
+  {% else %}
+    <a class="govuk-back-link" href="/antibody/r2/index">Back</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antibody/r2/occupation" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="currently-in-work-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="currently-in-work-hint" class="govuk-hint">
+              Answer "yes" if you're furloughed or on a leave of absence (like holiday, maternity leave or sick leave).
+            </span>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="currently-in-work-1" name="currently-in-work" type="radio" value="Yes and I work from home" {{ checked("currently-in-work", "Yes and I work from home") }}>
+                <label class="govuk-label govuk-radios__label" for="currently-in-work-1">
+                  Yes and I work from home
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="currently-in-work-2" name="currently-in-work" type="radio" value="Yes and I travel to work" {{ checked("currently-in-work", "Yes and I travel to work") }}>
+                <label class="govuk-label govuk-radios__label" for="currently-in-work-2">
+                  Yes and I travel to work
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="currently-in-work-3" name="currently-in-work" type="radio" value="No" {{ checked("currently-in-work", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="currently-in-work-3">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Why is this information needed?
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            Your registration details will be used to help the NHS and UK understand more about how the virus has affected different people and parts of the UK. For example, by their: 
+            <ul>
+              <li>age, gender, ethnic background </li>
+              <li>type of job and sector</li>
+              <li>region, city, town or rural area</li>
+            </ul>
+            Any information you provide is anonymised. And your personal identifiable information is kept safe and protected at all times.  
+             <br><br>
+            <a href="https://www.gov.uk/government/publications/coronavirus-covid-19-testing-privacy-information/antibody-testing-for-coronavirus-privacy-information" target="_blank"> How your data is used and kept safe</a>
+                  
+          </div>
+        </details>
+        
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+<!--        <p><a class="govuk-link" href="/antibody/{{version}}/refer-and-triage/landline-number">Prefer not to say</a></p>-->
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

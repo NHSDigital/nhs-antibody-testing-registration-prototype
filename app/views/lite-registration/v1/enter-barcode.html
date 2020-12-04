@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Enter your unique test kit barcode or Randox reference" %}
+{% set pageTitle = "Enter the unique test kit barcode" %}
 
 {% extends "includes/layout.html" %}
 
@@ -22,9 +22,9 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-  
-      <form action="/lite-registration/{{version}}/test-date" method="post">
-  
+
+      <form action="/lite-registration/{{version}}/test-place" method="post">
+
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -33,12 +33,12 @@
               </h1>
             </legend>
             <span id="enter-barcode-number-hint" class="govuk-body">
-              There are 2 types of home test kit, one of which is branded Randox.<br><br>
+              Use the camera on your phone or computer to scan the test kit barcode.<br><br>
+              Or you can also manually enter the 11 character reference below the barcode.<br><br>
+              If you're using a home test kit, you'll find the identical barcodes inside your home test kit, either find them attached to the plastic vial, biohazard bag and return box or loose for you to stick on yourself (please read instructions).<br><br>
+              These are different from your pre-paid Royal Mail return package barcode on your box.<br><br>
+
               If you have a Randox test kit, manually enter the 9 or 10 character unique reference number (URN) on the label.<br><br>
-              If your test is not Randox, use the camera on your phone or computer to scan one of the identical barcodes inside your test kit. You'll either find them attached to the items in your kit or loose for you to stick on yourself (please read instructions).<br><br>
-              If you have a home test kit, these are different from your pre-paid Royal Mail return package barcode on your box.<br><br>
-              You can also manually enter the 11 character reference below the barcode.<br><br>
-              
             </span>
 
             <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
@@ -66,7 +66,7 @@
             <a href="/lite-registration/{{version}}/scan-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
               Scan my barcode
             </a>
-  
+
             <div class="govuk-form-group">
               <label class="govuk-label" for="kit-barcode-reference-1">
                 Test kit barcode reference or URN
@@ -80,14 +80,14 @@
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }}>
             </div>
-            
+
           </fieldset>
         </div>
-  
+
         <button class="govuk-button" data-module="govuk-button">Continue</button>
-  
+
       </form>
-  
+
     </div>
   </div>
 

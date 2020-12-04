@@ -1,0 +1,39 @@
+{% set version = "v1" %}
+{% set serviceName = "Elective Care" %}
+{% set pageTitle = "Changes to the way you sign in" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+
+    <p class="govuk-body">We've added an extra step for your security. From now on, we'll send a code to your mobile phone each time you sign in.</p>
+
+    {{ govukButton({
+        href: "/elective-care-testing/" + version + "/mfa-results-research/3-enter-mobile",
+        text: "Continue"
+    }) }}
+
+
+  </div>
+</div>
+
+{% endblock %}
