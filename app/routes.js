@@ -1201,6 +1201,96 @@ router.post('/lite-registration-lateral-flow/v1/action6/test-place', function (r
 
 })
 
+
+// Admin portal Refer and Triage - Do you have a car route
+
+router.post('/antigen/v1/action3/security-check', function (req, res) {
+  let postcode = req.session.data['home-postcode']
+  let emailAddress = req.session.data['email']
+  let car = req.session.data['do-you-have-a-car']
+  if (car == "No" && postcode == "N0000" && emailAddress == "Yes"){
+    res.redirect('/antigen/v1/refer-and-triage/eligible-for-home-test')
+  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
+    res.redirect('/antigen/v1/refer-and-triage/eligible-for-walk-in-test')
+  } else if (car == "No" && postcode == "N0000" && emailAddress !== "Yes") {
+    res.redirect('/antigen/v1/refer-and-triage/call-us-for-test')
+  } else if (car == "Yes" && emailAddress !== "Yes" && postcode == "N0000"){
+    res.redirect('/antigen/v1/refer-and-triage/eligible-for-drive-through-test')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/how-will-you-get-test')
+  }
+
+})
+
+// Admin portal Refer and Triage - Order home test kit route
+
+router.post('/antigen/v1/action3/order-home-test-kit', function (req, res) {
+  let postcode = req.session.data['home-postcode']
+  let emailAddress = req.session.data['email']
+  let car = req.session.data['do-you-have-a-car']
+  if (car == "No" && postcode == "N0000" && emailAddress == "Yes"){
+    res.redirect('/admin-portal/119-referral/refer-and-triage/eligible-for-home-test')
+  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
+    res.redirect('/admin-portal/119-referral/refer-and-triage/eligible-for-walk-in-test')
+  } else if (car == "Yes" && emailAddress !== "Yes" && postcode == "N0000"){
+    res.redirect('/antigen/v1/refer-and-triage/eligible-for-drive-through-test')
+  } else {
+    res.redirect('/admin-portal/119-referral/refer-and-triage/how-will-you-get-test')
+  }
+
+})
+
+// Admin portal Refer and Triage - How will you get test route
+
+router.post('/admin-portal/119-referral/refer-and-triage/action3/how-will-you-get-test', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "drive-through"){
+    res.redirect('/admin-portal/119-referral/refer-and-triage/visiting-drive-through')
+  } else if (wayToTest == "walk-in") {
+    res.redirect('/admin-portal/119-referral/refer-and-triage/visiting-walk-through')
+  } else if (wayToTest == "home testing") {
+    res.redirect('/admin-portal/119-referral/refer-and-triage/order-home-test-kit')
+  }
+
+})
+
+// Admin portal Refer and Triage - How will you get test no car route
+
+router.post('/admin-portal/119-referral/refer-and-triage/action3/how-will-you-get-test-no-car', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "walk-in"){
+    res.redirect('/admin-portal/119-referral/refer-and-triage/visiting-walk-through')
+  } else {
+    res.redirect('/admin-portal/119-referral/refer-and-triage/order-home-test-kit')
+  }
+
+})
+
+// Admin portal Refer and Triage - How will you get test no email route
+
+router.post('/admin-portal/119-referral/refer-and-triage/action3/how-will-you-get-test-no-email', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "drive-through"){
+    res.redirect('/admin-portal/119-referral/refer-and-triage/visiting-drive-through')
+  } else {
+    res.redirect('/admin-portal/119-referral/refer-and-triage/visiting-walk-through')
+  }
+
+})
+
+// Admin portal Refer and Triage - How will you get test wrong postcode route
+
+router.post('/admin-portal/119-referral/refer-and-triage/action3/how-will-you-get-test-wrong-postcode', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "drive-through"){
+    res.redirect('/admin-portal/119-referral/refer-and-triage/visiting-drive-through')
+  } else {
+    res.redirect('/admin-portal/119-referral/refer-and-triage/order-home-test-kit')
+  }
+
+})
+
+
 // Version 1 - Lite Registration lateral flow - Ethnic group route
 
 router.post('/lite-registration-lateral-flow/v1/action6/ethnic-group', function (req, res) {
