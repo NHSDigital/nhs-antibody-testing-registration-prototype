@@ -1201,7 +1201,7 @@ router.post('/lite-registration-lateral-flow/v1/action6/test-place', function (r
 
 })
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 // Admin portal Refer and Triage - Do you have a car route
 
 router.post('/antigen/v1/action3/security-check', function (req, res) {
