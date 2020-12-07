@@ -26,18 +26,24 @@
       <div class="govuk-form-group">
         <h1 class="govuk-label-wrapper govuk-!-margin-bottom-8">
           <label class="govuk-label govuk-label--xl" for="occupation">
-            {% if data['whos-taking-the-test'] == "myself" %}
-            {{ pageTitle }}
-            {% else %}
+            {% if data['whos-taking-the-test'] == "someone-else" %}
             What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s occupation?
+            {% else %}
+            {{ pageTitle }}
             {% endif %}
           </label>
         </h1>
         <span id="occupation-hint" class="govuk-body">
           This helps us track which occupations are more at risk from coronavirus.<br><br>
-          Start entering an occupation below and then choose from the options provided.<br><br>
-          If you cannot see the right occupation, try typing a different keyword or use a more general description.<br><br>
-          If you still cannot see the occupation, select ‘I cannot find the correct occupation’.<br><br>
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          Start entering their occupation below and then choose from the options provided.<br><br>
+          If you cannot see their occupation, try typing a different keyword or use a more general description.<br><br>
+          If you still cannot see their occupation, select ‘I cannot find the correct occupation’.<br><br>
+          {% else %}
+          Start entering your occupation below and then choose from the options provided.<br><br>
+          If you cannot see your occupation, try typing a different keyword or use a more general description.<br><br>
+          If you still cannot see your occupation, select ‘I cannot find the correct occupation’.<br><br>
+          {% endif %}
           Occupation
         </span>
         <div id="occupation-container" class="govuk-!-margin-top-1"></div>

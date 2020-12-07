@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Where will you get your test?" %}
+{% set pageTitle = "Where are you taking your test?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -33,19 +33,23 @@
           <fieldset class="govuk-fieldset" aria-describedby="reason-for-test-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Where are they taking their test?
+                {% else %}
                 {{ pageTitle }}
+                {% endif %}
               </h1>
             </legend>
 
             <div class="govuk-radios govuk-!-margin-top-5 govuk-!-bottom-top-5">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-place-1" name="test-place" type="radio" value="site" {{ checked("test-place", "site") }}>
+                <input class="govuk-radios__input" id="test-place-1" name="test-place" type="radio" value="At a test site" {{ checked("test-place", "At a test site") }}>
                 <label class="govuk-label govuk-radios__label" for="test-place-1">
                   At a test site
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="home" {{ checked("test-place", "home") }}>
+                <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="At home" {{ checked("test-place", "At home") }}>
                 <label class="govuk-label govuk-radios__label" for="test-place-2">
                   At home
                 </label>

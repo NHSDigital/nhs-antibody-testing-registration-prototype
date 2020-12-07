@@ -29,15 +29,16 @@
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        {% if data['kit-barcode-reference-1'] == 'CHE00000501' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Test kit barcode reference
+            Test location
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['kit-barcode-reference-1'] or 'CHE00000501' }}
+            {{ data['test-place'] or 'At a test site' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/enter-barcode">
+            <a href="/litereg-accounts/{{version}}/site-id">
               Change
               <span class="govuk-visually-hidden">test site</span>
             </a>
@@ -48,10 +49,33 @@
             Test site
           </dt>
           <dd class="govuk-summary-list__value">
-            Aberdeen (Aberdeen Airport)
+            {% if data['site-id'] != undefined or data['site-id'] != "" %}
+              {% if data['site-id'] == "LEA4" %}
+              Leicester Students' Union
+              {% else %}
+              Chessington MTU
+              {% endif %}
+            {% else %}
+            {{ data['test-site'] or 'Sandwell (Sandwell General Hospital)' }}
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/litereg-accounts/{{version}}/site-id">
+              Change
+              <span class="govuk-visually-hidden">test site</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test kit barcode reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['kit-barcode-reference-1'] or 'CHE00000501' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/enter-barcode">
               Change
               <span class="govuk-visually-hidden">test site</span>
             </a>
@@ -293,10 +317,10 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            {% if data['whos-taking-the-test'] == "myself" %}
-            Do you have any symptoms?
-            {% else %}
+            {% if data['whos-taking-the-test'] == "someone-else" %}
             Do they have any symptoms?
+            {% else %}
+            Do you have any symptoms?
             {% endif %}
           </dt>
           <dd class="govuk-summary-list__value">

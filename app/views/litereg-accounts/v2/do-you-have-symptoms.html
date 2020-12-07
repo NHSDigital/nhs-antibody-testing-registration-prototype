@@ -31,15 +31,17 @@
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="symptoms-hint symptoms-2-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        {% if data['whos-taking-the-test'] == "myself" %}
-                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ pageTitle }}</h1>
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                        {% if data['whos-taking-the-test'] == "someone-else" %}
+                        Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} currently have coronavirus symptoms?
                         {% else %}
-                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} currently have coronavirus symptoms?</h1>
+                        {{ pageTitle }}
                         {% endif %}
+                        </h1>
                     </legend>
                     <span id="symptoms-hint" class="govuk-body">
                         This will help us track and trace the spread of coronavirus.<br><br>
-                        The main coronavirus symptoms are:
+                        The main symptoms of coronavirus are:
                     </span>
                     <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
                         <li>a high temperature</li>
@@ -53,20 +55,20 @@
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="do-you-have-symptoms-1" name="do-you-have-symptoms" type="radio" value="Yes" {{ checked("do-you-have-symptoms", "Yes") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1">
-                                {% if data['whos-taking-the-test'] == "myself" %}
-                                Yes, I currently have at least one of these symptoms
-                                {% else %}
+                                {% if data['whos-taking-the-test'] == "someone-else" %}
                                 Yes, they currently have at least one of these symptoms
+                                {% else %}
+                                Yes, I currently have at least one of these symptoms
                                 {% endif %}
                             </label>
                         </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="do-you-have-symptoms-2" name="do-you-have-symptoms" type="radio" value="No" {{ checked("do-you-have-symptoms", "No") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2">
-                                {% if data['whos-taking-the-test'] == "myself" %}
-                                No, I currently do not have any of these symptoms
-                                {% else %}
+                                {% if data['whos-taking-the-test'] == "someone-else" %}
                                 No, they currently do not have any of these symptoms
+                                {% else %}
+                                No, I currently do not have any of these symptoms
                                 {% endif %}
                             </label>
                         </div>

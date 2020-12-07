@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "What's the test site's ID ?" %}
+{% set pageTitle = "What's the test site's postcode ?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -25,7 +25,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form lass="form" action="/litereg-accounts/{{version}}/site-confirmation" method="post">
+    <form lass="form" action="/litereg-accounts/{{version}}/select-site" method="post">
       <div class="govuk-form-group">
         <h1 class="govuk-label-wrapper govuk-!-margin-bottom-8">
           <label class="govuk-label govuk-label--xl" for="siteID">
@@ -33,26 +33,23 @@
           </label>
         </h1>
         <span id="siteID-hint" class="govuk-body">
-          Enter your test site ID. It will be either 3 or 4 characters.<br><br>
-          If you're still at the test site and cannot find the test site ID, ask a member of staff.<br><br>
-          If you're registering after leaving the site, staff should have told you to take a photo of the test site ID or write it down.<br><br>
+          Enter the postcode of the test site that you visited.<br><br>
+          If you do not know it, try entering a post code near the test site.<br><br>
+          You can then choose from a list of test sites.<br><br>
         </span>
         
         <div class="govuk-form-group govuk-!-margin-top-5">
-          <label class="govuk-label" for="site-id">
-            Test site ID<br>
-            <span class="govuk-hint">For example, 'CHE' or 'LEA4'</span>
+          <label class="govuk-label" for="site-postcode">
+            Postcode
           </label>
-          <input class="govuk-input govuk-input--width-10" id="site-id" name="site-id" type="text" value="{{ data['site-id'] }}">
+          <input class="govuk-input govuk-input--width-10" id="site-postcode" name="site-postcode" type="text" value="{{ data['site-postcode'] }}">
         </div>
       </div>
 
       <button class="govuk-button" type="submit" data-module="govuk-button">
-        Continue
+        Find the test site
       </button>
     </form>
-
-    <p class="govuk-body"><a href="/litereg-accounts/{{version}}/site-postcode">I do not know the test site ID</a></p>
 
   </div>
 </div>

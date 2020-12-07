@@ -28,11 +28,13 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="study-grade-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                {% if data['whos-taking-the-test'] == "myself" %}
-                <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Which place does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} attend?
                 {% else %}
-                <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Which place does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} attend?</h1>
+                {{ pageTitle }}
                 {% endif %}
+              </h1>
             </legend>
             <div class="govuk-radios govuk-!-margin-top-5">
               <div class="govuk-radios__item">

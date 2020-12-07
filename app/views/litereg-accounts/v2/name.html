@@ -27,11 +27,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if data['whos-taking-the-test'] == "myself" %}
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      What's the name of the person taking the test?
       {% else %}
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">What's the name of the person taking the test?</h1>
+      {{ pageTitle }}
       {% endif %}
+      </h1>
 
       <form action="/litereg-accounts/{{version}}/date-of-birth" method="post">
 

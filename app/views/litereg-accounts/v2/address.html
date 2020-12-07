@@ -27,17 +27,19 @@
 
         <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            {% if data['whos-taking-the-test'] == "myself" %}
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ pageTitle }}</h1>
-            {% else %}
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">What's the first line of {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s address and home postcode?</h1>
-            {% endif %}
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              What's the first line of {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s address and home postcode?
+              {% else %}
+              {{ pageTitle }}
+              {% endif %}
+            </h1>
           </legend>
           <span id="post-code-hint" class="govuk-body">
-            {% if data['whos-taking-the-test'] == "myself" %}
-            Enter the first line of your address and home postcode (ideally the one you gave your GP).
-            {% else %}
+            {% if data['whos-taking-the-test'] == "someone-else" %}
             Enter the first line of their address and home postcode (ideally the one they gave their GP).
+            {% else %}
+            Enter the first line of your address and home postcode (ideally the one you gave your GP).
             {% endif %}
           </span>
           <div class="govuk-form-group govuk-!-margin-top-5">

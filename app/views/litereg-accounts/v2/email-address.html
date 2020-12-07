@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Do you have an email address where you can get the test results?" %}
+{% set pageTitle = "Do you have an email address?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -27,37 +27,39 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              {% if data['whos-taking-the-test'] == "myself" %}
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ pageTitle }}</h1>
-              {% else %}
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have an email address where they can get the test results?</h1>
-              {% endif %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have an email address?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
             </legend>
             <span id="email-address-hint" class="govuk-body">
-              {% if data['whos-taking-the-test'] == "myself" %}
-              If you have one, we’ll email your registration confirmation and test results to this email address.
-              {% else %}
+              {% if data['whos-taking-the-test'] == "someone-else" %}
               If they have one, we’ll email their registration confirmation and test results to this email address.
+              {% else %}
+              If you have one, we’ll email your registration confirmation and test results to this email address.
               {% endif %}
             </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="email-1">
-                  {% if data['whos-taking-the-test'] == "myself" %}
-                  Yes, I have an email address
-                  {% else %}
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
                   Yes, they have an email address
+                  {% else %}
+                  Yes, I have an email address
                   {% endif %}
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="email-address">
-                    {% if data['whos-taking-the-test'] == "myself" %}
-                    Make sure you’re happy for your test results to go to this email address. Do not use a work or shared email address unless you’re comfortable with others seeing your results.
-                    {% else %}
+                    {% if data['whos-taking-the-test'] == "someone-else" %}
                     Make sure they’re happy for their test results to go to this email address. Do not use a work or shared email address unless they’re comfortable with others seeing their results.
+                    {% else %}
+                    Make sure you’re happy for your test results to go to this email address. Do not use a work or shared email address unless you’re comfortable with others seeing your results.
                     {% endif %}
                     <br><br>
                     Email address
@@ -68,10 +70,10 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="No" {{ checked("email", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="email-2">
-                  {% if data['whos-taking-the-test'] == "myself" %}
-                  No, I do not have an email address
-                  {% else %}
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
                   No, they do not have an email address
+                  {% else %}
+                  No, I do not have an email address
                   {% endif %}
                 </label>
               </div>
