@@ -1,3 +1,10 @@
+{% set staff %}
+  {% if data.cuStaff %}
+    {{ data.cuStaff }} 
+    {% else %}
+      Staff
+  {% endif %}
+{% endset %}
 {% set fullname %}
   {% if data.cuFirstName and data.cuLastName %}
     {{ data.cuFirstName }} {{ data.cuLastName }}
@@ -26,7 +33,7 @@
   {% endif %}
 {% endset %}
 {% set pageHeading = "Check your answers" %}
- {% set version = "organisational/register/v4" %}
+ {% set version = "organisational/register/enhanced" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
@@ -61,9 +68,28 @@
 
       <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
+      <h2 class="govuk-heading-m">Personal details</h2>
+      
       {{ govukSummaryList({
         rows: [
         {
+          key: {
+            text: "Registration type"
+          },
+          value: {
+            text: staff
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "Name"
+              }
+            ]
+            }
+          },
+          {
           key: {
             text: "Name"
           },
@@ -78,23 +104,6 @@
                 visuallyHiddenText: "Name"
               }
             ]
-            }
-          },
-          {
-            key: {
-              text: "Test date and time"
-            },
-            value: {
-              text: timeDate
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Test date and time"
-                }
-              ]
             }
           },
           {
@@ -127,6 +136,25 @@
                   href: "#",
                   text: "Change",
                   visuallyHiddenText: "Gender"
+                }
+              ]
+            }
+          },
+
+
+          {
+            key: {
+              text: "NHS number"
+            },
+            value: {
+              text: data.cuNHSnumber | placeholder("485 777 3456")
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "NHS number known"
                 }
               ]
             }
@@ -164,99 +192,72 @@
                 }
               ]
             }
-          },
+          }
+        ]
+      }) }}
 
+      <h2 class="govuk-heading-m">Contact details</h2>
+      {{ govukSummaryList({
+        rows: 
+        [ 
           {
             key: {
-              text: "In work"
+              text: "Email"
             },
             value: {
-              text: data.cuInWork or "Yes, and for the last 2 weeks they've travelled to work"
+              text: data.cuEmail or "john.smith@test.com"
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "Ethnic group"
+                  visuallyHiddenText: "Email"
                 }
               ]
             }
           },
-
           {
             key: {
-              text: "Area of work"
+              text: "Mobile"
             },
             value: {
-              text: data.cuAreaWork or "Health and social care"
+              text: "None provided" if data.cuMobileQuestion == "No" else data.cuMobile | placeholder("07700912357")
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "Ethnic group"
+                  visuallyHiddenText: "Mobile"
                 }
               ]
             }
-          },
+          }
+        ]
+      }) }}
 
+      <h2 class="govuk-heading-m">Location details</h2>
+      {{ govukSummaryList({
+        rows: 
+        [ 
           {
             key: {
-              text: "Occupation"
+              text: "Address line 1"
             },
             value: {
-              text: "Carer"
+              text: data.cuFirstLine or "88 Lane Road"
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "Ethnic group"
+                  visuallyHiddenText: "Postcode"
                 }
               ]
             }
           },
-
-          {
-            key: {
-              text: "Employer name"
-            },
-            value: {
-              text: "Blue Castle Care"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Ethnic group"
-                }
-              ]
-            }
-          },
-
-          {
-            key: {
-              text: "Country of residence"
-            },
-            value: {
-              text: data.cuCountry | capitalize  or "England"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Country of residence"
-                }
-              ]
-            }
-          },
-
-
           {
             key: {
               text: "Postcode"
@@ -274,42 +275,105 @@
               ]
             }
           },
-
           {
             key: {
-              text: "NHS number known"
+              text: "Country of residence"
             },
             value: {
-              text: "No" if data.cuKnowNHSnumber == "no" else "Yes"
+              text: data.cuCountry | capitalize  or "England"
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "NHS number known"
+                  visuallyHiddenText: "Country of residence"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Work details</h2>
+      {{ govukSummaryList({
+        rows: 
+        [ 
+          {
+            key: {
+              text: "In work"
+            },
+            value: {
+              text: data.cuInWork or "Yes, and for the last 2 weeks they've travelled to work"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
                 }
               ]
             }
           },
           {
             key: {
-              text: "NHS number"
+              text: "Area of work"
             },
             value: {
-              text: data.cuNHSnumber | placeholder("485 777 3456")
+              text: data.cuAreaWork or "Health and social care"
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "NHS number known"
+                  visuallyHiddenText: "Ethnic group"
                 }
               ]
             }
-          } if data.cuKnowNHSnumber == "yes",
+          },
+          {
+            key: {
+              text: "Occupation"
+            },
+            value: {
+              text: "Carer"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Employer name"
+            },
+            value: {
+              text: "Blue Castle Care"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
 
+      <h2 class="govuk-heading-m">Symptoms details</h2>
+      {{ govukSummaryList({
+        rows: 
+        [ 
           {
             key: {
               text: "Do they have any symptoms?"
@@ -327,7 +391,6 @@
               ]
             }
           },
-
           {
             key: {
               text: "Symptoms start date"
@@ -344,41 +407,89 @@
                 }
               ]
             }
-          } if data.cuCoronavirus == "Yes",
-            {
-              key: {
-                text: "Email"
-              },
-              value: {
-                text: data.cuEmail or "john.smith@test.com"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Email"
-                  }
-                ]
-              }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Test details</h2>
+      {{ govukSummaryList({
+        rows: 
+        [ 
+          {
+            key: {
+              text: "Barcode reference"
             },
-            {
-              key: {
-                text: "Mobile"
-              },
-              value: {
-                text: "None provided" if data.cuMobileQuestion == "No" else data.cuMobile | placeholder("07700912357")
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Mobile"
-                  }
-                ]
-              }
+            value: {
+              text: "AAA12345678"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Test date and time"
+                }
+              ]
             }
+          },
+          {
+            key: {
+              text: "Test date and time"
+            },
+            value: {
+              text: timeDate
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Test date and time"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Care home pilot</h2>
+      {{ govukSummaryList({
+        rows: 
+        [ 
+          {
+            key: {
+              text: "Pilot test"
+            },
+            value: {
+              text: "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Pilot"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Barcode reference"
+            },
+            value: {
+              text: "AAA12345678"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Barcode"
+                }
+              ]
+            }
+          }
         ]
       }) }}
 

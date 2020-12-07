@@ -1,4 +1,4 @@
-{% set pageHeading = "Enter your unique test kit barcode" %}
+{% set pageHeading = "Test details" %}
  {% set version = "organisational/register/enhanced" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -29,6 +29,23 @@
 
 {% block content %}
 
+{% set anotherDate %}
+{{ govukDateInput({
+  id: "covidUploadDate",
+  namePrefix: "cuExactDate",
+  fieldset: {
+    legend: {
+      text: "When was your sample taken?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: "For example, 26 3 2020"
+  }
+}) }}
+{% endset %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -36,73 +53,87 @@
         {{ pageHeading }}
       </h1>
 
-      <p>Use the camera on your phone or computer to scan one of the identical barcodes inside your pooled test kit. The barcodes are attached to the plastic tube, biohazard bag and return box, and there’s also a spare barcode included in the kit.</p>
+      <p><strong>Enter your unique test kit barcode or Randox URN<stong></p>
+
+      <p>There are 2 types of home test kit, one of which is branded Randox.</p>
+
+      <p>If you have a non-Randox test, use the camera on your phone or computer to scan one of the identical barcodes inside your test kit. You’ll either find them attached to the plastic vial, biohazard bag and return box or loose for you to stick on yourself (please read instructions).</p>
 
       <p>You can also manually enter the 11 character reference below the barcode.</p>
+
+      <p>If you have a Randox test kit, manually enter the 9 or 10 character unique reference number (URN) on the label.</p>
 
       {{ govukDetails({
           summaryText: "What does the barcode look like?",
           text: "[image]"
+      }) }}
+      
+      {{ govukDetails({
+        summaryText: "What does the Randox URN look like?",
+        text: "[image]"
+      }) }}
+
+      <form class="" action="/{{ version }}/single/scan" method="get">
+        <input class="govuk-button govuk-button--secondary" type="submit" value="Scan barcode">
+      </form>
+
+      <form class="" action="/{{ version }}/single/pilot" method="get">
+
+        {{ govukInput({
+          label: {
+            html: 'Test kit barcode reference or URN'
+          },
+          classes: "govuk-input--width-20",
+          id: "covidUpload",
+          name: "cuBarcode"
         }) }}
 
-        <form class="" action="/{{ version }}/single/scan" method="get">
-          <input class="govuk-button govuk-button--secondary" type="submit" value="Scan my barcode">
-        </form>
+        {{ govukInput({
+          label: {
+            html: 'Confirm test kit barcode reference or URN'
+          },
+          classes: "govuk-input--width-20",
+          id: "covidUpload",
+          name: "cuBarcodeConfirm"
+        }) }}
 
-      <form class="" action="/{{ version }}/single/check" method="get">
-
-            {{ govukInput({
-              label: {
-                html: 'Test kit barcode reference'
-              },
-              classes: "govuk-input--width-20",
-              id: "covidUpload",
-              name: "cuBarcode"
-            }) }}
-
-            {{ govukInput({
-              label: {
-                html: 'Confirm test kit barcode reference'
-              },
-              classes: "govuk-input--width-20",
-              id: "covidUpload",
-              name: "cuBarcodeConfirm"
-            }) }}
-
-            {{ govukRadios({
-            idPrefix: "covidUpload",
-            name: "cuDate",
-            fieldset: {
-              legend: {
-                text: "Select the date",
-                isPageHeading: false,
-                classes: "govuk-fieldset__legend--s"
-              }
+        {{ govukRadios({
+          idPrefix: "covidUpload",
+          name: "cuDate",
+          fieldset: {
+            legend: {
+              text: "Select the date",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "today",
+              text: "Today, " +  "today" | returnDateShort
             },
-            items: [
-              {
-                value: "today",
-                text: "Today, " +  "today" | returnDateShort
-              },
-              {
-                value: "yesterday",
-                text: "Yesterday, " +  "-1" | returnDateShort
-              },
-              {
-                value: "Another date",
-                text: "Another date",
-                conditional: {
-                  html: anotherDate
-                }
+            {
+              value: "yesterday",
+              text: "Yesterday, " +  "-1" | returnDateShort
+            },
+            {
+              value: "Another date",
+              text: "Another date",
+              conditional: {
+                html: anotherDate
               }
-            ]
-          }) }}
+            }
+          ]
+        }) }}
 
           {{ govukSelect({
             id: "time",
             name: "time",
             label: {
               html: "<strong>Select a time</stong>"
+            },
+            hint: {
+              text: "For example, 09:00"
             },
             items: [
               {

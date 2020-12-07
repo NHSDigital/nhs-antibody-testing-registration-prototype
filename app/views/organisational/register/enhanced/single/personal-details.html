@@ -38,6 +38,8 @@
 
       <p>Enter the details of the person who is being registered.</p>
 
+      <h4 class="govuk-heading-s">Enter their first and last name?</h4>
+
       <form class="" action="/{{ version }}/single/ethnic-group" method="get">
         {{ govukInput({
           label: {
@@ -102,9 +104,10 @@
 
         <p>Their NHS number is a 10 digit number, like 867 406 5600. They can find it on any letter the NHS has sent them, on a prescription, or by logging in to some GP online services.</p>
 
-        <p>
-          <a href="#">How to find your NHS number</a>
-        </p>
+
+        {{ govukDetails({
+          summaryText: "How to find your NHS number"
+        }) }}
 
         {{ govukInput({
           label: {
@@ -114,6 +117,11 @@
           id: "covidUpload",
           name: "cuLastName"
         }) }}
+
+
+        <p>
+          <a href="ethnic-group">I do not know their NHS number</a>
+        </p>
 
         <input class="govuk-button" type="submit" value="Continue">
 

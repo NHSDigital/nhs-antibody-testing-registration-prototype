@@ -5,7 +5,7 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "Select " + fullname | trim + "'s area of work" %}
+{% set pageHeading = "Enter " + fullname | trim + "'s work details" %}
  {% set version = "organisational/register/enhanced" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -39,21 +39,22 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/{{ version }}/single/occupation/occupation" method="get">
+    <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
+
+      <p>This helps us understand how coronavirus is affecting people in different workplaces</p>
+
+      <form action="/{{ version }}/single/symptoms-merged" method="get">
+        
+
+        <h4 class="govuk-heading-s">        
+          What is {{ fullname | trim }}'s area of work?
+        </h4>
 
         {{ govukRadios({
             idPrefix: "cuAreaWork",
             name: "cuAreaWork",
-            fieldset: {
-              legend: {
-                text: pageHeading,
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--xl"
-              }
-            },
-            hint: {
-              html: "<p>This helps us understand how coronavirus is affecting people in different workplaces</p>"
-            },
             items: [
               {
                 value: "Teaching and education",
@@ -112,6 +113,39 @@
               }
             ]
           }) }}
+
+          <h4 class="govuk-heading-s">        
+          What is {{ fullname | trim }}'s occupation?
+          </h4>
+          <p class="govuk-body">This helps us track which occupation are more at risk from coronavirus.<br><br>
+          Start typing and select their occupation from the drop down. If their occuptation is not displayed select 'Other'.</p>
+
+          {{ govukInput({
+            label: {
+              text: "Occupation (optional)"
+            },
+            classes: "govuk-!-width-full",
+            id: "occupation",
+            name: "occupation"
+          }) }}
+
+          <h4 class="govuk-heading-s">What is the name of their employer?</h4>
+
+          <p>This helps us trace their work colleagues if they test positive for coronavirus.</p>
+
+          {{ govukInput({
+              label: {
+                text: "Employer name (optional)",
+                classes: "",
+                isPageHeading: true
+              },
+              classes: "",
+              hint: {
+                html: ""
+              },
+              id: "account-number",
+              name: "account-number"
+            }) }}
 
         <input class="govuk-button" type="submit" value="Continue">
 

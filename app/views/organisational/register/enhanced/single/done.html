@@ -1,5 +1,5 @@
 {% set pageHeading = "Test kit registrations confirmed" %}
-{% set version = "organisational/register/v4" %}
+{% set version = "organisational/register/enhanced" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
@@ -54,20 +54,20 @@ Test time: {{ data.cuTime }}{{data.cuAMPM}}
               text: data.cuOrderID or "12345678"
             }
           },
-          {
-            key: {
-              text: "Registration type"
-            },
-            value: {
-              text: data.cuStaff or "Staff"
-            }
+        {
+          key: {
+            text: "Organisation type"
           },
+          value: {
+            text: data.cuOrgType or "Care home"
+          }
+        },
           {
             key: {
               text: "Number registered"
             },
             value: {
-              html: data.cuSingleCount if data.cuSingleCount else "2"
+              html: data.cuSingleCount if data.cuSingleCount else "1"
             }
           }
         ]
