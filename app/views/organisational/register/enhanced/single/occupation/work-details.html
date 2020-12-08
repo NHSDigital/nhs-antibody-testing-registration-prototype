@@ -1,0 +1,91 @@
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      John Smith
+  {% endif %}
+{% endset %}
+{% set pageHeading = "Enter " + fullname | trim + "'s work details" %}
+ {% set version = "organisational/register/enhanced" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - COVID-19
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
+
+      <p>This helps us understand how coronavirus is affecting people in different workplaces</p>
+
+      <form action="/{{ version }}/single/have-coronavirus" method="get">
+        
+
+          <h4 class="govuk-heading-s">        
+          What is {{ fullname | trim }}'s occupation?
+          </h4>
+          <p class="govuk-body">This helps us track which occupation are more at risk from coronavirus.<br><br>
+          Start typing and select their occupation from the drop down. If their occuptation is not displayed select 'Other'.</p>
+
+          {{ govukInput({
+            label: {
+              text: "Occupation (optional)"
+            },
+            classes: "govuk-!-width-full",
+            id: "occupation",
+            name: "occupation"
+          }) }}
+
+          <h4 class="govuk-heading-s">What is the name of their employer?</h4>
+
+          <p>This helps us trace their work colleagues if they test positive for coronavirus.</p>
+
+          {{ govukInput({
+              label: {
+                text: "Employer name (optional)",
+                classes: "",
+                isPageHeading: true
+              },
+              classes: "",
+              hint: {
+                html: ""
+              },
+              id: "account-number",
+              name: "account-number"
+            }) }}
+
+        <input class="govuk-button" type="submit" value="Continue">
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
