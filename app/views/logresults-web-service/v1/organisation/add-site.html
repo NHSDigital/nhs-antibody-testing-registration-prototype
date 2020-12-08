@@ -1,0 +1,75 @@
+{% set version = "v2" %}
+{% set pageTitle = "Site details" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/organisation/manage-sites">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form lass="form" action="/logresults-web-service/{{version}}/organisation/site-added-confirmation" method="post">
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper govuk-!-margin-bottom-8">
+          <label class="govuk-label govuk-label--xl" for="institution">
+            {{ pageTitle }}
+          </label>
+        </h1>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="test-site-name">
+            Site name<br>
+            <span class="govuk-hint" style="padding-top: 5px">For example, department of physics</span>
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="test-site-name" name="test-site-name" type="text" value="{{ data['test-site-name'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <span class="govuk-body">Site address</span>
+          <label class="govuk-label govuk-!-margin-top-4" for="test-site-building">
+            Building and street
+          </label>
+          <input class="govuk-input govuk-!-width-two-thirds" id="test-site-building" name="test-site-building" type="text" value="{{ data['test-site-building'] }}">
+          <br><br>
+          <input class="govuk-input govuk-!-width-two-thirds" id="test-site-street" name="test-site-street" type="text" value="{{ data['test-site-street'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="site-town">
+            Town or city
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="site-town" name="site-town" type="text" value="{{ data['site-town'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="site-postcode">
+            Postcode
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="site-postcode" name="site-postcode" type="text" value="{{ data['site-postcode'] }}">
+        </div>
+
+      </div>
+
+      <button class="govuk-button" type="submit" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

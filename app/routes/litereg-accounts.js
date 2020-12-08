@@ -51,10 +51,7 @@ router.post('/litereg-accounts/v1/action9/landline-number', function (req, res) 
 
   router.post('/litereg-accounts/v1/action9/do-you-have-symptoms', function (req, res) {
     let emailAddress = req.session.data['email-address']
-    let symptoms = req.session.data['do-you-have-symptoms']
-    if (symptoms == "Yes") {
-      res.redirect('/litereg-accounts/v1/when-did-symptoms-start')
-    } else if (emailAddress == "user@testing.co.uk") {
+    if (emailAddress == "user@testing.co.uk") {
       res.redirect('/litereg-accounts/v1/check-your-answers')
     } else {
       res.redirect('/litereg-accounts/v1/country')
@@ -267,10 +264,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
 
   router.post('/litereg-accounts/v2/action9/do-you-have-symptoms', function (req, res) {
     let emailAddress = req.session.data['email-address']
-    let symptoms = req.session.data['do-you-have-symptoms']
-    if (symptoms == "Yes") {
-      res.redirect('/litereg-accounts/v2/when-did-symptoms-start')
-    } else if (emailAddress == "user@testing.co.uk") {
+    if (emailAddress == "user@testing.co.uk") {
       res.redirect('/litereg-accounts/v2/check-your-answers')
     } else {
       res.redirect('/litereg-accounts/v2/country')
@@ -278,17 +272,17 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
 
   })
 
-    // Version 2 - Lite Registration Accounts - Do you have symptoms route
+    // // Version 2 - Lite Registration Accounts - Do you have symptoms route
 
-    router.post('/litereg-accounts/v2/action9/when-did-symptoms-start', function (req, res) {
-      let emailAddress = req.session.data['email-address']
-      if (emailAddress == "user@testing.co.uk") {
-        res.redirect('/litereg-accounts/v2/check-your-answers')
-      } else {
-        res.redirect('/litereg-accounts/v2/country')
-      }
+    // router.post('/litereg-accounts/v2/action9/when-did-symptoms-start', function (req, res) {
+    //   let emailAddress = req.session.data['email-address']
+    //   if (emailAddress == "user@testing.co.uk") {
+    //     res.redirect('/litereg-accounts/v2/check-your-answers')
+    //   } else {
+    //     res.redirect('/litereg-accounts/v2/country')
+    //   }
 
-    })
+    // })
 
   // router.post('/litereg-accounts/v2/action9/do-you-have-symptoms', function (req, res) {
   //   let emailAddress = req.session.data['email-address']
