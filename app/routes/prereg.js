@@ -336,4 +336,17 @@ router.post('/prereg/v2/account/action6/nhs-number-known', function (req, res) {
 })
 
 
+router.post('/prereg/v3/which', function (req, res) {
+  let answer = req.session.data['which']
+  if (answer == "login"){
+    res.redirect('/prereg/v3/login/email-address')
+  } else {
+    res.redirect('/prereg/v3/testpass/index')
+  }
+
+})
+
+
+
+
 module.exports = router
