@@ -20,12 +20,12 @@
 
 {% block content %}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
+    <div class="govuk-grid-column-full">
 
     <div class="inline-button-wrapper">
     
       <div>
-        {% if data['request-01'] != "Approved" and data['request-01'] != "Denied" and data['request-02'] != "Approved" and data['request-02'] != "Denied" and data['request-03'] != "Approved" and data['request-03'] != "Denied" and data['request-04'] != "Approved" and data['request-04'] != "Denied" and data['request-05'] != "Approved" and data['request-05'] != "Denied" and data['request-06'] != "Approved" and data['request-06'] != "Denied" and data['request-07'] != "Approved" and data['request-07'] != "Denied" and data['request-08'] != "Approved" and data['request-08'] != "Denied" and data['request-09'] != "Approved" and data['request-09'] != "Denied" and data['request-10'] != "Approved" and data['request-10'] != "Denied" %}
+        {% if data['test-site-1-name'] == undefined or data['test-site-1-name'] == "" %}
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">0 sites</h1>
         {% else %}
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">12 sites</h1>
@@ -39,445 +39,138 @@
 
      </div>
 
-     
+     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-      {% if data['request-01'] == "Approved" %}
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-
-      <div class="requests-content">
-        <p class="govuk-body">
-            <strong>Caren Wilson</strong><br>
-            cwilson1987
-        </p>
-        <div>
-            {% if data['request-01-active'] == "No" %}
-            <p>
-                <strong class="govuk-tag govuk-tag--red">
-                    Inactive
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-01-active" name="request-01-active" type="radio" value="Yes" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Enable access</button>
-            </form>
-            {% else %}
-            <p>
+     {% if data['test-site-1-name'] != undefined and data['test-site-1-name'] != "" %}
+     <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ data['test-site-1-name'] }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['test-site-1-building'] }}<br>
+            {{ data['test-site-1-street'] }}<br>
+            {{ data['site-1-town'] }}<br>
+            {{ data['site-1-postcode'] }}<br>
+            {{ data['site-1-country'] }}
+          </dd>
+          <dd class="govuk-summary-list__value">
+            Test site ID: CKDY
+          </dd>
+          <dd class="govuk-summary-list__value">
+            <p style="text-align: center">
+                {% if data['site-1-status'] == undefined or data['site-1-status'] == "Active" %}
                 <strong class="govuk-tag govuk-tag--green">
-                    Active
+                  ACTIVE
                 </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-01-active" name="request-01-active" type="radio" value="No" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Revoke access</button>
-            </form>
-            {% endif %}
-        </div>
-      </div>
-      {% endif %}
-
-      {% if data['request-02'] == "Approved" %}
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-      
-      <div class="requests-content">
-        <p class="govuk-body">
-            <strong>Christian Brown</strong><br>
-            chbrown1991
-        </p>
-        <div>
-            {% if data['request-02-active'] == "No" %}
-            <p>
+                {% else %}
                 <strong class="govuk-tag govuk-tag--red">
-                    Inactive
+                  INACTIVE
                 </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-02-active" name="request-02-active" type="radio" value="Yes" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Enable access</button>
-            </form>
-            {% else %}
-            <p>
-                <strong class="govuk-tag govuk-tag--green">
-                    Active
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-02-active" name="request-02-active" type="radio" value="No" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Revoke access</button>
-            </form>
-            {% endif %}
+                {% endif %}
+              </p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/logresults-web-service/{{version}}/organisation/manage-site-1">
+              Manage<span class="govuk-visually-hidden">test site 1</span>
+            </a>
+          </dd>
         </div>
-      </div>
-      {% endif %}
-
-      {% if data['request-03'] == "Approved" %}
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-      
-      <div class="requests-content">
-        <p class="govuk-body">
-            <strong>Deborah Woods</strong><br>
-            dwoods1993
-        </p>
-        <div>
-            {% if data['request-03-active'] == "No" %}
-            <p>
+      </dl>
+     {% endif %}
+     {% if data['test-site-2-name'] != undefined and data['test-site-2-name'] != "" %}
+     <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ data['test-site-2-name'] }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['test-site-2-building'] }}<br>
+            {{ data['test-site-2-street'] }}<br>
+            {{ data['site-2-town'] }}<br>
+            {{ data['site-2-postcode'] }}<br>
+            {{ data['site-2-country'] }}
+          </dd>
+          <dd class="govuk-summary-list__value">
+            Test site ID: DJGH
+          </dd>
+          <dd class="govuk-summary-list__value">
+            <p style="text-align: center">
+                {% if data['site-2-status'] == undefined or data['site-2-status'] == "Active" %}
+                <strong class="govuk-tag govuk-tag--green">
+                  ACTIVE
+                </strong>
+                {% else %}
                 <strong class="govuk-tag govuk-tag--red">
-                    Inactive
+                  INACTIVE
                 </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-03-active" name="request-03-active" type="radio" value="Yes" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Enable access</button>
-            </form>
-            {% else %}
-            <p>
-                <strong class="govuk-tag govuk-tag--green">
-                    Active
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-03-active" name="request-03-active" type="radio" value="No" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Revoke access</button>
-            </form>
-            {% endif %}
+                {% endif %}
+              </p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/logresults-web-service/{{version}}/organisation/manage-site-2">
+              Manage<span class="govuk-visually-hidden">test site 2</span>
+            </a>
+          </dd>
         </div>
-      </div>
-      {% endif %}
-
-      {% if data['request-04'] == "Approved" %}
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-      
-      <div class="requests-content">
-        <p class="govuk-body">
-            <strong>Devika Patel</strong><br>
-            dpatel1987
-        </p>
-        <div>
-            {% if data['request-04-active'] == "No" %}
-            <p>
+      </dl>
+     {% endif %}
+     {% if data['test-site-3-name'] != undefined and data['test-site-3-name'] != "" %}
+     <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ data['test-site-3-name'] }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['test-site-3-building'] }}<br>
+            {{ data['test-site-3-street'] }}<br>
+            {{ data['site-3-town'] }}<br>
+            {{ data['site-3-postcode'] }}<br>
+            {{ data['site-3-country'] }}
+          </dd>
+          <dd class="govuk-summary-list__value">
+            Test site ID: DKHF
+          </dd>
+          <dd class="govuk-summary-list__value">
+            <p style="text-align: center">
+                {% if data['site-3-status'] == undefined or data['site-3-status'] == "Active" %}
+                <strong class="govuk-tag govuk-tag--green">
+                  ACTIVE
+                </strong>
+                {% else %}
                 <strong class="govuk-tag govuk-tag--red">
-                    Inactive
+                  INACTIVE
                 </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-04-active" name="request-04-active" type="radio" value="Yes" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Enable access</button>
-            </form>
-            {% else %}
-            <p>
-                <strong class="govuk-tag govuk-tag--green">
-                    Active
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-04-active" name="request-04-active" type="radio" value="No" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Revoke access</button>
-            </form>
-            {% endif %}
+                {% endif %}
+              </p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/logresults-web-service/{{version}}/organisation/manage-site-3">
+              Manage<span class="govuk-visually-hidden">test site 1</span>
+            </a>
+          </dd>
         </div>
-      </div>
-      {% endif %}
+      </dl>
+     {% endif %}
 
-      {% if data['request-05'] == "Approved" %}
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-      
-      <div class="requests-content">
-        <p class="govuk-body">
-            <strong>Elisabeth Jones</strong><br>
-            ejones1980
-        </p>
-        <div>
-            {% if data['request-05-active'] == "No" %}
-            <p>
-                <strong class="govuk-tag govuk-tag--red">
-                    Inactive
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-05-active" name="request-05-active" type="radio" value="Yes" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Enable access</button>
-            </form>
-            {% else %}
-            <p>
-                <strong class="govuk-tag govuk-tag--green">
-                    Active
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-05-active" name="request-05-active" type="radio" value="No" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Revoke access</button>
-            </form>
-            {% endif %}
-        </div>
-      </div>
-      {% endif %}
 
-      {% if data['request-06'] == "Approved" %}
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-      
-      <div class="requests-content">
-        <p class="govuk-body">
-            <strong>Jane Wilson</strong><br>
-            jwilson1985
-        </p>
-        <div>
-            {% if data['request-06-active'] == "No" %}
-            <p>
-                <strong class="govuk-tag govuk-tag--red">
-                    Inactive
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-06-active" name="request-06-active" type="radio" value="Yes" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Enable access</button>
-            </form>
-            {% else %}
-            <p>
-                <strong class="govuk-tag govuk-tag--green">
-                    Active
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-06-active" name="request-06-active" type="radio" value="No" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Revoke access</button>
-            </form>
-            {% endif %}
-        </div>
-      </div>
-      {% endif %}
-
-      {% if data['request-07'] == "Approved" %}
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-      
-      <div class="requests-content">
-        <p class="govuk-body">
-            <strong>John Smith</strong><br>
-            jsmith1998
-        </p>
-        <div>
-            {% if data['request-07-active'] == "No" %}
-            <p>
-                <strong class="govuk-tag govuk-tag--red">
-                    Inactive
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-07-active" name="request-07-active" type="radio" value="Yes" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Enable access</button>
-            </form>
-            {% else %}
-            <p>
-                <strong class="govuk-tag govuk-tag--green">
-                    Active
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-07-active" name="request-07-active" type="radio" value="No" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Revoke access</button>
-            </form>
-            {% endif %}
-        </div>
-      </div>
-      {% endif %}
-
-      {% if data['request-08'] == "Approved" %}
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-      
-      <div class="requests-content">
-        <p class="govuk-body">
-            <strong>Pete Smith</strong><br>
-            psmith1999
-        </p>
-        <div>
-            {% if data['request-08-active'] == "No" %}
-            <p>
-                <strong class="govuk-tag govuk-tag--red">
-                    Inactive
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-08-active" name="request-08-active" type="radio" value="Yes" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Enable access</button>
-            </form>
-            {% else %}
-            <p>
-                <strong class="govuk-tag govuk-tag--green">
-                    Active
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-08-active" name="request-08-active" type="radio" value="No" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Revoke access</button>
-            </form>
-            {% endif %}
-        </div>
-      </div>
-      {% endif %}
-
-      {% if data['request-09'] == "Approved" or data['request-09'] == "Denied" %}
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-      
-      <div class="requests-content">
-        <p class="govuk-body">
-            <strong>Robert Green</strong><br>
-            rgreen1988
-        </p>
-        <div>
-            {% if data['request-09-active'] == "No" %}
-            <p>
-                <strong class="govuk-tag govuk-tag--red">
-                    Inactive
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-09-active" name="request-09-active" type="radio" value="Yes" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Enable access</button>
-            </form>
-            {% else %}
-            <p>
-                <strong class="govuk-tag govuk-tag--green">
-                    Active
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-09-active" name="request-09-active" type="radio" value="No" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Revoke access</button>
-            </form>
-            {% endif %}
-        </div>
-      </div>
-      {% endif %}
-
-      {% if data['request-10'] == "Approved" or data['request-10'] == "Denied" %}
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-      
-      <div class="requests-content">
-        <p class="govuk-body">
-            <strong>Will Johnson</strong><br>
-            wjohnson1997
-        </p>
-        <div>
-            {% if data['request-10-active'] == "No" %}
-            <p>
-                <strong class="govuk-tag govuk-tag--red">
-                    Inactive
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-10-active" name="request-10-active" type="radio" value="Yes" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Enable access</button>
-            </form>
-            {% else %}
-            <p>
-                <strong class="govuk-tag govuk-tag--green">
-                    Active
-                </strong>
-            </p>
-            <form action="#" method="post" class="undo-button">
-                <div class="govuk-radios govuk-!-margin-top-5" style="display: none;">
-                    <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="request-10-active" name="request-10-active" type="radio" value="No" checked>
-                    </div>
-                </div>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Revoke access</button>
-            </form>
-            {% endif %}
-        </div>
-      </div>
-      {% endif %}
-
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-
-      {% if data['request-01'] != "Approved" and data['request-01'] != "Denied" and data['request-02'] != "Approved" and data['request-02'] != "Denied" and data['request-03'] != "Approved" and data['request-03'] != "Denied" and data['request-04'] != "Approved" and data['request-04'] != "Denied" and data['request-05'] != "Approved" and data['request-05'] != "Denied" and data['request-06'] != "Approved" and data['request-06'] != "Denied" and data['request-07'] != "Approved" and data['request-07'] != "Denied" and data['request-08'] != "Approved" and data['request-08'] != "Denied" and data['request-09'] != "Approved" and data['request-09'] != "Denied" and data['request-10'] != "Approved" and data['request-10'] != "Denied" %}
+      {% if data['test-site-1-name'] == undefined or data['test-site-1-name'] == "" %}
       <p class="govuk-margin-!-top-4">Add sites within your organisation to begin inviting team leaders</p>
       {% else %}
-      <p class="govuk-hint govuk-margin-!-top-4">1 to 10 of 100 items</p>
+      <div class="bottom-pagination">
+        <p class="govuk-hint govuk-margin-!-top-4">1 to 10 of 100 items</p>
 
-      <div>
-          <p class="govuk-body">
-            <a href="#" class="govuk-!-margin-right-3">Previous</a>
-            <a href="#" class="govuk-!-margin-right-3">1</a>
-            <a href="#" class="govuk-!-margin-right-3">2</a>
-            <span class="govuk-!-margin-right-3" style="border: 1px solid #000000; padding: 1px 3px">3</span>
-            <span class="govuk-!-margin-right-3">...</span>
-            <a href="#" class="govuk-!-margin-right-3">10</a>
-            <a href="#">Next</a>
-          </p>
+        <div>
+            <p class="govuk-body">
+              <a href="#" class="govuk-!-margin-right-3">Previous</a>
+              <a href="#" class="govuk-!-margin-right-3">1</a>
+              <a href="#" class="govuk-!-margin-right-3">2</a>
+              <span class="govuk-!-margin-right-3" style="border: 1px solid #000000; padding: 1px 3px">3</span>
+              <span class="govuk-!-margin-right-3">...</span>
+              <a href="#" class="govuk-!-margin-right-3">10</a>
+              <a href="#">Next</a>
+            </p>
+        </div>
       </div>
       {% endif %}
 
