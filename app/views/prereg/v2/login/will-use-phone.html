@@ -1,6 +1,6 @@
 {% set version = "v2" %}
 {% set folder = "prereg" %}
-{% set pageTitle = "How test passes work" %}
+{% set pageTitle = "Will you be able to bring your phone when you get tested?" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -32,23 +32,33 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        {{ pageTitle }}
-      </h1>
+      <form class="" action="" method="post">
 
-      <ul class="govuk-list govuk-list--number">
-        <li>
-          Enter your details or the details of the person you are registering
-        </li>
-        <li>
-          Get a unique test pass ID
-        </li>
-        <li>
-          Use that test pass ID when you register test kits at a test site so you do not have to enter your personal details again
-        </li>
-      </ul>
+        {{ govukRadios({
+          idPrefix: "bringMobile",
+          name: "bringMobile",
+          fieldset: {
+            legend: {
+              text: pageTitle,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          hint: {
+            html: "If you are being tested in a workplace or school you may not be able to bring you phone"
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes, I will have my mobile phone with me"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
 
-      <form class="" action="/{{folder}}/{{version}}/questions/name" method="get">
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>

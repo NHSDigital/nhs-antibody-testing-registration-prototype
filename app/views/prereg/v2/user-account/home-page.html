@@ -1,0 +1,82 @@
+{% set version = "v2" %}
+{% set folder = "prereg" %}
+{% set pageTitle = "How test passes work" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-0">{{ data['first-name'] | default('Bob') }} {{ data['last-name'] | default('Smith') }}</h1>
+      <p class="govuk-body-m govuk-!-margin-bottom-4">Date of birth: {{ data['date-of-birth-day'] | default('13') }} {{ data['date-of-birth-month'] | default('June') }} {{ data['date-of-birth-year'] | default('1990') }}</p>
+
+      <div class="nhsuk-grid-column-two-thirds" style="padding: 0">
+        <form action="/lite-registration-accounts-mvp/v2/action9/home-page" method="post">
+          <button class="nhsuk-u-margin-bottom-4 account-home-button">
+            <div>
+              <p class="nhsuk-u-margin-bottom-2">
+                <strong style="color: #005eb8">Register a test</strong>
+              </p>
+              <p class="nhsuk-u-margin-bottom-0">
+                Register to make sure you get your test result sent to you
+              </p>
+            </div>
+            <p style="line-height: .7em; transform: rotate(180deg); margin: 0">
+              <svg style="width:32px" class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+              </svg>
+            </p>
+          </button>
+        </form>
+      </div>
+
+      <div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-bottom-4" style="padding: 0">
+        <form action="/lite-registration-accounts-mvp/v2/user-account/edit-personal-details/home-page" method="post">
+          <button class="nhsuk-u-margin-bottom-4 account-home-button">
+            <div>
+              <p class="nhsuk-u-margin-bottom-2">
+                <strong style="color: #005eb8">Edit personal details</strong>
+              </p>
+              <p class="nhsuk-u-margin-bottom-0">
+                View and edit your personal details
+              </p>
+            </div>
+            <p style="line-height: .7em; transform: rotate(180deg); margin: 0">
+              <svg style="width:32px" class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+              </svg>
+            </p>
+          </button>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+
+{% endblock %}

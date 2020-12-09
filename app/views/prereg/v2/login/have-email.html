@@ -1,6 +1,6 @@
 {% set version = "v2" %}
 {% set folder = "prereg" %}
-{% set pageTitle = "End" %}
+{% set pageTitle = "Do you have an email address?" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -32,11 +32,30 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        {{ pageTitle }}
-      </h1>
+      <form class="" action="" method="post">
 
-      <form class="" action="" method="get">
+        {{ govukRadios({
+          idPrefix: "haveEmail",
+          name: "haveEmail",
+          fieldset: {
+            legend: {
+              text: pageTitle,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes, I have an email address"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
