@@ -5,7 +5,7 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "What are " + fullname | trim + "'s contact details?" %}
+{% set pageHeading = "Where should we send " + fullname | trim + "'s results?" %}
  {% set version = "organisational/register/enhanced" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -47,10 +47,10 @@
         Enter an email address
       </h4> #}
 
-      <p>We’ll send their test result to this email address.</p>
-
-      <p>If the email address does not belong to the person being registered, make sure you have got their consent for their results to go to someone else’s email address.</p>
+      <p>We'll send their test results to the contact details you provide.</p>
       
+      <p>If the contact details do not belong to the person being registered, make sure you have their consent for their results to go to another email address or mobile number</p>
+
       <form class="" action="/{{ version }}/single/address" method="get">
 
         {{ govukInput({
@@ -70,18 +70,6 @@
           id: "cuEmailConfirm",
           name: "cuEmailConfirm"
         }) }}
-
-        <h2 class="govuk-heading-m">
-          Do you want to add a mobile number?
-        </h2>
-
-        <p>
-          It's OK if you do not, you can still continue.
-        </p>
-
-        <p>We’ll also send their test result to this mobile phone number.</p>
-
-        <p>If the mobile phone number does not belong to the person being registered, make sure you have got their consent for their results to go to someone else’s mobile phone number.</p>
         
         {{ govukInput({
           label: {

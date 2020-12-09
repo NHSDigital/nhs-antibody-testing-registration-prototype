@@ -1,4 +1,4 @@
-{% set pageHeading = "Enter their personal details?" %}
+{% set pageHeading = "Enter their personal details" %}
  {% set version = "organisational/register/enhanced" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -36,9 +36,6 @@
         {{ pageHeading }}
       </h1>
 
-      <p>Enter the details of the person who is being registered.</p>
-
-      <h4 class="govuk-heading-s">Enter their first and last name?</h4>
 
       <form class="" action="/{{ version }}/single/ethnic-group" method="get">
         {{ govukInput({
@@ -64,9 +61,9 @@
           namePrefix: "dob",
           fieldset: {
             legend: {
-              text: "What is their date of birth?",
+              text: "Date of birth",
               isPageHeading: false,
-              classes: "govuk-fieldset__legend--s"
+              classes: "govuk-body"
             }
           },
           hint: {
@@ -79,9 +76,9 @@
           name: "cuGender",
           fieldset: {
             legend: {
-              text: "What is their gender?",
+              text: "Gender",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--s"
+              classes: "govuk-body"
             }
           },
           items: [
@@ -95,27 +92,21 @@
             }
           ]
         }) }}
-
-        <h4 class="govuk-heading-s">Do you know their NHS number?</h4>
-
-        <p>
-          It's OK if you do not, you can still continue.
-        </p>
-
-        <p>Their NHS number is a 10 digit number, like 867 406 5600. They can find it on any letter the NHS has sent them, on a prescription, or by logging in to some GP online services.</p>
-
-
-        {{ govukDetails({
-          summaryText: "How to find your NHS number"
-        }) }}
-
+        
         {{ govukInput({
           label: {
             text: "NHS Number (optional)"
           },
+          hint: {
+            text: "Their NHS number is a 10 digit number, like 867 406 5600. They can find it on any letter the NHS has sent them, on a prescription, or by logging in to some GP online services."
+          },
           classes: "govuk-input--width-20",
           id: "covidUpload",
           name: "cuLastName"
+        }) }}
+
+        {{ govukDetails({
+          summaryText: "How to find your NHS number"
         }) }}
 
         <input class="govuk-button" type="submit" value="Continue">
