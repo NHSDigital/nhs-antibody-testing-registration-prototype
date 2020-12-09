@@ -6,7 +6,7 @@
   {% endif %}
 {% endset %}
 {% set pageHeading = "Does " + fullname + "currently have coronavirus symptoms?" %}
- {% set version = "organisational/register/v4" %}
+ {% set version = "organisational/register/enhanced" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
@@ -58,17 +58,13 @@
       <p>Most people with coronavirus have at least one of these symptoms.</p>
 
       <form class="" action="" method="post">
-
         {{ govukRadios({
-            idPrefix: "cuCoronavirus",
-            name: "cuCoronavirus",
+            idPrefix: "cuSymptoms",
+            name: "cuSymptoms",
             items: [
               {
                 value: "Yes",
-                text: "Yes, they have at least one of these symptoms",
-                conditional: {
-                  html: symptomsHtml
-                }
+                html: "Yes, they have at least one of these symptoms"
               },
               {
                 value: "No",
@@ -76,10 +72,7 @@
               }
             ]
           }) }}
-
         <input class="govuk-button" type="submit" value="Continue">
-
-      </form>
 
     </div>
   </div>

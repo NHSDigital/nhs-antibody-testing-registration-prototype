@@ -37,23 +37,15 @@
           <th scope="row" class="govuk-table__header">{{ data['first-name'] | default('Bob') }} {{ data['last-name'] | default('Smith') }}</th>
           {% if data['swab-test-date'] == "different" %}
           <td class="govuk-table__cell">
-            {% if data['mobile-number'] == "Yes" %}
-            {{ data['mobile-phone-number'] }}<br>
-            {% endif %}
-            {% if data['email'] == "Yes" %}
-            {{ data['email-address'] }}<br>
-            {% endif %}
+            {{ data['mobile-phone-number'] or '+4478353335' }}<br>
+            {{ data['email-address'] or 'bsmith@testing.co.uk' }}<br>
             Test kit barcode reference: {{ data['kit-barcode-reference-1'] | default('CHE00000501') }}<br>
             Test date and time: {{ data['date-of-swab-test-day'] | default('4') }} {{ data['date-of-swab-test-month'] | default('9') }} {{ data['date-of-swab-test-year'] | default('2020') }}, {{ data['swab-test-time'] | default('7') }}{{ data['swab-test-time-ampm'] | default('am') }}
           </td>
           {% else %}
           <td class="govuk-table__cell">
-            {% if data['mobile-number'] == "Yes" %}
-            {{ data['mobile-phone-number'] }}<br>
-            {% endif %}
-            {% if data['email'] == "Yes" %}
-            {{ data['email-address'] }}<br>
-            {% endif %}
+            {{ data['mobile-phone-number'] or '+4478353335' }}<br>
+            {{ data['email-address'] or 'bsmith@testing.co.uk' }}<br>
             Test kit barcode reference: {{ data['kit-barcode-reference-1'] | default('CHE00000501') }}<br>
             Test date and time: {{ data['swab-test-date'] | default('28 March 2020') }}, {{ data['swab-test-time'] | default('7') }}{{ data['swab-test-time-ampm'] | default('am') }}
           </td>

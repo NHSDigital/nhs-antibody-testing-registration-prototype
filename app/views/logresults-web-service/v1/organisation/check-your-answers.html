@@ -1,0 +1,184 @@
+{% set version = "v1" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+
+      {% if data['team-leader-1-first-name'] != undefined and data['team-leader-2-first-name'] == undefined %}
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['team-leader-1-first-name'] }} {{ data['team-leader-1-last-name'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/logresults-web-service/{{version}}/organisation/manage-team-leader-1">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['team-leader-1-email-address'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/logresults-web-service/{{version}}/organisation/manage-team-leader-1">
+                Change
+                <span class="govuk-visually-hidden">email address</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Mobile number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['team-leader-1-mobile-number'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/logresults-web-service/{{version}}/organisation/manage-team-leader-1">
+                Change
+                <span class="govuk-visually-hidden">mobile number</span>
+              </a>
+            </dd>
+          </div>
+      </dl>
+      {% elseif data['team-leader-1-first-name'] != undefined and data['team-leader-2-first-name'] != undefined and data['team-leader-3-first-name'] == undefined %}
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['team-leader-2-first-name'] }} {{ data['team-leader-2-last-name'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/logresults-web-service/{{version}}/organisation/manage-team-leader-2">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['team-leader-2-email-address'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/logresults-web-service/{{version}}/organisation/manage-team-leader-2">
+                Change
+                <span class="govuk-visually-hidden">email address</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Mobile number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['team-leader-2-mobile-number'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/logresults-web-service/{{version}}/organisation/manage-team-leader-2">
+                Change
+                <span class="govuk-visually-hidden">mobile number</span>
+              </a>
+            </dd>
+          </div>
+      </dl>
+      {% else %}
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['team-leader-3-first-name'] }} {{ data['team-leader-3-last-name'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/logresults-web-service/{{version}}/organisation/manage-team-leader-3">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['team-leader-3-email-address'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/logresults-web-service/{{version}}/organisation/manage-team-leader-3">
+                Change
+                <span class="govuk-visually-hidden">email address</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Mobile number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['team-leader-3-mobile-number'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/logresults-web-service/{{version}}/organisation/manage-team-leader-3">
+                Change
+                <span class="govuk-visually-hidden">mobile number</span>
+              </a>
+            </dd>
+          </div>
+      </dl>
+      {% endif %}
+
+      <form action="/logresults-web-service/{{version}}/organisation/team-leader-added-confirmation" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+      <button class="govuk-button" type="submit" data-module="govuk-button">
+        Save and continue
+      </button>
+
+      <a href="/logresults-web-service/{{version}}/organisation/manage-team-leaders" role="button" draggable="false" class="govuk-button govuk-button--secondary right-button-margin" data-module="govuk-button" style="display: inline-block;">
+        Cancel
+      </a>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
