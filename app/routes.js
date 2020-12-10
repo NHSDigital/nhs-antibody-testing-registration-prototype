@@ -2928,4 +2928,39 @@ router.post('/lite-registration/v1/action5/study-grade', function (req, res) {
 
 
 
+
+
+
+// Version 1 - Elective Care Testing Trust Worker Request (enhanced) - Request method route
+
+router.post('/elective-care-testing/v1/trust-worker-request-enhanced/request-method', function (req, res) {
+  let answer = req.body.cuRequestMethod;
+
+  if (answer == 'spreadsheet') {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/upload-file')
+    } else if (answer == 'single') {
+      res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/date-of-procedure')
+    } else {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/request-method?error=empty')
+    }
+});
+
+// Version 1 - Elective Care Testing Trust Worker Request (enhanced) - Symptoms route
+
+router.post('/elective-care-testing/v1/trust-worker-request-enhanced/symptoms', function (req, res) {
+  let answer = req.body.cuSymptomatic;
+
+  if (answer == 'Yes') {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/symptoms-start')
+    } else if (answer == 'No') {
+      res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/check-your-answers-manual')
+    } else {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/symptoms?error=empty')
+    }
+});
+
+
+
+
+
 module.exports = router

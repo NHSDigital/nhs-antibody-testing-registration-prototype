@@ -49,7 +49,7 @@
             Test site
           </dt>
           <dd class="govuk-summary-list__value">
-            Aberdeen (Aberdeen Airport)
+            {{ data['siteID'] or "Workplace LTD"}}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/{{ folder }}/{{version}}/site-id">
@@ -153,6 +153,21 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name'] or "Bob" }} {{ data['last-name'] or "Smith" }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/{{ folder }}/{{version}}/name">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Date of birth
           </dt>
           <dd class="govuk-summary-list__value">
@@ -165,20 +180,7 @@
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Name
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['first-name'] | default('Pete') }} {{ data['last-name'] | default('Smith') }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/{{ folder }}/{{version}}/name">
-              Change
-              <span class="govuk-visually-hidden">name</span>
-            </a>
-          </dd>
-        </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Gender
