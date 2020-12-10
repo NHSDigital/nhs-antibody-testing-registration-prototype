@@ -253,11 +253,21 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
   router.post('/litereg-accounts/v2/action9/test-date', function (req, res) {
     let emailAddress = req.session.data['email-address']
     if (emailAddress == "user@testing.co.uk") {
+      res.redirect('/litereg-accounts/v2/repeat-testing')
+    } else {
+      res.redirect('/litereg-accounts/v2/repeat-testing')
+    }
+
+  })
+
+  // Version 2 - Lite Registration Accounts - Reapeat testing route
+  router.post('/litereg-accounts/v2/action9/repeat-testing', function (req, res) {
+    let emailAddress = req.session.data['email-address']
+    if (emailAddress == "user@testing.co.uk") {
       res.redirect('/litereg-accounts/v2/do-you-have-symptoms')
     } else {
       res.redirect('/litereg-accounts/v2/name')
     }
-
   })
 
   // Version 2 - Lite Registration Accounts - Do you have symptoms route
@@ -271,6 +281,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
     }
 
   })
+  
 
     // // Version 2 - Lite Registration Accounts - Do you have symptoms route
 
