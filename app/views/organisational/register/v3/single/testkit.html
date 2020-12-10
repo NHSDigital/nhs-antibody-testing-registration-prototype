@@ -1,4 +1,4 @@
-{% set pageHeading = "Enter the unique test kit barcode or Randox URN" %}
+{% set pageHeading = "Enter the unique test kit barcode" %}
  {% set version = "organisational/register/v3" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -36,40 +36,84 @@
         {{ pageHeading }}
       </h1>
 
-      <p>There are 2 types of home test kit, one of which is branded Randox.</p>
+      <p>You’ll find the 11-character barcode attached to the plastic tube, biohazard bag and return box inside the test kit.</p>
 
-      <p>If you have a non-Randox test, use the camera on your phone or computer to scan one of the identical barcodes inside your test kit. You'll either find them attached to the plastic vial, biohazard bag and return box or loose for you to stick on yourself (please read instructions).</p>
-      <p>You can also manually enter the 11 character reference below the barcode.</p>
-      <p>If you have a Randox test kit, manually enter the 9 or 10 character unique reference number (URN) on the label.</p>
+      <p>Choose 1 of these ways to enter the barcode:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          use the camera on your phone or computer
+        </li>
+        <li>
+          use your handheld scanner
+        </li>
+        <li>
+          enter it manually
+        </li>
+      </ul>
 
       {{ govukDetails({
           summaryText: "What does the barcode look like?",
           text: "[image]"
         }) }}
 
-        {{ govukDetails({
-          summaryText: "What does the Randox URN look like?",
-          text: "[image]"
+      {{ govukDetails({
+          summaryText: "How to use the barcode scanner",
+          html: "<ul class='govuk-list govuk-list--number'>
+            <li>
+              Click in the ‘Test kit barcode reference’ box
+            </li>
+            <li>
+              Scan the barcode using your handheld scanner. This automatically adds it to the box
+            </li>
+            <li>
+              Click in the ‘Confirm test kit barcode reference’ box
+            </li>
+            <li>
+              Scan the barcode again using your handheld scanner. This automatically adds it to the box
+            </li>
+            <li>
+              Click ‘Continue’
+            </li>
+          </ul>"
         }) }}
 
+
+
+          <h2 class="govuk-heading-m">
+            Use camera
+          </h2>
+
         <form class="" action="/{{ version }}/single/scan" method="get">
-          <input class="govuk-button govuk-button--secondary" type="submit" value="Scan my barcode">
+          <input class="govuk-button govuk-button--secondary" type="submit" value="Use camera to scan barcode">
         </form>
+
+        <h2 class="govuk-heading-m">
+          Use handheld scanner or enter manually
+        </h2>
 
       <form class="" action="/{{ version }}/single/name" method="get">
 
+        <p class="govuk-body">
+          If you’re using a handheld scanner, click in the box before you scan the barcode
+        <p>
+
+
+
             {{ govukInput({
               label: {
-                html: 'Test kit barcode reference or URN'
+                html: 'Test kit barcode reference'
               },
               classes: "govuk-input--width-20",
               id: "covidUpload",
               name: "cuBarcode"
             }) }}
 
+
+
             {{ govukInput({
               label: {
-                html: 'Confirm test kit barcode reference or URN'
+                html: 'Confirm test kit barcode reference'
               },
               classes: "govuk-input--width-20",
               id: "covidUpload",
