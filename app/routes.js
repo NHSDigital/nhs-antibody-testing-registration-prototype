@@ -2871,6 +2871,17 @@ router.post('/lite-registration/v1/action5/study-grade', function (req, res) {
   }
 })
 
+// Version 1 - Lite Registration Study Grade
+router.post('/lite-registration/v1/action6/enter-barcode', function (req, res) {
+  let enterBarcode = req.session.data['enter-barcode']
+  if (enterBarcode.charAt(0) == "L") {
+    console.log("true")
+  } else {
+    console.log("false")
+  }
+})
+
+
 
 
 
