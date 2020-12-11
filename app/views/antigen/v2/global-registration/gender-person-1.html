@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Is their gender the same as the sex they were registered with at birth?" %}
+{% set pageTitle = "Which of the following is recorded on the person's medical record?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -32,23 +32,29 @@
           <fieldset class="govuk-fieldset" aria-describedby="gender-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                What's {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}'s gender?
+                Which of the following is recorded on {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}'s medical record?
               </h1>
             </legend>
             <span id="gender-hint" class="govuk-body">
-              We need to know which gender is recorded on the person's GP record so we can save their test result there.
+              We are asking this question so we can match this information to their GP record. This allows us to record their test result with their GP.
             </span>
             <div class="govuk-radios govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="gender-1-person-1" name="gender-person-1" type="radio" value="Man" {{ checked("gender-person-1", "Man") }}>
+                <input class="govuk-radios__input" id="gender-1-person-1" name="gender-person-1" type="radio" value="Female" {{ checked("gender-person-1", "Female") }}>
                 <label class="govuk-label govuk-radios__label" for="gender-1-person-1">
-                  Man
+                  Female
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="gender-2-person-1" name="gender-person-1" type="radio" value="Woman" {{ checked("gender-person-1", "Woman") }}>
+                <input class="govuk-radios__input" id="gender-2-person-1" name="gender-person-1" type="radio" value="Male" {{ checked("gender-person-1", "Male") }}>
                 <label class="govuk-label govuk-radios__label" for="gender-2-person-1">
-                  Woman
+                  Male
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-3-person-1" name="gender-person-1" type="radio" value="I do not know" {{ checked("gender-person-1", "I do not know") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-3-person-1">
+                  I do not know
                 </label>
               </div>
             </div>
@@ -58,14 +64,11 @@
         <details class="govuk-details" data-module="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
-              Why aren't there more options?
+              Why are there not more options?
             </span>
           </summary>
           <div class="govuk-details__text">
-            At the moment GP records only say if a person is ‘male’ or ‘female’.<br><br>
-            If the person does not identify as either male or female, please tell us their sex registered at birth (written on their birth certificate).<br><br>
-            If the person has had gender surgery and updated their GP record, please tell us the gender they registered.<br><br>
-            We’re sorry this question is not inclusive. We want to improve the service in the future so it works for everyone.
+            We understand there are other ways a person may usually answer this question. In this case we're only asking this question to link the answer to the person's GP record.
           </div>
         </details>
 

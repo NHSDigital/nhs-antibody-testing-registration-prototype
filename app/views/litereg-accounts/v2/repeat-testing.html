@@ -1,0 +1,86 @@
+{% set version = "v2" %}
+{% set pageTitle = "Are you doing 7-day repeat testing?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/litereg-accounts/{{version}}/action9/repeat-testing" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="repeat-testing-1-hint repeat-testing-2-hint repeat-testing-3-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Is the person being tested doing 7-day repeat testing??
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+            </legend>
+            <span id="repeat-testing-1-hint" class="govuk-body">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              This is only for people who’ve been traced as a contact of someone who tested positive for coronavirus (COVID-19. If they’ve been given the choice of taking a test every day for 7 days instead of self-isolating then select ‘Yes’.
+              <br><br>
+              If their test result is negative, they can continue normal activities without needing to self-isolate.
+              {% else %}
+              This is only for people who’ve been traced as a contact of someone who tested positive for coronavirus (COVID-19. If you’ve been given the choice of taking a test every day for 7 days instead of self-isolating then select ‘Yes’.
+              <br><br>
+              If your test result is negative, you can continue your normal activities without needing to self-isolate.
+              {% endif %}
+            </span>
+            
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="repeat-testing-1" name="repeat-testing" type="radio" value="yes" {{ checked("repeat-testing", "yes") }}>
+                <label class="govuk-label govuk-radios__label" for="repeat-testing-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="repeat-testing-2" name="repeat-testing" type="radio" value="no" {{ checked("repeat-testing", "no") }}>
+                <label class="govuk-label govuk-radios__label" for="repeat-testing-2">
+                  No
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="repeat-testing-3" name="repeat-testing" type="radio" value="I do not know" data-aria-controls="conditional-repeat-testing" {{ checked("repeat-testing", "I do not know") }}>
+                <label class="govuk-label govuk-radios__label" for="repeat-testing-3">
+                    I do not know
+                </label>
+              </div>
+             
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,145 @@
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      John Smith
+  {% endif %}
+{% endset %}
+{% set pageHeading = "Are you a care home taking part in the return box tracking pilot?" %}
+ {% set version = "organisational/register/enhanced" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - COVID-19
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+{% set pilotHtml %}
+  {{ govukInput({
+    label: {
+      html: 'Mobile phone number'
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "cuMobile",
+    name: "cuMobile"
+  }) }}
+  {{ govukInput({
+    label: {
+      html: 'Confirm mobile phone number'
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "cuMobileConfirm",
+    name: "cuMobileConfirm"
+  }) }}
+{% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="" action="/{{ version }}/single/check" method="get">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageHeading }}
+              </h1>
+            </legend>
+            <div class="govuk-body">
+              This is a research study with 14 care homes, using special outer boxes to return test kits to the lab.
+            </div>
+            <div class="govuk-radios govuk-radios--inline">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="pilot-1" name="pilot" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="pilot-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="pilot-2" name="changed-name" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="pilot-2">
+                  No
+                </label>
+              </div>
+            </div>
+
+          </fieldset>
+        </div>
+
+      <div id="scan" style="display:none;">
+        <p><strong>Enter the barcode that’s on the purple label on the outer return box</strong></p>
+
+        {{ govukDetails({
+            summaryText: "What does the barcode look like?"
+          }) }}
+
+        <form class="" action="/{{ version }}/single/scan" method="get">
+          <input class="govuk-button govuk-button--secondary" type="submit" value="Scan barcode">
+        </form>
+        
+        <form class="" action="/{{ version }}/single/check" method="get">
+
+          {{ govukInput({
+            label: {
+              html: '16-digit barcode'
+            },
+            classes: "govuk-input--width-20",
+            id: "covidUpload",
+            name: "cuBarcode"
+          }) }}
+        </div>
+
+        <input class="govuk-button" type="submit" value="Continue">
+
+      </form>
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
+ 
+
+  {# function radio1(){
+    document.getElementById('scan').style.display ='block';
+  }
+  function radio2(){
+    document.getElementById('scan').style.display = 'none';
+  } #}
+
+ $(document).ready(function() {
+  $('input[type="radio"]').click(function() {
+      if($(this).attr('id') == 'pilot-1') {
+          $(this).attr( "checked" )
+          $('#scan').show(); 
+      }
+
+      else {
+          $('#scan').hide();   
+      }
+    });
+  });
+
+</script>
+
+{% endblock %}

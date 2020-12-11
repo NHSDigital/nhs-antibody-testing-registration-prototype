@@ -125,6 +125,42 @@ a.card__body {
   }
 }
 
+.inline-buttons-wrapper {
+  display: block;
+}
+
+.nhsuk-button-image {
+  background-size: 21em;
+  background-position: 0 -6px;
+  width: 21em;
+  cursor: pointer;
+  border: none;
+  outline:none;
+  border-radius: 4px;
+  height: 50px;
+}
+
+.nhsuk-button-image.v1 {
+  background: url('/public/images/NHS-button/ContinueWith_Original.svg') no-repeat;
+}
+
+.nhsuk-button-image.v2 {
+  background: url('/public/images/NHS-button/RegisterUsing_Original.svg') no-repeat;
+}
+
+.nhsuk-button-image:active,
+.nhsuk-button-image:focus {
+  outline:none;
+  width: 21em;
+  background-size: 21em;
+  background-position: 0 -6px;
+}
+
+.nhsuk-button-image.v1:active,
+.nhsuk-button-image.v2:focus {
+  background: url('/public/images/NHS-button/RegisterUsing_Light.svg') no-repeat;
+}
+
 .nhsuk-button-style {
   background: url('/public/images/Symbol-NHS.png') 10px no-repeat;
   background-size: 60px 28px;
@@ -152,6 +188,20 @@ a.card__body {
       line-height: 1.47368;
       width: auto;
       padding: 12px 16px 12px 4.5em;
+  }
+  .nhsuk-button-image,
+  .nhsuk-button-image:active,
+  .nhsuk-button-image:focus {
+    width: 14em;
+    background-size: 14em;
+    background-position: 0 0;
+  }
+  .inline-buttons-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .inline-buttons-wrapper button:first-child {
+    margin-right: 25px;
   }
 }
 
@@ -226,17 +276,17 @@ a.card__body {
 }
 
 .account-home-button {
-  width: 100%; 
-  position: relative; 
-  text-align: left; 
-  display: flex; 
+  width: 100%;
+  position: relative;
+  text-align: left;
+  display: flex;
   flex-direction: row;
-  align-items: center; 
+  align-items: center;
   justify-content: space-between;
-  text-decoration: none; 
-  background-color: #f8f8f8; 
+  text-decoration: none;
+  background-color: #f8f8f8;
   border: 1px solid #d7dde0;
-  padding: 1rem; 
+  padding: 1rem;
   cursor: pointer
 }
 
@@ -261,4 +311,146 @@ a.card__body {
   .scan-barcode {
     width: 70%;
   }
+  .inline-button-wrapper {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+  }
+  .inline-button-wrapper a {
+    margin: 5px !important;
+  }
+  .right-button-margin {
+    margin-left: 10px;
+  }
+  .bottom-pagination {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.register-themes,
+.register-themes-detail {
+  list-style: none;
+  width: 100%;
+  padding-bottom: 2em;
+  padding-left: 0;
+}
+
+@media (min-width: 48.0625em) {
+  .register-themes,
+.register-themes-detail {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  @supports (display: grid) {
+    .register-themes {
+      display: grid;
+      grid-column-gap: 1.5em;
+      grid-row-gap: 0.75em;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(5em, auto);
+      padding-bottom: 0;
+    }
+
+    .register-themes-detail {
+      display: grid;
+      grid-column-gap: 1.5em;
+      grid-row-gap: 0.75em;
+      grid-template-columns: repeat(1, 1fr);
+      grid-auto-rows: minmax(5em, auto);
+      margin-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+.register-theme {
+  width: 100%;
+  padding: 0 0 0.75em 0;
+}
+
+@media (min-width: 48.0625em) {
+  .register-theme {
+    display: inline-block;
+    vertical-align: top;
+    width: 32%;
+  }
+
+  .register-theme:nth-child(3n+1) {
+    margin-right: 2%;
+  }
+
+  .register-theme:nth-child(3n+3) {
+    margin-left: 2%;
+  }
+
+  @supports (display: grid) {
+    .register-theme {
+      width: 100%;
+      padding: 0;
+    }
+
+    .register-theme:nth-child(3n+1) {
+      margin-right: 0;
+    }
+
+    .register-theme:nth-child(3n+3) {
+      margin-left: 0;
+    }
+  }
+}
+.register-theme__link {
+  background: #f8f8f8;
+  border: 1px solid #bfc1c3;
+  box-sizing: border-box;
+  display: block;
+  height: 100%;
+  margin: 0;
+  padding: 0.75em 0.75em 0.6em 0.75em;
+  text-decoration: none;
+  align-content: flex-start;
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.register-theme__link:hover {
+  border: 1px solid #005ea5;
+  box-shadow: 0 0 0 1px #005ea5;
+}
+
+.register-theme__heading,
+.register-theme__description,
+.register-theme__count {
+  pointer-events: none;
+  width: 100%;
+}
+
+.register-theme__heading {
+  color: #005ea5;
+}
+
+.register-theme__description {
+  flex-grow: 5;
+}
+
+.register-theme__count {
+  margin: 0;
+}
+
+.register-theme__view-all:link,
+.register-theme__view-all:visited {
+  background: #005ea5;
+  color: #fff;
+  display: block;
+  font-weight: bold;
+  line-height: 1;
+  padding: 1em 1em 0.9em 1em;
+  text-decoration: none;
+}
+
+.register-theme__view-all:link:hover,
+.register-theme__view-all:visited:hover {
+  text-decoration: underline;
 }

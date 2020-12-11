@@ -9,9 +9,11 @@ router.use('/', require('./routes/pooling.js'))
 router.use('/', require('./routes/prereg.js'))
 router.use('/', require('./routes/antibody.js'))
 router.use('/', require('./routes/antigen.js'))
+router.use('/', require('./routes/litereg-accounts.js'))
 router.use('/', require('./routes/lite-registration.js'))
 router.use('/', require('./routes/unified-org.js'))
 router.use('/', require('./routes/logresults-web-service.js'))
+router.use('/', require('./routes/v4-testing.js'))
 
 // Pull scope into the homepage to show/hide sections
 // 'SCOPE' is either pulled in from the Heroku App settings or setting in a local .env file eg. SCOPE=antibody
@@ -1199,6 +1201,57 @@ router.post('/lite-registration-lateral-flow/v1/action6/test-place', function (r
   }
 
 })
+
+// Admin portal Refer and Triage - How will you get test route
+
+router.post('/admin-portal/119-referral/refer-and-triage/action3/how-will-you-get-test', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "drive-through"){
+    res.redirect('/admin-portal/119-referral/refer-and-triage/visiting-drive-through')
+  } else if (wayToTest == "walk-in") {
+    res.redirect('/admin-portal/119-referral/refer-and-triage/visiting-walk-through')
+  } else if (wayToTest == "home testing") {
+    res.redirect('/admin-portal/119-referral/refer-and-triage/order-home-test-kit')
+  }
+
+})
+
+// Admin portal Refer and Triage - How will you get test no car route
+
+router.post('/admin-portal/119-referral/refer-and-triage/action3/how-will-you-get-test-no-car', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "walk-in"){
+    res.redirect('/admin-portal/119-referral/refer-and-triage/visiting-walk-through')
+  } else {
+    res.redirect('/admin-portal/119-referral/refer-and-triage/order-home-test-kit')
+  }
+
+})
+
+// Admin portal Refer and Triage - How will you get test no email route
+
+router.post('/admin-portal/119-referral/refer-and-triage/action3/how-will-you-get-test-no-email', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "drive-through"){
+    res.redirect('/admin-portal/119-referral/refer-and-triage/visiting-drive-through')
+  } else {
+    res.redirect('/admin-portal/119-referral/refer-and-triage/visiting-walk-through')
+  }
+
+})
+
+// Admin portal Refer and Triage - How will you get test wrong postcode route
+
+router.post('/admin-portal/119-referral/refer-and-triage/action3/how-will-you-get-test-wrong-postcode', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "drive-through"){
+    res.redirect('/admin-portal/119-referral/refer-and-triage/visiting-drive-through')
+  } else {
+    res.redirect('/admin-portal/119-referral/refer-and-triage/order-home-test-kit')
+  }
+
+})
+
 
 // Version 1 - Lite Registration lateral flow - Ethnic group route
 

@@ -31,20 +31,6 @@
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Test site
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Aberdeen (Aberdeen Airport)
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-lateral-flow-accounts/{{version}}/site-id">
-              Change
-              <span class="govuk-visually-hidden">test site</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
             Test kit barcode reference
           </dt>
           <dd class="govuk-summary-list__value">
@@ -52,6 +38,20 @@
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/lite-registration-lateral-flow-accounts/{{version}}/enter-barcode">
+              Change
+              <span class="govuk-visually-hidden">test site</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test site
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Aberdeen (Aberdeen Airport)
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow-accounts/{{version}}/site-id">
               Change
               <span class="govuk-visually-hidden">test site</span>
             </a>
@@ -135,6 +135,20 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-birth-day'] or ('5') }} {{ data['date-of-birth-month'] or ('June') }} {{ data['date-of-birth-year'] or ('1978') }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow-accounts/{{version}}/date-of-birth">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Name
           </dt>
           <dd class="govuk-summary-list__value">
@@ -163,20 +177,6 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Date of birth
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['date-of-birth-day'] or ('5') }} {{ data['date-of-birth-month'] or ('June') }} {{ data['date-of-birth-year'] or ('1978') }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-lateral-flow-accounts/{{version}}/date-of-birth">
-              Change
-              <span class="govuk-visually-hidden">date of birth</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
             Ethnic group
           </dt>
           <dd class="govuk-summary-list__value">
@@ -189,13 +189,12 @@
             </a>
           </dd>
         </div>
-        {% if data['ethnic-group'] !== "Prefer not to say" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Ethnic background
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['ethnic-background'] | default('Irish') }}
+            {{ data['ethnic-background'] | default('Prefer not to say') }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/lite-registration-lateral-flow-accounts/{{version}}/ethnic-background">
@@ -204,7 +203,6 @@
             </a>
           </dd>
         </div>
-        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Travel to nursery, work or place of education
@@ -295,7 +293,11 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            {% if data['whos-taking-the-test'] == "myself" %}
             Do you have any symptoms?
+            {% else %}
+            Do they have any symptoms?
+            {% endif %}
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['do-you-have-symptoms'] | default('Yes') }}
@@ -307,13 +309,42 @@
             </a>
           </dd>
         </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Country of residence
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['country'] or 'England' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow-accounts/{{version}}/country">
+              Change
+              <span class="govuk-visually-hidden">country</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            First line of address and postcode
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['address'] or '24 Green Lane' }}<br>
+            {{ data['home-postcode'] or 'LS1 3BE' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow-accounts/{{version}}/address">
+              Change
+              <span class="govuk-visually-hidden">first line of address and postcode</span>
+            </a>
+          </dd>
+        </div>
         {% if data['email'] == "No" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            contact email address
+            Email
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['email'] }}
+            I do not have an email address
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/lite-registration-lateral-flow-accounts/{{version}}/email-address">
@@ -325,7 +356,7 @@
         {% elseif data['email-address'] !== undefined and data['email'] == "No" or data['password'] !== undefined %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Contact email address
+            Email
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['email-address'] }}
@@ -340,7 +371,7 @@
         {% elseif data['email-address'] !== undefined %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Contact email address
+            Email
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['email-address'] }}
@@ -355,10 +386,10 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Mobile number
+            Mobile
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['mobile-phone-number'] or '+44123456643' }}
+            {{ data['mobile-phone-number'] or 'I do not have a mobile number' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/lite-registration-lateral-flow-accounts/{{version}}/mobile-number">
@@ -400,35 +431,6 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Country
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['country'] or 'England' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-lateral-flow-accounts/{{version}}/country">
-              Change
-              <span class="govuk-visually-hidden">country</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            First line of address and postcode
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['address'] or '24 Green Lane' }}<br>
-            {{ data['home-postcode'] or 'LS1 3BE' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/lite-registration-lateral-flow-accounts/{{version}}/address">
-              Change
-              <span class="govuk-visually-hidden">first line of address and postcode</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
             NHS number known
           </dt>
           <dd class="govuk-summary-list__value">
@@ -459,7 +461,7 @@
         {% endif %}
       </dl>
 
-      <form action="/lite-registration-lateral-flow-accounts/{{version}}/confirmation" method="post" novalidate>
+      <form action="/lite-registration-lateral-flow-accounts/{{version}}/security-check" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 
