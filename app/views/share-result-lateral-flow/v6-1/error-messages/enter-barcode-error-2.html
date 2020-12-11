@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Enter the unique test kit barcode" %}
+{% set pageTitle = "Enter your unique test kit barcode or Randox reference" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,7 +15,7 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/lite-registration/{{version}}/test-place">Back</a>
+  <a class="govuk-back-link" href="/lite-registration-lateral-flow/{{version}}/test-place">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -23,8 +23,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/lite-registration/{{version}}/action6/enter-barcode" method="post">
-
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#error-1">The barcode did not scan. Try again or enter the test kit barcode reference.</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <form action="/lite-registration-lateral-flow/{{version}}/test-date" method="post">
+  
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -33,12 +46,11 @@
               </h1>
             </legend>
             <span id="enter-barcode-number-hint" class="govuk-body">
-              Use the camera on your phone or computer to scan the test kit barcode.<br><br>
-              Or you can also manually enter the 11 character reference below the barcode.<br><br>
-              If you're using a home test kit, you'll find the identical barcodes inside your home test kit, either find them attached to the plastic vial, biohazard bag and return box or loose for you to stick on yourself (please read instructions).<br><br>
-              These are different from your pre-paid Royal Mail return package barcode on your box.<br><br>
-
+              There are 2 types of home test kit, one of which is branded Randox.<br><br>
               If you have a Randox test kit, manually enter the 9 or 10 character unique reference number (URN) on the label.<br><br>
+              If your test is not Randox, use the camera on your phone or computer to scan one of the identical barcodes inside your test kit. You'll either find them attached to the items in your kit or loose for you to stick on yourself (please read instructions).<br><br>
+              If you have a home test kit, these are different from your pre-paid Royal Mail return package barcode on your box.<br><br>
+              You can also manually enter the 11 character reference below the barcode.<br><br>
             </span>
 
             <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
@@ -63,15 +75,18 @@
               </div>
             </details>
 
-            <a href="/lite-registration/{{version}}/scan-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            <a href="/lite-registration-lateral-flow/{{version}}/scan-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
               Scan my barcode
             </a>
-
-            <div class="govuk-form-group">
+  
+            <div class="govuk-form-group govuk-form-group--error">
               <label class="govuk-label" for="kit-barcode-reference-1">
                 Test kit barcode reference or URN
               </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
+              <span id="reference-incorrect-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> The barcode did not scan. Try again or enter the test kit barcode reference.
+              </span>
+              <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
             </div>
 
             <div class="govuk-form-group">
@@ -80,14 +95,14 @@
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }}>
             </div>
-
+            
           </fieldset>
         </div>
-
+  
         <button class="govuk-button" data-module="govuk-button">Continue</button>
-
+  
       </form>
-
+  
     </div>
   </div>
 
