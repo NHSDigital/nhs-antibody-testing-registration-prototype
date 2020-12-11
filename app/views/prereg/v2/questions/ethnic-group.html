@@ -1,7 +1,12 @@
 {% set version = "v2" %}
 {% set folder = "prereg" %}
 {% set name = data['first-name'] or 'John Smith' %}
-{% set pageTitle = "What's "+ name +"'s ethnic group?" %}
+
+{% if data.prWho == "other" %}
+  {% set pageTitle = "What's "+ name +"'s ethnic group?" %}
+{% else %}
+  {% set pageTitle = "What is your ethnic group?" %}
+{% endif %}
 
 {% extends "includes/layout.html" %}
 

@@ -1,7 +1,12 @@
 {% set version = "v2" %}
 {% set folder = "prereg" %}
 {% set name = data['first-name'] or 'John Smith' %}
-{% set pageTitle = "Which one best describes their White background?" %}
+
+{% if data.prWho == "other" %}
+  {% set pageTitle = "Which one best describes their White background?" %}
+{% else %}
+  {% set pageTitle = "Which one best describes your White background?" %}
+{% endif %}
 
 {% extends "includes/layout.html" %}
 

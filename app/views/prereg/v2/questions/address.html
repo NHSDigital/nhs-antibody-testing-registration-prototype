@@ -1,7 +1,13 @@
 {% set version = "v2" %}
 {% set folder = "prereg" %}
 {% set name = data['first-name'] or 'John Smith' %}
-{% set pageTitle = "What's the first line of " + name + "'s address and home postcode?" %}
+
+
+{% if data.prWho == "other" %}
+  {% set pageTitle = "What's the first line of " + name + "'s address and home postcode?" %}
+{% else %}
+  {% set pageTitle = "What's the first line of your address and home postcode?" %}
+{% endif %}
 
 {% extends "includes/layout.html" %}
 

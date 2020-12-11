@@ -1,7 +1,13 @@
 {% set version = "v2" %}
 {% set folder = "prereg" %}
 {% set name = data['first-name'] or 'John Smith' %}
-{% set pageTitle = "What is " + name + "'s occupation?" %}
+
+
+{% if data.prWho == "other" %}
+  {% set pageTitle = "What is " + name + "'s occupation?" %}
+{% else %}
+  {% set pageTitle = "What is your occupation?" %}
+{% endif %}
 
 {% extends "includes/layout.html" %}
 
