@@ -1,17 +1,17 @@
 {% set version = "v8" %}
-{% set pageTitle = "What's the name of your NHS Trust?" %}
+{% set pageTitle = "What is your NHS Trust?" %}
 
-{% extends "includes/layout-LFD.html" %}
+{% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/nhs-primary">Back</a>
+<a class="govuk-back-link" href="/share-results-lateral-flow/{{version}}/#">Back</a>
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/share-result-lateral-flow/{{version}}/country" method="post">
+    <form action="/share-results-lateral-flow/{{version}}/action/occupation" method="post">
 
       <div class="govuk-form-group">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -19,17 +19,13 @@
             {{ pageTitle }}
           </h1>
         </legend>
-        <span id="nhs-number-hint" class="govuk-body">
-          Start entering your trust's name, then choose from the options provided.
+        <span id="occupation-hint" class="govuk-hint">
+          This helps us to...<br><br>
+          Start entering your trust then choose from the options provided.
+          If you cannot find your trust...<br><br>
+        <!--  If you still cannot find yours, select ‘I cannot find the correct occupation’. -->
         </span>
-        <br>
-        <div class="govuk-form-group govuk-!-margin-top-5">
-          <label id="occupation-hint" class="govuk-label" for="occupation">
-            Name of trust
-          <!--  If you still cannot find yours, select ‘I cannot find the correct occupation’. -->
-          </label>
-          <div id="occupation-container" name="occupation"></div>
-        </div>
+        <div id="occupation-container"></div>
       </div>
 
       <button class="govuk-button" type="submit" data-module="govuk-button">
