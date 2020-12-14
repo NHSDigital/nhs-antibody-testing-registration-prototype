@@ -53,7 +53,7 @@ router.post('/antigen/v2/action3/follow-up-test', function (req, res) {
   if (followUpTest == "Yes"){
     res.redirect('/antigen/v2/refer-and-triage/follow-up-test-reason')
   } else {
-    res.redirect('/antigen/v2/refer-and-triage/essential-worker')
+    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
   }
 
 })
