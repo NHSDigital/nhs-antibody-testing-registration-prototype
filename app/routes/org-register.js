@@ -434,7 +434,21 @@ router.post('/organisational/register/enhanced/single/have-coronavirus', functio
   if (answer == 'Yes') {
     res.redirect('/organisational/register/enhanced/single/when-symptoms')
     } else {
-    res.redirect('/organisational/register/enhanced/single/testkit')
+    res.redirect('/organisational/register/enhanced/single/have-vaccine')
+    }
+});
+
+router.post('/organisational/register/enhanced/single/have-vaccine', function (req, res) {
+  let answer = req.body.cuVaccine;
+
+  if (answer == '1 dose') {
+    res.redirect('/organisational/register/enhanced/single/when-vaccine')
+    } else if (answer == '2 doses') {
+      res.redirect('/organisational/register/enhanced/single/when-vaccine')
+    } else if (answer == 'no') {
+      res.redirect('/organisational/register/enhanced/single/testkit')
+    } else {
+    res.redirect('/organisational/register/enhanced/single/have-vaccine?error=empty')
     }
 });
 

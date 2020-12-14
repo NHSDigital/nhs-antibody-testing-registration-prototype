@@ -12,13 +12,15 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set dob %}
-  {% if data["cuDOB-day"] and data["cuDOB-month"] and data["cuDOB-year"]  %}
-    {{ data["cuDOB-day"]}} {{ data["cuDOB-month"] | monthToWord }} {{ data["cuDOB-year"]}}
+
+{% set symptoms %}
+  {% if data["symptom-day"] and data["symptom-month"] and data["symptom-year"]  %}
+    {{ data["symptom-day"]}} {{ data["symptom-month"] | monthToWord }} {{ data["symptom-year"]}}
   {% else %}
     31 March 1975
   {% endif %}
 {% endset %}
+
 {% set timeDate %}
   {% if data.cuDate and data.cuTime %}
     {% if data.cuDate == "Another date" %}
@@ -32,9 +34,12 @@
     {{ "Today" | returnDateShort }}: 9am
   {% endif %}
 {% endset %}
+
+
 {% set pageHeading = "Check your answers" %}
  {% set version = "organisational/register/enhanced" %}
 {% set serviceName = "Get a coronavirus test" %}
+
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -111,7 +116,7 @@
               text: "Date of birth"
             },
             value: {
-              text: dob
+              text: dob | placeholder("14 April 1986")
             },
             actions: {
               items: [
@@ -140,8 +145,6 @@
               ]
             }
           },
-
-
           {
             key: {
               text: "NHS number"
@@ -355,7 +358,7 @@
               text: "Employer name"
             },
             value: {
-              text: "Blue Castle Care"
+              text: data.cuEmployer | placeholder("Blue Castle")
             },
             actions: {
               items: [
@@ -391,12 +394,54 @@
               ]
             }
           },
+
           {
             key: {
               text: "Symptoms start date"
             },
             value: {
-              text: data['bday-day'] | placeholder("20 June 2020")
+              text: data['symptom-day'] | placeholder("20 June 2020")
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Do they have any symptoms"
+                }
+              ]
+            }
+          } if data.cuCoronavirus == "Yes"
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Vaccine details</h2>
+      {{ govukSummaryList({
+        rows: 
+        [ 
+          {
+            key: {
+              text: "Have they had the vaccine?"
+            },
+            value: {
+              text: data.cuVaccine or "1 dose"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Have they had the vaccine?"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Vaccine date"
+            },
+            value: {
+              html: "More than 14 days ago<br>06 December 2020"
             },
             actions: {
               items: [
