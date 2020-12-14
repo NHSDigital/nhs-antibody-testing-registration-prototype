@@ -5,12 +5,13 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "When did " + fullname | trim + "'s symptoms start?" %}
+{% set pageHeading = "Has " + fullname + "had a coronavirus vaccine?" %}
  {% set version = "organisational/register/enhanced" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
+
 {% block pageTitle %}
-  {{ pageHeading }} - {{ serviceName }}
+  {{ pageHeading }} - COVID-19
 {% endblock %}
 
 {% block beforeContent %}
@@ -34,47 +35,36 @@
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/{{ version }}/single/have-vaccine" method="get">
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
 
-        {{ govukDateInput({
-            id: "covidUpload",
-            namePrefix: "cuSymptomsStart",
-            fieldset: {
-              legend: {
-                html: pageHeading,
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--xl"
-              }
-            },
-            hint: {
-              html: "<p>Enter the date. If you cannot remember the exact date, enter the date you think it was, roughly.</p><p>Use the format DD MM YYYY, for example 15 04 2020</p>"
-            },
+      <p>We are asking this question to better understand how effective the vaccine is.</p>
+
+
+      <form class="" action="" method="post">
+        {{ govukRadios({
+            idPrefix: "cuVaccine",
+            name: "cuVaccine",
             items: [
               {
-                name: "day",
-                classes: "govuk-input--width-2",
-                autocomplete: "symptom-day"
+                value: "no",
+                html: "No"
               },
               {
-                name: "month",
-                classes: "govuk-input--width-2",
-                autocomplete: "symptom-month"
+                value: "1 dose",
+                text: "Yes, they've had 1 dose"
               },
               {
-                name: "year",
-                classes: "govuk-input--width-4",
-                autocomplete: "symptom-year"
+                value: "2 doses",
+                text: "Yes, they've had 2 doses"
               }
             ]
           }) }}
-
         <input class="govuk-button" type="submit" value="Continue">
-
-        
       </form>
 
     </div>

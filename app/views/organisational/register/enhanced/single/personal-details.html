@@ -57,19 +57,36 @@
         }) }}
 
         {{ govukDateInput({
-          id: "dob",
-          namePrefix: "dob",
-          fieldset: {
-            legend: {
-              text: "Date of birth",
-              isPageHeading: false,
-              classes: "govuk-body"
-            }
-          },
-          hint: {
-            text: "For example, 12 11 2007"
-          }
-        }) }}
+            id: "covidUpload",
+            namePrefix: "cuDOB",
+            fieldset: {
+              legend: {
+                html: "Date of birth",
+                isPageHeading: false,
+                classes: "govuk-body"
+              }
+            },
+            hint: {
+              text: "For example, 31 3 1980"
+            },
+            items: [
+              {
+                name: "day",
+                classes: "govuk-input--width-2",
+                autocomplete: "day"
+              },
+              {
+                name: "month",
+                classes: "govuk-input--width-2",
+                autocomplete: "month"
+              },
+              {
+                name: "year",
+                classes: "govuk-input--width-4",
+                autocomplete: "year"
+              }
+            ]
+          }) }}
 
         {{ govukRadios({
           idPrefix: "covidUpload",
@@ -81,6 +98,9 @@
               classes: "govuk-body"
             }
           },
+          hint: {
+            html: "Which of the following is recorded on the person's medical record? <br>We need to know this so that we can match your test results to your medical record."
+          },
           items: [
             {
               value: "Female",
@@ -89,8 +109,16 @@
             {
               value: "Male",
               text: "Male"
+            },
+            {
+              value: "I don't know",
+              text: "I don't know"
             }
           ]
+        }) }}
+        
+        {{ govukDetails({
+          summaryText: "Why are there no other options?"
         }) }}
         
         {{ govukInput({
@@ -102,7 +130,7 @@
           },
           classes: "govuk-input--width-20",
           id: "covidUpload",
-          name: "cuLastName"
+          name: "cuNHSnumber"
         }) }}
 
         {{ govukDetails({
