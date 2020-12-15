@@ -30,6 +30,14 @@
   {% endif %}
 {% endset %}
 
+{% set Gender %}
+  {% if data.cuGender %}
+    {{ data.cuGender}} 
+    {% else %}
+      Male
+  {% endif %}
+{% endset %}
+
 {% set NHSnumber %}
   {% if data.cuNumber %}
     {{ data.cuNumber }} 
@@ -75,6 +83,15 @@
     England
   {% endif %}
 {% endset %}
+
+{% set whenVaccine %}
+  {% if data["cuVaccineDate-month"] and data["cuVaccineDate-year"]  %}
+     {{ data["cuVaccineDate-month"] | monthToWord }} {{ data["cuVaccineDate-year"]}}
+  {% else %}
+    March 1975
+  {% endif %}
+{% endset %}
+
 
 {% set version = "v1" %}
 {% set pageTitle = "Check your answers" %}
@@ -158,7 +175,7 @@
             Gender
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data.cuGender }} 
+            {{ Gender }} 
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/elective-care-testing/{{version}}/trust-worker-request/gender">
@@ -190,8 +207,6 @@
             Mobile number
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['mobile-phone-number'] }}
-
             {{ mobile }}
           </dd>
           <dd class="govuk-summary-list__actions">
@@ -253,6 +268,72 @@
               <a href="/elective-care-testing/{{version}}/trust-worker-request/symptoms-start">
                 Change
                 <span class="govuk-visually-hidden">date symptoms started</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+      </dl>
+
+      <h2 class="govuk-heading-m">Vaccine</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Have they had the vaccine?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data.cuVaccine }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/elective-care-testing/{{version}}/trust-worker-request/have-vaccine">
+              Change
+              <span class="govuk-visually-hidden">Have they had a vaccine?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data.cuVaccine == "1 dose"%}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date of vaccine
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data.cuVaccineStart == "less-than"%}
+                Less than 7 days ago
+              {% endif %}
+              {% if data.cuVaccineStart == "equal" %}
+                7 to 14 days ago
+              {% endif %}
+              {% if data.cuVaccineStart == "more-than" %}
+                More than 14 days ago <br> {{ whenVaccine }}
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/elective-care-testing/{{version}}/trust-worker-request/when-vaccine">
+                Change
+                <span class="govuk-visually-hidden">Have they had the vaccine?</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+        {% if data.cuVaccine == "2 doses"%}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date of vaccine
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data.cuVaccineStart == "less-than"%}
+                Less than 7 days ago
+              {% endif %}
+              {% if data.cuVaccineStart == "equal" %}
+                7 to 14 days ago
+              {% endif %}
+              {% if data.cuVaccineStart == "more-than" %}
+                More than 14 days ago
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/elective-care-testing/{{version}}/trust-worker-request/have-vaccine">
+                Change
+                <span class="govuk-visually-hidden">Have they had the vaccine?</span>
               </a>
             </dd>
           </div>

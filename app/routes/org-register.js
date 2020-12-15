@@ -429,7 +429,7 @@ router.post('/organisational/register/enhanced/single/occupation/index', functio
 });
 
 router.post('/organisational/register/enhanced/single/have-coronavirus', function (req, res) {
-  let answer = req.body.cuSymptoms;
+  let answer = req.body.cuCoronavirus;
 
   if (answer == 'Yes') {
     res.redirect('/organisational/register/enhanced/single/when-symptoms')
@@ -449,6 +449,44 @@ router.post('/organisational/register/enhanced/single/have-vaccine', function (r
       res.redirect('/organisational/register/enhanced/single/testkit')
     } else {
     res.redirect('/organisational/register/enhanced/single/have-vaccine?error=empty')
+    }
+});
+
+router.post('/elective-care-testing/v1/trust-worker-request-enhanced/request-method', function (req, res) {
+  let answer = req.body.cuRequestMethod;
+
+  if (answer == 'upload') {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/upload-file')
+    } else if (answer == 'manual') {
+      res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/date-of-procedure')
+    } else {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/request-method?error=empty')
+    }
+})
+
+router.post('/elective-care-testing/v1/trust-worker-request-enhanced/symptoms', function (req, res) {
+  let answer = req.body.cuSymptomatic;
+
+  if (answer == 'Yes') {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/symptoms-start')
+    } else if (answer == 'No') {
+      res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/have-vaccine')
+    } else {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/symptoms?error=empty')
+    }
+})
+
+router.post('/elective-care-testing/v1/trust-worker-request-enhanced/have-vaccine', function (req, res) {
+  let answer = req.body.cuVaccine;
+
+  if (answer == '1 dose') {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/when-vaccine')
+    } else if (answer == '2 doses') {
+      res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/when-vaccine')
+    } else if (answer == 'No') {
+      res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/check-your-answers-manual')
+    } else {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/have-vaccine?error=empty')
     }
 });
 
