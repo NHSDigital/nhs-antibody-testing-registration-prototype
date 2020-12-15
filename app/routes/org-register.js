@@ -429,7 +429,7 @@ router.post('/organisational/register/enhanced/single/occupation/index', functio
 });
 
 router.post('/organisational/register/enhanced/single/have-coronavirus', function (req, res) {
-  let answer = req.body.cuSymptoms;
+  let answer = req.body.cuCoronavirus;
 
   if (answer == 'Yes') {
     res.redirect('/organisational/register/enhanced/single/when-symptoms')
