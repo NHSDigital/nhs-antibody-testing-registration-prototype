@@ -420,7 +420,7 @@ router.post('/organisational/register/enhanced/single/occupation/index', functio
   } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
     res.redirect('/organisational/register/enhanced/single/occupation/area')
   } else if (answer == 'no') {
-    res.redirect('/organisational/register/enhanced/single/occupation/area')
+    res.redirect('/organisational/register/enhanced/single/have-coronavirus')
   } else if (answer == 'Prefer not to say') {
     res.redirect('/organisational/register/enhanced/single/occupation/area')
   } else {
