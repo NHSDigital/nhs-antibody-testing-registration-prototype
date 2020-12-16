@@ -346,6 +346,17 @@ router.post('/prereg/v3/which', function (req, res) {
 
 })
 
+router.post('/prereg/v3/:folder/share-results', function (req, res) {
+  let answer = req.session.data['shareResults']
+  let folder = req.params.folder;
+
+  if (answer == "Yes"){
+    res.redirect('/prereg/v3/' + folder + '/check-your-answers')
+  } else {
+    res.redirect('/prereg/v3/' + folder + '/test-site')
+  }
+
+})
 
 
 
