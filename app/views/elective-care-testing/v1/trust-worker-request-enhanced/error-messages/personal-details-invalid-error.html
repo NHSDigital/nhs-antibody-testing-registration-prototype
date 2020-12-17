@@ -1,0 +1,163 @@
+{% set version = "v1" %}
+{% set pageTitle = "Enter their personal details" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#error-1">Date of  birth must include a month</a>
+            </li>
+            <li>
+              <a href="#error-1">Date of birth must include a year</a>
+            </li>
+            <li>
+              <a href="#error-2">Enter a correct NHS number</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+
+      <form action="/elective-care-testing/{{version}}/trust-worker-request-enhanced/error-messages/personal-details-error?error=empty" method="post">
+
+        <fieldset class="govuk-fieldset">
+        
+          <div class="govuk-form-group ">
+            <label class="govuk-label" for="first-name">
+              First name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="first-name" name="first-name" type="text" value="{{ data['first-name'] }}">
+          </div>
+
+          <div class="govuk-form-group ">
+            <label class="govuk-label" for="last-name">
+              Last name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="last-name" name="last-name" type="text" value="{{ data['last-name'] }}">
+          </div>
+        
+        </fieldset>
+
+        {{ govukDateInput({
+          fieldset: {
+            legend: {
+              text: "Date of birth",
+              isPageHeading: false,
+              classes: "govuk-body"
+            }
+          },
+          hint: {
+            text: "For example, 12 11 2007"
+          },
+          errorMessage: {
+            html: "Date of birth must include a month<br>Date of birth must include a year"
+          },
+          id: "error-1",
+          namePrefix: "passport-issued",
+          items: [
+            {
+              classes: "govuk-input--width-2 govuk-input--error",
+              name: "day"
+            },
+            {
+              classes: "govuk-input--width-2",
+              name: "month",
+              value: "3"
+            },
+            {
+              classes: "govuk-input--width-4 govuk-input--error",
+              name: "year"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "covidUpload",
+          name: "cuGender",
+          fieldset: {
+            legend: {
+              text: "Gender",
+              isPageHeading: true,
+              classes: "govuk-body"
+            }
+          },
+          hint: {
+            html: "Which of the following is recorded on the person's medical record? <br>We need to know this so that we can match your test results to your medical record."
+          },
+          items: [
+            {
+              value: "Female",
+              text: "Female"
+            },
+            {
+              value: "Male",
+              text: "Male"
+            },
+            {
+              value: "I don't know",
+              text: "I don't know"
+            }
+          ]
+        }) }}
+
+        {{ govukDetails({
+          summaryText: "Why are there no other options?"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "NHS Number"
+          },
+          hint: {
+            text: "Their NHS number is a 10 digit number, like 867 406 5600. They can find it on any letter the NHS has sent them, on a prescription, or by logging in to some GP online services."
+          },
+          errorMessage: {
+            text: "Enter a correct NHS number"
+          },
+          classes: "govuk-input--width-20",
+          id: "error-2",
+          name: "cuNumber",
+          value: "312"
+        }) }}
+
+        {{ govukDetails({
+          summaryText: "How to find your NHS number"
+        }) }}
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
