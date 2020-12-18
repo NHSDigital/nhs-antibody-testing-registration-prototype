@@ -434,7 +434,7 @@ router.post('/organisational/register/enhanced/single/have-coronavirus', functio
   if (answer == 'Yes') {
     res.redirect('/organisational/register/enhanced/single/when-symptoms')
     } else {
-    res.redirect('/organisational/register/enhanced/single/have-vaccine')
+    res.redirect('/organisational/register/enhanced/single/testkit')
     }
 });
 
