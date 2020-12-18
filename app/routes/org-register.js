@@ -470,7 +470,7 @@ router.post('/elective-care-testing/v1/trust-worker-request-enhanced/symptoms', 
   if (answer == 'Yes') {
     res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/symptoms-start')
     } else if (answer == 'No') {
-      res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/have-vaccine')
+      res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/check-your-answers-manual')
     } else {
     res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/symptoms?error=empty')
     }
