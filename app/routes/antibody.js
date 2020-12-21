@@ -218,7 +218,7 @@ router.post('/antibody/v4/action/do-you-have-symptoms', function (req, res) {
   if (doYouHaveSymptoms == "Yes"){
     res.redirect('/antibody/v4/refer-and-triage/not-eligible')
   } else {
-    res.redirect('/antibody/v4/refer-and-triage/infection-serious')
+    res.redirect('/antibody/v4/refer-and-triage/name')
   }
 
 })
@@ -477,7 +477,7 @@ router.post('/antibody/v5/action/do-you-have-symptoms', function (req, res) {
   if (doYouHaveSymptoms == "Yes"){
     res.redirect('/antibody/v5/refer-and-triage/antigen-test')
   } else {
-    res.redirect('/antibody/v5/refer-and-triage/infection-serious')
+    res.redirect('/antibody/v5/refer-and-triage/name')
   }
 
 })
@@ -733,7 +733,7 @@ router.post('/antibody/v6/action/do-you-have-symptoms', function (req, res) {
   if (doYouHaveSymptoms == "Yes"){
     res.redirect('/antibody/v6/refer-and-triage/antigen-test')
   } else {
-    res.redirect('/antibody/v6/refer-and-triage/infection-serious')
+    res.redirect('/antibody/v6/refer-and-triage/name')
   }
 
 })
