@@ -462,7 +462,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
   //  if (person == "myself") {
   //    res.redirect('/share-result-lateral-flow/v8-2/coronavirus-account')
   //  } else {
-  //    res.redirect('/share-result-lateral-flow/v8-2/enter-barcode')
+  //    res.redirect('/share-result-lateral-flow/v8-2/home-org-use')
   //  }
 
 //  })
