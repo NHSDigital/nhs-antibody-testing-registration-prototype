@@ -479,4 +479,14 @@ router.post('/share-result-lateral-flow/v8-2/action9/create-password', function 
   }
 })
 
+  // Version 8.2 - LDF self report accounts - check mobile route
+router.post('/share-result-lateral-flow/v8-2/action9/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/share-result-lateral-flow/v8-2/user-account/check-mobile-error')
+  } else {
+    res.redirect('/share-result-lateral-flow/v8-2/user-account/agreement')
+  }
+})
+
 module.exports = router
