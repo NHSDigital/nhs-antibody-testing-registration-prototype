@@ -455,17 +455,16 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
   })
 
 
-  // Version 8.2 - LDF self report accounts - Who's taking the test route
+// Version 8.2 - LDF self report accounts - Who's taking the test route
 
-  //router.post('/share-result-lateral-flow/v8-2/action9/whos-taking-the-test', function (req, res) {
-  //  let person = req.session.data['whos-taking-the-test']
-  //  if (person == "myself") {
-  //    res.redirect('/share-result-lateral-flow/v8-2/coronavirus-account')
-  //  } else {
-  //    res.redirect('/share-result-lateral-flow/v8-2/home-org-use')
-  //  }
-
-//  })
+  router.post('/share-result-lateral-flow/v8-2/action9/whos-taking-the-test', function (req, res) {
+    let person = req.session.data['whos-taking-the-test']
+    if (person == "myself") {
+      res.redirect('/share-result-lateral-flow/v8-2/coronavirus-account')
+    } else {
+      res.redirect('/share-result-lateral-flow/v8-2/home-org-use')
+    }
+  })
 
   // Version 8.2 - LDF self report accounts - Create password route
 
