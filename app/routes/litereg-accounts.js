@@ -281,7 +281,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
     }
 
   })
-  
+
 
     // // Version 2 - Lite Registration Accounts - Do you have symptoms route
 
@@ -453,5 +453,39 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
       res.redirect('/litereg-accounts/v2/site-id')
     }
   })
+
+
+// Version 8.2 - LDF self report accounts - Who's taking the test route
+
+  router.post('/share-result-lateral-flow/v8-2/action9/whos-taking-the-test', function (req, res) {
+    let person = req.session.data['whos-taking-the-test']
+    if (person == "myself") {
+      res.redirect('/share-result-lateral-flow/v8-2/coronavirus-account')
+    } else {
+      res.redirect('/share-result-lateral-flow/v8-2/home-org-use')
+    }
+  })
+
+  // Version 8.2 - LDF self report accounts - Create password route
+
+router.post('/share-result-lateral-flow/v8-2/action9/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/share-result-lateral-flow/v8-2/user-account/create-password-error')
+  } else {
+    res.redirect('/share-result-lateral-flow/v8-2/user-account/check-email')
+  }
+})
+
+  // Version 8.2 - LDF self report accounts - check mobile route
+router.post('/share-result-lateral-flow/v8-2/action9/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/share-result-lateral-flow/v8-2/user-account/check-mobile-error')
+  } else {
+    res.redirect('/share-result-lateral-flow/v8-2/user-account/agreement')
+  }
+})
 
 module.exports = router
