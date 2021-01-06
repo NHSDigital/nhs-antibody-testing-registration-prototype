@@ -1,6 +1,6 @@
 {% set version = "v3" %}
 {% set folder = "prereg" %}
-{% set pageTitle = "When will the person being registered take the coronavirus test?" %}
+{% set pageTitle = "Your test result will be shared with [org name]" %}
 
 {% extends "includes/layout.html" %}
 
@@ -27,29 +27,43 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/{{ folder }}/{{version}}/testpass/check-your-answers" method="get">
+      <form action="#" method="post">
+
+        <h1 class="govuk-heading-xl">
+          {{ pageTitle }}
+        </h1>
+
+        <p>This is to help manage coronavirus at the site.</p><p> You can find out how your data is used by asking at your test site or by <a href="#">reading the coronavirus privacy notice</a>.</p>
+
+        {% set testsite = data.siteID or "WORK - 1014567 - Workplace LTD" %}
+        {% set hintTextHTML %}
+          {{ govukInsetText({
+            text: testsite,
+            classes: "govuk-!-margin-top-0"
+          }) }}
+        {% endset %}
 
         {{ govukRadios({
           idPrefix: "shareResults",
           name: "shareResults",
           fieldset: {
             legend: {
-              text: "Are you happy for your results to be shared with [organisation name]?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              text: "Confirm the test site ID is correct",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
             }
           },
           hint: {
-            html: "This helps organisations manage health and safety."
+            html: hintTextHTML
           },
           items: [
             {
               value: "Yes",
-              text: "Yes, I am happy to share my results"
+              text: "Yes, the test site ID is correct"
             },
             {
               value: "No",
-              text: "No, do not share my results"
+              text: "No, I need to change the test site"
             }
           ]
         }) }}
