@@ -1,6 +1,6 @@
 {% extends "includes/layout.html" %}
 {% set serviceName = "COVID-19" %}
-{% set pageTitle = "How many test kits need to be collected?" %}
+{% set pageTitle = "Select a collection time for Monday 21 December" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
@@ -28,40 +28,39 @@
         <div class="govuk-error-summary__body">
           <ul class="govuk-list govuk-error-summary__list">
             <li>
-              <a href="#field-1">The number of test kits must be 5,000 or fewer</a>
+              <a href="#error-1">There are no available collection times for 10am to 1pm</a>
             </li>
           </ul>
         </div>
       </div>
 
-      <form action="7" method="post">
-        <fieldset class="govuk-fieldset">
+      <form action="6" method="post">
+        <fieldset class="govuk-fieldset govuk-!-margin-bottom-6">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-2">
               {{ pageTitle }}
             </h1>
           </legend>
 
-          <p class="govuk-body">It's okay to give an estimate.</p>
-
-          <div class="govuk-form-group govuk-form-group--error">
-            <span class="govuk-error-message">
-              <span class="govuk-visually-hidden">Error:</span> The number of test kits must be 5,000 or fewer
+          <div class="govuk-radios govuk-radios govuk-form-group--error">
+            <span id="#error-1" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select a collection time
             </span>
-            <label class="govuk-label" for="">
-              Number of test kits
-            </label>
-            <input class="govuk-input govuk-input--error govuk-input--width-5" id="field-1" name="number-of-kits" type="text">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="radio-2" name="radio" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="radio-2">
+                1pm to 4pm
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="radio-2" name="radio" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="radio-2">
+              4pm to 9pm
+              </label>
+            </div>
           </div>
 
         </fieldset>
-
-        <p class="govuk-body">If you need to book a collection for more than 5,000 test kits, contact the call centre:</p>
-        <ul class="govuk-list govuk-list--bullet govuk-list govuk-list--bullet govuk-!-margin-bottom-4">
-          <li>England, Wales and Northern Ireland: call <span class="govuk-!-font-weight-bold">119</span> (free from mobiles and landlines)</li>
-          <li>Scotland: call <span class="govuk-!-font-weight-bold">0300 303 2713</span> (charged at your standard network rate)</li>
-        </ul>
-        <p class="govuk-body">Lines are open 7am to 11pm.</p>
 
         <button class="govuk-button" data-module="govuk-button">
           Continue
