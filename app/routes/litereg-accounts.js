@@ -488,4 +488,24 @@ router.post('/share-result-lateral-flow/v8-2/action9/check-mobile', function (re
   }
 })
 
+// Version 8.2 - LDF self report accounts  - Ethnic group route
+router.post('/share-result-lateral-flow/v8-2/action7/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/share-result-lateral-flow/v8-2/user-account/edit-personal-details/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/share-result-lateral-flow/v8-2/user-account/edit-personal-details/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/share-result-lateral-flow/v8-2/user-account/edit-personal-details/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/share-result-lateral-flow/v8-2/user-account/edit-personal-details/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/share-result-lateral-flow/v8-2/user-account/edit-personal-details/ethnic-background-another')
+  } else {
+    res.redirect('/share-result-lateral-flow/v8-2/user-account/edit-personal-details/currently-in-work')
+  }
+
+})
+
 module.exports = router
