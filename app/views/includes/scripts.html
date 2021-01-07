@@ -20,32 +20,49 @@
 
 
   <script>
-    const captureVideoButton = document.querySelector(
-      "#screenshot .capture-button"
-    );
-    const screenshotButton = document.querySelector("#screenshot-button");
-    const img = document.querySelector("#screenshot img");
-    const video = document.querySelector("#screenshot video");
 
-    const canvas = document.createElement("canvas");
+		// Put event listeners into place
+		window.addEventListener("DOMContentLoaded", function() {
+			// Grab elements, create settings, etc.
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            var video = document.getElementById('video');
+            var mediaConfig =  { video: true };
+            var errBack = function(e) {
+            	console.log('An error has occurred!', e)
+            };
 
-    captureVideoButton.onclick = function () {
-      navigator.mediaDevices
-        .getUserMedia(constraints)
-        .then(handleSuccess)
-        .catch(handleError);
-    };
+			// Put video listeners into place
+            if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
+					//video.src = window.URL.createObjectURL(stream);
+					video.srcObject = stream;
+                    video.play();
+                });
+            }
 
-    screenshotButton.onclick = video.onclick = function () {
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      canvas.getContext("2d").drawImage(video, 0, 0);
-      // Other browsers will fall back to image/png
-      img.src = canvas.toDataURL("image/webp");
-    };
+            /* Legacy code below! */
+            else if(navigator.getUserMedia) { // Standard
+				navigator.getUserMedia(mediaConfig, function(stream) {
+					video.src = stream;
+					video.play();
+				}, errBack);
+			} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+				navigator.webkitGetUserMedia(mediaConfig, function(stream){
+					video.src = window.webkitURL.createObjectURL(stream);
+					video.play();
+				}, errBack);
+			} else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
+				navigator.mozGetUserMedia(mediaConfig, function(stream){
+					video.src = window.URL.createObjectURL(stream);
+					video.play();
+				}, errBack);
+			}
 
-    function handleSuccess(stream) {
-      screenshotButton.disabled = false;
-      video.srcObject = stream;
-    }
-  </script>
+			// Trigger photo take
+			document.getElementById('snap').addEventListener('click', function() {
+				context.drawImage(video, 0, 0, 640, 480);
+			});
+		}, false);
+
+	</script>
