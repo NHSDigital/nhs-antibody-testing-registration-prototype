@@ -17,7 +17,7 @@ function loadJSONFromFile(fileName, path = "app/data/") {
 router.post('/genomic-variants/action3/1-have-you-travelled-overseas', function (req, res) {
   let OverseasTravel = req.session.data['have-you-travelled-overseas']
   if (OverseasTravel == "No"){
-    res.redirect('/genomic-variants/check-your-answers')
+    res.redirect('/antigen/v2/global-registration/country')
   } else {
     res.redirect('/genomic-variants/1-which-countries-travelled-to')
   }
