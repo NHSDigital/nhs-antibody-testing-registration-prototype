@@ -182,7 +182,7 @@ router.post('/antigen/v2/action3/currently-in-work', function (req, res) {
   } else if (inWork == "Yes - they go to nursery, school, college or university"){
     res.redirect('/antigen/v2/global-registration/study-grade')
   } else {
-    res.redirect('/antigen/v2/global-registration/country')
+    res.redirect('/genomic-variants/1-have-you-travelled-overseas')
   }
 })
 
