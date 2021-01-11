@@ -262,6 +262,29 @@
           </dd>
         </div>
         {% endif %}
+       <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Overseas travel
+          </dt>
+        {% if data['have-you-travelled-overseas'] == "Yes" %}
+          <dd class="govuk-summary-list__value">Yes, to 
+            {{ data['country-autocomplete'] or 'Ireland' }}<br>
+          </dd>
+         <dd class="govuk-summary-list__actions">
+            <a href="/genomic-variants/1-which-countries-travelled-to">
+              Change
+              <span class="govuk-visually-hidden">country visited</span>
+        {% else %}
+           <dd class="govuk-summary-list__value">No<br>
+          </dd>
+         <dd class="govuk-summary-list__actions">
+            <a href="/genomic-variants/1-have-you-travelled-overseas">
+              Change
+              <span class="govuk-visually-hidden">country visited</span>
+         {% endif %}
+            </a>
+          </dd>
+        </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Country of residence

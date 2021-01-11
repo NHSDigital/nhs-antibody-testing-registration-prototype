@@ -1,0 +1,86 @@
+{% set version = "v9-2" %}
+{% set pageTitle = "Another person must read the test strip" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/choose-result">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/using-mobile" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="result-hint" class="govuk-body">
+              Another person must look at the test strip and record what they see because your care home has agreed to be part of a pilot.
+            </span>
+            <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                Find out more
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body">The care home is part of a pilot to help the NHS develop new technology to make the test kits easier for everyone.</p>
+                <p class="govuk-body">Remember:</p>
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li>the other person must read the test strip on their own using the test kit instructions to help them</li>
+                    <li>their answer will not affect the result you're reporting</li>
+                    <li>it's okay if they think the result is different</li>
+                  </ul>
+              </div>
+            </details>
+            <h2 class="govuk-heading-m">What result do they see?</h2>
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" {{ checked("choose-result", "Positive") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-1">
+                  Positive
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-2" name="gender" type="radio" {{ checked("choose-result", "Negative") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-2">
+                  Negative
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-3" name="gender" type="radio" {{ checked("choose-result", "Invalid") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-3">
+                  Invalid <!-- (also known as a failed or void result) -->
+                </label>
+              </div>
+          </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}
