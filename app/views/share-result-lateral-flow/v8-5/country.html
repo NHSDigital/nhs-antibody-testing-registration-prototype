@@ -1,5 +1,5 @@
-{% set version = "v8-4" %}
-{% set pageTitle = "Were you asked to take part in daily contact testing?" %}
+{% set version = "v8-5" %}
+{% set pageTitle = "What country do you live in?" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -15,7 +15,8 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/home-org-use">Back</a>
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+  
 {% endblock %}
 
 {% block content %}
@@ -23,7 +24,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/share-result-lateral-flow/{{version}}/school-name" method="post">
+      <form action="/share-result-lateral-flow/{{version}}/test-date" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
@@ -32,29 +33,29 @@
                 {{ pageTitle }}
               </h1>
             </legend>
-            <span id="enter-barcode-number-hint" class="govuk-body">
-             <p>This means taking a test every day for 7 days (usually because you’re a contact of someone who has tested positive for coronavirus).
-            </p> <p>
-              If you’re reporting a result for someone else, answer for them.</p>
-                          </span>
-            <div class="govuk-radios govuk-!-margin-top-5">
+            <div class="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-1" name="country" type="radio" {{ checked("home-org-use", "Care home") }}>
+                <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }}>
                 <label class="govuk-label govuk-radios__label" for="country-1">
-                  Yes
+                  England
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-4" name="country" type="radio" {{ checked("home-org-use","NHS staff testing programme") }}>
+                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="Scotland" {{ checked("country", "Scotland") }}>
                 <label class="govuk-label govuk-radios__label" for="country-4">
-                   No
+                  Scotland
                 </label>
               </div>
-              <div class="govuk-radios__divider">or</div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-5" name="country" type="radio" {{ checked("home-org-use","NHS staff testing programme") }}>
-                <label class="govuk-label govuk-radios__label" for="country-5">
-                   I do not know
+                <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="Northern Ireland" {{ checked("country", "Northern Ireland") }}>
+                <label class="govuk-label govuk-radios__label" for="country-3">
+                  Northern Ireland
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="Wales" {{ checked("country", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-2">
+                  Wales
                 </label>
               </div>
             </div>
