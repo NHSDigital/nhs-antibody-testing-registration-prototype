@@ -358,6 +358,91 @@ router.post('/prereg/v3/:folder/share-results', function (req, res) {
 
 })
 
+router.post('/prereg/v4/who', function (req, res) {
+  let answer = req.session.data['whos-taking-the-test']
+  if (answer == "myself"){
+    res.redirect('/prereg/v4/login')
+  } else {
+    res.redirect('/prereg/v4/have-testpass')
+  }
+
+})
+
+router.post('/prereg/v4/which', function (req, res) {
+  let answer = req.session.data['which']
+  if (answer == "login"){
+    res.redirect('/prereg/v4/login/email-address')
+  } else {
+    res.redirect('/prereg/v4/testpass/name')
+  }
+
+})
+
+router.post('/prereg/v4/have-testpass', function (req, res) {
+  let answer = req.session.data['haveTestpass']
+  if (answer == "yes"){
+    res.redirect('/prereg/v4/testpass/index')
+  } else {
+    res.redirect('/prereg/v4/create-testpass/enter-barcode')
+  }
+
+})
+
+router.post('/prereg/v4/:folder/share-results', function (req, res) {
+  let answer = req.session.data['shareResults']
+  let folder = req.params.folder;
+
+  if (answer == "Yes"){
+    res.redirect('/prereg/v4/' + folder + '/check-your-answers')
+  } else {
+    res.redirect('/prereg/v4/' + folder + '/test-site')
+  }
+
+})
+
+
+router.post('/prereg/v4/create-testpass/action6/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/prereg/v4/create-testpass/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/prereg/v4/create-testpass/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/prereg/v4/create-testpass/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/prereg/v4/create-testpass/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/prereg/v4/create-testpass/ethnic-background-another')
+  } else {
+    res.redirect('/prereg/v4/create-testpass/currently-in-work')
+  }
+
+})
+
+// Version 1 - Lite Registration lateral flow with Accounts - Currently in work route
+
+router.post('/prereg/v4/create-testpass/action9/currently-in-work', function (req, res) {
+  let inWork = req.session.data['currently-in-work']
+  if (inWork == "Yes, they travel to a workplace" || inWork == "Yes, I travel to a workplace"){
+    res.redirect('/prereg/v4/create-testpass/industry')
+  } else if (inWork == "Yes, they go to nursery, school, college or university" || inWork == "Yes, I go to nursery, school, college or university"){
+    res.redirect('/prereg/v4/create-testpass/study-grade')
+  } else {
+    res.redirect('/prereg/v4/create-testpass/do-you-have-symptoms')
+  }
+
+})
+
+
+router.post('/prereg/v4/create-testpass/action6/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/prereg/v4/create-testpass/nhs-number')
+  } else {
+    res.redirect('/prereg/v4/create-testpass/want-testpass')
+  }
+
+})
 
 
 module.exports = router

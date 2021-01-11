@@ -1,0 +1,114 @@
+{% set version = "v4" %}
+{% set folder = "prereg" %}
+{% set pageTitle = "Enter your test pass ID and personal details" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form class="" action="/{{ folder }}/{{ version }}/testpass/enter-barcode" method="get">
+
+              {% call govukFieldset({
+                legend: {
+                  text: pageTitle,
+                  classes: "govuk-fieldset__legend--xl",
+                  isPageHeading: true
+                }
+              }) %}
+
+              <p class="govuk-body-l=m">
+                Your details should match the information you used when you created your test pass
+              <p>
+
+              {{ govukInput({
+                id: "tpFirstName",
+                name: "tpFirstName",
+                label: {
+                  html: 'First name'
+                }
+              }) }}
+
+              {{ govukInput({
+                id: "tpLastName",
+                name: "tpLastName",
+                label: {
+                  html: 'Last name'
+                }
+              }) }}
+
+              {{ govukDateInput({
+                  id: "tpDob",
+                  namePrefix: "tpDob",
+                  fieldset: {
+                    legend: {
+                      text: "Date of birth",
+                      isPageHeading: false,
+                      classes: ""
+                    }
+                  },
+                  hint: {
+                    text: "For example, 31 3 1980"
+                  },
+                  items: [
+                    {
+                      name: "day",
+                      classes: "govuk-input--width-2",
+                      autocomplete: "bday-day"
+                    },
+                    {
+                      name: "month",
+                      classes: "govuk-input--width-2",
+                      autocomplete: "bday-month"
+                    },
+                    {
+                      name: "year",
+                      classes: "govuk-input--width-4",
+                      autocomplete: "bday-year"
+                    }
+                  ]
+                }) }}
+
+                {{ govukInput({
+                  id: "tpTestPass",
+                  name: "tpTestPass",
+                  hint: {
+                    html: "This is the alphanumeric code you were given when you created your test pass. For example, ABC12345"
+                  },
+                  classes: "govuk-input--width-10",
+                  label: {
+                    html: 'Test pass ID'
+                  }
+                }) }}
+
+
+              {% endcall %}
+
+                <input class="govuk-button" type="submit" value="Continue">
+      </form>
+
+
+
+
+    </div>
+  </div>
+{% endblock %}
