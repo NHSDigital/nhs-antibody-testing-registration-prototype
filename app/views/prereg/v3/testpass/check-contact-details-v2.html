@@ -1,0 +1,64 @@
+{% set version = "v3" %}
+{% set folder = "prereg" %}
+{% set pageTitle = "Check where your test results will be sent to" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <p>We'll send your test results to:</p> <p class='govuk-inset-text'>Mobile ending 7667</p>
+
+        <form action="/{{ folder }}/{{version}}/testpass/share-results" method="get">
+
+          {{ govukRadios({
+            idPrefix: "checkContactDetails",
+            name: "checkContactDetails",
+            fieldset: {
+              legend: {
+                text: "Are these the correct contact details?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes, these are the correct contact details"
+              },
+              {
+                value: "no",
+                text: "No, I need to provide different contact details"
+              }
+            ]
+          }) }}
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
