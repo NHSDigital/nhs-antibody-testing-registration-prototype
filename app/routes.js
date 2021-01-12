@@ -382,7 +382,7 @@ router.post('/antigen/v1/action3/do-you-have-symptoms', function (req, res) {
   if (symptoms == "Yes"){
     res.redirect('/antigen/v1/refer-and-triage/when-did-symptoms-start')
   } else {
-    res.redirect('/antigen/v1/refer-and-triage/essential-worker')
+    res.redirect('/antigen/v1/refer-and-triage/government-pilot')
   }
 
 })
@@ -2945,6 +2945,40 @@ router.post('/lite-registration/v1/action6/enter-barcode', function (req, res) {
     console.log("false")
   }
 })
+
+// Version 2 - LiteReg Accounts Coronavirus v2
+router.post('/litereg-accounts/v2/action3/coronavirus-account-v2', function (req, res) {
+  let coronavirusAccountV2 = req.session.data['coronavirus-account-v2']
+  if (coronavirusAccountV2 == "Sign in or create an account with NHS login") {
+    res.redirect('/litereg-accounts/v2/user-account/login-email')
+  } else {
+    res.redirect('/litereg-accounts/v2/enter-barcode')
+  }
+})
+
+// Version 1 - LiteReg Accounts Do you have symptoms
+router.post('/litereg-accounts/v2/action8/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes") {
+    res.redirect('/litereg-accounts/v2/when-did-symptoms-start')
+  } else {
+    res.redirect('/litereg-accounts/v2/country')
+  }
+
+})
+
+// Version 1 - LiteReg Accounts NHS number known
+router.post('/litereg-accounts/v2/action8/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/litereg-accounts/v2/nhs-number')
+  } else {
+    res.redirect('/litereg-accounts/v2/vaccine')
+  }
+
+})
+
+
 
 
 
