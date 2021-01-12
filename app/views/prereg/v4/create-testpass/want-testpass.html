@@ -1,7 +1,7 @@
 {% set version = "v4" %}
 {% set folder = "prereg" %}
 {% set name = data['first-name'] or 'John Smith' %}
-{% set pageTitle = "Do you want a test pass?" %}
+{% set pageTitle = "Do you want a fast test registration code?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -25,6 +25,23 @@
 
 {% block content %}
 
+{% set hintHTML %}
+{{ govukDetails({
+  summaryText: "How test pass codes work",
+  html: '<p>We can create a test pass code which lets you register tests faster next time. We will ask you after you register if you want to create one. To get a test pass code, you need to:</p><ul class="govuk-list govuk-list--number">
+    <li>
+      Enter your details or the details of the person you are registering
+    </li>
+    <li>
+      Get a unique test pass code
+    </li>
+    <li>
+      Use that test pass code when you register test kits at a test site so you do not have to enter your personal details again
+    </li>
+  </ul>'
+}) }}
+{% endset %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -41,12 +58,12 @@
               }
             },
             hint: {
-              html: "<p>Words</p>"
+              html: "<p>A test pass code is an 8 character code which can save you from entering your personal details each time your are tested. For example ABCD1234.</p><p>Every time you are tested you can use the code to save time filling in your personal details again.</p>" + hintHTML
             },
             items: [
               {
                 value: "yes",
-                text: "Yes"
+                text: "Yes, I want a test registration code"
               },
               {
                 value: "no",

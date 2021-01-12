@@ -1,6 +1,6 @@
 {% set version = "v4" %}
 {% set folder = "prereg" %}
-{% set pageTitle = "Do you have a test pass?" %}
+{% set pageTitle = "Do you have a test pass code?" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -29,6 +29,23 @@
 
 {% block content %}
 
+{% set hintHTML %}
+{{ govukDetails({
+  summaryText: "How test pass codes work",
+  html: '<p>We can create a test pass code which lets you register tests faster next time. We will ask you after you register if you want to create one. To get a test pass code, you need to:</p><ul class="govuk-list govuk-list--number">
+    <li>
+      Enter your details or the details of the person you are registering
+    </li>
+    <li>
+      Get a unique test pass code
+    </li>
+    <li>
+      Use that test pass code when you register test kits at a test site so you do not have to enter your personal details again
+    </li>
+  </ul>'
+}) }}
+{% endset %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -43,14 +60,17 @@
                 classes: "govuk-fieldset__legend--xl"
               }
             },
+            hint: {
+              html: "<p>A test pass code is an 8 character code which can save you from entering your personal details each time your are tested. For example ABCD1234.</p><p>If you do not have a code, we can create one for you after you register a test.</p>" + hintHTML
+            },
             items: [
               {
                 value: "yes",
-                text: "Yes, I have a test pass"
+                text: "Yes, I have a test pass code"
               },
               {
                 value: "no",
-                text: "No, I do not have a test pass"
+                text: "No, I do not have a test pass code"
               }
             ]
           }) }}
