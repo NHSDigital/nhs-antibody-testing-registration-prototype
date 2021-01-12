@@ -1,0 +1,84 @@
+{% set version = "v4" %}
+{% set folder = "prereg" %}
+{% set name = data['first-name'] or 'Bob Smith' %}
+{% set pageTitle = "Registration confirmed" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
+      {% if data['wantTestpass'] == 'yes' %}
+      <div class="govuk-panel__body">
+        Your test pass ID: <br><strong>ABC12345</strong>
+      </div>
+      {% endif %}
+    </div>
+
+    {{ govukSummaryList({
+      classes: "govuk-summary-list--no-border ",
+      rows: [
+        {
+          key: {
+            text: "Test pass details"
+          },
+          value: {
+            html: name + "<br>" + "21 September 2011 <br>" + "ABC12345"
+          }
+        }
+      ]
+    }) }}
+
+    <p class="govuk-body">
+      Keep a record of your test pass ID.
+    <p>
+
+    <p class="govuk-body" style="display: none;">
+      We have sent your test pass ID to your email address or mobile, if you gave us one.
+    <p>
+
+    <h2 class="govuk-heading-m">What you can do next</h2>
+
+    <p class="govuk-body">
+      You can now use your test pass ID to register when you're tested at a workplace, education or asymptomatic test site.
+    <p>
+
+    <p class="govuk-body">
+      If any of your details change, you will need to create a new test pass.
+    <p>
+
+      <form action="/{{folder}}/{{version}}/who" method="post" novalidate>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Create another test pass
+        </button>
+
+      </form>
+
+    <h2 class="govuk-heading-m">We want to hear from you</h2>
+
+    <p class="govuk-body govuk-!-margin-bottom-8"><a class="govuk-link govuk-!-margin-right-2" href="#">What did you think of our service?</a> (takes 3 minutes)</p>
+
+
+
+  </div>
+</div>
+
+{% endblock %}

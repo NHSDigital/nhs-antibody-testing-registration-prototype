@@ -420,7 +420,7 @@ router.post('/organisational/register/enhanced/single/occupation/index', functio
   } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
     res.redirect('/organisational/register/enhanced/single/occupation/area')
   } else if (answer == 'no') {
-    res.redirect('/organisational/register/enhanced/single/occupation/area')
+    res.redirect('/organisational/register/enhanced/single/have-coronavirus')
   } else if (answer == 'Prefer not to say') {
     res.redirect('/organisational/register/enhanced/single/occupation/area')
   } else {
@@ -429,12 +429,64 @@ router.post('/organisational/register/enhanced/single/occupation/index', functio
 });
 
 router.post('/organisational/register/enhanced/single/have-coronavirus', function (req, res) {
-  let answer = req.body.cuSymptoms;
+  let answer = req.body.cuCoronavirus;
 
   if (answer == 'Yes') {
     res.redirect('/organisational/register/enhanced/single/when-symptoms')
     } else {
     res.redirect('/organisational/register/enhanced/single/testkit')
+    }
+});
+
+router.post('/organisational/register/enhanced/single/have-vaccine', function (req, res) {
+  let answer = req.body.cuVaccine;
+
+  if (answer == '1 dose') {
+    res.redirect('/organisational/register/enhanced/single/when-vaccine')
+    } else if (answer == '2 doses') {
+      res.redirect('/organisational/register/enhanced/single/when-vaccine')
+    } else if (answer == 'no') {
+      res.redirect('/organisational/register/enhanced/single/testkit')
+    } else {
+    res.redirect('/organisational/register/enhanced/single/have-vaccine?error=empty')
+    }
+});
+
+router.post('/elective-care-testing/v1/trust-worker-request-enhanced/request-method', function (req, res) {
+  let answer = req.body.cuRequestMethod;
+
+  if (answer == 'upload') {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/upload-file')
+    } else if (answer == 'manual') {
+      res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/date-of-procedure')
+    } else {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/request-method?error=empty')
+    }
+})
+
+router.post('/elective-care-testing/v1/trust-worker-request-enhanced/symptoms', function (req, res) {
+  let answer = req.body.cuSymptomatic;
+
+  if (answer == 'Yes') {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/symptoms-start')
+    } else if (answer == 'No') {
+      res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/check-your-answers-manual')
+    } else {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/symptoms?error=empty')
+    }
+})
+
+router.post('/elective-care-testing/v1/trust-worker-request-enhanced/have-vaccine', function (req, res) {
+  let answer = req.body.cuVaccine;
+
+  if (answer == '1 dose') {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/when-vaccine')
+    } else if (answer == '2 doses') {
+      res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/when-vaccine')
+    } else if (answer == 'No') {
+      res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/check-your-answers-manual')
+    } else {
+    res.redirect('/elective-care-testing/v1/trust-worker-request-enhanced/have-vaccine?error=empty')
     }
 });
 

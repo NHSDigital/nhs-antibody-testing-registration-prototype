@@ -14,6 +14,8 @@ router.use('/', require('./routes/lite-registration.js'))
 router.use('/', require('./routes/unified-org.js'))
 router.use('/', require('./routes/logresults-web-service.js'))
 router.use('/', require('./routes/v4-testing.js'))
+router.use('/', require('./routes/genomic.js'))
+router.use('/', require('./routes/singleregistration.js'))
 
 // Pull scope into the homepage to show/hide sections
 // 'SCOPE' is either pulled in from the Heroku App settings or setting in a local .env file eg. SCOPE=antibody
@@ -1107,7 +1109,17 @@ router.post('/elective-care-testing/v1/action4/request-method', function (req, r
   } else {
     res.redirect('/elective-care-testing/v1/trust-worker-request/date-of-procedure')
   }
+})
 
+// Version 1 - Elective Care Testing Trust Worker Request (enhanced)- Request method route
+
+router.post('/elective-care-testing/v1/action4/type', function (req, res) {
+  let requestMethod = req.session.data['request-method']
+  if (requestMethod == "upload"){
+    res.redirect('/elective-care-testing/v1/trust-worker-request/upload-file')
+  } else {
+    res.redirect('/elective-care-testing/v1/trust-worker-request/date-of-procedure')
+  }
 })
 
 // Version 1 - Elective Care Testing Trust Worker Request - Symptoms route
@@ -2933,9 +2945,6 @@ router.post('/lite-registration/v1/action6/enter-barcode', function (req, res) {
     console.log("false")
   }
 })
-
-
-
 
 
 

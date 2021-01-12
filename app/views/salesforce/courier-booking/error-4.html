@@ -1,0 +1,97 @@
+{% extends "includes/layout.html" %}
+{% set serviceName = "COVID-19" %}
+{% set pageTitle = "Select a collection date" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#error-1">Select a collection date</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form action="5" method="post">
+        <fieldset class="govuk-fieldset govuk-!-margin-bottom-6">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-2">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+
+          <p class="govuk-body">Once you select a date from the ones available, we'll show you the available time slots.</p>
+
+          <div class="govuk-radios govuk-radios govuk-!-margin-bottom-6 govuk-form-group--error">
+            <span id="#error-1" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select a collection date
+            </span>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="radio-1" name="radio" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="radio-1">
+                Thursday 17 December (tomorrow)
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="radio-2" name="radio" type="radio" value="no" disabled>
+              <label class="govuk-label govuk-radios__label" for="radio-2">
+                Friday 18 December (You've already booked 2pm to 4pm)
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="radio-2" name="radio" type="radio" value="no" disabled>
+              <label class="govuk-label govuk-radios__label" for="radio-2">
+                Saturday 19 December (No slots available)
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="radio-2" name="radio" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="radio-2">
+                Sunday 20 December
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="radio-2" name="radio" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="radio-2">
+                Monday 21 December
+              </label>
+            </div>
+          </div>
+
+          <a href="#" class="govuk-link">Show more dates</a>
+
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}
