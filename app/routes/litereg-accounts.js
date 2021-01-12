@@ -253,22 +253,22 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
   router.post('/litereg-accounts/v2/action9/test-date', function (req, res) {
     let emailAddress = req.session.data['email-address']
     if (emailAddress == "user@testing.co.uk") {
-      res.redirect('/litereg-accounts/v2/repeat-testing')
+      res.redirect('/litereg-accounts/v2/do-you-have-symptoms')
     } else {
-      res.redirect('/litereg-accounts/v2/repeat-testing')
+      res.redirect('/litereg-accounts/v2/name')
     }
 
   })
 
   // Version 2 - Lite Registration Accounts - Reapeat testing route
-  router.post('/litereg-accounts/v2/action9/repeat-testing', function (req, res) {
-    let emailAddress = req.session.data['email-address']
-    if (emailAddress == "user@testing.co.uk") {
-      res.redirect('/litereg-accounts/v2/do-you-have-symptoms')
-    } else {
-      res.redirect('/litereg-accounts/v2/name')
-    }
-  })
+  // router.post('/litereg-accounts/v2/action9/repeat-testing', function (req, res) {
+  //   let emailAddress = req.session.data['email-address']
+  //   if (emailAddress == "user@testing.co.uk") {
+  //     res.redirect('/litereg-accounts/v2/do-you-have-symptoms')
+  //   } else {
+  //     res.redirect('/litereg-accounts/v2/name')
+  //   }
+  // })
 
   // Version 2 - Lite Registration Accounts - Do you have symptoms route
 
@@ -454,6 +454,16 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
     }
   })
 
+  // Version 2 - Lite Registration Accounts - vaccine route
+  router.post('/litereg-accounts/v2/action7/vaccine', function (req, res) {
+    let vaccine = req.session.data['vaccine']
+    if (vaccine == "No") {
+      res.redirect('/litereg-accounts/v2/check-your-answers')
+    } else {
+      res.redirect('/litereg-accounts/v2/vaccine-date')
+    }
+  })
+
 
 // Version 8.2 - LDF self report accounts - Who's taking the test route
 
@@ -561,6 +571,5 @@ router.post('/share-result-lateral-flow/v8-3/action7/ethnic-group', function (re
   }
 
 })
-
 
 module.exports = router

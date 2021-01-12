@@ -29,6 +29,20 @@
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test kit barcode reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['kit-barcode-reference-1'] or 'CHE00000501' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/enter-barcode">
+              Change
+              <span class="govuk-visually-hidden">test site</span>
+            </a>
+          </dd>
+        </div>
         {% if data['kit-barcode-reference-1'] == 'CHE00000501' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -51,7 +65,30 @@
           <dd class="govuk-summary-list__value">
             {% if data['site-id'] != undefined or data['site-id'] != "" %}
               {% if data['site-id'] == "LEA4" %}
-              Leicester Students' Union
+              LEA4 - Leicester Students' Union
+              {% else %}
+              Chessington MTU
+              {% endif %}
+            {% else %}
+            {{ data['test-site'] or 'Sandwell (Sandwell General Hospital)' }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/site-id">
+              Change
+              <span class="govuk-visually-hidden">test site</span>
+            </a>
+          </dd>
+        </div>
+        {% else %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test site
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['site-id'] != undefined or data['site-id'] != "" %}
+              {% if data['site-id'] == "LEA4" %}
+              LEA4 - Leicester Students' Union
               {% else %}
               Chessington MTU
               {% endif %}
@@ -69,15 +106,15 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Test kit barcode reference
+            Doing 7-day repeat testing?
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['kit-barcode-reference-1'] or 'CHE00000501' }}
+            {{ data['repeat-testing'] or 'No' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/enter-barcode">
+            <a href="/litereg-accounts/{{version}}/repeat-testing">
               Change
-              <span class="govuk-visually-hidden">test site</span>
+              <span class="govuk-visually-hidden">doing 7-day repeat testing</span>
             </a>
           </dd>
         </div>
@@ -304,8 +341,8 @@
             Institution details
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['name'] or 'Red college'}}<br>
-            {{ data['town'] or 'Cambridge'}}
+            {{ data['name'] or 'Prefer not to say'}}<br>
+            {{ data['town'] or 'Prefer not to say'}}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/litereg-accounts/{{version}}/institution">
@@ -479,6 +516,36 @@
             <a href="/litereg-accounts/{{version}}/nhs-number">
               Change
               <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Had coronavirus vaccine
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['vaccine'] or 'Yes' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/vaccine">
+              Change
+              <span class="govuk-visually-hidden">had coronavirus vaccine</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['vaccine'] !== "No" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Last dose
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['vaccine-date'] or 'Less than 7 days ago' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/vaccine-date">
+              Change
+              <span class="govuk-visually-hidden">last dose</span>
             </a>
           </dd>
         </div>
