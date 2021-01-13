@@ -249,7 +249,17 @@ router.post('/organisational/register/v4/single/ethnic-group', function (req, re
 
 
 
+router.post('/organisational/register/v5/how', function (req, res) {
+  let answer = req.body.cuUploadType;
 
+  if (answer == 'bulk') {
+    res.redirect('/organisational/register/v5/bulk/staff')
+    } else if (answer == 'single') {
+      res.redirect('/organisational/register/v2/single/staff')
+    } else {
+    res.redirect('/organisational/register/v5/how?error=empty')
+    }
+});
 
 
 
