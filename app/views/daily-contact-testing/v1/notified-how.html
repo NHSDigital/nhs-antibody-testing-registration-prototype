@@ -1,0 +1,93 @@
+{% set version = "v1" %}
+{% set pageTitle = "How were you notified you've had contact with someone with coronavirus?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+<a class="govuk-back-link" href="/daily-contact-testing/{{version}}/contact-with-positive">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/daily-contact-testing/{{version}}/dct-opt-in" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                            {{ pageTitle }}
+                        </h1>
+                    </legend>
+
+                    <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+
+                        <div class="govuk-radios__item govuk-!-margin-bottom-4">
+                          <input class="govuk-radios__input" id="notified-how-1" name="notified-how" type="radio" value="Through a phone call from a contact tracer" data-aria-controls="conditional-notified-how-id" {{ checked("notified-how", "Through a phone call from a contact tracer") }}>
+                          <label class="govuk-label govuk-radios__label" for="notified-how-1">
+                            Through a phone call from a contact tracer
+                          </label>
+                        </div>
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-notified-how-id">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label" for="notified-how-id">
+                              If you were given an ID number, enter it here
+                            </label>
+                            <input class="govuk-input govuk-!-width-two-thirds" id="notified-how-id" name="notified-how-id" type="text" value="{{ data['notified-how-id'] }}">
+                          </div>
+                        </div>
+
+                        <div class="govuk-radios__item govuk-!-margin-bottom-4">
+                            <input class="govuk-radios__input" id="notified-how-2" name="notified-how" type="radio" value="From an email or SMS message" data-aria-controls="conditional-notified-how-email-sms" {{ checked("notified-how", "From an email or SMS message") }}>
+                            <label class="govuk-label govuk-radios__label" for="notified-how-2">
+                                From an email or SMS message
+                            </label>
+                        </div>
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-notified-how-email-sms">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label" for="notified-how-email-sms">
+                              If you were given an ID number, enter it here (check your email or SMS)
+                            </label>
+                            <input class="govuk-input govuk-!-width-two-thirds" id="notified-how-email-sms" name="notified-how-email-sms" type="text" value="{{ data['notified-how-email-sms'] }}">
+                          </div>
+                        </div>
+
+                        <div class="govuk-radios__item govuk-!-margin-bottom-4">
+                            <input class="govuk-radios__input" id="notified-how-3" name="notified-how" type="radio" value="Through the NHS Covid-19 app" {{ checked("notified-how", "Through the NHS Covid-19 app") }}>
+                            <label class="govuk-label govuk-radios__label" for="notified-how-3">
+                                Through the NHS Covid-19 app
+                            </label>
+                        </div>
+
+                        <div class="govuk-radios__item govuk-!-margin-bottom-4">
+                            <input class="govuk-radios__input" id="notified-how-4" name="notified-how" type="radio" value="Through a personal contact" {{ checked("notified-how", "Through a personal contact") }}>
+                            <label class="govuk-label govuk-radios__label" for="notified-how-4">
+                                Through a personal contact
+                            </label>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
