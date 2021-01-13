@@ -45,7 +45,7 @@ router.post('/daily-contact-testing/v1/action10/email-address', function (req, r
 router.post('/daily-contact-testing/v1/action10/contact-with-positive', function (req, res) {
     let contactWithPositive = req.session.data['contact-with-positive']
     if (contactWithPositive == "No" ) {
-        res.redirect('/daily-contact-testing/v1/tests-unavailable')
+        res.redirect('/daily-contact-testing/v1/placeholder')
     } else {
         res.redirect('/daily-contact-testing/v1/notified-how')
     }
@@ -58,6 +58,16 @@ router.post('/daily-contact-testing/v1/action10/dct-opt-in', function (req, res)
         res.redirect('/daily-contact-testing/v1/self-isolate')
     } else {
         res.redirect('/daily-contact-testing/v1/name')
+    }
+
+})
+
+router.post('/daily-contact-testing/v1/action10/home-address-question', function (req, res) {
+    let deliveryAddressSame = req.session.data['delivery-address-same']
+    if (deliveryAddressSame == "No" ) {
+        res.redirect('/daily-contact-testing/v1/order-home-test-kit/delivery-postcode')
+    } else {
+        res.redirect('/daily-contact-testing/v1/order-home-test-kit/confirm-email-address')
     }
 
 })

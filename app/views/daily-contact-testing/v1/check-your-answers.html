@@ -1,0 +1,169 @@
+{% set version = "v1" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  
+  <a class="govuk-back-link" href="/daily-contact-testing/{{version}}/mobile-number">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom6">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Current coronavirus symptoms
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['do-you-have-symptoms'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/daily-contact-testing/{{version}}/do-you-have-symptoms">
+              Change
+              <span class="govuk-visually-hidden">current coronavirus symptoms</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What country do you live in?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['country'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/country">
+                Change
+                <span class="govuk-visually-hidden">what country do you live in</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['email-address'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/email-address">
+                Change
+                <span class="govuk-visually-hidden">email address</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Identified as a contact of someone who tested positive?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['contact-with-positive'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/contact-with-positive">
+                Change
+                <span class="govuk-visually-hidden">identified as a contact of someone who tested positive</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              How were you notified you've had contact?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['notified-how'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/notified-how">
+                Change
+                <span class="govuk-visually-hidden">how were you notified you've had contact</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Opt-in to daily contact testing?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['dct-opt-in'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/dct-opt-in">
+                Change
+                <span class="govuk-visually-hidden">opt-in to daily contact testing</span>
+              </a>
+            </dd>
+          </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name'] }} {{ data['last-name'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/daily-contact-testing/{{version}}/name">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date of birth
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-birth-day'] or '15 March 1988' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/date-of-birth">
+                Change
+                <span class="govuk-visually-hidden">date of birth</span>
+              </a>
+            </dd>
+          </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Mobile number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mobile-phone-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/daily-contact-testing/{{version}}/mobile-number">
+              Change
+              <span class="govuk-visually-hidden">mobile number</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <form action="/daily-contact-testing/{{version}}/order-home-test-kit" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
