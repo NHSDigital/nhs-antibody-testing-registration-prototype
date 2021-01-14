@@ -1,5 +1,13 @@
-{% set pageHeading = "How do you want to register tests?" %}
-{% set version = "organisational/register/v5" %}
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      John Smith
+  {% endif %}
+{% endset %}
+{% set pageHeading = "Is " + fullname + " currently in work?" %}
+ {% set version = "organisational/register/v5" %}
+{% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -32,9 +40,10 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form class="" action="" method="post">
+
         {{ govukRadios({
-            idPrefix: "cuUploadType",
-            name: "cuUploadType",
+            idPrefix: "cuInWork",
+            name: "cuInWork",
             fieldset: {
               legend: {
                 text: pageHeading,
@@ -42,23 +51,32 @@
                 classes: "govuk-fieldset__legend--xl"
               }
             },
+            hint: {
+              html: "<p>This will help us understand more about the spread of the virus</p>"
+            },
             items: [
               {
-                value: "bulk",
-                text: "Use our record keeping spreadsheet to add a list of personal details",
-                hint: {
-                  html: "Enter and upload details for up to 100 people at a time"
-                }
+                value: "Yes, and for the last 2 weeks they've worked from home",
+                text: "Yes, and for the last 2 weeks they've worked from home"
               },
               {
-                value: "single",
-                text: "Add each person’s details one by one",
-                hint: {
-                  html: "Use an online form to enter their details"
-                }
+                value: "Yes, and for the last 2 weeks they've travelled to work",
+                text: "Yes, and for the last 2 weeks they've travelled to work"
+              },
+              {
+                value: "no",
+                text: "No"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "Prefer not to say",
+                text: "Prefer not to say"
               }
             ]
           }) }}
+
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
