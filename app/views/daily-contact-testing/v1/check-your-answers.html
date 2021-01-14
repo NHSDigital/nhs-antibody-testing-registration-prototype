@@ -95,6 +95,37 @@
               </a>
             </dd>
           </div>
+          {% if data['notified-how'] == "Through a phone call from a contact tracer" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Trace ID number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['trace-id-number'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/notified-how">
+                Change
+                <span class="govuk-visually-hidden">trace ID number</span>
+              </a>
+            </dd>
+          </div>
+          {% elseif data['notified-how'] == "From an email or SMS message" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Trace ID number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['trace-id-number-email-sms'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/notified-how">
+                Change
+                <span class="govuk-visually-hidden">trace ID number</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Opt-in to daily contact testing?
@@ -142,7 +173,11 @@
             Mobile number
           </dt>
           <dd class="govuk-summary-list__value">
+            {% if data['mobile-number'] == "Yes" %}
             {{ data['mobile-phone-number'] }}
+            {% else %}
+            I do not have a mobile phone number
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/daily-contact-testing/{{version}}/mobile-number">

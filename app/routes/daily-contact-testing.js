@@ -45,7 +45,7 @@ router.post('/daily-contact-testing/v1/action10/email-address', function (req, r
 router.post('/daily-contact-testing/v1/action10/contact-with-positive', function (req, res) {
     let contactWithPositive = req.session.data['contact-with-positive']
     if (contactWithPositive == "No" ) {
-        res.redirect('/daily-contact-testing/v1/placeholder')
+        res.redirect('/daily-contact-testing/v1/dct-unavailable')
     } else {
         res.redirect('/daily-contact-testing/v1/notified-how')
     }
