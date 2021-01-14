@@ -27,7 +27,7 @@ router.post('/daily-contact-testing/v1/action10/country', function (req, res) {
     if (country == "England" ) {
       res.redirect('/daily-contact-testing/v1/email-address')
     } else {
-      res.redirect('/antigen/v1/govuk/get-coronavirus-test')
+      res.redirect('/daily-contact-testing/v1/country-test-unavailable')
     }
 
 })
