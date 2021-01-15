@@ -1,4 +1,4 @@
-{% set pageHeading = "How do you want to register tests?" %}
+{% set pageHeading = "Who are you registering?" %}
 {% set version = "organisational/register/v5" %}
 {% extends "includes/layout.html" %}
 
@@ -31,10 +31,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="" method="post">
+      <form class="" action="/{{version}}/single/name" method="get">
         {{ govukRadios({
-            idPrefix: "cuUploadType",
-            name: "cuUploadType",
+            idPrefix: "cuStaff",
+            name: "cuStaff",
             fieldset: {
               legend: {
                 text: pageHeading,
@@ -44,18 +44,12 @@
             },
             items: [
               {
-                value: "bulk",
-                text: "Use our record keeping spreadsheet to add a list of personal details",
-                hint: {
-                  html: "Enter and upload details for up to 100 people at a time"
-                }
+                value: "Staff",
+                text: "Staff"
               },
               {
-                value: "single",
-                text: "Add each person’s details one by one",
-                hint: {
-                  html: "Use an online form to enter their details"
-                }
+                value: "Non-staff",
+                text: "Non-staff (for example, school pupils, residents or patients)"
               }
             ]
           }) }}
