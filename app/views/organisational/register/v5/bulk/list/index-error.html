@@ -63,6 +63,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Enter a correct barcode for Alun Smith",
+              href: "#cuTestKitCode1-error"
+            }
+          ]
+        }) }}
+
       <h1 class="govuk-heading-xl">
         {{ pageHeading | safe }}
       </h1>
@@ -84,7 +94,7 @@
       <ul class="card-table">
 
 
-        <li class="card-table__item" id="entry-1">
+        <li class="card-table__item card-table__item--error" id="entry-1">
           <div class="card-table__form">
 
           <div class="card-table__form-column column-8">
@@ -104,10 +114,14 @@
                   text: "Test kit barcode",
                   classes: "govuk-!-font-size-16 govuk-!-font-weight-bold govuk-!-margin-bottom-3"
                 },
+                errorMessage: {
+                  text: "Enter a correct barcode",
+                  classes: "govuk-!-font-size-16"
+                },
                 classes: "govuk-input--width-10",
                 id: "cuTestKitCode1",
                 name: "cuTestKitCode1",
-                value: "LHE000000001"
+                value: "0000000001"
               }) }}
             </div>
 
