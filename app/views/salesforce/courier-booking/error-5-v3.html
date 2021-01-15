@@ -1,6 +1,6 @@
 {% extends "includes/layout.html" %}
 {% set serviceName = "COVID-19" %}
-{% set pageTitle = "Select a collection date" %}
+{% set pageTitle = "Select a collection time for Monday 21 December" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
@@ -21,7 +21,20 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="5" method="post">
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#error-1">You've missed the cut off for the selected collection time. Select another collection time</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form action="6" method="post">
         <fieldset class="govuk-fieldset govuk-!-margin-bottom-6">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-2">
@@ -29,42 +42,35 @@
             </h1>
           </legend>
 
-          <p class="govuk-body">Once you select a date from the ones available, we'll show you the available time slots.</p>
-
-          <div class="govuk-radios govuk-radios govuk-!-margin-bottom-6">
+          <div class="govuk-radios govuk-radios govuk-form-group--error">
+            <span id="#error-1" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> You've missed the cut off for the selected collection time. Select another collection time
+            </span>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="radio-1" name="radio" type="radio" value="yes">
+              <input class="govuk-radios__input" id="radio-1" name="radio" type="radio" value="yes" disabled>
               <label class="govuk-label govuk-radios__label" for="radio-1">
-                Thursday 17 December (tomorrow)
+                9am to 1pm
               </label>
             </div>
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="radio-2" name="radio" type="radio" value="no" disabled>
               <label class="govuk-label govuk-radios__label" for="radio-2">
-                Friday 18 December (You've already booked 9am to 1pm)
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="radio-2" name="radio" type="radio" value="no" disabled>
-              <label class="govuk-label govuk-radios__label" for="radio-2">
-                Saturday 19 December (No slots available)
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="radio-2" name="radio" type="radio" value="no" disabled>
-              <label class="govuk-label govuk-radios__label" for="radio-2">
-                Sunday 20 December (You've already booked 9am to 1pm and 6pm to 9pm)
+                2pm to 6pm
               </label>
             </div>
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="radio-2" name="radio" type="radio" value="no">
               <label class="govuk-label govuk-radios__label" for="radio-2">
-                Monday 21 December
+                4pm to 9pm
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="radio-2" name="radio" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="radio-2">
+                6pm to 9pm
               </label>
             </div>
           </div>
-
-          <a href="#" class="govuk-link">Show more dates</a>
 
         </fieldset>
 
