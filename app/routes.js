@@ -16,6 +16,7 @@ router.use('/', require('./routes/logresults-web-service.js'))
 router.use('/', require('./routes/v4-testing.js'))
 router.use('/', require('./routes/genomic.js'))
 router.use('/', require('./routes/singleregistration.js'))
+router.use('/', require('./routes/daily-contact-testing.js'))
 
 // Pull scope into the homepage to show/hide sections
 // 'SCOPE' is either pulled in from the Heroku App settings or setting in a local .env file eg. SCOPE=antibody
@@ -2945,6 +2946,40 @@ router.post('/lite-registration/v1/action6/enter-barcode', function (req, res) {
     console.log("false")
   }
 })
+
+// Version 2 - LiteReg Accounts Coronavirus v2
+router.post('/litereg-accounts/v2/action3/coronavirus-account-v2', function (req, res) {
+  let coronavirusAccountV2 = req.session.data['coronavirus-account-v2']
+  if (coronavirusAccountV2 == "Sign in or create an account with NHS login") {
+    res.redirect('/litereg-accounts/v2/user-account/login-email')
+  } else {
+    res.redirect('/litereg-accounts/v2/enter-barcode')
+  }
+})
+
+// Version 1 - LiteReg Accounts Do you have symptoms
+router.post('/litereg-accounts/v2/action8/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes") {
+    res.redirect('/litereg-accounts/v2/when-did-symptoms-start')
+  } else {
+    res.redirect('/litereg-accounts/v2/country')
+  }
+
+})
+
+// Version 1 - LiteReg Accounts NHS number known
+router.post('/litereg-accounts/v2/action8/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/litereg-accounts/v2/nhs-number')
+  } else {
+    res.redirect('/litereg-accounts/v2/vaccine')
+  }
+
+})
+
+
 
 
 

@@ -22,7 +22,9 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+
+      <p class='govuk-body'>Please check your details carefully. Once you press 'save and continue', you will not be able to change this.</p>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom6">
         <div class="govuk-summary-list__row">
@@ -65,6 +67,22 @@
             <a href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">
               Change
               <span class="govuk-visually-hidden">date when symptoms started</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        {% if data['do-you-have-symptoms'] == "No" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Asked to get a follow up test?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['follow-up-test'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/refer-and-triage/follow-up-test">
+              Change
+              <span class="govuk-visually-hidden">asked to get a follow up test</span>
             </a>
           </dd>
         </div>

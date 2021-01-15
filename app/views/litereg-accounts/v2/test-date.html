@@ -19,7 +19,7 @@
   text: "Back",
   href: "javascript:window.history.go(-1);"
 }) }}
-  
+
 {% endblock %}
 
 {% block content %}
@@ -43,11 +43,13 @@
             <span id="swab-test-date-1-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
               Select the date and time they'll take their coronavirus test. If they've already taken the coronavirus test, tell us the date and time they took it.
-              {% else %}
-              Select the date and time you'll take your coronavirus test. If you've already taken the coronavirus test, tell us the date and time you took it.
-              {% endif %}
               <br><br>
               We need to know this so the lab can work out when the test is due to expire. Selecting the wrong date and time could mean them getting an incorrect result.
+              {% else %}
+              Select the date and time you'll take your coronavirus test. If you've already taken the coronavirus test, tell us the date and time you took it.
+              <br><br>
+              We need to know this so the lab can work out when the test is due to expire. Selecting the wrong date and time could mean you getting an incorrect result.
+              {% endif %}
             </span>
             <div class="govuk-warning-text govuk-!-margin-top-6 govuk-!-margin-bottom-6">
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
@@ -127,13 +129,13 @@
                 <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="swab-test-time" name="swab-test-time" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['swab-test-time'] }}">
               </div>
               <div class="govuk-radios" data-module="govuk-radios">
-                <div class="govuk-radios__item" style="display: inline-block">
+                <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="swab-test-time-am" name="swab-test-time-ampm" type="radio" value="am" {{ checked("swab-test-time-ampm", "am") }}>
                   <label class="govuk-label govuk-radios__label" for="swab-test-time-am">
                     am
                   </label>
                 </div>
-                <div class="govuk-radios__item govuk-!-margin-left-2" style="display: inline-block">
+                <div class="govuk-radios__item govuk-!-margin-top-1">
                   <input class="govuk-radios__input" id="swab-test-time-pm" name="swab-test-time-ampm" type="radio" value="pm" {{ checked("swab-test-time-ampm", "pm") }}>
                   <label class="govuk-label govuk-radios__label" for="swab-test-time-pm">
                     pm
