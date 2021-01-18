@@ -23,7 +23,20 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/antigen/{{version}}/action3/when-did-symptoms-start" method="post">
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#error-1">Enter the date symptoms started</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form action="/antigen/{{version}}/action3/when-did-symptoms-start-error" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="symptoms-start-date-1-hint symptoms-start-date-2-hint">
@@ -40,13 +53,16 @@
             <span id="symptoms-start-date-1-hint" class="govuk-hint">
               Use the format DD MM YYYY, for example 07 01 2021
             </span>
-            <div class="govuk-date-input" id="symptoms-start-date">
+            <div class="govuk-date-input govuk-form-group--error" id="symptoms-start-date">
+              <span id="group-name-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Enter the date symptoms started
+              </span>
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
                   <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-day">
                     Day
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="symptoms-start-date-day" name="symptoms-start-date-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-day'] }}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--error govuk-input--width-2" id="symptoms-start-date-day" name="symptoms-start-date-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-day'] }}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -54,7 +70,7 @@
                   <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-month">
                     Month
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="symptoms-start-date-month" name="symptoms-start-date-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-month'] }}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--error govuk-input--width-2" id="symptoms-start-date-month" name="symptoms-start-date-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-month'] }}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -62,7 +78,7 @@
                   <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-year">
                     Year
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="symptoms-start-date-year" name="symptoms-start-date-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-year'] }}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--error govuk-input--width-4" id="symptoms-start-date-year" name="symptoms-start-date-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-year'] }}">
                 </div>
               </div>
             </div>
@@ -85,3 +101,5 @@
   </a>
 </div>
 {% endblock %}
+
+

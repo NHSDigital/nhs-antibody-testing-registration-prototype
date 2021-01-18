@@ -46,6 +46,50 @@ router.post('/antigen/v2/action3/do-you-have-symptoms-person-1', function (req, 
 
 })
 
+// Version 2 - Antigen Refer and Triage - When did symptoms start route
+
+router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
+  let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
+  if (yearSymptomsStarted != "2021"){
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/follow-up-test')
+  }
+
+})
+
+// Version 2 - Antigen Refer and Triage - When did symptoms start error route
+
+router.post('/antigen/v2/action3/when-did-symptoms-start-error', function (req, res) {
+  let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
+  if (yearSymptomsStarted != "2021"){
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/follow-up-test')
+  }
+
+})
+
+// Version 2 - Antigen Refer and Triage - When did symptoms start option 2 route
+
+router.post('/antigen/v2/action3/when-did-symptoms-start-option-2', function (req, res) {
+  let dateOfOnset = req.session.data['date-of-onset']
+  let country = req.session.data['country']
+  if (dateOfOnset == "21 January 2021" || 
+      dateOfOnset == "20 January 2021" || 
+      dateOfOnset == "19 January 2021" || 
+      dateOfOnset == "18 January 2021" ||
+      dateOfOnset == "17 January 2021" && country == "England" ||
+      dateOfOnset == "17 January 2021" && country == "Northern Ireland" ||
+      dateOfOnset == "16 January 2021" && country == "England" ||
+      dateOfOnset == "16 January 2021" && country == "Northern Ireland" ){
+    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/no-tests-available')
+  }
+
+})
+
 // Version 2 - Antigen Refer and Triage - Follow up test route
 
 router.post('/antigen/v2/action3/follow-up-test', function (req, res) {
