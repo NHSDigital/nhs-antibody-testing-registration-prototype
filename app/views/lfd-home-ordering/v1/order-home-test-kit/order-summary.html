@@ -44,13 +44,15 @@
               Home address
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['address-line-1'] == undefined %}{{ data['home-address'] }}{% endif %}
-              {% if data['address-line-1'] !== undefined %}
               {{ data['address-line-1'] }}<br>
+              {% if data['address-line-2'] %}
               {{ data['address-line-2'] }}<br>
-              {{ data['address-town'] }}<br>
-              {{ data['home-postcode'] }}
               {% endif %}
+              {{ data['address-town'] }}<br>
+              {% if data['address-county'] %}
+              {{ data['address-county'] }}<br>
+              {% endif %}
+              {{ data['address-postcode'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/lfd-home-ordering/{{version}}/order-home-test-kit/postcode">
