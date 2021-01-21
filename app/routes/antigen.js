@@ -46,6 +46,52 @@ router.post('/antigen/v2/action3/do-you-have-symptoms-person-1', function (req, 
 
 })
 
+// Version 2 - Antigen Refer and Triage - When did symptoms start route
+
+router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
+  let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
+  if (yearSymptomsStarted != "2021"){
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/stay-at-home')
+  }
+
+})
+
+// Version 2 - Antigen Refer and Triage - When did symptoms start error route
+
+router.post('/antigen/v2/action3/when-did-symptoms-start-error', function (req, res) {
+  let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
+  if (yearSymptomsStarted != "2021"){
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/stay-at-home')
+  }
+
+})
+
+// Version 2 - Antigen Refer and Triage - When did symptoms start option 2 route
+
+router.post('/antigen/v2/action3/when-did-symptoms-start-option-2', function (req, res) {
+  let dateOfOnset = req.session.data['date-of-onset']
+  let country = req.session.data['country']
+  if (dateOfOnset == "21 January 2021" || 
+      dateOfOnset == "20 January 2021" || 
+      dateOfOnset == "19 January 2021" || 
+      dateOfOnset == "18 January 2021" ||
+      dateOfOnset == "17 January 2021" ||
+      dateOfOnset == "17 January 2021" ||
+      dateOfOnset == "16 January 2021" && country == "England" ||
+      dateOfOnset == "16 January 2021" && country == "Northern Ireland" || 
+      dateOfOnset == "15 January 2021" && country == "England" ||
+      dateOfOnset == "15 January 2021" && country == "Northern Ireland"){
+    res.redirect('/antigen/v2/refer-and-triage/stay-at-home')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/no-tests-available')
+  }
+
+})
+
 // Version 2 - Antigen Refer and Triage - Follow up test route
 
 router.post('/antigen/v2/action3/follow-up-test', function (req, res) {
@@ -68,7 +114,7 @@ router.post('/antigen/v2/action3/government-pilot', function (req, res) {
     res.redirect('/antigen/v2/refer-and-triage/which-pilot')
   } else if (followUpTest == "Yes") {
     res.redirect('/antigen/v2/refer-and-triage/')
-  } else if (governmentPilot == "No" && symptoms == "No" || followUpTest == "No") {
+  } else if (governmentPilot == "No" && symptoms == "No" && followUpTest == "No") {
     res.redirect('/antigen/v2/refer-and-triage/reason-for-test')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/')
@@ -177,9 +223,9 @@ router.post('/antigen/v2/action3/ethnic-group-person-1', function (req, res) {
 
 router.post('/antigen/v2/action3/currently-in-work', function (req, res) {
   let inWork = req.session.data['currently-in-work']
-  if (inWork == "Yes - they travel to a workplace"){
+  if (inWork == "Yes - I travel to a workplace"){
     res.redirect('/antigen/v2/global-registration/industry')
-  } else if (inWork == "Yes - they go to nursery, school, college or university"){
+  } else if (inWork == "Yes - I go to nursery, school, college or university"){
     res.redirect('/antigen/v2/global-registration/study-grade')
   } else {
     res.redirect('/genomic-variants/1-have-you-travelled-overseas')

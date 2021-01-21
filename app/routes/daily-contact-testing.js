@@ -17,7 +17,7 @@ router.post('/daily-contact-testing/v1/action10/do-you-have-symptoms', function 
     if (symptoms == "No" ) {
       res.redirect('/daily-contact-testing/v1/country')
     } else {
-      res.redirect('/antigen/v2/govuk/get-coronavirus-test')
+      res.redirect('/daily-contact-testing/v1/different-test')
     }
 
 })

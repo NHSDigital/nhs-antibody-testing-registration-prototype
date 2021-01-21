@@ -1,6 +1,6 @@
 {% extends "includes/layout.html" %}
 {% set serviceName = "COVID-19" %}
-{% set pageTitle = "Select a collection address" %}
+{% set pageTitle = "Are you doing daily contact testing?" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
@@ -21,37 +21,44 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="5" method="post">
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#field-1">Select Yes or No</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <form action="6" method="post">
         <fieldset class="govuk-fieldset govuk-!-margin-bottom-6">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <span class="govuk-caption-xl">Lateral flow testing</span>
             <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-2">
               {{ pageTitle }}
             </h1>
           </legend>
+          <p class="govuk-body">This is where someone at your organisation tested positive for the virus and is self-isolating, but their close contacts take a test each day for 7 days so they can keep working.</p>
 
-          <div class="govuk-radios govuk-radios govuk-!-margin-bottom-6">
+          <div class="govuk-radios govuk-radios--inline govuk-form-group--error">
+            <span id="#field-1" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select Yes or No
+            </span>
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="radio-1" name="radio" type="radio" value="yes">
               <label class="govuk-label govuk-radios__label" for="radio-1">
-                84 Stroude Road, Sinton Green, London, WR2 3QT
+                Yes
               </label>
             </div>
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="radio-1" name="radio" type="radio" value="yes">
               <label class="govuk-label govuk-radios__label" for="radio-1">
-                50 Greyfriars Road, Carbrooke, London, WP5 1HE
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="radio-1" name="radio" type="radio" value="yes">
-              <label class="govuk-label govuk-radios__label" for="radio-1">
-                2 Duckpit Lane, Upper Wraxall, London, EC1 7YN
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="radio-1" name="radio" type="radio" value="yes">
-              <label class="govuk-label govuk-radios__label" for="radio-1">
-                57 Russell Road, Shillington, London, EC4 WXP
+                No
               </label>
             </div>
           </div>
