@@ -1,0 +1,85 @@
+{% set version = "v4" %}
+{% set folder = "prereg" %}
+{% set pageTitle = "Do you have a faster test registration code?" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% set hintHTML %}
+{{ govukDetails({
+  summaryText: "How test registration codes work",
+  html: '<p>We can create a test pass code which lets you register tests faster next time. We will ask you after you register if you want to create one. To get a test pass code, you need to:</p><ul class="govuk-list govuk-list--number">
+    <li>
+      After you register a test kit, you’re given the option of creating a code
+    </li>
+    <li>If you select ‘Yes’ we create a unique test registration code, and securely store the personal details you gave us. They can only be accessed with this code</li>
+    <li>You need to make a note of the code. We’ll also send it to you by either email or text</li>
+    <li>The next time you register a test kit, enter the test registration code</li>
+    <li>This automatically fills in the personal details, saving you time</li>
+    <li>
+      If you forget your code you can set up a new one
+    </li>
+  </ul>'
+}) }}
+{% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="" action="" method="post">
+        {{ govukRadios({
+            idPrefix: "haveTestpass",
+            name: "haveTestpass",
+            fieldset: {
+              legend: {
+                text: pageTitle,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            hint: {
+              html: "<p>The code lets you register a test kit faster. You can enter it and it’ll automatically add your personal details, saving time. It’s made up of letters and numbers. For example, ABCD1234</p><p>If you do not have a code already, we can create one after you register a test kit..</p>" + hintHTML
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes, I have a test registration code"
+              },
+              {
+                value: "no",
+                text: "No, I do not have a test registration code"
+              }
+            ]
+          }) }}
+        <input class="govuk-button" type="submit" value="Continue">
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
