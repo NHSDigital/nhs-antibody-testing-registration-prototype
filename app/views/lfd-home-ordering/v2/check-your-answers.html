@@ -1,0 +1,195 @@
+{% set version = "v2" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  
+  <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/date-of-birth">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom6">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Current coronavirus symptoms
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['do-you-have-symptoms'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lfd-home-ordering/{{version}}/do-you-have-symptoms">
+              Change
+              <span class="govuk-visually-hidden">current coronavirus symptoms</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Country
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['country'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-home-ordering/{{version}}/country">
+                Change
+                <span class="govuk-visually-hidden">country</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Able to work from home?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['work-from-home'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-home-ordering/{{version}}/work-from-home">
+                Change
+                <span class="govuk-visually-hidden">able to work from home</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Able to get tested at workplace?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['workplace-testing'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-home-ordering/{{version}}/workplace-testing">
+                Change
+                <span class="govuk-visually-hidden">able to get tested at workplace</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['first-name'] }} {{ data['last-name'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-home-ordering/{{version}}/name">
+                Change
+                <span class="govuk-visually-hidden">name</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['email-address'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-home-ordering/{{version}}/email-address">
+                Change
+                <span class="govuk-visually-hidden">email address</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Mobile number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['mobile-number'] == "Yes" %}
+              {{ data['mobile-phone-number'] }}
+              {% else %}
+              I do not have a mobile phone number
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-home-ordering/{{version}}/mobile-number">
+                Change
+                <span class="govuk-visually-hidden">mobile number</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date of birth
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-birth-day'] or '15 March 1988' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-home-ordering/{{version}}/date-of-birth">
+                Change
+                <span class="govuk-visually-hidden">date of birth</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Medical record
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['gender'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-home-ordering/{{version}}/gender">
+                Change
+                <span class="govuk-visually-hidden">medical record</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Home address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['address-line-1'] }}<br>
+              {% if data['address-line-2'] %}
+              {{ data['address-line-2'] }}<br>
+              {% endif %}
+              {{ data['address-town'] }}<br>
+              {% if data['address-county'] %}
+              {{ data['address-county'] }}<br>
+              {% endif %}
+              {{ data['address-postcode'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-home-ordering/{{version}}/home-address">
+                Change
+                <span class="govuk-visually-hidden">home address</span>
+              </a>
+            </dd>
+          </div>
+      </dl>
+
+      <form action="/lfd-home-ordering/{{version}}/security-check" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
