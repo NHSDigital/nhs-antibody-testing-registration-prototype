@@ -25,7 +25,7 @@ router.post('/lfd-home-ordering/v1/action10/do-you-have-symptoms', function (req
 router.post('/lfd-home-ordering/v1/action10/country', function (req, res) {
     let country = req.session.data['country']
     if (country == "England" ) {
-      res.redirect('/lfd-home-ordering/v1/work-from-home')
+      res.redirect('/lfd-home-ordering/v1/address')
     } else {
       res.redirect('/lfd-home-ordering/v1/country-test-unavailable')
     }
