@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Which of the following is recorded on the person's medical record?" %}
+{% set pageTitle = "What’s the gender of the person who needs a test?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -23,25 +23,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/lfd-home-ordering/{{version}}/home-address" method="post">
+      <form action="/lfd-home-ordering/{{version}}/check-your-answers" method="post">
       
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="gender-hint">
+          <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                 {{ pageTitle }}
               </h1>
             </legend>
-            <span id="gender-hint" class="govuk-body">
-              We are asking this question so we can match this information to their GP record. This allows us to record their test result with their GP.
-            </span>
             <div class="govuk-radios govuk-!-margin-top-6" data-module="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="Female" {{ checked("gender", "Female") }}>
-                <label class="govuk-label govuk-radios__label" for="gender-1">
-                  Female
-                </label>
-              </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="gender-2" name="gender" type="radio" value="Male" {{ checked("gender", "Male") }}>
                 <label class="govuk-label govuk-radios__label" for="gender-2">
@@ -49,25 +40,14 @@
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="gender-3" name="gender" type="radio" value="Other / Not specified / I do not know" {{ checked("gender", "Other / Not specified / I do not know") }}>
-                <label class="govuk-label govuk-radios__label" for="gender-3">
-                  Other / Not specified / I do not know
+                <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="Female" {{ checked("gender", "Female") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-1">
+                  Female
                 </label>
               </div>
             </div>
           </fieldset>
         </div>
-
-        <details class="govuk-details" data-module="govuk-details">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-              Why are there not more options?
-            </span>
-          </summary>
-          <div class="govuk-details__text">
-            We understand there are other ways a person may usually answer this question. In this case we're only asking this question to link the answer to the person's GP record.
-          </div>
-        </details>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
