@@ -75,16 +75,15 @@ router.post('/antigen/v2/action3/when-did-symptoms-start-error', function (req, 
 router.post('/antigen/v2/action3/when-did-symptoms-start-option-2', function (req, res) {
   let dateOfOnset = req.session.data['date-of-onset']
   let country = req.session.data['country']
-  if (dateOfOnset == "21 January 2021" || 
-      dateOfOnset == "20 January 2021" || 
-      dateOfOnset == "19 January 2021" || 
-      dateOfOnset == "18 January 2021" ||
-      dateOfOnset == "17 January 2021" ||
-      dateOfOnset == "17 January 2021" ||
-      dateOfOnset == "16 January 2021" && country == "England" ||
-      dateOfOnset == "16 January 2021" && country == "Northern Ireland" || 
-      dateOfOnset == "15 January 2021" && country == "England" ||
-      dateOfOnset == "15 January 2021" && country == "Northern Ireland"){
+  if (dateOfOnset == "27 January 2021" || 
+      dateOfOnset == "26 January 2021" || 
+      dateOfOnset == "25 January 2021" || 
+      dateOfOnset == "24 January 2021" ||
+      dateOfOnset == "23 January 2021" ||
+      dateOfOnset == "22 January 2021" && country == "England" ||
+      dateOfOnset == "22 January 2021" && country == "Northern Ireland" || 
+      dateOfOnset == "21 January 2021" && country == "England" ||
+      dateOfOnset == "21 January 2021" && country == "Northern Ireland"){
     res.redirect('/antigen/v2/refer-and-triage/stay-at-home')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/no-tests-available')
