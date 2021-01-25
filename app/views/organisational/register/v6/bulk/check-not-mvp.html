@@ -61,31 +61,14 @@
       <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
       {{ govukSummaryList({
-        classes: "",
+        classes: "govuk-!-margin-bottom-0",
         rows: [
           {
             key: {
-              text: "Unique organisation number (UON)"
+              text: "Organisation number"
             },
             value: {
-              text: data.cuOrderID or "12345678"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change ",
-                  visuallyHiddenText: "order ID"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Registration type"
-            },
-            value: {
-              text: cuStaff | placeholder("Non-staff")
+              text: data.cuOrgID or "12345678"
             },
             actions: {
               items: [
@@ -99,10 +82,10 @@
           },
           {
             key: {
-              text: "Number of registrations"
+              text: "Registration type"
             },
             value: {
-              text: "12"
+              text: "Staff"
             },
             actions: {
               items: [
@@ -117,9 +100,74 @@
         ]
       }) }}
 
-      <form class="" action="/{{ version }}/bulk/security" method="get">
+      {{ govukSummaryList({
+        classes: "govuk-summary-list--no-border app-summary-list--border-bottom",
+        rows: [
+          {
+            key: {
+              text: "Registrations"
+            },
+            value: {
+              text: "25"
+            }
+          },
+          {
+            key: {
+              html: "<span class='govuk-visually-hidden'>Registrations</span>"
+            },
+            value: {
+              text: "Records 1 to 10"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "View or change",
+                  visuallyHiddenText: "Name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: "<span class='govuk-visually-hidden'>Registrations</span>"
+            },
+            value: {
+              text: "Records 11 to 20"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "View or change",
+                  visuallyHiddenText: "Name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: "<span class='govuk-visually-hidden'>Registrations</span>"
+            },
+            value: {
+              text: "Records 21 to 25"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "View or change",
+                  visuallyHiddenText: "Name"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
 
-        <input class="govuk-button" type="submit" value="Confirm">
+      <form class="" action="/{{ version }}/bulk/done" method="get">
+
+        <input class="govuk-button" type="submit" value="Confirm and send">
 
       </form>
 

@@ -1,11 +1,4 @@
-{% set fullname %}
-  {% if data.cuFirstName and data.cuLastName %}
-    {{ data.cuFirstName }} {{ data.cuLastName }}
-    {% else %}
-      John Smith
-  {% endif %}
-{% endset %}
-{% set pageHeading = "Enter an email address" %}
+{% set pageHeading = "What's your unique organisation number (UON)?" %}
  {% set version = "organisational/register/v5" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -36,40 +29,35 @@
 
 {% block content %}
 
+{% set hintHtml %}
+<p>This is your 8 digit <strong>National Testing Programme number</strong>. For example, 12345678. It's different number than your usual organisation ID.</p>
+<p><a href='#'>Look up your National Testing Programme unique organisation number</a></p>
+{% endset %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        {{ pageHeading }}
-      </h1>
-
-      <p>We’ll send their test result to this email address.</p>
-
-      <p>If the email address does not belong to the person being registered, make sure you have got their consent for their results to go to someone else’s email address. </p>
-
-      <form class="" action="/{{ version }}/single/mobile-radio" method="get">
+      <form action="/organisational/register/v6/how" method="get">
 
         {{ govukInput({
           label: {
-            html: 'Email address'
+            text: pageHeading,
+            isPageHeading: true,
+            classes: "govuk-label--xl"
           },
-          classes: "govuk-!-width-two-thirds",
-          id: "cuEmail",
-          name: "cuEmail"
-        }) }}
-
-        {{ govukInput({
-          label: {
-            html: 'Confirm email address'
+          hint: {
+            html: hintHtml
           },
-          classes: "govuk-!-width-two-thirds",
-          id: "cuEmailConfirm",
-          name: "cuEmailConfirm"
+          classes: "govuk-input--width-20",
+          id: "cuOrderID",
+          name: "cuOrderID"
         }) }}
 
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
+
+
 
     </div>
   </div>

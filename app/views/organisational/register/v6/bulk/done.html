@@ -1,6 +1,5 @@
 {% set pageHeading = "Test kit registrations confirmed" %}
 {% set version = "organisational/register/v5" %}
-{% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -24,18 +23,6 @@
 
 {% block content %}
 
-{% set doneHtml %}
-{{ data.cuHaveEmailis or "john.smith@test.com" }} <br>
-{{ data.cuMobile or "07700912357" }} <br>
-Test kit barcode reference: {{ data.cuTestKitCode or "CHE00000501" }} <br>
-Test date: {% if data.cuDate == "Another date" %}
-  {{ data["cuExactDate-day"]}} {{ data["cuExactDate-month"] | monthToWord }} {{ data["cuExactDate-year"]}}
-{% else %}
-  {{ data.cuDate | returnDateShort }}
-{% endif %} <br>
-Test time: {{ data.cuTime }}{{data.cuAMPM}}
-{% endset %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -44,14 +31,14 @@ Test time: {{ data.cuTime }}{{data.cuAMPM}}
       }) }}
 
       {{ govukSummaryList({
-        classes: "",
+        classes: "govuk-!-margin-bottom-3",
         rows: [
           {
             key: {
-              text: "Unique organisation number"
+              text: "Organisation number"
             },
             value: {
-              text: data.cuOrderID or "12345678"
+              text: data.cuOrgID or "12345678"
             }
           },
           {
@@ -59,15 +46,15 @@ Test time: {{ data.cuTime }}{{data.cuAMPM}}
               text: "Registration type"
             },
             value: {
-              text: data.cuStaff or "Staff"
+              text: "Staff"
             }
           },
           {
             key: {
-              text: "Number registered"
+              text: "Registrations"
             },
             value: {
-              html: data.cuSingleCount if data.cuSingleCount else "1"
+              text: "25"
             }
           }
         ]
@@ -87,24 +74,26 @@ Test time: {{ data.cuTime }}{{data.cuAMPM}}
       </h3>
       <p>Return the test kits on the same day that they are taken. Book a courier collection now, if you have not done that already.</p>
 
-      <p style="display:none"
+      <p>Keep a copy of your record keeping spreadsheet with the test kit barcodes for your records.</p>
+
+
+
+      <p style="display:none">
         <a href="#">Download full registration details for your records</a>
       </p>
 
       {{ govukButton({
         text: "Register more test kits",
-        href: "/" + version + "/single/staff",
+        href: "/" + version + "/id",
         classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
         isStartButton: false
       }) }}
-
 
       <h2 class="govuk-heading-m">We want to hear from you</h2>
 
       <p>
         <a href="#">What did you think of our service?</a> (takes 3 minutes)
       </p>
-
     </div>
   </div>
 

@@ -2,7 +2,7 @@
   {% if data.cuFirstName and data.cuLastName %}
     {{ data.cuFirstName }} {{ data.cuLastName }}
     {% else %}
-      John Smith
+      Alun Smith
   {% endif %}
 {% endset %}
 {% set dob %}
@@ -25,7 +25,7 @@
     {{ "Today" | returnDateShort }}: 9am
   {% endif %}
 {% endset %}
-{% set pageHeading = "Check your answers" %}
+{% set pageHeading = "Personal details: Alun Smith" %}
  {% set version = "organisational/register/v5" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -61,30 +61,11 @@
 
       <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
-
-
       {{ govukSummaryList({
         rows: [
         {
-            key: {
-              text: "Whoa re you registering"
-            },
-            value: {
-              text: data.cuStaff or "Staff"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Resident/Staff"
-                }
-              ]
-            }
-          },
-        {
           key: {
-            text: "Name"
+            text: "Full name"
           },
           value: {
             text: fullname
@@ -99,25 +80,6 @@
             ]
             }
           },
-
-          {
-            key: {
-              text: "Daily testing"
-            },
-            value: {
-              text: data.sevenDayTesting | capitalize or "No"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Name"
-                }
-              ]
-              }
-            },
-
           {
             key: {
               text: "Date of birth"
@@ -367,44 +329,6 @@
             }
           } if data.cuCoronavirus == "Yes",
 
-
-
-
-          {
-            key: {
-              text: "Test kit barcode reference"
-            },
-            value: {
-              text: data.cuBarcode or "CHE00000501"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Test kit barcode reference"
-                }
-              ]
-            }
-          },
-
-            {
-              key: {
-                text: "Test date and time"
-              },
-              value: {
-                text: timeDate
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Test date and time"
-                  }
-                ]
-              }
-            },
             {
               key: {
                 text: "Email"
@@ -443,9 +367,9 @@
       }) }}
 
 
-      <form class="" action="/{{ version }}/single/add-another" method="get">
+      <form class="" action="javascript:window.history.go(-1);" method="get">
 
-        <input class="govuk-button" type="submit" value="Save and continue">
+        <input class="govuk-button" type="submit" value="Save and return">
 
       </form>
 
