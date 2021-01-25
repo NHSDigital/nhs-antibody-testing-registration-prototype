@@ -61,7 +61,11 @@
             Date when symptoms started
           </dt>
           <dd class="govuk-summary-list__value">
+            {% if data['symptoms-start-date-year'] == '2021' %}
             {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
+            {% else %}
+            {{ data['date-of-onset'] }}
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">
