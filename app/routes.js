@@ -389,6 +389,32 @@ router.post('/antigen/v1/action3/do-you-have-symptoms', function (req, res) {
 
 })
 
+// Version 1 - Antigen Refer and Triage - Do you have symptoms route
+
+router.post('/antigen/v1/action4/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes"){
+    res.redirect('/antigen/v1/refer-and-triage/when-did-symptoms-start')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/follow-up-test')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - Follow up test
+
+router.post('/antigen/v1/action3/follow-up-test', function (req, res) {
+  let symptoms = req.session.data['follow-up-test']
+  if (symptoms == "Yes"){
+    res.redirect('/antigen/v1/refer-and-triage/follow-up-test-reason')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/government-pilot')
+  }
+
+})
+
+
+
 // // Version 1 - Antigen Refer and Triage - Essential worker route
 
 // router.post('/antigen/v1/action3/essential-worker', function (req, res) {
@@ -569,7 +595,7 @@ router.post('/antigen/v1/action3/nhs-number-known', function (req, res) {
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antigen/v1/global-registration/nhs-number')
   } else {
-    res.redirect('/antigen/v1/global-registration/check-your-answers')
+    res.redirect('/antigen/v1/global-registration/vaccine')
   }
 
 })
@@ -612,7 +638,7 @@ router.post('/antigen/v1/action3/nhs-number-known-person-1', function (req, res)
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antigen/v1/global-registration/nhs-number-person-1')
   } else {
-    res.redirect('/antigen/v1/global-registration/check-your-answers-person-1')
+    res.redirect('/antigen/v1/global-registration/vaccine-person-1')
   }
 
 })
@@ -2979,6 +3005,29 @@ router.post('/litereg-accounts/v2/action8/nhs-number-known', function (req, res)
   }
 
 })
+
+// Version 1 - Antigen Vaccine
+router.post('/antigen/v1/action8/vaccine', function (req, res) {
+  let vaccine = req.session.data['vaccine']
+  if (vaccine == "No"){
+    res.redirect('/antigen/v1/global-registration/check-your-answers')
+  } else {
+    res.redirect('/antigen/v1/global-registration/vaccine-date')
+  }
+
+})
+
+// Version 1 - Antigen vaccine-person-1
+router.post('/antigen/v1/action8/vaccine-person-1', function (req, res) {
+  let vaccinePerson1 = req.session.data['vaccine-person-1']
+  if (vaccinePerson1 == "No"){
+    res.redirect('/antigen/v1/global-registration/check-your-answers')
+  } else {
+    res.redirect('/antigen/v1/global-registration/vaccine-date-person-1')
+  }
+
+})
+
 
 
 
