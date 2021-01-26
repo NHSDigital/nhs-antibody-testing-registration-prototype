@@ -23,12 +23,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
-        <p class="govuk-body">Hold your barcode up to your webcam and fit it inside the square.</p>
-
-        <div>
-          <img src="/public/images/camera-view.png" alt="camera view"/>
-        </div>
+        <!-- div for include from content folder -->
+        <div id="includedContent"></div>
 
         <a href="/share-result-lateral-flow/{{version}}/barcode" role="button" draggable="false" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
           Cancel
@@ -36,5 +32,12 @@
 
     </div>
   </div>
+
+<!-- corresponding html file name included from content folder -->
+<script>
+  $(function(){
+    $("#includedContent").load("../content/scan-barcode.html");
+  });
+</script>
 
 {% endblock %}
