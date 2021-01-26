@@ -53,6 +53,7 @@
               </a>
             </dd>
           </div>
+          {% if data['work-from-home'] == "No" %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Able to work from home?
@@ -81,6 +82,67 @@
               </a>
             </dd>
           </div>
+          {% else %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Identified as a contact of someone who tested positive?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['contact-with-positive'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/contact-with-positive">
+                Change
+                <span class="govuk-visually-hidden">identified as a contact of someone who tested positive</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              How were you notified you've had contact?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['notified-how'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/notified-how">
+                Change
+                <span class="govuk-visually-hidden">how were you notified you've had contact</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['notified-how'] == "Through a phone call from a contact tracer" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Trace ID number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['trace-id-number'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/notified-how">
+                Change
+                <span class="govuk-visually-hidden">trace ID number</span>
+              </a>
+            </dd>
+          </div>
+          {% elseif data['notified-how'] == "From an email or SMS message" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Trace ID number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['trace-id-number-email-sms'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/notified-how">
+                Change
+                <span class="govuk-visually-hidden">trace ID number</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+          {% endif %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Name
@@ -141,21 +203,7 @@
               </a>
             </dd>
           </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Medical record
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['gender'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a href="/lfd-home-ordering/{{version}}/gender">
-                Change
-                <span class="govuk-visually-hidden">medical record</span>
-              </a>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
+          <!-- <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Home address
             </dt>
@@ -176,7 +224,7 @@
                 <span class="govuk-visually-hidden">home address</span>
               </a>
             </dd>
-          </div>
+          </div> -->
       </dl>
 
       <form action="/lfd-home-ordering/{{version}}/security-check" method="post" novalidate>

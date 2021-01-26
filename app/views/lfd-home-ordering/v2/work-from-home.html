@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Is the person who needs a test able to work from home?" %}
+{% set pageTitle = "Are you able to work from home?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -27,23 +27,26 @@
         <form action="/lfd-home-ordering/{{version}}/action10/work-from-home" method="post">
 
             <div class="govuk-form-group govuk-!-padding-bottom-5">
-                <fieldset class="govuk-fieldset">
+                <fieldset class="govuk-fieldset" aria-describedby="work-from-home-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                         <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                             {{ pageTitle }}
                         </h1>
                     </legend>
+                    <span id="work-from-home-hint" class="govuk-body">
+                      If you sometimes need to travel to work, then answer ‘No’.
+                    </span>
                     <div class="govuk-radios govuk-!-margin-top-5">
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="work-from-home-1" name="work-from-home" type="radio" value="Yes" {{ checked("work-from-home", "Yes") }}>
                             <label class="govuk-label govuk-radios__label" for="work-from-home-1">
-                                Yes, they are able to work from home
+                                Yes
                             </label>
                         </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="work-from-home-2" name="work-from-home" type="radio" value="No" {{ checked("work-from-home", "No") }}>
                             <label class="govuk-label govuk-radios__label" for="work-from-home-2">
-                                No, they cannot work from home
+                                No
                             </label>
                         </div>
                     </div>
