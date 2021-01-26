@@ -242,6 +242,46 @@ router.post('/antigen/v2/action3/currently-in-work-person-1', function (req, res
   }
 })
 
+// Version 2 - Antigen Global registration - Industry
+
+router.post('/antigen/v2/action3/industry', function (req, res) {
+  let industry = req.session.data['industry']
+  if (industry == "Prefer not to say"){
+    res.redirect('/genomic-variants/1-have-you-travelled-overseas')
+  } else {
+    res.redirect('/antigen/v2/global-registration/occupation')
+  }
+})
+
+router.post('/antigen/v2/action3/industry-person-1', function (req, res) {
+  let industry = req.session.data['industry-person-1']
+  if (industry == "Prefer not to say"){
+    res.redirect('/genomic-variants/1-have-you-travelled-overseas')
+  } else {
+    res.redirect('/antigen/v2/global-registration/occupation-person-1')
+  }
+})
+
+// Version 2 - Antigen Global registration - Study grade
+
+router.post('/antigen/v2/action3/study-grade', function (req, res) {
+  let studyGrade = req.session.data['study-grade']
+  if (studyGrade == "Prefer not to say"){
+    res.redirect('/genomic-variants/1-have-you-travelled-overseas')
+  } else {
+    res.redirect('/antigen/v2/global-registration/institution')
+  }
+})
+
+router.post('/antigen/v2/action3/study-grade-person-1', function (req, res) {
+  let studyGrade = req.session.data['study-grade-person-1']
+  if (studyGrade == "Prefer not to say"){
+    res.redirect('/genomic-variants/1-have-you-travelled-overseas')
+  } else {
+    res.redirect('/antigen/v2/global-registration/institution-person-1')
+  }
+})
+
 // Version 2 - Antigen Global Registration - NHS number known route
 
 router.post('/antigen/v2/action3/nhs-number-known', function (req, res) {
