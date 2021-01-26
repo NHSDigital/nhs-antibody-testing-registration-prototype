@@ -614,17 +614,5 @@ router.post('/elective-care-testing/v1/trust-worker-request-enhanced/have-vaccin
     }
 });
 
-router.post('/organisational/test-pass/option1', function (req, res) {
-  let answer = req.body.outerreturnbox;
-
-  if (answer == 'yes') {
-    res.redirect('/organisational/test-pass/enterbarcode')
-    } else if (answer == 'no') {
-      res.redirect('/organisational/test-pass/checkyes')
-    } else {
-    res.redirect('/organisational/test-pass/option1?error=empty')
-    }
-})
-
 
 module.exports = router
