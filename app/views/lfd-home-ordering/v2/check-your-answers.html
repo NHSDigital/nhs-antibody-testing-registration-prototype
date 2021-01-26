@@ -30,7 +30,7 @@
             Current coronavirus symptoms
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['do-you-have-symptoms'] }}
+            {{ data['do-you-have-symptoms'] or 'No' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/lfd-home-ordering/{{version}}/do-you-have-symptoms">
@@ -41,25 +41,25 @@
         </div>
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Country
+              What country do you live in?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['country'] }}
+              {{ data['country'] or 'England' }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/lfd-home-ordering/{{version}}/country">
                 Change
-                <span class="govuk-visually-hidden">country</span>
+                <span class="govuk-visually-hidden">what country do you live in</span>
               </a>
             </dd>
           </div>
-          {% if data['work-from-home'] == "No" %}
+          {% if data['contact-with-positive'] == "No" %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Able to work from home?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['work-from-home'] }}
+              {{ data['work-from-home'] or "No" }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/lfd-home-ordering/{{version}}/work-from-home">
@@ -73,7 +73,7 @@
               Able to get tested at workplace?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['workplace-testing'] }}
+              {{ data['workplace-testing'] or "No" }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/lfd-home-ordering/{{version}}/workplace-testing">
@@ -88,10 +88,10 @@
               Identified as a contact of someone who tested positive?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['contact-with-positive'] }}
+              {{ data['contact-with-positive'] or 'Yes' }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/daily-contact-testing/{{version}}/contact-with-positive">
+              <a href="/lfd-home-ordering/{{version}}/contact-with-positive">
                 Change
                 <span class="govuk-visually-hidden">identified as a contact of someone who tested positive</span>
               </a>
@@ -102,10 +102,10 @@
               How were you notified you've had contact?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['notified-how'] }}
+              {{ data['notified-how'] or 'Through the NHS Covid-19 app' }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/daily-contact-testing/{{version}}/notified-how">
+              <a href="/lfd-home-ordering/{{version}}/notified-how">
                 Change
                 <span class="govuk-visually-hidden">how were you notified you've had contact</span>
               </a>
@@ -120,7 +120,7 @@
               {{ data['trace-id-number'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/daily-contact-testing/{{version}}/notified-how">
+              <a href="/lfd-home-ordering/{{version}}/notified-how">
                 Change
                 <span class="govuk-visually-hidden">trace ID number</span>
               </a>
@@ -135,20 +135,34 @@
               {{ data['trace-id-number-email-sms'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/daily-contact-testing/{{version}}/notified-how">
+              <a href="/lfd-home-ordering/{{version}}/notified-how">
                 Change
                 <span class="govuk-visually-hidden">trace ID number</span>
               </a>
             </dd>
           </div>
           {% endif %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Opt-in to daily contact testing?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['dct-opt-in'] or 'Yes' }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-home-ordering/{{version}}/dct-opt-in">
+                Change
+                <span class="govuk-visually-hidden">opt-in to daily contact testing</span>
+              </a>
+            </dd>
+          </div>
           {% endif %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['first-name'] }} {{ data['last-name'] }}
+              {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/lfd-home-ordering/{{version}}/name">
@@ -162,7 +176,7 @@
               Email address
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['email-address'] }}
+              {{ data['email-address'] or 'example@example.co.uk'}}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/lfd-home-ordering/{{version}}/email-address">
