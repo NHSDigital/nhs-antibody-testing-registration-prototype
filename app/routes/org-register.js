@@ -614,5 +614,29 @@ router.post('/elective-care-testing/v1/trust-worker-request-enhanced/have-vaccin
     }
 });
 
+router.post('/organisational/outer-return-box/option1/option1', function (req, res) {
+  let answer = req.body.outerreturnbox;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/outer-return-box/option1/enterbarcode')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/outer-return-box/option1/checkno')
+    } else {
+    res.redirect('/organisational/outer-return-box/option1/option1?error=empty')
+    }
+})
+
+router.post('/organisational/outer-return-box/option2/option2', function (req, res) {
+  let answer = req.body.outerreturnbox2;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/outer-return-box/option2/enterbarcode')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/outer-return-box/option2/checkno')
+    } else {
+    res.redirect('/organisational/outer-return-box/option2/option2?error=empty')
+    }
+})
+
 
 module.exports = router
