@@ -676,9 +676,9 @@ router.post('/organisational/test-pass/create-single-reg/occupation/index', func
   } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
     res.redirect('/organisational/test-pass/create-single-reg/occupation/area')
   } else if (answer == 'no') {
-    res.redirect('/organisational/test-pass/create-single-reg/occupation/country')
+    res.redirect('/organisational/test-pass/create-single-reg/country')
   } else if (answer == 'Prefer not to say') {
-    res.redirect('/organisational/test-pass/create-single-reg/occupation/country')
+    res.redirect('/organisational/test-pass/create-single-reg/country')
   } else {
     res.redirect('/organisational/test-pass/create-single-reg/occupation/index?error=empty')
     }
