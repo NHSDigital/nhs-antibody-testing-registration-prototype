@@ -614,6 +614,8 @@ router.post('/elective-care-testing/v1/trust-worker-request-enhanced/have-vaccin
     }
 });
 
+// outer-return-box
+
 router.post('/organisational/outer-return-box/option1/option1', function (req, res) {
   let answer = req.body.outerreturnbox;
 
@@ -638,5 +640,68 @@ router.post('/organisational/outer-return-box/option2/option2', function (req, r
     }
 })
 
+
+// test-pass/create-single-reg
+
+router.post('/organisational/test-pass/create-single-reg/spreadsheet', function (req, res) {
+  let answer = req.body.spreadsheet;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/create-single-reg/who-bulk')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/create-single-reg/who-single')
+    } else {
+    res.redirect('/organisational/test-pass/create-single-reg/spreadsheet?error=empty')
+    }
+});
+
+
+router.post('/organisational/test-pass/create-single-reg/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/create-single-reg/occupation/index')
+    } else if (answer) {
+      res.redirect('/organisational/test-pass/create-single-reg/ethnic-desc')
+    } else {
+    res.redirect('/organisational/test-pass/create-single-reg/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-single-reg/occupation/index', function (req, res) {
+  let answer = req.body.cuInWork;
+
+  if (answer == "Yes, and for the last 2 weeks they've worked from home") {
+    res.redirect('/organisational/test-pass/create-single-reg/occupation/area')
+  } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
+    res.redirect('/organisational/test-pass/create-single-reg/occupation/area')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/test-pass/create-single-reg/occupation/country')
+  } else if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/create-single-reg/occupation/country')
+  } else {
+    res.redirect('/organisational/test-pass/create-single-reg/occupation/index?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-single-reg/knowNHSnumber', function (req, res) {
+  let answer = req.body.cuKnowNHSnumber;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/create-single-reg/nhsnumber')
+    } else {
+    res.redirect('/organisational/test-pass/create-single-reg/have-coronavirus')
+    }
+});
+
+router.post('/organisational/test-pass/create-single-reg/have-coronavirus', function (req, res) {
+  let answer = req.body.cuCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/test-pass/create-single-reg/when-symptoms')
+    } else {
+    res.redirect('/organisational/test-pass/create-single-reg/enterbarcode')
+    }
+});
 
 module.exports = router
