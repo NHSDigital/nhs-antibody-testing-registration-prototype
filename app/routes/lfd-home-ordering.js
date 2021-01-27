@@ -22,6 +22,16 @@ router.post('/lfd-home-ordering/v1/action10/do-you-have-symptoms', function (req
 
 })
 
+router.post('/lfd-home-ordering/v1/action11/contact-with-positive', function (req, res) {
+  let contactWithPositive = req.session.data['contact-with-positive']
+  if (contactWithPositive == "No" ) {
+    res.redirect('/lfd-home-ordering/v1/work-from-home')
+  } else {
+    res.redirect('/lfd-home-ordering/v1/daily-contact-testing')
+  }
+
+})
+
 router.post('/lfd-home-ordering/v1/action10/country', function (req, res) {
     let country = req.session.data['country']
     if (country == "England" ) {
