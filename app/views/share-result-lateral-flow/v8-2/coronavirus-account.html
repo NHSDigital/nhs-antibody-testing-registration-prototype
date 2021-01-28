@@ -22,32 +22,40 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <form method="post">
 
       <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
 
-        <p class="govuk-body">A coronavirus testing account lets you save your details, so you do not need to enter them each time you report a test.</p>
-        <p class="govuk-body">Your testing account uses NHS login. This makes it quicker and easier for you to securely access online health and care services with one username and password.</p>
-        <p class="govuk-body">To report your test result, you can:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>use your existing NHS login details, if you have them</li>
-          <li>create your NHS login using your email address and UK mobile phone number</li>
-          <li>continue without using NHS login</li>
-        </ul>
-        <p class="govuk-body">You only need to create your NHS account once.</p>
+      <p class="govuk-body">Set up an account and you won't need to re-enter your details when you report further
+        test results.</p>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="sign-in-hint">
+          <div class="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="coronavirus-account-v2-1" name="coronavirus-account-v2" type="radio" value="/share-result-lateral-flow/{{version}}/user-account/login-email" onclick="setLocation(this);"  {{ checked("coronavirus-account-v2-1", "Sign in or create an account with NHS login") }}>
+              <label class="govuk-label govuk-radios__label" for="coronavirus-account-v2-1">
+                <strong>Sign in or create an account with NHS login</strong>
+              </label>
+              <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint" style="color: #000000;">
+                All you need is a mobile number an email address. It will only take a couple of minutes for us to send you an invite email. If you've done tests before you may have already created an account.
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="coronavirus-account-v2-2" name="coronavirus-account-v2" type="radio" value="/share-result-lateral-flow/{{version}}/home-org-use" onclick="setLocation(this);" {{ checked("coronavirus-account-v2-2", "Continue without an account") }}>
+              <label class="govuk-label govuk-radios__label" for="coronavirus-account-v2-2">
+                <strong>Continue without an account</strong>
+              </label>
+              <div id="sign-in-2-item-hint" class="govuk-hint govuk-radios__hint" style="color: #000000;">
+                Your details won't be saved for future tests and all information will have to be re-entered.
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
 
-        <div class="inline-buttons-wrapper">
-          <form class="form" action="/share-result-lateral-flow/{{version}}/user-account/login-email" method="post">
-            <button class="govuk-!-font-size-19 govuk-!-margin-bottom-5 nhsuk-button-image v1" type="submit">
-              <!-- Register using NHS login -->
-            </button>
-          </form>
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
 
-          <form class="form" action="/share-result-lateral-flow/{{version}}/home-org-use" method="post">
-            <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-              Continue without logging in
-            </button>
-          </form>
-
+      </form>
     </div>
   </div>
 
