@@ -5,13 +5,13 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "Do you want to add a mobile number?" %}
- {% set version = "organisational/register/v5" %}
+{% set pageHeading = "Does " + fullname | trim + " have a test registration code?" %}
+ {% set version = "organisational/test/pass-create-single-reg" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - {{ serviceName }}
+  {{ pageHeading }} - COVID-19
 {% endblock %}
 
 {% block beforeContent %}
@@ -39,21 +39,22 @@
 {% set mobileHtml %}
 {{ govukInput({
   label: {
-    html: 'Mobile number'
+    html: 'Test registration code'
   },
   classes: "govuk-!-width-two-thirds",
-  id: "cuMobile",
-  name: "cuMobile"
+  id: "cuPassID",
+  name: "cuPassIDQuestion"
 }) }}
 {% endset %}
+
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/organisational/test-pass/create-single-reg/create-pass-one" method="get">
+      <form class="" action="" method="get">
         {{ govukRadios({
-            idPrefix: "cuMobileQuestion",
-            name: "cuMobileQuestion",
+            idPrefix: "cuPassID",
+            name: "cuPassIDQuestion",
             fieldset: {
               legend: {
                 text: pageHeading,
@@ -62,21 +63,24 @@
               }
             },
             hint: {
-              html: "<p>We’ll also send their test result to this mobile phone number.</p>
+              html: "<p>
+                <strong>It's OK if you do not, you can still continue.</strong>
+              </p>
 
-              <p>If the mobile phone number does not belong to the person being registered, make sure you have got their consent for their results to go to someone else’s mobile phone number. </p>"
+              <p>This is the alphanumeric code given when the test registration code was created. For example ABC12345</p>
+"
             },
             items: [
               {
                 value: "Yes",
-                text: "Yes, I want to add a mobile phone number",
+                text: "Yes",
                 conditional: {
                   html: mobileHtml
                 }
               },
               {
                 value: "No",
-                text: "No, I do not want to add a mobile phone number"
+                text: "No"
               }
             ]
           }) }}
@@ -88,5 +92,7 @@
 
     </div>
   </div>
+
+
 
 {% endblock %}

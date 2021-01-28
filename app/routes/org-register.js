@@ -649,7 +649,7 @@ router.post('/organisational/test-pass/create-single-reg/spreadsheet', function 
   if (answer == 'yes') {
     res.redirect('/organisational/test-pass/create-single-reg/who-bulk')
   } else if (answer == 'no') {
-      res.redirect('/organisational/test-pass/create-single-reg/who-single')
+      res.redirect('/organisational/test-pass/create-single-reg/name')
     } else {
     res.redirect('/organisational/test-pass/create-single-reg/spreadsheet?error=empty')
     }
@@ -701,6 +701,29 @@ router.post('/organisational/test-pass/create-single-reg/have-coronavirus', func
     res.redirect('/organisational/test-pass/create-single-reg/when-symptoms')
     } else {
     res.redirect('/organisational/test-pass/create-single-reg/enterbarcode')
+    }
+});
+
+router.post('/organisational/test-pass/create-single-reg/reg-with-pass/passID', function (req, res) {
+  let answer = req.body.passID;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/create-single-reg/reg-with-pass/referencenumber')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/create-single-reg/who-single')
+    } else {
+    res.redirect('/organisational/test-pass/create-single-reg/reg-with-pass/passID?error=empty')
+    }
+});
+
+
+router.post('/organisational/test-pass/create-single-reg/reg-with-pass/have-coronavirus', function (req, res) {
+  let answer = req.body.cuCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/test-pass/create-single-reg/reg-with-pass/when-symptoms')
+    } else {
+    res.redirect('/organisational/test-pass/create-single-reg/reg-with-pass/enterbarcode')
     }
 });
 

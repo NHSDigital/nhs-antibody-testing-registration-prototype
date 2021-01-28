@@ -1,5 +1,5 @@
-{% set pageHeading = "What's name of the person being registered?" %}
- {% set version = "/organisational/test-pass/create-single-reg" %}
+{% set pageHeading = "Security check" %}
+{% set version = "organisational/register/v5" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
@@ -32,31 +32,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        {{ pageHeading }}
-      </h1>
+      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
-      <form class="" action="/organisational/test-pass/create-single-reg/dob" method="get">
+      <p>Complete the security check to submit your application</p>
 
-        {{ govukInput({
-          label: {
-            text: "First name"
-          },
-          classes: "govuk-input--width-20",
-          id: "covidUpload",
-          name: "cuFirstName"
-        }) }}
+      <img class="govuk-!-margin-top-6 govuk-!-margin-bottom-6" src="/public/images/cap.png" alt="Image of a reCAPTCHA" onclick="this.src='/public/images/capchecked.png'">
 
-        {{ govukInput({
-          label: {
-            text: "Last name"
-          },
-          classes: "govuk-input--width-20",
-          id: "covidUpload",
-          name: "cuLastName"
-        }) }}
+      <form class="" action="/organisational/test-pass/create-single-reg/confirmation" method="get">
 
-        <input class="govuk-button" type="submit" value="Continue">
+        <input class="govuk-button" type="submit" value="Submit">
 
       </form>
 
