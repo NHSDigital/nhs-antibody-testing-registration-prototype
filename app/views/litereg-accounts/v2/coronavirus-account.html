@@ -1,5 +1,5 @@
-{% set version = "v1" %}
-{% set pageTitle = "Sign in or create your account" %}
+{% set version = "v2" %}
+{% set pageTitle = "Would you like to sign in or create an account to save details?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -19,41 +19,63 @@
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form class="form" action="/litereg-accounts/{{version}}/action3/coronavirus-account-v2" method="post">
 
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+      <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="sign-in-hint">
+    <div class="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="coronavirus-account-v2-1" name="coronavirus-account-v2" type="radio" value="Sign in or create an account with NHS login" {{ checked("coronavirus-account-v2-1", "Sign in or create an account with NHS login") }}>
+        <label class="govuk-label govuk-radios__label" for="coronavirus-account-v2-1">
+          <strong>Sign in or create an account</strong>
+        </label>
+        <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint" style="color: #000000;">
+          We'll save your testing details for each time you get tested. Creating an account only takes 2 minutes and you'll save 5 minutes with each test.
+        </div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="coronavirus-account-v2-2" name="coronavirus-account-v2" type="radio" value="Continue without an account" {{ checked("coronavirus-account-v2-2", "Continue without an account") }}>
+        <label class="govuk-label govuk-radios__label" for="coronavirus-account-v2-2">
+          <strong>Continue without using an account</strong>
+        </label>
+        <div id="sign-in-2-item-hint" class="govuk-hint govuk-radios__hint" style="color: #000000;">
+          Your details will not be saved for future tests and all information will have to be re-entered.
+        </div>
+      </div>
+    </div>
 
-      <p class="govuk-body">A coronavirus testing account lets you save your details, so you do not need to enter them each time you register a test.<br><br>Here you can:</p>
-      <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
-        <li>Sign in using existing NHS login details</li>
-        <li>Sign up by creating an NHS login using your email and your UK mobile phone number</li>
-        <li>Continue without an account</li>
-      </ul>
-
+  </fieldset>
+</div>
+    <button class="govuk-button" data-module="govuk-button" style="width: 200px; font-size: 16px;">Continue</button>
+</form>
 
     </div>
   </div>
 
+
+<!--
   <div class="inline-buttons-wrapper">
-    <form class="form" action="/litereg-accounts/v2/user-account/login-email" method="post">
-              <button class="govuk-!-font-size-19 govuk-!-margin-bottom-5 nhsuk-button-style" type="submit">
-                Sign up or sign in
-              </button>
-            </form>
-            <form class="form" action="/litereg-accounts/v2/enter-barcode" method="post">
-              <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-                Continue without an account
-              </button>
-            </form>
+    <form class="form" action="/litereg-accounts/{{version}}/user-account/login-email" method="post">
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+
+    <form class="form" action="/litereg-accounts/{{version}}/site-id" method="post">
+      <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Continue without logging in
+      </button>
+    </form>
 
 </div>
+-->
 
 
 {% endblock %}
 
 {% block bodyEnd %}
 <div class="proto-action" style="width: 150px;">
-  <a href="/litereg-accounts/v2/coronavirus-account-v2.html">
-    <div class="proto-action-text govuk-!-margin-left-3">Version 2</div>
+  <a href="/litereg-accounts/v2/coronavirus-account.html">
+    <div class="proto-action-text govuk-!-margin-left-3">Version 1</div>
   </a>
 </div>
 {% endblock %}
