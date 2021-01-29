@@ -44,12 +44,13 @@
               Home address
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['address-line-1'] == undefined %}{{ data['home-address'] }}{% endif %}
-              {% if data['address-line-1'] !== undefined %}
+              {% if data['home-address'] == undefined or data['home-address'] == "5 addresses found" %}
               {{ data['address-line-1'] }}<br>
               {{ data['address-line-2'] }}<br>
               {{ data['address-town'] }}<br>
               {{ data['home-postcode'] }}
+              {% else %}
+              {{ data['home-address'] }}
               {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">

@@ -282,6 +282,17 @@ router.post('/antigen/v2/action3/study-grade-person-1', function (req, res) {
   }
 })
 
+// Version 2 - Antigen Global Registration - GP address same route
+
+router.post('/antigen/v2/action3/gp-address-same', function (req, res) {
+  let gpAdressSame = req.session.data['gp-address-same']
+  if (gpAdressSame == "Yes"){
+    res.redirect('/antigen/v2/global-registration/nhs-number-known')
+  } else {
+    res.redirect('/antigen/v2/global-registration/address')
+  }
+})
+
 // Version 2 - Antigen Global Registration - NHS number known route
 
 router.post('/antigen/v2/action3/nhs-number-known', function (req, res) {
