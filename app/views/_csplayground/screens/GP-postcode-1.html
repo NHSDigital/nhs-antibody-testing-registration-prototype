@@ -1,0 +1,63 @@
+{% set version = "v1" %}
+{% set pageTitle = "GP postcode correct or incorrect" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/date-of-birth-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="INSERT ACTION HERE" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="symptoms-person-1-hint symptoms-2-person-1-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                            Is W4 5AP the postcode registered with {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}'s GP?
+                        </h1>
+                    </legend>
+                    <span id="symptoms-person-1-hint" class="govuk-body">
+                        This will help us match you to your GP's record<br><br>
+                    </span>
+
+                    <div class="govuk-radios govuk-!-margin-top-5">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="postcode-gp-correct" name="postcode-gp-correct-1" type="radio" value="Yes" {{ checked("postcode-gp-correct-1", "Yes") }}>
+                            <label class="govuk-label govuk-radios__label" for="postcode-gp-correct-person-1">
+                                Yes, it is
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="postcode-gp-incorrect" name="postcode-gp-incorrect-1" type="radio" value="No" {{ checked("postcode-gp-incorrect-1", "No") }}>
+                            <label class="govuk-label govuk-radios__label" for="postcode-gp-incorrect-1-person-1">
+                                No, it isn't
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
