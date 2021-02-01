@@ -863,19 +863,35 @@ router.post('/organisational/test-pass/create-pass/staff/travel', function (req,
     }
 });
 
-router.post('/organisational/test-pass/create-pass/other/travel', function (req, res) {
-  let answer = req.body.travel;
+router.post('/organisational/test-pass/create-pass/other/travel2', function (req, res) {
+  let answer = req.body.travel2;
 
   if (answer == 'workplace') {
     res.redirect('/organisational/test-pass/create-pass/other/areawork')
   } else if (answer == 'education') {
     res.redirect('/organisational/test-pass/create-pass/other/attendeducation')
   } else if (answer == 'no') {
-    res.redirect('/organisational/test-pass/create-pass/checkyouranswers')
-  } else if (answer == 'Prefer not to say') {
-    res.redirect('/organisational/test-pass/create-pass/checkyouranswers')
+    res.redirect('/organisational/test-pass/create-pass/other/areawork')
+  } else if (answer == 'prefer not to say') {
+    res.redirect('/organisational/test-pass/create-pass/other/areawork')
   } else {
-    res.redirect('/organisational/test-pass/create-pass/other/areawork?error=empty')
+    res.redirect('/organisational/test-pass/create-pass/other/travel2?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/staff/travel2', function (req, res) {
+  let answer = req.body.travel2;
+
+  if (answer == 'workplace') {
+    res.redirect('/organisational/test-pass/create-pass/staff/areawork')
+  } else if (answer == 'education') {
+    res.redirect('/organisational/test-pass/create-pass/staff/attendeducation')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/test-pass/create-pass/staff/areawork')
+  } else if (answer == 'prefer not to say') {
+    res.redirect('/organisational/test-pass/create-pass/staff/areawork')
+  } else {
+    res.redirect('/organisational/test-pass/create-pass/staff/travel2?error=empty')
     }
 });
 

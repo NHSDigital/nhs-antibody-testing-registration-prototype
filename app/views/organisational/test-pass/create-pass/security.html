@@ -1,20 +1,30 @@
 {% set pageHeading = "Security check" %}
- {% set version = "organisational/test-pass" %}
+{% set version = "organisational/register/v5" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
   {{ pageHeading }} - {{ serviceName }}
 {% endblock %}
+
 {% block beforeContent %}
-<div class=“”>
-  <div class=“govuk-grid-row”>
-    <div class=“govuk-grid-column-full”>
-      <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
     </div>
   </div>
 </div>
-
 {% endblock %}
 
 {% block content %}
@@ -22,15 +32,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">Security check</h1>
+      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
-      <form class="form" action="/organisational/test-pass/confirmationbulk" method="post">
+      <p>Complete the security check to submit your application</p>
 
-        <p>Complete the security check to submit your application</p>
+      <img class="govuk-!-margin-top-6 govuk-!-margin-bottom-6" src="/public/images/cap.png" alt="Image of a reCAPTCHA" onclick="this.src='/public/images/capchecked.png'">
 
-        <p>[See <a href="https://design-system.service.gov.uk">the GOV.UK Design System</a> for examples]</p>
+      <form class="" action="/organisational/test-pass/create-pass/confirmationbulk" method="get">
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <input class="govuk-button" type="submit" value="Submit">
 
       </form>
 
