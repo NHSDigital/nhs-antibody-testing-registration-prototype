@@ -26,7 +26,7 @@
       <form action="/antigen/{{version}}/site-appointment-booking/choose-time-prev-day-walk" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="choose-site-1-hint choose-site-2-hint choose-site-3-hint choose-site-4-hint choose-site-11-hint choose-site-6-hint choose-site-7-hint choose-site-8-hint">
+          <fieldset class="govuk-fieldset" aria-describedby="choose-site-1-hint choose-site-2-hint choose-site-3-hint choose-site-4-hint choose-site-12-hint choose-site-6-hint choose-site-7-hint choose-site-8-hint choose-site-9-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               {% if data['home-postcode'] !== "N1111" %}
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
@@ -43,7 +43,7 @@
               Postcode
             </span>
             <span id="choose-site-2-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-right-4" style="display: inline-block;">
-              {{ data['home-postcode'] | default('N1 2US') }}
+              {{ data['home-postcode'] | default('LS1 3BE') }}
             </span>
             <p style="display: inline-block;"><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/find-test-site-walk">Change</a></p>
             {% if data['home-postcode'] == "N1111" %}
@@ -53,16 +53,16 @@
               </span>
             </p>
             {% endif %}
-            <div class="govuk-warning-text">
+            <!-- <div class="govuk-warning-text">
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text">
                 <span class="govuk-warning-text__assistive">Warning</span>
                 Some test sites are for over-18s only.
               </strong>
-            </div>
+            </div> -->
             {% if data['home-postcode'] !== "N1111" %}
             <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
-              <strong>Your nearest test sites:</strong><br>
+              <strong>Your nearest test sites (by road):</strong><br>
             </span>
             {% endif %}
             {% if data['home-postcode'] == "N1111" %}
@@ -74,68 +74,67 @@
               <strong>Walk-through</strong>
             </span>
 
-            <span id="choose-site-11-hint" class="govuk-body"><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/choose-drive-through-site">Change to drive-through</a></span>
+            <span id="choose-site-12-hint" class="govuk-body"><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/choose-drive-through-site">Change to drive-through</a></span>
 
             <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
               <li><span id="choose-site-6-hint" class="govuk-body govuk-!-margin-bottom-0">you need to book your test as soon as possible</span></li>
               <li><span id="choose-site-7-hint" class="govuk-body govuk-!-margin-bottom-0">you can walk or cycle to the site (do not go by public transport or taxi)</span></li>
-              <li><span id="choose-site-8-hint" class="govuk-body">site staff will tell you if an assistant does the swab test for you, or if you do it yourself</span></li>
+              <li><span id="choose-site-9-hint" class="govuk-body">site staff will tell you if an assistant does the swab test for you, or if you do it yourself</span></li>
             </ul>
             <div class="govuk-radios govuk-!-margin-top-7">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-site-1" name="test-site" type="radio" value="Heathrow airport test site, 125 testing lane, RM4 3RS" {{ checked("test-site", "Heathrow airport test site, 125 testing lane, RM4 3RS") }} aria-describedby="choose-site-9-hint">
+                <input class="govuk-radios__input" id="test-site-1" name="test-site" type="radio" value="Haringey Stamford Hill" {{ checked("test-site", "Haringey Stamford Hill") }} aria-describedby="choose-site-10-hint">
                 <label class="govuk-label govuk-radios__label" for="test-site-1">
                   <span  class="govuk-body-m">
                     <strong>
-                      Hackney Bentley Rd - Walk through site
+                      Haringey Stamford Hill - Walk through site
                     </strong>
                   </span>
                 </label>
-                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-9-hint" class="govuk-body-m">
-                  Bentley Road Car Park, Bentley Road<br>
-                  London<br>
-                  N1 4BZ<br>
-                  <strong>0.5 miles </strong> by road<br><br>
-                  55 slots available.
+                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-10-hint" class="govuk-body-m">
+                  Stamford Hill Primary School<br>
+                  Haringey<br>
+                  N15 6HD<br>
+                  <strong>1.2 miles</strong> by road<br><br>
+                  64 appointments available.
               </span></p>
               </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-site-1" name="test-site" type="radio" value="Heathrow airport test site, 125 testing lane, RM4 3RS" {{ checked("test-site", "Heathrow airport test site, 125 testing lane, RM4 3RS") }} aria-describedby="choose-site-9-hint">
-                <label class="govuk-label govuk-radios__label" for="test-site-1">
-                  <span  class="govuk-body-m">
-                    <strong>
-                      Hackney Tesco Superstore - Walk through site
-                    </strong>
-                  </span>
-                </label>
-                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-9-hint" class="govuk-body-m">
-                  Tesco Superstore Car Park, Morning Lane Hackney<br>
-                  London<br>
-                  E9 6ND<br>
-                  <strong>2.6 miles </strong> by road<br><br>
-                  66 slots available.
-              </span></p>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-site-1" name="test-site" type="radio" value="Heathrow airport test site, 125 testing lane, RM4 3RS" {{ checked("test-site", "Heathrow airport test site, 125 testing lane, RM4 3RS") }} aria-describedby="choose-site-9-hint">
-                <label class="govuk-label govuk-radios__label" for="test-site-1">
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="test-site-2" name="test-site" type="radio" value="Hackney Sandford Court" {{ checked("test-site", "Hackney Sandford Court") }} aria-describedby="choose-site-11-hint">
+                <label class="govuk-label govuk-radios__label" for="test-site-2">
                   <span  class="govuk-body-m">
                     <strong>
                       Hackney Sandford Court - Walk through site
                     </strong>
                   </span>
                 </label>
-                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-9-hint" class="govuk-body-m">
+                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-11-hint" class="govuk-body-m">
                   Sandford Court, Bethune Rd<br>
                   London<br>
                   N16 5BB<br>
-                  <strong>2.7 miles </strong> by road<br><br>
-                  35 slots available.
+                  <strong>2.6 miles</strong> by road<br><br>
+                  16 appointments available.
               </span></p>
               </div>
-
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="test-site-3" name="test-site" type="radio" value="Camden Ramsay Hall" {{ checked("test-site", "Camden Ramsay Hall") }} aria-describedby="choose-site-12-hint">
+                <label class="govuk-label govuk-radios__label" for="test-site-3">
+                  <span  class="govuk-body-m">
+                    <strong>
+                      Camden Ramsay Hall - Walk through site
+                    </strong>
+                  </span>
+                </label>
+                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-12-hint" class="govuk-body-m">
+                  Ramsay Hall (No step free access)<br>
+                  Camden<br>
+                  W1T 5HB<br>
+                  <strong>3.8 miles</strong> by road<br><br>
+                  295 appointments available.
+              </span></p>
+              </div>
             </div>
-            <!-- <p><a class="govuk-link" href="#">See walk-through test sites further away from you</a></p> -->
+            <p><a class="govuk-link" href="#">See walk-through test sites further away from you</a></p>
           </fieldset>
         </div>
 
@@ -147,3 +146,4 @@
   </div>
 
 {% endblock %}
+

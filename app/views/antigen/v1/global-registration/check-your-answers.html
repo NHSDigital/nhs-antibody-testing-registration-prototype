@@ -324,6 +324,103 @@
           </dd>
         </div>
         {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Had coronavirus vaccine
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['vaccine'] or 'No' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/coronavirus-vaccine">
+              Change
+              <span class="govuk-visually-hidden">had coronavirus vaccine</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['vaccine'] != "No" %}
+
+          {% if data['vaccine-date'] == "More than 14 days ago" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Last dose
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
+              January {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
+              February {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
+              March {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
+              April {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
+              May {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
+              June {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
+              July {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
+              August {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
+              September {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "10" %}
+              October {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "11" %}
+              November {{ data['vaccine-year'] or '2020' }}
+              {% elseif data['vaccine-month'] == "12" %}
+              December {{ data['vaccine-year'] or '2020' }}
+              {% else %}
+              {{ data['vaccine-month'] or 'December' }} {{ data['vaccine-year'] or '2020' }}
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/coronavirus-vaccine-date">
+                Change
+                <span class="govuk-visually-hidden">last dose</span>
+              </a>
+            </dd>
+          </div>
+          {% else %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Last dose
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['vaccine-date'] or 'Less than 7 days ago' }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/coronavirus-vaccine-date">
+                Change
+                <span class="govuk-visually-hidden">last dose</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Travelled Overseas
+            </dt>
+          {% if data['have-you-travelled-overseas'] == "Yes" %}
+            <dd class="govuk-summary-list__value">Yes, to 
+              {{ data['country-autocomplete'] or 'Ireland' }}<br>
+            </dd>
+           <dd class="govuk-summary-list__actions">
+              <a href="/genomic-variants/1-which-countries-travelled-to">
+                Change
+                <span class="govuk-visually-hidden">country visited</span>
+          {% else %}
+             <dd class="govuk-summary-list__value">No<br>
+            </dd>
+           <dd class="govuk-summary-list__actions">
+              <a href="/genomic-variants/1-have-you-travelled-overseas">
+                Change
+                <span class="govuk-visually-hidden">country visited</span>
+           {% endif %}
+              </a>
+            </dd>
+          </div>
+          {% endif %}
       </dl>
 
 
