@@ -1,0 +1,94 @@
+{% set version = "v1" %}
+{% set serviceName = "Elective Care" %}
+{% set pageTitle = "Which groups should Sara Metz belong to?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+<a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+    <p class="govuk-body">We've found 1 existing account with the following group access: </p>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Existing account</th>
+          <th scope="col" class="govuk-table__header">Group(s)</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Sara Metz (sarametz@nhs.net)</td>
+          <td class="govuk-table__cell">Group 1, Group 2</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <form action="/elective-care-testing/{{version}}/group-user-management/9-overview-multiple-groups-single-user" method="post">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+        <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl govuk-!-margin-bottom-6">
+          <h1 class="govuk-fieldset__heading">
+            {{ pageTitle }}
+          </h1>
+        </legend> -->
+        <div id="contact-hint" class="govuk-hint">
+          When signed in via NHS Identity this user will have access to these groups.
+        </div>
+        <div class="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="" name="" type="checkbox" value="" checked>
+            <label class="govuk-label govuk-checkboxes__label" for="">
+              Group 1
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="" name="" type="checkbox" value="" checked>
+            <label class="govuk-label govuk-checkboxes__label" for="">
+              Group 2
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="" name="" type="checkbox" value="">
+            <label class="govuk-label govuk-checkboxes__label" for="">
+              Group 3
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="" name="" type="checkbox" value="">
+            <label class="govuk-label govuk-checkboxes__label" for="">
+              Group 4
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <button class="govuk-button  govuk-!-margin-top-6" type="submit" data-module="govuk-button">
+      Save and continue
+    </button>
+
+</form>
+  </div>
+</div>
+
+{% endblock %}
