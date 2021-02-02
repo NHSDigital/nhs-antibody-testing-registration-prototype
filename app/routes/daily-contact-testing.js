@@ -25,7 +25,7 @@ router.post('/daily-contact-testing/v1/action10/do-you-have-symptoms', function 
 router.post('/daily-contact-testing/v1/action10/country', function (req, res) {
     let country = req.session.data['country']
     if (country == "England" ) {
-      res.redirect('/daily-contact-testing/v1/email-address')
+      res.redirect('/daily-contact-testing/v1/contact-with-positive')
     } else {
       res.redirect('/daily-contact-testing/v1/country-test-unavailable')
     }
@@ -37,7 +37,7 @@ router.post('/daily-contact-testing/v1/action10/email-address', function (req, r
     if (emailAddress == "No" ) {
         res.redirect('/daily-contact-testing/v1/call-us')
     } else {
-        res.redirect('/daily-contact-testing/v1/contact-with-positive')
+        res.redirect('/daily-contact-testing/v1/mobile-number')
     }
 
 })
