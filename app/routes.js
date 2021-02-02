@@ -545,7 +545,7 @@ router.post('/antigen/v1/action3/work-or-study', function (req, res) {
 router.post('/antigen/v1/action3/1-have-you-travelled-overseas', function (req, res) {
   let OverseasTravel = req.session.data['have-you-travelled-overseas']
   if (OverseasTravel == "No"){
-    res.redirect('/antigen/v1/global-registration/country')
+    res.redirect('/antigen/v1/global-registration/vaccine')
   } else {
     res.redirect('/antigen/v1/global-registration/1-which-countries-travelled-to')
   }
@@ -2382,7 +2382,7 @@ router.post('/litereg-accounts/v2/action8/nhs-number-known', function (req, res)
 router.post('/antigen/v1/action8/vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
   if (vaccine == "No"){
-    res.redirect('/antigen/v1/global-registration/check-your-answers')
+    res.redirect('/antigen/v1/global-registration/country')
   } else {
     res.redirect('/antigen/v1/global-registration/vaccine-date')
   }
