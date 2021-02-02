@@ -614,6 +614,10 @@ router.post('/elective-care-testing/v1/trust-worker-request-enhanced/have-vaccin
     }
 });
 
+
+
+// outer-return-box
+
 router.post('/organisational/outer-return-box/option1/option1', function (req, res) {
   let answer = req.body.outerreturnbox;
 
@@ -638,5 +642,257 @@ router.post('/organisational/outer-return-box/option2/option2', function (req, r
     }
 })
 
+
+// test-pass/create-single-reg
+
+router.post('/organisational/test-pass/create-single-reg/spreadsheet', function (req, res) {
+  let answer = req.body.spreadsheet;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/create-single-reg/who-bulk')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/create-single-reg/name')
+    } else {
+    res.redirect('/organisational/test-pass/create-single-reg/spreadsheet?error=empty')
+    }
+});
+
+
+router.post('/organisational/test-pass/create-single-reg/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/create-single-reg/occupation/index')
+    } else if (answer) {
+      res.redirect('/organisational/test-pass/create-single-reg/ethnic-desc')
+    } else {
+    res.redirect('/organisational/test-pass/create-single-reg/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-single-reg/occupation/index', function (req, res) {
+  let answer = req.body.cuInWork;
+
+  if (answer == "Yes, and for the last 2 weeks they've worked from home") {
+    res.redirect('/organisational/test-pass/create-single-reg/occupation/area')
+  } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
+    res.redirect('/organisational/test-pass/create-single-reg/occupation/area')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/test-pass/create-single-reg/country')
+  } else if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/create-single-reg/occupation/area')
+  } else {
+    res.redirect('/organisational/test-pass/create-single-reg/occupation/index?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-single-reg/knowNHSnumber', function (req, res) {
+  let answer = req.body.cuKnowNHSnumber;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/create-single-reg/nhsnumber')
+    } else {
+    res.redirect('/organisational/test-pass/create-single-reg/have-coronavirus')
+    }
+});
+
+router.post('/organisational/test-pass/create-single-reg/have-coronavirus', function (req, res) {
+  let answer = req.body.cuCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/test-pass/create-single-reg/when-symptoms')
+    } else {
+    res.redirect('/organisational/test-pass/create-single-reg/enterbarcode')
+    }
+});
+
+router.post('/organisational/test-pass/create-single-reg/reg-with-pass/passID', function (req, res) {
+  let answer = req.body.passID;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/create-single-reg/reg-with-pass/referencenumber')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/create-single-reg/who-single')
+    } else {
+    res.redirect('/organisational/test-pass/create-single-reg/reg-with-pass/passID?error=empty')
+    }
+});
+
+
+router.post('/organisational/test-pass/create-single-reg/reg-with-pass/have-coronavirus', function (req, res) {
+  let answer = req.body.cuCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/test-pass/create-single-reg/reg-with-pass/when-symptoms')
+    } else {
+    res.redirect('/organisational/test-pass/create-single-reg/reg-with-pass/enterbarcode')
+    }
+});
+
+
+
+// test-pass/create-pass
+
+
+
+router.post('/organisational/test-pass/create-pass/spreadsheet', function (req, res) {
+  let answer = req.body.spreadsheet;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/create-pass/who-bulk')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/create-pass/who-single')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/spreadsheet?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/residents/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/create-pass/residents/contact')
+    } else if (answer) {
+      res.redirect('/organisational/test-pass/create-pass/residents/ethnic-desc')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/residents/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/staff/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/create-pass/staff/contact')
+    } else if (answer) {
+      res.redirect('/organisational/test-pass/create-pass/staff/ethnic-desc')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/staff/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/other/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/create-pass/other/contact')
+    } else if (answer) {
+      res.redirect('/organisational/test-pass/create-pass/other/ethnic-desc')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/other/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/who-single', function (req, res) {
+  let answer = req.body.who;
+
+  if (answer == 'residents') {
+    res.redirect('/organisational/test-pass/create-pass/residents/personal')
+  } else if (answer == 'staff') {
+      res.redirect('/organisational/test-pass/create-pass/staff/personal')
+  } else if (answer == 'other') {
+      res.redirect('/organisational/test-pass/create-pass/other/personal')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/who-single?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/create-more/who-single', function (req, res) {
+  let answer = req.body.who;
+
+  if (answer == 'residents') {
+    res.redirect('/organisational/test-pass/create-pass/create-more/residents/personal')
+  } else if (answer == 'staff') {
+      res.redirect('/organisational/test-pass/create-pass/create-more/staff/personal')
+  } else if (answer == 'other') {
+      res.redirect('/organisational/test-pass/create-pass/other/personal')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/create-more/who-single?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/create-more/staff/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/create-pass/create-more/staff/contact')
+    } else if (answer) {
+      res.redirect('/organisational/test-pass/create-pass/create-more/staff/ethnic-desc')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/create-more/staff/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/create-more/residents/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/create-pass/create-more/residents/confirmcontact')
+    } else if (answer) {
+      res.redirect('/organisational/test-pass/create-pass/create-more/residents/ethnic-desc')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/create-more/residents/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/create-more/other/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/create-pass/create-more/other/contact')
+    } else if (answer) {
+      res.redirect('/organisational/test-pass/create-pass/create-more/other/ethnic-desc')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/create-more/other/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/staff/travel', function (req, res) {
+  let answer = req.body.travel;
+
+  if (answer == 'workplace') {
+    res.redirect('/organisational/test-pass/create-pass/staff/areawork')
+  } else if (answer == 'education') {
+    res.redirect('/organisational/test-pass/create-pass/staff/attendeducation')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/test-pass/create-pass/checkyouranswers')
+  } else if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/create-pass/checkyouranswers')
+  } else {
+    res.redirect('/organisational/test-pass/create-pass/staff/areawork?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/other/travel2', function (req, res) {
+  let answer = req.body.travel2;
+
+  if (answer == 'workplace') {
+    res.redirect('/organisational/test-pass/create-pass/other/areawork')
+  } else if (answer == 'education') {
+    res.redirect('/organisational/test-pass/create-pass/other/attendeducation')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/test-pass/create-pass/other/areawork')
+  } else if (answer == 'prefer not to say') {
+    res.redirect('/organisational/test-pass/create-pass/other/areawork')
+  } else {
+    res.redirect('/organisational/test-pass/create-pass/other/travel2?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/staff/travel2', function (req, res) {
+  let answer = req.body.travel2;
+
+  if (answer == 'workplace') {
+    res.redirect('/organisational/test-pass/create-pass/staff/areawork')
+  } else if (answer == 'education') {
+    res.redirect('/organisational/test-pass/create-pass/staff/attendeducation')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/test-pass/create-pass/staff/areawork')
+  } else if (answer == 'prefer not to say') {
+    res.redirect('/organisational/test-pass/create-pass/staff/areawork')
+  } else {
+    res.redirect('/organisational/test-pass/create-pass/staff/travel2?error=empty')
+    }
+});
 
 module.exports = router
