@@ -183,10 +183,16 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Postcode
+            Address
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['home-postcode'] }}
+            {% if data['home-address'] == undefined or data['home-address'] == "5 addresses found" %}
+              {{ data['address-line-1'] }}<br>
+              {{ data['address-town'] }}<br>
+              {{ data['home-postcode'] }}
+              {% else %}
+              {{ data['home-address'] }}
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/refer-and-triage/postcode">

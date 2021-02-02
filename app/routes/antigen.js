@@ -247,9 +247,18 @@ router.post('/antigen/v2/action3/currently-in-work-person-1', function (req, res
 router.post('/antigen/v2/action3/industry', function (req, res) {
   let industry = req.session.data['industry']
   if (industry == "Prefer not to say"){
-    res.redirect('/genomic-variants/1-have-you-travelled-overseas')
+    res.redirect('/antigen/v2/global-registration/occupation')
   } else {
     res.redirect('/antigen/v2/global-registration/occupation')
+  }
+})
+
+router.post('/antigen/v2/action3/industry-option-2', function (req, res) {
+  let industry = req.session.data['industry']
+  if (industry == "Prefer not to say"){
+    res.redirect('/genomic-variants/1-have-you-travelled-overseas')
+  } else {
+    res.redirect('/antigen/v2/global-registration/occupation-option-2')
   }
 })
 

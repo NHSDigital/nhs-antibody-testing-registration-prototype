@@ -276,39 +276,38 @@
             </a>
           </dd>
         </div>
-        {% if data['country'] == "Northern Ireland" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            First line of address and postcode
+            Address registered with GP
           </dt>
+          {% if data['gp-address-same'] == "Yes" %}
           <dd class="govuk-summary-list__value">
-            {{ data['address'] or 'Chancery Lane' }}<br>
-            {{ data['home-postcode'] or 'LS1 3BE' }}
+            {% if data['home-address'] == undefined or data['home-address'] == "5 addresses found" %}
+              {{ data['address-line-1'] }}<br>
+              {{ data['address-town'] }}<br>
+              {{ data['home-postcode'] }}
+              {% else %}
+              {{ data['home-address'] }}
+            {% endif %}
           </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            {% if data['gp-address'] == undefined or data['gp-address'] == "5 addresses found" %}
+              {{ data['address-line-gp-1'] }}<br>
+              {{ data['address-town-gp'] }}<br>
+              {{ data['gp-postcode'] }}
+              {% else %}
+              {{ data['gp-address'] }}
+            {% endif %}
+          </dd>
+          {% endif %}
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/address">
+            <a href="/antigen/{{version}}global-registration/address">
               Change
-              <span class="govuk-visually-hidden">first line of address and postcode</span>
+              <span class="govuk-visually-hidden">postcode</span>
             </a>
           </dd>
         </div>
-        {% else %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            First line of address and postcode
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['address'] or '24 Green Lane' }}<br>
-            {{ data['home-postcode'] or 'LS1 3BE' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/address">
-              Change
-              <span class="govuk-visually-hidden">first line of address and postcode</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             NHS number known
