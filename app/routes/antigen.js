@@ -315,10 +315,10 @@ router.post('/antigen/v2/action9/coronavirus-vaccine-person-1', function (req, r
 
 router.post('/antigen/v2/action3/gp-address-same', function (req, res) {
   let gpAdressSame = req.session.data['gp-address-same']
-  if (gpAdressSame == "Yes"){
-    res.redirect('/antigen/v2/global-registration/nhs-number-known')
-  } else {
+  if (gpAdressSame == "No"){
     res.redirect('/antigen/v2/global-registration/address')
+  } else {
+    res.redirect('/antigen/v2/global-registration/nhs-number-known')
   }
 })
 
