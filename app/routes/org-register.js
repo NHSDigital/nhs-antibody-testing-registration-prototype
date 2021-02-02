@@ -622,7 +622,7 @@ router.post('/organisational/outer-return-box/option1/ethnic-group', function (r
   let answer = req.body.cuEthnicGroup;
 
   if (answer == 'Prefer not to say') {
-    res.redirect('/organisational//outer-return-box/option1/travel')
+    res.redirect('/organisational/outer-return-box/option1/travel')
     } else if (answer) {
       res.redirect('/organisational/outer-return-box/option1/ethnic-desc')
     } else {
@@ -684,7 +684,7 @@ router.post('/organisational/outer-return-box/option2/ethnic-group', function (r
   let answer = req.body.cuEthnicGroup;
 
   if (answer == 'Prefer not to say') {
-    res.redirect('/organisational//outer-return-box/option2/travel')
+    res.redirect('/organisational/outer-return-box/option2/travel')
     } else if (answer) {
       res.redirect('/organisational/outer-return-box/option2/ethnic-desc')
     } else {
