@@ -5,13 +5,13 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "What is the name of " + fullname | trim + "'s employer?" %}
+{% set pageHeading = "Does " + fullname + "currently have coronavirus symptoms?" %}
  {% set version = "organisational/register/v5" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - {{ serviceName }}
+  {{ pageHeading }} - COVID-19
 {% endblock %}
 
 {% block beforeContent %}
@@ -39,33 +39,45 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/organisational/outer-return-box/option1/country" method="get">
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
 
-        <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+      <p>The main symptoms of coronavirus are:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          a high temperature
+        </li>
+        <li>
+          a new, continuous cough
+        </li>
+        <li>
+          a loss or change to your sense of smell or taste
+        </li>
+      </ul>
 
-        <p>This helps us trace their work colleagues if they test positive for coronavirus.</p>
+      <p>Most people with coronavirus have at least one of these symptoms.</p>
 
-        {{ govukInput({
-            label: {
-              text: "Employer Name",
-              classes: "",
-              isPageHeading: true
-            },
-            classes: "",
-            hint: {
-              html: ""
-            },
-            id: "account-number",
-            name: "account-number"
+      <form class="" action="" method="post">
+
+        {{ govukRadios({
+            idPrefix: "cuCoronavirus",
+            name: "cuCoronavirus",
+            items: [
+              {
+                value: "Yes",
+                text: "Yes, they have at least one of these symptoms"
+              },
+              {
+                value: "No",
+                text: "No, they do not have any of these symptoms"
+              }
+            ]
           }) }}
 
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
-
-      <p>
-        <a href="/organisational/outer-return-box/option1/country">Prefer not to say</a>
-      </p>
 
     </div>
   </div>

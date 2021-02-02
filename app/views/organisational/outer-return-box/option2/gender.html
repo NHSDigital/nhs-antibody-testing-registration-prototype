@@ -5,13 +5,13 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "What is the name of " + fullname | trim + "'s employer?" %}
+{% set pageHeading = "What's " + fullname | trim + "'s gender?" %}
  {% set version = "organisational/register/v5" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - {{ serviceName }}
+  {{ pageHeading }} - COVID-19
 {% endblock %}
 
 {% block beforeContent %}
@@ -39,33 +39,33 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/organisational/outer-return-box/option1/country" method="get">
+      <form class="" action="/organisational/outer-return-box/option2/ethnic-group" method="get">
 
-        <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
-
-        <p>This helps us trace their work colleagues if they test positive for coronavirus.</p>
-
-        {{ govukInput({
-            label: {
-              text: "Employer Name",
-              classes: "",
-              isPageHeading: true
+        {{ govukRadios({
+            idPrefix: "covidUpload",
+            name: "cuGender",
+            fieldset: {
+              legend: {
+                text: pageHeading,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
             },
-            classes: "",
-            hint: {
-              html: ""
-            },
-            id: "account-number",
-            name: "account-number"
+            items: [
+              {
+                value: "Male",
+                text: "Male"
+              },
+              {
+                value: "Female",
+                text: "Female"
+              }
+            ]
           }) }}
 
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
-
-      <p>
-        <a href="/organisational/outer-return-box/option1/country">Prefer not to say</a>
-      </p>
 
     </div>
   </div>

@@ -5,7 +5,7 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "What's " + fullname | trim + "'s NHS number?" %}
+{% set pageHeading = "Who are you registering" %}
  {% set version = "organisational/register/v5" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -41,22 +41,28 @@
 
       <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
-      <p>Their NHS number is a 10 digit number. Please enter the number with no spaces, for example 8674065600.</p>
 
-      <form class="" action="/organisational/outer-return-box/option1/have-coronavirus" method="get">
+      <div class="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="where-do-you-live" name="who" type="radio" value="non-staff">
+              <label class="govuk-label govuk-radios__label" for="where-do-you-live">
+                Non-staff (for example residents of patients)
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="where-do-you-live-3" name="who" type="radio" value="staff">
+              <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+                Staff
+              </label>
+            </div>
 
-        {{ govukInput({
-            label: {
-              text: "NHS number",
-              classes: "",
-              isPageHeading: false
-            },
-            classes: "govuk-input--width-10",
-            id: "covidUpload",
-            name: "cuNHSnumber"
-          }) }}
 
-        <input class="govuk-button" type="submit" value="Continue">
+
+      <form class="form" action="/organisational/outer-return-box/bulk/upload" method="post">
+
+    <br><br>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
 
       </form>
 

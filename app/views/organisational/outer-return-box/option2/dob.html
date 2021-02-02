@@ -5,13 +5,12 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "What is the name of " + fullname | trim + "'s employer?" %}
+{% set pageHeading = "What's " + fullname | trim + "'s date of birth?" %}
  {% set version = "organisational/register/v5" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
-
 {% block pageTitle %}
-  {{ pageHeading }} - {{ serviceName }}
+  {{ pageHeading }} - COVID-19
 {% endblock %}
 
 {% block beforeContent %}
@@ -39,33 +38,43 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/organisational/outer-return-box/option1/country" method="get">
+      <form class="" action="/organisational/outer-return-box/option2/gender" method="get">
 
-        <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
-
-        <p>This helps us trace their work colleagues if they test positive for coronavirus.</p>
-
-        {{ govukInput({
-            label: {
-              text: "Employer Name",
-              classes: "",
-              isPageHeading: true
+        {{ govukDateInput({
+            id: "covidUpload",
+            namePrefix: "cuDOB",
+            fieldset: {
+              legend: {
+                html: pageHeading,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
             },
-            classes: "",
             hint: {
-              html: ""
+              text: "For example, 31 3 1980"
             },
-            id: "account-number",
-            name: "account-number"
+            items: [
+              {
+                name: "day",
+                classes: "govuk-input--width-2",
+                autocomplete: "bday-day"
+              },
+              {
+                name: "month",
+                classes: "govuk-input--width-2",
+                autocomplete: "bday-month"
+              },
+              {
+                name: "year",
+                classes: "govuk-input--width-4",
+                autocomplete: "bday-year"
+              }
+            ]
           }) }}
 
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
-
-      <p>
-        <a href="/organisational/outer-return-box/option1/country">Prefer not to say</a>
-      </p>
 
     </div>
   </div>

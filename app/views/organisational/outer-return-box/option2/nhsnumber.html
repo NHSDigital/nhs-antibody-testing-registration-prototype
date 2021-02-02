@@ -5,13 +5,13 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "What is the name of " + fullname | trim + "'s employer?" %}
+{% set pageHeading = "What's " + fullname | trim + "'s NHS number?" %}
  {% set version = "organisational/register/v5" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - {{ serviceName }}
+  {{ pageHeading }} - COVID-19
 {% endblock %}
 
 {% block beforeContent %}
@@ -39,33 +39,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/organisational/outer-return-box/option1/country" method="get">
+      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
-        <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+      <p>Their NHS number is a 10 digit number. Please enter the number with no spaces, for example 8674065600.</p>
 
-        <p>This helps us trace their work colleagues if they test positive for coronavirus.</p>
+      <form class="" action="/organisational/outer-return-box/option2/have-coronavirus" method="get">
 
         {{ govukInput({
             label: {
-              text: "Employer Name",
+              text: "NHS number",
               classes: "",
-              isPageHeading: true
+              isPageHeading: false
             },
-            classes: "",
-            hint: {
-              html: ""
-            },
-            id: "account-number",
-            name: "account-number"
+            classes: "govuk-input--width-10",
+            id: "covidUpload",
+            name: "cuNHSnumber"
           }) }}
 
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
-
-      <p>
-        <a href="/organisational/outer-return-box/option1/country">Prefer not to say</a>
-      </p>
 
     </div>
   </div>

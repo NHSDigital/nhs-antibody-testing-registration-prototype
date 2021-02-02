@@ -5,7 +5,7 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "What is the name of " + fullname | trim + "'s employer?" %}
+{% set pageHeading = "Is " + fullname + " currently in work?" %}
  {% set version = "organisational/register/v5" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -39,33 +39,47 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/organisational/outer-return-box/option1/country" method="get">
+      <form class="" action="" method="post">
 
-        <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
-
-        <p>This helps us trace their work colleagues if they test positive for coronavirus.</p>
-
-        {{ govukInput({
-            label: {
-              text: "Employer Name",
-              classes: "",
-              isPageHeading: true
+        {{ govukRadios({
+            idPrefix: "cuInWork",
+            name: "cuInWork",
+            fieldset: {
+              legend: {
+                text: pageHeading,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
             },
-            classes: "",
             hint: {
-              html: ""
+              html: "<p>This will help us understand more about the spread of the virus.</p>"
             },
-            id: "account-number",
-            name: "account-number"
+            items: [
+              {
+                value: "home",
+                text: "Yes, and for the last 2 weeks they've worked from home"
+              },
+              {
+                value: "travel",
+                text: "Yes, and for the last 2 weeks they've travelled to work"
+              },
+              {
+                value: "no",
+                text: "No"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "prefer not to say",
+                text: "Prefer not to say"
+              }
+            ]
           }) }}
 
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
-
-      <p>
-        <a href="/organisational/outer-return-box/option1/country">Prefer not to say</a>
-      </p>
 
     </div>
   </div>

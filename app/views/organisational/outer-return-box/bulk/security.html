@@ -1,17 +1,10 @@
-{% set fullname %}
-  {% if data.cuFirstName and data.cuLastName %}
-    {{ data.cuFirstName }} {{ data.cuLastName }}
-    {% else %}
-      John Smith
-  {% endif %}
-{% endset %}
-{% set pageHeading = "What's " + fullname | trim + "'s NHS number?" %}
- {% set version = "organisational/register/v5" %}
+{% set pageHeading = "Security check" %}
+{% set version = "organisational/register/v5" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - COVID-19
+  {{ pageHeading }} - {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -41,20 +34,11 @@
 
       <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
-      <p>Their NHS number is a 10 digit number. Please enter the number with no spaces, for example 8674065600.</p>
+      <p>Complete the security check to submit your application</p>
 
-      <form class="" action="/organisational/outer-return-box/option1/have-coronavirus" method="get">
+      <img class="govuk-!-margin-top-6 govuk-!-margin-bottom-6" src="/public/images/cap.png" alt="Image of a reCAPTCHA" onclick="this.src='/public/images/capchecked.png'">
 
-        {{ govukInput({
-            label: {
-              text: "NHS number",
-              classes: "",
-              isPageHeading: false
-            },
-            classes: "govuk-input--width-10",
-            id: "covidUpload",
-            name: "cuNHSnumber"
-          }) }}
+      <form class="" action="/organisational/outer-return-box/bulk/confirmation" method="get">
 
         <input class="govuk-button" type="submit" value="Continue">
 
