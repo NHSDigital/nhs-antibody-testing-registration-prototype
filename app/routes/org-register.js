@@ -618,6 +618,54 @@ router.post('/elective-care-testing/v1/trust-worker-request-enhanced/have-vaccin
 
 // outer-return-box
 
+router.post('/organisational/outer-return-box/option1/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational//outer-return-box/option1/travel')
+    } else if (answer) {
+      res.redirect('/organisational/outer-return-box/option1/ethnic-desc')
+    } else {
+    res.redirect('/organisational/outer-return-box/option1/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/outer-return-box/option1/travel', function (req, res) {
+  let answer = req.body.cuInWork;
+
+  if (answer == 'home') {
+    res.redirect('/organisational/outer-return-box/option1/area')
+  } else if (answer == 'travel') {
+    res.redirect('/organisational/outer-return-box/option1/area')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/outer-return-box/option1/country')
+  } else if (answer == 'prefer not to say') {
+    res.redirect('/organisational/outer-return-box/option1/area')
+  } else {
+    res.redirect('/organisational/outer-return-box/option1/travel?error=empty')
+    }
+});
+
+router.post('/organisational/outer-return-box/option1/knowNHSnumber', function (req, res) {
+  let answer = req.body.cuKnowNHSnumber;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/outer-return-box/option1/nhsnumber')
+    } else {
+    res.redirect('/organisational/outer-return-box/option1/have-coronavirus')
+    }
+});
+
+router.post('/organisational/outer-return-box/option1/have-coronavirus', function (req, res) {
+  let answer = req.body.cuCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/outer-return-box/option1/when-symptoms')
+    } else {
+    res.redirect('/organisational/outer-return-box/option1/testkit')
+    }
+});
+
 router.post('/organisational/outer-return-box/option1/option1', function (req, res) {
   let answer = req.body.outerreturnbox;
 
