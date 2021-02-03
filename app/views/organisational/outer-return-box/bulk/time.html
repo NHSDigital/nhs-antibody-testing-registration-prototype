@@ -1,17 +1,9 @@
-{% set fullname %}
-  {% if data.cuFirstName and data.cuLastName %}
-    {{ data.cuFirstName }} {{ data.cuLastName }}
-    {% else %}
-      John Smith
-  {% endif %}
-{% endset %}
-{% set pageHeading = "When did " + fullname | trim + " take their swab test?" %}
- {% set version = "organisational/register/v5" %}
-{% set serviceName = "Get a coronavirus test" %}
+{% set pageHeading = "When did you take the tests?" %}
+{% set version = "organisational/register/v5" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - COVID-19
+  {{ pageHeading }} - {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -38,8 +30,8 @@
 
 {% set anotherDate %}
 {{ govukDateInput({
-  id: "covidUploadDate",
-  namePrefix: "cuExactDate",
+  id: "cuOrgPrepopDateExact",
+  namePrefix: "cuOrgPrepopDateExact",
   fieldset: {
     legend: {
       text: "Date of swab test",
@@ -56,59 +48,42 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        {{ pageHeading }}
-      </h1>
-
-
       <form class="" action="/organisational/outer-return-box/bulk/checktest" method="get">
-
         {{ govukRadios({
-            idPrefix: "covidUpload",
-            name: "cuDate",
+            idPrefix: "cuOrgPrepopDate",
+            name: "cuOrgPrepopDate",
             fieldset: {
               legend: {
-
-                isPageHeading: false,
-                classes: "govuk-fieldset__legend--s"
+                text: pageHeading,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
               }
             },
             items: [
               {
-                value: "today",
-                text: "Today, " +  "today" | returnDateShort
+                value: "Today",
+                text: "Today, " + "today" | returnDate
               },
               {
-                value: "yesterday",
-                text: "Yesterday, " +  "-1" | returnDateShort
+                value: "Yesterday",
+                text: "Yesterday, " + "-1" | returnDate
               },
               {
-                value: "Another date",
+                value: "A different date",
                 text: "A different date",
                 conditional: {
                   html: anotherDate
                 }
-
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "none",
+                text: "On multiple days"
               }
-
             ]
           }) }}
-
-          {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-  {{ govukRadios({
-    items: [
-
-      {
-        divider: "or"
-      },
-      {
-        value: "abroad",
-        text: "On multiple days"
-      }
-    ]
-  }) }}
-
 
         <input class="govuk-button" type="submit" value="Continue">
 

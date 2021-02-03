@@ -618,6 +618,31 @@ router.post('/elective-care-testing/v1/trust-worker-request-enhanced/have-vaccin
 
 // outer-return-box
 
+router.post('/organisational/outer-return-box/option1/spreadsheet', function (req, res) {
+  let answer = req.body.spreadsheet;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/outer-return-box/bulk/who-single')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/outer-return-box/option1/who-single')
+    } else {
+    res.redirect('/organisational/outer-return-box/option1/spreadsheet?error=empty')
+    }
+});
+
+router.post('/organisational/outer-return-box/option2/spreadsheet', function (req, res) {
+  let answer = req.body.spreadsheet;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/outer-return-box/bulk/who-single')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/outer-return-box/option2/who-single')
+    } else {
+    res.redirect('/organisational/outer-return-box/option2/spreadsheet?error=empty')
+    }
+});
+
+
 router.post('/organisational/outer-return-box/option1/ethnic-group', function (req, res) {
   let answer = req.body.cuEthnicGroup;
 
@@ -640,7 +665,7 @@ router.post('/organisational/outer-return-box/option1/travel', function (req, re
   } else if (answer == 'no') {
     res.redirect('/organisational/outer-return-box/option1/country')
   } else if (answer == 'prefer not to say') {
-    res.redirect('/organisational/outer-return-box/option1/area')
+    res.redirect('/organisational/outer-return-box/option1/country')
   } else {
     res.redirect('/organisational/outer-return-box/option1/travel?error=empty')
     }
@@ -702,7 +727,7 @@ router.post('/organisational/outer-return-box/option2/travel', function (req, re
   } else if (answer == 'no') {
     res.redirect('/organisational/outer-return-box/option2/country')
   } else if (answer == 'prefer not to say') {
-    res.redirect('/organisational/outer-return-box/option2/area')
+    res.redirect('/organisational/outer-return-box/option2/country')
   } else {
     res.redirect('/organisational/outer-return-box/option2/travel?error=empty')
     }
