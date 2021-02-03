@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Would you like to opt-in to daily testing to come out of self isolation early?" %}
+{% set pageTitle = "Opt-in to daily contact testing" %}
 
 {% extends "includes/layout.html" %}
 
@@ -26,37 +26,49 @@
 
         <form action="/daily-contact-testing/{{version}}/action10/dct-opt-in" method="post">
 
-            <div class="govuk-form-group">
-                <fieldset class="govuk-fieldset">
+            <div class="govuk-form-group govuk-!-margin-bottom-7">
+                <fieldset class="govuk-fieldset" aria-describedby="dct-opt-in-hint dct-opt-in-hint-2">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                         <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                             {{ pageTitle }}
                         </h1>
                     </legend>
+                    <span id="dct-opt-in-hint" class="govuk-body">
+                        Based on your answers, you can opt-in and order your test kit.<br><br>
+                        If you opt-in, you need to:
+                    </span>
                     <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
-                        <li>You would need to do a throat <a class="govuk-link" href="#">swab test</a>, or have someone do it for you, every day for 7 days</li>
-                        <li>You must report your test results each day</li>
-                        <li>If you test positive on any day you will need to self-isolate for 10 days</li>
-                        <li>Find out more about what’s involved in <a class="govuk-link" href="#">Daily Contact Testing</a></li>
+                        <li>take a rapid swab test every day for 7 days to check you’re not infectious</li>
+                        <li>report your result to the NHS on the day you take the test</li>
+                        <li>self-isolate until you report your first negative test result</li>
                     </ul>
+                    <span id="dct-opt-in-hint-2" class="govuk-body">
+                        It’s OK for someone else to help you.<br><br>
+                        If you test positive, you must stop daily contact testing, self-isolate immediately and get a different NHS test.<br><br>
+                        <a href="#" class="govuk-link">Find out more about daily contact testing</a><br><br>
+                        <strong>Do you want to opt-in?</strong>
+                    </span>
+
                     <div class="govuk-radios govuk-!-margin-top-5">
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="dct-opt-in-1" name="dct-opt-in" type="radio" value="Yes, I’d like to test myself daily and agree to report my results for 7 days" {{ checked("dct-opt-in", "Yes, I’d like to test myself daily and agree to report my results for 7 days") }}>
+                            <input class="govuk-radios__input" id="dct-opt-in-1" name="dct-opt-in" type="radio" value="Yes" {{ checked("dct-opt-in", "Yes") }}>
                             <label class="govuk-label govuk-radios__label" for="dct-opt-in-1">
-                                Yes, I’d like to test myself daily and agree to report my results for 7 days
+                                Yes
                             </label>
                         </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="dct-opt-in-2" name="dct-opt-in" type="radio" value="No" {{ checked("dct-opt-in", "No") }}>
                             <label class="govuk-label govuk-radios__label" for="dct-opt-in-2">
-                                No, I’d prefer to self-isolate for 10 days
+                                No
                             </label>
                         </div>
                     </div>
                 </fieldset>
             </div>
 
-            <p class="govuk-body govuk-!-padding-bottom-5">You need to be 16 or over.</p>
+            <div class="govuk-inset-text govuk-body govuk-!-margin-top-3">
+                If you're under 16 a parent or guardian must opt-in for you.
+            </div>
 
             <button class="govuk-button" data-module="govuk-button">Continue</button>
 
