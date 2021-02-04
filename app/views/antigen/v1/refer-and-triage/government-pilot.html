@@ -15,11 +15,10 @@
   </p>
 </div>
 
-{% if data['follow-up-test'] == "Yes" %}
-<a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/follow-up-test-reason">Back</a>
-{% else %}
-<a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/follow-up-test">Back</a>
-{% endif %}
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
 {% endblock %}
 
 
@@ -41,7 +40,7 @@
                 For example, they:<br><br>
                 <ul class="govuk-list govuk-list--bullet">
                   <li>are taking part in community testing</li>
-                  <li>have been invtied to take part in the Contact Testing Study</li>
+                  <li>have been invited to take part in the Contact Testing Study</li>
                   <li>were told to get a test by the COVID Symptom Study app (by ZOE)</li>
                 </ul>
             </span>

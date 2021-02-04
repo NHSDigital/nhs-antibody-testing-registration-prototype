@@ -15,7 +15,7 @@
     </p>
   </div>
   
-  <a class="govuk-back-link" href="/daily-contact-testing/{{version}}/mobile-number">Back</a>
+  <a class="govuk-back-link" href="/daily-contact-testing/{{version}}/date-of-birth">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -50,20 +50,6 @@
               <a href="/daily-contact-testing/{{version}}/country">
                 Change
                 <span class="govuk-visually-hidden">what country do you live in</span>
-              </a>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Email address
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['email-address'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a href="/daily-contact-testing/{{version}}/email-address">
-                Change
-                <span class="govuk-visually-hidden">email address</span>
               </a>
             </dd>
           </div>
@@ -140,21 +126,53 @@
               </a>
             </dd>
           </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Name
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['first-name'] }} {{ data['last-name'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/daily-contact-testing/{{version}}/name">
-              Change
-              <span class="govuk-visually-hidden">name</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['first-name'] }} {{ data['last-name'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/name">
+                Change
+                <span class="govuk-visually-hidden">name</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['email-address'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/email-address">
+                Change
+                <span class="govuk-visually-hidden">email address</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Mobile number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['mobile-number'] == "Yes" %}
+              {{ data['mobile-phone-number'] }}
+              {% else %}
+              I do not have a mobile phone number
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/daily-contact-testing/{{version}}/mobile-number">
+                Change
+                <span class="govuk-visually-hidden">mobile number</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Date of birth
             </dt>
@@ -168,24 +186,6 @@
               </a>
             </dd>
           </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Mobile number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['mobile-number'] == "Yes" %}
-            {{ data['mobile-phone-number'] }}
-            {% else %}
-            I do not have a mobile phone number
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/daily-contact-testing/{{version}}/mobile-number">
-              Change
-              <span class="govuk-visually-hidden">mobile number</span>
-            </a>
-          </dd>
-        </div>
       </dl>
 
       <form action="/daily-contact-testing/{{version}}/order-home-test-kit" method="post" novalidate>

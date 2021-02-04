@@ -1,5 +1,5 @@
-{% set version = "v2" %}
-{% set pageTitle = "Have you had a coronavirus vaccine?" %}
+{% set version = "v1" %}
+{% set pageTitle = "Has the person who needs a test had a coronavirus vaccine?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,7 +15,10 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/nhs-number-known">Back</a>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -43,15 +46,15 @@
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="vaccine-2" name="vaccine" type="radio" value="Yes, I've had 1 dose" {{ checked("vaccine", "Yes, I've had 1 dose") }}>
+                <input class="govuk-radios__input" id="vaccine-2" name="vaccine" type="radio" value="Yes, they've had 1 dose" {{ checked("vaccine", "Yes, they've had 1 dose") }}>
                 <label class="govuk-label govuk-radios__label" for="vaccine-2">
-                  Yes, I've had 1 dose
+                  Yes, they've had 1 dose
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="vaccine-3" name="vaccine" type="radio" value="Yes, I've had 2 doses" {{ checked("vaccine", "Yes, I've had 2 doses") }}>
+                <input class="govuk-radios__input" id="vaccine-3" name="vaccine" type="radio" value="Yes, they've had 2 doses" {{ checked("vaccine", "Yes, they've had 2 doses") }}>
                 <label class="govuk-label govuk-radios__label" for="vaccine-3">
-                  Yes, I've had 2 doses
+                  Yes, they've had 2 doses
                 </label>
               </div>
             </div>

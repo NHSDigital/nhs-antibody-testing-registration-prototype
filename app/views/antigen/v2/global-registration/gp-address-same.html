@@ -1,0 +1,86 @@
+{% set version = "v2" %}
+{% set pageTitle = "Is this the address registered with their GP?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/antigen/{{version}}/action3/gp-address-same" method="post">
+
+      <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+            Is this the address registered with {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}'s GP?
+          </h1>
+        </legend>
+
+        <div id="content-1">
+          <span id="post-code-hint" class="govuk-body">
+            This will help us find and update their GP record with their test result.<br>
+            The test does not have to be sent to this address.<br><br>
+            <strong>
+            {% if data['home-address'] == undefined or data['home-address'] == "5 addresses found" %}
+              {{ data['address-line-1'] or '85 Durham road' }}<br>
+              {% if data['address-line-2'] %}
+              {{ data['address-line-2'] }}<br>
+              {% endif %}
+              {{ data['address-town'] or 'London' }}<br>
+              {{ data['home-postcode'] or 'LS1 3BE'}}
+              {% else %}
+              {{ data['home-address'] }}
+              {% endif %}
+            </strong>
+          </span>
+          <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="gp-address-same-1" name="gp-address-same" type="radio" value="Yes" {{ checked("gp-address-same", "Yes") }}>
+              <label class="govuk-label govuk-radios__label" for="gp-address-same-1">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="gp-address-same-2" name="gp-address-same" type="radio" value="No" {{ checked("gp-address-same", "No") }}>
+              <label class="govuk-label govuk-radios__label" for="gp-address-same-2">
+                No
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="gp-address-same-3" name="gp-address-same" type="radio" value="I don't know" {{ checked("gp-address-same", "I don't know") }}>
+              <label class="govuk-label govuk-radios__label" for="gp-address-same-3">
+                I don't know
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <button class="govuk-button" type="submit" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
