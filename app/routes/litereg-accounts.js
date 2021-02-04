@@ -429,6 +429,8 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
     if (uniqueBarcode == "LHE00000501") {
       res.redirect('/litereg-accounts/v2/site-id')
+    } else if (uniqueBarcode == "COE00000501") {
+      res.redirect('/litereg-accounts/v2/royal-mail-barcode')
     } else {
       res.redirect('/litereg-accounts/v2/test-place')
     }
@@ -440,7 +442,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
     if (testPlace == "At a test site") {
       res.redirect('/litereg-accounts/v2/site-id')
     } else {
-      res.redirect('/litereg-accounts/v2/test-date')
+      res.redirect('/litereg-accounts/v2/royal-mail-barcode')
     }
   })
 
