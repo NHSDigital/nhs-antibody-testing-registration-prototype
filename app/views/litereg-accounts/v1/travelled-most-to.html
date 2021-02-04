@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What's the test site's ID?" %}
+{% set pageTitle = "Which country did you spend most time in?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,42 +15,35 @@
     </p>
   </div>
 
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/have-you-travelled">Back</a>
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form lass="form" action="/litereg-accounts/{{version}}/confirm-site-id" method="post">
+    <form lass="form" action="/litereg-accounts/{{version}}/vaccine" method="post">
       <div class="govuk-form-group">
         <h1 class="govuk-label-wrapper govuk-!-margin-bottom-8">
-          <label class="govuk-label govuk-label--xl" for="siteID">
+          <label class="govuk-label govuk-label--xl" for="travelled-most-to">
+            {% if data['whos-taking-the-test'] == "myself" %}
             {{ pageTitle }}
+            {% else %}
+            Which country {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} spend most time in?
+            {% endif %}
           </label>
         </h1>
-        <span id="siteID-hint" class="govuk-body">
-          The test site ID will be either 3 or 4 characters.<br><br>
-          If you're still at the site and cannot find the test site ID, ask a member of staff.'<br><br>
-          If you're registering after leaving the site, staff should habe told you to take a photo of the test site ID or write it down.
-          <br><br>
+        <span id="travelled-most-to-hint" class="govuk-body">
+          Start entering a country below and then choose from the options selected <br><br>
+          Country
         </span>
-        <label class="govuk-label" for="mail-barcode-reference-1">
-          Test site ID<br>
-          <span class="govuk-hint">For example, THGR or LMHL</span>
-        </label>
-
-        <div id="siteID-container" class="govuk-!-margin-top-1"></div>
+        <div id="occupation-container" class="govuk-!-margin-top-1"></div>
       </div>
 
       <button class="govuk-button" type="submit" data-module="govuk-button">
         Continue
       </button>
     </form>
-    <p><a href="#">I do not know the test site ID</a></p>
 
   </div>
 </div>
@@ -209,18 +202,15 @@
   }
 </script> -->
 <script>
-  const siteIDs = [
-    "LEA- Leicester students union",
-    "LEB- Leicester sports hall",
-    "LEC- Leicester library",
-    "LED- Leicester town centre"
+  const occupations = [
+
   ];
 
   accessibleAutocomplete({
     autoselect: true,
-    element: document.querySelector('#siteID-container'),
-    id: 'siteID',
-    source: siteIDs,
+    element: document.querySelector('#occupation-container'),
+    id: 'occupation',
+    source: occupations,
     displayMenu: 'overlay',
     minLength: 2
   });
