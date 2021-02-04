@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What's the test site's ID?" %}
+{% set pageTitle = "Confirm your test site" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,17 +15,14 @@
     </p>
   </div>
 
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/site-id">Back</a>
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form lass="form" action="/litereg-accounts/{{version}}/confirm-site-id" method="post">
+    <form lass="form" action="/litereg-accounts/{{version}}/action6/confirm-site-id" method="post">
       <div class="govuk-form-group">
         <h1 class="govuk-label-wrapper govuk-!-margin-bottom-8">
           <label class="govuk-label govuk-label--xl" for="siteID">
@@ -33,27 +30,44 @@
           </label>
         </h1>
         <span id="siteID-hint" class="govuk-body">
-          The test site ID will be either 3 or 4 characters.<br><br>
-          If you're still at the site and cannot find the test site ID, ask a member of staff.'<br><br>
-          If you're registering after leaving the site, staff should habe told you to take a photo of the test site ID or write it down.
+          <strong>Test Site ID<br><br>
+          THGR</strong> <a href="#">Change</a>
+          <br><br>
+          <strong>The Grand</strong> <br>
+          Greythorn Drive <br>
+          Nottingham <br>
+          NG2 7GG <br>
+          West Bridgford
+
           <br><br>
         </span>
-        <label class="govuk-label" for="mail-barcode-reference-1">
-          Test site ID<br>
-          <span class="govuk-hint">For example, THGR or LMHL</span>
-        </label>
+        <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="confirm-site-id-1" name="confirm-site-id" type="radio" value="Yes" {{ checked("confirm-site-id", "Yes") }}>
+            <label class="govuk-label govuk-radios__label" for="confirm-site-id-1">
+                I went to  this test site
+            </label>
+        </div>
+        <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="confirm-site-id-2" name="confirm-site-id" type="radio" value="No" {{ checked("confirm-site-id", "No") }}>
+            <label class="govuk-label govuk-radios__label" for="confirm-site-id-2">
+                I did not go to this test site
+            </label>
+        </div>
+    </div>
 
-        <div id="siteID-container" class="govuk-!-margin-top-1"></div>
+          <button class="govuk-button" type="submit" data-module="govuk-button">
+            Continue
+          </button>
+  </form>
+
       </div>
 
-      <button class="govuk-button" type="submit" data-module="govuk-button">
-        Continue
-      </button>
-    </form>
-    <p><a href="#">I do not know the test site ID</a></p>
+
 
   </div>
-</div>
+
+{% endblock %}
+{% block bodyEnd %}
 
 <style>
 .autocomplete__wrapper {

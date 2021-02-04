@@ -2401,7 +2401,52 @@ router.post('/antigen/v1/action8/vaccine-person-1', function (req, res) {
 
 })
 
+// Version 1 - Lite reg accounts - test place route
 
+router.post('/litereg-accounts/v1/action9/test-place', function (req, res) {
+  let testPlace = req.session.data['test-place']
+  if (testPlace == "home") {
+    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+  } else {
+    res.redirect('/litereg-accounts/v1/site-id')
+  }
+
+})
+
+// Version 1 - Lite reg accounts - Confirm Site ID
+
+router.post('/litereg-accounts/v1/action6/confirm-site-id', function (req, res) {
+  let confirmSiteID = req.session.data['confirm-site-id']
+  if (confirmSiteID == "Yes") {
+    res.redirect('/litereg-accounts/v1/contact-testing')
+  } else {
+    res.redirect('/litereg-accounts/v1/site-id')
+  }
+
+})
+
+// Version 1 - Lite reg accounts - Have You Travelled
+
+router.post('/litereg-accounts/v1/action7/have-you-travelled', function (req, res) {
+  let haveYouTravelled = req.session.data['have-you-travelled']
+  if (haveYouTravelled == "Yes") {
+    res.redirect('/litereg-accounts/v1/travelled-most-to')
+  } else {
+    res.redirect('/litereg-accounts/v1/vaccine')
+  }
+
+})
+
+// Version 1 - Antigen Vaccine
+router.post('/litereg-accounts/v1/action8/vaccine', function (req, res) {
+  let vaccine = req.session.data['vaccine']
+  if (vaccine == "No"){
+    res.redirect('/litereg-accounts/v1/country')
+  } else {
+    res.redirect('/litereg-accounts/v1/vaccine-date')
+  }
+
+})
 
 
 
