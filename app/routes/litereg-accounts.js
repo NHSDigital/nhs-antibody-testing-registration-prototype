@@ -86,16 +86,16 @@ router.post('/litereg-accounts/v1/action9/landline-number', function (req, res) 
 
   // Version 1 - Lite Registration Accounts - First line of address and postcode route
 
-    router.post('/litereg-accounts/v1/action9/address', function (req, res) {
-    let emailAddress = req.session.data['email-address']
-    let password = req.session.data['password']
-    if (emailAddress != "user@testing.co.uk" && password == " " || emailAddress != "user@testing.co.uk" && password == undefined) {
-      res.redirect('/litereg-accounts/v1/email-address')
-    } else {
-      res.redirect('/litereg-accounts/v1/email-address-account')
-    }
+  //   router.post('/litereg-accounts/v1/action9/address', function (req, res) {
+  //   let emailAddress = req.session.data['email-address']
+  //   let password = req.session.data['password']
+  //   if (emailAddress != "user@testing.co.uk" && password == " " || emailAddress != "user@testing.co.uk" && password == undefined) {
+  //     res.redirect('/litereg-accounts/v1/email-address')
+  //   } else {
+  //     res.redirect('/litereg-accounts/v1/email-address-account')
+  //   }
 
-  })
+  // })
 
   // Version 1 - Lite Registration Accounts - Ethnic group route
   router.post('/litereg-accounts/v1/action9/ethnic-group', function (req, res) {
@@ -273,27 +273,26 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
   // Version 2 - Lite Registration Accounts - Do you have symptoms route
 
   router.post('/litereg-accounts/v2/action9/do-you-have-symptoms', function (req, res) {
-    let emailAddress = req.session.data['email-address']
-    if (emailAddress == "user@testing.co.uk") {
-      res.redirect('/litereg-accounts/v2/check-your-answers')
+    let symptoms = req.session.data['do-you-have-symptoms']
+    if (symptoms == "Yes") {
+      res.redirect('/litereg-accounts/v2/when-did-symptoms-start')
     } else {
-      res.redirect('/litereg-accounts/v2/country')
+      res.redirect('/litereg-accounts/v2/overseas-travel')
     }
 
   })
 
+    // Version 2 - Lite Registration Accounts - Overseas travel route
 
-    // // Version 2 - Lite Registration Accounts - Do you have symptoms route
-
-    // router.post('/litereg-accounts/v2/action9/when-did-symptoms-start', function (req, res) {
-    //   let emailAddress = req.session.data['email-address']
-    //   if (emailAddress == "user@testing.co.uk") {
-    //     res.redirect('/litereg-accounts/v2/check-your-answers')
-    //   } else {
-    //     res.redirect('/litereg-accounts/v2/country')
-    //   }
-
-    // })
+    router.post('/litereg-accounts/v2/action9/overseas-travel', function (req, res) {
+      let overseasTravel = req.session.data['have-you-travelled-overseas']
+      if (overseasTravel == "Yes") {
+        res.redirect('/litereg-accounts/v2/country-visited')
+      } else {
+        res.redirect('/litereg-accounts/v2/vaccine')
+      }
+  
+    })
 
   // router.post('/litereg-accounts/v2/action9/do-you-have-symptoms', function (req, res) {
   //   let emailAddress = req.session.data['email-address']
@@ -367,7 +366,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
 
   // })
 
-  // Version 2 - Lite Registration lateral flow with Accounts - NHS number known route
+  // Version 2 - Lite Registration Accounts - NHS number known route
 
   router.post('/litereg-accounts/v2/action9/nhs-number-known', function (req, res) {
     let nhsNumberKnown = req.session.data['nhs-number-known']
@@ -439,10 +438,10 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
   // Version 2 - Lite Registration Accounts - test place route
   router.post('/litereg-accounts/v2/action9/test-place', function (req, res) {
     let testPlace = req.session.data['test-place']
-    if (testPlace == "At a test site") {
-      res.redirect('/litereg-accounts/v2/site-id')
-    } else {
+    if (testPlace == "At home" || testPlace == "At a hotel or residence of your choice" || testPlace == "At a hotel or residence of their choice") {
       res.redirect('/litereg-accounts/v2/royal-mail-barcode')
+    } else {
+      res.redirect('/litereg-accounts/v2/site-id')
     }
   })
 
@@ -450,7 +449,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
   router.post('/litereg-accounts/v2/action9/site-confirmation', function (req, res) {
     let confirmSite = req.session.data['confirm-site']
     if (confirmSite == "Yes") {
-      res.redirect('/litereg-accounts/v2/test-date')
+      res.redirect('/litereg-accounts/v2/daily-contact-testing')
     } else {
       res.redirect('/litereg-accounts/v2/site-id')
     }
@@ -459,10 +458,23 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
   // Version 2 - Lite Registration Accounts - vaccine route
   router.post('/litereg-accounts/v2/action7/vaccine', function (req, res) {
     let vaccine = req.session.data['vaccine']
-    if (vaccine == "No") {
+    let loginEmail = req.session.data['email-address']
+    if (vaccine == "No" && loginEmail == "user@testing.co.uk") {
       res.redirect('/litereg-accounts/v2/check-your-answers')
+    } else if (vaccine == "No" && loginEmail != "user@testing.co.uk") {
+      res.redirect('/litereg-accounts/v2/country')
     } else {
       res.redirect('/litereg-accounts/v2/vaccine-date')
+    }
+  })
+
+   // Version 2 - Lite Registration Accounts - vaccine date route
+   router.post('/litereg-accounts/v2/action7/vaccine-date', function (req, res) {
+    let loginEmail = req.session.data['email-address']
+    if (loginEmail == "user@testing.co.uk") {
+      res.redirect('/litereg-accounts/v2/check-your-answers')
+    } else {
+      res.redirect('/litereg-accounts/v2/country')
     }
   })
 

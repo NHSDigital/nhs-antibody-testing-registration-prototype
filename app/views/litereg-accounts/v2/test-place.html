@@ -43,17 +43,39 @@
 
             <div class="govuk-radios govuk-!-margin-top-5 govuk-!-bottom-top-5">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-place-1" name="test-place" type="radio" value="At a test site" {{ checked("test-place", "At a test site") }}>
-                <label class="govuk-label govuk-radios__label" for="test-place-1">
-                  At a test site
-                </label>
-              </div>
-              <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="At home" {{ checked("test-place", "At home") }}>
                 <label class="govuk-label govuk-radios__label" for="test-place-2">
                   At home
                 </label>
               </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-place-1" name="test-place" type="radio" value="At a test site" {{ checked("test-place", "At a test site") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-1">
+                  At a test site
+                </label>
+              </div>
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-place-3" name="test-place" type="radio" value="At a hotel or residence of their choice" {{ checked("test-place", "At a hotel or residence of their choice") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-3">
+                  At a hotel or residence of their choice
+                </label>
+              </div>
+                {% else %}
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="test-place-3" name="test-place" type="radio" value="At a hotel or residence of your choice" {{ checked("test-place", "At a hotel or residence of your choice") }}>
+                  <label class="govuk-label govuk-radios__label" for="test-place-3">
+                    At a hotel or residence of your choice
+                  </label>
+                </div>
+                {% endif %}
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="test-place-4" name="test-place" type="radio" value="At a government-approved isolation hotel" {{ checked("test-place", "At a government-approved isolation hotel") }}>
+                  <label class="govuk-label govuk-radios__label" for="test-place-4">
+                    At a government-approved isolation hotel
+                  </label>
+                </div>
+              
             </div>
           </fieldset>
         </div>

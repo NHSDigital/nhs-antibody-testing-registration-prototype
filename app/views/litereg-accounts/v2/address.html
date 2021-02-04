@@ -23,7 +23,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/litereg-accounts/{{version}}/action9/address" method="post">
+      <form action="/litereg-accounts/{{version}}/email-address" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -40,6 +40,12 @@
             Enter the first line of their address and home postcode (ideally the one they gave their GP).
             {% else %}
             Enter the first line of your address and home postcode (ideally the one you gave your GP).
+            {% endif %}
+            <br><br>
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            If they do not normally live in the UK, enter the address and postcode where they're staying.
+            {% else %}
+            If you do not normally live in the UK, enter the address and postcode where you're staying.
             {% endif %}
           </span>
           <div class="govuk-form-group govuk-!-margin-top-5">

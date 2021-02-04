@@ -15,7 +15,7 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/nhs-number-known">Back</a>
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/overseas-travel">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -29,11 +29,22 @@
           <fieldset class="govuk-fieldset" aria-describedby="vaccine-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-              {{ pageTitle }}
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Has {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} had a coronavirus vaccine?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
               </h1>
             </legend>
             <span id="vaccine-hint" class="govuk-body">
-              We are asking this question to better understand how effective the vaccine is.
+              We are asking this question to better understand how effective the vaccine is.<br><br>
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              If the person has only had 1 dose, tell us when they had this dose.<br><br>
+              If the person has had 2 doses, tell us when they had the second dose.
+              {% else %}
+              If you have only had 1 dose, tell us when you had this dose.<br><br>
+              If you have had 2 doses, tell us when you had the second dose.
+              {% endif %}
             </span>
             <div class="govuk-radios govuk-!-margin-top-6">
               <div class="govuk-radios__item">
@@ -42,18 +53,36 @@
                   No
                 </label>
               </div>
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-2" name="vaccine" type="radio" value="Yes, they've had 1 dose" {{ checked("vaccine", "Yes, they've had 1 dose") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-2">
+                  Yes, they've had 1 dose
+                </label>
+              </div>
+              {% else %}
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="vaccine-2" name="vaccine" type="radio" value="Yes, I've had 1 dose" {{ checked("vaccine", "Yes, I've had 1 dose") }}>
                 <label class="govuk-label govuk-radios__label" for="vaccine-2">
                   Yes, I've had 1 dose
                 </label>
               </div>
+              {% endif %}
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-3" name="vaccine" type="radio" value="Yes, they've had 2 doses" {{ checked("vaccine", "Yes, they've had 2 doses") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-3">
+                  Yes, they've had 2 doses
+                </label>
+              </div>
+              {% else %}
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="vaccine-3" name="vaccine" type="radio" value="Yes, I've had 2 doses" {{ checked("vaccine", "Yes, I've had 2 doses") }}>
                 <label class="govuk-label govuk-radios__label" for="vaccine-3">
                   Yes, I've had 2 doses
                 </label>
               </div>
+              {% endif %}
             </div>
           </fieldset>
         </div>

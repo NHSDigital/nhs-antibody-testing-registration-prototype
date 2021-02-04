@@ -1,0 +1,77 @@
+{% set version = "v2" %}
+{% set pageTitle = "Were you asked to take part in daily contact testing?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/litereg-accounts/{{version}}/test-date" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="daily-contact-testing-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Was {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} asked to take part in daily contact testing?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+            </legend>
+            <span id="daily-contact-testing-hint" class="govuk-body">
+              This means taking a test every day for 7 days (usually because you're a contact of someone who has tested positive for coronavirus).
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-5 govuk-!-bottom-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="Yes" {{ checked("test-place", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-2">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-place-1" name="test-place" type="radio" value="No" {{ checked("test-place", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-1">
+                  No
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-place-4" name="test-place" type="radio" value="I do not know" {{ checked("test-place", "I do not know") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-4">
+                  I do not know
+                </label>
+              </div>
+              
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
