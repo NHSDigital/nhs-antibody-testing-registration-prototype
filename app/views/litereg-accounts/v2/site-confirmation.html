@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Confirm the test site" %}
+{% set pageTitle = "Confirm your test site" %}
 
 {% extends "includes/layout.html" %}
 
@@ -29,7 +29,11 @@
           <fieldset class="govuk-fieldset" aria-describedby="confirm-site-1-hint confirm-site-2-hint confirm-site-3-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Confirm the test site
+                {% else %}
                 {{ pageTitle }}
+                {% endif %}
               </h1>
             </legend>
             <span id="confirm-site-1-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-2">
