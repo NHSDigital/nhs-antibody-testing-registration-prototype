@@ -438,7 +438,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
   // Version 2 - Lite Registration Accounts - test place route
   router.post('/litereg-accounts/v2/action9/test-place', function (req, res) {
     let testPlace = req.session.data['test-place']
-    if (testPlace == "At home" || testPlace == "At a hotel or residence of your choice" || testPlace == "At a hotel or residence of their choice") {
+    if (testPlace == "At home" || testPlace == "Isolating after international travel in accomodation of your choice" || testPlace == "Isolating after international travel in accomodation of their choice") {
       res.redirect('/litereg-accounts/v2/royal-mail-barcode')
     } else {
       res.redirect('/litereg-accounts/v2/site-id')
