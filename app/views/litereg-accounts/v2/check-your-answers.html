@@ -43,32 +43,29 @@
             </a>
           </dd>
         </div>
-        {% if data['kit-barcode-reference-1'] == 'CHE00000501' %}
+        {% if data['kit-barcode-reference-1'] != 'LHE00000501' and data['kit-barcode-reference-1'] != 'COE00000501' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Test location
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['test-place'] or 'At a test site' }}
+            {{ data['test-place'] or 'At home' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/site-id">
+            <a href="/litereg-accounts/{{version}}/test-place">
               Change
-              <span class="govuk-visually-hidden">test site</span>
+              <span class="govuk-visually-hidden">test location</span>
             </a>
           </dd>
         </div>
+        {% if data['test-place'] == 'At a test site' or data['test-place'] == 'At a government-approved isolation hotel' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Test site
           </dt>
           <dd class="govuk-summary-list__value">
             {% if data['site-id'] != undefined or data['site-id'] != "" %}
-              {% if data['site-id'] == "LEA4" %}
-              LEA4 - Leicester Students' Union
-              {% else %}
-              Chessington MTU
-              {% endif %}
+            Chessington MTU
             {% else %}
             {{ data['test-site'] or 'Sandwell (Sandwell General Hospital)' }}
             {% endif %}
@@ -81,6 +78,23 @@
           </dd>
         </div>
         {% else %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Royal Mail barcode reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mail-barcode-reference-1'] or 'AA 1234 5678 9AA' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/royal-mail-barcode">
+              Change
+              <span class="govuk-visually-hidden">royal mail barcode reference</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        {% endif %}
+        {% if data['kit-barcode-reference-1'] == 'LHE00000501' or data['kit-barcode-reference-1'] == 'COE00000501' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Test site
@@ -361,7 +375,7 @@
             {% endif %}
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['do-you-have-symptoms'] | default('Yes') }}
+            {{ data['do-you-have-symptoms'] or 'No' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/litereg-accounts/{{version}}/do-you-have-symptoms">
@@ -370,6 +384,22 @@
             </a>
           </dd>
         </div>
+        {% if data['do-you-have-symptoms'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date when symptoms started
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/when-did-symptoms-start">
+              Change
+              <span class="govuk-visually-hidden">date when symptoms started</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Country of residence
@@ -405,7 +435,11 @@
             Email
           </dt>
           <dd class="govuk-summary-list__value">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            They do not have an email address
+            {% else %}
             I do not have an email address
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/litereg-accounts/{{version}}/email-address">
@@ -459,13 +493,20 @@
             </a>
           </dd>
         </div>
-        {% if data['landline-number'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Landline number
           </dt>
           <dd class="govuk-summary-list__value">
+            {% if data['landline-number'] == "Yes" %}
             {{ data['landline-telephone-number'] or 0845252323 }}
+            {% else %}
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            They do not have a landline number
+            {% else %}
+            I do not have a landline number
+            {% endif %}
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/litereg-accounts/{{version}}/landline-number">
@@ -474,52 +515,6 @@
             </a>
           </dd>
         </div>
-        {% elseif data['landline-number'] !== "Yes" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Landline number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['landline-number'] or 0845252323 }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/landline-number">
-              Change
-              <span class="govuk-visually-hidden">landline number</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Had coronavirus vaccine
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['vaccine'] or 'Yes' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/vaccine">
-              Change
-              <span class="govuk-visually-hidden">had coronavirus vaccine</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['vaccine'] !== "No" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Last dose
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['vaccine-date'] or 'Less than 7 days ago' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/vaccine-date">
-              Change
-              <span class="govuk-visually-hidden">last dose</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             NHS number known
@@ -550,6 +545,67 @@
           </dd>
         </div>
         {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Had coronavirus vaccine
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['vaccine'] or "Yes, I've had 1 dose" }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/vaccine">
+              Change
+              <span class="govuk-visually-hidden">had coronavirus vaccine</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['vaccine'] !== "No" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Last dose
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['vaccine-date'] or 'Less than 7 days ago' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/vaccine-date">
+              Change
+              <span class="govuk-visually-hidden">last dose</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Travelled overseas
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['have-you-travelled-overseas'] or 'No' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/overseas-travel">
+              Change
+              <span class="govuk-visually-hidden">travelled overseas</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['have-you-travelled-overseas'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Recent travel destination
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['country-autocomplete'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/country-visited">
+              Change
+              <span class="govuk-visually-hidden">recent travel destination</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        
       </dl>
 
       <form action="/litereg-accounts/{{version}}/security-check" method="post" novalidate>
