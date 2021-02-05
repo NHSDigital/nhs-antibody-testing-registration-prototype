@@ -424,7 +424,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
   })
 
   // Version 2 - Lite Registration Accounts - unique test kit barcode route
-  router.post('/litereg-accounts/v2/action9/enter-barcode', function (req, res) {
+  router.post('/litereg-accounts/v2/action9/are-you-isolating', function (req, res) {
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
     if (uniqueBarcode == "LHE00000501") {
       res.redirect('/litereg-accounts/v2/site-id')
@@ -438,7 +438,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
   // Version 2 - Lite Registration Accounts - test place route
   router.post('/litereg-accounts/v2/action9/test-place', function (req, res) {
     let testPlace = req.session.data['test-place']
-    if (testPlace == "At home" || testPlace == "Isolating after international travel in accomodation of your choice" || testPlace == "Isolating after international travel in accomodation of their choice") {
+    if (testPlace == "At home or an accomodation of your choice" || testPlace == "At home or an accomodation of their choice") {
       res.redirect('/litereg-accounts/v2/royal-mail-barcode')
     } else {
       res.redirect('/litereg-accounts/v2/site-id')
