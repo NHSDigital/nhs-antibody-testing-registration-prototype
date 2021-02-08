@@ -10,8 +10,6 @@ function loadJSONFromFile(fileName, path = "app/data/") {
   return JSON.parse(jsonFile) // Return JSON as object
 }
 
-// Version 1 - Daily Contact Testing - do you have symptoms route
-
 router.post('/create-account/v1/action12/login-email', function (req, res) {
     let emailAddress = req.session.data['email-address']
     if (emailAddress == "user@testing.co.uk" ) {
@@ -38,6 +36,18 @@ router.post('/create-account/v1/action12/nhs-number-known', function (req, res) 
     res.redirect('/create-account/v1/nhs-number')
   } else {
     res.redirect('/create-account/v1/email-address-results')
+  }
+
+})
+
+router.post('/create-account/v1/action12/currently-in-work', function (req, res) {
+  let inWork = req.session.data['currently-in-work']
+  if (inWork == "Yes - they travel to a workplace"){
+    res.redirect('/create-account/v1/industry')
+  } else if (inWork == "Yes - they go to nursery, school, college or university"){
+    res.redirect('/create-account/v1/study-grade')
+  } else {
+    res.redirect('/create-account/v1/ethnic-group')
   }
 
 })
