@@ -1,0 +1,76 @@
+{% set version = "v2" %}
+{% set pageTitle = "Have you received a positive test result from a previous COVID test? (Either privately or through NHS)" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div> 
+
+  {% if data['have-you-travelled-overseas'] == "Yes" %}
+  <a class="govuk-back-link" href="../../../genomic-variants/1-which-countries-travelled-to">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="../../../genomic-variants/1-have-you-travelled-overseas">Back</a>
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antigen/{{version}}/global-registration/coronavirus-vaccine" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset govuk-!-margin-bottom-7">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="previous-infection-1" name="previous-infection" type="radio" value="Yes, over 3 months ago" {{ checked("previous-infection", "Yes, over 3 months ago") }}>
+                <label class="govuk-label govuk-radios__label" for="previous-infection-1">
+                  Yes, over 3 months ago
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="previous-infection-2" name="previous-infection" type="radio" value="Yes, less than 3 months ago" {{ checked("previous-infection", "Yes, less than 3 months ago") }}>
+                <label class="govuk-label govuk-radios__label" for="previous-infection-2">
+                  Yes, less than 3 months ago
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="previous-infection-3" name="previous-infection" type="radio" value="No" {{ checked("previous-infection", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="previous-infection-3">
+                  No
+                </label>
+              </div>
+            </div>  
+          </fieldset>
+          <button class="govuk-button" data-module="govuk-button">Continue</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action big">
+  <a href="/antigen/{{version}}/global-registration/previous-infection">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Option 1</div>
+  </a>
+</div>
+{% endblock %}
