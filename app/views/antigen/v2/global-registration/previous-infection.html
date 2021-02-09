@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Have you had a previous confirmed COVID infection from a nose and/or throat swab more than 3 months ago?" %}
+{% set pageTitle = "Has the person tested positive before, more than 3 months ago?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -31,12 +31,15 @@
       <form class="form" action="/antigen/{{version}}/global-registration/coronavirus-vaccine" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset govuk-!-margin-bottom-7">
+          <fieldset class="govuk-fieldset govuk-!-margin-bottom-7" aria-describedby="previous-infection-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                 {{ pageTitle }}
               </h1>
             </legend>
+            <span id="previous-infection-hint" class="govuk-body">
+              We need to know if this now might be a second coronavirus infection, caused by a different strain of the virus.
+            </span>
             <div class="govuk-radios govuk-!-margin-top-5">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="previous-infection-1" name="previous-infection" type="radio" value="Yes" {{ checked("previous-infection", "Yes") }}>
