@@ -52,4 +52,22 @@ router.post('/create-account/v1/action12/currently-in-work', function (req, res)
 
 })
 
+router.post('/create-account/v1/action12/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/create-account/v1/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/create-account/v1/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/create-account/v1/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/create-account/v1/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/create-account/v1/ethnic-background-another')
+  } else {
+    res.redirect('/create-account/v1/currently-in-work')
+  }
+
+})
+
 module.exports = router
