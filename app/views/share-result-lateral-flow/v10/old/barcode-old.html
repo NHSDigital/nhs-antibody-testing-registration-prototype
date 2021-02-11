@@ -1,5 +1,5 @@
-{% set version = "v10" %}
-{% set pageTitle = "Enter the care home or employer’s unique organisation number" %}
+{% set version = "v1" %}
+{% set pageTitle = "Enter your test kit ID" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,8 +15,7 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/home-org-use">Back</a>
-
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/country">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +23,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/share-result-lateral-flow/{{version}}/employer-uon-check" method="post">
+      <form action="/share-result-lateral-flow/{{version}}/name" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
@@ -33,33 +32,38 @@
                 {{ pageTitle }}
               </h1>
             </legend>
-           <span id="enter-barcode-number-hint" class="govuk-body">
-             This is 8 digits. It is sometimes called a “UON”.
-           </span>
+            <span id="enter-barcode-number-hint" class="govuk-body">
+            It is 11 characters long (letters and numbers) and printed on the test device that shows your result.
+            </span>
 
             <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
               <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">
-                What to do if you cannot find this number
+                  What does the ID look like?
                 </span>
               </summary>
               <div class="govuk-details__text">
-                <p class="govuk-body">Get the unique organisation number from the care home or employer.  <!-- <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/">try looking it up online</a>.</p>
-                <p class="govuk-body">You can also --> If you still need help, call the contact centre:</p>
-                  <ul class="govuk-list govuk-list--bullet">
-                    <li>119 if you’re in England, Wales or Northern Ireland</li>
-                    <li>0300 303 2713 if you’re in Scotland</li>
-                  </ul>
-                  <p class="govuk-body">Lines are open 7am to 11pm.</p>
+                <img src="/public/images/code-example.png" alt="barcode number"/>
               </div>
             </details>
             <br>
 
+        <!--    <a href="/share-result-lateral-flow/{{version}}/scan-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+              Scan my barcode
+            </a> -->
+
             <div class="govuk-form-group">
-              <label class="govuk-label" for="social-care-uon">
-                Unique organisation number
+              <label class="govuk-label" for="kit-barcode-reference-1">
+                Test kit ID
               </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="social-care-uon" name="social-care-uon" type="text" value={{ data['social-care-uon'] }}>
+              <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="kit-barcode-reference-2">
+                Confirm test kit ID
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }}>
             </div>
 
           </fieldset>
