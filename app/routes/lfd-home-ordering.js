@@ -44,7 +44,7 @@ router.post('/lfd-home-ordering/v1/action10/country', function (req, res) {
 
 router.post('/lfd-home-ordering/v1/action10/work-from-home', function (req, res) {
     let workFromHome = req.session.data['work-from-home']
-    if (workFromHome == "No" ) {
+    if (workFromHome == "Yes" ) {
       res.redirect('/lfd-home-ordering/v1/workplace-testing')
     } else {
       res.redirect('/lfd-home-ordering/v1/lft-unavailable')

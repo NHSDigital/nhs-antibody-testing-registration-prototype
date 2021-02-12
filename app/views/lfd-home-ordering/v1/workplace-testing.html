@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Are you able to get tested at your workplace?" %}
+{% set pageTitle = "About your household continued" %}
 
 {% extends "includes/layout.html" %}
 
@@ -27,23 +27,32 @@
         <form action="/lfd-home-ordering/{{version}}/action10/workplace-testing" method="post">
 
             <div class="govuk-form-group govuk-!-padding-bottom-5">
-                <fieldset class="govuk-fieldset">
+                <fieldset class="govuk-fieldset" aria-describedby="workplace-testing-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                         <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                             {{ pageTitle }}
                         </h1>
                     </legend>
+                    <span id="workplace-testing-hint" class="govuk-body">
+                        <strong class="govuk-!-font-size-24">Can you free-up home delivery for those who need it most and collect tests from a test site?</strong>
+                    </span>
+                    <div style="border-left: 10px solid #b1b4b6;" class="govuk-body govuk-!-margin-top-6">
+                      <p class="govuk-body" style="padding: .6em">
+                        Anyone in the household 18 or over can collect from a test site.<br><br>
+                        <a href="https://maps.test-and-trace.nhs.uk/findatestcenter.html#" target="blank" class="govuk-link">Find your nearest test site</a>
+                      </p>
+                    </div>
                     <div class="govuk-radios govuk-!-margin-top-5">
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="workplace-testing-1" name="workplace-testing" type="radio" value="Yes" {{ checked("workplace-testing", "Yes") }}>
                             <label class="govuk-label govuk-radios__label" for="workplace-testing-1">
-                                Yes, I have access to regular testing at my workplace
+                                Yes, we can collect from a test site
                             </label>
                         </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="workplace-testing-2" name="workplace-testing" type="radio" value="No" {{ checked("workplace-testing", "No") }}>
                             <label class="govuk-label govuk-radios__label" for="workplace-testing-2">
-                                No, I do not have access to regular testing at my workplace
+                                No, we cannot collect from a test site
                             </label>
                         </div>
                     </div>
