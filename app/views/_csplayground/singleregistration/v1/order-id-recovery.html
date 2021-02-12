@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Enter the Order ID we have sent you by email" %}
+{% set pageTitle = "What is the email address or mobile phone number you used to register?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,7 +15,7 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/home-testing/send-order-id">Back</a>
+  <a class="govuk-back-link" href="/antigen/{{version}}/home-testing/order-id">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -25,29 +25,36 @@
 
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
 
-      <form action="/_csplayground/singleregistration/{{version}}/name" method="post">
+      <form action="/_csplayground/singleregistration/{{version}}/order-id-recovery" method="post">
 
         <fieldset class="govuk-fieldset">
 
           <span id="nhs-number-hint" class="govuk-body">
-            You’ll find your 10-digit order ID at the top of the confirmation email you received when your test kit was ordered, <a href="/_csplayground/singleregistration/{{version}}/order-id-recovery">or we can send it to you again</a>.
+            If we find an order ID, we will send this to your mobile or email.
           </span>
 
           <div class="govuk-form-group govuk-!-margin-top-6">
-            <label class="govuk-label" for="order-id">
-              Order ID
+            <label class="govuk-label" for="first-name">
+            Email address
             </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="order-id" name="order-id" type="text" value="{{ data['order-id'] }}">
+            <input class="govuk-input govuk-!-width-two-thirds" id="first-name" name="first-name" type="text" value="{{ data['first-name'] }}">
+          </div>
+
+          <span id="nhs-number-hint" class="govuk-body">
+          <strong>Or</strong>
+          <br></br>
+          </span>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="last-name">
+              Mobile number
+            </label>
+            <input class="govuk-input govuk-!-width-one-third" id="last-name" name="last-name" type="text" value="{{ data['last-name'] }}">
           </div>
 
         </fieldset>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
-        <br></br>
-
-        <span id="nhs-number-hint" class="govuk-body">
-          If you did not receive an Order ID, you need to <a href="/_csplayground/singeregistration/{{version}}/LIGHTREG">register your kit in a different way</a>.
-        </span>
 
       </form>
 
