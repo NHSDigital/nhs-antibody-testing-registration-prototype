@@ -14,6 +14,18 @@ const router = express.Router()
 
   })
 
+  // Single registration - Account page
+
+  router.post('/_csplayground/singleregistration/v1/action/account-page', function (req, res) {
+    let subject = req.session.data['account-page']
+    if (subject == "Sign in or create an account"){
+      res.redirect('/_csplayground/singleregistration/v1/user-account/login-email')
+    } else {
+      res.redirect('/_csplayground/singleregistration/v1/enter-barcode')
+    }
+
+  })
+
 
   // Single registration - Test kit barcode
 
