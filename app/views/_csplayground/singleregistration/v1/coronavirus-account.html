@@ -1,5 +1,5 @@
-{% set version = "v2" %}
-{% set pageTitle = "Register faster with a Test and Trace account" %}
+{% set version = "v1" %}
+{% set pageTitle = "Would you like to sign in or create an account to save your details?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -20,29 +20,50 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
+<div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+        <form action="/_csplayground/singleregistration/{{version}}/action/account-page" method="post">
 
-        <p class="govuk-body">A Test and Trace account enables you to save your details, so you do not need to enter them next time.</p>
-        <p class="govuk-body">You’ll need an NHS login (username and password) to create a Test and Trace account. If you do not have an NHS login, you can set one up using your email address and mobile number.</p>
-        <p class="govuk-body govuk-!-margin-bottom-7">If you already have an NHS login, you can use your existing login details to create a Test and Trace account.</p>
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="symptoms-hint symptoms-2-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                            {{ pageTitle }}
+                        </h1>
+                    </legend>
 
-        <div class="inline-buttons-wrapper">
-          <form class="form" action="/_csplayground/singleregistration/v1/user-account/login-email" method="post">
-            <button class="govuk-!-font-size-19 govuk-!-margin-bottom-5 nhsuk-button-image v2" type="submit">
-              <!-- Register using NHS login -->
-            </button>
-          </form>
+                    <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
 
-          <form class="form" action="/_csplayground/singleregistration/v1/enter-barcode" method="post">
-            <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-              Continue without logging in
-            </button>
-          </form>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="account-page-1" name="account-page" data-aria-controls="account-page-1" type="radio" value="Sign in or create an account" {{ checked("account-page", "Sign in or create an account") }}>
+                            <label class="govuk-label govuk-radios__label" for="account-page-1">
+                              Sign in or create an account
+                            </label>
+                            <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+              We'll save your details each time you report a test result. Creating an account only takes 2 minutes and you'll save 5 minutes when reporting each test result.
+              </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="account-page-2" name="account-page" type="radio" value="Continue without an account" {{ checked("account-page", "Continue without an account") }}>
+                            <label class="govuk-label govuk-radios__label" for="account-page-2">
+                              Continue without an account
+                            </label>
+                            <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                              Your details won't be saved for future tests and all information will have to be re-entered.
+              </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
 
     </div>
+</div>
+
   </div>
 
 {% endblock %}

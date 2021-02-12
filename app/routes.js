@@ -617,7 +617,7 @@ router.post('/antigen/v1/action4/work-or-study-person-1', function (req, res) {
   } else if (inWork == "Yes - they go to nursery, school, college or university"){
     res.redirect('/antigen/v1/global-registration/study-grade-person-1')
   } else {
-    res.redirect('/antigen/v1/global-registration/country-person-1')
+    res.redirect('/antigen/v1/global-registration/have-you-travelled-overseas-person-1')
   }
 })
 
@@ -2449,6 +2449,15 @@ router.post('/litereg-accounts/v1/action8/vaccine', function (req, res) {
 })
 
 
+// Version 1 - Antigen vaccine-person-1
+router.post('/antigen/v1/action8/vaccine-person-1', function (req, res) {
+  let vaccinePerson1 = req.session.data['vaccine-person-1']
+  if (vaccinePerson1 == "No"){
+    res.redirect('/antigen/v1/global-registration/country-person-1')
+  } else {
+    res.redirect('/antigen/v1/global-registration/vaccine-date-person-1')
+  }
 
+})
 
 module.exports = router
