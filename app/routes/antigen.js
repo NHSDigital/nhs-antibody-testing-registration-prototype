@@ -53,7 +53,7 @@ router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
   if (yearSymptomsStarted != "2021"){
     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
   } else {
-    res.redirect('/antigen/v2/refer-and-triage/stay-at-home')
+    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
   }
 
 })
@@ -65,7 +65,7 @@ router.post('/antigen/v2/action3/when-did-symptoms-start-error', function (req, 
   if (yearSymptomsStarted != "2021"){
     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
   } else {
-    res.redirect('/antigen/v2/refer-and-triage/stay-at-home')
+    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
   }
 
 })
@@ -84,7 +84,7 @@ router.post('/antigen/v2/action3/when-did-symptoms-start-option-2', function (re
       dateOfOnset == "22 January 2021" && country == "Northern Ireland" || 
       dateOfOnset == "21 January 2021" && country == "England" ||
       dateOfOnset == "21 January 2021" && country == "Northern Ireland"){
-    res.redirect('/antigen/v2/refer-and-triage/stay-at-home')
+    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/no-tests-available')
   }
