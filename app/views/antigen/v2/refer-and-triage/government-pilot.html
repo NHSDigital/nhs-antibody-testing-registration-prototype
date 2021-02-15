@@ -15,10 +15,12 @@
   </p>
 </div>
 
-{{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.go(-1);"
-}) }}
+{% if data['do-you-have-symptoms'] == "Yes" %}
+<a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/follow-up-test">Back</a>
+{% endif %}
+
 {% endblock %}
 
 {% block content %}
