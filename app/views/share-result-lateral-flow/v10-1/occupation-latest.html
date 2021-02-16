@@ -1,5 +1,5 @@
 {% set version = "v10-1" %}
-{% set pageTitle = "Enter your occupation" %}
+{% set pageTitle = "Enter your work details" %}
 
 {% extends "includes/layout.html" %}
 
@@ -22,35 +22,30 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/genomic-variants/1-have-you-travelled-overseas" method="post">
-
+    <form lass="form" action="/genomic-variants/1-have-you-travelled-overseas" method="post">
       <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="occupation-hint">
-
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
-              {{ pageTitle }}
-            </h1>
-          </legend>
-          <span id="occupation-hint" class="govuk-body">
-            <p>If you’re reporting a result for someone else, answer for them.</p>
-            <p>This helps us understand which occupations are more at risk from coronavirus.</p>
-            <p>We may contact your employer to help us with contact tracing.</p>
-          </span>
-
-          <label class="govuk-label" for="occupation">
-            Occupation (optional)
+        <h1 class="govuk-label-wrapper govuk-!-margin-bottom-8">
+          <label class="govuk-label govuk-label--l" for="occupation">
+            Enter {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}'s work details
           </label>
-          <div id="occupation-container" class="govuk-!-margin-top-1"></div>
-
-       </fieldset>
+        </h1>
+        <span id="occupation-hint" class="govuk-body">
+          This helps us understand which occupations are more at risk from coronavirus.<br><br>
+          We may contact your employer to help us with contact tracing.<br><br>
+          Start entering an occupation below and select from the options given.<br><br>
+          If you cannot see your occupation, try a different word.<br><br>
+          If you still cannot see your occupation, enter ‘I cannot find the correct occupation’.<br><br>
+          You do not have to share these details if you do not want to.<br><br>
+          Occupation (optional)
+        </span>
+        <div id="occupation-container" class="govuk-!-margin-top-1"></div>
       </div>
-      <!--<div class="govuk-form-group">
+      <div class="govuk-form-group">
         <label class="govuk-label" for="employer">
           Employer (optional)
         </label>
         <input class="govuk-input govuk-!-width-three-quarters" id="employer" name="employer" type="text" value="{{ data['employer'] }}">
-      </div> -->
+      </div>
 
       <button class="govuk-button" type="submit" data-module="govuk-button">
         Continue
