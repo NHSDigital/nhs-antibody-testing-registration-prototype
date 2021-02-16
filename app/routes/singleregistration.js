@@ -33,14 +33,21 @@ const router = express.Router()
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
     if (uniqueBarcode == "12345678") {
       res.redirect('/_csplayground/singleregistration/v1/why-taking-test')
+    } else if (uniqueBarcode == '') {
+    res.redirect('/_csplayground/singleregistration/v1/why-taking-test')
+    } else if (uniqueBarcode == 'cohort') {
+      res.redirect('/_csplayground/singleregistration/v1/full-reg/royal-mail-barcode')
+    } else if (uniqueBarcode == 'ats') {
+      res.redirect('/_csplayground/singleregistration/v1/full-reg/ats-site')
     } else {
-      res.redirect('xx')
+      res.redirect('/_csplayground/singleregistration/v1/enter-barcode')
     }
+
   })
 
 
   // Single Registration - Login email route
-  router.post('/_csplayground/singleregistration/v1/action/login-email', function (req, res) {
+  router.post('/_csplayground/singleregistration/v1/action4/login-email', function (req, res) {
     let loginEmail = req.session.data['email-address']
     if (loginEmail == "user@testing.co.uk"){
       res.redirect('/_csplayground/singleregistration/v1/user-account/enter-password')
@@ -50,33 +57,70 @@ const router = express.Router()
 
   })
 
-// Single registration - Enter password
+  // Single registration - Enter password
 
-  router.post('/_csplayground/singleregistration/v1/action/enter-password', function (req, res) {
-    let emailAddress = req.session.data['email-address']
-    let password = req.session.data['password']
-    if (emailAddress == "user@testing.co.uk") {
-     res.redirect('/_csplayground/singleregistration/v1/enter-barcode')
-    }
+    router.post('/_csplayground/singleregistration/v1/action/enter-password', function (req, res) {
+      let emailAddress = req.session.data['email-address']
+      let password = req.session.data['password']
+      if (emailAddress == "user@testing.co.uk") {
+       res.redirect('/_csplayground/singleregistration/v1/enter-barcode')
+      }
 
-  })
+    })
+
+  // Single registration - Create Password
+
+    router.post('/_csplayground/singleregistration/v1/action/create-password', function (req, res) {
+      let password = req.session.data['password']
+      if (password == "") {
+       res.redirect('/_csplayground/singleregistration/v1/user-account/create-password-error')
+      }
+      else {
+        res.redirect('/_csplayground/singleregistration/v1/user-account/check-email')
+      }
+    })
+
+
+  // Single registration - Create Password
+
+    router.post('/_csplayground/singleregistration/v1/action/create-password', function (req, res) {
+      let password = req.session.data['password']
+      if (password == "") {
+       res.redirect('/_csplayground/singleregistration/v1/user-account/create-password-error')
+      }
+      else {
+        res.redirect('/_csplayground/singleregistration/v1/user-account/check-email')
+      }
+    })
+
+    // Single registration - Check Mobile
+
+      router.post('/_csplayground/singleregistration/v1/action9/check-mobile', function (req, res) {
+        let securityCode = req.session.data['security-code']
+        if (securityCode == "536831") {
+         res.redirect('/_csplayground/singleregistration/v1/user-account/agreement')
+        }
+        else {
+          res.redirect('/_csplayground/singleregistration/v1/user-account/check-mobile-error')
+        }
+      })
 
   // Single registration - Why taking test?
 
-  router.post('/_csplayground/singleregistration/v1/action/why-taking-test', function (req, res) {
+  router.post('/_csplayground/singleregistration/v1/action4/why-taking-test', function (req, res) {
     let subject = req.session.data['why-taking-test']
     let emailAddress = req.session.data['email-address']
-    let password = req.session.data['password']
-    if ((subject == "My test was delivered in the post") && (emailAddress == "user@testing.co.uk")) {
-      res.redirect('/_csplayground/singleregistration/v1/test-date')
-    }
-    else if ((subject == "I am having a test before a hospital procedure") && (emailAddress == "user@testing.co.uk")) {
-      res.redirect('XX')
-    }
-    else if ((subject == "I am at a test site taking a test") && (emailAddress == "user@testing.co.uk")) {
-      res.redirect('XX')
-    }
-    else {
+    if (subject == "My hospital") {
+      res.redirect('/_csplayground/singleregistration/v1/elective-care')
+    } else if ((subject == "I ordered it online") && (emailAddress == "user@testing.co.uk")) {
+      res.redirect('/_csplayground/singleregistration/v1/time')
+    } else if (subject == "I ordered it online") {
+      res.redirect('/_csplayground/singleregistration/v1/enter-order-id')
+    } else if (subject == "Someone at an official test site") {
+      res.redirect('/_csplayground/singleregistration/v1/full-reg/acf-code')
+    } else if (subject == "I was handed a test in person") {
+      res.redirect('/_csplayground/singleregistration/v1/elective-care/in-person')
+    } else {
       res.redirect('/_csplayground/singleregistration/v1/enter-order-id')
     }
 
@@ -118,4 +162,4 @@ const router = express.Router()
 
   })
 
-  module.exports = router
+module.exports = router
