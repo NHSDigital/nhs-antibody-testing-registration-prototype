@@ -401,10 +401,6 @@ router.post('/antigen/v2/action3/find-test-site', function (req, res) {
     res.redirect('/antigen/v2/site-appointment-booking/choose-drive-through-site')
   } else if (chosenWayToTest == "walk-in") {
     res.redirect('/antigen/v2/site-appointment-booking/choose-walk-through-site')
-  } else if (chosenWayToTest == "home testing") {
-    res.redirect('/antigen/v2/order-home-test-kit/')
-  } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
-    res.redirect('/antigen/v2/order-home-test-kit/')
   } else if (car == "Yes" && postcode == "N0000" && emailAddress !== "Yes") {
     res.redirect('/antigen/v2/site-appointment-booking/choose-drive-through-site')
   } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
