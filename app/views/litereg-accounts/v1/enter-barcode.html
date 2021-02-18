@@ -15,8 +15,10 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/user-account/home-page">Back</a>
-
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -24,7 +26,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/litereg-accounts/{{version}}/test-place" method="post">
+      <form action="/litereg-accounts/{{version}}/action9/enter-barcode" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
@@ -37,7 +39,7 @@
               Use the camera on your phone or computer to scan your test kit barcode.<br><br>
               Or you can manually enter the 11 character reference below the barcode.<br><br>
               If you're using a home test kit, you'll find the identical barcodes inside your home test kit, either attached to the plastic vial, biohazard bag and return box or loose for you to stick on yourself (please read instructions).<br><br>
-              These are different from your pre-paid Royal Mail return package barcode on your box.<br>
+              These are different from your pre-paid Royal Mail return package barcode on your box.<br><br>
             </span>
 
             <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
@@ -50,7 +52,6 @@
                 <img src="/public/images/barcode-number.png" alt="barcode number"/>
               </div>
             </details>
-
 
             <a href="/litereg-accounts/{{version}}/scan-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
               Scan barcode
