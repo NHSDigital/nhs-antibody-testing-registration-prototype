@@ -65,7 +65,7 @@ router.post('/create-account/v1/action12/ethnic-group', function (req, res) {
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/create-account/v1/ethnic-background-another')
   } else {
-    res.redirect('/create-account/v1/currently-in-work')
+    res.redirect('/create-account/v1/check-your-answers')
   }
 
 })

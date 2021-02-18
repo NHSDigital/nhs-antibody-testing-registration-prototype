@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Do you have a landline number?" %}
+{% set pageTitle = "Do you have a landline phone number?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -31,35 +31,31 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="landline-number-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              {% if data['whos-taking-the-test'] == "myself" %}
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ pageTitle }}</h1>
-              {% else %}
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have a landline number?</h1>
-              {% endif %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have a landline phone number?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
             </legend>
             
-              {% if data['whos-taking-the-test'] == "myself" %}
-              <span id="landline-number-hint" class="govuk-body">If you have one, we may use this number to call you:</span>
-              <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
-                <li>if you’ve had contact with someone who has tested positive with coronavirus</li>
-                <li>to give your test results if you do not provide an email address or mobile number</li>
-              </ul>
-              {% else %}
-              <span id="landline-number-hint" class="govuk-body">If they have one, we may use this number to call them:</span>
-              <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
-                <li>if they’ve had contact with someone who has tested positive with coronavirus</li>
-                <li>to give their test results if you cannot provide an email address or mobile number</li>
-              </ul>
-              {% endif %}
+            <span id="landline-number-hint" class="govuk-body">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            If they have one, we may use this number to call them if they've had contact with someone who's tested positive with coronavirus.
+            {% else %}
+            If you have one, we may use this number to call you if you've had contact with someone who's tested positive with coronavirus.
+            {% endif %}
+            </span>
             
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="landline-number-1" name="landline-number" type="radio" value="Yes" data-aria-controls="conditional-landline-number" {{ checked("landline-number", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="landline-number-1">
-                  {% if data['whos-taking-the-test'] == "myself" %}
-                  Yes, I do have a landline phone number
-                  {% else %}
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
                   Yes, they do have a landline phone number
+                  {% else %}
+                  Yes, I do have a landline phone number
                   {% endif %}
                 </label>
               </div>
@@ -74,10 +70,10 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="landline-number-2" name="landline-number" type="radio" value="I do not have a landline" {{ checked("landline-number", "I do not have a landline") }}>
                 <label class="govuk-label govuk-radios__label" for="landline-number-2">
-                  {% if data['whos-taking-the-test'] == "myself" %}
-                  No, I do not have a landline phone number
-                  {% else %}
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
                   No, they do not have a landline phone number
+                  {% else %}
+                  No, I do not have a landline phone number
                   {% endif %}
                 </label>
               </div>

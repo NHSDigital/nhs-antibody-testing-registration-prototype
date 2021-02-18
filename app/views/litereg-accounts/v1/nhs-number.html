@@ -27,17 +27,19 @@
 
         <fieldset class="govuk-fieldset" aria-describedby="nhs-number-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            {% if data['whos-taking-the-test'] == "myself" %}
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ pageTitle }}</h1>
-            {% else %}
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">What's {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?</h1>
-            {% endif %}
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              What's {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?
+              {% else %}
+              {{ pageTitle }}
+              {% endif %}
+            </h1>
           </legend>
           <span id="nhs-number-hint" class="govuk-body">
-            {% if data['whos-taking-the-test'] == "myself" %}
-            Your NHS number is a 10 digit number. Please enter the number with no spaces, for example 8674065600.
-            {% else %}
+            {% if data['whos-taking-the-test'] == "someone-else" %}
             Their NHS number is a 10 digit number. Please enter the number with no spaces, for example 8674065600.
+            {% else %}
+            Your NHS number is a 10 digit number. Please enter the number with no spaces, for example 8674065600.
             {% endif %}
           </span>
           <div class="govuk-form-group govuk-!-margin-top-5">
