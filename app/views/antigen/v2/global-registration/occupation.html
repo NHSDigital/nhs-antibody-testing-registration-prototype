@@ -23,7 +23,7 @@
   <div class="govuk-grid-column-two-thirds">
 
     <form lass="form" action="/genomic-variants/1-have-you-travelled-overseas" method="post">
-      <div class="govuk-form-group">
+      <div class="govuk-form-group govuk-!-margin-bottom-0">
         <h1 class="govuk-label-wrapper govuk-!-margin-bottom-8">
           <label class="govuk-label govuk-label--xl" for="occupation">
             Enter {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}'s work details
@@ -35,10 +35,14 @@
           Start entering an occupation below and select from the options given.<br><br>
           If you cannot see your occupation, try a different word.<br><br>
           If you still cannot see your occupation, enter ‘I cannot find the correct occupation’.<br><br>
-          You do not have to share these details if you do not want to.<br><br>
-          Occupation (optional)
+          You do not have to share these details if you do not want to.<br><br><br>
         </span>
-        <div id="occupation-container" class="govuk-!-margin-top-1"></div>
+        <fieldset class="govuk-fieldset">
+					<label class="govuk-label" for="occupation-autocomplete">
+					  Occupation (optional)
+					</label>
+          <div id="occupation-container" name="occupation-autocomplete"></div>
+        </fieldset>
       </div>
       <div class="govuk-form-group">
         <label class="govuk-label" for="employer">
@@ -631,9 +635,14 @@
     autoselect: true,
     element: document.querySelector('#occupation-container'),
     id: 'occupation',
+    name: 'occupation-autocomplete',
     source: occupations,
+    defaultValue: "{{ data['occupation-autocomplete'] }}",
     displayMenu: 'overlay',
-    minLength: 2
+    minLength: 2,
+    tNoResults: function() {
+    return "Other"
+  }
   });
 </script>
 {% endblock %}
