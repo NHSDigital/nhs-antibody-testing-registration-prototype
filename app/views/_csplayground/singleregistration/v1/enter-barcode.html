@@ -15,10 +15,25 @@
     </p>
   </div>
 
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}  {% endblock %}
+  {% if data['who-is-test-for'] == "Myself" %}
+    {% if data['email-address'] == "user@testing.co.uk" %}
+      <a class="govuk-back-link" href="/_csplayground/singleregistration/{{version}}/user-account/home-page">Back</a>
+    {% endif %}
+  {% endif %}
+
+  {% if data['who-is-test-for'] == "Myself" %}
+    {% if data['email-address'] !== "user@testing.co.uk" %}
+      <a class="govuk-back-link" href="/_csplayground/singleregistration/{{version}}/coronavirus-account">Back</a>
+    {% endif %}
+  {% endif %}
+
+
+  {% if data['who-is-test-for'] == "Someone else" %}
+      <a class="govuk-back-link" href="/_csplayground/singleregistration/{{version}}/who-is-test-for">Back</a>
+  {% endif %}
+
+
+{% endblock %}
 
 
 {% block content %}
@@ -65,7 +80,7 @@
               </div>
             </details>
 
-            <a href="/litereg-accounts/{{version}}/scan-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            <a href="/_csplayground/singleregistration/{{version}}/scan-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
               Scan barcode
             </a>
 
