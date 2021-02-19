@@ -113,7 +113,7 @@ const router = express.Router()
     if (subject == "My hospital") {
       res.redirect('/_csplayground/singleregistration/v1/elective-care')
     } else if ((subject == "I ordered it online") && (emailAddress == "user@testing.co.uk")) {
-      res.redirect('/_csplayground/singleregistration/v1/time')
+      res.redirect('/_csplayground/singleregistration/v1/test-date')
     } else if (subject == "I ordered it online") {
       res.redirect('/_csplayground/singleregistration/v1/enter-order-id')
     } else if (subject == "Someone at an official test site") {

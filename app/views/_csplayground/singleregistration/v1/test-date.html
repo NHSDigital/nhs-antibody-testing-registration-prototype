@@ -15,10 +15,14 @@
   </p>
 </div>
 
-{{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.go(-1);"
-}) }}
+  {% if data['email-address'] == "user@testing.co.uk" %}
+    <a class="govuk-back-link" href="/_csplayground/singleregistration/{{version}}/why-taking-test">Back</a>
+  {% endif %}
+
+  {% if data['email-address'] !== "user@testing.co.uk" %}
+    <a class="govuk-back-link" href="/_csplayground/singleregistration/{{version}}/date-of-birth">Back</a>
+  {% endif %}
+
 {% endblock %}
 
 {% block content %}
