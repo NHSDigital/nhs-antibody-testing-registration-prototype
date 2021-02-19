@@ -57,7 +57,7 @@ router.post('/lfd-home-ordering/v1/action10/workplace-testing', function (req, r
     if (workplaceTesting == "No" ) {
       res.redirect('/lfd-home-ordering/v1/name')
     } else {
-      res.redirect('/lfd-home-ordering/v1/lft-unavailable')
+      res.redirect('/lfd-home-ordering/v1/collect-your-tests')
     }
 
 })
