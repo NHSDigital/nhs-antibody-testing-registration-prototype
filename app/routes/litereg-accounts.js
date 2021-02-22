@@ -723,13 +723,36 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
     }
   })
 
+  // Version 2 - Lite Registration Accounts - daily contact testing route
+  router.post('/litereg-accounts/v2/action9/daily-contact-testing', function (req, res) {
+    let dailyContactTesting = req.session.data['daily-contact-testing']
+    if (dailyContactTesting == "Yes") {
+      res.redirect('/litereg-accounts/v2/reminders')
+    } else {
+      res.redirect('/litereg-accounts/v2/test-date')
+    }
+  })
+
   // Version 2 - Lite Registration Accounts - site confirmation route
   router.post('/litereg-accounts/v2/action9/site-confirmation', function (req, res) {
     let confirmSite = req.session.data['confirm-site']
-    if (confirmSite == "Yes") {
+    let barcode = req.session.data['kit-barcode-reference-1']
+    if (confirmSite == "Yes" && barcode == "LHE00000501") {
       res.redirect('/litereg-accounts/v2/daily-contact-testing')
+    } else if (confirmSite == "Yes" && barcode !== "LHE00000501") {
+      res.redirect('/litereg-accounts/v2/test-date')
     } else {
       res.redirect('/litereg-accounts/v2/site-id')
+    }
+  })
+
+  // Version 2 - Lite Registration Accounts - select site route
+  router.post('/litereg-accounts/v2/action9/select-site', function (req, res) {
+    let barcode = req.session.data['kit-barcode-reference-1']
+    if (barcode == "LHE00000501") {
+      res.redirect('/litereg-accounts/v2/daily-contact-testing')
+    } else {
+      res.redirect('/litereg-accounts/v2/test-date')
     }
   })
 

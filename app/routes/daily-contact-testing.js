@@ -25,7 +25,7 @@ router.post('/daily-contact-testing/v1/action10/do-you-have-symptoms', function 
 router.post('/daily-contact-testing/v1/action10/country', function (req, res) {
     let country = req.session.data['country']
     if (country == "England" ) {
-      res.redirect('/daily-contact-testing/v1/contact-with-positive')
+      res.redirect('/daily-contact-testing/v1/daily-contact-testing')
     } else {
       res.redirect('/daily-contact-testing/v1/country-test-unavailable')
     }
@@ -42,12 +42,12 @@ router.post('/daily-contact-testing/v1/action10/email-address', function (req, r
 
 })
 
-router.post('/daily-contact-testing/v1/action10/contact-with-positive', function (req, res) {
-    let contactWithPositive = req.session.data['contact-with-positive']
-    if (contactWithPositive == "No" ) {
-        res.redirect('/daily-contact-testing/v1/dct-unavailable')
+router.post('/daily-contact-testing/v1/action10/daily-contact-testing', function (req, res) {
+    let DCT = req.session.data['daily-contact-testing']
+    if (DCT == "Yes" ) {
+        res.redirect('/daily-contact-testing/v1/dct-opt-in')
     } else {
-        res.redirect('/daily-contact-testing/v1/notified-how')
+        res.redirect('/daily-contact-testing/v1/household-bubble')
     }
 
 })
@@ -58,6 +58,26 @@ router.post('/daily-contact-testing/v1/action10/dct-opt-in', function (req, res)
         res.redirect('/daily-contact-testing/v1/self-isolate')
     } else {
         res.redirect('/daily-contact-testing/v1/name')
+    }
+
+})
+
+router.post('/daily-contact-testing/v1/action10/household-bubble', function (req, res) {
+    let dctOptIn = req.session.data['dct-opt-in']
+    if (dctOptIn == "Yes" ) {
+        res.redirect('/daily-contact-testing/v1/local-test-site')
+    } else {
+        res.redirect('/daily-contact-testing/v1/dct-unavailable')
+    }
+
+})
+
+router.post('/daily-contact-testing/v1/action10/local-test-site', function (req, res) {
+    let dctOptIn = req.session.data['dct-opt-in']
+    if (dctOptIn == "No" ) {
+        res.redirect('/daily-contact-testing/v1/name')
+    } else {
+        res.redirect('/daily-contact-testing/v1/dct-unavailable')
     }
 
 })

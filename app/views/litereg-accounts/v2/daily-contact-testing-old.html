@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Daily contact testing" %}
+{% set pageTitle = "Were you asked to take part in daily contact testing?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -27,25 +27,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/litereg-accounts/{{version}}/action9/daily-contact-testing" method="post">
+      <form action="/litereg-accounts/{{version}}/test-date" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="daily-contact-testing-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Were they asked to take part in daily contact testing?
+                {% else %}
                 {{ pageTitle }}
+                {% endif %}
               </h1>
             </legend>
             <span id="daily-contact-testing-hint" class="govuk-body">
-              {% if data['whos-taking-the-test'] == "someone-else" %}
-                <strong class="govuk-!-font-size-24">Have they chosen to take a series of tests instead of self-isolating?</strong>
-                You might do this if you’ve been in contact with someone who has the virus.<br><br>
-                Instead of self-isolating they take a test to check they’re not infectious. Usually every day or when they start a work shift. It can last 7 or more days.
-                {% else %}
-                <strong class="govuk-!-font-size-24">Have you chosen to take a series of tests instead of self-isolating?</strong><br><br>
-                You might do this if you’ve been in contact with someone who has the virus.<br><br>
-                Instead of self-isolating you take a test to check you’re not infectious. Usually every day or when you start a work shift. It can last 7 or more days.
-                {% endif %}
+              This means taking a test every day for 7 days (usually because you're a contact of someone who has tested positive for coronavirus).
             </span>
             <div class="govuk-radios govuk-!-margin-top-5 govuk-!-bottom-top-5">
               <div class="govuk-radios__item">
@@ -60,6 +56,12 @@
                   No
                 </label>
               </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="daily-contact-testing-3" name="daily-contact-testing" type="radio" value="I do not know" {{ checked("daily-contact-testing", "I do not know") }}>
+                <label class="govuk-label govuk-radios__label" for="daily-contact-testing-3">
+                  I do not know
+                </label>
+              </div>
               
             </div>
           </fieldset>
@@ -72,12 +74,4 @@
     </div>
   </div>
 
-{% endblock %}
-
-{% block bodyEnd %}
-<div class="proto-action big">
-  <a href="/litereg-accounts/{{version}}/daily-contact-testing-option-2">
-    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 2</div>
-  </a>
-</div>
 {% endblock %}
