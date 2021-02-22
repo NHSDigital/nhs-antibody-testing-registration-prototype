@@ -63,8 +63,8 @@ router.post('/daily-contact-testing/v1/action10/dct-opt-in', function (req, res)
 })
 
 router.post('/daily-contact-testing/v1/action10/household-bubble', function (req, res) {
-    let dctOptIn = req.session.data['dct-opt-in']
-    if (dctOptIn == "Yes" ) {
+    let householdBubble = req.session.data['household-bubble']
+    if (householdBubble == "Yes" ) {
         res.redirect('/daily-contact-testing/v1/local-test-site')
     } else {
         res.redirect('/daily-contact-testing/v1/dct-unavailable')
@@ -73,11 +73,11 @@ router.post('/daily-contact-testing/v1/action10/household-bubble', function (req
 })
 
 router.post('/daily-contact-testing/v1/action10/local-test-site', function (req, res) {
-    let dctOptIn = req.session.data['dct-opt-in']
-    if (dctOptIn == "No" ) {
+    let ableToCollect = req.session.data['local-test-site']
+    if (ableToCollect == "No" ) {
         res.redirect('/daily-contact-testing/v1/name')
     } else {
-        res.redirect('/daily-contact-testing/v1/dct-unavailable')
+        res.redirect('/daily-contact-testing/v1/collect-your-tests')
     }
 
 })
