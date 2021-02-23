@@ -1,0 +1,90 @@
+{% set version = "v2" %}
+{% set pageTitle = "Self-isolation reminders and calls" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/daily-contact-testing">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/litereg-accounts/v2/test-date" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="reminders-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="reminders-hint" class="govuk-body">
+                <strong class="govuk-!-font-size-24">Do you want us to tell NHS Test and Trace to stop sending these?</strong>
+            </span>
+
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reminders-1" name="reminders" type="radio" value="Yes" data-aria-controls="conditional-reminders" {{ checked("reminders", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="reminders-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-reminders">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="account-id">
+                    To stop them, we need the account ID they gave you.<br><br>
+                    Account ID<br>
+                    <span class="govuk-hint">It’s 8 characters, for example 784c513f. Find it on their emails and texts.</span>
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-10" id="account-id" name="account-id" type="text" spellcheck="false" value="{{ data['account-id'] }}">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reminders-2" name="reminders" type="radio" value="No" data-aria-controls="conditional-reminders-2" {{ checked("reminders", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="reminders-2">
+                  No
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-reminders-2">
+                <p class="govuk-body">You will continue to get calls and reminders until you do.</p>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reminders-1" name="reminders" type="radio" value="I do not have an account ID" {{ checked("reminders", "I do not have an account ID") }}>
+                <label class="govuk-label govuk-radios__label" for="reminders-1">
+                  I do not have an account ID
+                </label>
+              </div>
+            </div>
+
+          </fieldset>
+        </div>  
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <div class="proto-action big">
+    <a href="/litereg-accounts/{{version}}/reminders-option-2">
+      <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 2</div>
+    </a>
+  </div>
+
+{% endblock %}

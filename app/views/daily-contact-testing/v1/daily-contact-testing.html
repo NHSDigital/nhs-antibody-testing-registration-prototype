@@ -1,0 +1,67 @@
+{% set version = "v1" %}
+{% set pageTitle = "Daily contact testing" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+<a class="govuk-back-link" href="/daily-contact-testing/{{version}}/country">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/daily-contact-testing/{{version}}/action10/daily-contact-testing" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="daily-contact-testing-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                            {{ pageTitle }}
+                        </h1>
+                    </legend>
+                    <span id="daily-contact-testing-hint" class="govuk-body">
+                        <strong class="govuk-!-font-size-24">Have you chosen to take a series of tests instead of self-isolating?</strong><br><br>
+                        You might do this if you've been in contact with someone who has the virus.<br><br>
+                        Instead of self-isolating you take a test to check you're not infectious. Usually every day or when you start a work shift. It can last 7 or more days.
+                    </span>
+
+                    <div class="govuk-radios govuk-!-margin-top-5" data-module="govuk-radios">
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="daily-contact-testing-1" name="daily-contact-testing" type="radio" value="Yes" {{ checked("daily-contact-testing", "Yes") }}>
+                            <label class="govuk-label govuk-radios__label" for="daily-contact-testing-1">
+                                Yes
+                            </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="daily-contact-testing-2" name="daily-contact-testing" type="radio" value="No" {{ checked("daily-contact-testing", "No") }}>
+                            <label class="govuk-label govuk-radios__label" for="daily-contact-testing-2">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
