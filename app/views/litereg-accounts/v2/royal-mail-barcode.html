@@ -54,7 +54,7 @@
             </details>
 
             <a href="/litereg-accounts/{{version}}/scan-mail-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-              Scan my barcode
+              Scan barcode
             </a>
   
             <div class="govuk-form-group">
@@ -76,6 +76,12 @@
         </div>
   
         <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        {% if data['kit-barcode-reference-1'] == "COE00000501" %}
+        <p class="govuk-body"><a class="govuk-link" href="/litereg-accounts/{{version}}/test-date">I do not know my Royal Mail barcode</a></p>
+        {% else %}
+        <p class="govuk-body"><a class="govuk-link" href="/litereg-accounts/{{version}}/daily-contact-testing">I do not know my Royal Mail barcode</a></p>
+        {% endif %}
   
       </form>
   
