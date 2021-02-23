@@ -569,7 +569,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
       } else {
         res.redirect('/litereg-accounts/v2/vaccine')
       }
-  
+
     })
 
   // router.post('/litereg-accounts/v2/action9/do-you-have-symptoms', function (req, res) {
@@ -936,7 +936,7 @@ router.post('/share-result-lateral-flow/v9-1/action9/create-password', function 
     res.redirect('/share-result-lateral-flow/v9-1/user-account/check-email')
   }
   })
-  
+
   // Version 10 - LDF self report accounts - check mobile route
   router.post('/share-result-lateral-flow/v9-1/action9/check-mobile', function (req, res) {
   let securityCode = req.session.data['security-code']
@@ -969,7 +969,7 @@ router.post('/share-result-lateral-flow/v9-2/action9/create-password', function 
     res.redirect('/share-result-lateral-flow/v9-2/user-account/check-email')
   }
   })
-  
+
   // Version 10 - LDF self report accounts - check mobile route
   router.post('/share-result-lateral-flow/v9-2/action9/check-mobile', function (req, res) {
   let securityCode = req.session.data['security-code']
@@ -1084,7 +1084,40 @@ if (ethnicGroup == "Asian or Asian British"){
 } else {
   res.redirect('/share-result-lateral-flow/v11/user-account/edit-personal-details/currently-in-work')
 }
-
 })
+
+// Version 12 - LDF self report accounts - Who's taking the test route
+
+  router.post('/share-result-lateral-flow/v12/action9/whos-taking-the-test', function (req, res) {
+    let person = req.session.data['whos-taking-the-test']
+    if (person == "myself") {
+      res.redirect('/share-result-lateral-flow/v12/coronavirus-account')
+    } else {
+      res.redirect('/share-result-lateral-flow/v12/home-org-use')
+    }
+  })
+
+// Version 12 - LDF self report accounts - Create password route
+
+router.post('/share-result-lateral-flow/v12/action9/create-password', function (req, res) {
+let password = req.session.data['password']
+let confirmPassword = req.session.data['confirm-password']
+if (password == "" || confirmPassword == "") {
+  res.redirect('/share-result-lateral-flow/v12/user-account/create-password-error')
+} else {
+  res.redirect('/share-result-lateral-flow/v12/user-account/check-email')
+}
+})
+
+// Version 12 - LDF self report accounts - check mobile route
+router.post('/share-result-lateral-flow/v12/action9/check-mobile', function (req, res) {
+let securityCode = req.session.data['security-code']
+if (securityCode == "") {
+  res.redirect('/share-result-lateral-flow/v12/user-account/check-mobile-error')
+} else {
+  res.redirect('/share-result-lateral-flow/v12/user-account/agreement')
+}
+})
+
 
 module.exports = router
