@@ -730,7 +730,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
     let testPlace = req.session.data['test-place']
     if (testPlace == "At home" || testPlace == "In quarantine after international travel at home or an accommodation of your choice" || testPlace == "In quarantine after international travel at home or an accommodation of their choice") {
       res.redirect('/litereg-accounts/v2/royal-mail-barcode')
-    } else if (testPlace == "In quarantine after international travel at a government isolation hotel") {
+    } else if (testPlace == "In quarantine after international travel at a government quarantine hotel") {
       res.redirect('/litereg-accounts/v2/trace-id')
     } else {
       res.redirect('/litereg-accounts/v2/site-id')
