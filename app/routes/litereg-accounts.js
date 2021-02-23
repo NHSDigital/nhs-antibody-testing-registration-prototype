@@ -713,15 +713,42 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
     }
   })
 
+    // Version 2 - Lite Registration Accounts - unique test kit barcode option 2 route
+    router.post('/litereg-accounts/v2/action9/enter-barcode-option-2', function (req, res) {
+      let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+      if (uniqueBarcode == "LHE00000501") {
+        res.redirect('/litereg-accounts/v2/site-id')
+      } else if (uniqueBarcode == "COE00000501") {
+        res.redirect('/litereg-accounts/v2/royal-mail-barcode')
+      } else {
+        res.redirect('/litereg-accounts/v2/quarantine-question')
+      }
+    })
+
   // Version 2 - Lite Registration Accounts - test place route
   router.post('/litereg-accounts/v2/action9/test-place', function (req, res) {
     let testPlace = req.session.data['test-place']
     if (testPlace == "At home" || testPlace == "In quarantine after international travel at home or an accommodation of your choice" || testPlace == "In quarantine after international travel at home or an accommodation of their choice") {
       res.redirect('/litereg-accounts/v2/royal-mail-barcode')
+    } else if (testPlace == "In quarantine after international travel at a government isolation hotel") {
+      res.redirect('/litereg-accounts/v2/trace-id')
     } else {
       res.redirect('/litereg-accounts/v2/site-id')
     }
   })
+
+    // Version 2 - Lite Registration Accounts - test place option 2 route
+    router.post('/litereg-accounts/v2/action9/test-place-option-2', function (req, res) {
+      let testPlace = req.session.data['test-place']
+      let quarantine = req.session.data['quarantine']
+      if (testPlace == "At a test site or government quarantine hotel" && quarantine == "Yes") {
+        res.redirect('/litereg-accounts/v2/trace-id-option-2')
+      } else if (testPlace == "At a test site or government quarantine hotel" && quarantine == "No") {
+        res.redirect('/litereg-accounts/v2/site-id')
+      } else {
+        res.redirect('/litereg-accounts/v2/royal-mail-barcode')
+      }
+    })
 
   // Version 2 - Lite Registration Accounts - daily contact testing route
   router.post('/litereg-accounts/v2/action9/daily-contact-testing', function (req, res) {
