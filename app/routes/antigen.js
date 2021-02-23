@@ -218,6 +218,26 @@ router.post('/antigen/v2/action3/ethnic-group-person-1', function (req, res) {
   }
 })
 
+// Version 2 - Antigen Global Registration - Ethnic group edit check answers route
+
+router.post('/antigen/v2/global-registration/edit-check-answers/action9/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/antigen/v2/global-registration/edit-check-answers/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers/ethnic-background-another')
+  } else {
+    res.redirect('/antigen/v2/global-registration/check-your-answers')
+  }
+
+})
+
 // Version 2 - Antigen Global registration - Currently in work
 
 router.post('/antigen/v2/action3/currently-in-work', function (req, res) {
@@ -335,6 +355,29 @@ router.post('/antigen/v2/action9/coronavirus-vaccine-person-1', function (req, r
   }
 })
 
+// Version 2 - Antigen Global Registration - Coronavirus vaccine edit cehck answers route
+
+router.post('/antigen/v2/global-registration/edit-check-answers/action9/coronavirus-vaccine', function (req, res) {
+  let vaccine = req.session.data['vaccine']
+  if (vaccine == "No"){
+    res.redirect('/antigen/v2/global-registration/check-your-answers')
+  } else {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers/coronavirus-vaccine-date')
+  }
+})
+
+// Genomic variance - route 1 edit check answers
+
+router.post('/antigen/v2/global-registration/edit-check-answers/action9/have-you-travelled-overseas', function (req, res) {
+  let OverseasTravel = req.session.data['have-you-travelled-overseas']
+  if (OverseasTravel == "No"){
+    res.redirect('/antigen/v2/global-registration/check-your-answers')
+  } else {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers/which-countries-travelled-to')
+  }
+
+})
+
 // Version 2 - Antigen Global Registration - GP address same route
 
 router.post('/antigen/v2/action3/gp-address-same', function (req, res) {
@@ -363,6 +406,17 @@ router.post('/antigen/v2/action3/nhs-number-known-person-1', function (req, res)
     res.redirect('/antigen/v2/global-registration/nhs-number-person-1')
   } else {
     res.redirect('/antigen/v2/global-registration/coronavirus-vaccine-person-1')
+  }
+})
+
+// Version 2 - Antigen Global Registration - NHS number known edit check answers route
+
+router.post('/antigen/v2/global-registration/edit-check-answers/action9/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/antigen/v2/global-registration/edit-check-answers/nhs-number')
+  } else {
+    res.redirect('/antigen/v2/global-registration/check-your-answers')
   }
 })
 

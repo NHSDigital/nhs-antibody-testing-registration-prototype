@@ -42,7 +42,7 @@
             {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/name">
               Change
               <span class="govuk-visually-hidden">name</span>
             </a>
@@ -57,7 +57,7 @@
             {{ data['home-postcode'] or 'PO12 3BD' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/postcode">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/postcode">
               Change
               <span class="govuk-visually-hidden">first line of address and postcode</span>
             </a>
@@ -79,7 +79,7 @@
           </dd>
           {% endif %}
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/address">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/address">
               Change
               <span class="govuk-visually-hidden">postcode</span>
             </a>
@@ -93,7 +93,7 @@
             {{ data['country'] or 'England' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/country">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/country">
               Change
               <span class="govuk-visually-hidden">country of residence</span>
             </a>
@@ -113,7 +113,7 @@
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/refer-and-triage/mobile-number">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/email-address">
               Change
               <span class="govuk-visually-hidden">contact details</span>
             </a>
@@ -127,7 +127,7 @@
             {{ data['date-of-birth-day'] or '15 March 1988' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/index">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/date-of-birth">
               Change
               <span class="govuk-visually-hidden">date of birth</span>
             </a>
@@ -141,7 +141,7 @@
             {{ data['gender'] or 'Male' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/gender">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/gender">
               Change
               <span class="govuk-visually-hidden">medical record</span>
             </a>
@@ -152,10 +152,10 @@
             Ethnicity
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['ethnic-group'] or 'White' }}{% if data['ethnic-background'] !== 'Prefer not to say' %}, {{ data['ethnic-background'] or 'Irish'}}{% endif %}
+            {{ data['ethnic-group'] or 'White' }}{% if data['ethnic-background'] !== 'Prefer not to say' and data['ethnic-background'] !== undefined %}, {{ data['ethnic-background'] or 'Irish'}}{% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/ethnic-group">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/ethnic-group">
               Change
               <span class="govuk-visually-hidden">ethnicity</span>
             </a>
@@ -173,7 +173,7 @@
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/nhs-number-known">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/nhs-number-known">
               Change
               <span class="govuk-visually-hidden">NHS number</span>
             </a>
@@ -193,7 +193,7 @@
             {{ data['previous-infection'] or 'No' }}
            </dd>
          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/previous-infection">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/previous-infection">
               Change
               <span class="govuk-visually-hidden">positive coronavirus test</span>
             </a>
@@ -208,45 +208,92 @@
             1 dose, less than 7 days ago
             {% elseif data['vaccine'] == "Yes, they've had 1 dose" and data['vaccine-date'] == "7 to 14 days ago" %}
             1 dose, 7 to 14 days ago
+            {% elseif data['vaccine'] == "Yes, they've had 1 dose" and data['vaccine-date'] == "More than 14 days ago" %}
+              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
+              1 dose, January {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
+              1 dose, February {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
+              1 dose, March {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
+              1 dose, April {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
+              1 dose, May {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
+              1 dose, June {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
+              1 dose, July {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
+              1 dose, August {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
+              1 dose, September {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "10" %}
+              1 dose, October {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "11" %}
+              1 dose, November {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "12" %}
+              1 dose, December {{ data['vaccine-year'] }}
+              {% endif %}
             {% elseif data['vaccine'] == "Yes, they've had 2 doses" and data['vaccine-date'] == "Less than 7 days ago" %}
             2 doses, less than 7 days ago
             {% elseif data['vaccine'] == "Yes, they've had 2 doses" and data['vaccine-date'] == "7 to 14 days ago" %}
             2 doses, 7 to 14 days ago
+            {% elseif data['vaccine'] == "Yes, they've had 2 doses" and data['vaccine-date'] == "More than 14 days ago" %}
+              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
+              2 doses, January {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
+              2 doses, February {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
+              2 doses, March {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
+              2 doses, April {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
+              2 doses, May {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
+              2 doses, June {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
+              2 doses, July {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
+              2 doses, August {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
+              2 doses, September {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "10" %}
+              2 doses, October {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "11" %}
+              2 doses, November {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "12" %}
+              2 doses, December {{ data['vaccine-year'] }}
+              {% endif %}
             {% else %}
             No
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/coronavirus-vaccine">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/coronavirus-vaccine">
               Change
               <span class="govuk-visually-hidden">Coronavirus vaccine</span>
             </a>
           </dd>
         </div>
-       
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Travelled Overseas
-            </dt>
-          {% if data['have-you-travelled-overseas'] == "Yes" %}
-            <dd class="govuk-summary-list__value">Yes, to 
-              {{ data['country-autocomplete'] or 'Ireland' }}<br>
-            </dd>
-           <dd class="govuk-summary-list__actions">
-              <a href="/genomic-variants/1-which-countries-travelled-to">
-                Change
-                <span class="govuk-visually-hidden">country visited</span>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Travelled Overseas
+          </dt>
+          {% if data['have-you-travelled-overseas'] !== "Yes" %}
+          <dd class="govuk-summary-list__value">No
+          </dd>
           {% else %}
-             <dd class="govuk-summary-list__value">No<br>
-            </dd>
-           <dd class="govuk-summary-list__actions">
-              <a href="/genomic-variants/1-have-you-travelled-overseas">
-                Change
-                <span class="govuk-visually-hidden">country visited</span>
-           {% endif %}
-              </a>
-            </dd>
-          </div>
+          <dd class="govuk-summary-list__value">Yes, to 
+            {{ data['country-autocomplete'] or 'Ireland' }}<br>
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/have-you-travelled-overseas">
+              Change
+              <span class="govuk-visually-hidden">country visited</span>
+            </a>
+          </dd>
+        </div>
       </dl>
 
       <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Employment and education</h2>
@@ -297,7 +344,6 @@
               {{ data['name'] or 'Prefer not to say' }}, {{ data['town'] or 'Prefer not to say' }}
               {% endif %}
             {% endif %}
-            
           </dd>
           <dd class="govuk-summary-list__actions">
             {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
@@ -315,8 +361,6 @@
         </div>
         {% endif %}
         </dl>
-
-
 
         <input type="hidden" name="answers-checked" value="true">
 
