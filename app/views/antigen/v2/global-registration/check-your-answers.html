@@ -267,7 +267,7 @@
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/currently-in-work">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/currently-in-work">
               Change
               <span class="govuk-visually-hidden">currently in work?</span>
             </a>
@@ -284,23 +284,33 @@
           </dt>
           <dd class="govuk-summary-list__value">
             {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
-            {{ data['industry'] or 'Heath and social care' }}<br>
-            {{ data['occupation-autocomplete'] or 'Prefer not to say' }}<br>
-            {{ data['employer'] or 'Prefer not to say'}}
+              {% if data['industry'] !== "Prefer not to say" %}
+              {{ data['industry'] or 'Heath and social care' }}<br>
+              {% endif %}
+              {{ data['occupation-autocomplete'] or 'Prefer not to say' }}<br>
+              {% if data['employer'] !== "Prefer not to say" %}
+              {{ data['employer'] }}
+              {% endif %}
             {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
             {{ data['study-grade'] or 'College' }}<br>
               {% if data['name'] and data['town'] %}
-              {{ data['name'] or 'Prefer not to say' }}<br>
-              {{ data['town'] or 'Prefer not to say' }}
+              {{ data['name'] or 'Prefer not to say' }}, {{ data['town'] or 'Prefer not to say' }}
               {% endif %}
             {% endif %}
             
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/industry">
+            {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/industry">
               Change
               <span class="govuk-visually-hidden">area of work</span>
             </a>
+            {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/study-grade">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+            {% endif %}
           </dd>
         </div>
         {% endif %}

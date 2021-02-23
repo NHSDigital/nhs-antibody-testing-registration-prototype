@@ -291,6 +291,30 @@ router.post('/antigen/v2/action3/study-grade-person-1', function (req, res) {
   }
 })
 
+// Version 2 - Antigen Global registration - Currently in edit check answers work
+
+router.post('/antigen/v2/global-registration/edit-check-answers/action9/currently-in-work', function (req, res) {
+  let inWork = req.session.data['currently-in-work']
+  if (inWork == "Yes - they travel to a workplace"){
+    res.redirect('/antigen/v2/global-registration/edit-check-answers/industry')
+  } else if (inWork == "Yes - they go to nursery, school, college or university"){
+    res.redirect('/antigen/v2/global-registration/edit-check-answers/study-grade')
+  } else {
+    res.redirect('/antigen/v2/global-registration/check-your-answers')
+  }
+})
+
+// Version 2 - Antigen Global registration - Study grade edit check answers
+
+router.post('/antigen/v2/global-registration/edit-check-answers/action9/study-grade', function (req, res) {
+  let studyGrade = req.session.data['study-grade']
+  if (studyGrade == "Prefer not to say"){
+    res.redirect('/antigen/v2/global-registration/check-your-answers')
+  } else {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers/institution')
+  }
+})
+
 // Version 2 - Antigen Global Registration - Coronavirus vaccine route
 
 router.post('/antigen/v2/action9/coronavirus-vaccine', function (req, res) {
