@@ -569,7 +569,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
       } else {
         res.redirect('/litereg-accounts/v2/vaccine')
       }
-  
+
     })
 
   // router.post('/litereg-accounts/v2/action9/do-you-have-symptoms', function (req, res) {
@@ -936,7 +936,7 @@ router.post('/share-result-lateral-flow/v9-1/action9/create-password', function 
     res.redirect('/share-result-lateral-flow/v9-1/user-account/check-email')
   }
   })
-  
+
   // Version 10 - LDF self report accounts - check mobile route
   router.post('/share-result-lateral-flow/v9-1/action9/check-mobile', function (req, res) {
   let securityCode = req.session.data['security-code']
@@ -969,7 +969,7 @@ router.post('/share-result-lateral-flow/v9-2/action9/create-password', function 
     res.redirect('/share-result-lateral-flow/v9-2/user-account/check-email')
   }
   })
-  
+
   // Version 10 - LDF self report accounts - check mobile route
   router.post('/share-result-lateral-flow/v9-2/action9/check-mobile', function (req, res) {
   let securityCode = req.session.data['security-code']
@@ -1084,7 +1084,25 @@ if (ethnicGroup == "Asian or Asian British"){
 } else {
   res.redirect('/share-result-lateral-flow/v11/user-account/edit-personal-details/currently-in-work')
 }
+})
 
+// Version 12 - LDF self report accounts  - Ethnic group route
+router.post('/share-result-lateral-flow/v12/action7/ethnic-group', function (req, res) {
+let ethnicGroup = req.session.data['ethnic-group']
+
+if (ethnicGroup == "Asian or Asian British"){
+  res.redirect('/share-result-lateral-flow/v12/user-account/edit-personal-details/ethnic-background-asian')
+} else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+  res.redirect('/share-result-lateral-flow/v12/user-account/edit-personal-details/ethnic-background-black')
+} else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+  res.redirect('/share-result-lateral-flow/v12/user-account/edit-personal-details/ethnic-background-mixed')
+} else if (ethnicGroup == "White") {
+  res.redirect('/share-result-lateral-flow/v12/user-account/edit-personal-details/ethnic-background-white')
+} else if (ethnicGroup == "Another ethnic group") {
+  res.redirect('/share-result-lateral-flow/v12/user-account/edit-personal-details/ethnic-background-another')
+} else {
+  res.redirect('/share-result-lateral-flow/v12/user-account/edit-personal-details/currently-in-work')
+}
 })
 
 module.exports = router
