@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Daily contact testing" %}
+{% set pageTitle = "Have you chosen to do daily contact testing?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,10 +15,7 @@
   </p>
 </div>
 
-{{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.go(-1);"
-}) }}
+<a class="govuk-back-link" href="/litereg-accounts/{{version}}/site-confirmation">Back</a>
 
 {% endblock %}
 
@@ -33,18 +30,21 @@
           <fieldset class="govuk-fieldset" aria-describedby="daily-contact-testing-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Have they chosen to do daily contact testing?
+                {% else %}
                 {{ pageTitle }}
+                {% endif %}
               </h1>
             </legend>
             <span id="daily-contact-testing-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-                <strong class="govuk-!-font-size-24">Have they chosen to take a series of tests instead of self-isolating?</strong>
-                You might do this if you’ve been in contact with someone who has the virus.<br><br>
-                Instead of self-isolating they take a test to check they’re not infectious. Usually every day or when they start a work shift. It can last 7 or more days.
+                They may have if they’ve been told to self-isolate after coming into contact with someone who has the virus.<br><br>
+                Instead of self-isolating, they take a test to check they’re not infectious. Usually every day, or when they start a work shift, for a period of 7 days.
                 {% else %}
-                <strong class="govuk-!-font-size-24">Have you chosen to take a series of tests instead of self-isolating?</strong><br><br>
-                You might do this if you’ve been in contact with someone who has the virus.<br><br>
-                Instead of self-isolating you take a test to check you’re not infectious. Usually every day, or when you start a work shift, for a period of 7 days.
+                You may have if you’ve been told to self-isolate after coming into contact with someone who has the virus.<br><br>
+                Instead of self-isolating, you take a test to check you’re not infectious. Usually every day, or when you start a work shift, for a period of 7 days.
                 {% endif %}
             </span>
             <div class="govuk-radios govuk-!-margin-top-5 govuk-!-bottom-top-5">
@@ -72,12 +72,4 @@
     </div>
   </div>
 
-{% endblock %}
-
-{% block bodyEnd %}
-<div class="proto-action big">
-  <a href="/litereg-accounts/{{version}}/daily-contact-testing-option-2">
-    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 2</div>
-  </a>
-</div>
 {% endblock %}

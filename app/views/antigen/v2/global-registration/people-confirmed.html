@@ -25,12 +25,20 @@
 
       <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
 
+      {% if data['way-to-test'] == 'home testing' %}
+      <p class="govuk-body">
+        You can <strong>add up to 3 people</strong> you live with for testing. You cannot order more than 4 home test kits at a time.<br><br>
+        If you need home tests for <strong>more than 4 people</strong>, you'll need to complete this journey again and place a separate order.<br><br>
+        Once you’ve confirmed who needs testing, you can continue.
+      </p>
+      {% else %}
       <p class="govuk-body">
         You can <strong>add up to 3 people</strong> you live with for testing.<br>
         If you need tests for <strong>more than 4 people</strong>, you'll need to book a separate appointment.<br><br>
         If you plan to travel to a test site by motorbike, you can only take one other person you live with.<br><br>
         Once you’ve confirmed who needs testing, you can continue.
       </p>
+      {% endif %}
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
@@ -76,12 +84,4 @@
     </div>
   </div>
 
-{% endblock %}
-
-{% block bodyEnd %}
-<div class="proto-action big">
-  <a href="/antigen/{{version}}/global-registration/people-confirmed-home">
-    <div class="proto-action-text govuk-!-font-size-16 govuk-!-padding-2 govuk-!-margin-left-3">Go to home test copy</div>
-  </a>
-</div>
 {% endblock %}

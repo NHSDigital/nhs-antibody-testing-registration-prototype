@@ -774,14 +774,14 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
   })
 
   // Version 2 - Lite Registration Accounts - select site route
-  router.post('/litereg-accounts/v2/action9/select-site', function (req, res) {
-    let barcode = req.session.data['kit-barcode-reference-1']
-    if (barcode == "LHE00000501") {
-      res.redirect('/litereg-accounts/v2/daily-contact-testing')
-    } else {
-      res.redirect('/litereg-accounts/v2/test-date')
-    }
-  })
+  // router.post('/litereg-accounts/v2/action9/select-site', function (req, res) {
+  //   let barcode = req.session.data['kit-barcode-reference-1']
+  //   if (barcode == "LHE00000501") {
+  //     res.redirect('/litereg-accounts/v2/daily-contact-testing')
+  //   } else {
+  //     res.redirect('/litereg-accounts/v2/test-date')
+  //   }
+  // })
 
   // Version 2 - Lite Registration Accounts - vaccine route
   router.post('/litereg-accounts/v2/action7/vaccine', function (req, res) {
