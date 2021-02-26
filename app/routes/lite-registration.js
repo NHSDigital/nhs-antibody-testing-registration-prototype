@@ -440,6 +440,26 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
 
   })
 
+  // Version 13 - LFD Results sharing - Ethnic group route
+  router.post('/share-result-lateral-flow/v13/action6/ethnic-group', function (req, res) {
+    let ethnicGroup = req.session.data['ethnic-group']
+
+    if (ethnicGroup == "Asian or Asian British"){
+      res.redirect('/share-result-lateral-flow/v13/ethnic-background-asian')
+    } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+      res.redirect('/share-result-lateral-flow/v13/ethnic-background-black')
+    } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+      res.redirect('/share-result-lateral-flow/v13/ethnic-background-mixed')
+    } else if (ethnicGroup == "White") {
+      res.redirect('/share-result-lateral-flow/v13/ethnic-background-white')
+    } else if (ethnicGroup == "Another ethnic group") {
+      res.redirect('/share-result-lateral-flow/v13/ethnic-background-another')
+    } else {
+      res.redirect('/share-result-lateral-flow/v13/occupation')
+    }
+
+  })
+
   // Version 1 - Lite Registration lateral flow with Accounts - Ethnic group route
   router.post('/lite-registration-lateral-flow-accounts/v1/action9/ethnic-group', function (req, res) {
     let ethnicGroup = req.session.data['ethnic-group']
