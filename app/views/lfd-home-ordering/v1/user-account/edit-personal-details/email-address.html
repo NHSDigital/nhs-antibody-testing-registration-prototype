@@ -1,5 +1,5 @@
-{% set version = "v2" %}
-{% set pageTitle = "Do you have an email address where you can get your test results?" %}
+{% set version = "v1" %}
+{% set pageTitle = "What's your email address?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -14,48 +14,42 @@
     </span>
   </p>
 </div>
-<a class="govuk-back-link" href="/litereg-accounts/{{version}}/user-account/edit-personal-details/home-page">Back</a>
+  <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/user-account/edit-personal-details/home-page">Back</a>
 {% endblock %}
 
 {% block content %}
+  {% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/litereg-accounts/{{version}}/user-account/edit-personal-details/home-page" method="post">
+      <form class="form" action="/lfd-home-ordering/{{version}}/user-account/edit-personal-details/home-page" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
                 {{ pageTitle }}
               </h1>
             </legend>
-            <span id="mobile-number-hint" class="govuk-body">
-                You need an email address to order a home test kit. If you do not have an email address, you can still get a test at a test site.
-            </span>
-            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
-                <label class="govuk-label govuk-radios__label" for="email-1">
-                  Yes, I have an email address where I can get my results
-                </label>
-              </div>
-              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
-                <div class="govuk-form-group">
+            <!-- <span id="email-address-hint" class="govuk-body">
+              We’ll email your test results to you.<br><br>
+              Make sure you’re happy for your test results to go to this email address. Do not use a work or shared email address unless you’re comfortable with others seeing your results.
+            </span> -->
+  
+                <div class="govuk-form-group govuk-!-margin-top-6">
                   <label class="govuk-label" for="email-address">
                     Email address
                   </label>
-                  <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}" aria-describedby="conditional-email-address-hint">
+                  <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
                 </div>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="I do not have an email address" {{ checked("email", "I do not have an email address") }}>
-                <label class="govuk-label govuk-radios__label" for="email-2">
-                  No, I do not have an email address
-                </label>
-              </div>
-            </div>
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="confirm-email-address">
+                    Confirm email address
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
+                </div>
+      
           </fieldset>
         </div>
 
