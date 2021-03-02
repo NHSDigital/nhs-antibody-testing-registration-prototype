@@ -1018,4 +1018,56 @@ router.post('/organisational/test-pass/create-pass/staff/travel2', function (req
     }
 });
 
+// lft/carehome-registration
+
+router.post('/organisational/lft/carehome-registration/how', function (req, res) {
+  let answer = req.body.cuUploadType;
+
+  if (answer == 'bulk') {
+    res.redirect('/organisational/lft/carehome-registration/bulk/staff')
+    } else if (answer == 'single') {
+      res.redirect('/organisational/lft/carehome-registration/single/staff')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/how?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/single/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/lft/carehome-registration/single/contact')
+    } else if (answer) {
+      res.redirect('/organisational/lft/carehome-registration/single/ethnic-desc')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/single/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/single/occupation/index', function (req, res) {
+  let answer = req.body.cuInWork;
+
+  if (answer == "Yes, and for the last 2 weeks they've worked from home") {
+    res.redirect('/organisational/lft/carehome-registration/single/occupation/area')
+  } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
+    res.redirect('/organisational/lft/carehome-registration/single/occupation/area')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/lft/carehome-registration/single/have-coronavirus')
+  } else if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/lft/carehome-registration/single/occupation/area')
+  } else {
+    res.redirect('/organisational/lft/carehome-registration/single/occupation/index?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/single/have-coronavirus', function (req, res) {
+  let answer = req.body.cuCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/lft/carehome-registration/single/when-symptoms')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/single/testkit')
+    }
+});
+
 module.exports = router

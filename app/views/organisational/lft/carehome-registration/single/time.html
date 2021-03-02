@@ -5,7 +5,7 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "When did " + fullname | trim + " take their rapid swab test?" %}
+{% set pageHeading = "When did " + fullname | trim + " take their swab test?" %}
  {% set version = "organisational/lft/carehome-registration" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -62,9 +62,9 @@
 
       <p>Select the date and time they took their swab test.</p>
 
-      <p>Why do we need to know date and time for LFT?</p>
+      <p>We need to know this so the lab can work out when the test is due to expire. If you select the wrong date and time, it could mean they receive an incorrect result.</p>
 
-      <form class="" action="/organisational/outer-return-box/option1/email" method="get">
+      <form class="" action="/{{ version }}/single/have-return-box" method="get">
 
         {{ govukRadios({
             idPrefix: "covidUpload",
