@@ -55,10 +55,61 @@ router.post('/lfd-home-ordering/v1/action10/work-from-home', function (req, res)
 router.post('/lfd-home-ordering/v1/action10/workplace-testing', function (req, res) {
     let workplaceTesting = req.session.data['workplace-testing']
     if (workplaceTesting == "No" ) {
-      res.redirect('/lfd-home-ordering/v1/name')
+      res.redirect('/lfd-home-ordering/v1/coronavirus-account')
     } else {
       res.redirect('/lfd-home-ordering/v1/collect-your-tests')
     }
+
+})
+
+router.post('/lfd-home-ordering/v1/action10/coronavirus-account', function (req, res) {
+  let signin = req.session.data['coronavirus-account']
+  if (signin == "Yes") {
+    res.redirect('/lfd-home-ordering/v1/user-account/login-email')
+  } else {
+    res.redirect('/lfd-home-ordering/v1/name')
+  }
+
+})
+
+router.post('/lfd-home-ordering/v1/user-account/action10/login-email', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/lfd-home-ordering/v1/user-account/enter-password')
+  } else {
+    res.redirect('/lfd-home-ordering/v1/user-account/create-password')
+  }
+
+})
+
+router.post('/lfd-home-ordering/v1/action10/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/lfd-home-ordering/v1/user-account/create-password-error')
+  } else {
+    res.redirect('/lfd-home-ordering/v1/user-account/check-email')
+  }
+})
+
+router.post('/lfd-home-ordering/v1/action10/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/lfd-home-ordering/v1/user-account/check-mobile-error')
+  } else {
+    res.redirect('/lfd-home-ordering/v1/user-account/agreement')
+  }
+})
+
+router.post('/lfd-home-ordering/v1/user-account/action10/home-page', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/lfd-home-ordering/v1/check-your-answers')
+  } else {
+    res.redirect('/lfd-home-ordering/v1/name')
+  }
 
 })
 

@@ -4,10 +4,22 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
   <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/country">Back</a>
 {% endblock %}
 
 {% block content %}
+{% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -17,12 +29,12 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="comfortable-doing-test-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-fieldset__heading">
+              <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-3">
                 {{ pageTitle }}
               </h1>
             </legend>
               <span id="comfortable-doing-test-hint" class="">
-                <p class="govuk-body">The kit contains step-by-step instructions and a fingerprick tool (you will not see any needle). Ask a friend or family member to help if you want.</p>
+                <p class="govuk-body">The kit contains step-by-step instructions and a fingerprick tool (you will not see any needle). Ask a friend or family member for help if you want.</p>
                 <div class="govuk-warning-text">
 
                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
@@ -31,17 +43,16 @@
                   <h2 class="govuk-heading-s govuk-!-margin-bottom-0">Do not do this test if you take anticoagulants ('blood-thinning' medicines) or you have a blood clotting disorder such as haemophilia.</h2>
                 </span>
               </div>
-              <!--  <p class="govuk-body">Watch how to collect your blood sample:</p> -->
+               <p class="govuk-body">Watch how to collect your blood sample:</p>
             </span>
 
-          <!-- Removing most recent video in line below for now as it doesn't cover LFT - we will test using just copy to see how users react
-            <style>.embed-container { position: relative; padding-bottom: 56.25%; margin: 28px 0; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube-nocookie.com/embed/BUgBOSgnMv0' frameborder='0' allowfullscreen></iframe></div> -->
+            <style>.embed-container { position: relative; padding-bottom: 56.25%; margin: 28px 0; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube-nocookie.com/embed/BUgBOSgnMv0' frameborder='0' allowfullscreen></iframe></div>
 
-<!--            <style>.embed-container { position: relative; padding-bottom: 56.25%; margin: 28px 0; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'>-->
+          <!-- <style>.embed-container { position: relative; padding-bottom: 56.25%; margin: 28px 0; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'> -->
+<!-- 
+          <iframe src="https://player.vimeo.com/video/447144037" width="320" height="240" frameborder='0' allowfullscreen webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div> -->
 
-<!--            <iframe src="https://player.vimeo.com/video/447144037" width="320" height="240" frameborder='0' allowfullscreen webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>-->
-
-          <!--  <details class="govuk-details" data-module="govuk-details">
+ <details class="govuk-details" data-module="govuk-details">
               <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">
                   Video transcript: What is a fingerprick test
@@ -53,13 +64,13 @@
                 <p class="govuk-body">You'll then massage your hand, and fill your tube to the 600 line. Then you'll put the cap on and slowly turn the tube upside down.</p>
                 <p class="govuk-body">Finally, you'll label your tube, package everything up and pop it in a postbox.</p>
               </div>
-            </details> -->
+            </details>
 
             <div class="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="comfortable-doing-test-1" name="comfortable-doing-test" type="radio" value="Yes" {{ checked("comfortable-doing-test", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="comfortable-doing-test-1">
-                  Yes, I'm OK doing this
+                  Yes, I am OK doing this
                 </label>
               </div>
               <div class="govuk-radios__item">
