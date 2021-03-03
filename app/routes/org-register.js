@@ -701,7 +701,7 @@ router.post('/organisational/outer-return-box/option1/option1', function (req, r
     } else {
     res.redirect('/organisational/outer-return-box/option1/option1?error=empty')
     }
-})
+});
 
 
 
@@ -1067,6 +1067,30 @@ router.post('/organisational/lft/carehome-registration/single/have-coronavirus',
     res.redirect('/organisational/lft/carehome-registration/single/when-symptoms')
     } else {
     res.redirect('/organisational/lft/carehome-registration/single/testkit')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/single/have-return-box', function (req, res) {
+  let answer = req.body.outerreturnbox;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/single/return-box')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/single/add-second-test')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/single/have-return-box?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/single/add-second-test', function (req, res) {
+  let answer = req.body.secondtest;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/single/testkit-lft')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/single/check-1')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/single/add-second-test?error=empty')
     }
 });
 
