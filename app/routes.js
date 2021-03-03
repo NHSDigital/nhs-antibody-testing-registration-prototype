@@ -621,6 +621,18 @@ router.post('/antigen/v1/action4/work-or-study-person-1', function (req, res) {
   }
 })
 
+// Version 1- Antigen Global Registration - have you travelled overseas
+
+router.post('/antigen/v1/action3/have-you-travelled-overseas-person-1', function (req, res) {
+  let OverseasTravel = req.session.data['have-you-travelled-overseas']
+  if (OverseasTravel == "No"){
+    res.redirect('/antigen/v1/global-registration/vaccine')
+  } else {
+    res.redirect('/antigen/v1/global-registration/which-countries-travelled-to-person-1')
+  }
+
+})
+
 // Version 1 - Antigen Global Registration - people confirmed route
 
 router.post('/antigen/v1/action3/people-confirmed', function (req, res) {
@@ -709,6 +721,30 @@ router.post('/antigen/v1/action3/choose-time-drive', function (req, res) {
 // Version 1 - Antigen Site Appointment Booking - Choose time prev day route
 
 router.post('/antigen/v1/action3/choose-time-walk', function (req, res) {
+  let chosenTime = req.session.data['time']
+  if (chosenTime == "8:30am to 9:00am"){
+    res.redirect('/antigen/v1/site-appointment-booking/time-not-available-walk')
+  } else {
+    res.redirect('/antigen/v1/site-appointment-booking/confirm-appointment-walk')
+  }
+
+})
+
+// Version 1 - Antigen Site Appointment Booking - Choose time prev day route
+
+router.post('/antigen/v1/action3/choose-time-prev-day-drive', function (req, res) {
+  let chosenType = req.session.data['way-to-test']
+  if (chosenType == "drive-through"){
+    res.redirect('/antigen/v1/site-appointment-booking/vehicle-registration-number')
+  } else {
+    res.redirect('/antigen/v1/site-appointment-booking/confirm-appointment-drive')
+  }
+
+})
+
+// Version 1 - Antigen Site Appointment Booking - Choose time prev day route
+
+router.post('/antigen/v1/action3/choose-time-prev-day-walk', function (req, res) {
   let chosenTime = req.session.data['time']
   if (chosenTime == "8:30am to 9:00am"){
     res.redirect('/antigen/v1/site-appointment-booking/time-not-available-walk')
