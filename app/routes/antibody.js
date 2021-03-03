@@ -880,19 +880,19 @@ router.post('/antibody/v6/action/industry', function (req, res) {
 // })
 
 // Version 6 - Global Registration - NHS number
-router.post('/antibody/v6/action/landline-number', function (req, res) {
-  let country = req.session.data['country']
+// router.post('/antibody/v6/action/landline-number', function (req, res) {
+//   let country = req.session.data['country']
 
-  if (country == "England"){
-    res.redirect('/antibody/v6/global-registration/nhs-number-known')
-  } else if (country = "Scotland") {
-    res.redirect('/antibody/v6/global-registration/nhs-number-known')
-  } else if (country = "Northern Ireland") {
-    res.redirect('/antibody/v6/global-registration/nhs-number-known')
-  } else {
-    res.redirect('/antibody/v6/global-registration/nhs-number-known')
-  }
-})
+//   if (country == "England"){
+//     res.redirect('/antibody/v6/global-registration/nhs-number-known')
+//   } else if (country = "Scotland") {
+//     res.redirect('/antibody/v6/global-registration/nhs-number-known')
+//   } else if (country = "Northern Ireland") {
+//     res.redirect('/antibody/v6/global-registration/nhs-number-known')
+//   } else {
+//     res.redirect('/antibody/v6/global-registration/nhs-number-known')
+//   }
+// })
 
 // Version 6 - Registration - Social role
 // router.post('/antibody/v6/action/social-role', function (req, res) {
@@ -939,7 +939,7 @@ router.post('/antibody/v6/action2/do-you-have-symptoms', function (req, res) {
   if (doYouHaveSymptoms == "Yes"){
     res.redirect('/antibody/v6/global-registration/get-antigen-test')
   } else {
-    res.redirect('/antibody/v6/global-registration/nhs-number-known')
+    res.redirect('/antibody/v6/global-registration/landline-number')
   }
 
 })
@@ -971,7 +971,32 @@ router.post('/antibody/v6/action2/ethnic-group', function (req, res) {
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/antibody/v6/global-registration/ethnic-background-another')
   } else {
-    res.redirect('/antibody/v6/global-registration/working')
+    res.redirect('/antibody/v6/global-registration/work-or-study')
+  }
+})
+
+// Version 6 - Registration - Currently in work route
+
+router.post('/antibody/v6/action3/work-or-study', function (req, res) {
+  let inWork = req.session.data['work-or-study']
+  if (inWork == "Yes - they travel to a workplace"){
+    res.redirect('/antibody/v6/global-registration/industry')
+  } else if (inWork == "Yes - they go to nursery, school, college or university"){
+    res.redirect('/antibody/v6/global-registration/study-grade')
+  } else {
+    res.redirect('/antibody/v6/global-registration/vaccine')
+  }
+
+})
+
+// Version 6 - Registration - Coronavirus vaccine route
+
+router.post('/antibody/v6/action9/vaccine', function (req, res) {
+  let vaccine = req.session.data['vaccine']
+  if (vaccine == "No"){
+    res.redirect('/antibody/v6/global-registration/nhs-number-known')
+  } else {
+    res.redirect('/antibody/v6/global-registration/vaccine-date')
   }
 })
 
