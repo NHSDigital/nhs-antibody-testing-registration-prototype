@@ -989,7 +989,7 @@ router.post('/share-result-lateral-flow/v9-1/action9/check-mobile', function (re
     if (person == "myself") {
       res.redirect('/share-result-lateral-flow/v9-4/coronavirus-account')
     } else {
-      res.redirect('/share-result-lateral-flow/v9-4/home-org-use')
+      res.redirect('/share-result-lateral-flow/v9-4/name')
     }
   })
 
