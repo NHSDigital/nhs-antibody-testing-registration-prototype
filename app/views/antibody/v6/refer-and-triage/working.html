@@ -4,6 +4,17 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div> 
+
   {% if data['ethnic-group'] === "Black, African, Black British or Caribbean" %}
     <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/ethnic-background-black">Back</a>
   {% elif data['ethnic-group'] === "Asian or Asian British" %}
@@ -20,6 +31,7 @@
 {% endblock %}
 
 {% block content %}
+{% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -29,15 +41,15 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="currently-in-work-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-fieldset__heading">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
                 {{ pageTitle }}
               </h1>
             </legend>
-            <span id="currently-in-work-hint" class="govuk-hint">
+            <span id="currently-in-work-hint" class="govuk-body">
               This will help us understand how coronavirus is affecting people in different industries.<br><br>
-              This means if you are at work in the moment, not on a leave of absence. For example maternity or paternity leave, sick leave, furlough.
+              This means if you're in work at the moment, not on a leave of absence (for example, on maternity or paternity leave, sick leave or furlough).
             </span>
-            <div class="govuk-radios">
+            <div class="govuk-radios govuk-!-margin-top-4">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="currently-in-work-1" name="currently-in-work" type="radio" value="Yes and I work from home" {{ checked("currently-in-work", "Yes and I work from home") }}>
                 <label class="govuk-label govuk-radios__label" for="currently-in-work-1">
@@ -58,6 +70,14 @@
               </div>
             </div>
           </fieldset>
+        </div>
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <span class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Important</span>
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-0">If you answer “no”, please do not continue. Only specific groups are currently eligible for antibody test kits and so unfortunately we cannot offer you a test at this time. <a href="https://www.gov.uk/government/publications/coronavirus-covid-19-antibody-tests/coronavirus-covid-19-antibody-tests" target="blank" class="govuk-link" style="color: blue">Eligibility for antibody test kits</a>.</h2>
+          </span>
         </div>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>

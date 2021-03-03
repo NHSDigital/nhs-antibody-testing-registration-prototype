@@ -4,16 +4,22 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  {% if data['social-role'] !== "" %}
-    <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/care-home-id">Back</a>
-  {% elif data['currently-in-work'] == "No" %}
-    <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/working">Back</a>
-  {% else %}
-    <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/occupation">Back</a>
-  {% endif %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/social-role">Back</a>
 {% endblock %}
 
 {% block content %}
+{% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -23,7 +29,7 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="have-you-had-symptoms-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-fieldset__heading">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
                 {{ pageTitle }}
               </h1>
             </legend>
@@ -31,8 +37,8 @@
               <p class="govuk-body">The main symptoms of coronavirus are:</p>
               <ul class="govuk-list govuk-list--bullet">
                 <li>a high temperature</li>
-                <li>a new, continuous cough</li>
-                <li>a loss or change to your sense of smell or taste</li>
+                <li>new, continuous cough</li>
+                <li>loss or change to your sense of smell or taste</li>
               </ul>
               <p class="govuk-body">Most people with coronavirus have at least one of these symptoms.</p>
             </span>
@@ -40,13 +46,13 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="have-you-had-symptoms-1" name="have-you-had-symptoms" type="radio" value="Yes" {{ checked("have-you-had-symptoms", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="have-you-had-symptoms-1">
-                  Yes, I've previously had at least one of these symptoms
+                  Yes, I have previously had at least one of these symptoms
                 </label>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="have-you-had-symptoms-2" name="have-you-had-symptoms" type="radio" value="No" {{ checked("have-you-had-symptoms", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="have-you-had-symptoms-2">
-                  No, I've not previously had any of these symptoms
+                  No, I have not previously had any of these symptoms
                 </label>
               </div>
             </div>

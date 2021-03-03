@@ -731,7 +731,7 @@ router.post('/antibody/v6/action/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
   if (doYouHaveSymptoms == "Yes"){
-    res.redirect('/antibody/v6/refer-and-triage/antigen-test')
+    res.redirect('/antibody/v6/refer-and-triage/not-eligible')
   } else {
     res.redirect('/antibody/v6/refer-and-triage/name')
   }
@@ -790,34 +790,60 @@ router.post('/antibody/v6/action/have-you-had-symptoms', function (req, res) {
 // Version 6 - Teacher registration - Email address
 router.post('/antibody/v6/action/email-address', function (req, res) {
   let emailAddress = req.session.data['email']
-  res.redirect('/antibody/v6/refer-and-triage/mobile-number')
+  res.redirect('/antibody/v6/refer-and-triage/postcode-ni')
 })
 
 // Version 6 - Teacher registration - Mobile phone
 router.post('/antibody/v6/action/mobile-number', function (req, res) {
   let mobileNumber = req.session.data['mobile-number']
-  let emailAddress = req.session.data['email']
+  // let emailAddress = req.session.data['email']
 
   if (mobileNumber == "Yes") {
-    res.redirect('/antibody/v6/refer-and-triage/postcode-ni')
+    res.redirect('/antibody/v6/refer-and-triage/email-address')
   } else {
-    if (emailAddress == "No") {
       res.redirect('/antibody/v6/refer-and-triage/not-eligible')
-    } else {
-      res.redirect('/antibody/v6/refer-and-triage/postcode-ni')
-    }
   }
+
+  // if (mobileNumber == "Yes") {
+  //   res.redirect('/antibody/v6/refer-and-triage/postcode-ni')
+  // } else {
+  //   if (emailAddress == "No") {
+  //     res.redirect('/antibody/v6/refer-and-triage/not-eligible')
+  //   } else {
+  //     res.redirect('/antibody/v6/refer-and-triage/postcode-ni')
+  //   }
+  // }
 })
 
 // Version 6 - Teacher registration - Ethnic group route
+// router.post('/antibody/v6/action/ethnic-group', function (req, res) {
+//   let ethnicGroup = req.session.data['ethnic-group']
+
+//   if (ethnicGroup == "Asian or Asian British"){
+//     res.redirect('/antibody/v6/refer-and-triage/ethnic-background')
+//   } else {
+//     res.redirect('/antibody/v6/refer-and-triage/working')
+//   }
+// })
+
+// Version 6 - Teacher registration - Ethnic group route
+
 router.post('/antibody/v6/action/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
-
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/antibody/v6/refer-and-triage/ethnic-background')
+    res.redirect('/antibody/v6/refer-and-triage/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/antibody/v6/refer-and-triage/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/antibody/v6/refer-and-triage/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/antibody/v6/refer-and-triage/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/antibody/v6/refer-and-triage/ethnic-background-another')
   } else {
     res.redirect('/antibody/v6/refer-and-triage/working')
   }
+
 })
 
 // Version 6 - Teacher registration - currently working
@@ -842,16 +868,16 @@ router.post('/antibody/v6/action/industry', function (req, res) {
 })
 
 // Version 6 - Registration - Ethnic group route
-router.post('/antibody/v6/action/occupation', function (req, res) {
-  let industry = req.session.data['industry']
-  let occupation = req.session.data['occupation-autocomplete']
+// router.post('/antibody/v6/action/occupation', function (req, res) {
+//   let industry = req.session.data['industry']
+//   let occupation = req.session.data['occupation-autocomplete']
 
-  if (industry == "Social care" || occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
-    res.redirect('/antibody/v6/refer-and-triage/social-role')
-  } else {
-    res.redirect('/antibody/v6/refer-and-triage/have-you-had-symptoms')
-  }
-})
+//   if (industry == "Social care" || occupation == "Care worker or home carer" || occupation == "Residential, day or domiciliary care manager and proprietor" || occupation == "Care escort" || occupation == "Senior care worker"){
+//     res.redirect('/antibody/v6/refer-and-triage/social-role')
+//   } else {
+//     res.redirect('/antibody/v6/refer-and-triage/have-you-had-symptoms')
+//   }
+// })
 
 // Version 6 - Global Registration - NHS number
 router.post('/antibody/v6/action/landline-number', function (req, res) {
@@ -869,18 +895,18 @@ router.post('/antibody/v6/action/landline-number', function (req, res) {
 })
 
 // Version 6 - Registration - Social role
-router.post('/antibody/v6/action/social-role', function (req, res) {
-  let socialCareRole = req.session.data['social-role']
+// router.post('/antibody/v6/action/social-role', function (req, res) {
+//   let socialCareRole = req.session.data['social-role']
 
-  if (socialCareRole == "Work in a single care home"){
-    res.redirect('/antibody/v6/refer-and-triage/social-contact')
-  } else if (socialCareRole == "Work in more than one care home") {
-    res.redirect('/antibody/v6/refer-and-triage/social-contact')
-  } else {
-    res.redirect('/antibody/v6/refer-and-triage/have-you-had-symptoms')
-  }
+//   if (socialCareRole == "Work in a single care home"){
+//     res.redirect('/antibody/v6/refer-and-triage/social-contact')
+//   } else if (socialCareRole == "Work in more than one care home") {
+//     res.redirect('/antibody/v6/refer-and-triage/social-contact')
+//   } else {
+//     res.redirect('/antibody/v6/refer-and-triage/have-you-had-symptoms')
+//   }
 
-})
+// })
 
 // Version 6 - Registration - Social contact
 router.post('/antibody/v6/action/social-contact', function (req, res) {
