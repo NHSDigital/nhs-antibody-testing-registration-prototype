@@ -914,6 +914,7 @@ router.post('/share-result-lateral-flow/v8-3/action7/ethnic-group', function (re
 
 })
 
+
 // Version 9-1 - LDF self report accounts - Who's taking the test route
 
 router.post('/share-result-lateral-flow/v9-1/action9/whos-taking-the-test', function (req, res) {
@@ -937,144 +938,81 @@ router.post('/share-result-lateral-flow/v9-1/action9/create-password', function 
   }
   })
 
-  // Version 10 - LDF self report accounts - check mobile route
-  router.post('/share-result-lateral-flow/v9-1/action9/check-mobile', function (req, res) {
+  // Version 9-1 - LDF self report accounts - check mobile route
+router.post('/share-result-lateral-flow/v9-1/action9/check-mobile', function (req, res) {
   let securityCode = req.session.data['security-code']
   if (securityCode == "") {
     res.redirect('/share-result-lateral-flow/v9-1/user-account/check-mobile-error')
   } else {
     res.redirect('/share-result-lateral-flow/v9-1/user-account/agreement')
   }
-  })
-
-// Version 9-2 - LDF self report accounts - Who's taking the test route
-
-router.post('/share-result-lateral-flow/v9-2/action9/whos-taking-the-test', function (req, res) {
-  let person = req.session.data['whos-taking-the-test']
-  if (person == "myself") {
-    res.redirect('/share-result-lateral-flow/v9-2/coronavirus-account')
-  } else {
-    res.redirect('/share-result-lateral-flow/v9-2/home-org-use')
-  }
 })
-
-// Version 9-1 - LDF self report accounts - Create password route
-
-router.post('/share-result-lateral-flow/v9-2/action9/create-password', function (req, res) {
-  let password = req.session.data['password']
-  let confirmPassword = req.session.data['confirm-password']
-  if (password == "" || confirmPassword == "") {
-    res.redirect('/share-result-lateral-flow/v9-2/user-account/create-password-error')
-  } else {
-    res.redirect('/share-result-lateral-flow/v9-2/user-account/check-email')
-  }
-  })
-
 
 
   // Version 9-3 - LDF self report accounts - Who's taking the test route
 
-    router.post('/share-result-lateral-flow/9-3/action9/whos-taking-the-test', function (req, res) {
-      let person = req.session.data['whos-taking-the-test']
-      if (person == "myself") {
-        res.redirect('/share-result-lateral-flow/9-3/coronavirus-account')
-      } else {
-        res.redirect('/share-result-lateral-flow/9-3/home-org-use')
-      }
-    })
+  router.post('/share-result-lateral-flow/v9-3/action9/whos-taking-the-test', function (req, res) {
+    let person = req.session.data['whos-taking-the-test']
+    if (person == "myself") {
+      res.redirect('/share-result-lateral-flow/v9-3/coronavirus-account')
+    } else {
+      res.redirect('/share-result-lateral-flow/v9-3/home-org-use')
+    }
+  })
 
   // Version 9-3 - LDF self report accounts - Create password route
 
-  router.post('/share-result-lateral-flow/9-3/action9/create-password', function (req, res) {
-  let password = req.session.data['password']
-  let confirmPassword = req.session.data['confirm-password']
-  if (password == "" || confirmPassword == "") {
-    res.redirect('/share-result-lateral-flow/9-3/user-account/create-password-error')
-  } else {
-    res.redirect('/share-result-lateral-flow/9-3/user-account/check-email')
-  }
+  router.post('/share-result-lateral-flow/v9-3/action9/create-password', function (req, res) {
+    let password = req.session.data['password']
+    let confirmPassword = req.session.data['confirm-password']
+    if (password == "" || confirmPassword == "") {
+      res.redirect('/share-result-lateral-flow/v9-3/user-account/create-password-error')
+    } else {
+      res.redirect('/share-result-lateral-flow/v9-3/user-account/check-email')
+    }
+    })
+
+    // Version 9-3 - LDF self report accounts - check mobile route
+  router.post('/share-result-lateral-flow/v9-3/action9/check-mobile', function (req, res) {
+    let securityCode = req.session.data['security-code']
+    if (securityCode == "") {
+      res.redirect('/share-result-lateral-flow/v9-3/user-account/check-mobile-error')
+    } else {
+      res.redirect('/share-result-lateral-flow/v9-3/user-account/agreement')
+    }
   })
-
-  // Version 9-3 - LDF self report accounts - check mobile route
-  router.post('/share-result-lateral-flow/9-3/action9/check-mobile', function (req, res) {
-  let securityCode = req.session.data['security-code']
-  if (securityCode == "") {
-    res.redirect('/share-result-lateral-flow/9-3/user-account/check-mobile-error')
-  } else {
-    res.redirect('/share-result-lateral-flow/9-3/user-account/agreement')
-  }
-  })
-
-  // Version 9-3 - LDF self report accounts  - Ethnic group route
-  router.post('/share-result-lateral-flow/9-3/action7/ethnic-group', function (req, res) {
-  let ethnicGroup = req.session.data['ethnic-group']
-
-  if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/share-result-lateral-flow/9-3/user-account/edit-personal-details/ethnic-background-asian')
-  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-    res.redirect('/share-result-lateral-flow/9-3/user-account/edit-personal-details/ethnic-background-black')
-  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-    res.redirect('/share-result-lateral-flow/9-3/user-account/edit-personal-details/ethnic-background-mixed')
-  } else if (ethnicGroup == "White") {
-    res.redirect('/share-result-lateral-flow/9-3/user-account/edit-personal-details/ethnic-background-white')
-  } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('/share-result-lateral-flow/9-3/user-account/edit-personal-details/ethnic-background-another')
-  } else {
-    res.redirect('/share-result-lateral-flow/9-3/user-account/edit-personal-details/currently-in-work')
-  }
-  })
-
 
   // Version 9-4 - LDF self report accounts - Who's taking the test route
 
-    router.post('/share-result-lateral-flow/9-4/action9/whos-taking-the-test', function (req, res) {
-      let person = req.session.data['whos-taking-the-test']
-      if (person == "myself") {
-        res.redirect('/share-result-lateral-flow/9-4/coronavirus-account')
-      } else {
-        res.redirect('/share-result-lateral-flow/9-4/home-org-use')
-      }
-    })
+  router.post('/share-result-lateral-flow/v9-4/action9/whos-taking-the-test', function (req, res) {
+    let person = req.session.data['whos-taking-the-test']
+    if (person == "myself") {
+      res.redirect('/share-result-lateral-flow/v9-4/coronavirus-account')
+    } else {
+      res.redirect('/share-result-lateral-flow/v9-4/home-org-use')
+    }
+  })
 
   // Version 9-4 - LDF self report accounts - Create password route
 
-  router.post('/share-result-lateral-flow/9-4/action9/create-password', function (req, res) {
-  let password = req.session.data['password']
-  let confirmPassword = req.session.data['confirm-password']
-  if (password == "" || confirmPassword == "") {
-    res.redirect('/share-result-lateral-flow/9-4/user-account/create-password-error')
-  } else {
-    res.redirect('/share-result-lateral-flow/9-4/user-account/check-email')
-  }
-  })
+  router.post('/share-result-lateral-flow/v9-4/action9/create-password', function (req, res) {
+    let password = req.session.data['password']
+    let confirmPassword = req.session.data['confirm-password']
+    if (password == "" || confirmPassword == "") {
+      res.redirect('/share-result-lateral-flow/v9-4/user-account/create-password-error')
+    } else {
+      res.redirect('/share-result-lateral-flow/v9-4/user-account/check-email')
+    }
+    })
 
-  // Version 9-4 - LDF self report accounts - check mobile route
-  router.post('/share-result-lateral-flow/9-4/action9/check-mobile', function (req, res) {
-  let securityCode = req.session.data['security-code']
-  if (securityCode == "") {
-    res.redirect('/share-result-lateral-flow/9-4/user-account/check-mobile-error')
-  } else {
-    res.redirect('/share-result-lateral-flow/9-4/user-account/agreement')
-  }
-  })
-
-  // Version 9-4 - LDF self report accounts  - Ethnic group route
-  router.post('/share-result-lateral-flow/9-4/action7/ethnic-group', function (req, res) {
-  let ethnicGroup = req.session.data['ethnic-group']
-
-  if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/share-result-lateral-flow/9-4/user-account/edit-personal-details/ethnic-background-asian')
-  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-    res.redirect('/share-result-lateral-flow/9-4/user-account/edit-personal-details/ethnic-background-black')
-  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-    res.redirect('/share-result-lateral-flow/9-4/user-account/edit-personal-details/ethnic-background-mixed')
-  } else if (ethnicGroup == "White") {
-    res.redirect('/share-result-lateral-flow/9-4/user-account/edit-personal-details/ethnic-background-white')
-  } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('/share-result-lateral-flow/9-4/user-account/edit-personal-details/ethnic-background-another')
-  } else {
-    res.redirect('/share-result-lateral-flow/9-4/user-account/edit-personal-details/currently-in-work')
-  }
+    // Version 9-4 - LDF self report accounts - check mobile route
+  router.post('/share-result-lateral-flow/v9-4/action9/check-mobile', function (req, res) {
+    let securityCode = req.session.data['security-code']
+    if (securityCode == "") {
+      res.redirect('/share-result-lateral-flow/v9-4/user-account/check-mobile-error')
+    } else {
+      res.redirect('/share-result-lateral-flow/v9-4/user-account/agreement')
+    }
   })
 
 
@@ -1111,35 +1049,18 @@ if (password == "" || confirmPassword == "") {
 }
 })
 
-// Version 10 - LDF self report accounts - check mobile route
-router.post('/share-result-lateral-flow/v10/action9/check-mobile', function (req, res) {
-let securityCode = req.session.data['security-code']
-if (securityCode == "") {
-  res.redirect('/share-result-lateral-flow/v10/user-account/check-mobile-error')
-} else {
-  res.redirect('/share-result-lateral-flow/v10/user-account/agreement')
-}
-})
 
-// Version 10 - LDF self report accounts  - Ethnic group route
-router.post('/share-result-lateral-flow/v10/action7/ethnic-group', function (req, res) {
-let ethnicGroup = req.session.data['ethnic-group']
+  // Version 10 - LDF self report accounts - check mobile route
+  router.post('/share-result-lateral-flow/v9-1/action9/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/share-result-lateral-flow/v9-1/user-account/check-mobile-error')
+  } else {
+    res.redirect('/share-result-lateral-flow/v9-1/user-account/agreement')
+  }
+  })
 
-if (ethnicGroup == "Asian or Asian British"){
-  res.redirect('/share-result-lateral-flow/v10/user-account/edit-personal-details/ethnic-background-asian')
-} else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-  res.redirect('/share-result-lateral-flow/v10/user-account/edit-personal-details/ethnic-background-black')
-} else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-  res.redirect('/share-result-lateral-flow/v10/user-account/edit-personal-details/ethnic-background-mixed')
-} else if (ethnicGroup == "White") {
-  res.redirect('/share-result-lateral-flow/v10/user-account/edit-personal-details/ethnic-background-white')
-} else if (ethnicGroup == "Another ethnic group") {
-  res.redirect('/share-result-lateral-flow/v10/user-account/edit-personal-details/ethnic-background-another')
-} else {
-  res.redirect('/share-result-lateral-flow/v10/user-account/edit-personal-details/currently-in-work')
-}
 
-})
 
 
 // Version 11 - LDF self report accounts - Who's taking the test route
@@ -1175,24 +1096,7 @@ if (securityCode == "") {
 }
 })
 
-// Version 11 - LDF self report accounts  - Ethnic group route
-router.post('/share-result-lateral-flow/v11/action7/ethnic-group', function (req, res) {
-let ethnicGroup = req.session.data['ethnic-group']
 
-if (ethnicGroup == "Asian or Asian British"){
-  res.redirect('/share-result-lateral-flow/v11/user-account/edit-personal-details/ethnic-background-asian')
-} else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-  res.redirect('/share-result-lateral-flow/v11/user-account/edit-personal-details/ethnic-background-black')
-} else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-  res.redirect('/share-result-lateral-flow/v11/user-account/edit-personal-details/ethnic-background-mixed')
-} else if (ethnicGroup == "White") {
-  res.redirect('/share-result-lateral-flow/v11/user-account/edit-personal-details/ethnic-background-white')
-} else if (ethnicGroup == "Another ethnic group") {
-  res.redirect('/share-result-lateral-flow/v11/user-account/edit-personal-details/ethnic-background-another')
-} else {
-  res.redirect('/share-result-lateral-flow/v11/user-account/edit-personal-details/currently-in-work')
-}
-})
 
 // Version 12 - LDF self report accounts - Who's taking the test route
 
