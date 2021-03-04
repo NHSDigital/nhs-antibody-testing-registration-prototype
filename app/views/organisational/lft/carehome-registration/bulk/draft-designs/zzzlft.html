@@ -6,27 +6,6 @@
    Enter the test details for each person - COVID-19
 {% endblock %}
 
-{% block beforeContent %}
-<div class="">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-    {{ govukPhaseBanner({
-      tag: {
-        text: "alpha"
-      },
-      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
-      }) }}
-
-      {{ govukBackLink({
-        text: "Back",
-        href: "javascript:window.history.go(-1);"
-      }) }}
-    </div>
-  </div>
-</div>
-{% endblock %}
-
-
 {% block phaseBanner %}
 <div class="">
   <div class="govuk-grid-row">
@@ -70,27 +49,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-
-      <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m">Test results summary</caption>
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Negative</td>
-            <td class="govuk-table__cell">8</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Void</td>
-            <td class="govuk-table__cell">0</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Positive</td>
-            <td class="govuk-table__cell">2</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2 class="govuk-heading-m">Records 1 to 10</h2>
-      <form class="" action="/{{ version }}/bulk/pcr" method="get">
+      <h2 class="govuk-heading-m">Records 1 to 20</h2>
+      <form class="" action="/{{ version }}/bulk/list/2" method="get">
       <ul class="card-table">
 
 
@@ -173,7 +133,6 @@
             </div>
 
 
-
             <div class="card-table__form-column column-12">
 
               {% call govukFieldset({
@@ -229,8 +188,6 @@
 </form>
               {% endcall %}
 
-
-
             </div>
 
             <div class="card-table__form-column column-6" style="display:none">
@@ -257,22 +214,7 @@
           { name: "John Smith", id: 10, dob: "24 January 1972" }
 
           ] %}
-
-          {% set value = [
-
-            { value: "C710001000" },
-            { value: "C710001000" },
-            { value: "C710001000" },
-            { value: "C710001000" },
-            { value: "C710001000" },
-            { value: "C710001000" },
-            { value: "C710001000" },
-            { value: "C710001000" },
-            { value: "C710001000" }
-
-            ] %}
           {% for item in items %}
-
 
 
             <li class="card-table__item" id="entry-{{ item.id }}">
@@ -296,7 +238,7 @@
                       classes: "govuk-!-font-size-16"
                     },
                     classes: "govuk-input--width-10",
-                    value: "{{ value.value }}",
+                    value: "C11168320",
                     id: "cuTestKitCode" + item.id,
                     name: "cuTestKitCode" + item.id
                   }) }}
@@ -387,7 +329,7 @@
                   <p class="govuk-body govuk-!-font-weight-bold">Test result</p>
                   <div class="govuk-radios govuk-radios--inline">
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="changed-name" name="changed-name" type="radio" checked="checked" value="yes">
+            <input class="govuk-radios__input" id="changed-name" name="changed-name" type="radio" value="yes">
             <label class="govuk-label govuk-radios__label" for="changed-name">
               Negative
             </label>
@@ -399,7 +341,7 @@
             </label>
           </div>
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="changed-name-3" name="changed-name" type="radio" value="no">
+            <input class="govuk-radios__input" id="changed-name-2" name="changed-name" type="radio" value="no">
             <label class="govuk-label govuk-radios__label" for="changed-name-2">
               Positive
             </label>
@@ -444,17 +386,7 @@
           ]
         }) }}
         <br>
-        <div class="govuk-form-group">
-    <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
-      <div class="govuk-checkboxes">
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
-          <label class="govuk-label govuk-checkboxes__label" for="waste">
-            I confirm there are <span class="govuk-body govuk-!-font-weight-bold">2</span> positive test results
-          </label>
-        </div>
-        <br>
-          <input class="govuk-button" type="submit" value="Save and continue">
+          <input class="govuk-button" type="submit" value="Save and continue to records 11 to 20">
 
 
     </div>

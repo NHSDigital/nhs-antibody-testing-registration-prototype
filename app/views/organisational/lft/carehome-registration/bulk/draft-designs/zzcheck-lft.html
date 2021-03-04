@@ -1,60 +1,12 @@
-{% set staff %}
-  {% if data.cuStaff %}
-    {{ data.cuStaff }}
-    {% else %}
-      Staff
-  {% endif %}
-{% endset %}
-{% set fullname %}
-  {% if data.cuFirstName and data.cuLastName %}
-    {{ data.cuFirstName }} {{ data.cuLastName }}
-    {% else %}
-      John Smith
-  {% endif %}
-{% endset %}
-
-{% set symptoms %}
-  {% if data["symptom-day"] and data["symptom-month"] and data["symptom-year"]  %}
-    {{ data["symptom-day"]}} {{ data["symptom-month"] | monthToWord }} {{ data["symptom-year"]}}
-  {% else %}
-    31 March 1975
-  {% endif %}
-{% endset %}
-
-{% set whenVaccine %}
-  {% if data["cuVaccineDate-month"] and data["cuVaccineDate-year"]  %}
-     {{ data["cuVaccineDate-month"] | monthToWord }} {{ data["cuVaccineDate-year"]}}
-  {% else %}
-    March 1975
-  {% endif %}
-{% endset %}
-
-{% set timeDate %}
-  {% if data.cuDate and data.cuTime %}
-    {% if data.cuDate == "Another date" %}
-      {{ data["cuExactDate-day"]}} {{ data["cuExactDate-month"] | monthToWord }} {{ data["cuExactDate-year"]}}:
-    {% else %}
-      {{ data.cuDate | returnDateShort }}:
-    {% endif %}
-    {{ data.cuTime }}{{data.cuAMPM}}
-
-  {% else %}
-    {{ "Today" | returnDateShort }}: 9am
-  {% endif %}
-{% endset %}
-
-
-{% set pageHeading = "Check before you register your test kits" %}
- {% set version = "organisational/lft/carehome-registration" %}
-{% set serviceName = "Get a coronavirus test" %}
-
+{% set pageHeading = "Check before you register your rapid swab (LFT) test results" %}
+{% set version = "organisational/lft/carehome-registration" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - {{ serviceName }}
+   Enter the test details for each person - COVID-19
 {% endblock %}
 
-{% block beforeContent %}
+{% block phaseBanner %}
 <div class="">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
@@ -76,43 +28,33 @@
 
 {% block content %}
 
+{% set prePop %}
+ {% if data.cuOrgPrepopDate %}
+
+ {% endif %}
+{% endset %}
+
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading | safe }}
+      </h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Organisation number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            12341234
-          </dd>
-          <dd class="govuk-summary-list__actions">
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Registration type
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Staff
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="#">
-              Change
-              <span class="govuk-visually-hidden"> name</span>
-            </a>
-          </dd>
-        </div>
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Rapid swab tests (LFT) registrations <br><br><p class="govuk-body">Negative results</p><p class="govuk-body">Void results</p><p class="govuk-body">Positive results</p>
+            Total number of registrations
           </dt>
           <dd class="govuk-summary-list__value">
-              14<br><br><br>10<br><br>2<br><br>2
+            10
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="#">
@@ -123,10 +65,10 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Swab test (PCR) registrations
+            Negative results
           </dt>
           <dd class="govuk-summary-list__value">
-            12
+            8
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="#">
@@ -135,14 +77,51 @@
             </a>
           </dd>
         </div>
-      </dl>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Void results
+          </dt>
+          <dd class="govuk-summary-list__value">
+            0
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#">
+              Change
+              <span class="govuk-visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Positive results
+          </dt>
+          <dd class="govuk-summary-list__value">
+            2
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#">
+              Change
+              <span class="govuk-visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+        </dl>
 
 
-      <form class="" action="/{{ version }}/single/add-another" method="get">
 
-        <input class="govuk-button" type="submit" value="Save and continue">
+          {{ govukCheckboxes({
+          idPrefix: "covidUploadCheckbox",
+          name: "cuConfirmCheckbox",
+          items: [
+            {
+              value: "agreed",
+              text: "I confirm there are 2 positive test results"
+            }
+          ]
+        }) }}
+        <br>
+          <input class="govuk-button" type="submit" value="Save and continue">
 
-      </form>
 
     </div>
   </div>

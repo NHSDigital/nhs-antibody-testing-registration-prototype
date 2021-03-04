@@ -1088,7 +1088,7 @@ router.post('/organisational/lft/carehome-registration/single/add-second-test', 
   if (answer == 'yes') {
     res.redirect('/organisational/lft/carehome-registration/single/testkit-lft')
   } else if (answer == 'no') {
-      res.redirect('/organisational/lft/carehome-registration/single/check-1')
+      res.redirect('/organisational/lft/carehome-registration/single/check-1-pcr')
     } else {
     res.redirect('/organisational/lft/carehome-registration/single/add-second-test?error=empty')
     }

@@ -49,7 +49,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <h2 class="govuk-heading-m">Records 1 to 20</h2>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Test results summary</caption>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Negative</td>
+            <td class="govuk-table__cell">8</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Void</td>
+            <td class="govuk-table__cell">0</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Positive</td>
+            <td class="govuk-table__cell">2</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 class="govuk-heading-m">Records 1 to 10</h2>
       <form class="" action="/{{ version }}/bulk/list/2" method="get">
       <ul class="card-table">
 
@@ -386,7 +405,18 @@
           ]
         }) }}
         <br>
-          <input class="govuk-button" type="submit" value="Save and continue to records 11 to 20">
+        {{ govukCheckboxes({
+          idPrefix: "covidUploadCheckbox",
+          name: "cuConfirmCheckbox",
+          items: [
+            {
+              value: "agreed",
+              text: "I confirm there are 2 positive test results"
+            }
+          ]
+        }) }}
+        <br>
+          <input class="govuk-button" type="submit" value="Save and continue">
 
 
     </div>

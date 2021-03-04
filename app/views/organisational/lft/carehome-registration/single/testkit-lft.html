@@ -1,4 +1,4 @@
-{% set pageHeading = "Enter John Smith's unique test kit barcode
+{% set pageHeading = "Enter John Smith's test kit barcode
 " %}
  {% set version = "organisational/lft/carehome-registration" %}
 {% set serviceName = "Get a coronavirus test" %}
@@ -36,10 +36,47 @@
       <h1 class="govuk-heading-xl">
         {{ pageHeading }}
       </h1>
+<p>There are two types of test kits</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>
+    a swab test sent to a lab (PCR test)
+  </li>
+  <li>
+    a lateral flow test (result is displayed on the test kit)
+  </li>
+</ul>
 
-      <p>You'll find the 11-character barcode attached to the plastic tube, biohazard bag and return box inside the test kit.</p>
+<h2 class="govuk-heading-m">How to find the PCR test barcode</h2>
+<p>You'll find the barcode on the test kit's plastic tube, biohazard bag and return box.</p>
 
-      <p>Choose 1 of these ways to enter the barcode:</p>
+<details class="govuk-details" data-module="govuk-details">
+<summary class="govuk-details__summary">
+<span class="govuk-details__summary-text">
+What does the PCR test barcode look like?
+</span>
+</summary>
+<div class="govuk-details__text">
+<img src="/public/images/barcode-number.png" alt="Large outer return box barcode">
+</div>
+</details>
+
+<h2 class="govuk-heading-m">How to find the lateral flow test QR code and reference ID</h2>
+<p>The QR code and reference is printed on the test strip. You can either scan the QR code or enter the reference ID manually.</p>
+
+<details class="govuk-details" data-module="govuk-details">
+<summary class="govuk-details__summary">
+<span class="govuk-details__summary-text">
+What does the lateral flow test QR code or reference ID look like?
+</span>
+</summary>
+<div class="govuk-details__text">
+<img src="/public/images/new-LFD-strip.png" alt="Large outer return box barcode">
+</div>
+</details>
+
+<h2 class="govuk-heading-m">Entering the barcode, QR code or unique reference number</h2>
+
+      <p>Choose 1 of these ways:</p>
 
       <ul class="govuk-list govuk-list--bullet">
         <li>
@@ -54,33 +91,6 @@
       </ul>
 
 
-          <details class="govuk-details" data-module="govuk-details">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">
-          What does the barcode look like?
-        </span>
-      </summary>
-      <div class="govuk-details__text">
-      <img src="/public/images/barcode-number.png" alt="Large outer return box barcode">
-      </div>
-    </details>
-
-    <details class="govuk-details" data-module="govuk-details">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">
-          How to use the handheld barcode scanner
-        </span>
-      </summary>
-      <div class="govuk-details__text">
-        <ol class="govuk-list govuk-list--number">
-      <li>Click in the ‘Test kit barcode reference’ box</li>
-      <li>Scan the barcode using your handheld scanner. This automatically adds it to the box</li>
-      <li>Click in the ‘Confirm test kit reference’ box</li>
-      <li>Scan the barcode again using your handheld scanner. This automatically adds it to the box</li>
-      <li>Click 'Continue'</li>
-    </ol>
-    </details>
-
       <h2 class="govuk-heading-m">
         Use camera
       </h2>
@@ -93,13 +103,29 @@
           Use handheld scanner or enter manually
         </h2>
 
-        <p>If you're using a handheld scanner, click in the box before you scan the barcode</p>
+        <p>If you're using a handheld scanner, click in the box before scanning the barcode or QR code.</p>
 
-      <form class="" action="/organisational/lft/carehome-registration/single/time-lft" method="get">
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              How to use the handheld barcode scanner
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <ol class="govuk-list govuk-list--number">
+          <li>Click in the ‘Test kit barcode, QR code or reference’ box</li>
+          <li>Scan the barcode or QR code using your handheld scanner. This automatically adds it to the box</li>
+          <li>Click in the ‘Confirm test kit barcode, QR code or reference’ box</li>
+          <li>Scan the barcode again using your handheld scanner. This automatically adds it to the box</li>
+          <li>Click 'Continue'</li>
+        </ol>
+        </details>
+
+      <form class="" action="/organisational/lft/carehome-registration/single/time" method="get">
 
             {{ govukInput({
               label: {
-                html: 'Test kit barcode reference'
+                html: 'Test kit barcode, QR code or reference'
               },
               classes: "govuk-input--width-20",
               id: "covidUpload",
@@ -108,7 +134,7 @@
 
             {{ govukInput({
               label: {
-                html: 'Confirm test kit barcode reference'
+                html: 'Confirm test kit barcode, QR code or reference'
               },
               classes: "govuk-input--width-20",
               id: "covidUpload",

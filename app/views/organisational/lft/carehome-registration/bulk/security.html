@@ -1,5 +1,6 @@
-{% set pageHeading = "Who are you registering?" %}
+{% set pageHeading = "Security check" %}
 {% set version = "organisational/lft/carehome-registration" %}
+{% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -31,29 +32,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/{{version}}/bulk/upload" method="get">
-        {{ govukRadios({
-            idPrefix: "cuStaff",
-            name: "cuStaff",
-            fieldset: {
-              legend: {
-                text: pageHeading,
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--xl"
-              }
-            },
-            items: [
-              {
-                value: "Staff",
-                text: "Staff"
-              },
-              {
-                value: "Non-staff",
-                text: "Non-staff (for example residents or patients)"
-              }
-            ]
-          }) }}
-        <input class="govuk-button" type="submit" value="Continue">
+      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+      <p>Complete the security check to submit your application</p>
+
+      <img class="govuk-!-margin-top-6 govuk-!-margin-bottom-6" src="/public/images/cap.png" alt="Image of a reCAPTCHA" onclick="this.src='/public/images/capchecked.png'">
+
+      <form class="" action="/{{ version }}/bulk/confirmation" method="get">
+
+        <input class="govuk-button" type="submit" value="Submit">
 
       </form>
 
