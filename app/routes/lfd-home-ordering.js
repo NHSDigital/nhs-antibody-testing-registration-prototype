@@ -281,19 +281,19 @@ router.post('/lfd-home-ordering/v3/action10/country', function (req, res) {
 router.post('/lfd-home-ordering/v3/action10/work-from-home', function (req, res) {
   let workFromHome = req.session.data['work-from-home']
   if (workFromHome == "Yes" ) {
-    res.redirect('/lfd-home-ordering/v3/workplace-testing')
+    res.redirect('/lfd-home-ordering/v3/test-choice')
   } else {
     res.redirect('/lfd-home-ordering/v3/lft-unavailable')
   }
 
 })
 
-router.post('/lfd-home-ordering/v3/action10/workplace-testing', function (req, res) {
-  let workplaceTesting = req.session.data['workplace-testing']
-  if (workplaceTesting == "No" ) {
-    res.redirect('/lfd-home-ordering/v3/coronavirus-account')
-  } else {
+router.post('/lfd-home-ordering/v3/action10/test-choice', function (req, res) {
+  let testChoice = req.session.data['test-choice']
+  if (testChoice == "I want to take a test at a community assisted test site" ) {
     res.redirect('/lfd-home-ordering/v3/collect-your-tests')
+  } else {
+    res.redirect('/lfd-home-ordering/v3/coronavirus-account')
   }
 
 })
@@ -328,6 +328,15 @@ if (password == "" || confirmPassword == "") {
   res.redirect('/lfd-home-ordering/v3/user-account/check-email')
 }
 })
+
+router.post('/lfd-home-ordering/v3/action/check-your-answers', function (req, res) {
+  let testChoice = req.session.data['test-choice']
+  if (testChoice == "I want to collect tests") {
+    res.redirect('/lfd-home-ordering/v3/confirmation')
+  } else {
+    res.redirect('/lfd-home-ordering/v3/order-home-test-kit/')
+  }
+  })
 
 router.post('/lfd-home-ordering/v3/action10/check-mobile', function (req, res) {
 let securityCode = req.session.data['security-code']

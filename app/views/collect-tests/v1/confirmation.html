@@ -31,15 +31,19 @@
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header govuk-!-width-one-quarter" style="font-weight: normal; border-bottom: none">Name</th>
-          <td class="govuk-table__cell" style="border-bottom: none">{{ data['first-name'] | default('Pete') }} {{ data['last-name'] | default('Smith') }}</td>
+          <td class="govuk-table__cell" style="border-bottom: none">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header govuk-!-width-one-quarter" style="font-weight: normal; border-bottom: none">QR code</th>
-          <td class="govuk-table__cell" style="border-bottom: none">{{ data['qr-code'] | default('ABCD1234') }}</td>
+          <td class="govuk-table__cell" style="border-bottom: none">{{ data['qr-code'] or 'ABCD1234' }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header govuk-!-width-one-quarter" style="font-weight: normal; border-bottom: none">LOT reference</th>
-          <td class="govuk-table__cell" style="border-bottom: none">{{ data['lot-reference'] | default('X2102703') }}</td>
+          <td class="govuk-table__cell" style="border-bottom: none">{{ data['lot-reference'] or 'X2102703' }}</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header govuk-!-width-one-quarter" style="font-weight: normal; border-bottom: none">Site ID</th>
+          <td class="govuk-table__cell" style="border-bottom: none">{{ data['lot-reference'] or 'THGR' }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header govuk-!-width-one-quarter" style="font-weight: normal; border-bottom: none">Date</th>
@@ -55,9 +59,9 @@
         A confirmation email has also been sent to you.
     </p>
 
-    <h3 class="govuk-heading-s">What’s in the test kit</h3>
+    <!-- <h3 class="govuk-heading-s">What’s in the test kit</h3> -->
 
-    <p class="govuk-body">
+    <!-- <p class="govuk-body">
         Each kit contains:
     </p>
 
@@ -65,18 +69,26 @@
       <li>7 rapid swab tests</li>
       <li>instructions on how to do the test</li>
       <li>guidace to help you do daily contact testing and report each result to the NHS</li>
-    </ul>
+    </ul> -->
 
-    <p class="govuk-body govuk-!-margin-bottom-6">
+    <!-- <p class="govuk-body govuk-!-margin-bottom-6">
         Rapid swab tests (sometimes called lateral flow tests) will give you a result in 30 minutes. There is no need to post a sample to a lab.
-    </p>
+    </p> -->
 
-    <h3 class="govuk-heading-s">Help and advice</h3>
+    <!-- <h3 class="govuk-heading-s">Help and advice</h3>
 
     <p class="govuk-body">
         <a class="govuk-link govuk-!-margin-right-2" href="#">How to self-isolate</a><br>
         <a class="govuk-link govuk-!-margin-right-2" href="#">Watch a rapid test video</a>
-    </p>
+    </p> -->
+
+    <form action="/collect-tests/{{version}}/qr-code" method="post" class="govuk-!-margin-top-8" novalidate>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Start again
+      </button>
+
+    </form>
 
   </div>
 </div>

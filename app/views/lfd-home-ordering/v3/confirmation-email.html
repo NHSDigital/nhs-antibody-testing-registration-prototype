@@ -1,0 +1,82 @@
+{% set version = "v3" %}
+{% set pageTitle = "Collection confirmation for twice weekly testing" %}
+{% extends "includes/layout.html" %}
+
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-m govuk-!-margin-bottom-3">
+        {{ pageTitle }}
+      </h1>
+
+     <p class="govuk-body">
+        Dear {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}<br><br>
+        Your collection for twice weekly testing is confirmed.<br><br>
+        Your order confirmation number: 4848484848
+     </p>
+
+     <h3 class="govuk-heading-s">Collection details</h3>
+     <p class="govuk-body">
+        If you need to check again, you can <a targeet="blank" class="govuk-link" href="https://find-covid-19-rapid-test-sites.maps.test-and-trace.nhs.uk/">find your local collection site here</a>.<br><br>
+        Take your your confirmation email or SMS with you to collect your test kits.<br><br>
+        When you collect your tests, either:
+     </p>
+     <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+        <li>present the QR code below to be scanned; or</li>
+        <li>select the button below to confirm your collection</li>
+    </ul>
+
+     <div style="width: 30%;">
+       <img src="/public/images/QR_code.png" alt="randox number" style="height: 30%; width: 100%;" />
+       <p class="govuk-body govuk-!-margin-top-6 govuk-!-margin-bottom-8" style="text-align: center;">ABCD1234</p>
+     </div>
+
+     <form action="/collect-tests/v1/" method="post" class="govuk-!-margin-top-8" novalidate>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Confirm my collection
+        </button>
+  
+      </form>
+     
+      <div class="govuk-inset-text govuk-body govuk-!-margin-top-5">
+        If you’re in a bubble, make sure the other household sorts their rapid tests now because you should all test twice a week on the same day.
+      </div>
+
+      <h3 class="govuk-heading-s">What's in your test pack</h3>
+      <p class="govuk-body">
+        Each pack contains:
+      </p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+        <li>7 rapid lateral flow tests</li>
+        <li>instructions on how to take the test</li>
+        <li>instructions on how to report each result to the NHS</li>
+      </ul>
+
+      <p class="govuk-body"><a href="#" target="blank" class="govuk-link">Watch a short video: how to do a rapid test</a></p>
+      <p class="govuk-body"><a href="#" target="blank" class="govuk-link">Get test instructions in other languages or easy read and large print format</a></p>
+
+      <h3 class="govuk-heading-s">About twice weekly testing</h3>
+      <p class="govuk-body">
+        You will get an “about twice weekly testing” email in the next 36 hours.<br><br>
+        It will contain web links and support to help you.
+      </p>
+
+      <h3 class="govuk-heading-s">Contact centre</h3>
+      <p class="govuk-body">
+        If you have any questions or problems call the contact centre.<br><br>
+        Call 119 in England, Wales and Northern Ireland<br>
+        Free from mobiles and landlines<br><br>
+        Call 0300 303 2713 in Scotland<br>
+        Charged at your standard network rate<br><br>
+        Lines open 7am to 11pm
+      </p>
+      
+    </div>
+  </div>
+
+{% endblock %}
