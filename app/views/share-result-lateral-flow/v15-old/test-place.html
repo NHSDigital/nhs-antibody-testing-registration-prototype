@@ -1,0 +1,60 @@
+{% set version = "v1" %}
+{% set pageTitle = "Where are you taking your test?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/lite-registration-lateral-flow/{{version}}/">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/lite-registration-lateral-flow/{{version}}/action6/test-place" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="reason-for-test-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+            <div class="govuk-radios govuk-!-margin-top-5 govuk-!-bottom-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-place-1" name="test-place" type="radio" value="site" {{ checked("test-place", "site") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-1">
+                  At a test site
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="home" {{ checked("test-place", "home") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-2">
+                  At home
+                </label>
+              </div>   
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
