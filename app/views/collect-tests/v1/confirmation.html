@@ -1,0 +1,93 @@
+{% set version = "v1" %}
+{% set pageTitle = "Collection form completed" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
+    </div>
+
+    <h3 class="govuk-heading-s govuk-!-margin-bottom-2 govuk-!-margin-top-7">Collection details</h3>
+
+    <table class="govuk-table govuk-!-margin-bottom-7">
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header govuk-!-width-one-quarter" style="font-weight: normal; border-bottom: none">Name</th>
+          <td class="govuk-table__cell" style="border-bottom: none">{{ data['first-name'] | default('Pete') }} {{ data['last-name'] | default('Smith') }}</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header govuk-!-width-one-quarter" style="font-weight: normal; border-bottom: none">QR code</th>
+          <td class="govuk-table__cell" style="border-bottom: none">{{ data['qr-code'] | default('ABCD1234') }}</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header govuk-!-width-one-quarter" style="font-weight: normal; border-bottom: none">LOT reference</th>
+          <td class="govuk-table__cell" style="border-bottom: none">{{ data['lot-reference'] | default('X2102703') }}</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header govuk-!-width-one-quarter" style="font-weight: normal; border-bottom: none">Date</th>
+          <td class="govuk-table__cell" style="border-bottom: none">5 March 2021</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="govuk-heading-s">What happens next</h3>
+
+    <p class="govuk-body govuk-!-margin-bottom-6">
+        Show this confirmation screen to the member of staff who is giving you your tests.<br><br>
+        A confirmation email has also been sent to you.
+    </p>
+
+    <h3 class="govuk-heading-s">What’s in the test kit</h3>
+
+    <p class="govuk-body">
+        Each kit contains:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>7 rapid swab tests</li>
+      <li>instructions on how to do the test</li>
+      <li>guidace to help you do daily contact testing and report each result to the NHS</li>
+    </ul>
+
+    <p class="govuk-body govuk-!-margin-bottom-6">
+        Rapid swab tests (sometimes called lateral flow tests) will give you a result in 30 minutes. There is no need to post a sample to a lab.
+    </p>
+
+    <h3 class="govuk-heading-s">Help and advice</h3>
+
+    <p class="govuk-body">
+        <a class="govuk-link govuk-!-margin-right-2" href="#">How to self-isolate</a><br>
+        <a class="govuk-link govuk-!-margin-right-2" href="#">Watch a rapid test video</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action big">
+  <a href="/collect-tests/{{version}}/welcome-email">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Continue to email</div>
+  </a>
+</div>
+{% endblock %}
+
