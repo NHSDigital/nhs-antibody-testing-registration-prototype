@@ -1,0 +1,73 @@
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      John Smith
+  {% endif %}
+{% endset %}
+{% set pageHeading = "What is the name of " + fullname | trim + "'s employer?" %}
+ {% set version = "organisational/lft/carehome-registration" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="" action="/{{ version }}/single/have-coronavirus" method="get">
+
+        <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+        <p>This helps us trace their work colleagues if they test positive for coronavirus.</p>
+
+        {{ govukInput({
+            label: {
+              text: "Employer name",
+              classes: "",
+              isPageHeading: true
+            },
+            classes: "",
+            hint: {
+              html: ""
+            },
+            id: "account-number",
+            name: "account-number"
+          }) }}
+
+        <input class="govuk-button" type="submit" value="Continue">
+
+      </form>
+
+      <p>
+        <a href="/{{ version }}/single/have-coronavirus">Prefer not to say</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}
