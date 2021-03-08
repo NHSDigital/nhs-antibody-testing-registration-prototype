@@ -389,6 +389,28 @@ router.post('/antigen/v2/action3/gp-address-same', function (req, res) {
   }
 })
 
+// Version 2 - Antigen Global Registration - address route
+
+router.post('/antigen/v2/action3/address', function (req, res) {
+  let address = req.session.data['gp-address-line-1']
+    let postcode = req.session.data['gp-postcode']
+    if (!address|| !postcode) {
+      res.redirect('/antigen/v2/global-registration/address-error')
+    } else {
+      res.redirect('/antigen/v2/global-registration/nhs-number-known')
+    }
+})
+
+router.post('/antigen/v2/action3/address-person-1', function (req, res) {
+  let addressPerson1 = req.session.data['address-person-1']
+  let postcodePerson1 = req.session.data['home-postcode-person-1']
+    if (!addressPerson1|| !postcodePerson1) {
+      res.redirect('/antigen/v2/global-registration/address-person-1-error')
+    } else {
+      res.redirect('/antigen/v2/global-registration/nhs-number-known-person-1')
+    }
+})
+
 // Version 2 - Antigen Global Registration - NHS number known route
 
 router.post('/antigen/v2/action3/nhs-number-known', function (req, res) {
