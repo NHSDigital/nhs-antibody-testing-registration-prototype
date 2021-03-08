@@ -1066,7 +1066,7 @@ router.post('/organisational/lft/carehome-registration/single/have-coronavirus',
   if (answer == 'Yes') {
     res.redirect('/organisational/lft/carehome-registration/single/when-symptoms')
     } else {
-    res.redirect('/organisational/lft/carehome-registration/single/contact-tracing')
+    res.redirect('/organisational/lft/carehome-registration/single/daily-contact-testing')
     }
 });
 
