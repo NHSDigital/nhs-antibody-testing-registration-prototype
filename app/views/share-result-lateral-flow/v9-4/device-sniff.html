@@ -1,0 +1,53 @@
+{% set version = "v9-4" %}
+{% set pageTitle = "Please use a mobile device if you have one" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/got-email">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/mobile" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+               <span id="enter-barcode-number-hint" class="govuk-body">
+                 <p>Please use a mobile device if you have one.</p>
+                 <p>This will allow you to take and upload a photo of your test strip,
+                   which makes it easier and quicker for everyone to read and understand their result.</p>
+               </span>
+
+            </fieldset>
+          </div>
+
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
