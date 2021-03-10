@@ -22,6 +22,22 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#field-1">Total number of staff to be tested must be {limit} or fewer</a>
+            </li>
+            <li>
+              <a href="#field-2">Total number of non-staff to be tested must be {limit} or fewer</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
         <span class="govuk-caption-xl">Lateral flow testing</span>
         {{ pageTitle }}
@@ -30,26 +46,31 @@
 
       <form action="5" method="post">
 
-        <div class="govuk-form-group">
+        <div class="govuk-form-group govuk-form-group--error">
           <label class="govuk-label" for="">
             Total number of staff to be tested
           </label>
           <div class="govuk-hint">
             Include all permanent, temporary and agency staff.
           </div>
-          <input class="govuk-input govuk-input--width-4" id="" name="" type="text">
+          <span class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Total number of staff to be tested must be {limit} or fewer
+          </span>
+          <input id="field-1" class="govuk-input govuk-input--width-4 govuk-input--error" name="" type="text" aria-describedby="">
         </div>
 
-        <div class="govuk-form-group">
+        <div class="govuk-form-group govuk-form-group--error">
           <label class="govuk-label" for="">
             Total number of non-staff to be tested
           </label>
           <div class="govuk-hint">
             This could include school pupils or residents.
           </div>
-          <input class="govuk-input govuk-input--width-4" id="" name="" type="text">
+          <span class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Total number of non-staff to be tested must be {limit} or fewer
+          </span>
+          <input id="field-2" class="govuk-input govuk-input--width-4 govuk-input--error" name="" type="text" aria-describedby="">
         </div>
-
 
         <button class="govuk-button" data-module="govuk-button">
           Continue
