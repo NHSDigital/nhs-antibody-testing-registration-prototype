@@ -1,4 +1,4 @@
-const express = require('express')
+ express = require('express')
 const router = express.Router()
 
 // $('.govuk-error-summary').hide()
@@ -140,10 +140,10 @@ router.post('/antibody/v1/action/when-did-symptoms-start', function (req, res) {
   let symptomsStartMonth = req.session.data['symptoms-start-date-month']
   let symptomsStartYear = req.session.data['symptoms-start-date-year']
 
-  if (symptomsStartDay == "" || symptomsStartMonth == "" || symptomsStartYear == ""){
+  if (symptomsStartYear !== "2020" || symptomsStartYear !== "2021" ){
     res.redirect('/antibody/v1/refer-and-triage/when-did-symptoms-start-error')
   } else {
-    res.redirect('/antibody/v1/refer-and-triage/tested-positive')
+    res.redirect('/antibody/v1/refer-and-triage/follow-up-test')
   }
 
 })
@@ -2492,6 +2492,18 @@ router.post('/antigen/v1/action8/vaccine-person-1', function (req, res) {
     res.redirect('/antigen/v1/global-registration/country-person-1')
   } else {
     res.redirect('/antigen/v1/global-registration/vaccine-date-person-1')
+  }
+
+})
+
+// Single registration - Who is test for?
+
+router.post('/_csplayground/singleregistration/v1/action/who-is-test-for', function (req, res) {
+  let subject = req.session.data['who-is-test-for']
+  if (subject == "Myself"){
+    res.redirect('/_csplayground/singleregistration/v1/coronavirus-account')
+  } else {
+    res.redirect('/_csplayground/singleregistration/v1/enter-barcode')
   }
 
 })
