@@ -701,7 +701,7 @@ router.post('/organisational/outer-return-box/option1/option1', function (req, r
     } else {
     res.redirect('/organisational/outer-return-box/option1/option1?error=empty')
     }
-})
+});
 
 
 
@@ -1017,5 +1017,94 @@ router.post('/organisational/test-pass/create-pass/staff/travel2', function (req
     res.redirect('/organisational/test-pass/create-pass/staff/travel2?error=empty')
     }
 });
+
+// lft/carehome-registration
+
+router.post('/organisational/lft/carehome-registration/how', function (req, res) {
+  let answer = req.body.cuUploadType;
+
+  if (answer == 'bulk') {
+    res.redirect('/organisational/lft/carehome-registration/bulk/staff')
+    } else if (answer == 'single') {
+      res.redirect('/organisational/lft/carehome-registration/single/staff')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/how?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/single/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/lft/carehome-registration/single/contact')
+    } else if (answer) {
+      res.redirect('/organisational/lft/carehome-registration/single/ethnic-desc')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/single/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/single/occupation/index', function (req, res) {
+  let answer = req.body.cuInWork;
+
+  if (answer == "Yes, and for the last 2 weeks they've worked from home") {
+    res.redirect('/organisational/lft/carehome-registration/single/occupation/area')
+  } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
+    res.redirect('/organisational/lft/carehome-registration/single/occupation/area')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/lft/carehome-registration/single/have-coronavirus')
+  } else if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/lft/carehome-registration/single/occupation/area')
+  } else {
+    res.redirect('/organisational/lft/carehome-registration/single/occupation/index?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/single/have-coronavirus', function (req, res) {
+  let answer = req.body.cuCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/lft/carehome-registration/single/when-symptoms')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/single/daily-contact-testing')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/single/have-return-box', function (req, res) {
+  let answer = req.body.outerreturnbox;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/single/return-box')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/single/add-second-test')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/single/have-return-box?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/single/add-second-test', function (req, res) {
+  let answer = req.body.secondtest;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/single/testkit-lft-route')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/single/check-pcr')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/single/add-second-test?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/single/add-another', function (req, res) {
+  let answer = req.body.addanotherperson;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/single/staff')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/single/confirm-result')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/single/add-another?error=empty')
+    }
+});
+
 
 module.exports = router

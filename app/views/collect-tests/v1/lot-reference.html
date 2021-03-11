@@ -1,0 +1,60 @@
+{% set version = "v1" %}
+{% set pageTitle = "Enter the LOT reference on the test kits" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/collect-tests/{{version}}/qr-code">Back</a>
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/collect-tests/{{version}}/site-id" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="lot-reference-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="lot-reference-hint" class="govuk-body">
+              Ask a member of staff if you are not sure. It can be found on the test kit box.
+            </span>
+            <div class="govuk-form-group govuk-!-margin-top-5">
+              <label class="govuk-label" for="lot-reference">
+                LOT reference
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="lot-reference" name="lot-reference" type="text" value="{{ data['lot-reference'] }}">
+            </div>
+            <div class="govuk-form-group govuk-!-margin-top-5">
+              <label class="govuk-label" for="confirm-lot-reference">
+                Confirm LOT reference
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="confirm-lot-reference" name="confirm-lot-reference" type="text" value="{{ data['confirm-lot-reference'] }}">
+            </div>
+          </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

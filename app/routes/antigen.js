@@ -48,42 +48,42 @@ router.post('/antigen/v2/action3/do-you-have-symptoms-person-1', function (req, 
 
 // Version 2 - Antigen Refer and Triage - When did symptoms start route
 
-router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
-  let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
-  if (yearSymptomsStarted != "2021"){
-    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
-  } else {
-    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
-  }
+// router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
+//   let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
+//   if (yearSymptomsStarted != "2021"){
+//     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
+//   } else {
+//     res.redirect('/antigen/v2/refer-and-triage/government-pilot')
+//   }
 
-})
+// })
 
 // Version 2 - Antigen Refer and Triage - When did symptoms start error route
 
-router.post('/antigen/v2/action3/when-did-symptoms-start-error', function (req, res) {
-  let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
-  if (yearSymptomsStarted != "2021"){
-    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
-  } else {
-    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
-  }
+// router.post('/antigen/v2/action3/when-did-symptoms-start-error', function (req, res) {
+//   let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
+//   if (yearSymptomsStarted != "2021"){
+//     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
+//   } else {
+//     res.redirect('/antigen/v2/refer-and-triage/government-pilot')
+//   }
 
-})
+// })
 
 // Version 2 - Antigen Refer and Triage - When did symptoms start option 2 route
 
-router.post('/antigen/v2/action3/when-did-symptoms-start-option-2', function (req, res) {
+router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
   let dateOfOnset = req.session.data['date-of-onset']
   let country = req.session.data['country']
-  if (dateOfOnset == "24 February 2021" || 
-      dateOfOnset == "23 February 2021" || 
-      dateOfOnset == "22 February 2021" || 
-      dateOfOnset == "21 February 2021" ||
-      dateOfOnset == "20 February 2021" ||
-      dateOfOnset == "19 February 2021" && country == "England" ||
-      dateOfOnset == "19 February 2021" && country == "Northern Ireland" || 
-      dateOfOnset == "18 February 2021" && country == "England" ||
-      dateOfOnset == "18 February 2021" && country == "Northern Ireland"){
+  if (dateOfOnset == "10 March 2021" || 
+      dateOfOnset == "9 February 2021" || 
+      dateOfOnset == "8 February 2021" || 
+      dateOfOnset == "7 February 2021" ||
+      dateOfOnset == "6 February 2021" ||
+      dateOfOnset == "5 February 2021" && country == "England" ||
+      dateOfOnset == "5 February 2021" && country == "Northern Ireland" || 
+      dateOfOnset == "4 February 2021" && country == "England" ||
+      dateOfOnset == "4 February 2021" && country == "Northern Ireland"){
     res.redirect('/antigen/v2/refer-and-triage/government-pilot')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/no-tests-available')
@@ -107,13 +107,12 @@ router.post('/antigen/v2/action3/follow-up-test', function (req, res) {
 
 router.post('/antigen/v2/action3/government-pilot', function (req, res) {
   let governmentPilot = req.session.data['government-pilot']
+  let whichPilot = req.session.data['professional-pilot']
   let symptoms = req.session.data['do-you-have-symptoms']
   let followUpTest = req.session.data['follow-up-test']
-  if (governmentPilot == "Yes"){
-    res.redirect('/antigen/v2/refer-and-triage/which-pilot')
-  } else if (followUpTest == "Yes") {
+  if (followUpTest == "Yes") {
     res.redirect('/antigen/v2/refer-and-triage/')
-  } else if (governmentPilot == "No" && symptoms == "No" && followUpTest == "No") {
+  } else if (governmentPilot == "No" && symptoms == "No" && followUpTest == "No" || whichPilot == "None of the above" && symptoms == "No" && followUpTest == "No") {
     res.redirect('/antigen/v2/refer-and-triage/reason-for-test')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/')
@@ -238,6 +237,24 @@ router.post('/antigen/v2/global-registration/edit-check-answers/action9/ethnic-g
 
 })
 
+router.post('/antigen/v2/global-registration/edit-check-answers-person-1/action9/ethnic-group-person-1', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group-person-1']
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/antigen/v2/global-registration/edit-check-answers-person-1/ethnic-background-asian-person-1')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers-person-1/ethnic-background-black-person-1')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers-person-1/ethnic-background-mixed-person-1')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers-person-1/ethnic-background-white-person-1')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers-person-1/ethnic-background-another-person-1')
+  } else {
+    res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
+  }
+
+})
+
 // Version 2 - Antigen Global registration - Currently in work
 
 router.post('/antigen/v2/action3/currently-in-work', function (req, res) {
@@ -258,8 +275,18 @@ router.post('/antigen/v2/action3/currently-in-work-person-1', function (req, res
   } else if (inWork == "Yes - they go to nursery, school, college or university"){
     res.redirect('/antigen/v2/global-registration/study-grade-person-1')
   } else {
-    res.redirect('/antigen/v2/global-registration/country-person-1')
+    res.redirect('/antigen/v2/global-registration/1-have-you-travelled-overseas-person-1')
   }
+})
+
+router.post('/antigen/v2/action3/1-have-you-travelled-overseas-person-1', function (req, res) {
+  let OverseasTravel = req.session.data['have-you-travelled-overseas-person-1']
+  if (OverseasTravel == "No"){
+    res.redirect('/antigen/v2/global-registration/previous-infection-person-1')
+  } else {
+    res.redirect('/antigen/v2/global-registration/1-which-countries-travelled-to-person-1')
+  }
+
 })
 
 // Version 2 - Antigen Global registration - Industry
@@ -324,6 +351,17 @@ router.post('/antigen/v2/global-registration/edit-check-answers/action9/currentl
   }
 })
 
+router.post('/antigen/v2/global-registration/edit-check-answers-person-1/action9/currently-in-work-person-1', function (req, res) {
+  let inWork = req.session.data['currently-in-work-person-1']
+  if (inWork == "Yes - they travel to a workplace"){
+    res.redirect('/antigen/v2/global-registration/edit-check-answers-person-1/industry-person-1')
+  } else if (inWork == "Yes - they go to nursery, school, college or university"){
+    res.redirect('/antigen/v2/global-registration/edit-check-answers-person-1/study-grade-person-1')
+  } else {
+    res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
+  }
+})
+
 // Version 2 - Antigen Global registration - Study grade edit check answers
 
 router.post('/antigen/v2/global-registration/edit-check-answers/action9/study-grade', function (req, res) {
@@ -366,6 +404,15 @@ router.post('/antigen/v2/global-registration/edit-check-answers/action9/coronavi
   }
 })
 
+router.post('/antigen/v2/global-registration/edit-check-answers-person-1/action9/coronavirus-vaccine-person-1', function (req, res) {
+  let vaccine = req.session.data['vaccine-person-1']
+  if (vaccine == "No"){
+    res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
+  } else {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers-person-1/coronavirus-vaccine-date-person-1')
+  }
+})
+
 // Genomic variance - route 1 edit check answers
 
 router.post('/antigen/v2/global-registration/edit-check-answers/action9/have-you-travelled-overseas', function (req, res) {
@@ -374,6 +421,16 @@ router.post('/antigen/v2/global-registration/edit-check-answers/action9/have-you
     res.redirect('/antigen/v2/global-registration/check-your-answers')
   } else {
     res.redirect('/antigen/v2/global-registration/edit-check-answers/which-countries-travelled-to')
+  }
+
+})
+
+router.post('/antigen/v2/global-registration/edit-check-answers-person-1/action9/have-you-travelled-overseas-person-1', function (req, res) {
+  let OverseasTravel = req.session.data['have-you-travelled-overseas-person-1']
+  if (OverseasTravel == "No"){
+    res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
+  } else {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers-person-1/which-countries-travelled-to-person-1')
   }
 
 })
@@ -387,6 +444,28 @@ router.post('/antigen/v2/action3/gp-address-same', function (req, res) {
   } else {
     res.redirect('/antigen/v2/global-registration/nhs-number-known')
   }
+})
+
+// Version 2 - Antigen Global Registration - address route
+
+router.post('/antigen/v2/action3/address', function (req, res) {
+  let address = req.session.data['gp-address-line-1']
+    let postcode = req.session.data['gp-postcode']
+    if (!address|| !postcode) {
+      res.redirect('/antigen/v2/global-registration/address-error')
+    } else {
+      res.redirect('/antigen/v2/global-registration/nhs-number-known')
+    }
+})
+
+router.post('/antigen/v2/action3/address-person-1', function (req, res) {
+  let addressPerson1 = req.session.data['address-person-1']
+  let postcodePerson1 = req.session.data['home-postcode-person-1']
+    if (!addressPerson1|| !postcodePerson1) {
+      res.redirect('/antigen/v2/global-registration/address-person-1-error')
+    } else {
+      res.redirect('/antigen/v2/global-registration/nhs-number-known-person-1')
+    }
 })
 
 // Version 2 - Antigen Global Registration - NHS number known route
@@ -405,7 +484,7 @@ router.post('/antigen/v2/action3/nhs-number-known-person-1', function (req, res)
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antigen/v2/global-registration/nhs-number-person-1')
   } else {
-    res.redirect('/antigen/v2/global-registration/coronavirus-vaccine-person-1')
+    res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
   }
 })
 
@@ -417,6 +496,15 @@ router.post('/antigen/v2/global-registration/edit-check-answers/action9/nhs-numb
     res.redirect('/antigen/v2/global-registration/edit-check-answers/nhs-number')
   } else {
     res.redirect('/antigen/v2/global-registration/check-your-answers')
+  }
+})
+
+router.post('/antigen/v2/global-registration/edit-check-answers-person-1/action9/nhs-number-known-person-1', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known-person-1']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/antigen/v2/global-registration/edit-check-answers-person-1/nhs-number-person-1')
+  } else {
+    res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
   }
 })
 

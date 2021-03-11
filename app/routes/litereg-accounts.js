@@ -587,13 +587,26 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
 
   // Version 2 - Lite Registration Accounts - First line of address and postcode route
 
-    router.post('/litereg-accounts/v2/action9/address', function (req, res) {
-    let emailAddress = req.session.data['email-address']
-    let password = req.session.data['password']
-    if (emailAddress != "user@testing.co.uk" && password == " " || emailAddress != "user@testing.co.uk" && password == undefined) {
-      res.redirect('/litereg-accounts/v2/email-address')
+  //   router.post('/litereg-accounts/v2/action9/address', function (req, res) {
+  //   let emailAddress = req.session.data['email-address']
+  //   let password = req.session.data['password']
+  //   if (emailAddress != "user@testing.co.uk" && password == " " || emailAddress != "user@testing.co.uk" && password == undefined) {
+  //     res.redirect('/litereg-accounts/v2/email-address')
+  //   } else {
+  //     res.redirect('/litereg-accounts/v2/email-address-account')
+  //   }
+
+  // })
+
+  // Version 2 - Lite Registration Accounts - First line of address and postcode route
+
+  router.post('/litereg-accounts/v2/action9/address', function (req, res) {
+    let address = req.session.data['address']
+    let postcode = req.session.data['home-postcode']
+    if (!address|| !postcode) {
+      res.redirect('/litereg-accounts/v2/address-error')
     } else {
-      res.redirect('/litereg-accounts/v2/email-address-account')
+      res.redirect('/litereg-accounts/v2/email-address')
     }
 
   })

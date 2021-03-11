@@ -1,0 +1,49 @@
+{% set version = "v2" %}
+{% set pageTitle = "Confirmation email" %}
+{% extends "includes/layout.html" %}
+
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+        {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Smith' }} 
+      </h1>
+
+     <h2 class="govuk-heading-m">Date of birth: {{ data['date-of-birth-day'] or '15 March 1988' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}</h2>
+
+     <p class="govuk-body">Your pass to access the test site -</p>
+     <p class="govuk-body"><strong>Have this ready to show staff when you arrive</strong></p>
+
+     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+     <div style="display: flex; justify-content: center;">
+       <img src="/public/images/test-QR.png" alt="randox number" style="height: 40%; width: 40%;" />
+     </div>
+
+     <p class="govuk-body govuk-!-margin-top-6 govuk-!-margin-bottom-8" style="text-align: center;">Pass ID: 12653234356</p>
+     
+     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+     <h2 class="govuk-heading-m">What you'll need to bring to the test site</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>a copy of your test site pass (and passes for any children getting a test) - have the QR code in the pass ready to display (on the email, printed off or as a screenshot) or it could delay your entry to the test site</li>
+      <li>photo ID - a driving licence or passport for each person getting a test</li>
+      <li>hand-sanitiser or antiseptic wipes - because we may ask you to do the test yourself, so you'll need clean hands</li>
+      <li>face coverings for each person aged 3 years and over, if you are visiting a walk-through site</li>
+    </ul>
+
+    <p class="govuk-body">You may also want to bring a bottle of water, as we cannot provide water at the test site.</p>
+
+    <h2 class="govuk-heading-m">We want to hear from you</h2>
+
+    <p class="govuk-body govuk-!-margin-bottom-8"><a class="govuk-link govuk-!-margin-right-2" href="#">What did you think of our service?</a> (takes 3 minutes)</p>
+
+    </div>
+  </div>
+
+{% endblock %}

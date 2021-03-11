@@ -24,23 +24,22 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/antigen/{{version}}/global-registration/nhs-number-known-person-1" method="post">
+      <form action="/antigen/{{version}}/action3/address-person-1" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-              What's the first line of {{ data['first-name-person-1'] | default('Jane') }} {{ data['last-name-person-1'] | default('Wilson') }}'s address and home postcode?
+              What is the home address registered with {{ data['first-name-person-1'] | default('Jane') }} {{ data['last-name-person-1'] | default('Wilson') }}'s GP?
             </h1>
           </legend>
           <span id="post-code-hint" class="govuk-body">
-            Enter the first line of the address and postcode that is registered with their GP.<br><br>
             This will help us find and update their GP record with their test result. The test does not have to be sent to this address.
           </span>
           <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6 govuk-!-margin-bottom-7" data-module="govuk-radios">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="address-1-person-1" name="address-person-1" type="radio" value="{{data['address']}}" {{ checked("address-person-1", "data['address']") }}>
+              <input class="govuk-radios__input" id="address-1-person-1" name="address-person-1" type="radio" value="Yes" {{ checked("address-person-1", "Yes") }}>
               <label class="govuk-label govuk-radios__label" for="address-1-person-1">
-                {{ data['address'] or '24 Green Lane' }} (the same as {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }})
+                {{ data['gp-address-line-1'] or '24 Green Lane' }} (the same as {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }})
               </label>
             </div>
             <div class="govuk-radios__item govuk-!-margin-bottom-6">
@@ -63,7 +62,7 @@
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="home-postcode-1-person-1" name="home-postcode-person-1" type="radio" value="Yes" {{ checked("home-postcode-person-1", "Yes") }}>
               <label class="govuk-label govuk-radios__label" for="home-postcode-1-person-1">
-                {{ data['home-postcode'] or 'LS1 3BE' }} (the same as {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }})
+                {{ data['gp-postcode'] or 'LS1 3BE' }} (the same as {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }})
               </label>
             </div>
             <div class="govuk-radios__item">

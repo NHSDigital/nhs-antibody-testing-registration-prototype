@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "What's the first line of your address and home postcode?" %}
+{% set pageTitle = "Enter the home address you registered with your GP" %}
 
 {% extends "includes/layout.html" %}
 
@@ -23,13 +23,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/litereg-accounts/{{version}}/email-address" method="post">
+      <form action="/litereg-accounts/{{version}}/action9/address" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              What's the first line of {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s address and home postcode?
+              What is the home address registered with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s GP?
               {% else %}
               {{ pageTitle }}
               {% endif %}
@@ -37,15 +37,15 @@
           </legend>
           <span id="post-code-hint" class="govuk-body">
             {% if data['whos-taking-the-test'] == "someone-else" %}
-            Enter the first line of their address and home postcode (ideally the one they gave their GP).
+            This will help us find and update their GP record with their test result.
             {% else %}
-            Enter the first line of your address and home postcode (ideally the one you gave your GP).
+            This will help us find and update your GP record with your test result.
             {% endif %}
             <br><br>
             {% if data['whos-taking-the-test'] == "someone-else" %}
-            If they do not normally live in the UK, enter the address and postcode where they're staying.
+            If they do not normally live in the UK, enter the address and postcode where they are staying.
             {% else %}
-            If you do not normally live in the UK, enter the address and postcode where you're staying.
+            If you do not normally live in the UK, enter the address and postcode where you are staying.
             {% endif %}
           </span>
           <div class="govuk-form-group govuk-!-margin-top-5">
