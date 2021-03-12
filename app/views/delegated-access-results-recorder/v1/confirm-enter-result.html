@@ -15,7 +15,7 @@
   </p>
 </div>
 
-<a class="govuk-back-link" href="/delegated-access-results-recorder/{{version}}/test-pass-qr">Back</a>
+<a class="govuk-back-link" href="/delegated-access-results-recorder/{{version}}/test-kit-qr-log">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -27,13 +27,14 @@
 
           <p class="govuk-body">
               Coventry University: Physics department<br>
-              Test pass ID: {{ data['pass-barcode-reference-1'] or 'CHE00000501' }}
+              Test pass ID: {{ data['pass-barcode-reference-1'] or 'CHE00000501' }}<br>
+              Test ID: {{ data['kit-barcode-reference-1'] or '1234DCCVV5'}}
           </p>
 
           <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible govuk-!-margin-bottom-7">
 
-          <form action="/delegated-access-results-recorder/{{version}}/check-your-answers-subject" method="post">
-            <button class="govuk-button" data-module="govuk-button">Confirm and link test</button>
+          <form action="/delegated-access-results-recorder/{{version}}/log-result" method="post">
+            <button class="govuk-button" data-module="govuk-button">Confirm and enter result now</button>
           </form>
 
     </div>
