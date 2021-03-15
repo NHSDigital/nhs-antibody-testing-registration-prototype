@@ -15,7 +15,12 @@
   </p>
 </div> 
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/do-you-have-a-car">Back</a>
+  {% if data['reason-for-test'] %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/reason-for-test">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/government-pilot">Back</a>
+  {% endif %}
+
 {% endblock %}
 
 {% block content %}
@@ -49,7 +54,7 @@
             <p class="govuk-body govuk-!-font-size-19 checkmark-white"><strong>4</strong></p>
             <p class="govuk-body govuk-!-font-size-19" style="color: #ffffff;">Book a test</p>
           </div>
-          <form action="/antigen/{{version}}/refer-and-triage/security-check" method="post">
+          <form action="/antigen/{{version}}/refer-and-triage/" method="post">
 
             <button class="govuk-button" data-module="govuk-button" style="background-color: #ffffff; color: #000000;">Continue</button>
     
@@ -60,12 +65,4 @@
     </div>
   </div>
 
-{% endblock %}
-
-{% block bodyEnd %}
-<div class="proto-action big">
-  <a href="/antigen/{{version}}/refer-and-triage/eligible-option-2">
-    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 2</div>
-  </a>
-</div>
 {% endblock %}

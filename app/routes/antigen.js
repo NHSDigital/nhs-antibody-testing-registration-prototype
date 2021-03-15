@@ -76,14 +76,14 @@ router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
   let dateOfOnset = req.session.data['date-of-onset']
   let country = req.session.data['country']
   if (dateOfOnset == "10 March 2021" || 
-      dateOfOnset == "9 February 2021" || 
-      dateOfOnset == "8 February 2021" || 
-      dateOfOnset == "7 February 2021" ||
-      dateOfOnset == "6 February 2021" ||
-      dateOfOnset == "5 February 2021" && country == "England" ||
-      dateOfOnset == "5 February 2021" && country == "Northern Ireland" || 
-      dateOfOnset == "4 February 2021" && country == "England" ||
-      dateOfOnset == "4 February 2021" && country == "Northern Ireland"){
+      dateOfOnset == "9 March 2021" || 
+      dateOfOnset == "8 March 2021" || 
+      dateOfOnset == "7 March 2021" ||
+      dateOfOnset == "6 March 2021" ||
+      dateOfOnset == "5 March 2021" && country == "England" ||
+      dateOfOnset == "5 March 2021" && country == "Northern Ireland" || 
+      dateOfOnset == "4 March 2021" && country == "England" ||
+      dateOfOnset == "4 March 2021" && country == "Northern Ireland"){
     res.redirect('/antigen/v2/refer-and-triage/government-pilot')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/no-tests-available')
@@ -115,7 +115,7 @@ router.post('/antigen/v2/action3/government-pilot', function (req, res) {
   } else if (governmentPilot == "No" && symptoms == "No" && followUpTest == "No" || whichPilot == "None of the above" && symptoms == "No" && followUpTest == "No") {
     res.redirect('/antigen/v2/refer-and-triage/reason-for-test')
   } else {
-    res.redirect('/antigen/v2/refer-and-triage/')
+    res.redirect('/antigen/v2/refer-and-triage/eligible')
   }
 
 })
@@ -127,7 +127,7 @@ router.post('/antigen/v2/action3/reason-for-test', function (req, res) {
   if (reason == "None of the above"){
     res.redirect('/antigen/v2/refer-and-triage/cannot-have-test')
   } else {
-    res.redirect('/antigen/v2/refer-and-triage/')
+    res.redirect('/antigen/v2/refer-and-triage/eligible')
   }
 
 })
