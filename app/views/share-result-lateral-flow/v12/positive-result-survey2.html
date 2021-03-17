@@ -1,5 +1,5 @@
 {% set version = "v12" %}
-{% set pageTitle = "Sorry, go to the start of the service" %}
+{% set pageTitle = "You reported a positive coronavirus test result" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -15,6 +15,7 @@
     </p>
   </div>
 
+  <!-- <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/choose-result">Back</a> -->
 {% endblock %}
 
 {% block content %}
@@ -22,18 +23,20 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="index" method="post">
+      <form action="https://www.gov.uk/get-coronavirus-test/" method="post">
 
-        <h1 class="govuk-heading-l govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+         <!-- div for include from content folder -->
+         <div id="includedContent"></div>
 
-        <p class="govuk-body">You have followed a link to the middle of this service. You need to start from the beginning.</p>
+       </form>
+     </div>
+   </div>
 
-        <br>
-        <button class="govuk-button" data-module="govuk-button">Report result</button>
-
-      </form>
-
-    </div>
-  </div>
+   <!-- corresponding html file name included from content folder -->
+   <script>
+     $(function(){
+       $("#includedContent").load("../content/positive-result-survey2.html");
+     });
+   </script>
 
 {% endblock %}
