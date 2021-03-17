@@ -1,0 +1,50 @@
+{% set version = "v1" %}
+{% set pageTitle = "Subject linked to test" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
+      <p class="govuk-body" style="color: #ffffff">
+        <span class="govuk-!-font-size-24">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</span><br>
+        <span class="govuk-!-font-size-24">{{ data['kit-barcode-reference-1'] or 'M10097629' }}</span>
+      </p>
+    </div>
+
+    <div class="inline-buttons-wrapper">
+        <form action="/delegated-access-results-recorder/{{version}}/log-result" method="post" class="govuk-!-margin-top-8" novalidate>
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Enter test result now
+            </button>
+        </form>
+        <form action="/delegated-access-results-recorder/{{version}}/test-pass-qr" method="post" class="govuk-!-margin-top-8" novalidate>
+            <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Check someone else in
+            </button>
+        </form>
+    </div>  
+
+    <p class="govuk-body"><a href="/delegated-access-results-recorder/{{version}}/" class="govuk-link">Exit</a></p>
+
+  </div>
+</div>
+
+{% endblock %}

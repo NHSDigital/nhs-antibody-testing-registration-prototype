@@ -1,0 +1,58 @@
+{% set version = "v1" %}
+{% set pageTitle = "Scan the test pass QR code" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+<!-- <form action="/delegated-access-results-recorder/{{version}}/" method="post" novalidate>
+  <input style="display: none;" class="govuk-input govuk-!-width-two-thirds" id="operative-action-1" name="operative-action-1" type="text" value="" >
+  <input style="display: none;" class="govuk-input govuk-!-width-two-thirds" id="operative-action-2" name="operative-action-2" type="text" value="" >
+  <button type="submit" class="govuk-back-link reset-back-link" data-module="govuk-button">
+    <u>Back</u>
+  </button>
+</form> -->
+
+<a class="govuk-back-link" href="/delegated-access-results-recorder/{{version}}/">Back</a>
+  
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+  
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+        <p class="govuk-body">Position the QR code so it fits inside the square on your mobile or computer's camera.</p>
+
+        <div>
+          <img src="/public/images/code-scan.png" alt="camera view" width="100%" />
+        </div>
+        
+        <a href="/delegated-access-results-recorder/{{version}}/test-pass-manual" role="button" draggable="false" class="govuk-button govuk-button--secondary govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
+          Enter pass ID manually
+        </a>
+  
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action big">
+  <a href="/delegated-access-results-recorder/{{version}}/confirm-and-link">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Continue</div>
+  </a>
+</div>
+{% endblock %}

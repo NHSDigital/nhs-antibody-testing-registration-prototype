@@ -26,10 +26,10 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">Check your answers for {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}</h1>
 
       <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Personal details</h2>
-      <p class="govuk-body">Check that your personal details are correct. You can change them if they are not.</p>
+      <p class="govuk-body">Check these personal details are correct. You can change them if they are not.</p>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
@@ -124,7 +124,7 @@
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/gender-person-1">
               Change
-              <span class="govuk-visually-hidden">medical record</span>
+              <span class="govuk-visually-hidden">gender</span>
             </a>
           </dd>
         </div>
@@ -150,7 +150,7 @@
             {% if data['nhs-number-known-person-1'] == "Yes" %}
             {{ data['nhs-number-person-1'] }}
             {% else %}
-            I don't know their NHS number
+            Not known
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
@@ -163,7 +163,7 @@
       </dl>
 
       <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Vaccination and travel history</h2>
-      <p class="govuk-body">If your test is positive, we may use this information for contact tracing.</p>
+      <p class="govuk-body">If their test is positive, we may use this information for contact tracing.</p>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
@@ -258,7 +258,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Travelled Overseas
+            Travelled overseas
           </dt>
           {% if data['have-you-travelled-overseas-person-1'] !== "Yes" %}
           <dd class="govuk-summary-list__value">No
