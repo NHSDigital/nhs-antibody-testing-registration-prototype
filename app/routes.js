@@ -604,7 +604,7 @@ router.post('/antigen/v1/action3/nhs-number-known-person-1', function (req, res)
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antigen/v1/global-registration/nhs-number-person-1')
   } else {
-    res.redirect('/antigen/v1/global-registration/vaccine-person-1')
+    res.redirect('/antigen/v1/global-registration/check-your-answers-person-1')
   }
 
 })
@@ -627,7 +627,7 @@ router.post('/antigen/v1/action4/work-or-study-person-1', function (req, res) {
 router.post('/antigen/v1/action3/have-you-travelled-overseas-person-1', function (req, res) {
   let OverseasTravel = req.session.data['have-you-travelled-overseas']
   if (OverseasTravel == "No"){
-    res.redirect('/antigen/v1/global-registration/vaccine')
+    res.redirect('/antigen/v1/global-registration/previous-infection-person-1')
   } else {
     res.redirect('/antigen/v1/global-registration/which-countries-travelled-to-person-1')
   }
