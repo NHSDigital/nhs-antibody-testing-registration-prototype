@@ -40,37 +40,45 @@
 
       <form class="" action="/{{ version }}/single/daily-contact-testing" method="get">
 
-        {{ govukDateInput({
-            id: "covidUpload",
-            namePrefix: "cuSymptomsStart",
-            fieldset: {
-              legend: {
-                html: pageHeading,
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--xl"
-              }
-            },
-            hint: {
-              html: "<p>Enter the date. If you cannot remember the exact date, enter the date you think it was, roughly.</p><p>Use the format DD MM YYYY, for example 15 04 2020</p>"
-            },
-            items: [
-              {
-                name: "day",
-                classes: "govuk-input--width-2",
-                autocomplete: "symptom-day"
-              },
-              {
-                name: "month",
-                classes: "govuk-input--width-2",
-                autocomplete: "symptom-month"
-              },
-              {
-                name: "year",
-                classes: "govuk-input--width-4",
-                autocomplete: "symptom-year"
-              }
-            ]
-          }) }}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl">
+                {{ pageHeading }}
+              </h1>
+            </legend>
+          <p>Enter the date. If you cannot remember the exact date, enter the date you think it was, roughly.</p>
+            <div id="passport-issued-hint" class="govuk-hint">
+              Use the format DD MM YYYY, for example 15 4 2020
+            </div>
+            <div class="govuk-date-input" id="passport-issued">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+              </div>
+            </div>
+
+          </fieldset>
+        </div>
+      
 
         <input class="govuk-button" type="submit" value="Continue">
 

@@ -1,4 +1,5 @@
 {% set version = "v3" %}
+<<<<<<< HEAD
 <!DOCTYPE html>
   <html lang="en" style="background-color: #f3f2f1;">
     <head>
@@ -36,9 +37,13 @@
                         </div>
                       </div>
                   {% endif %}
+=======
+{% set pageTitle = "Test and Trace account" %}
+>>>>>>> ed6fe74704a850a32e59e67aeba9c57ddf76341d
 
-                <div class="govuk-grid-column-two-thirds govuk-!-padding-left-0 govuk-!-padding-right-0 govuk-!-padding-bottom-7">
+{% extends "includes/layout.html" %}
 
+<<<<<<< HEAD
                     {% if data['email-address'] == "user@testing.co.uk" %}
                     <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}</h1>
                     <p class="govuk-hint govuk-!-margin-bottom-4">Date of birth: {{ data['date-of-birth-day'] | default('13') }} {{ data['date-of-birth-month'] | default('June') }} {{ data['date-of-birth-year'] | default('1990') }}</p>
@@ -75,14 +80,72 @@
                         </button>
                       </form>
                     </div>
+=======
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+>>>>>>> ed6fe74704a850a32e59e67aeba9c57ddf76341d
 
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+          {% if data['email-address'] == "user@testing.co.uk" %}
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ data['first-name'] or "Bob" }} {{ data['last-name'] or "Smith" }}</h1>
+          <p class="govuk-hint govuk-!-margin-bottom-4">Date of birth: {{ data['date-of-birth-day'] | default('13') }} {{ data['date-of-birth-month'] | default('June') }} {{ data['date-of-birth-year'] | default('1990') }}</p>
+          {% else %}
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">Welcome to your Test and Trace account</h1>
+          {% endif %}
+
+          <div style="padding: 0">
+            <form action="/lfd-home-ordering/{{version}}/user-account/action10/home-page" method="post">
+              <button class="govuk-!-margin-bottom-4 account-home-button">
+                <div>
+                  <p class="govuk-!-margin-bottom-2">
+                    <strong style="color: #005eb8">Register a test</strong>
+                  </p>
+                  <p class="govuk-!-margin-bottom-0">
+                    Register to make sure you get your test results sent to you
+                  </p>
                 </div>
-            </div>
+              </button>
+            </form>
           </div>
+<<<<<<< HEAD
         </main>
       </div>
       {% include "includes/footer.html" %}
 
+=======
+>>>>>>> ed6fe74704a850a32e59e67aeba9c57ddf76341d
 
-    </body>
-  </html>
+          <div style="padding: 0">
+            <form action="/lfd-home-ordering/{{version}}/user-account/edit-personal-details/home-page" method="post">
+              <button class="govuk-!-margin-bottom-4 account-home-button">
+                <div>
+                  <p class="govuk-!-margin-bottom-2">
+                    <strong style="color: #005eb8">Change your NHS login details</strong>
+                  </p>
+                  <p class="govuk-!-margin-bottom-0">
+                    Update the email address, mobile number and password you use to log in
+                  </p>
+                </div>
+              </button>
+            </form>
+          </div>
+
+    </div>
+  </div>
+
+{% endblock %}
