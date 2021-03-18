@@ -1,0 +1,107 @@
+{% set version = "v2" %}
+{% set pageTitle = "Registration confirmed" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
+    </div>
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-5">Your test site pass</h2>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+          <th scope="col" class="govuk-table__header govuk-!-width-two-quarters"></th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">
+            {{ data['first-name'] | default('Bob') }} {{ data['last-name'] | default('Smith') }}
+          </th>
+          <td class="govuk-table__cell">
+            {{ data['email-address'] or 'bsmith@testing.co.uk' }}<br>
+            {{ data['mobile-phone-number'] or '+4478353335' }}<br>
+            Test site entry code: 040920Gatwick1234
+          </td>
+          <td class="govuk-table__cell">
+            <a href="#">
+              View or print pass
+              <span class="govuk-visually-hidden">view or print pass</span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="govuk-body">
+      If you provided an email address, the pass has also been emailed to you.<br><br>
+      When you arrive at the test site, you'll need to show the pass to get tested. You can show them your email pass, or a screenshot or printout of the QR code.<br><br>
+      If you cannot show your QR code, you can instead:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>show the text message we will send you confirming your appointment booking</li>
+      <li>give your date of birth</li>
+    </ul>
+
+    <p class="govuk-body">
+      But if you can, show your QR code as this makes entry easier and quicker.<br><br>
+    </p>
+    
+    <h2 class="govuk-heading-m">We want to hear from you</h2>
+
+    <p class="govuk-body govuk-!-margin-bottom-8"><a class="govuk-link govuk-!-margin-right-2" href="#">What did you think of our service?</a> (takes 3 minutes)</p>
+
+    {% if data['coronavirus-account'] == "Yes" %}
+    <div class="inline-buttons-wrapper">
+      <form action="#" method="post" novalidate>
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Go to my NHS account
+        </button>
+      </form>
+      <form action="/pre-registration/{{version}}/whos-taking-the-test" method="post" novalidate>
+        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Register someone else
+        </button>
+      </form>
+    </div>
+    {% else %}
+    <form action="/pre-registration/{{version}}/whos-taking-the-test" method="post" novalidate>
+      <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Register someone else
+      </button>
+    </form>
+    {% endif %}
+
+  </div>
+</div>
+
+<div class="proto-action big" style="height: auto;">
+  <a href="/pre-registration/{{version}}/confirmation-email">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to confirmation email</div>
+  </a>
+</div>
+
+{% endblock %}
