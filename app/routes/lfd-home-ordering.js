@@ -329,6 +329,18 @@ if (password == "" || confirmPassword == "") {
 }
 })
 
+router.post('/lfd-home-ordering/v3/action10/name', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+  let nhsAccount = req.session.data['coronavirus-account']
+  
+  if (loginEmail !== "user@testing.co.uk" && nhsAccount == "Yes"){
+    res.redirect('/lfd-home-ordering/v3/date-of-birth')
+  } else {
+    res.redirect('/lfd-home-ordering/v3/email-address')
+  }
+  
+  })
+
 router.post('/lfd-home-ordering/v3/action/check-your-answers', function (req, res) {
   let testChoice = req.session.data['test-choice']
   if (testChoice == "I want to collect tests") {
