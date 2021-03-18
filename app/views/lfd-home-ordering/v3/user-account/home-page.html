@@ -9,7 +9,7 @@
       {% include "includes/gtm-noscript.html" %}
       {% include "includes/header-account-static.html" %}
       <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-      
+
       <div class="wrapper" id="wrapper">
         <main id="content" role="main" class="content ">
           <div class="govuk-width-container covid__page" data-module="coronavirus-landing-page">
@@ -23,6 +23,19 @@
                       </span>
                     </p>
                   </div>
+                  {% if data['email-address'] == "user@testing.co.uk" %}
+                    <div class="govuk-phase-banner govuk-!-margin-bottom-7" style="margin-top: -40px;">
+                        <p class="govuk-phase-banner__content" style="line-height: 35px">
+                          <span class="govuk-phase-banner__text">
+                            Signed in as <strong>{{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}</strong>
+                          </span>
+                        </p>
+                        <div style="float: right; margin-top: -30px">
+                          <a href="/lfd-home-ordering/{{version}}/user-account/edit-personal-details/home-page" style="margin-right: 20px">Edit login details</a>
+                          <a href="/lfd-home-ordering/{{version}}/order-home-test">Sign out</a>
+                        </div>
+                      </div>
+                  {% endif %}
 
                 <div class="govuk-grid-column-two-thirds govuk-!-padding-left-0 govuk-!-padding-right-0 govuk-!-padding-bottom-7">
 
@@ -32,7 +45,7 @@
                     {% else %}
                     <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">Welcome to your Test and Trace account</h1>
                     {% endif %}
-          
+
                     <div>
                       <form action="/lfd-home-ordering/{{version}}/user-account/action10/home-page" method="post">
                         <button class="govuk-!-margin-bottom-4 account-home-button govuk-!-padding-3">
@@ -47,7 +60,7 @@
                         </button>
                       </form>
                     </div>
-          
+
                     <div>
                       <form action="/lfd-home-ordering/{{version}}/user-account/edit-personal-details/home-page" method="post">
                         <button class="govuk-!-margin-bottom-4 account-home-button govuk-!-padding-3">
@@ -69,7 +82,7 @@
         </main>
       </div>
       {% include "includes/footer.html" %}
-      
+
 
     </body>
   </html>

@@ -14,7 +14,19 @@
       </span>
     </p>
   </div>
-
+  {% if data['email-address'] == "user@testing.co.uk" %}
+    <div class="govuk-phase-banner govuk-!-margin-bottom-7" style="margin-top: -40px;">
+        <p class="govuk-phase-banner__content" style="line-height: 35px">
+          <span class="govuk-phase-banner__text">
+            Signed in as <strong>{{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}</strong>
+          </span>
+        </p>
+        <div style="float: right; margin-top: -30px">
+          <a href="/lfd-home-ordering/{{version}}/user-account/edit-personal-details/home-page" style="margin-right: 20px">Edit login details</a>
+          <a href="/lfd-home-ordering/{{version}}/order-home-test">Sign out</a>
+        </div>
+      </div>
+  {% endif %}
   <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/test-choice">Back</a>
 
 {% endblock %}
@@ -37,7 +49,7 @@
 
         <p class="govuk-body govuk-!-margin-bottom-7">
             <a targeet="blank" class="govuk-link" href="https://find-covid-19-rapid-test-sites.maps.test-and-trace.nhs.uk/">Find your local community assisted test site</a> and check to see if you need to make an appointment
-        </p>  
+        </p>
 
         <div class="govuk-warning-text">
             <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
