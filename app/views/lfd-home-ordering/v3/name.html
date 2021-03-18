@@ -14,6 +14,19 @@
     </span>
   </p>
 </div>
+{% if data['email-address'] == "user@testing.co.uk" %}
+  <div class="govuk-phase-banner govuk-!-margin-bottom-7" style="margin-top: -40px;">
+      <p class="govuk-phase-banner__content" style="line-height: 35px">
+        <span class="govuk-phase-banner__text">
+          Signed in as <strong>{{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}</strong>
+        </span>
+      </p>
+      <div style="float: right; margin-top: -30px">
+        <a href="/lfd-home-ordering/{{version}}/user-account/edit-personal-details/home-page" style="margin-right: 20px">Edit login details</a>
+        <a href="/lfd-home-ordering/{{version}}/order-home-test">Sign out</a>
+      </div>
+    </div>
+{% endif %}
 {% if data['coronavirus-account'] == "Yes" %}
 <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/user-account/home-page">Back</a>
 {% else %}
@@ -32,7 +45,7 @@
       <form action="/lfd-home-ordering/{{version}}/email-address" method="post">
 
         <fieldset class="govuk-fieldset">
-        
+
           <div class="govuk-form-group">
             <label class="govuk-label" for="first-name">
               First name
@@ -46,7 +59,7 @@
             </label>
             <input class="govuk-input govuk-!-width-two-thirds" id="last-name" name="last-name" type="text" value="{{ data['last-name'] }}">
           </div>
-        
+
         </fieldset>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>

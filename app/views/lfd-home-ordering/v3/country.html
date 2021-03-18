@@ -14,9 +14,21 @@
       </span>
     </p>
   </div>
-
+  {% if data['email-address'] == "user@testing.co.uk" %}
+    <div class="govuk-phase-banner govuk-!-margin-bottom-7" style="margin-top: -40px;">
+        <p class="govuk-phase-banner__content" style="line-height: 35px">
+          <span class="govuk-phase-banner__text">
+            Signed in as <strong>{{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}</strong>
+          </span>
+        </p>
+        <div style="float: right; margin-top: -30px">
+          <a href="/lfd-home-ordering/{{version}}/user-account/edit-personal-details/home-page" style="margin-right: 20px">Edit login details</a>
+          <a href="/lfd-home-ordering/{{version}}/order-home-test">Sign out</a>
+        </div>
+      </div>
+  {% endif %}
   <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/do-you-have-symptoms">Back</a>
-  
+
 {% endblock %}
 
 {% block content %}
@@ -25,7 +37,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="/lfd-home-ordering/{{version}}/action10/country" method="post">
-      
+
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
