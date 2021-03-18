@@ -1100,7 +1100,7 @@ router.post('/organisational/lft/carehome-registration/single/add-another', func
   if (answer == 'yes') {
     res.redirect('/organisational/lft/carehome-registration/single/staff')
   } else if (answer == 'no') {
-      res.redirect('/organisational/lft/carehome-registration/single/confirm-result')
+      res.redirect('/organisational/lft/carehome-registration/single/single-check')
     } else {
     res.redirect('/organisational/lft/carehome-registration/single/add-another?error=empty')
     }
