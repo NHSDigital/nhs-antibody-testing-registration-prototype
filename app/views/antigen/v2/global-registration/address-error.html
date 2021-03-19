@@ -33,16 +33,9 @@
       </h2>
       <div class="govuk-error-summary__body">
         <ul class="govuk-list govuk-error-summary__list">
-          {% if data['gp-address-line-1'] == undefined or data['gp-address-line-1'] == "" %}
-          <li>
-            <a href="#error-1">Enter the first line of address</a>
-          </li>
-          {% endif %}
-          {% if data['gp-postcode'] == undefined or data['gp-postcode'] == "" %}
           <li>
             <a href="#error-2">Enter a UK postcode</a>
           </li>
-          {% endif %}
         </ul>
       </div>
     </div>
@@ -60,27 +53,6 @@
           <span id="post-code-hint" class="govuk-body">
             This will help us find and update their GP record with their test result. The test does not have to be sent to this address.
           </span>
-          {% if data['gp-address-line-1'] == undefined or data['gp-address-line-1'] == "" %}
-          <div class="govuk-form-group govuk-form-group--error govuk-!-margin-top-5">
-            <label class="govuk-label" for="gp-address-line-1">
-              First line of address<br>
-              <!-- <span class="govuk-hint">For example: 'Flat 1, 10 Smith Avenue'</span> -->
-            </label>
-            <span id="address-error" class="govuk-error-message">
-              <span class="govuk-visually-hidden">Error:</span> Enter the first line of address
-            </span>
-            <input class="govuk-input govuk-input--error govuk-!-width-one-half" id="gp-address-line-1" name="gp-address-line-1" type="text" autocomplete="address-line-1" value="{{ data['gp-address-line-1'] }}">
-          </div>
-          {% else %}
-          <div class="govuk-form-group govuk-!-margin-top-5">
-            <label class="govuk-label" for="gp-address-line-1">
-              First line of address<br>
-              <!-- <span class="govuk-hint">For example: 'Flat 1, 10 Smith Avenue'</span> -->
-            </label>
-            <input class="govuk-input govuk-!-width-one-half" id="gp-address-line-1" name="gp-address-line-1" type="text" autocomplete="address-line-1" value="{{ data['gp-address-line-1'] }}">
-          </div>
-          {% endif %}
-          {% if data['gp-postcode'] == undefined or data['gp-postcode'] == "" %}
           <div class="govuk-form-group govuk-form-group--error govuk-!-margin-top-5">
             <label class="govuk-label" for="gp-postcode">
               Postcode
@@ -91,15 +63,6 @@
             <input class="govuk-input govuk-input--error govuk-input--width-10" id="gp-postcode" name="gp-postcode" type="text" autocomplete="postal-code" value="{{ data['gp-postcode'] }}">
           </div>
         </div>
-          {% else %}
-          <div class="govuk-form-group govuk-!-margin-top-5">
-            <label class="govuk-label" for="gp-postcode">
-              Postcode
-            </label>
-            <input class="govuk-input govuk-input--width-10" id="gp-postcode" name="gp-postcode" type="text" autocomplete="postal-code" value="{{ data['gp-postcode'] }}">
-          </div>
-        </div>
-        {% endif %}
 
         <!-- <div id="content-2" style="display:none"">
           <span id="post-code-hint" class="govuk-body">
