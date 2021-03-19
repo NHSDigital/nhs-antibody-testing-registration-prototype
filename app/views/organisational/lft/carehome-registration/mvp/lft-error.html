@@ -59,21 +59,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
-        <h2 class="govuk-error-summary__title" id="error-summary-title">
-          There is a problem
-        </h2>
-        <div class="govuk-error-summary__body">
-          <ul class="govuk-list govuk-error-summary__list">
-            <li>
-              <a href="#passport-issued-error">Incorrect test type or test kit barcode entered in spreadsheet</a>
-            </li>
-            <li>
-              <a href="#postcode-error"> Please enter a lateral flow test kit barcode or re-upload the spreadsheet with the correct test type entered</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+
+      {{ govukErrorSummary({
+  "titleText": "There is a problem",
+  "errorList": [
+    {
+      "text": "Enter your full name",
+      "href": "#cuTestKitCode1"
+    }
+  ]
+}) }}
 
       <h1 class="govuk-heading-xl">
         {{ pageHeading | safe }}
@@ -113,13 +108,14 @@
                     text: "Test kit barcode",
                     classes: "govuk-!-font-size-16 govuk-!-font-weight-bold govuk-!-margin-bottom-3"
                   },
-                  classes: "govuk-input--width-10",
-                  value: "C70268320",
+
                   id: "cuTestKitCode1",
                   name: "cuTestKitCode1",
                   errorMessage: {
-                  text: "PCR test reference"
-                  }
+                  text: "Incorrect lateral flow test barcode"
+                  },
+                  classes: "govuk-input--width-10 govuk-input--error",
+                  value: "C70268320"
                 }) }}
               </div>
 
