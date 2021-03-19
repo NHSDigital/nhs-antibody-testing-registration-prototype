@@ -59,19 +59,6 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
-        <h2 class="govuk-error-summary__title" id="error-summary-title">
-          There is a problem
-        </h2>
-        <div class="govuk-error-summary__body">
-          <ul class="govuk-list govuk-error-summary__list">
-            <li>
-              <a href="#passport-issued-error">Enter a correct PCR test barcode for Alun Smith</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
       <h1 class="govuk-heading-xl">
         {{ pageHeading | safe }}
       </h1>
@@ -88,7 +75,7 @@
       <ul class="card-table">
 
 
-        <li class="card-table__item card-table__item--error" id="entry-1">
+        <li class="card-table__item" id="entry-1">
           <div class="card-table__form">
 
           <div class="card-table__form-column column-8">
@@ -111,10 +98,7 @@
                 classes: "govuk-input--width-10",
                 value: "AAA12312312",
                 id: "cuTestKitCode1",
-                name: "cuTestKitCode1",
-                errorMessage: {
-                text: "Enter a correct PCR barcode"
-                }
+                name: "cuTestKitCode1"
               }) }}
             </div>
 
@@ -235,7 +219,7 @@
 
               <div class="card-table__form-column column-8">
                   <dl class="card-table__summary">
-                    <dt class="govuk-visually-hidden">Name</dt>
+                    <dt>Name</dt>
                     <dd>{{ item.name }}</dd>
                     <dd class="dob">{{ item.dob }}</dd>
                     <dd>
@@ -248,7 +232,7 @@
                   {{ govukInput({
                     label: {
                       text: "Test kit barcode",
-                      classes: "govuk-!-font-size-16"
+                      classes: "govuk-!-font-size-16 govuk-!-font-weight-bold"
                     },
                     classes: "govuk-input--width-10",
                     value: "AAA12312312",
@@ -261,7 +245,7 @@
                   <div class="govuk-form-group">
                     <fieldset class="govuk-fieldset" role="group">
 
-                      <legend class="govuk-fieldset__legend govuk-!-font-size-16 govuk-!-font-weight-bold govuk-visually-hidden">
+                      <legend class="govuk-fieldset__legend govuk-!-font-size-16 govuk-!-font-weight-bold">
 
                         Date of swab test
 
@@ -313,7 +297,7 @@
                   {% call govukFieldset({
                     legend: {
                       text: "Time of swab test",
-                      classes: "govuk-!-font-size-16 govuk-!-font-weight-bold govuk-visually-hidden",
+                      classes: "govuk-!-font-size-16 govuk-!-font-weight-bold",
                       isPageHeading: false
                     }
                   }) %}
@@ -353,13 +337,16 @@
               </div>
             </li>
           {% endfor %}
+
+
+
       </ul>
-<br>
-            <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-              Re-upload spreadsheet
-            </button>
 
       <h2 class="govuk-heading-m govuk-!-margin-top-6">Confirm records 1 to 10 of 10</h2>
+
+
+
+
 
         {{ govukCheckboxes({
           idPrefix: "covidUploadCheckbox",
@@ -371,10 +358,8 @@
             }
           ]
         }) }}
-
-        <button disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled" data-module="govuk-button">
-Continue
-</button>
+          <input class="govuk-button" type="submit" value="Save and continue">
+      </form>
 
     </div>
   </div>
