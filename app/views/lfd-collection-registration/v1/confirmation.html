@@ -1,0 +1,97 @@
+set version = "v1" %}
+{% set pageTitle = "You can now collect your tests" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['coronavirus-account'] == "Yes" %}
+  {% include "includes/account-menu.html" %}
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-8">
+      <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
+      <p class="govuk-body" style="color: #ffffff">
+        You can view your collection pass below. Each collection pass contains a QR code and an ID number.
+      </p>
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+      <img src="/public/images/QR_code.png" alt="randox number" style="height: 20%; width: 20%;" />
+    </div>
+
+    <p class="govuk-body govuk-!-margin-top-6 govuk-!-margin-bottom-8" style="text-align: center;">Pass ID: 12653234356</p>
+    
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+    <p class="govuk-body govuk-!-margin-top-4"><strong>{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</strong></p>
+    <p class="govuk-body">{{ data['email-address'] or 'name@email.com' }}<br>
+      {{ data['mobile-phone-number'] or '07472398473' }}</p>
+
+    <p class="govuk-body"><a href="#">View or print pass</a></p>
+
+    <hr>
+
+    <h3 class="govuk-heading-s govuk-!-margin-top-6">What happens next</h3>
+    <p class="govuk-body">
+        You will get an email confirmation and SMS soon.<br><br>
+        Take your collection pass above, or your confirmation email or SMS with you to collect your test kits.<br><br>
+        If you need to check again, you can <a class="govuk-body" href="#">find your local collection site here</a>.
+    </p>
+
+    <h3 class="govuk-heading-s govuk-!-margin-top-4">What's in the test pack</h3>
+    <p class="govuk-body">
+        Each pack contains:
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>7 rapid lateral flow tests</li>
+      <li>instructions on how to take the test</li>
+      <li>instructions on how to report each result to the NHS</li>
+    </ul>
+
+    <h3 class="govuk-heading-s govuk-!-margin-top-4">After you've collected your test pack</h3>
+    <p class="govuk-body">
+        Your household should:
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>take a test twice a week (every 3 or 4 days apart)</li>
+      <li>report every result to the NHS on the same day you take the test</li>
+    </ul>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="#">Watch a short video: how to take rapid test</a><br>
+      <a class="govuk-link" href="#">Get test instructions in other languages or easy read and large print format</a><br>
+      <a class="govuk-link" href="#">Reporting your results to the NHS</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action" style="width: 150px;">
+  <a href="/lfd-collection-registration/v1/confirmation-email">
+    <div class="proto-action-text govuk-!-margin-left-3">Confirmation email</div>
+  </a>
+</div>
+
+{% endblock %}
