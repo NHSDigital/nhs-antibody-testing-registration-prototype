@@ -1215,9 +1215,9 @@ if (securityCode == "") {
   router.post('/share-result-lateral-flow/v16/action9/whos-taking-the-test', function (req, res) {
     let person = req.session.data['whos-taking-the-test']
     if (person == "myself") {
-      res.redirect('/share-result-lateral-flow/v15/coronavirus-account')
+      res.redirect('/share-result-lateral-flow/v16/coronavirus-account')
     } else {
-      res.redirect('/share-result-lateral-flow/v15/home-org-use')
+      res.redirect('/share-result-lateral-flow/v16/home-org-use')
     }
   })
 
@@ -1227,9 +1227,9 @@ router.post('/share-result-lateral-flow/v16/action9/create-password', function (
 let password = req.session.data['password']
 let confirmPassword = req.session.data['confirm-password']
 if (password == "" || confirmPassword == "") {
-  res.redirect('/share-result-lateral-flow/v15/user-account/create-password-error')
+  res.redirect('/share-result-lateral-flow/v16/user-account/create-password-error')
 } else {
-  res.redirect('/share-result-lateral-flow/v15/user-account/check-email')
+  res.redirect('/share-result-lateral-flow/v16/user-account/check-email')
 }
 })
 
@@ -1237,9 +1237,9 @@ if (password == "" || confirmPassword == "") {
 router.post('/share-result-lateral-flow/v16/action9/check-mobile', function (req, res) {
 let securityCode = req.session.data['security-code']
 if (securityCode == "") {
-  res.redirect('/share-result-lateral-flow/v15/user-account/check-mobile-error')
+  res.redirect('/share-result-lateral-flow/v16/user-account/check-mobile-error')
 } else {
-  res.redirect('/share-result-lateral-flow/v15/user-account/agreement')
+  res.redirect('/share-result-lateral-flow/v16/user-account/agreement')
 }
 })
 
