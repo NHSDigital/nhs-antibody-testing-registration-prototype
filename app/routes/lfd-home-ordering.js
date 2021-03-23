@@ -290,9 +290,9 @@ router.post('/lfd-home-ordering/v3/action10/work-from-home', function (req, res)
 
 router.post('/lfd-home-ordering/v3/action10/test-choice', function (req, res) {
   let testChoice = req.session.data['test-choice']
-  if (testChoice == "I want to take a test at a community assisted test site" ) {
+  if (testChoice == "Get a one off test at a community test site" ) {
     res.redirect('/pre-registration/v1/')
-  } else if (testChoice == "I want to collect tests" ) {
+  } else if (testChoice == "Collect tests to take home" ) {
     res.redirect('/lfd-collection-registration/v1/nhs-account')
   } else {
     res.redirect('/lfd-home-ordering/v3/coronavirus-account')
