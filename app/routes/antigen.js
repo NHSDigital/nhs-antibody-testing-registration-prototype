@@ -75,15 +75,15 @@ router.post('/antigen/v2/action3/do-you-have-symptoms-person-1', function (req, 
 router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
   let dateOfOnset = req.session.data['date-of-onset']
   let country = req.session.data['country']
-  if (dateOfOnset == "10 March 2021" || 
-      dateOfOnset == "9 March 2021" || 
-      dateOfOnset == "8 March 2021" || 
-      dateOfOnset == "7 March 2021" ||
-      dateOfOnset == "6 March 2021" ||
-      dateOfOnset == "5 March 2021" && country == "England" ||
-      dateOfOnset == "5 March 2021" && country == "Northern Ireland" || 
-      dateOfOnset == "4 March 2021" && country == "England" ||
-      dateOfOnset == "4 March 2021" && country == "Northern Ireland"){
+  if (dateOfOnset == "23 March 2021" || 
+      dateOfOnset == "22 March 2021" || 
+      dateOfOnset == "21 March 2021" || 
+      dateOfOnset == "20 March 2021" ||
+      dateOfOnset == "19 March 2021" ||
+      dateOfOnset == "18 March 2021" && country == "England" ||
+      dateOfOnset == "18 March 2021" && country == "Northern Ireland" || 
+      dateOfOnset == "17 March 2021" && country == "England" ||
+      dateOfOnset == "17 March 2021" && country == "Northern Ireland"){
     res.redirect('/antigen/v2/refer-and-triage/government-pilot')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/no-tests-available')
