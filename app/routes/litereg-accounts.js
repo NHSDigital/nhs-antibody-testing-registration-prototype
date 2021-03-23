@@ -1188,7 +1188,7 @@ if (securityCode == "") {
     }
   })
 
-// Version 13 - LDF self report accounts - Create password route
+// Version 15 - LDF self report accounts - Create password route
 
 router.post('/share-result-lateral-flow/v15/action9/create-password', function (req, res) {
 let password = req.session.data['password']
@@ -1200,8 +1200,41 @@ if (password == "" || confirmPassword == "") {
 }
 })
 
-// Version 13 - LDF self report accounts - check mobile route
+// Version 15 - LDF self report accounts - check mobile route
 router.post('/share-result-lateral-flow/v15/action9/check-mobile', function (req, res) {
+let securityCode = req.session.data['security-code']
+if (securityCode == "") {
+  res.redirect('/share-result-lateral-flow/v15/user-account/check-mobile-error')
+} else {
+  res.redirect('/share-result-lateral-flow/v15/user-account/agreement')
+}
+})
+
+// Version 16 - LDF self report accounts - Who's taking the test route
+
+  router.post('/share-result-lateral-flow/v16/action9/whos-taking-the-test', function (req, res) {
+    let person = req.session.data['whos-taking-the-test']
+    if (person == "myself") {
+      res.redirect('/share-result-lateral-flow/v15/coronavirus-account')
+    } else {
+      res.redirect('/share-result-lateral-flow/v15/home-org-use')
+    }
+  })
+
+// Version 16 - LDF self report accounts - Create password route
+
+router.post('/share-result-lateral-flow/v16/action9/create-password', function (req, res) {
+let password = req.session.data['password']
+let confirmPassword = req.session.data['confirm-password']
+if (password == "" || confirmPassword == "") {
+  res.redirect('/share-result-lateral-flow/v15/user-account/create-password-error')
+} else {
+  res.redirect('/share-result-lateral-flow/v15/user-account/check-email')
+}
+})
+
+// Version 16 - LDF self report accounts - check mobile route
+router.post('/share-result-lateral-flow/v16/action9/check-mobile', function (req, res) {
 let securityCode = req.session.data['security-code']
 if (securityCode == "") {
   res.redirect('/share-result-lateral-flow/v15/user-account/check-mobile-error')
