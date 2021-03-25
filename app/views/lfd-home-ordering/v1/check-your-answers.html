@@ -53,6 +53,22 @@
               </a>
             </dd>
           </div>
+          {% if data['country'] == "Scotland" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Travelling to Scottish Islands
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['scottish-isles'] or 'Yes' }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-home-ordering/{{version}}/scottish-isles">
+                Change
+                <span class="govuk-visually-hidden">travelling to scottish islands</span>
+              </a>
+            </dd>
+          </div>
+          {% else %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Connection to a school?
@@ -81,12 +97,13 @@
               </a>
             </dd>
           </div>
+          {% endif %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['first-name'] }} {{ data['last-name'] }}
+              {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/lfd-home-ordering/{{version}}/name">
@@ -100,7 +117,7 @@
               Email address
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['email-address'] }}
+              {{ data['email-address'] or 'psmith@example.co.uk' }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/lfd-home-ordering/{{version}}/email-address">

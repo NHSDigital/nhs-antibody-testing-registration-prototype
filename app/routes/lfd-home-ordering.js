@@ -36,6 +36,8 @@ router.post('/lfd-home-ordering/v1/action10/country', function (req, res) {
     let country = req.session.data['country']
     if (country == "England" ) {
       res.redirect('/lfd-home-ordering/v1/work-from-home')
+    } else if (country == "Scotland" ) {
+      res.redirect('/lfd-home-ordering/v1/scottish-isles')
     } else {
       res.redirect('/lfd-home-ordering/v1/country-test-unavailable')
     }
@@ -43,9 +45,21 @@ router.post('/lfd-home-ordering/v1/action10/country', function (req, res) {
 })
 
 router.post('/lfd-home-ordering/v1/action10/work-from-home', function (req, res) {
-    let workFromHome = req.session.data['work-from-home']
-    if (workFromHome == "Yes" ) {
-      res.redirect('/lfd-home-ordering/v1/workplace-testing')
+  let workFromHome = req.session.data['work-from-home']
+  if (workFromHome == "Yes" ) {
+    res.redirect('/lfd-home-ordering/v1/workplace-testing')
+  } else {
+    res.redirect('/lfd-home-ordering/v1/lft-unavailable')
+  }
+
+})
+
+router.post('/lfd-home-ordering/v1/action10/scottish-isles', function (req, res) {
+    let scottishIsles = req.session.data['scottish-isles']
+    if (!scottishIsles ) {
+      res.redirect('/lfd-home-ordering/v1/scottish-isles-error')
+    } else if (scottishIsles == "Yes" ) {
+      res.redirect('/lfd-home-ordering/v1/name')
     } else {
       res.redirect('/lfd-home-ordering/v1/lft-unavailable')
     }
