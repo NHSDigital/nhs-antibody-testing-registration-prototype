@@ -290,8 +290,10 @@ router.post('/lfd-home-ordering/v3/action10/work-from-home', function (req, res)
 
 router.post('/lfd-home-ordering/v3/action10/test-choice', function (req, res) {
   let testChoice = req.session.data['test-choice']
-  if (testChoice == "I want to take a test at a community assisted test site" ) {
-    res.redirect('/lfd-home-ordering/v3/collect-your-tests')
+  if (testChoice == "Get a one off test at a community test site" ) {
+    res.redirect('/pre-registration/v1/')
+  } else if (testChoice == "Collect tests to take home" ) {
+    res.redirect('/lfd-collection-registration/v1/nhs-account')
   } else {
     res.redirect('/lfd-home-ordering/v3/coronavirus-account')
   }
@@ -328,6 +330,18 @@ if (password == "" || confirmPassword == "") {
   res.redirect('/lfd-home-ordering/v3/user-account/check-email')
 }
 })
+
+router.post('/lfd-home-ordering/v3/action10/name', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+  let nhsAccount = req.session.data['coronavirus-account']
+  
+  if (loginEmail !== "user@testing.co.uk" && nhsAccount == "Yes"){
+    res.redirect('/lfd-home-ordering/v3/date-of-birth')
+  } else {
+    res.redirect('/lfd-home-ordering/v3/email-address')
+  }
+  
+  })
 
 router.post('/lfd-home-ordering/v3/action/check-your-answers', function (req, res) {
   let testChoice = req.session.data['test-choice']

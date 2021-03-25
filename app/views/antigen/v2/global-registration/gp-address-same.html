@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Is this the address registered with their GP?" %}
+{% set pageTitle = "Is this the address registered with the person's GP?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -32,7 +32,7 @@
       <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-            Is this the address registered with {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}'s GP?
+            {{ pageTitle }}
           </h1>
         </legend>
 
@@ -41,7 +41,18 @@
             This will help us find and update their GP record with their test result.<br>
             The test does not have to be sent to this address.<br><br>
             <strong>
-            {{ data['home-address-line-1'] or '12 Church Street'}}, {{ data['home-postcode'] or 'TW12 2EG' }}
+            {% if data['home-address'] %}
+              {{ data['home-address'] }}
+            {% else %}
+              {{ data['home-address-line-1'] or '12 Church Street'}}<br>
+                {% if data['home-address-line-2'] %}
+                  {{ data['home-address-line-2'] }}
+                {% endif %}
+                {% if data['home-address-town'] %}
+                  {{ data['home-address-town'] }}
+                {% endif %}
+              {{ data['home-postcode'] or 'TW12 2EG' }}
+            {% endif %}
             </strong>
           </span>
           <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">

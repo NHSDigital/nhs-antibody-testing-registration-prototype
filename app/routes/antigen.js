@@ -75,15 +75,15 @@ router.post('/antigen/v2/action3/do-you-have-symptoms-person-1', function (req, 
 router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
   let dateOfOnset = req.session.data['date-of-onset']
   let country = req.session.data['country']
-  if (dateOfOnset == "10 March 2021" || 
-      dateOfOnset == "9 March 2021" || 
-      dateOfOnset == "8 March 2021" || 
-      dateOfOnset == "7 March 2021" ||
-      dateOfOnset == "6 March 2021" ||
-      dateOfOnset == "5 March 2021" && country == "England" ||
-      dateOfOnset == "5 March 2021" && country == "Northern Ireland" || 
-      dateOfOnset == "4 March 2021" && country == "England" ||
-      dateOfOnset == "4 March 2021" && country == "Northern Ireland"){
+  if (dateOfOnset == "23 March 2021" || 
+      dateOfOnset == "22 March 2021" || 
+      dateOfOnset == "21 March 2021" || 
+      dateOfOnset == "20 March 2021" ||
+      dateOfOnset == "19 March 2021" ||
+      dateOfOnset == "18 March 2021" && country == "England" ||
+      dateOfOnset == "18 March 2021" && country == "Northern Ireland" || 
+      dateOfOnset == "17 March 2021" && country == "England" ||
+      dateOfOnset == "17 March 2021" && country == "Northern Ireland"){
     res.redirect('/antigen/v2/refer-and-triage/government-pilot')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/no-tests-available')
@@ -449,12 +449,11 @@ router.post('/antigen/v2/action3/gp-address-same', function (req, res) {
 // Version 2 - Antigen Global Registration - address route
 
 router.post('/antigen/v2/action3/address', function (req, res) {
-  let address = req.session.data['gp-address-line-1']
     let postcode = req.session.data['gp-postcode']
-    if (!address|| !postcode) {
+    if (!postcode) {
       res.redirect('/antigen/v2/global-registration/address-error')
     } else {
-      res.redirect('/antigen/v2/global-registration/nhs-number-known')
+      res.redirect('/antigen/v2/global-registration/find-address-gp')
     }
 })
 
@@ -683,6 +682,17 @@ router.post('/antigen/v2/action3/kit-return-way-known', function (req, res) {
     res.redirect('/antigen/v2/home-testing/check-instructions')
   }
 
+})
+
+// Version 2 - Antigen Global Registration - Delivery address same route
+
+router.post('/antigen/v2/action3/delivery-address-same', function (req, res) {
+  let deliveryAdressSame = req.session.data['delivery-address-same']
+  if (deliveryAdressSame == "No"){
+    res.redirect('/antigen/v2/order-home-test-kit/delivery-postcode')
+  } else {
+    res.redirect('/antigen/v2/order-home-test-kit/confirm-email-address')
+  }
 })
 
 module.exports = router

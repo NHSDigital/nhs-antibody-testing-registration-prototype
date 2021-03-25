@@ -14,19 +14,14 @@
     </span>
   </p>
 </div>
-{% if data['email-address'] == "user@testing.co.uk" %}
-  <div class="govuk-phase-banner govuk-!-margin-bottom-7" style="margin-top: -40px;">
-      <p class="govuk-phase-banner__content" style="line-height: 35px">
-        <span class="govuk-phase-banner__text">
-          Signed in as <strong>{{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}</strong>
-        </span>
-      </p>
-      <div style="float: right; margin-top: -30px">
-        <a href="/lfd-home-ordering/{{version}}/user-account/edit-personal-details/home-page" style="margin-right: 20px">Edit login details</a>
-        <a href="/lfd-home-ordering/{{version}}/order-home-test">Sign out</a>
-      </div>
-    </div>
+
+{% if data['coronavirus-account'] == "Yes" and data['first-name'] %}
+  {% include "includes/account-menu.html" %}
+{% elseif data['coronavirus-account'] == "Yes" %}
+  {% include "includes/account-menu-email.html" %}
+{% else %}
 {% endif %}
+
 {% if data['coronavirus-account'] == "Yes" %}
 <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/user-account/home-page">Back</a>
 {% else %}
@@ -40,9 +35,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
 
-      <form action="/lfd-home-ordering/{{version}}/email-address" method="post">
+      <form action="/lfd-home-ordering/{{version}}/action10/name" method="post">
 
         <fieldset class="govuk-fieldset">
 

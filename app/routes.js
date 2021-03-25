@@ -21,6 +21,7 @@ router.use('/', require('./routes/lfd-home-ordering.js'))
 router.use('/', require('./routes/create-account.js'))
 router.use('/', require('./routes/pre-registration.js'))
 router.use('/', require('./routes/delegated-access-results-recorder.js'))
+router.use('/', require('./routes/lfd-collection-registration.js'))
 
 // Pull scope into the homepage to show/hide sections
 // 'SCOPE' is either pulled in from the Heroku App settings or setting in a local .env file eg. SCOPE=antibody

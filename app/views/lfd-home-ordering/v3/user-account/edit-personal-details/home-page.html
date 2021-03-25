@@ -15,6 +15,12 @@
     </p>
   </div>
 
+  {% if data['coronavirus-account'] == "Yes" and data['first-name'] %}
+    {% include "includes/account-menu.html" %}
+  {% else %}
+    {% include "includes/account-menu-email.html" %}
+  {% endif %}
+
   <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/user-account/home-page">Back</a>
 {% endblock %}
 
@@ -30,7 +36,7 @@
             Mobile number
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['mobile-phone-number'] }}
+            {{ data['mobile-phone-number'] or '+44876543234'}}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/lfd-home-ordering/{{version}}/user-account/edit-personal-details/mobile-number">
@@ -44,7 +50,7 @@
             Email address
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['email-address'] }}
+            {{ data['email-address'] or 'psmith@example.com' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/lfd-home-ordering/{{version}}/user-account/edit-personal-details/email-address">
@@ -58,7 +64,7 @@
             Password
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['password'] }}
+            {{ data['password'] or '********'}}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/lfd-home-ordering/{{version}}/user-account/edit-personal-details/password">
