@@ -59,7 +59,7 @@ router.post('/lfd-home-ordering/v1/action10/scottish-isles', function (req, res)
     if (!scottishIsles ) {
       res.redirect('/lfd-home-ordering/v1/scottish-isles-error')
     } else if (scottishIsles == "Yes" ) {
-      res.redirect('/lfd-home-ordering/v1/name')
+      res.redirect('/lfd-home-ordering/v1/coronavirus-account')
     } else {
       res.redirect('/lfd-home-ordering/v1/lft-unavailable')
     }
