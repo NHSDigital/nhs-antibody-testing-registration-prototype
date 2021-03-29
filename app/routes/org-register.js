@@ -1106,5 +1106,28 @@ router.post('/organisational/lft/carehome-registration/single/add-another', func
     }
 });
 
+router.post('/organisational/lft/carehome-registration/bulk/lft-2', function (req, res) {
+  let answer = req.body.reupload;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/bulk/pcr')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/bulk/upload')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/bulk/lft-2?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/bulk/pcr', function (req, res) {
+  let answer = req.body.reupload;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/bulk/check')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/bulk/upload')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/bulk/pcr?error=empty')
+    }
+});
 
 module.exports = router
