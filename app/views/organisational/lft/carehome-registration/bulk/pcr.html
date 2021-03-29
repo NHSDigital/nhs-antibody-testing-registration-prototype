@@ -219,7 +219,7 @@
 
               <div class="card-table__form-column column-8">
                   <dl class="card-table__summary">
-                    <dt class="govuk-visually-hidden">Name</dt>
+                    <dt>Name</dt>
                     <dd>{{ item.name }}</dd>
                     <dd class="dob">{{ item.dob }}</dd>
                     <dd>
@@ -232,7 +232,7 @@
                   {{ govukInput({
                     label: {
                       text: "Test kit barcode",
-                      classes: "govuk-!-font-size-16"
+                      classes: "govuk-!-font-size-16 govuk-!-font-weight-bold"
                     },
                     classes: "govuk-input--width-10",
                     value: "AAA12312312",
@@ -245,7 +245,7 @@
                   <div class="govuk-form-group">
                     <fieldset class="govuk-fieldset" role="group">
 
-                      <legend class="govuk-fieldset__legend govuk-!-font-size-16 govuk-!-font-weight-bold govuk-visually-hidden">
+                      <legend class="govuk-fieldset__legend govuk-!-font-size-16 govuk-!-font-weight-bold">
 
                         Date of swab test
 
@@ -297,7 +297,7 @@
                   {% call govukFieldset({
                     legend: {
                       text: "Time of swab test",
-                      classes: "govuk-!-font-size-16 govuk-!-font-weight-bold govuk-visually-hidden",
+                      classes: "govuk-!-font-size-16 govuk-!-font-weight-bold",
                       isPageHeading: false
                     }
                   }) %}
@@ -344,20 +344,31 @@
 
       <h2 class="govuk-heading-m govuk-!-margin-top-6">Confirm records 1 to 10 of 10</h2>
 
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
+      {{ govukRadios({
+        classes: "govuk-radios",
+        idPrefix: "reuploadpcr",
+        name: "reuploadpcr",
+        fieldset: {
 
+        },
+        hint: {
+          text: "You can re-upload a new version of the spreadsheet if you have not selected the correct 'Test type' or if you entered the data incorrectly.
+        "
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes, I confirm the details are correct"
+          },
+          {
+            value: "no",
+            text: "No, edit and reupload the spreadsheet"
+          }
+        ]
+      }) }}
 
-
-        {{ govukCheckboxes({
-          idPrefix: "covidUploadCheckbox",
-          name: "cuConfirmCheckbox",
-          items: [
-            {
-              value: "agreed",
-              text: "I confirm all details are correct"
-            }
-          ]
-        }) }}
           <input class="govuk-button" type="submit" value="Save and continue">
       </form>
 
