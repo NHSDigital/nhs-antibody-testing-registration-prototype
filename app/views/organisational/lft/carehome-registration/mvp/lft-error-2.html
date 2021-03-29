@@ -59,6 +59,46 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+  <h2 class="govuk-error-summary__title" id="error-summary-title">
+    There is a problem
+  </h2>
+  <div class="govuk-error-summary__body">
+    <ul class="govuk-list govuk-error-summary__list">
+      <li>
+        <a href="#passport-issued-error">Enter a correct lateral flow test barcode for John Smith</a>
+      </li>
+      <li>
+        <a href="#postcode-error">Date of swab test must be within the last 7 days for Filomena Guyton</a>
+      </li>
+      <li>
+        <a href="#postcode-error">Date of swab test must be within the last 7 days for Pete Smith</a>
+      </li>
+      <li>
+        <a href="#postcode-error">Date of swab test must be within the last 7 days for Susan Watson</a>
+      </li>
+      <li>
+        <a href="#postcode-error">Date of swab test must be within the last 7 days for Dennis Long</a>
+      </li>
+      <li>
+        <a href="#postcode-error">Date of swab test must be within the last 7 days for Tariq Bin Ziyan</a>
+      </li>
+      <li>
+        <a href="#postcode-error">Date of swab test must be within the last 7 days for Lori Foster</a>
+      </li>
+      <li>
+        <a href="#postcode-error">Date of swab test must be within the last 7 days for Ruby Howard</a>
+      </li>
+      <li>
+        <a href="#postcode-error">Date of swab test must be within the last 7 days for Ariannie Wright</a>
+      </li>
+      <li>
+        <a href="#postcode-error">Date of swab test must be within the last 7 days for John Smith</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
       <h1 class="govuk-heading-xl">
         {{ pageHeading | safe }}
       </h1>
@@ -71,37 +111,20 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full">
-          <table class="govuk-table">
-            <caption class="govuk-table__caption govuk-table__caption--m">Test results summary</caption>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Negative</td>
-                <td class="govuk-table__cell">8</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Void</td>
-                <td class="govuk-table__cell">0</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Positive</td>
-                <td class="govuk-table__cell">2</td>
-              </tr>
-            </tbody>
-          </table>
+
 
       <h2 class="govuk-heading-m">Records 1 to 10 of 10</h2>
-      <form class="" action="" method="get">
+      <form class="" action="/{{ version }}/bulk/pcr" method="get">
 
         <ul class="card-table">
-
-          <li class="card-table__item" id="entry-1">
+          <li class="card-table__item card-table__item--error" id="entry-1">
             <div class="card-table__form">
-              <div class="card-table__form-column column-8">
+
+            <div class="card-table__form-column column-8">
                 <dl class="card-table__summary">
+
                   <dt>Name</dt>
-                  <dd>Alun Smith</dd>
+                  <dd>John Smith</dd>
                   <dd class="dob">23 June 1980</dd>
                   <dd>
                     <a href="#">View details</a>
@@ -115,10 +138,14 @@
                     text: "Test kit barcode",
                     classes: "govuk-!-font-size-16 govuk-!-font-weight-bold govuk-!-margin-bottom-3"
                   },
-                  classes: "govuk-input--width-10",
-                  value: "C70268320",
+
                   id: "cuTestKitCode1",
-                  name: "cuTestKitCode1"
+                  name: "cuTestKitCode1",
+                  errorMessage: {
+                  text: "Enter a correct lateral flow test barcode"
+                  },
+                  classes: "govuk-input--width-10 govuk-input--error",
+                  value: "C70268320"
                 }) }}
               </div>
 
@@ -235,6 +262,7 @@
 
     </div>
 
+
     <div class="card-table__form-column column-6" style="display:none">
       <p>
         <a class="govuk-!-font-size-16 destructive-action" href="#">Delete entry</a>
@@ -259,15 +287,17 @@
         {% for item in items %}
 
 
+
         <ul class="card-table">
-        <li class="card-table__item" id="entry-{{ item.id }}">
+        <li class="card-table__item card-table__item--error" id="entry-{{ item.id }}">
           <div class="card-table__form">
 
             <div class="govuk-form-group">
 
               <div class="card-table__form-column column-8">
                   <dl class="card-table__summary">
-                    <dt>Name</dt>
+
+
                     <dt class="govuk-visually-hidden">Name</dt>
                     <dd>{{ item.name }}</dd>
                     <dd class="dob">{{ item.dob }}</dd>
@@ -278,10 +308,11 @@
               </div>
 
               <div class="card-table__form-column column-16">
-                <dl class="card-table__summary">
-                <dt>Test kit barcode</dt>
                 {{ govukInput({
-
+                  label: {
+                    text: "Test kit barcode",
+                    classes: "govuk-!-font-size-16"
+                  },
                   classes: "govuk-input--width-10",
                   value: item.value,
                   id: "cuTestKitCode" + item.id,
@@ -290,8 +321,6 @@
               </div>
 
               <div class="card-table__form-column column-16">
-                <dl class="card-table__summary">
-                <dt>Date of swab test</dt>
                 <div class="govuk-form-group">
                   <fieldset class="govuk-fieldset" role="group">
 
@@ -302,48 +331,43 @@
                     </legend>
 
 
-                    <div class="govuk-date-input" id="covidUploadDATE">
-
-                      <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                          <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-day">
-                            Day
-                          </label>
-
-                          <input class="govuk-input govuk-date-input__input govuk-input--width-2" value="01" id="covidUpload-day" name="cuOrgType-day{{ item.id }}" type="text" autocomplete="bday-day" pattern="[0-9]*" inputmode="numeric">
+                    <div class="govuk-form-group govuk-form-group--error">
+                      <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint passport-issued-error">
+                        <span id="passport-issued-error" class="govuk-error-message">
+                          <span class="govuk-visually-hidden">Error:</span> Date of swab test must be within the last 7 days
+                        </span>
+                        <div class="govuk-date-input" id="passport-issued">
+                          <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                                Day
+                              </label>
+                              <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="passport-issued-day" name="passport-issued-day" type="text" value="6" pattern="[0-9]*" inputmode="numeric"></div>
+                          </div>
+                          <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                                Month
+                              </label>
+                              <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="passport-issued-month" name="passport-issued-month" type="text" value="3" pattern="[0-9]*" inputmode="numeric"></div>
+                          </div>
+                          <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                                Year
+                              </label>
+                              <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="passport-issued-year" name="passport-issued-year" type="text" value="2076" pattern="[0-9]*" inputmode="numeric"></div>
+                          </div>
                         </div>
-                      </div>
 
-                      <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                          <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-month">
-                            Month
-                          </label>
-
-
-                          <input class="govuk-input govuk-date-input__input govuk-input--width-2" value="03" id="covidUpload-month" name="cuOrgType-month{{ item.id }}" type="text" autocomplete="bday-month" pattern="[0-9]*" inputmode="numeric">
-                        </div>
-                      </div>
-
-                      <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                          <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-year">
-                            Year
-                          </label>
-
-
-                          <input class="govuk-input govuk-date-input__input govuk-input--width-4" value="2021" id="covidUpload-year" name="cuOrgType-year{{ item.id }}" type="text" autocomplete="bday-year" pattern="[0-9]*" inputmode="numeric">
-                        </div>
-                      </div>
-
+                      </fieldset>
                     </div>
-                    </fieldset>
+
+
                   </div>
               </div>
 
                 <div class="card-table__form-column column-12">
-                  <dl class="card-table__summary">
-                  <dt>Time of swab test</dt>
 
                   {% call govukFieldset({
                     legend: {
@@ -412,45 +436,32 @@
         </ul>
         {% endfor %}
 
+<br>
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Re-upload spreadsheet
+        </button>
 
 
 
-                <div class="govuk-form-group">
-                  <fieldset class="govuk-fieldset" aria-describedby="reupload">
-                    <legend class="govuk-fieldset__legend">
-                      <h2 class="govuk-heading-m govuk-!-margin-top-6">Are records 1 to 10 of 10 correct?</h2>
-                    </legend>
-                    <div id="reupload" class="govuk-hint">
-                      You can re-upload a new version of the spreadsheet if you have not selected the correct 'Test type' or if you entered the data incorrectly.
-                    </div>
-                    <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
-                      <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="yes" data-aria-controls="conditional-reupload">
-                        <label class="govuk-label govuk-radios__label" for="reupload">
-                          Yes, I confirm the details are correct
-                          </label>
-                      </div>
-                      <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-reupload">
-                        <div class="govuk-warning-text">
-                  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-                  <strong class="govuk-warning-text__text">
-                    <span class="govuk-warning-text__assistive">Warning</span>
-                    You are reporting 2 positive lateral flow test results
-                  </strong>
-                </div>
-                </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="no" data-aria-controls="reupload">
-              <label class="govuk-label govuk-radios__label" for="reupload">
-                No, edit and re-upload the spreadsheet
-              </label>
-            </div>
-
-                  </fieldset>
-                </div>
+      <h2 class="govuk-heading-m govuk-!-margin-top-6">Confirm records 1 to 10 of 10</h2>
 
 
-                      <form class="" action="/{{ version }}/bulk/pcr" method="get">
-                    <input class="govuk-button" type="submit" value="Save and continue">
+        {{ govukCheckboxes({
+          idPrefix: "covidUploadCheckbox",
+          name: "cuConfirmCheckbox",
+          items: [
+            {
+              value: "agreed",
+              text: "I confirm all details are correct"
+            }
+          ]
+        }) }}
 
-        {% endblock %}
+
+
+              <form class="" action="/{{ version }}/bulk/pcr" method="get">
+                <button disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled" data-module="govuk-button">
+        Continue
+      </button>
+
+{% endblock %}

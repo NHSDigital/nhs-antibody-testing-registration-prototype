@@ -59,6 +59,19 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#passport-issued-error">Enter a correct PCR test barcode for Alun Smith</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <h1 class="govuk-heading-xl">
         {{ pageHeading | safe }}
       </h1>
@@ -75,7 +88,7 @@
       <ul class="card-table">
 
 
-        <li class="card-table__item" id="entry-1">
+        <li class="card-table__item card-table__item--error" id="entry-1">
           <div class="card-table__form">
 
           <div class="card-table__form-column column-8">
@@ -98,7 +111,10 @@
                 classes: "govuk-input--width-10",
                 value: "AAA12312312",
                 id: "cuTestKitCode1",
-                name: "cuTestKitCode1"
+                name: "cuTestKitCode1",
+                errorMessage: {
+                text: "Enter a correct PCR test barcode"
+                }
               }) }}
             </div>
 
@@ -337,40 +353,28 @@
               </div>
             </li>
           {% endfor %}
-
-
-
       </ul>
+<br>
+            <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+              Re-upload spreadsheet
+            </button>
 
       <h2 class="govuk-heading-m govuk-!-margin-top-6">Confirm records 1 to 10 of 10</h2>
 
-      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukCheckboxes({
+          idPrefix: "covidUploadCheckbox",
+          name: "cuConfirmCheckbox",
+          items: [
+            {
+              value: "agreed",
+              text: "I confirm all details are correct"
+            }
+          ]
+        }) }}
 
-      {{ govukRadios({
-        classes: "govuk-radios",
-        idPrefix: "reuploadpcr",
-        name: "reuploadpcr",
-        fieldset: {
-
-        },
-        hint: {
-          text: "You can re-upload a new version of the spreadsheet if you have not selected the correct 'Test type' or if you entered the data incorrectly.
-        "
-        },
-        items: [
-          {
-            value: "yes",
-            text: "Yes, I confirm the details are correct"
-          },
-          {
-            value: "no",
-            text: "No, edit and reupload the spreadsheet"
-          }
-        ]
-      }) }}
-
-          <input class="govuk-button" type="submit" value="Save and continue">
-      </form>
+        <button disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled" data-module="govuk-button">
+Continue
+</button>
 
     </div>
   </div>

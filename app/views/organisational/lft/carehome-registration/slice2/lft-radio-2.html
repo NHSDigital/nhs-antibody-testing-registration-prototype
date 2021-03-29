@@ -92,7 +92,7 @@
           </table>
 
       <h2 class="govuk-heading-m">Records 1 to 10 of 10</h2>
-      <form class="" action="" method="get">
+      <form class="" action="/{{ version }}/bulk/pcr" method="get">
 
         <ul class="card-table">
 
@@ -413,44 +413,46 @@
         {% endfor %}
 
 
-
-
-                <div class="govuk-form-group">
-                  <fieldset class="govuk-fieldset" aria-describedby="reupload">
-                    <legend class="govuk-fieldset__legend">
-                      <h2 class="govuk-heading-m govuk-!-margin-top-6">Are records 1 to 10 of 10 correct?</h2>
-                    </legend>
-                    <div id="reupload" class="govuk-hint">
-                      You can re-upload a new version of the spreadsheet if you have not selected the correct 'Test type' or if you entered the data incorrectly.
-                    </div>
-                    <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
-                      <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="yes" data-aria-controls="conditional-reupload">
-                        <label class="govuk-label govuk-radios__label" for="reupload">
-                          Yes, I confirm the details are correct
-                          </label>
-                      </div>
-                      <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-reupload">
-                        <div class="govuk-warning-text">
-                  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-                  <strong class="govuk-warning-text__text">
-                    <span class="govuk-warning-text__assistive">Warning</span>
-                    You are reporting 2 positive lateral flow test results
-                  </strong>
-                </div>
-                </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="no" data-aria-controls="reupload">
-              <label class="govuk-label govuk-radios__label" for="reupload">
-                No, edit and re-upload the spreadsheet
-              </label>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+            <legend class="govuk-fieldset__legend">
+              <h2 class="govuk-heading-m govuk-!-margin-top-6">Are records 1 to 10 of 10 correct?</h2>
+            </legend>
+            <div id="changed-name-hint" class="govuk-hint">
+              You can re-upload a new version of the spreadsheet if you have not selected the correct 'Test type' or if you entered the data incorrectly.
             </div>
+            <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
+                <label class="govuk-label govuk-radios__label" for="contact">
+                  Yes, I confirm the details are correct
+                  </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
+                <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            You are reporting 2 positive lateral flow test results
+          </strong>
+        </div>
+        </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-2">
+      <label class="govuk-label govuk-radios__label" for="contact-2">
+        No, edit and re-upload the spreadsheet
+      </label>
+    </div>
 
-                  </fieldset>
-                </div>
+          </fieldset>
+        </div>
 
 
-                      <form class="" action="/{{ version }}/bulk/pcr" method="get">
-                    <input class="govuk-button" type="submit" value="Save and continue">
 
-        {% endblock %}
+
+
+
+              <form class="" action="/{{ version }}/bulk/pcr" method="get">
+            <input class="govuk-button" type="submit" value="Save and continue">
+
+{% endblock %}
