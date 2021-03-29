@@ -1,5 +1,5 @@
 {% set version = "v16" %}
-{% set pageTitle = "You have said you do not agree with your result" %}
+{% set pageTitle = "You reported a negative coronavirus test result" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -23,22 +23,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="https://www.gov.uk/get-coronavirus-test/" method="post">
+      <form action="/share-result-lateral-flow/{{version}}/index" method="post">
 
-          <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+        <!-- div for include from content folder -->
+        <div id="includedContent"></div>
 
-         <!-- div for include from content folder -->
-         <div id="includedContent"></div>
+      </form>
 
-       </form>
-     </div>
-   </div>
+    </div>
+  </div>
 
-   <!-- corresponding html file name included from content folder -->
-   <script>
-     $(function(){
-       $("#includedContent").load("../content/contest-positive.html");
-     });
-   </script>
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent").load("../content/negative-result-photo-contest.html");
+    });
+  </script>
 
 {% endblock %}
