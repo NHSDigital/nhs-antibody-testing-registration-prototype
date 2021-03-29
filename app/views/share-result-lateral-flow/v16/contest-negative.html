@@ -1,5 +1,5 @@
 {% set version = "v16" %}
-{% set pageTitle = "Your coronavirus test result is invalid " %}
+{% set pageTitle = "You have said you do not agree with your result" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -22,22 +22,23 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       <form action="/share-result-lateral-flow/{{version}}/index" method="post">
 
-          <!-- div for include from content folder -->
-          <div id="includedContent"></div>
 
-      </form>
+          <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
 
-    </div>
-  </div>
+         <!-- div for include from content folder -->
+         <div id="includedContent"></div>
 
-  <!-- corresponding html file name included from content folder -->
-  <script>
-    $(function(){
-      $("#includedContent").load("../content/invalid-result.html");
-    });
-  </script>
+         </form>
+     </div>
+   </div>
+
+   <!-- corresponding html file name included from content folder -->
+   <script>
+     $(function(){
+       $("#includedContent").load("../content/contest-negative.html");
+     });
+   </script>
 
 {% endblock %}
