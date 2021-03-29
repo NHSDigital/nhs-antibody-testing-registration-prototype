@@ -74,22 +74,33 @@ router.post('/antigen/v2/action3/do-you-have-symptoms-person-1', function (req, 
 
 router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
   let dateOfOnset = req.session.data['date-of-onset']
-  let country = req.session.data['country']
-  if (dateOfOnset == "23 March 2021" || 
-      dateOfOnset == "22 March 2021" || 
-      dateOfOnset == "21 March 2021" || 
-      dateOfOnset == "20 March 2021" ||
-      dateOfOnset == "19 March 2021" ||
-      dateOfOnset == "18 March 2021" && country == "England" ||
-      dateOfOnset == "18 March 2021" && country == "Northern Ireland" || 
-      dateOfOnset == "17 March 2021" && country == "England" ||
-      dateOfOnset == "17 March 2021" && country == "Northern Ireland"){
-    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
+  let yearOfOnset = req.session.data['symptoms-start-date-year']
+  if (dateOfOnset == "different" && yearOfOnset !== "2021"){
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
   } else {
-    res.redirect('/antigen/v2/refer-and-triage/no-tests-available')
+    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
   }
 
 })
+
+// router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
+//   let dateOfOnset = req.session.data['date-of-onset']
+//   let country = req.session.data['country']
+//   if (dateOfOnset == "31 March 2021" || 
+//       dateOfOnset == "30 March 2021" || 
+//       dateOfOnset == "21 March 2021" || 
+//       dateOfOnset == "20 March 2021" ||
+//       dateOfOnset == "19 March 2021" ||
+//       dateOfOnset == "18 March 2021" && country == "England" ||
+//       dateOfOnset == "18 March 2021" && country == "Northern Ireland" || 
+//       dateOfOnset == "17 March 2021" && country == "England" ||
+//       dateOfOnset == "17 March 2021" && country == "Northern Ireland"){
+//     res.redirect('/antigen/v2/refer-and-triage/government-pilot')
+//   } else {
+//     res.redirect('/antigen/v2/refer-and-triage/no-tests-available')
+//   }
+
+// })
 
 // Version 2 - Antigen Refer and Triage - Follow up test route
 
