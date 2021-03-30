@@ -389,7 +389,7 @@ router.post('/antigen/v2/global-registration/edit-check-answers/action9/study-gr
 router.post('/antigen/v2/action9/coronavirus-vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
   if (vaccine == "No"){
-    res.redirect('/antigen/v2/global-registration/gp-address-same')
+    res.redirect('/antigen/v2/global-registration/country')
   } else {
     res.redirect('/antigen/v2/global-registration/coronavirus-vaccine-date')
   }
