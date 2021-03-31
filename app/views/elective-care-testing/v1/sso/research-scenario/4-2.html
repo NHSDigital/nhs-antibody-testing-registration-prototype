@@ -1,0 +1,55 @@
+{% set version = "v1" %}
+{% set serviceName = "Elective care management" %}
+{% set pageTitle = "Are you sure you want to deny access for Sara Metz?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- <h1 class="govuk-heading-xl">{{ pageTitle }}</h1> -->
+
+    <form action="/elective-care-testing/{{version}}/group-user-management/9-overview-multiple-groups-single-user" method="post">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl govuk-!-margin-bottom-6">
+          <span class="govuk-caption-xl">Deny access</span>
+          <h1 class="govuk-fieldset__heading">
+            {{ pageTitle }}
+          </h1>
+        </legend>
+        <div id="contact-hint" class="govuk-hint">
+          This person will not have access to the service using NHS Identity.
+        </div>
+        <table class="govuk-table govuk-!-margin-bottom-0">
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Name</th>
+              <td class="govuk-table__cell">Sara Metz</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Email address</th>
+              <td class="govuk-table__cell">sarametz@nhs.net</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </fieldset>
+    </div>
+
+    <button class="govuk-button govuk-button--warning" data-module="govuk-button">
+      Deny access
+    </button>
+
+</form>
+  </div>
+</div>
+
+{% endblock %}
