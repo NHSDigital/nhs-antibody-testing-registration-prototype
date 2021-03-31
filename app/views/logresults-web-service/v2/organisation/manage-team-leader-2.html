@@ -1,0 +1,83 @@
+{% set version = "v2" %}
+{% set pageTitle = "Team leader details" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/organisation/manage-team-leaders">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form lass="form" action="/logresults-web-service/{{version}}/organisation/team-leader-2-updated-confirmation" method="post">
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper govuk-!-margin-bottom-5">
+          <label class="govuk-label govuk-label--xl" for="institution">
+            {{ data['team-leader-2-first-name'] }} {{ data['team-leader-2-last-name'] }}
+          </label>
+        </h1>
+
+        <p class="govuk-body">
+            Email address: {{ data['team-leader-2-email-address'] }}<br>
+            Mobile-number: {{ data['team-leader-2-mobile-number'] }}
+        </p>
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+        <div class="govuk-form-group">
+            <label class="govuk-label govuk-!-margin-top-4" for="team-leader-2-first-name">
+              First name
+            </label>
+            <input class="govuk-input govuk-!-width-one-half" id="team-leader-2-first-name" name="team-leader-2-first-name" type="text" value="{{ data['team-leader-2-first-name'] }}">
+          </div>
+  
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-!-margin-top-4" for="team-leader-2-last-name">
+              Last name
+            </label>
+            <input class="govuk-input govuk-!-width-one-half" id="team-leader-2-last-name" name="team-leader-2-last-name" type="text" value="{{ data['team-leader-2-last-name'] }}">
+          </div>
+
+      </div>
+
+      <p class="govuk-body">Status</p>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="site-2-status" name="site-2-status" type="checkbox" value="Active" onclick="checkBox()" checked>
+              <label class="govuk-label govuk-checkboxes__label" for="site-2-status">
+                Active: This team leader can manage staff access at test sites
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" type="submit" data-module="govuk-button">
+        Save and continue
+      </button>
+
+      <a href="/logresults-web-service/{{version}}/organisation/manage-sites" role="button" draggable="false" class="govuk-button govuk-button--secondary right-button-margin" data-module="govuk-button" style="display: inline-block;">
+        Cancel
+      </a>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

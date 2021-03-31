@@ -1,0 +1,78 @@
+{% set version = "v2" %}
+{% set pageTitle = "Choose your role" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+<a class="govuk-back-link" href="/logresults-web-service/{{version}}/organisation/">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+
+          <div style="padding: 0">
+            <form action="/logresults-web-service/{{version}}/organisation/login-temporary" method="post">
+              <button class="govuk-!-margin-bottom-4 account-home-button">
+                <div>
+                  <p class="govuk-!-margin-bottom-2">
+                    <strong style="color: #005eb8">I'm a testing manager</strong>
+                  </p>
+                  <p class="govuk-!-margin-bottom-0">
+                    I add or manage sites and team leaders for my organisation.
+                  </p>
+                </div>
+              </button>
+            </form>
+          </div>
+
+          <div style="padding: 0">
+            <form action="/logresults-web-service/{{version}}/site-coordinator/login-temporary" method="post">
+              <button class="govuk-!-margin-bottom-4 account-home-button">
+                <div>
+                  <p class="govuk-!-margin-bottom-2">
+                    <strong style="color: #005eb8">I'm a team leader</strong>
+                  </p>
+                  <p class="govuk-!-margin-bottom-0">
+                    I approve or deny test site access for staff.
+                  </p>
+                </div>
+              </button>
+            </form>
+          </div>
+
+          <div style="padding: 0">
+            <form action="/logresults-web-service/{{version}}/site-operative/sign-up" method="post">
+              <button class="govuk-!-margin-bottom-4 account-home-button">
+                <div>
+                  <p class="govuk-!-margin-bottom-2">
+                    <strong style="color: #005eb8">I'm a testing operative</strong>
+                  </p>
+                  <p class="govuk-!-margin-bottom-0">
+                    I log coronavirus (COVID-19) test results at a test site.
+                  </p>
+                </div>
+              </button>
+            </form>
+          </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

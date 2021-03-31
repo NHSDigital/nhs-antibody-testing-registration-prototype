@@ -1,0 +1,180 @@
+{% set version = "v2" %}
+{% set pageTitle = "Manage sites" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  
+  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/organisation/manage-organisation">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+    <div class="inline-button-wrapper">
+    
+      <div>
+        {% if data['test-site-1-name'] == undefined or data['test-site-1-name'] == "" %}
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">0 sites</h1>
+        {% else %}
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">12 sites</h1>
+        {% endif %}
+        <p class="govuk-hint">Coventry University</p>
+      </div>
+
+      <a href="/logresults-web-service/{{version}}/organisation/add-site" role="button" draggable="false" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-top-4" data-module="govuk-button" style="display: inline-block;">
+         Add new site
+      </a>
+
+     </div>
+
+     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+     {% if data['test-site-1-name'] != undefined and data['test-site-1-name'] != "" %}
+     <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ data['test-site-1-name'] }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['test-site-1-building'] }}<br>
+            {{ data['test-site-1-street'] }}<br>
+            {{ data['site-1-town'] }}<br>
+            {{ data['site-1-postcode'] }}<br>
+            {{ data['site-1-country'] }}
+          </dd>
+          <dd class="govuk-summary-list__value">
+            Test site ID: CKDY
+          </dd>
+          <dd class="govuk-summary-list__value">
+            <p style="text-align: center">
+                {% if data['site-1-status'] == undefined or data['site-1-status'] == "Active" %}
+                <strong class="govuk-tag govuk-tag--green">
+                  ACTIVE
+                </strong>
+                {% else %}
+                <strong class="govuk-tag govuk-tag--red">
+                  INACTIVE
+                </strong>
+                {% endif %}
+              </p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/logresults-web-service/{{version}}/organisation/manage-site-1">
+              Manage<span class="govuk-visually-hidden">test site 1</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+     {% endif %}
+     {% if data['test-site-2-name'] != undefined and data['test-site-2-name'] != "" %}
+     <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ data['test-site-2-name'] }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['test-site-2-building'] }}<br>
+            {{ data['test-site-2-street'] }}<br>
+            {{ data['site-2-town'] }}<br>
+            {{ data['site-2-postcode'] }}<br>
+            {{ data['site-2-country'] }}
+          </dd>
+          <dd class="govuk-summary-list__value">
+            Test site ID: DJGH
+          </dd>
+          <dd class="govuk-summary-list__value">
+            <p style="text-align: center">
+                {% if data['site-2-status'] == undefined or data['site-2-status'] == "Active" %}
+                <strong class="govuk-tag govuk-tag--green">
+                  ACTIVE
+                </strong>
+                {% else %}
+                <strong class="govuk-tag govuk-tag--red">
+                  INACTIVE
+                </strong>
+                {% endif %}
+              </p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/logresults-web-service/{{version}}/organisation/manage-site-2">
+              Manage<span class="govuk-visually-hidden">test site 2</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+     {% endif %}
+     {% if data['test-site-3-name'] != undefined and data['test-site-3-name'] != "" %}
+     <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ data['test-site-3-name'] }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['test-site-3-building'] }}<br>
+            {{ data['test-site-3-street'] }}<br>
+            {{ data['site-3-town'] }}<br>
+            {{ data['site-3-postcode'] }}<br>
+            {{ data['site-3-country'] }}
+          </dd>
+          <dd class="govuk-summary-list__value">
+            Test site ID: DKHF
+          </dd>
+          <dd class="govuk-summary-list__value">
+            <p style="text-align: center">
+                {% if data['site-3-status'] == undefined or data['site-3-status'] == "Active" %}
+                <strong class="govuk-tag govuk-tag--green">
+                  ACTIVE
+                </strong>
+                {% else %}
+                <strong class="govuk-tag govuk-tag--red">
+                  INACTIVE
+                </strong>
+                {% endif %}
+              </p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/logresults-web-service/{{version}}/organisation/manage-site-3">
+              Manage<span class="govuk-visually-hidden">test site 1</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+     {% endif %}
+
+
+      {% if data['test-site-1-name'] == undefined or data['test-site-1-name'] == "" %}
+      <p class="govuk-margin-!-top-4">Add sites within your organisation to begin inviting team leaders</p>
+      {% else %}
+      <div class="bottom-pagination">
+        <p class="govuk-hint govuk-margin-!-top-4">1 to 10 of 100 items</p>
+
+        <div>
+            <p class="govuk-body">
+              <a href="#" class="govuk-!-margin-right-3">Previous</a>
+              <a href="#" class="govuk-!-margin-right-3">1</a>
+              <a href="#" class="govuk-!-margin-right-3">2</a>
+              <span class="govuk-!-margin-right-3" style="border: 1px solid #000000; padding: 1px 3px">3</span>
+              <span class="govuk-!-margin-right-3">...</span>
+              <a href="#" class="govuk-!-margin-right-3">10</a>
+              <a href="#">Next</a>
+            </p>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+{% endblock %}
+
