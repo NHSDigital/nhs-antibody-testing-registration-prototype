@@ -1254,7 +1254,7 @@ if (securityCode == "") {
     if (person == "myself") {
       res.redirect('/share-result-lateral-flow/v17/coronavirus-account')
     } else {
-      res.redirect('/share-result-lateral-flow/v17/home-org-use')
+      res.redirect('/share-result-lateral-flow/v17/country')
     }
   })
 
