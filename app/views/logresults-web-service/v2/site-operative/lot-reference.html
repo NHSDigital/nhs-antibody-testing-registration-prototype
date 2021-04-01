@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Enter the LOT reference on the test kits" %}
+{% set pageTitle = "Scan the LOT reference on the test pack" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,95 +15,47 @@
   </p>
 </div>
 
-  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/request-approved">Back</a>
+  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/qr-code-person">Back</a>
 {% endblock %}
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+  
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">{{ pageTitle }}</h1>
+        <p class="govuk-body govuk-!-margin-bottom-6">You will be able to find the LOT reference on the back of the test pack.</p>
 
-    <form action="/logresults-web-service/{{version}}/site-operative/check-your-answers-collection" method="post">
-
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="lot-reference-hint lot-reference-2-hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-              {{ pageTitle }}
-            </h1>
-          </legend>
-
-          <span id="lot-reference-hint" class="govuk-body">
-            The LOT reference is an 8 reference on the back of the box.
-          </span>
-
-          <details class="govuk-details govuk-!-margin-top-4" data-module="govuk-details">
-            <summary class="govuk-details__summary">
-              <span class="govuk-details__summary-text">
-                What does the LOT number look like?
-              </span>
-            </summary>
-            <div class="govuk-details__text">
-              <img src="/public/images/lot-reference.png" alt="barcode number"/>
-            </div>
-          </details>
-
-          <div class="govuk-form-group govuk-!-margin-top-4">
-            <label class="govuk-label" for="lot-reference-1">
-              LOT reference
-            </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="lot-reference-1" name="lot-reference-1" type="text" value={{ data['lot-reference-1'] }}>
+        <details class="govuk-details govuk-!-margin-top-4" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              What does the LOT number look like?
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <img src="/public/images/lot-reference.png" alt="barcode number" width="80%" />
           </div>
+        </details>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="lot-reference-1-confirm">
-              Confirm LOT reference
-            </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="lot-reference-1-confirm" name="lot-reference-1-confirm" type="text" value={{ data['lot-reference-1-confirm'] }}>
-          </div>
+        <p class="govuk-body">Position the QR code so it fits inside the square on your device's camera.</p>
 
-          <span id="lot-reference-2-hint" class="govuk-body">
-            How many boxes are you dispensing to this person?
-          </span>
-
-          <div class="govuk-radios govuk-!-margin-top-5">
-            <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="number-of-packs-1-1" name="number-of-packs-1" type="radio" value="1" {{ checked("number-of-packs-1", "1") }}>
-                <label class="govuk-label govuk-radios__label" for="number-of-packs-1-1">
-                    1
-                </label>
-            </div>
-            <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="number-of-packs-1-2" name="number-of-packs-1" type="radio" value="2" {{ checked("number-of-packs-1", "2") }}>
-                <label class="govuk-label govuk-radios__label" for="number-of-packs-1-2">
-                    2
-                </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="number-of-packs-1-3" name="number-of-packs-1" type="radio" value="3" {{ checked("number-of-packs-1", "3") }}>
-              <label class="govuk-label govuk-radios__label" for="number-of-packs-1-3">
-                  3
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="number-of-packs-1-4" name="number-of-packs-1" type="radio" value="4" {{ checked("number-of-packs-1", "4") }}>
-              <label class="govuk-label govuk-radios__label" for="number-of-packs-1-4">
-                  4
-              </label>
-            </div>
-          
-        </fieldset>
-      </div>
-
-      <button class="govuk-button" data-module="govuk-button">Continue</button>
-
-      <a href="/logresults-web-service/{{version}}/site-operative/lot-reference-different" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-        Add a test pack with a different LOT reference
-      </a>
-
-    </form>
-
+        <div>
+          <img src="/public/images/code-scan.png" alt="camera view" class="scan-barcode" />
+        </div>
+        
+        <a href="/logresults-web-service/{{version}}/site-operative/enter-lot-reference" role="button" draggable="false" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8 govuk-button--secondary" data-module="govuk-button">
+          Enter LOT reference manually
+        </a>
+  
+    </div>
   </div>
-</div>
 
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action" style="width: 150px;">
+  <a href="/logresults-web-service/{{version}}/site-operative/more-test-packs">
+    <div class="proto-action-text govuk-!-margin-left-3">Continue</div>
+  </a>
+</div>
 {% endblock %}
