@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Coronavirus account" %}
+{% set pageTitle = "Would you like to sign in or create an account to save your details?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -14,29 +14,62 @@
       </span>
     </p>
   </div>
+
+  <a class="govuk-back-link" href="/lite-registration/{{version}}/whos-taking-the-test">Back</a>
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form class="form" action="/lite-registration/{{version}}/action9/coronavirus-account" method="post">
 
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">{{ pageTitle }}</h1>
+      <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="sign-in-hint">
+    <div class="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="coronavirus-account-1" name="coronavirus-account" type="radio" value="Yes" {{ checked("coronavirus-account", "Yes") }}>
+        <label class="govuk-label govuk-radios__label" for="coronavirus-account-1">
+          <strong>Sign in or create an account</strong>
+        </label>
+        <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+          We'll save your testing details for each time you get tested. Creating an account only takes 2 minutes and you'll save 5 minutes with every test.
+        </div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="coronavirus-account-2" name="coronavirus-account" type="radio" value="No" {{ checked("coronavirus-account", "No") }}>
+        <label class="govuk-label govuk-radios__label" for="coronavirus-account-2">
+          <strong>Continue without an account</strong>
+        </label>
+        <div id="sign-in-2-item-hint" class="govuk-hint govuk-radios__hint">
+          Your details won't be saved for future tests and all information will have to be re-entered.
+        </div>
+      </div>
+    </div>
 
-      <p class="govuk-body">Creating an account will make it easier for you to get tested quicker in future.<br>Continue with NHS login to create an account or sign in.</p>
-
-      <p class="govuk-body">If you dont have an email address and mobile phone, continue without an account.</p>
+  </fieldset>
+</div>
+    <button class="govuk-button" data-module="govuk-button" style="width: 200px; font-size: 16px;">Continue</button>
+</form>
 
     </div>
   </div>
-  <div>
-    <a href="/lite-registration/v1/user-account/login-email" class="govuk-button" type="submit" style="background: #005EB8; width: 100%;">
-      Continue with NHS login
-    </a>
-  </div>
-  <div>
-    <a href="/lite-registration/v1/email-address" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="width: 100%;">
-      Continue without an account
-    </a>
-  </div>
+
+
+<!--
+  <div class="inline-buttons-wrapper">
+    <form class="form" action="/lite-registration/{{version}}/user-account/login-email" method="post">
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+
+    <form class="form" action="/lite-registration/{{version}}/site-id" method="post">
+      <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Continue without logging in
+      </button>
+    </form>
+
+</div>
+-->
+
 
 {% endblock %}

@@ -2378,11 +2378,18 @@ router.post('/lite-registration/v1/action5/study-grade', function (req, res) {
 
 // Version 1 - Lite Registration Study Grade
 router.post('/lite-registration/v1/action6/enter-barcode', function (req, res) {
-  let enterBarcode = req.session.data['enter-barcode']
-  if (enterBarcode.charAt(0) == "L") {
-    console.log("true")
-  } else {
-    console.log("false")
+  let enterBarcode = req.session.data['kit-barcode-reference-1']
+  if (enterBarcode.charAt(0) != "L" || enterBarcode.charAt(0) != "B") {
+    res.redirect('/lite-registration/v1/test-place')
+  }
+  else if (enterBarcode.charAt(0) == "C") {
+    res.redirect('/lite-registration/v1/royal-mail-barcode')
+  }
+  else if (enterBarcode.charAt(0) == "L") {
+    res.redirect('/lite-registration/v1/site-id')
+  }
+  else {
+    res.redirect('/lite-registration/v1/test-place')
   }
 })
 
@@ -2508,6 +2515,94 @@ router.post('/_csplayground/singleregistration/v1/action/who-is-test-for', funct
   } else {
     res.redirect('/_csplayground/singleregistration/v1/enter-barcode')
   }
+
+})
+
+// Lite registration - Who is test for?
+
+router.post('/lite-registration/v1/action6/who-is-test-for', function (req, res) {
+  let subject = req.session.data['who-is-test-for']
+  if (subject == "Myself"){
+    res.redirect('/lite-registration/v1/coronavirus-account')
+  } else {
+    res.redirect('/lite-registration/v1/enter-barcode')
+  }
+
+})
+
+// Lite registration - Coronavirus Account
+
+router.post('/lite-registration/v1/action9/coronavirus-account', function (req, res) {
+  let coronavirusAccount = req.session.data['coronavirus-account']
+  if (coronavirusAccount == "Yes") {
+    res.redirect('/lite-registration/v1/user-account/login-email')
+  } else {
+    res.redirect('/lite-registration/v1/enter-barcode')
+  }
+})
+
+// Version 1 - Lite Registration - Login email route
+router.post('/lite-registration/v1/user-account/action5/login-email', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/lite-registration/v1/user-account/enter-password')
+  } else {
+    res.redirect('/lite-registration/v1/user-account/create-password')
+  }
+
+})
+
+// Version 2 - Lite Registration - Create password route
+router.post('/lite-registration/v1/action8/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/lite-registration/v1/user-account/create-password-error')
+  } else {
+    res.redirect('/lite-registration/v1/user-account/check-email')
+  }
+})
+
+// Version 1 - Lite Registration Accounts MVP User account - check mobile route
+router.post('/lite-registration/v1/action8/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/lite-registration/v1/user-account/check-mobile-error')
+  } else {
+    res.redirect('/lite-registration/v1/user-account/agreement')
+  }
+})
+
+// Version 1 - Lite Registration Acccounts MVP User account - Home page testing route
+router.post('/lite-registration/v1/action6/home-page', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == 'user@testing.co.uk'){
+    res.redirect('/lite-registration-accounts-mvp/v1/test-place')
+  } else {
+    res.redirect('/lite-registration-accounts-mvp/v1/email-address-account')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - Reason for test route
+
+router.post('/antigen/v2/alternative-screens/action3/reason-for-test', function (req, res) {
+  let reason = req.session.data['reason-for-test']
+  if (reason == "Contact tracers asked me to get a test"){
+    res.redirect('/antigen/v2/alternative-screens/who-asked-for-test-CT')
+  }
+  else if (reason == "A healthcare professional has asked me to get a test") {
+    res.redirect('/antigen/v2/alternative-screens/who-asked-for-test-HR')
+  }
+  else if (reason == "My work university or school has asked me to get a test") {
+    res.redirect('/antigen/v2/alternative-screens/who-asked-for-test-OER')
+  }
+  else {
+    console.log("currently no screen for 'None of the above'"))
+  }
+
 
 })
 
