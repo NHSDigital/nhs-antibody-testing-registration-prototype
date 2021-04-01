@@ -70,26 +70,29 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-      <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m">Test results summary</caption>
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Negative</td>
-            <td class="govuk-table__cell">8</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Void</td>
-            <td class="govuk-table__cell">0</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Positive</td>
-            <td class="govuk-table__cell">2</td>
-          </tr>
-        </tbody>
-      </table>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+          <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Test results summary</caption>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Negative</td>
+                <td class="govuk-table__cell">8</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Void</td>
+                <td class="govuk-table__cell">0</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Positive</td>
+                <td class="govuk-table__cell">2</td>
+              </tr>
+            </tbody>
+          </table>
 
       <h2 class="govuk-heading-m">Records 1 to 10 of 10</h2>
-      <form class="" action="/{{ version }}/bulk/pcr" method="get">
+      <form class="" action="" method="get">
 
         <ul class="card-table">
 
@@ -264,6 +267,7 @@
 
               <div class="card-table__form-column column-8">
                   <dl class="card-table__summary">
+                    <dt>Name</dt>
                     <dt class="govuk-visually-hidden">Name</dt>
                     <dd>{{ item.name }}</dd>
                     <dd class="dob">{{ item.dob }}</dd>
@@ -274,11 +278,10 @@
               </div>
 
               <div class="card-table__form-column column-16">
+                <dl class="card-table__summary">
+                <dt>Test kit barcode</dt>
                 {{ govukInput({
-                  label: {
-                    text: "Test kit barcode",
-                    classes: "govuk-!-font-size-16"
-                  },
+
                   classes: "govuk-input--width-10",
                   value: item.value,
                   id: "cuTestKitCode" + item.id,
@@ -287,6 +290,8 @@
               </div>
 
               <div class="card-table__form-column column-16">
+                <dl class="card-table__summary">
+                <dt>Date of swab test</dt>
                 <div class="govuk-form-group">
                   <fieldset class="govuk-fieldset" role="group">
 
@@ -337,6 +342,8 @@
               </div>
 
                 <div class="card-table__form-column column-12">
+                  <dl class="card-table__summary">
+                  <dt>Time of swab test</dt>
 
                   {% call govukFieldset({
                     legend: {
@@ -408,34 +415,42 @@
 
 
 
+                <div class="govuk-form-group">
+                  <fieldset class="govuk-fieldset" aria-describedby="reupload">
+                    <legend class="govuk-fieldset__legend">
+                      <h2 class="govuk-heading-m govuk-!-margin-top-6">Are records 1 to 10 of 10 correct?</h2>
+                    </legend>
+                    <div id="reupload" class="govuk-hint">
+                      You can re-upload a new version of the spreadsheet if you have not selected the correct 'Test type' or if you entered the data incorrectly.
+                    </div>
+                    <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="yes" data-aria-controls="conditional-reupload">
+                        <label class="govuk-label govuk-radios__label" for="reupload">
+                          Yes, I confirm the details are correct
+                          </label>
+                      </div>
+                      <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-reupload">
+                        <div class="govuk-warning-text">
+                  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                  <strong class="govuk-warning-text__text">
+                    <span class="govuk-warning-text__assistive">Warning</span>
+                    You are reporting 2 positive lateral flow test results
+                  </strong>
+                </div>
+                </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="no" data-aria-controls="reupload">
+              <label class="govuk-label govuk-radios__label" for="reupload">
+                No, edit and re-upload the spreadsheet
+              </label>
+            </div>
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-6">Confirm records 1 to 10 of 10</h2>
+                  </fieldset>
+                </div>
 
 
-        {{ govukCheckboxes({
-          idPrefix: "covidUploadCheckbox",
-          name: "cuConfirmCheckbox",
-          items: [
-            {
-              value: "agreed",
-              text: "I confirm all details are correct"
-            }
-          ]
-        }) }}
+                      <form class="" action="/{{ version }}/bulk/pcr" method="get">
+                    <input class="govuk-button" type="submit" value="Save and continue">
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
-            <div class="govuk-checkboxes">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
-                <label class="govuk-label govuk-checkboxes__label" for="waste">
-                  I confirm there are <span class="govuk-body govuk-!-font-weight-bold">2</span> positive test results
-                </label>
-              </div>
-              <br>
-              <form class="" action="/{{ version }}/bulk/pcr" method="get">
-            <input class="govuk-button" type="submit" value="Save and continue">
-          </div>
-        </div>
-
-{% endblock %}
+        {% endblock %}

@@ -98,7 +98,10 @@
               classes: "govuk-body"
             }
           },
-          items: [
+            hint: {
+              text: "We are asking this question so we can find their GP record and save their test result there"
+            },
+            items: [
             {
               value: "Female",
               text: "Female"
@@ -106,13 +109,20 @@
             {
               value: "Male",
               text: "Male"
+            },
+            {
+              value: "Other",
+              text: "Other/ Not specified/ I do not know"
             }
           ]
         }) }}
 
-        {# {{ govukDetails({
-          summaryText: "Why are there no other options?"
-        }) }} #}
+        {% from "govuk/components/details/macro.njk" import govukDetails %}
+
+{{ govukDetails({
+  summaryText: "Why are there not more options?",
+  text: "We understand there are other ways a person may answer this question. In this case we just need to know what's on the person's GP record"
+}) }}
 
         {{ govukInput({
           label: {

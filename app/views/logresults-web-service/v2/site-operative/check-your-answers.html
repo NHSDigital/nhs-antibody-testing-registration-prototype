@@ -1,0 +1,71 @@
+{% set version = "v2" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  
+  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/test-result">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom6">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test kit barcode reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['kit-barcode-reference-1'] or 'CHE00000501' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/logresults-web-service/{{version}}/site-operative/enter-barcode">
+              Change
+              <span class="govuk-visually-hidden">current coronavirus symptoms</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test result
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['test-result'] or 'Negative' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/logresults-web-service/{{version}}/site-operative/test-result">
+              Change
+              <span class="govuk-visually-hidden">date when symptoms started</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <form action="/logresults-web-service/{{version}}/site-operative/confirmation" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+

@@ -1,0 +1,109 @@
+{% set version = "v2" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  {% if data['more-test-packs-3'] == "Yes" %}
+  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/lot-reference-3">Back</a>
+  {% elseif data['more-test-packs-2'] == "Yes" %}
+  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/lot-reference-2">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/lot-reference">Back</a>
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom6">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            QR code
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['qr-code-person-1'] or 'ABCD1234' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/logresults-web-service/{{version}}/site-operative/edit-answers/qr-code-person">
+              Change
+              <span class="govuk-visually-hidden">qr code</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            LOT reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['lot-reference-1'] or 'XF1289347' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/logresults-web-service/{{version}}/site-operative/edit-answers/lot-reference">
+              Change
+              <span class="govuk-visually-hidden">lot reference</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['more-test-packs'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            LOT reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['lot-reference-2'] or 'XF1384911' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/logresults-web-service/{{version}}/site-operative/edit-answers/lot-reference-2">
+              Change
+              <span class="govuk-visually-hidden">lot reference</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        {% if data['more-test-packs-2'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            LOT reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['lot-reference-3'] or 'XR1387735' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/logresults-web-service/{{version}}/site-operative/edit-answers/lot-reference-3">
+              Change
+              <span class="govuk-visually-hidden">lot reference</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+      </dl>
+
+      <form action="/logresults-web-service/{{version}}/site-operative/confirmation-collection" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
