@@ -14,8 +14,14 @@
       </span>
     </p>
   </div>
-  
+  {% if data['more-test-packs-3'] == "Yes" %}
+  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/lot-reference-3">Back</a>
+  {% elseif data['more-test-packs-2'] == "Yes" %}
+  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/lot-reference-2">Back</a>
+  {% else %}
   <a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/lot-reference">Back</a>
+  {% endif %}
+
 {% endblock %}
 
 {% block content %}
@@ -27,32 +33,64 @@
       <dl class="govuk-summary-list govuk-!-margin-bottom6">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Test kit barcode reference
+            QR code
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['kit-barcode-reference-1'] or 'CHE00000501' }}
+            {{ data['qr-code-person-1'] or 'ABCD1234' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/logresults-web-service/{{version}}/site-operative/enter-barcode">
+            <a href="/logresults-web-service/{{version}}/site-operative/edit-answers/qr-code-person">
               Change
-              <span class="govuk-visually-hidden">current coronavirus symptoms</span>
+              <span class="govuk-visually-hidden">qr code</span>
             </a>
           </dd>
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Test result
+            LOT reference
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['test-result'] or 'Negative' }}
+            {{ data['lot-reference-1'] or 'XF1289347' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/logresults-web-service/{{version}}/site-operative/test-result">
+            <a href="/logresults-web-service/{{version}}/site-operative/edit-answers/lot-reference">
               Change
-              <span class="govuk-visually-hidden">date when symptoms started</span>
+              <span class="govuk-visually-hidden">lot reference</span>
             </a>
           </dd>
         </div>
+        {% if data['more-test-packs'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            LOT reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['lot-reference-2'] or 'XF1384911' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/logresults-web-service/{{version}}/site-operative/edit-answers/lot-reference-2">
+              Change
+              <span class="govuk-visually-hidden">lot reference</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        {% if data['more-test-packs-2'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            LOT reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['lot-reference-3'] or 'XR1387735' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/logresults-web-service/{{version}}/site-operative/edit-answers/lot-reference-3">
+              Change
+              <span class="govuk-visually-hidden">lot reference</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
       </dl>
 
       <form action="/logresults-web-service/{{version}}/site-operative/confirmation-collection" method="post" novalidate>
