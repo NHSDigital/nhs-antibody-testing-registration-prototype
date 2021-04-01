@@ -11,7 +11,46 @@ function loadJSONFromFile(fileName, path = "app/data/") {
 }
 
 
+// VERSION 2
 
+router.post('/logresults-web-service/v2/site-operative/action13/more-test-packs', function (req, res) {
+  let moreTestPacks = req.session.data['more-test-packs']
+  let lotReference1 = req.session.data['lot-reference-1']
+  if (moreTestPacks == "Yes" && lotReference1 ) {
+    res.redirect('/logresults-web-service/v2/site-operative/enter-lot-reference-2')
+  } else if (moreTestPacks == "Yes" && !lotReference1 ) {
+    res.redirect('/logresults-web-service/v2/site-operative/lot-reference-2')
+  } else {
+    res.redirect('/logresults-web-service/v2/site-operative/check-your-answers-collection')
+  }
+
+})
+
+router.post('/logresults-web-service/v2/site-operative/action13/more-test-packs-2', function (req, res) {
+  let moreTestPacks = req.session.data['more-test-packs-2']
+  let lotReference2 = req.session.data['lot-reference-2']
+  if (moreTestPacks == "Yes" && lotReference2 ) {
+    res.redirect('/logresults-web-service/v2/site-operative/enter-lot-reference-3')
+  } else if (moreTestPacks == "Yes" && !lotReference2 ) {
+    res.redirect('/logresults-web-service/v2/site-operative/lot-reference-3')
+  } else {
+    res.redirect('/logresults-web-service/v2/site-operative/check-your-answers-collection')
+  }
+
+})
+
+router.post('/logresults-web-service/v2/site-operative/action13/more-test-packs-3', function (req, res) {
+  let moreTestPacks = req.session.data['more-test-packs-3']
+  let lotReference2 = req.session.data['lot-reference-3']
+  if (moreTestPacks == "Yes" && lotReference2 ) {
+    res.redirect('/logresults-web-service/v2/site-operative/check-your-answers-collection')
+  } else if (moreTestPacks == "Yes" && !lotReference2 ) {
+    res.redirect('/logresults-web-service/v2/site-operative/check-your-answers-collection')
+  } else {
+    res.redirect('/logresults-web-service/v2/site-operative/check-your-answers-collection')
+  }
+
+})
 
 
 
