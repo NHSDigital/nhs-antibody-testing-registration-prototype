@@ -396,8 +396,11 @@ router.post('/antigen/v1/action4/do-you-have-symptoms', function (req, res) {
 // Version 1 - Antigen Refer and Triage - When did symptoms start route
 
 router.post('/antigen/v1/action3/when-did-symptoms-start', function (req, res) {
-  let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
-  if (yearSymptomsStarted != "2021"){
+  let dateOfOnset = req.session.data['date-of-onset']
+  let yearOfOnset = req.session.data['symptoms-start-date-year']
+  if (!dateOfOnset){
+    res.redirect('/antigen/v1/refer-and-triage/when-did-symptoms-start-error-2')
+  } else if (dateOfOnset == "different" && yearOfOnset !== "2021"){
     res.redirect('/antigen/v1/refer-and-triage/when-did-symptoms-start-error')
   } else {
     res.redirect('/antigen/v1/refer-and-triage/government-pilot')
