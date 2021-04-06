@@ -1,0 +1,79 @@
+{% set version = "v2" %}
+{% set pageTitle = "How many test packs are you giving out with this LOT number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['lot-reference-1'] %}
+<a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/enter-lot-reference-3">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/lot-reference-3">Back</a>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/logresults-web-service/{{version}}/site-operative/lot-references-summary" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="lot-reference-hint lot-reference-2-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+              How many test packs with LOT reference {{ data['lot-reference-3'] or 'XR1387735' }} are you giving out?
+            </h1>
+          </legend>
+
+          <div class="govuk-radios govuk-!-margin-top-5">
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="number-of-packs-3-1" name="number-of-packs-3" type="radio" value="1" {{ checked("number-of-packs-3", "1") }}>
+                <label class="govuk-label govuk-radios__label" for="number-of-packs-3-1">
+                    1
+                </label>
+            </div>
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="number-of-packs-3-2" name="number-of-packs-3" type="radio" value="2" {{ checked("number-of-packs-3", "2") }}>
+                <label class="govuk-label govuk-radios__label" for="number-of-packs-3-2">
+                    2
+                </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="number-of-packs-3-3" name="number-of-packs-3" type="radio" value="3" {{ checked("number-of-packs-3", "3") }}>
+              <label class="govuk-label govuk-radios__label" for="number-of-packs-3-3">
+                  3
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="number-of-packs-3-4" name="number-of-packs-3" type="radio" value="4" {{ checked("number-of-packs-3", "4") }}>
+              <label class="govuk-label govuk-radios__label" for="number-of-packs-3-4">
+                  4
+              </label>
+            </div>
+          </div>
+
+        </fieldset>
+
+        </div>
+    
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

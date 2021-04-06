@@ -1,0 +1,247 @@
+{% set version = "v2" %}
+{% set pageTitle = "LOT references" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom6">
+        {% if data['number-of-packs-1'] %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+            LOT reference
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-quarter">
+            {{ data['lot-reference-1'] or 'XF1289347' }}<br>
+            <a href="/logresults-web-service/{{version}}/site-operative/lot-reference">
+                Change
+                <span class="govuk-visually-hidden">lot reference</span>
+              </a>
+          </dd>
+          <dd class="govuk-summary-list__value govuk-!-width-one-quarter">
+            Quantity: {{ data['number-of-packs-1'] or '1' }}<br>
+            <a href="/logresults-web-service/{{version}}/site-operative/how-many-test-packs-1">
+                Change
+                <span class="govuk-visually-hidden">lot reference</span>
+              </a>
+          </dd>
+          {% if data['number-of-packs-2'] or data['number-of-packs-3'] %}
+          <dd class="govuk-summary-list__actions govuk-!-width-one-quarter">
+            <form action="#" method="post" novalidate>
+
+                <input class="govuk-input govuk-!-width-two-thirds" id="lot-reference-1" name="lot-reference-1" type="text" value="" style="display: none;">
+                <input class="govuk-input govuk-!-width-two-thirds" id="number-of-packs-1" name="number-of-packs-1" type="text" value="" style="display: none;">
+        
+                <a href="#" role="button" type="submit" data-module="govuk-button" onclick="this.closest('form').submit();return false;">
+                    Remove LOT reference
+                    <span class="govuk-visually-hidden">remove lot reference</span>
+                </a>
+        
+            </form>
+          </dd>
+          {% endif %}
+        </div>
+        {% endif %}
+        {% if data['number-of-packs-2'] %}
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+              LOT reference
+            </dt>
+            <dd class="govuk-summary-list__value govuk-!-width-one-quarter">
+              {{ data['lot-reference-2'] or 'XF1384911' }}<br>
+              <a href="/logresults-web-service/{{version}}/site-operative/lot-reference-2">
+                  Change
+                  <span class="govuk-visually-hidden">lot reference</span>
+                </a>
+            </dd>
+            <dd class="govuk-summary-list__value govuk-!-width-one-quarter">
+              Quantity: {{ data['number-of-packs-2'] or '1' }}<br>
+              <a href="/logresults-web-service/{{version}}/site-operative/how-many-test-packs-2">
+                  Change
+                  <span class="govuk-visually-hidden">lot reference</span>
+                </a>
+            </dd>
+            {% if data['number-of-packs-1'] or data['number-of-packs-3'] %}
+            <dd class="govuk-summary-list__actions govuk-!-width-one-quarter">
+                <form action="#" method="post" novalidate>
+
+                    <input class="govuk-input govuk-!-width-two-thirds" id="lot-reference-2" name="lot-reference-2" type="text" value="" style="display: none;">
+                    <input class="govuk-input govuk-!-width-two-thirds" id="number-of-packs-2" name="number-of-packs-2" type="text" value="" style="display: none;">
+            
+                    <a href="#" role="button" type="submit" data-module="govuk-button" onclick="this.closest('form').submit();return false;">
+                        Remove LOT reference
+                        <span class="govuk-visually-hidden">remove lot reference</span>
+                    </a>
+            
+                </form>
+            </dd>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if data['number-of-packs-3'] %}
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+              LOT reference
+            </dt>
+            <dd class="govuk-summary-list__value govuk-!-width-one-quarter">
+              {{ data['lot-reference-3'] or 'XR1387735' }}<br>
+              <a href="/logresults-web-service/{{version}}/site-operative/lot-reference-3">
+                  Change
+                  <span class="govuk-visually-hidden">lot reference</span>
+                </a>
+            </dd>
+            <dd class="govuk-summary-list__value govuk-!-width-one-quarter">
+              Quantity: {{ data['number-of-packs-3'] or '1' }}<br>
+              <a href="/logresults-web-service/{{version}}/site-operative/how-many-test-packs-3">
+                  Change
+                  <span class="govuk-visually-hidden">lot reference</span>
+                </a>
+            </dd>
+            {% if data['number-of-packs-1'] or data['number-of-packs-2'] %}
+            <dd class="govuk-summary-list__actions govuk-!-width-one-quarter">
+                <form action="#" method="post" novalidate>
+
+                    <input class="govuk-input govuk-!-width-two-thirds" id="lot-reference-3" name="lot-reference-3" type="text" value="" style="display: none;">
+                    <input class="govuk-input govuk-!-width-two-thirds" id="number-of-packs-3" name="number-of-packs-3" type="text" value="" style="display: none;">
+            
+                    <a href="#" role="button" type="submit" data-module="govuk-button" onclick="this.closest('form').submit();return false;">
+                        Remove LOT reference
+                        <span class="govuk-visually-hidden">remove lot reference</span>
+                    </a>
+            
+                </form>
+            </dd>
+            {% endif %}
+          </div>
+        {% endif %}
+      </dl>
+
+      <form action="/logresults-web-service/{{version}}/site-operative/confirmation-collection" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button govuk-!-margin-bottom-4" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+      {% if data['number-of-packs-1'] %}
+        {% if data['number-of-packs-2'] %}
+            {% if data['number-of-packs-3'] %}
+            <!-- <form action="/logresults-web-service/{{version}}/site-operative/lot-reference-2" method="post" novalidate>
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Add another test pack
+                </button>
+            </form> -->
+            {% else %}
+            <form action="/logresults-web-service/{{version}}/site-operative/lot-reference-3" method="post" novalidate>
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Add another test pack
+                </button>
+            </form>
+            {% endif %}
+        {% else %}
+            {% if data['number-of-packs-2'] %}
+            <!-- <form action="/logresults-web-service/{{version}}/site-operative/lot-reference-2" method="post" novalidate>
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Add another test pack
+                </button>
+            </form> -->
+            {% else %}
+            <form action="/logresults-web-service/{{version}}/site-operative/lot-reference-2" method="post" novalidate>
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Add another test pack
+                </button>
+            </form>
+            {% endif %}
+        {% endif %}
+      {% elseif data['number-of-packs-2'] %}
+        {% if data['number-of-packs-1'] %}
+            {% if data['number-of-packs-3'] %}
+            <!-- <form action="/logresults-web-service/{{version}}/site-operative/lot-reference-2" method="post" novalidate>
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Add another test pack
+                </button>
+            </form> -->
+            {% else %}
+            <form action="/logresults-web-service/{{version}}/site-operative/lot-reference-3" method="post" novalidate>
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Add another test pack
+                </button>
+            </form>
+            {% endif %}
+        {% else %}
+            {% if data['number-of-packs-3'] %}
+            <form action="/logresults-web-service/{{version}}/site-operative/lot-reference" method="post" novalidate>
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Add another test pack
+                </button>
+            </form>
+            {% else %}
+            <form action="/logresults-web-service/{{version}}/site-operative/lot-reference-3" method="post" novalidate>
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Add another test pack
+                </button>
+            </form>
+            {% endif %}
+        {% endif %}
+    {% else %}
+        {% if data['number-of-packs-1'] %}
+            {% if data['number-of-packs-2'] %}
+            <!-- <form action="/logresults-web-service/{{version}}/site-operative/lot-reference-2" method="post" novalidate>
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Add another test pack
+                </button>
+            </form> -->
+            {% else %}
+            <form action="/logresults-web-service/{{version}}/site-operative/lot-reference-2" method="post" novalidate>
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Add another test pack
+                </button>
+            </form>
+            {% endif %}
+        {% else %}
+            {% if data['number-of-packs-2'] %}
+            <!-- <form action="/logresults-web-service/{{version}}/site-operative/lot-reference-2" method="post" novalidate>
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Add another test pack
+                </button>
+            </form> -->
+            {% else %}
+            <form action="/logresults-web-service/{{version}}/site-operative/lot-reference" method="post" novalidate>
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Add another test pack
+                </button>
+            </form>
+            {% endif %}
+        {% endif %}
+      {% endif %}
+
+
+    </div>
+  </div>
+{% endblock %}
+
