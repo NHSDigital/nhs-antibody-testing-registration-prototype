@@ -2591,22 +2591,22 @@ router.post('/lite-registration/v1/action6/home-page', function (req, res) {
 
 // Version 1 - Antigen Refer and Triage - Reason for test route
 
-router.post('/antigen/v2/alternative-screens/action3/reason-for-test', function (req, res) {
-  let reason = req.session.data['reason-for-test']
-  if (reason == "Contact tracers asked me to get a test"){
-    res.redirect('/antigen/v2/alternative-screens/who-asked-for-test-CT')
-  }
-  else if (reason == "A healthcare professional has asked me to get a test") {
-    res.redirect('/antigen/v2/alternative-screens/who-asked-for-test-HR')
-  }
-  else if (reason == "My work university or school has asked me to get a test") {
-    res.redirect('/antigen/v2/alternative-screens/who-asked-for-test-OER')
-  }
-  else {
-    console.log("currently no screen for 'None of the above'"))
-  }
+// router.post('/antigen/v2/alternative-screens/action3/reason-for-test', function (req, res) {
+//   let reason = req.session.data['reason-for-test']
+//   if (reason == "Contact tracers asked me to get a test"){
+//     res.redirect('/antigen/v2/alternative-screens/who-asked-for-test-CT')
+//   }
+//   else if (reason == "A healthcare professional has asked me to get a test") {
+//     res.redirect('/antigen/v2/alternative-screens/who-asked-for-test-HR')
+//   }
+//   else if (reason == "My work university or school has asked me to get a test") {
+//     res.redirect('/antigen/v2/alternative-screens/who-asked-for-test-OER')
+//   }
+//   else {
+//     console.log("currently no screen for 'None of the above")
+//   }
 
 
-})
+// })
 
 module.exports = router
