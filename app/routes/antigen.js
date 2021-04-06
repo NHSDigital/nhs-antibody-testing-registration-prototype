@@ -133,9 +133,56 @@ router.post('/antigen/v2/action3/government-pilot', function (req, res) {
 
 // Version 2 - Antigen Refer and Triage - Reason for test route
 
+// router.post('/antigen/v2/action3/reason-for-test', function (req, res) {
+//   let reason = req.session.data['reason-for-test']
+//   if (reason == "None of the above"){
+//     res.redirect('/antigen/v2/refer-and-triage/cannot-have-test')
+//   } else {
+//     res.redirect('/antigen/v2/refer-and-triage/eligible')
+//   }
+
+// })
+
 router.post('/antigen/v2/action3/reason-for-test', function (req, res) {
   let reason = req.session.data['reason-for-test']
-  if (reason == "None of the above"){
+  if (reason == "Contact tracers asked me to get a test"){
+    res.redirect('/antigen/v2/refer-and-triage/who-asked-for-test-CT')
+  }
+  else if (reason == "A healthcare professional has asked me to get a test") {
+    res.redirect('/antigen/v2/refer-and-triage/who-asked-for-test-HR')
+  }
+  else if (reason == "My work, university or school has asked me to get a test") {
+    res.redirect('/antigen/v2/refer-and-triage/who-asked-for-test-OER')
+  }
+  else {
+    res.redirect('/antigen/v2/refer-and-triage/cannot-have-test')
+  }
+
+})
+
+router.post('/antigen/v2/action3/who-asked-for-test-CT', function (req, res) {
+  let whoAskedForTest = req.session.data['who-asked-for-test']
+  if (whoAskedForTest == "None of the above"){
+    res.redirect('/antigen/v2/refer-and-triage/cannot-have-test')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/eligible')
+  }
+
+})
+
+router.post('/antigen/v2/action3/who-asked-for-test-HR', function (req, res) {
+  let whoAskedForTest = req.session.data['who-asked-for-test']
+  if (whoAskedForTest == "None of the above"){
+    res.redirect('/antigen/v2/refer-and-triage/cannot-have-test')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/eligible')
+  }
+
+})
+
+router.post('/antigen/v2/action3/who-asked-for-test-OER', function (req, res) {
+  let whoAskedForTest = req.session.data['who-asked-for-test']
+  if (whoAskedForTest == "None of the above"){
     res.redirect('/antigen/v2/refer-and-triage/cannot-have-test')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/eligible')
