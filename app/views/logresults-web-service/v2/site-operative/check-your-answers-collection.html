@@ -42,58 +42,26 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            LOT reference
+            LOT references
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['lot-reference-1'] or 'XF1289347' }}
+            {% if data['number-of-packs-1'] %}
+            {{ data['lot-reference-1'] or 'XF1289347' }} ({{ data['number-of-packs-1'] or '1' }})<br>
+            {% endif %}
+            {% if data['number-of-packs-2'] %}
+            {{ data['lot-reference-2'] or 'XF1384911' }} ({{ data['number-of-packs-2'] or '1' }})<br>
+            {% endif %}
+            {% if data['number-of-packs-3'] %}
+            {{ data['lot-reference-3'] or 'XR1387735' }} ({{ data['number-of-packs-3'] or '1' }})
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/logresults-web-service/{{version}}/site-operative/edit-answers/lot-reference">
-              Change
-              <span class="govuk-visually-hidden">lot reference</span>
-            </a>
-            <a href="#" class="govuk-!-padding-left-3">
-              Remove
-              <span class="govuk-visually-hidden">lot reference</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['more-test-packs'] == "Yes" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            LOT reference
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['lot-reference-2'] or 'XF1384911' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/logresults-web-service/{{version}}/site-operative/edit-answers/lot-reference-2">
-              Change
-              <span class="govuk-visually-hidden">lot reference</span>
-            </a>
-            <a href="#" class="govuk-!-padding-left-3">
-              Remove
-              <span class="govuk-visually-hidden">lot reference</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        {% if data['more-test-packs-2'] == "Yes" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            LOT reference
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['lot-reference-3'] or 'XR1387735' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/logresults-web-service/{{version}}/site-operative/edit-answers/lot-reference-3">
+            <a href="/logresults-web-service/{{version}}/site-operative/lot-references-summary">
               Change
               <span class="govuk-visually-hidden">lot reference</span>
             </a>
           </dd>
         </div>
-        {% endif %}
       </dl>
 
       <form action="/logresults-web-service/{{version}}/site-operative/confirmation-collection" method="post" novalidate>
