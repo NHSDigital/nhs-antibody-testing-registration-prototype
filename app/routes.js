@@ -408,6 +408,19 @@ router.post('/antigen/v1/action3/when-did-symptoms-start', function (req, res) {
 
 })
 
+router.post('/antigen/v1/action3/when-did-symptoms-start-person-1', function (req, res) {
+  let dateOfOnset = req.session.data['date-of-onset-person-1']
+  let yearOfOnset = req.session.data['symptoms-start-date-year-person-1']
+  if (!dateOfOnset){
+    res.redirect('/antigen/v1/global-registration/when-did-symptoms-start-person-1-error-2')
+  } else if (dateOfOnset == "different" && yearOfOnset !== "2021"){
+    res.redirect('/antigen/v1/global-registration/when-did-symptoms-start-person-1-error')
+  } else {
+    res.redirect('/antigen/v1/global-registration/mobile-number-person-1')
+  }
+
+})
+
 // Version 1 - Antigen Refer and Triage - When did symptoms start error route
 
 router.post('/antigen/v1/action3/when-did-symptoms-start-error', function (req, res) {
@@ -419,6 +432,16 @@ router.post('/antigen/v1/action3/when-did-symptoms-start-error', function (req, 
   }
 
 })
+
+// router.post('/antigen/v1/action3/when-did-symptoms-start-error-person-1', function (req, res) {
+//   let yearSymptomsStarted = req.session.data['symptoms-start-date-year-person-1']
+//   if (yearSymptomsStarted != "2021"){
+//     res.redirect('/antigen/v1/global-registration/when-did-symptoms-start-error-person-1')
+//   } else {
+//     res.redirect('/antigen/v1/global-registration/mobile-number-person-1')
+//   }
+
+// })
 
 // Version 1 - Antigen Refer and Triage - Follow up test
 

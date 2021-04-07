@@ -72,13 +72,42 @@ router.post('/antigen/v2/action3/do-you-have-symptoms-person-1', function (req, 
 
 // Version 2 - Antigen Refer and Triage - When did symptoms start option 2 route
 
+// Version 1 - Antigen Refer and Triage - When did symptoms start route
+
 router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
   let dateOfOnset = req.session.data['date-of-onset']
   let yearOfOnset = req.session.data['symptoms-start-date-year']
-  if (dateOfOnset == "different" && yearOfOnset !== "2021"){
+  if (!dateOfOnset){
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error-2')
+  } else if (dateOfOnset == "different" && yearOfOnset !== "2021"){
     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/government-pilot')
+  }
+
+})
+
+// Version 1 - Antigen Refer and Triage - When did symptoms start error route
+
+router.post('/antigen/v2/action3/when-did-symptoms-start-error', function (req, res) {
+  let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
+  if (yearSymptomsStarted != "2021"){
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
+  }
+
+})
+
+router.post('/antigen/v2/action3/when-did-symptoms-start-person-1', function (req, res) {
+  let dateOfOnset = req.session.data['date-of-onset-person-1']
+  let yearOfOnset = req.session.data['symptoms-start-date-year-person-1']
+  if (!dateOfOnset){
+    res.redirect('/antigen/v2/global-registration/when-did-symptoms-start-person-1-error-2')
+  } else if (dateOfOnset == "different" && yearOfOnset !== "2021"){
+    res.redirect('/antigen/v2/global-registration/when-did-symptoms-start-person-1-error')
+  } else {
+    res.redirect('/antigen/v2/global-registration/mobile-number-person-1')
   }
 
 })
