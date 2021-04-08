@@ -41,19 +41,20 @@
               <label class="govuk-label" for="home-postcode">
                 Postcode
               </label>
-              <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}">
+              <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}" autofocus>
             </div>
           </div>
 
           <div id="content-2" style="display: none;">
-            <p>
-              <strong>Postcode</strong><br><br>
-              <strong>{{ data['home-postcode'] or 'LS1 3BE' }}</strong>
-              <a href="/antigen/{{version}}/refer-and-triage/postcode" class="govuk-!-margin-left-5">
-                Change
-                <span class="govuk-visually-hidden">your postcode</span>
-              </a>
-            </p>
+            <span id="post-code-hint" class="govuk-body">
+              This means we can show you test options near you.
+            </span>
+            <div class="govuk-form-group govuk-!-margin-top-5">
+              <label class="govuk-label" for="home-postcode">
+                Postcode
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="home-postcode-2" name="home-postcode-2" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] or 'LS1 3BE'}}">
+            </div>
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="home-address">
@@ -76,7 +77,7 @@
           <div id="content-3" style="display: none;">
             <p>
               <strong>Postcode</strong><br><br>
-              <strong>{{ data['home-postcode'] | default('LS1 3BE') }}</strong>
+              <strong>{{ data['home-postcode'] or 'LS1 3BE' }}</strong>
               <a href="/antigen/{{version}}/refer-and-triage/postcode-option-2" class="govuk-!-margin-left-5">
                 Change
                 <span class="govuk-visually-hidden">your postcode</span>
@@ -127,6 +128,7 @@
       document.getElementById('find-address').style.display = 'none'
       document.getElementById('button-hidden').style.display = 'block'
       document.getElementById('content-2').style.display = 'block'
+      document.getElementById('home-address').focus()
     }, 100)
   }
 
@@ -134,6 +136,7 @@
     setTimeout(function () {
       document.getElementById('content-2').style.display = 'none'
       document.getElementById('content-3').style.display = 'block'
+      document.getElementById('address-line-1').focus()
     }, 100)
   }
 
