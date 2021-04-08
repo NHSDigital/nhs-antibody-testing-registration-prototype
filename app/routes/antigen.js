@@ -533,6 +533,15 @@ router.post('/antigen/v2/action3/gp-address-same', function (req, res) {
   }
 })
 
+router.post('/antigen/v2/action3/gp-address-same-person-1', function (req, res) {
+  let gpAdressSame = req.session.data['gp-address-same-person-1']
+  if (gpAdressSame == "No"){
+    res.redirect('/antigen/v2/global-registration/address-person-1-option-2')
+  } else {
+    res.redirect('/antigen/v2/global-registration/nhs-number-known-person-1')
+  }
+})
+
 // Version 2 - Antigen Global Registration - address route
 
 router.post('/antigen/v2/action3/address', function (req, res) {
