@@ -2475,12 +2475,28 @@ router.post('/antigen/v1/action8/vaccine-person-1', function (req, res) {
 
 // Version 1 - Lite reg accounts - test place route
 
-router.post('/litereg-accounts/v1/action9/test-place', function (req, res) {
+router.post('/litereg-accounts/v1/action2/test-place', function (req, res) {
   let testPlace = req.session.data['test-place']
-  if (testPlace == "home") {
+  let selfIsolating = req.session.data['self-isolating']
+  if (testPlace == "At a test site or govenment quarantine hotel") {
+    if (selfIsolating == "Yes") {
+      res.redirect('/litereg-accounts/v1/nhs-id')
+    }
+    else {
+      res.redirect('/litereg-accounts/v1/site-id')
+    }
+  }
+  else if (testPlace == "At home or an accommodation of your choice") {
     res.redirect('/litereg-accounts/v1/royal-mail-barcode')
-  } else {
+  }
+  else if (testPlace == "At a test site") {
     res.redirect('/litereg-accounts/v1/site-id')
+  }
+  else if (testPlace =="At home") {
+    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+  }
+  else {
+    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
   }
 
 })
@@ -2512,8 +2528,14 @@ router.post('/litereg-accounts/v1/action7/have-you-travelled', function (req, re
 // Version 1 - Antigen Vaccine
 router.post('/litereg-accounts/v1/action8/vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
+  let emailAddress = req.session.data['email-address']
   if (vaccine == "No"){
-    res.redirect('/litereg-accounts/v1/country')
+    if (emailAddress == "user@testing.co.uk") {
+      res.redirect('/litereg-accounts/v1/check-your-answers')
+    }
+    else {
+      res.redirect('/litereg-accounts/v1/country')
+    }
   } else {
     res.redirect('/litereg-accounts/v1/vaccine-date')
   }
@@ -2611,5 +2633,78 @@ router.post('/lite-registration/v1/action6/home-page', function (req, res) {
   }
 
 })
+
+// Version 1 - LiteReg Accounts Coronavirus v2
+router.post('/litereg-accounts/v1/action5/enter-barcode', function (req, res) {
+  let kitBarcodeReference = req.session.data['kit-barcode-reference-1']
+  let emailAddress = req.session.data['email-address']
+  if (kitBarcodeReference.charAt(0) == "C" && kitBarcodeReference.charAt(1) == "O") {
+    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+  }
+  else if (kitBarcodeReference.charAt(0) == "L") {
+    res.redirect('/litereg-accounts/v1/site-id')
+  }
+  else {
+    if (emailAddress == "user@testing.co.uk") {
+      res.redirect('/litereg-accounts/v1/test-place')
+    }
+    else {
+      res.redirect('/litereg-accounts/v1/are-you-isolating')
+    }
+  }
+})
+
+// Version 1 - LiteReg Accounts Daily Contact Testing
+router.post('/litereg-accounts/v1/action5/daily-contact-testing', function (req, res) {
+  let dailyContactTesting = req.session.data['daily-contact-testing']
+  if (dailyContactTesting  == "Yes") {
+    res.redirect('/litereg-accounts/v1/account-id')
+  }
+  else {
+    res.redirect('/litereg-accounts/v1/test-date')
+  }
+})
+
+// Version 1 - LiteReg Accounts Travelled Overseas
+router.post('/litereg-accounts/v1/action3/travelled-overseas', function (req, res) {
+  let travelledOverseas = req.session.data['travelled-overseas']
+  let emailAddress = req.session.data['email-address']
+  if (travelledOverseas  == "Yes") {
+    res.redirect('/litereg-accounts/v1/travelled-to')
+  }
+  else {
+    if (emailAddress == "user@testing.co.uk") {
+      res.redirect('/litereg-accounts/v1/vaccine')
+    }
+    else {
+      res.redirect('/litereg-accounts/v1/previous-infection')
+    }
+
+  }
+})
+
+// Version 1 - LiteReg Accounts Do you have symptoms
+router.post('/litereg-accounts/v1/action3/do-you-have-symptoms', function (req, res) {
+  let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
+  if (doYouHaveSymptoms  == "Yes") {
+    res.redirect('/litereg-accounts/v1/when-did-symptoms-start')
+  }
+  else {
+    res.redirect('/litereg-accounts/v1/travelled-overseas')
+  }
+})
+
+// Version 1 - LiteReg Accounts vaccine date
+router.post('/litereg-accounts/v1/action2/vaccine-date', function (req, res) {
+  let emailAddress = req.session.data['email-address']
+  if (emailAddress == "user@testing.co.uk") {
+    res.redirect('/litereg-accounts/v1/check-your-answers')
+  }
+  else {
+    res.redirect('/litereg-accounts/v1/country')
+  }
+})
+
+
 
 module.exports = router
