@@ -79,7 +79,7 @@ router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
   let yearOfOnset = req.session.data['symptoms-start-date-year']
   if (!dateOfOnset){
     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error-2')
-  } else if (dateOfOnset == "different" && yearOfOnset !== "2021"){
+  } else if (dateOfOnset == "different" && yearOfOnset !== "2020" && yearOfOnset !== "2021"){
     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/government-pilot')
@@ -104,7 +104,7 @@ router.post('/antigen/v2/action3/when-did-symptoms-start-person-1', function (re
   let yearOfOnset = req.session.data['symptoms-start-date-year-person-1']
   if (!dateOfOnset){
     res.redirect('/antigen/v2/global-registration/when-did-symptoms-start-person-1-error-2')
-  } else if (dateOfOnset == "different" && yearOfOnset !== "2021"){
+  } else if (dateOfOnset == "different" && yearOfOnset !== "2020" && yearOfOnset !== "2021"){
     res.redirect('/antigen/v2/global-registration/when-did-symptoms-start-person-1-error')
   } else {
     res.redirect('/antigen/v2/global-registration/mobile-number-person-1')
@@ -530,6 +530,15 @@ router.post('/antigen/v2/action3/gp-address-same', function (req, res) {
     res.redirect('/antigen/v2/global-registration/address')
   } else {
     res.redirect('/antigen/v2/global-registration/nhs-number-known')
+  }
+})
+
+router.post('/antigen/v2/action3/gp-address-same-person-1', function (req, res) {
+  let gpAdressSame = req.session.data['gp-address-same-person-1']
+  if (gpAdressSame == "No"){
+    res.redirect('/antigen/v2/global-registration/address-person-1-option-2')
+  } else {
+    res.redirect('/antigen/v2/global-registration/nhs-number-known-person-1')
   }
 })
 

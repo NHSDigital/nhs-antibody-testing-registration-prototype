@@ -45,12 +45,36 @@
               Home address
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['home-address'] == undefined or data['home-address'] == "5 addresses found" %}
-              {{ data['address-line-1'] }}<br>
-              {{ data['address-town'] }}<br>
-              {{ data['home-postcode'] }}
+              {% if data['gp-address-same'] !== "No" %}
+
+                {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
+                  {{ data['home-address'] }}
+                {% else %}
+                  {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+                    {% if data['address-line-2'] %}
+                      {{ data['address-line-2'] }}<br>
+                    {% endif %}
+                    {% if data['address-town'] %}
+                      {{ data['address-town'] }}<br>
+                    {% endif %}
+                  {{ data['home-postcode'] or 'LS1 3BE' }}
+                {% endif %}
+
               {% else %}
-              {{ data['home-address'] }}
+
+                {% if data['gp-address'] and data['gp-address'] !== "5 addresses found" %}
+                    {{ data['gp-address'] }}
+                {% else %}
+                    {{ data['address-line-1-gp'] or '5 Souterhead Road'}}<br>
+                    {% if data['address-line-2-gp'] %}
+                      {{ data['address-line-2-gp'] }}<br>
+                    {% endif %}
+                    {% if data['address-town-gp'] %}
+                      {{ data['address-town-gp'] }}<br>
+                    {% endif %}
+                    {{ data['gp-postcode'] or 'LS1 3BE' }}
+                {% endif %}
+
               {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
@@ -64,17 +88,26 @@
             Delivery address
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['delivery-address-same'] === 'No' and data['delivery-address-line-1'] == undefined %}{{ data['delivery-address'] }}{% endif %}
-            {% if data['delivery-address-same'] === 'No' and data['delivery-address-line-1'] !== undefined %}
-            {{ data['delivery-address-line-1'] }}<br>
-            {{ data['delivery-address-line-2'] }}<br>
-            {{ data['delivery-address-town'] }}<br>
-            {{ data['delivery-address-postcode'] }}
+            {% if data['delivery-address-same'] !== "No" %}
+              Same as home address
+            {% else %}
+              {% if data['delivery-address-same'] and data['delivery-address'] !== '5 addresses found' %}
+                {{ data['delivery-address'] }}
+              {% else %}
+                {{ data['delivery-address-line-1'] or '5 Souterhead Road' }}<br>
+                {% if data['delivery-address-line-2'] %}
+                  { data['delivery-address-line-2'] }}<br>
+                {% endif %}
+                {% if data['delivery-address-town'] %}
+                  {{ data['delivery-address-town'] }}<br>
+                {% endif %}
+                {{ data['delivery-address-postcode'] or 'LS1 3BE' }}
+              {% endif %}
             {% endif %}
-            {% if data['delivery-address-same'] === 'Yes' %}Same as home address{% endif %}
+
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/antigen/{{version}}/order-home-test-kit/delivery-address">
+            <a class="govuk-link" href="/antigen/{{version}}/order-home-test-kit/delivery-address-same">
               Change<span class="govuk-visually-hidden"> delivery address</span>
             </a>
           </dd>

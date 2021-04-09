@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Is this the address where the tests should be sent?" %}
+{% set pageTitle = "Is this the address where the test kits should be sent?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -39,18 +39,21 @@
         <div id="content-1">
           <span id="post-code-hint" class="govuk-body">
             <strong>
-            {% if data['home-address'] %}
-              {{ data['home-address'] }}
-            {% else %}
-              {{ data['home-address-line-1'] or '12 Church Street'}}<br>
-                {% if data['home-address-line-2'] %}
-                  {{ data['home-address-line-2'] }}
+              {% if data['gp-address-same'] !== "No" %}
+                {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
+                  {{ data['home-address'] }}
+                {% else %}
+                  {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+                  {{ data['home-postcode'] or 'LS1 3BE' }}
                 {% endif %}
-                {% if data['home-address-town'] %}
-                  {{ data['home-address-town'] }}
+              {% else %}
+                {% if data['gp-address'] and data['gp-address'] !== "5 addresses found" %}
+                  {{ data['gp-address'] }}
+                {% else %}
+                  {{ data['address-line-1-gp'] or '5 Souterhead Road'}}<br>
+                  {{ data['gp-postcode'] or 'LS1 3BE' }}
                 {% endif %}
-              {{ data['home-postcode'] or 'TW12 2EG' }}
-            {% endif %}
+              {% endif %}
             </strong>
           </span>
           <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">

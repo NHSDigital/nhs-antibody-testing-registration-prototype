@@ -60,8 +60,12 @@
             First line of address and postcode
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['home-address-line-1'] or '5 Souterhead Road' }},<br>
-            {{ data['home-postcode'] or 'LS1 3BE' }}
+            {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
+              {{ data['home-address'] }}
+            {% else %}
+              {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+              {{ data['home-postcode'] or 'LS1 3BE' }}
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/edit-check-answers/postcode">
@@ -74,15 +78,23 @@
           <dt class="govuk-summary-list__key">
             First line of address and postcode, registered with GP
           </dt>
-          {% if data['gp-address-same'] == "Yes" %}
+          {% if data['gp-address-same'] !== "No" %}
           <dd class="govuk-summary-list__value">
-              {{ data['home-address-line-1'] or '5 Souterhead Road' }},<br>
+            {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
+              {{ data['home-address'] }}
+            {% else %}
+              {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
               {{ data['home-postcode'] or 'LS1 3BE' }}
+            {% endif %}
           </dd>
           {% else %}
           <dd class="govuk-summary-list__value">
-            {{ data['gp-address-line-1'] or '5 Souterhead Road' }},<br>
-            {{ data['gp-postcode'] or 'LS1 3BE' }}
+            {% if data['gp-address'] and data['gp-address'] !== "5 addresses found" %}
+              {{ data['gp-address'] }}
+            {% else %}
+              {{ data['address-line-1-gp'] or '5 Souterhead Road'}}<br>
+              {{ data['gp-postcode'] or 'LS1 3BE' }}
+            {% endif %}
           </dd>
           {% endif %}
           <dd class="govuk-summary-list__actions">
