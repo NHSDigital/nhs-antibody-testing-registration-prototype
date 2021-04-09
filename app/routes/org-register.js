@@ -1106,28 +1106,56 @@ router.post('/organisational/lft/carehome-registration/single/add-another', func
     }
 });
 
-router.post('/organisational/lft/carehome-registration/bulk/lft-2', function (req, res) {
-  let answer = req.body.reupload;
+router.post('/organisational/lft/carehome-registration/single/add-another-slice2', function (req, res) {
+  let answer = req.body.addanotherperson;
 
   if (answer == 'yes') {
-    res.redirect('/organisational/lft/carehome-registration/bulk/pcr')
+    res.redirect('/organisational/lft/carehome-registration/single/staff')
   } else if (answer == 'no') {
-      res.redirect('/organisational/lft/carehome-registration/bulk/upload')
+      res.redirect('/organisational/lft/carehome-registration/single/single-check')
     } else {
-    res.redirect('/organisational/lft/carehome-registration/bulk/lft-2?error=empty')
+    res.redirect('/organisational/lft/carehome-registration/single/add-another-slice2?error=empty')
     }
 });
 
-router.post('/organisational/lft/carehome-registration/bulk/pcr', function (req, res) {
+
+router.post('/organisational/lft/carehome-registration/bulk/lft-mvp2', function (req, res) {
   let answer = req.body.reupload;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/bulk/pcr-mvp2')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/bulk/upload')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/bulk/lft-mvp2?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/bulk/pcr-mvp2', function (req, res) {
+  let answer = req.body.reuploadpcr;
 
   if (answer == 'yes') {
     res.redirect('/organisational/lft/carehome-registration/bulk/check')
   } else if (answer == 'no') {
       res.redirect('/organisational/lft/carehome-registration/bulk/upload')
     } else {
-    res.redirect('/organisational/lft/carehome-registration/bulk/pcr?error=empty')
+    res.redirect('/organisational/lft/carehome-registration/bulk/pcr-mvp2?error=empty')
     }
 });
+
+
+router.post('/organisational/lft/carehome-registration/UON-check-radio', function (req, res) {
+  let answer = req.body.changeUON;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/how')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/id')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/UON-check-radio?error=empty')
+    }
+});
+
+
 
 module.exports = router
