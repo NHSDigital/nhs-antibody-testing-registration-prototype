@@ -22,8 +22,20 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-xl govuk-!-margin-bottom-4">{{ pageTitle }}</span>
-      <strong class="govuk-tag govuk-!-margin-bottom-2 govuk-tag--green">Active</strong>
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+    <h2 class="govuk-error-summary__title" id="error-summary-title">
+      There is a problem
+    </h2>
+    <div class="govuk-error-summary__body">
+      <ul class="govuk-list govuk-error-summary__list">
+        <li>
+          <a href="#passport-issued-error">Enter a correct organisation ID</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+      <span class="govuk-caption-xl">{{ pageTitle }}</span>
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Coventry test site 2</h1>
 
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
@@ -39,7 +51,7 @@
 
         <div class="govuk-form-group">
           <label class="govuk-label" for="">
-            ID
+            Test site ID
           </label>
           <p class="govuk-body govuk-!-margin-bottom-6">ABCD</p>
         </div>
@@ -59,11 +71,28 @@
         </div>
 
         <div class="govuk-form-group">
+          <ul class="govuk-list">
           <label class="govuk-label" for="">
-            Organisation ID and name
+            Organisation name
           </label>
-          <p class="govuk-body govuk-!-margin-bottom-6">ABCD - Coventry University</p>
+          <p class="govuk-body govuk-!-margin-bottom-6">Coventry University<p>
+
+
+          <div class="govuk-form-group govuk-form-group--error">
+            <label class="govuk-label" for="">
+              Organisation ID
+            </label>
+            <div id="passport-issued-hint" class="govuk-hint">
+          Changing the organisation's ID will update the organisation's name and details
         </div>
+            <span id="passport-issued-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter a correct organisation ID
+            </span>
+            <input class="govuk-input govuk-!-width-one-half" id="" name="search-query" type="text" value="AB">
+          </div>
+
+          <a href="#" class="govuk-link govuk-link--no-visited-state">Retain assigned organisation</a>
+
 
         <div class="govuk-form-group govuk-!-margin-top-8">
           <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
@@ -86,17 +115,18 @@
           </fieldset>
         </div>
 
-        <!-- <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">
-          Save and continue
-        </button>
 
-        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-          Cancel
-        </button> -->
 
       </form>
+<br>
 
+      <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">
+        Save and continue
+      </button>
 
+      <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Cancel
+      </button>
 
     </div>
   </div>
