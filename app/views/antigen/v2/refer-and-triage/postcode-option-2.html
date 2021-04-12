@@ -28,26 +28,36 @@
 
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
               {{ pageTitle }}
             </h1>
           </legend>
 
-          <div class="govuk-form-group govuk-!-margin-top-5">
-            <label class="govuk-label" for="home-postcode">
-              Postcode
-            </label>
-            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}" autofocus>
-            <a id="hidden-link" href="/antigen/{{version}}/refer-and-triage/postcode-option-2" class="govuk-!-margin-left-5 govuk-link govuk-!-font-size-19" style="display: none;">
-              Change
-              <span class="govuk-visually-hidden">your postcode</span>
-            </a>
+          <div id="content-1">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="home-postcode">
+                <strong>Postcode</strong>
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}" autofocus>
+              <!-- <a id="hidden-link" href="/antigen/{{version}}/refer-and-triage/postcode-option-2" class="govuk-!-margin-left-5 govuk-link govuk-!-font-size-19" style="display: none;">
+                Change
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a> -->
+            </div>
           </div>
 
           <div id="content-2" style="display: none;">
+            <p>
+              <strong>Postcode</strong><br><br>
+              <strong>{{ data['home-postcode'] | default('LS1 3BE') }}</strong>
+              <a href="/antigen/{{version}}/refer-and-triage/postcode-option-2" class="govuk-!-margin-left-5">
+                Change
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p>
             <div class="govuk-form-group">
               <label class="govuk-label" for="home-address">
-                Select an address
+                <strong>Select an address</strong>
               </label>
               <select class="govuk-select" id="home-address" name="home-address">
                 <option>5 addresses found</option>
@@ -64,9 +74,17 @@
           </div>
 
           <div id="content-3" style="display: none;">
+            <p>
+              <strong>Postcode</strong><br><br>
+              <strong>{{ data['home-postcode'] | default('LS1 3BE') }}</strong>
+              <a href="/antigen/{{version}}/refer-and-triage/postcode-option-2" class="govuk-!-margin-left-5">
+                Change
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p>
             <div class="govuk-form-group">
               <label class="govuk-label" for="address-line-1">
-                Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
+                <strong>Building and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="address-line-1" name="address-line-1" type="text" autocomplete="address-line1" value="{{ data['address-line-1'] }}">
             </div>
@@ -80,7 +98,7 @@
   
             <div class="govuk-form-group">
               <label class="govuk-label" for="address-town">
-                Town or city
+                <strong>Town or city</strong>
               </label>
               <input class="govuk-input govuk-!-width-one-third" id="address-town" name="address-town" type="text" autocomplete="address-level2" value="{{ data['address-town'] }}">
             </div>
@@ -104,10 +122,11 @@
 
   function buttonClicked(target) {
     setTimeout(function () {
+      document.getElementById('content-1').style.display = 'none'
       document.getElementById('find-address').style.display = 'none'
       document.getElementById('button-hidden').style.display = 'block'
       document.getElementById('content-2').style.display = 'block'
-      document.getElementById('hidden-link').style.display = 'inline'
+      // document.getElementById('hidden-link').style.display = 'inline'
       document.getElementById('home-address').focus()
     }, 100)
   }
