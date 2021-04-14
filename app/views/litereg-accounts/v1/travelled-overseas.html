@@ -49,13 +49,21 @@
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="travelled-overseas-1" name="travelled-overseas" data-aria-controls="conditional-travelled-overseas-1" type="radio" value="Yes" {{ checked("travelled-overseas", "Yes") }}>
                             <label class="govuk-label govuk-radios__label" for="travelled-overseas-1">
-                                Yes, they have travelled overseas
+                              {% if data['whos-taking-the-test'] == "someone-else" %}
+                              Yes, they have travelled overseas
+                              {% else %}
+                              Yes, I travelled overseas
+                              {% endif %}
                             </label>
                         </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="travelled-overseas-2" name="travelled-overseas" type="radio" value="No" {{ checked("travelled-overseas", "No") }}>
                             <label class="govuk-label govuk-radios__label" for="v-2">
-                                No, they did not travel overseas
+                              {% if data['whos-taking-the-test'] == "someone-else" %}
+                              No, they did not travel overseas
+                              {% else %}
+                              No, I did not travel overseas
+                              {% endif %}
                             </label>
                         </div>
                     </div>

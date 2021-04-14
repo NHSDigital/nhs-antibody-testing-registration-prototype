@@ -15,10 +15,11 @@
     </p>
   </div>
 
-<a class="govuk-back-link" href="/litereg-accounts/{{version}}/overseas-travel">Back</a>
+<a class="govuk-back-link" href="/litereg-accounts/{{version}}/travelled-overseas">Back</a>
 {% endblock %}
 
 {% block content %}
+{% include "includes/gtm-noscript.html" %}
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -30,7 +31,7 @@
         </ul>
         <hr />
       </div>
-       <form action="/litereg-accounts/{{version}}/vaccine" method="post">
+       <form action="/litereg-accounts/{{version}}/previous-infection" method="post">
 
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset">
@@ -48,18 +49,18 @@
  <!--                        Enter each country you actually visited. If you caught a connecting flight and did not leave the airport, do not add this country. <br><br>
 						This will help us test the vaccine against different forms of coronavirus from different countries.<br><br>
 						Start entering a country below and then choose from the options provided.<br><br>
-						If you travelled to more than 1 country, please add them.--><br><br> 
-						
+						If you travelled to more than 1 country, please add them.--><br><br>
+
                     </span>
-					
-					
+
+
 					<fieldset class="govuk-fieldset">
 					<label class="govuk-label" for="country-visited">
 					  Country
 					</label>
 			          <div id="country-container" name="country-visited"></div>
 			        </fieldset>
-						
+
 <!-- 						<span class="govuk-body">
 						<a class="govuk-link" href="#">Add another country</a>
 						</span> -->
@@ -490,7 +491,7 @@
     id: 'country-visited',
     name: 'country-autocomplete',
     source: countries,
-    defaultValue: '{{ data['country-autocomplete'] }}',
+    defaultValue: '{{ data["country-autocomplete"] }}',
     displayMenu: 'overlay',
     minLength: 2,
     tNoResults: function() {

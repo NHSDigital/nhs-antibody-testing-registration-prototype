@@ -47,6 +47,19 @@ router.post('/litereg-accounts/v1/action9/coronavirus-account', function (req, r
 
 })
 
+// Version 1 - Lite Registration Accounts - enter barcode route
+
+router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
+  let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+  if (uniqueBarcode == "LHE00000501") {
+    res.redirect('/litereg-accounts/v1/site-id')
+  } else if (uniqueBarcode == "COE00000501") {
+    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+  } else {
+    res.redirect('/litereg-accounts/v1/test-place')
+  }
+})
+
 // Version 1 - Lite Registration Accounts - Test date route
 
 router.post('/litereg-accounts/v1/action9/test-date', function (req, res) {
@@ -83,12 +96,12 @@ router.post('/litereg-accounts/v1/action9/do-you-have-symptoms', function (req, 
 
   // Version 2 - Lite Registration Accounts - Overseas travel route
 
-  router.post('/litereg-accounts/v1/action9/overseas-travel', function (req, res) {
-    let overseasTravel = req.session.data['have-you-travelled-overseas']
+  router.post('/litereg-accounts/v2/action9/overseas-travel', function (req, res) {
+    let overseasTravel = req.session.data['travelled-overseas']
     if (overseasTravel == "Yes") {
-      res.redirect('/litereg-accounts/v1/country-visited')
+      res.redirect('/litereg-accounts/v2/travelled-to')
     } else {
-      res.redirect('/litereg-accounts/v1/vaccine')
+      res.redirect('/litereg-accounts/v2/previous-infection')
     }
 
   })
@@ -223,32 +236,57 @@ router.post('/litereg-accounts/v1/action9/check-mobile', function (req, res) {
 })
 
 // Version 1 - Lite Registration Accounts - unique test kit barcode route
-router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
-  let uniqueBarcode = req.session.data['kit-barcode-reference-1']
-  if (uniqueBarcode == "LHE00000501") {
-    res.redirect('/litereg-accounts/v1/site-id')
-  } else if (uniqueBarcode == "COE00000501") {
-    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
-  } else {
-    res.redirect('/litereg-accounts/v1/test-place')
-  }
-})
+// router.post('/litereg-accounts/v1/action5/enter-barcode', function (req, res) {
+//   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+//   if (uniqueBarcode == "LHE00000501") {
+//     res.redirect('/litereg-accounts/v1/site-id')
+//   } else if (uniqueBarcode == "COE00000501") {
+//     res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+//   } else {
+//     res.redirect('/litereg-accounts/v1/test-place')
+//   }
+// })
+
+// router.post('/litereg-accounts/v1/action5/enter-barcode', function (req, res) {
+//   let kitBarcodeReference = req.session.data['kit-barcode-reference-1']
+//   let emailAddress = req.session.data['email-address']
+//   if (kitBarcodeReference.charAt(0) == "C" && kitBarcodeReference.charAt(1) == "O") {
+//     res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+//   }
+//   else if (kitBarcodeReference.charAt(0) == "L") {
+//     res.redirect('/litereg-accounts/v1/site-id')
+//   }
+//   else {
+//     if (emailAddress == "user@testing.co.uk") {
+//       res.redirect('/litereg-accounts/v1/test-place')
+//     }
+//     else {
+//       res.redirect('/litereg-accounts/v1/are-you-isolating')
+//     }
+//   }
+// })
 
 // Version 1 - Lite Registration Accounts - test place route
-router.post('/litereg-accounts/v1/action9/test-place', function (req, res) {
+router.post('/litereg-accounts/v1/action5/test-place', function (req, res) {
   let testPlace = req.session.data['test-place']
-  if (testPlace == "At home" || testPlace == "In quarantine after international travel at home or an accommodation of your choice" || testPlace == "In quarantine after international travel at home or an accommodation of their choice") {
-    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
-  } else {
+  let quarantine = req.session.data['quarantine']
+  if (testPlace == "At a test site or government quarantine hotel" && quarantine == "Yes") {
+    res.redirect('/litereg-accounts/v1/trace-id')
+  } else if (testPlace == "At a test site or government quarantine hotel" && quarantine == "No") {
     res.redirect('/litereg-accounts/v1/site-id')
+  } else {
+    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
   }
 })
 
 // Version 1 - Lite Registration Accounts - site confirmation route
 router.post('/litereg-accounts/v1/action9/site-confirmation', function (req, res) {
   let confirmSite = req.session.data['confirm-site']
-  if (confirmSite == "Yes") {
+  let barcode = req.session.data['kit-barcode-reference-1']
+  if (confirmSite == "Yes" && barcode == "LHE00000501") {
     res.redirect('/litereg-accounts/v1/daily-contact-testing')
+  } else if (confirmSite == "Yes" && barcode !== "LHE00000501") {
+    res.redirect('/litereg-accounts/v1/test-date')
   } else {
     res.redirect('/litereg-accounts/v1/site-id')
   }
@@ -567,7 +605,7 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
       if (overseasTravel == "Yes") {
         res.redirect('/litereg-accounts/v2/country-visited')
       } else {
-        res.redirect('/litereg-accounts/v2/vaccine')
+        res.redirect('/litereg-accounts/v2/previous-infection')
       }
 
     })
@@ -726,42 +764,18 @@ router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) 
     }
   })
 
-    // Version 2 - Lite Registration Accounts - unique test kit barcode option 2 route
-    router.post('/litereg-accounts/v2/action9/enter-barcode-option-2', function (req, res) {
-      let uniqueBarcode = req.session.data['kit-barcode-reference-1']
-      if (uniqueBarcode == "LHE00000501") {
-        res.redirect('/litereg-accounts/v2/site-id')
-      } else if (uniqueBarcode == "COE00000501") {
-        res.redirect('/litereg-accounts/v2/royal-mail-barcode')
-      } else {
-        res.redirect('/litereg-accounts/v2/quarantine-question')
-      }
-    })
-
   // Version 2 - Lite Registration Accounts - test place route
   router.post('/litereg-accounts/v2/action9/test-place', function (req, res) {
     let testPlace = req.session.data['test-place']
-    if (testPlace == "At home" || testPlace == "In quarantine after international travel at home or an accommodation of your choice" || testPlace == "In quarantine after international travel at home or an accommodation of their choice") {
-      res.redirect('/litereg-accounts/v2/royal-mail-barcode')
-    } else if (testPlace == "In quarantine after international travel at a government quarantine hotel") {
+    let quarantine = req.session.data['quarantine']
+    if (testPlace == "At a test site or government quarantine hotel" && quarantine == "Yes") {
       res.redirect('/litereg-accounts/v2/trace-id')
-    } else {
+    } else if (testPlace == "At a test site or government quarantine hotel" && quarantine == "No") {
       res.redirect('/litereg-accounts/v2/site-id')
+    } else {
+      res.redirect('/litereg-accounts/v2/royal-mail-barcode')
     }
   })
-
-    // Version 2 - Lite Registration Accounts - test place option 2 route
-    router.post('/litereg-accounts/v2/action9/test-place-option-2', function (req, res) {
-      let testPlace = req.session.data['test-place']
-      let quarantine = req.session.data['quarantine']
-      if (testPlace == "At a test site or government quarantine hotel" && quarantine == "Yes") {
-        res.redirect('/litereg-accounts/v2/trace-id-option-2')
-      } else if (testPlace == "At a test site or government quarantine hotel" && quarantine == "No") {
-        res.redirect('/litereg-accounts/v2/site-id')
-      } else {
-        res.redirect('/litereg-accounts/v2/royal-mail-barcode')
-      }
-    })
 
   // Version 2 - Lite Registration Accounts - daily contact testing route
   router.post('/litereg-accounts/v2/action9/daily-contact-testing', function (req, res) {

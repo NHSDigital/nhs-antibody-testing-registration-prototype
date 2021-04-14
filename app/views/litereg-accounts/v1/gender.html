@@ -37,7 +37,11 @@
               </h1>
             </legend>
             <span id="gender-hint" class="govuk-body">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              We are asking this question so we can find your GP record and save their result there.
+              {% else %}
               We are asking this question so we can find your GP record and save your result there.
+              {% endif %}
             </span>
             <div class="govuk-radios govuk-!-margin-top-5">
               <div class="govuk-radios__item">
@@ -66,7 +70,11 @@
                 </span>
               </summary>
               <div class="govuk-details__text">
-
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                We understand there may be other ways you may answer this question. In this case, we just need to know what is on their GP record.
+                {% else %}
+                We understand there may be other ways you may answer this question. In this case, we just need to know what is on your GP record.
+                {% endif %}
               </div>
             </details>
           </fieldset>

@@ -15,7 +15,10 @@
   </p>
 </div>
 
-<a class="govuk-back-link" href="/litereg-accounts/{{version}}/daily-contact-testing">Back</a>
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
 
 {% endblock %}
 
@@ -35,56 +38,36 @@
             </legend>
             <span id="swab-test-date-1-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              Select the date and time they'll take their coronavirus test. If they've already taken the coronavirus test, tell us the date and time they took it.
-              <br><br>
-              We need to know this so the lab can work out when the test is due to expire. Selecting the wrong date and time could mean them getting an incorrect result.
+              Select the date and time they'll take their coronavirus test. If they've already taken the coronavirus test, tell us the date and time they took it.<br><br>
+              We need to know this so the lab can work out when the test is due to expire. Selecting the wrong date and time could mean them getting an incorrect result.<br><br>
+              If they’re posting your completed test kit at a Royal Mail priority postbox, they must do this no later than 1 hour before the last collection.
               {% else %}
-              Select the date and time you'll take your coronavirus test. If you've already taken the coronavirus test, tell us the date and time you took it.
-              <br><br>
-              We need to know this so the lab can work out when the test is due to expire. Selecting the wrong date and time could mean you getting an incorrect result.
+              Select the date and time you'll take your coronavirus test. If you've already taken the coronavirus test, tell us the date and time you took it.<br><br>
+              We need to know this so the lab can work out when the test is due to expire. Selecting the wrong date and time could mean you getting an incorrect result.<br><br>
+              If you’re posting your completed test kit at a Royal Mail priority postbox, do this no later than 1 hour before the last collection.
               {% endif %}
-            </span>
-            <div class="govuk-warning-text govuk-!-margin-top-6 govuk-!-margin-bottom-6">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                Do not take or post your test on a bank holiday
-              </strong>
-            </div>
-            <span id="swab-test-date-3-hint" class="govuk-body">If you’re returning it by courier, take your test at least 1 hour before 8am on the morning of your collection.</span>
-            <br><br>
-            <span id="swab-test-date-2-hint" class="govuk-body">
-              <strong>Select a date</strong>
             </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" value="05 February 2021" {{ checked("swab-test-date", "05 February 2021") }}>
+                <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" value="14 April 2021" {{ checked("swab-test-date", "14 April 2021") }}>
                 <label class="govuk-label govuk-radios__label" for="swab-test-date-1">
-                  Today, 05 February 2021
+                  Today, 14 April 2021
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" value="06 February 2021" {{ checked("swab-test-date", "06 February 2021") }}>
+                <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" value="15 April 2021" {{ checked("swab-test-date", "15 April 2021") }}>
                 <label class="govuk-label govuk-radios__label" for="swab-test-date-2">
-                  Tomorrow, 06 February 2021
+                  Tomorrow, 15 April 2021
                 </label>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="swab-test-date-3" name="swab-test-date" type="radio" value="different" data-aria-controls="conditional-swab-test-date" {{ checked("swab-test-date", "different") }}>
                 <label class="govuk-label govuk-radios__label" for="swab-test-date-3">
-                    A different date
+                  A different date
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-swab-test-date">
                 <div class="govuk-form-group">
-                  <label class="govuk-label" for="different-date">
-                    {% if data['whos-taking-the-test'] == "someone-else" %}
-                    <strong>When was their sample taken?</strong><br>
-                    {% else %}
-                    <strong>When was your sample taken?</strong><br>
-                    {% endif %}
-                    <span class="govuk-hint">For example, 26 3 2020</span>
-                  </label>
                   <div class="govuk-date-input" id="date-of-swab-test">
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
@@ -115,7 +98,7 @@
               </div>
               <div class="govuk-form-group govuk-!-margin-top-6">
                 <label class="govuk-label govuk-date-input__label" for="swab-test-time">
-                  <strong>Enter a time</strong><br>
+                  <strong class="govuk-!-font-size-24">Enter a time</strong><br>
                   <span class="govuk-hint govuk-!-margin-top-2">For example, enter 9 then select am or pm</span>
                   Hour
                 </label>
