@@ -37,9 +37,10 @@
             </legend>
             <span id="email-address-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              If they have one, we’ll email their registration confirmation and test results to this email address.
+              If they have one, we’ll send their test results to this email address.<br><br>
+              If they are a baby or a child and you can receive email on their behalf, select 'Yes'.
               {% else %}
-              If you have one, we’ll email your registration confirmation and test results to this email address.
+              If you have one, we’ll send your test results to this email address.
               {% endif %}
             </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
@@ -66,7 +67,13 @@
                     <br><br>
                     Email address
                   </label>
-                  <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}" aria-describedby="conditional-email-address-hint">
+                  <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}" aria-describedby="conditional-email-address-hint">
+                </div>
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="confirm-email-address">
+                    Confirm email address
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
                 </div>
               </div>
               <div class="govuk-radios__item">

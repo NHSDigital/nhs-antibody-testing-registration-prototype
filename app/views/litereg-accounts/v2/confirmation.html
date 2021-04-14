@@ -37,17 +37,19 @@
           <th scope="row" class="govuk-table__header">{{ data['first-name'] | default('Bob') }} {{ data['last-name'] | default('Smith') }}</th>
           {% if data['swab-test-date'] == "different" %}
           <td class="govuk-table__cell">
-            {{ data['email-address'] or 'bsmith@testing.co.uk' }}<br>
             {{ data['mobile-phone-number'] or '+4478353335' }}<br>
+            {{ data['email-address'] or 'bsmith@testing.co.uk' }}<br>
             Test kit barcode reference: {{ data['kit-barcode-reference-1'] | default('CHE00000501') }}<br>
-            Test date and time: {{ data['date-of-swab-test-day'] | default('4') }} {{ data['date-of-swab-test-month'] | default('9') }} {{ data['date-of-swab-test-year'] | default('2020') }}, {{ data['swab-test-time'] | default('7') }}{{ data['swab-test-time-ampm'] | default('am') }}
+            Test date: {{ data['date-of-swab-test-day'] | default('4') }} {{ data['date-of-swab-test-month'] or 'April' }} {{ data['date-of-swab-test-year'] | default('2021') }}<br>
+            Test time: {{ data['swab-test-time'] | default('7') }}{{ data['swab-test-time-ampm'] | default('am') }}
           </td>
           {% else %}
           <td class="govuk-table__cell">
-            {{ data['email-address'] or 'bsmith@testing.co.uk' }}<br>
             {{ data['mobile-phone-number'] or '+4478353335' }}<br>
+            {{ data['email-address'] or 'bsmith@testing.co.uk' }}<br>
             Test kit barcode reference: {{ data['kit-barcode-reference-1'] | default('CHE00000501') }}<br>
-            Test date and time: {{ data['swab-test-date'] | default('28 March 2020') }}, {{ data['swab-test-time'] | default('7') }}{{ data['swab-test-time-ampm'] | default('am') }}
+            Test date: {{ data['date-of-swab-test-day'] | default('4') }} {{ data['date-of-swab-test-month'] or 'April' }} {{ data['date-of-swab-test-year'] | default('2021') }}<br>
+            Test time: {{ data['swab-test-time'] | default('7') }}{{ data['swab-test-time-ampm'] | default('am') }}
           </td>
           {% endif %}
         </tr>
@@ -63,33 +65,10 @@
     </ul>
     {% else %}
     <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
-      <li>if you've registered multiple test kits, it is very important that each person takes the test registered to them to make sure they receive the correct results.</li>
+      <li>if you've registered multiple test kits, it's very important that each person takes the test registered to them to make sure they receive the correct results.</li>
       <li>if you're doing the swab test yourself, you can watch <a class="govuk-link" href="#">this instructional video.</a></li>
     </ul>
-    {% endif %}
-
-    <!-- {% if data['whos-taking-the-test'] == "myself" and data['mobile-number'] == "No" and data['email'] == "No" %}
-    <p class="govuk-body">
-      If you provided your landline phone number, the customer contact centre will try to call you with the test results.<br><br>
-      You can also get the test results by calling the customer contact centre 2 days after taking the test (or 1 day if you took a lateral flow test).
-    </p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>119 if you're in England, Wales or Northern Ireland</li>
-      <li>0300 303 2713 if you're in Scotland</li>
-    </ul>
-    <p class="govuk-body">Lines are open 7am to 11pm.</p>
-    {% elseif data['whos-taking-the-test'] != "myself" and data['mobile-number'] == "No" and data['email'] == "No" %}
-    <p class="govuk-body">
-      If you provided their landline phone number, the customer contact centre will try to call them with the test results.<br><br>
-      They can also get the test results by calling the customer contact centre 2 days after taking the test (or 1 day if they took a lateral flow test).
-    </p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>119 if you're in England, Wales or Northern Ireland</li>
-      <li>0300 303 2713 if you're in Scotland</li>
-    </ul>
-    <p class="govuk-body">Lines are open 7am to 11pm.</p>
-    {% endif %} -->
-    
+    {% endif %} 
 
     <h2 class="govuk-heading-m">We want to hear from you</h2>
 

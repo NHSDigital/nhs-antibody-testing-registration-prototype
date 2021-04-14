@@ -39,8 +39,13 @@
               </h1>
             </legend>
             <span id="daily-contact-testing-hint" class="govuk-body">
-              <strong>We can do this for you now, and stop them sending email reminder calls and emails about self-isolation</strong><br><br>
-              Enter the refrence number they gave you. It's called an Account ID. Find it on the NHS Test and Trace emails and text.<br><br>
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              <strong>We can do this for you now, so they stop getting reminder calls and emails about self-isolation</strong><br><br>
+              Enter the refrence number they were given. It's called an Account ID. Find it on NHS Test and Trace emails and texts.<br><br>
+              {% else %}
+              <strong>We can do this for you now, and stop them sending reminder calls and emails about self-isolation</strong><br><br>
+              Enter the reference number they gave you. It’s called an Account ID. Find it on NHS Test and Trace emails and texts.<br><br>
+              {% endif %}
               If you can, enter the Account ID
             </span>
             <span class="govuk-hint">It's 8 characters, for example ae60a100</span>
@@ -52,8 +57,8 @@
                 </span>
               </summary>
               <div class="govuk-details__text">
-                It's okay if you dont have an account ID (not everyone will).<br><br>
-                If you have one but cannot enter it now, you will keep getting calls and reminders. You can enter it the next time you use this service.
+                It's OK if you do not have an Account ID (not everyone will).<br><br>
+                If you have one but you cannot enter it now, you will keep getting calls and reminders. You can enter it the next time you use this service.
               </div>
             </details>
           </fieldset>

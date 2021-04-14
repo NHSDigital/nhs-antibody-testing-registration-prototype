@@ -2634,26 +2634,6 @@ router.post('/lite-registration/v1/action6/home-page', function (req, res) {
 
 })
 
-// Version 1 - LiteReg Accounts Coronavirus v2
-router.post('/litereg-accounts/v1/action5/enter-barcode', function (req, res) {
-  let kitBarcodeReference = req.session.data['kit-barcode-reference-1']
-  let emailAddress = req.session.data['email-address']
-  if (kitBarcodeReference.charAt(0) == "C" && kitBarcodeReference.charAt(1) == "O") {
-    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
-  }
-  else if (kitBarcodeReference.charAt(0) == "L") {
-    res.redirect('/litereg-accounts/v1/site-id')
-  }
-  else {
-    if (emailAddress == "user@testing.co.uk") {
-      res.redirect('/litereg-accounts/v1/test-place')
-    }
-    else {
-      res.redirect('/litereg-accounts/v1/are-you-isolating')
-    }
-  }
-})
-
 // Version 1 - LiteReg Accounts Daily Contact Testing
 router.post('/litereg-accounts/v1/action5/daily-contact-testing', function (req, res) {
   let dailyContactTesting = req.session.data['daily-contact-testing']
