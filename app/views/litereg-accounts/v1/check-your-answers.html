@@ -26,7 +26,7 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
@@ -58,7 +58,7 @@
             </a>
           </dd>
         </div>
-        {% if data['test-place'] == 'At a test site' or data['test-place'] == 'In quarantine after international travel at a government isolation hotel' %}
+        {% if data['test-place'] == 'At a test site or government quarantine hotel' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Test site
@@ -123,7 +123,7 @@
             Doing 7-day repeat testing?
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['repeat-testing'] or 'No' }}
+            {{ data['daily-contact-testing'] or 'No' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/litereg-accounts/{{version}}/daily-contact-testing">
@@ -132,6 +132,22 @@
             </a>
           </dd>
         </div>
+        {% if data['daily-contact-testing'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Trace Account ID
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['trace-id'] or 'ae60a100' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/trace-id">
+              Change
+              <span class="govuk-visually-hidden">trace account id</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
               Test date and time
@@ -238,7 +254,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Gender
+            Medical Record
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['gender'] | default('Male') }}
@@ -246,7 +262,7 @@
           <dd class="govuk-summary-list__actions">
             <a href="/litereg-accounts/{{version}}/global-registration/gender">
               Change
-              <span class="govuk-visually-hidden">gender</span>
+              <span class="govuk-visually-hidden">medical record</span>
             </a>
           </dd>
         </div>
@@ -280,7 +296,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Travel to nursery, work or place of education
+            Travels to nursery, work or place of education
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['currently-in-work'] or 'No' }}
@@ -547,6 +563,20 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            Positive coronavirus test
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['previous-infection'] or "No" }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/previous-infection">
+              Change
+              <span class="govuk-visually-hidden">positive coronavirus test</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Had coronavirus vaccine
           </dt>
           <dd class="govuk-summary-list__value">
@@ -583,7 +613,7 @@
             {{ data['have-you-travelled-overseas'] or 'No' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/overseas-travel">
+            <a href="/litereg-accounts/{{version}}/travelled-overseas">
               Change
               <span class="govuk-visually-hidden">travelled overseas</span>
             </a>
