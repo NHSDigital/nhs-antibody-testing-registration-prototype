@@ -1,16 +1,25 @@
 {% set version = "v1" %}
 {% set pageTitle = "How do you want to add patient details?" %}
 
+{% set group %}
+  {% if data.cuRequestGroup %}
+    {{ data.cuRequestGroup }}
+    {% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/trust-worker-request-enhanced/request-home-testing">Back</a>
+  <a class="govuk-back-link" href="request-group">Back</a>
 {% endblock %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl"> Group {{ group }}</span>
        <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
           {{ pageTitle }}
         </h1>
@@ -29,14 +38,14 @@
             items: [
               {
                 value: "upload",
-                html: "<strong>Use our spreadsheet to add a list of patients</strong>",
+                html: "Use our spreadsheet to add a list of patients",
                 hint: {
-                  text: "Enter and upload details for up to 50 people at a time"
+                  text: "Enter and upload details for up to 100 people at a time"
                 }
               },
               {
                 value: "manual",
-                html: "<strong>Add each person's details one by one</strong>",
+                html: "Add each person's details one by one",
                 hint: {
                   text: "Use an online form to enter their details"
                 }

@@ -3,6 +3,22 @@
 {% set version = "v1" %}
 {% set pageTitle = "Check your answers" %}
 
+{% set dob %}
+  {% if data["cuDOB-day"] and data["cuDOB-month"] and data["cuDOB-year"]  %}
+    {{ data["cuDOB-day"]}} {{ data["cuDOB-month"] | monthToWord }} {{ data["cuDOB-year"]}}
+  {% else %}
+    31 March 1975
+  {% endif %}
+{% endset %} 
+
+{% set occupations %}
+    Nurse practitioner
+{% endset %} 
+
+{% set employer %}
+    Blue Castle Care
+{% endset %} 
+
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
@@ -17,25 +33,41 @@
   </p>
 </div>
 
-  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/trust-worker-request/find-address">Back</a>
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Admission date
+            Group
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Group {{ data.cuRequestGroup }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/elective-care-testing/v1/prelinked-kits/request-group">
+              Change
+              <span class="govuk-visually-hidden">group</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Procedure date
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['date-of-procedure-day'] }} {{ data['date-of-procedure-month'] }} {{ data['date-of-procedure-year'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/trust-worker-request/date-of-procedure">
+            <a href="/elective-care-testing/v1/prelinked-kits/date-of-procedure">
               Change
               <span class="govuk-visually-hidden">admission date</span>
             </a>
@@ -46,10 +78,10 @@
             Name
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['first-name'] }} {{ data['last-name'] }}
+            {{ data['cuFirstName'] }} {{ data['cuLastName'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/trust-worker-request/name">
+            <a href="/elective-care-testing/v1/prelinked-kits/personal-details">
               Change
               <span class="govuk-visually-hidden">name</span>
             </a>
@@ -60,12 +92,40 @@
             Date of birth
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+            {{ dob }} 
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/trust-worker-request/date-of-birth">
+            <a href="/elective-care-testing/v1/prelinked-kits/personal-details">
               Change
               <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Gender
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['cuGender'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/elective-care-testing/v1/prelinked-kits/personal-details">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Mobile number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mobile-phone-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/elective-care-testing/v1/prelinked-kits/mobile-number">
+              Change
+              <span class="govuk-visually-hidden">phone number</span>
             </a>
           </dd>
         </div>
@@ -74,10 +134,10 @@
             NHS number
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['nhs-number'] }}
+            {{ data['cuNumber'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/trust-worker-request/nhs-number">
+            <a href="/elective-care-testing/v1/prelinked-kits/personal-details">
               Change
               <span class="govuk-visually-hidden">NHS number</span>
             </a>
@@ -85,21 +145,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Phone number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['mobile-phone-number'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/trust-worker-request/mobile-number">
-              Change
-              <span class="govuk-visually-hidden">phone number</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Shipping address
+            Address
           </dt>
           <dd class="govuk-summary-list__value">
             {% if data['address'] !== "81 Front St, HENDY, SA4 1PZ" and data['address'] !== "46 Seafield Street, LLANYCRWYS, SA19 1WS" and data['address'] !== "32 Boroughbridge Road, BISHOP, DT9 5WF" %}
@@ -119,20 +165,109 @@
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/{{version}}/trust-worker-request/find-address">
+            <a href="/elective-care-testing/v1/prelinked-kits/delivery-address-manual">
               Change
               <span class="govuk-visually-hidden">shipping address</span>
             </a>
           </dd>
         </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnic group
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['cuEthnicGroup'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/elective-care-testing/v1/prelinked-kits/ethnic-group">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnic background
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['cuEthnicDesc'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/elective-care-testing/v1/prelinked-kits/ethnic-desc">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            In work
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['cuInWork'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/elective-care-testing/v1/prelinked-kits/occupation/index">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Area of work
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['cuAreaWork'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/elective-care-testing/v1/prelinked-kits/occupation/area">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Occupation
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ occupations }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/elective-care-testing/v1/prelinked-kits/occupation/occupation">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Employer
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ employer }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/elective-care-testing/v1/prelinked-kits/occupation/occupation">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
       </dl>
 
-      <form action="/elective-care-testing/{{version}}/trust-worker-request/confirmation-manual" method="post" novalidate>
+      <form action="confirmation-manual" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 
         <button type="submit" class="govuk-button" data-module="govuk-button">
-          Save and continue
+          Submit answers
         </button>
 
       </form>
