@@ -5,15 +5,15 @@
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
 
 <a class="govuk-back-link" href="/litereg-accounts/{{version}}/travelled-overseas">Back</a>
 {% endblock %}
@@ -22,44 +22,49 @@
 {% include "includes/gtm-noscript.html" %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-two-thirds">
 
-     <div class="submitted submitted--hidden" style="display:none;">
-        <p>You submitted:</p>
-        <ul>
-          <li><code>"last-country-visited": <span class="submitted__last-country-visited"></span></code></li>
-        </ul>
-        <hr />
-      </div>
-       <form action="/international-arrivals/{{version}}/travel-details" method="post">
+    <form action="/international-arrivals/{{version}}/action1/travel-route" method="post">
 
-            <div class="govuk-form-group">
-              <fieldset class="govuk-fieldset">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                  <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-                    {{ pageTitle }}
-                  </h1>
-                </legend>
-                <span id="last-country-visited-hint" class="govuk-body">
-                  Select the highest category of the countries you have visited up to 10 days before your date of entry into the UK.<br><br>
-                  We need to know this so we can give you the correct guidance for your arrival.
-                </span>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="travel-route-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="travel-route-hint" class="govuk-body">
+            Select the highest category of the countries you have visited up to 10 days before your date of entry into the UK.<br><br>
+            We need to know this so we can give you the correct guidance for your arrival.
+          </span>
 
-                <fieldset class="govuk-fieldset govuk-!-margin-top-4">
-                  <label class="govuk-label" for="country-visited-1">
-                    Country
-                  </label>
-                  <div id="country-container-1" name="country-visited-1" class="govuk-!-width-two-thirds"></div>
-                </fieldset>
-              
-              <br>
-
-              <button class="govuk-button" data-module="govuk-button">Continue</button>
-
+          <div class="govuk-radios govuk-!-margin-top-6 govuk-!-margin-bottom-6" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="travel-route-1" name="travel-route" type="radio" value="Red" {{ checked("travel-route", "Red") }}>
+              <label class="govuk-label govuk-radios__label" for="travel-route-1">
+                Red route
+              </label>
             </div>
-        </form>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="travel-route-2" name="travel-route" type="radio" value="Amber" {{ checked("travel-route", "Amber") }}>
+              <label class="govuk-label govuk-radios__label" for="travel-route-2">
+                Amber route
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="travel-route-3" name="travel-route" type="radio" value="Green" {{ checked("travel-route", "Green") }}>
+              <label class="govuk-label govuk-radios__label" for="travel-route-3">
+                Green route
+              </label>
+            </div>
+          </div>
 
-    </div>
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </div>
+    </form>
+
+  </div>
 </div>
 
 {% endblock %}
