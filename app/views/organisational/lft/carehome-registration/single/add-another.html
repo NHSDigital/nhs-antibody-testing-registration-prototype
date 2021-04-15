@@ -2,7 +2,7 @@
   {% if data.cuFirstName and data.cuLastName %}
     {{ data.cuFirstName }} {{ data.cuLastName }}
     {% else %}
-      John Smith
+      John Smith <br> CHE00000502
   {% endif %}
 {% endset %}
 {% set dob %}
@@ -25,7 +25,7 @@
     {{ "Today" | returnDateShort }}: 9am
   {% endif %}
 {% endset %}
-{% set pageHeading = "Confirm details or register more people" %}
+{% set pageHeading = "Confirm individual registration details" %}
 {% set version = "organisational/lft/carehome-registration" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -61,89 +61,66 @@
 
       <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
-      {{ govukSummaryList({
-        classes: "",
-        rows: [
-        {
-          key: {
-            text: "Organisation type"
-          },
-          value: {
-            text: data.cuOrgType or "Care home"
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Change ",
-                visuallyHiddenText: "organisation type"
-              }
-            ]
-          }
-        },
-          {
-            key: {
-              text: "Organisation number"
-            },
-            value: {
-              text: data.cuOrderID or "12345678"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change ",
-                  visuallyHiddenText: "order ID"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              html: "People registered <span class='govuk-visually-hidden'>Registration 1</span>"
-            },
-            value: {
-              html: fullname + "<br>ACD12345432"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change ",
-                  visuallyHiddenText: "registration type"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              html: "<span class='govuk-visually-hidden'>Registration 2</span>"
-            },
-            value: {
-              html: fullname
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change ",
-                  visuallyHiddenText: "registration type"
-                }
-              ]
-            }
-          } if data.cuSingleCount
-        ]
-      }) }}
 
-      <form class="" action="/{{ version }}/single/name?cuSingleCount={{ data.cuSingleCount | int  + 1 or 1 }}" method="post">
+                  <table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">People registered 3 of 3</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header app-custom-class">Name</th>
+      <th scope="col" class="govuk-table__header app-custom-class">Test registrations</th>
+      <th scope="col" class="govuk-table__header app-custom-class"></th>
+      <th scope="col" class="govuk-table__header app-custom-class"></th>
+    </tr>
+  </thead>
+    <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">John Smith</td>
+        <td class="govuk-table__cell">C70268320 - Positive<br>AAA12312312</td>
+        <td class="govuk-table__cell"></td>
+          <td class="govuk-table__cell"><a href="#">Change</td>
+      </tr>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Anna Powell</td>
+          <td class="govuk-table__cell">C11168320 - Negative<br>AAA00001111</td>
+          <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"><a href="#">Change</td>
+        </tr>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Max Parson</td>
+            <td class="govuk-table__cell">C22268320 - Positive</td>
+            <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a href="#">Change</td>
+          </tr>
+  </tbody>
+</table>
+      <form class="" action="" method="post">
 
-        <input class="govuk-button govuk-button--secondary govuk-!-margin-bottom-3" type="submit" value="Add another person">
-
-      </form>
+      {{ govukRadios({
+  idPrefix: "addanotherperson",
+  name: "addanotherperson",
+  fieldset: {
+    legend: {
+      text: "Do you want to add another person?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes, I want to add another person"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
 
 
-      <form class="" action="/{{ version }}/single/security?cuSingleCount=" method="post">
-        <input class="govuk-button" type="submit" value="Confirm">
+        <input class="govuk-button" type="submit" value="Continue">
       </form>
 
     </div>

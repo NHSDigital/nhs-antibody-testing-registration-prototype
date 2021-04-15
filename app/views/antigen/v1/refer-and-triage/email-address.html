@@ -18,6 +18,7 @@
 {% endblock %}
 
 {% block content %}
+{% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -57,10 +58,17 @@
                 </div>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="I do not have an email address" {{ checked("email", "I do not have an email address") }}>
+                <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="I do not have an email address" data-aria-controls="conditional-no-email-address" {{ checked("email", "I do not have an email address") }}>
                 <label class="govuk-label govuk-radios__label" for="email-2">
                   No, I don’t have an email address
                 </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-no-email-address">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="email-address">
+                    If you do not provide an email address, you can book a test for a test site or call the contact centre to order a home test kit. Call 119 if you're in England, Wales or Northern Ireland. Call 0300 303 2713 if you're in Scotland. Lines are open from 7am to 11pm.
+                  </label>
+                </div>
               </div>
             </div>
           </fieldset>

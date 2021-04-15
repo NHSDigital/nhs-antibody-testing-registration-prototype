@@ -1,0 +1,52 @@
+{% set version = "v1" %}
+{% set pageTitle = "How do you want to add patient details?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/trust-worker-request-enhanced/request-home-testing">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+       <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+          {{ pageTitle }}
+        </h1>
+
+      <form class="" action="" method="post">
+        {{ govukRadios({
+            idPrefix: "cuRequestMethod",
+            name: "cuRequestMethod",
+            fieldset: {
+              legend: {
+                text: pageHeading,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            items: [
+              {
+                value: "upload",
+                html: "<strong>Use our spreadsheet to add a list of patients</strong>",
+                hint: {
+                  text: "Enter and upload details for up to 50 people at a time"
+                }
+              },
+              {
+                value: "manual",
+                html: "<strong>Add each person's details one by one</strong>",
+                hint: {
+                  text: "Use an online form to enter their details"
+                }
+              }
+            ]
+          }) }}
+        <input class="govuk-button" type="submit" value="Continue">
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

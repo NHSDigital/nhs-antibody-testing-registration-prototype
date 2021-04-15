@@ -4,10 +4,26 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  {% if data['have-you-had-symptoms'] == "Yes" %}
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/when-did-symptoms-start">Back</a>
+  {% else %}
   <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/have-you-had-symptoms">Back</a>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
+{% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -17,7 +33,7 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="tested-positive-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-fieldset__heading">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
                 {{ pageTitle }}
               </h1>
             </legend>
@@ -36,6 +52,12 @@
                 <input class="govuk-radios__input" id="tested-positive-2" name="tested-positive" type="radio" value="No" {{ checked("tested-positive", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="tested-positive-2">
                   No
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="tested-positive-3" name="tested-positive" type="radio" value="I'm not sure" {{ checked("tested-positive", "I'm not sure") }}>
+                <label class="govuk-label govuk-radios__label" for="tested-positive-3">
+                  I'm not sure
                 </label>
               </div>
             </div>

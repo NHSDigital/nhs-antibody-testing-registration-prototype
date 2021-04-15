@@ -1086,12 +1086,25 @@ router.post('/organisational/lft/carehome-registration/single/add-second-test', 
   let answer = req.body.secondtest;
 
   if (answer == 'yes') {
-    res.redirect('/organisational/lft/carehome-registration/single/testkit-lft')
+    res.redirect('/organisational/lft/carehome-registration/single/testkit-lft-route')
   } else if (answer == 'no') {
-      res.redirect('/organisational/lft/carehome-registration/single/check-1-pcr')
+      res.redirect('/organisational/lft/carehome-registration/single/check-pcr')
     } else {
     res.redirect('/organisational/lft/carehome-registration/single/add-second-test?error=empty')
     }
 });
+
+router.post('/organisational/lft/carehome-registration/single/add-another', function (req, res) {
+  let answer = req.body.addanotherperson;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/single/staff')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/single/confirm-result')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/single/add-another?error=empty')
+    }
+});
+
 
 module.exports = router

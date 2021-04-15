@@ -1,9 +1,20 @@
 {% set version = "v6" %}
-{% set pageTitle = "Confirm person for testing" %}
+{% set pageTitle = "Confirm person being tested" %}
 
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
   <a class="govuk-back-link" href="/antibody/{{version}}/global-registration/check-your-answers">Back</a>
 {% endblock %}
 
@@ -26,13 +37,13 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name'] }}<br>{{ data['last-name'] }}</th>
-            <td class="govuk-table__cell">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-third">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</th>
+            <td class="govuk-table__cell govuk-!-width-one-third">
               {% if data['email'] == "Yes" %}
-              {{ data['email-address'] }}
+              {{ data['email-address'] or 'psmith@example.co.uk' }}
               <br>
               {% endif %}
-              {{ data['mobile-phone-number'] }}
+              {{ data['mobile-phone-number'] or '+44 1632 960272' }}
             </td>
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antibody/{{version}}/global-registration/check-your-answers">Change</a></p></td>
           </tr>
