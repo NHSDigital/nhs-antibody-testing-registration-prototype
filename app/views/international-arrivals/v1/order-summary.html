@@ -77,7 +77,7 @@
                 {{ data['delivery-address-line-2'] }}<br>
               {% endif %}
               {% if data['delivery-address-town'] %}
-                {{ data['delivery-address-town'] }}<br>
+                {{ data['delivery-address-town'] or 'Birmingham' }}<br>
               {% endif %}
               {{ data['delivery-address-postcode'] or 'LS1 3BE' }}
             {% endif %}
@@ -113,25 +113,5 @@
 
     </div>
   </div>
-
-<script type="text/javascript">
- 
-  resetAttributes()
-
-  function checkBox(target) {
-    const checkbox = document.getElementById('confirm')
-    const button = document.getElementById('button')
-    checkbox.toggleAttribute('checked')
-    button.toggleAttribute('disabled')
-  }
-
-  function resetAttributes() {
-    const checkbox = document.getElementById('confirm')
-    const button = document.getElementById('button')
-    checkbox.removeAttribute('checked')
-    button.setAttribute('disabled')
-  }
-
-</script>
-
+  
 {% endblock %}

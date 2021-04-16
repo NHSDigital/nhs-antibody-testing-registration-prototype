@@ -12,7 +12,7 @@ function loadJSONFromFile(fileName, path = "app/data/") {
 
 router.post('/international-arrivals/v1/action1/travel-route', function (req, res) {
     let travelRoute = req.session.data['travel-route']
-    if (travelRoute == "Red") {
+    if (travelRoute == "red") {
       res.redirect('/international-arrivals/v1/red-package-exit')
     } else {
       res.redirect('/international-arrivals/v1/travel-details')
