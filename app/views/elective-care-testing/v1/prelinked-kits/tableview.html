@@ -1,0 +1,352 @@
+{% set version = "v2" %}
+{% set serviceName = "Elective Care" %}
+{% set pageTitle = "Patient status" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle}}</h1>
+    <p class="govuk-body">You can only view patients with a procedure coming up in the next 5 days</p>
+    <p class="govuk-body">Check each patients status. You may need to contact them to let them know what they need to do next.</p>
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        The data shown below won’t show a registration status for kits ordered before the 3rd May 2021 as patient registration is no longer required. To see the correct status for these patients, please refer to the daily status spreadsheet that is sent to your organisation’s email inbox.
+      </strong>
+    </div>
+
+    <form action="5" method="post">
+
+      <fieldset class="govuk-fieldset">
+
+        <div class="flex-container" style="display: flex;">
+          <div class="govuk-form-group">
+            <label class="govuk-heading-m govuk-!-margin-bottom-2" for="sort">
+              Select a group
+            </label>
+            <div class="govuk-hint">
+              You can only search within 1 group at a time.
+            </div>
+            <select class="govuk-select" id="sort" name="sort">
+              <option value="published">Group 1</option>
+              <option value="updated" selected>Group 2</option>
+              <option value="views">Group 3</option>
+              <option value="comments">Group 4</option>
+              <option value="comments">Group 5</option>
+            </select>
+          </div>
+
+        </div>
+
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+          <h2 class="govuk-heading-m">
+            Search within group
+          </h2>
+          <div class="govuk-hint">
+            You can search by first name and/or last name.
+          </div>
+        </legend>
+
+        <div class="flex-container" style="display: flex;">
+          <div class="govuk-form-group govuk-!-margin-bottom-0">
+            <label class="govuk-label" for="width-10">
+              Firstname
+            </label>
+            <input class="govuk-input govuk-input--width-10 govuk-!-margin-right-6" id="width-10" name="width-10" type="text">
+          </div>
+          <div class="govuk-form-group govuk-!-margin-bottom-0">
+            <label class="govuk-label" for="width-10">
+              Lastname
+            </label>
+            <input class="govuk-input govuk-input--width-10 govuk-!-margin-right-6" id="width-10" name="width-10" type="text">
+          </div>
+          <div class="govuk-form-group govuk-!-margin-bottom-0">
+            <button class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+              Search
+            </button>
+          </div>
+
+        </div>
+
+      </fieldset>
+
+    </form>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <div class="flex-container" style="display: flex; justify-content: flex-start">
+      <div class="govuk-form-group govuk-!-margin-bottom-8 govuk-!-margin-right-4">
+        <label class="govuk-label" for="sort">
+          Sort by
+        </label>
+        <select class="govuk-select" id="" name="">
+          <option value="updated" selected>Status</option>
+          <option value="updated">Recently updated</option>
+        </select>
+      </div>
+
+    </div>
+
+
+    <table class="govuk-table" style="font-size:16px;">
+      <caption class="govuk-table__caption govuk-!-margin-bottom-4 govuk-heading-s">Displaying records 1 to 25 of 100</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Patient</th>
+          <th scope="col" class="govuk-table__header">Procedure date</th>
+          <th scope="col" class="govuk-table__header">NHS number</th>
+          <th scope="col" class="govuk-table__header">Mobile number</th>
+          <th scope="col" class="govuk-table__header">Order ID</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit ordered</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit ordered</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit ordered</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit ordered</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit returned (06/03/2021)</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit returned (06/03/2021)</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit returned (06/03/2021)</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit returned (06/03/2021)</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Late - Test kit not returned</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Late - Test kit not returned</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Late - Test kit not returned</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Late - Test kit not returned</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Late - Test kit not returned</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit ordered</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit ordered</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit ordered</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit ordered</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit returned (06/03/2021)</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Late - Test kit not returned</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit ordered</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit returned (06/03/2021)</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Late - Test kit not returned</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Test kit returned (06/03/2021)</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Late - Test kit not returned</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
+          <td class="govuk-table__cell">00 Month Year</td>
+          <td class="govuk-table__cell">000 000 00000</td>
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">0000000000</td>
+          <td class="govuk-table__cell">Late - Test kit not returned</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="flex-container" style="display: flex; justify-content: space-between;">
+      <a href="#" class="govuk-link">Previous page in list</a>
+      <a href="#" class="govuk-link">Next page in list</a>
+    </div>
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+
+
+{% endblock %}
