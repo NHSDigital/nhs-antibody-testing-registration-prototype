@@ -1,0 +1,78 @@
+{% set version = "v1" %}
+{% set pageTitle = "Ethnicity" %}
+
+{% set group %}
+  {% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+    {% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div> 
+
+{{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl"> {{ group }}</span>
+
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+            Do you know {{ data['first-name'] | default('Pete') }} {{ data['last'] | default('Smith') }} ethnic group?
+        </h1>
+
+        <p class="govuk-body">
+            <strong>It's OK if you do not, you can still continue.</strong>
+        </p>
+        <p class="govuk-body">
+          The following questions are about ethnicity but they are optional.
+        </p>
+
+        <form class="" action="" method="post">
+        {{ govukRadios({
+            idPrefix: "cuEthnicStart",
+            name: "cuEthnicStart",
+            fieldset: {
+              legend: {
+                text: pageHeading,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes, continue to ethnicity questions"
+              },
+              {
+                value: "No",
+                text: " No"
+              }
+            ]
+          }) }}
+        <input class="govuk-button" type="submit" value="Continue">
+
+      </form>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,377 @@
+
+
+{% set version = "v1" %}
+{% set pageTitle = "Check your answers" %}
+
+{% set dob %}
+  {% if data["cuDOB-day"] and data["cuDOB-month"] and data["cuDOB-year"]  %}
+    {{ data["cuDOB-day"]}} {{ data["cuDOB-month"] | monthToWord }} {{ data["cuDOB-year"]}}
+  {% else %}
+    31 March 1975
+  {% endif %}
+{% endset %} 
+
+{% set group %}
+  {% if data["cuRequestGroup"] %}
+    Group {{ data["cuRequestGroup"]}}
+  {% else %}
+    Group 1
+  {% endif %}
+{% endset %} 
+
+{% set name %}
+  {% if data['cuFirstName'] and data['cuLastName'] %}
+    {{ data['cuFirstName'] }} {{ data['cuLastName'] }}
+  {% else %}
+    John Smith
+  {% endif %}
+{% endset %} 
+
+{% set procedure %}
+  {% if data['date-of-procedure-day'] and data['date-of-procedure-month'] and data['date-of-procedure-year'] %}
+   {{ data['date-of-procedure-day'] }} {{ data['date-of-procedure-month'] }} {{ data['date-of-procedure-year'] }}
+  {% else %}
+    31 April 2021
+  {% endif %}
+{% endset %} 
+
+{% set address %}
+  {% if data['cuFirstName'] and data['cuLastName'] %}
+    {{ data['cuFirstName'] }} {{ data['cuLastName'] }}
+  {% else %}
+    2 Spring Bank Lane
+    Leeds
+    England
+    DN4 6HA
+  {% endif %}
+{% endset %} 
+
+{% set occupations %}
+    Nurse practitioner
+{% endset %} 
+
+{% set employer %}
+    Blue Castle Care
+{% endset %} 
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+
+      {{ govukSummaryList({
+        rows: [
+        {
+          key: {
+            text: "Group"
+          },
+          value: {
+            text: group
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "Group"
+              }
+            ]
+            }
+          },
+          {
+            key: {
+              text: "Procedure date"
+            },
+            value: {
+              text: procedure
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Procedure date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: name
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Date of birth"
+            },
+            value: {
+              text: dob
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Gender"
+            },
+            value: {
+              text: data.cuGender or "Male"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Gender"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Mobile number"
+            },
+            value: {
+              text: "None provided" if data.cuMobileQuestion == "No" else data.cuMobile | placeholder("07700912357")
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Mobile"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "NHS number"
+            },
+            value: {
+              text: data.cuNHSnumber | placeholder("485 777 3456")
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "NHS number known"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "83  Simone Avenue <br> Welham <br>  LE16 6GQ"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Address"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Ethnicity known"
+            },
+            value: {
+              text: data.cuEthnicStart
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnicity"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Ethnic group"
+            },
+            value: {
+              text: data.cuEthnicGroup or "Black, African, Black British or Caribbean"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          } if data.cuEthnicStart == "Yes",
+          {
+            key: {
+              text: "Ethnic background"
+            },
+            value: {
+              text: data.cuEthnicDesc or "Caribbean"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic background"
+                }
+              ]
+            }
+          } if data.cuEthnicStart == "Yes",
+
+          {
+            key: {
+              text: "Occupation known"
+            },
+            value: {
+              text: data.cuWorkStart
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Occupation"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "In work"
+            },
+            value: {
+              text: data.cuInWork or "Yes, and for the last 2 weeks they've travelled to work"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          } if data.cuWorkStart == "Yes",
+
+          {
+            key: {
+              text: "Area of work"
+            },
+            value: {
+              text: data.cuAreaWork or "Health and social care"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          } if data.cuWorkStart == "Yes",
+
+          {
+            key: {
+              text: "Occupation"
+            },
+            value: {
+              text: "Carer"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Occupation"
+                }
+              ]
+            }
+          } if data.cuWorkStart == "Yes",
+
+          {
+            key: {
+              text: "Employer name"
+            },
+            value: {
+              text: "Blue Castle Care"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          } if data.cuWorkStart == "Yes"
+        ]
+      }) }}
+
+      <form action="confirmation-manual" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Submit answers
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

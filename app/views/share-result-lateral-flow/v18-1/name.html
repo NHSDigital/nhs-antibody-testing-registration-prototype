@@ -24,15 +24,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        What’s their name?
+        {% else %}
+        {{ pageTitle }}
+        {% endif %}
+      </h1>
 
       <form action="/share-result-lateral-flow/{{version}}/dob" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="name-hint">
 
-          <span id="name-hint" class="govuk-body">
+        <!--  <span id="name-hint" class="govuk-body">
             If you’re reporting a result for someone else enter their name.
-          </span>
+          </span> -->
 
           <div class="govuk-form-group govuk-!-margin-top-6">
             <label class="govuk-label" for="first-name">
