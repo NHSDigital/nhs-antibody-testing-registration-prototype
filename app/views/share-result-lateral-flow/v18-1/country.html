@@ -30,14 +30,15 @@
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Where in the UK do they live?
+                {% else %}
                 {{ pageTitle }}
+                {% endif %}
               </h1>
             </legend>
-            <span id="country-hint" class="govuk-body">
-              If you’re reporting a result for someone else, answer for them.
-            </span>
-            <br>
-            <br><br>
+
+            
             <div class="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }}>

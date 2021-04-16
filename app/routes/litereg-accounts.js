@@ -963,7 +963,7 @@ router.post('/share-result-lateral-flow/16-1/action9/check-mobile', function (re
     if (person == "myself") {
       res.redirect('/share-result-lateral-flow/v17/coronavirus-account')
     } else {
-      res.redirect('/share-result-lateral-flow/v17/country')
+      res.redirect('/share-result-lateral-flow/v17/home-org-use')
     }
   })
 
@@ -996,7 +996,7 @@ router.post('/share-result-lateral-flow/v17/action9/check-mobile', function (req
     if (person == "myself") {
       res.redirect('/share-result-lateral-flow/v18/coronavirus-account')
     } else {
-      res.redirect('/share-result-lateral-flow/v18/country')
+      res.redirect('/share-result-lateral-flow/v18/home-org-use')
     }
   })
 
@@ -1029,7 +1029,7 @@ router.post('/share-result-lateral-flow/v18/action9/check-mobile', function (req
     if (person == "myself") {
       res.redirect('/share-result-lateral-flow/v18-1/coronavirus-account')
     } else {
-      res.redirect('/share-result-lateral-flow/v18-1/country')
+      res.redirect('/share-result-lateral-flow/v18-1/home-org-use')
     }
   })
 
