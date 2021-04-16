@@ -1,7 +1,5 @@
 {% set version = "v18-1" %}
-{% set pageTitle = "
-Who was the test for?
-" %}
+{% set pageTitle = "Who was the test for?" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -31,12 +29,20 @@ Who was the test for?
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              Who was their test for?
+              {% else %}
               {{ pageTitle }}
+              {% endif %}
             </h1>
           </legend>
           <span id="enter-barcode-number-hint" class="govuk-body">
-             <p>If you’re reporting a result for someone else, answer for them.<p>
-             <p>If you're in the household or bubble of someone who goes to or works at a school: select the "schools" option unless you got the test from your employer or a social care service.</p>
+          <!--   <p>If you’re reporting a result for someone else, answer for them.<p> -->
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          <p>If they're in the household or bubble of someone who goes to or works at a school: select the "schools" option unless they got the test from their employer or a social care service.</p>
+          {% else %}
+          <p>If you're in the household or bubble of someone who goes to or works at a school: select the "schools" option unless you got the test from your employer or a social care service.</p>
+          {% endif %}
           </span>
           <div class="govuk-radios govuk-!-margin-top-5"">
             <div class="govuk-radios__item">
