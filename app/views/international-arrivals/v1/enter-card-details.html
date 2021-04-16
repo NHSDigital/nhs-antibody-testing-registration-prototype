@@ -5,12 +5,17 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
+  <div class="govuk-grid-row" style="position: relative;">
+    <div class="grey-box">
+      <p class="govuk-body govuk-!-font-size-24">Payment summary</p>
+      <p class="govuk-body">An example payment description</p>
+      <p class="govuk-body">Total amount:</p>
+    </div>
     <div class="govuk-grid-column-two-thirds">
-
+      
       <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
 
-      <form action="/international-arrivals/{{version}}/contact-details" method="post">
+      <form action="/international-arrivals/{{version}}/confirm-payment" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="name-hint">
 
@@ -77,11 +82,43 @@
             This is the address associated with the card
           </span>
           <div class="govuk-form-group">
-            <label class="govuk-label" for="passport-number">
-              <strong>Email</strong><br>
-              <span class="govuk-hint">We'll send your payment confirmation here</span>
+            <label class="govuk-label" for="billing-address">
+              <strong class="govuk-!-font-size-19">Country or territory</strong>
             </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="passport-number" name="passport-number" type="text" value="{{ data['passport-number'] }}">
+            <select class="govuk-select" id="billing-address" name="billing-address">
+              <option value="United Kingdom">United Kingdom</option>
+            </select>
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="billing-address-line-1">
+              <strong>Building number or name and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-2" id="billing-address-line-1" name="billing-address-line-1" type="text" autocomplete="address-line1-billing" value="{{ data['billing-address-line-1'] }}"><br>
+            <input class="govuk-input govuk-!-width-two-thirds" id="billing-address-line-2" name="billing-address-line-2" type="text" autocomplete="address-line2-billing" value="{{ data['billing-address-line-2'] }}">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="billing-address-town">
+              <strong>Town or city</strong>
+            </label>
+            <input class="govuk-input govuk-!-width-one-third" id="billing-address-town" name="billing-address-town" type="text" autocomplete="address-level2-billing" value="{{ data['billing-address-town'] }}">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="billing-postcode">
+              <strong>Postcode</strong>
+            </label>
+            <input class="govuk-input govuk-!-width-one-third" id="billing-postcode" name="billing-postcode" type="text" autocomplete="postal-code" value="{{ data['billing-postcode'] }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="email-address">
+              <strong style="line-height: 1.7em;">What's your email address?</strong><br>
+              Email address
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-top-2" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+            <div class="govuk-inset-text">
+              <p class="govuk-hint govuk-!-margin-bottom-1">An email will be sent to:</p>
+              <p class="govuk-body govuk-!-font-size-24">{{ data['email-address'] or 'example@email.com' }}</p>
+            </div>
           </div>
 
         </fieldset>
