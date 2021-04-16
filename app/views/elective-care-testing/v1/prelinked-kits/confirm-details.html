@@ -1,16 +1,28 @@
 {% set version = "v1" %}
 {% set pageTitle = "Confirm patients for testing" %}
 
+{% set group %}
+  {% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+    {% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/elective-care-testing/{{version}}/trust-worker-request/upload-file">Back</a>
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-!-width-full">
-      <span class="govuk-caption-xl"> Group {{ group }}</span>
+      <span class="govuk-caption-xl"> {{ group }}</span>
 
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
 

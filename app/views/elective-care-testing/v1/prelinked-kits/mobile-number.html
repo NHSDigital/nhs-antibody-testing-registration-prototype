@@ -1,5 +1,12 @@
 {% set version = "v1" %}
 {% set pageTitle = "What’s the patient’s mobile number?" %}
+{% set group %}
+  {% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+    {% else %}
+      Group 1
+  {% endif %}
+{% endset %}
 
 {% extends "includes/layout.html" %}
 
@@ -31,7 +38,7 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint mobile-number-hint-2 mobile-number-hint-3 mobile-number-hint-4 mobile-number-hint-5">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <span class="govuk-caption-xl"> Group {{ data.cuRequestGroup }}</span>
+              <span class="govuk-caption-xl"> {{ group }}</span>
 
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                 What's {{ data['first-name'] | default('Pete') }} {{ data['last-name'] | default('Smith') }}'s mobile number?

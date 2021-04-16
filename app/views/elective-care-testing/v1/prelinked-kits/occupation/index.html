@@ -8,6 +8,14 @@
 {% set pageHeading = "Is " + fullname + " currently in work?" %}
  {% set version = "organisational/register/v4" %}
 {% set serviceName = "Get a coronavirus test" %}
+
+{% set group %}
+  {% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+    {% else %}
+      Group 1
+  {% endif %}
+{% endset %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -38,7 +46,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-xl"> Group {{ data.cuRequestGroup }}</span>
+      <span class="govuk-caption-xl"> {{ group }}</span>
 
       <form class="" action="" method="post">
 

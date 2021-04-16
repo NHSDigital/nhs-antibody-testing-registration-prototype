@@ -1,6 +1,14 @@
 {% set version = "v1" %}
 {% set pageTitle = "Ethnicity" %}
 
+{% set group %}
+  {% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+    {% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
@@ -25,7 +33,7 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-xl"> Group {{ data.cuRequestGroup }}</span>
+      <span class="govuk-caption-xl"> {{ group }}</span>
 
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
             Do you know {{ data['first-name'] | default('Pete') }} {{ data['last'] | default('Smith') }} ethnic group?

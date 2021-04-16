@@ -8,6 +8,14 @@
 {% set pageHeading = "Is " + fullname + " currently in work?" %}
  {% set version = "elective-care-testing/v1/prelinked-kits" %}
 {% set serviceName = "Get a coronavirus test" %}
+
+{% set group %}
+  {% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+    {% else %}
+      Group 1
+  {% endif %}
+{% endset %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -37,7 +45,7 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <span class="govuk-caption-xl"> Group {{ data.cuRequestGroup }}</span>
+    <span class="govuk-caption-xl"> {{ group }}</span>
 
     <form lass="form" action="/elective-care-testing/v1/prelinked-kits/check-your-answers" method="get">
       <div class="govuk-form-group">
