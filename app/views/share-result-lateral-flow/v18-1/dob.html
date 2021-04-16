@@ -29,14 +29,18 @@
           <fieldset class="govuk-fieldset" role="group" aria-describedby="date-of-birth-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                What's {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s date of birth?
+                {% else %}
                 {{ pageTitle }}
+                {% endif %}
               </h1>
             </legend>
-            <span id="date-of-birth-hint" class="govuk-body">
+          <!--  <span id="date-of-birth-hint" class="govuk-body">
               If you’re reporting a result for someone else enter their date of birth.
-            </span>
-            <br>
-            <br>
+            </span> -->
+
+
             <div id="dob-hint" class="govuk-hint">
               For example, 31 3 1980
             </div>

@@ -29,12 +29,15 @@
           <fieldset class="govuk-fieldset" aria-describedby="ethnic-group-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s ethnic group?
+                {% else %}
                 {{ pageTitle }}
+                {% endif %}
               </h1>
             </legend>
             <span id="ethnic-group-hint" class="govuk-body">
-              If you’re reporting a result for someone else, answer for them.
-            <br><br>
+              <!-- If you’re reporting a result for someone else, answer for them. -->
               This will help us understand how coronavirus is affecting people of different ethnic backgrounds.
             </span>
             <div class="govuk-radios govuk-!-margin-top-6">
