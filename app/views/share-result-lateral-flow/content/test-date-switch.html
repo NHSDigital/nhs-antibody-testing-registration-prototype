@@ -1,8 +1,14 @@
+  {% set pageTitle = "When was the test taken?" %}
+
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-heading-l govuk-!-margin-bottom-2">
-        When was the test taken?
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        When was their test taken? 
+        {% else %}
+        {{ pageTitle }}
+        {% endif %}
       </h1>
     </legend>
     <div class="govuk-inset-text">
