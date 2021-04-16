@@ -893,7 +893,7 @@ router.post('/elective-care-testing/v1/prelinked-kits/occupation/index', functio
   } else if (answer == 'no') {
     res.redirect('/elective-care-testing/v1/prelinked-kits/check-your-answers')
   } else if (answer == 'I do not know') {
-    res.redirect('/elective-care-testing/v1/prelinked-kits/check-your-answers')
+    res.redirect('/elective-care-testing/v1/prelinked-kits/occupation/area')
   } else {
     res.redirect('/elective-care-testing/v1/prelinked-kits/occupation/index?error=empty')
     }

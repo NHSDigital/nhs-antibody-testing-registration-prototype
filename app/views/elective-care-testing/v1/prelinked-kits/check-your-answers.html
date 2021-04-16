@@ -11,6 +11,41 @@
   {% endif %}
 {% endset %} 
 
+{% set group %}
+  {% if data["cuRequestGroup"] %}
+    Group {{ data["cuRequestGroup"]}}
+  {% else %}
+    Group 1
+  {% endif %}
+{% endset %} 
+
+{% set name %}
+  {% if data['cuFirstName'] and data['cuLastName'] %}
+    {{ data['cuFirstName'] }} {{ data['cuLastName'] }}
+  {% else %}
+    John Smith
+  {% endif %}
+{% endset %} 
+
+{% set procedure %}
+  {% if data['date-of-procedure-day'] and data['date-of-procedure-month'] and data['date-of-procedure-year'] %}
+   {{ data['date-of-procedure-day'] }} {{ data['date-of-procedure-month'] }} {{ data['date-of-procedure-year'] }}
+  {% else %}
+    31 April 2021
+  {% endif %}
+{% endset %} 
+
+{% set address %}
+  {% if data['cuFirstName'] and data['cuLastName'] %}
+    {{ data['cuFirstName'] }} {{ data['cuLastName'] }}
+  {% else %}
+    2 Spring Bank Lane
+    Leeds
+    England
+    DN4 6HA
+  {% endif %}
+{% endset %} 
+
 {% set occupations %}
     Nurse practitioner
 {% endset %} 
@@ -44,223 +79,288 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
 
-      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Group
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Group {{ data.cuRequestGroup }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/request-group">
-              Change
-              <span class="govuk-visually-hidden">group</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Procedure date
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['date-of-procedure-day'] }} {{ data['date-of-procedure-month'] }} {{ data['date-of-procedure-year'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/date-of-procedure">
-              Change
-              <span class="govuk-visually-hidden">admission date</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Name
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['cuFirstName'] }} {{ data['cuLastName'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/personal-details">
-              Change
-              <span class="govuk-visually-hidden">name</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Date of birth
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ dob }} 
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/personal-details">
-              Change
-              <span class="govuk-visually-hidden">date of birth</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Gender
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['cuGender'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/personal-details">
-              Change
-              <span class="govuk-visually-hidden">date of birth</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Mobile number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['mobile-phone-number'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/mobile-number">
-              Change
-              <span class="govuk-visually-hidden">phone number</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            NHS number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['cuNumber'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/personal-details">
-              Change
-              <span class="govuk-visually-hidden">NHS number</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Address
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['address'] !== "81 Front St, HENDY, SA4 1PZ" and data['address'] !== "46 Seafield Street, LLANYCRWYS, SA19 1WS" and data['address'] !== "32 Boroughbridge Road, BISHOP, DT9 5WF" %}
-              <span>75 Nith Street<br>GLENCARSE<br>{{ data['delivery-postcode'] }}</span>
-            {% endif %}
-            {% if data['address'] == "46 Seafield Street, LLANYCRWYS, SA19 1WS" %}
-              <span>46 Seafield Street<br>LLANYCRWYS<br>SA19 1WS</span>
-            {% endif %}
-            {% if data['address'] == "32 Boroughbridge Road, BISHOP, DT9 5WF" %}
-              <span>32 Boroughbridge Road<br>BISHOP<br>DT9 5WF</span>
-            {% endif %}
-            {% if data['address'] == "81 Front St, HENDY, SA4 1PZ" %}
-              <span>81 Front St<br>HENDY<br>SA4 1PZ</span>
-            {% endif %}
-            {% if data['address'] == undefined %}
-              <span>{{ data['delivery-address-line-1'] }}<br>{{ data['delivery-address-line-2'] }}<br>{{ data['delivery-address-town'] }}<br>{{ data['delivery-address-county'] }}<br>{{ data['delivery-address-postcode'] }}</span>
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/delivery-address-manual">
-              Change
-              <span class="govuk-visually-hidden">shipping address</span>
-            </a>
-          </dd>
-        </div>
+      {{ govukSummaryList({
+        rows: [
+        {
+          key: {
+            text: "Group"
+          },
+          value: {
+            text: group
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "Group"
+              }
+            ]
+            }
+          },
+          {
+            key: {
+              text: "Procedure date"
+            },
+            value: {
+              text: procedure
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Procedure date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: name
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Date of birth"
+            },
+            value: {
+              text: dob
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Gender"
+            },
+            value: {
+              text: data.cuGender or "Male"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Gender"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Mobile number"
+            },
+            value: {
+              text: "None provided" if data.cuMobileQuestion == "No" else data.cuMobile | placeholder("07700912357")
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Mobile"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "NHS number"
+            },
+            value: {
+              text: data.cuNHSnumber | placeholder("485 777 3456")
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "NHS number known"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "83  Simone Avenue <br> Welham <br>  LE16 6GQ"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Address"
+                }
+              ]
+            }
+          },
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Ethnic group
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['cuEthnicGroup'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/ethnic-group">
-              Change
-              <span class="govuk-visually-hidden">NHS number</span>
-            </a>
-          </dd>
-        </div>
+          {
+            key: {
+              text: "Ethnicity known"
+            },
+            value: {
+              text: data.cuEthnicStart
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnicity"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Ethnic group"
+            },
+            value: {
+              text: data.cuEthnicGroup or "Black, African, Black British or Caribbean"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          } if data.cuEthnicStart == "Yes",
+          {
+            key: {
+              text: "Ethnic background"
+            },
+            value: {
+              text: data.cuEthnicDesc or "Caribbean"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic background"
+                }
+              ]
+            }
+          } if data.cuEthnicStart == "Yes",
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Ethnic background
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['cuEthnicDesc'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/ethnic-desc">
-              Change
-              <span class="govuk-visually-hidden">NHS number</span>
-            </a>
-          </dd>
-        </div>
+          {
+            key: {
+              text: "Occupation known"
+            },
+            value: {
+              text: data.cuWorkStart
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Occupation"
+                }
+              ]
+            }
+          },
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            In work
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['cuInWork'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/occupation/index">
-              Change
-              <span class="govuk-visually-hidden">NHS number</span>
-            </a>
-          </dd>
-        </div>
+          {
+            key: {
+              text: "In work"
+            },
+            value: {
+              text: data.cuInWork or "Yes, and for the last 2 weeks they've travelled to work"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          } if data.cuWorkStart == "Yes",
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Area of work
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['cuAreaWork'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/occupation/area">
-              Change
-              <span class="govuk-visually-hidden">NHS number</span>
-            </a>
-          </dd>
-        </div>
+          {
+            key: {
+              text: "Area of work"
+            },
+            value: {
+              text: data.cuAreaWork or "Health and social care"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          } if data.cuWorkStart == "Yes",
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Occupation
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ occupations }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/occupation/occupation">
-              Change
-              <span class="govuk-visually-hidden">NHS number</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Employer
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ employer }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/elective-care-testing/v1/prelinked-kits/occupation/occupation">
-              Change
-              <span class="govuk-visually-hidden">NHS number</span>
-            </a>
-          </dd>
-        </div>
-      </dl>
+          {
+            key: {
+              text: "Occupation"
+            },
+            value: {
+              text: "Carer"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Occupation"
+                }
+              ]
+            }
+          } if data.cuWorkStart == "Yes",
+
+          {
+            key: {
+              text: "Employer name"
+            },
+            value: {
+              text: "Blue Castle Care"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Ethnic group"
+                }
+              ]
+            }
+          } if data.cuWorkStart == "Yes"
+        ]
+      }) }}
 
       <form action="confirmation-manual" method="post" novalidate>
 
