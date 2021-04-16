@@ -2,12 +2,12 @@
 {% set pageTitle = "Upload patient details" %}
 
 {% set group %}
-  {% if data["cuRequestGroup"] %}
-     {{ data["cuRequestGroup"]}}
-  {% else %}
-    Group 1
+  {% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+    {% else %}
+      Group 1
   {% endif %}
-{% endset %} 
+{% endset %}
 
 {% extends "includes/layout.html" %}
 
@@ -36,7 +36,7 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="upload-patient-list-1-hint upload-patient-list-2-hint upload-patient-list-3-hint upload-patient-list-4-hint upload-patient-list-5-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <span class="govuk-caption-xl"> Group {{ group }}</span>
+              <span class="govuk-caption-xl"> {{ group }}</span>
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                 {{ pageTitle }}
               </h1>
