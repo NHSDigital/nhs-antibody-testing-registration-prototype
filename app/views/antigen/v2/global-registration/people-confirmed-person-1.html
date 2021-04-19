@@ -25,20 +25,14 @@
 
       <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
 
-      {% if data['way-to-test'] == 'home testing' %}
-      <p class="govuk-body">
-        You can <strong>add up to 3 people</strong> you live with for testing.<br>You <u>cannot order more than 4</u> home test kits at a time.<br><br>
-        If you need home tests for <strong>more than 4 people</strong>, you'll need to complete this journey again and place a separate order.<br><br>
-        Once you’ve confirmed who needs testing, you can continue.
-      </p>
-      {% else %}
       <p class="govuk-body">
         You can <strong>add up to 3 people</strong> you live with for testing.<br><br>
         If you need tests for <strong>more than 4 people</strong>, you'll need to complete this journey again and place a separate order.<br><br>
+        <strong>For test sites:</strong><br>
         If you plan to travel to a test site by motorbike, you can only take one other person you live with.<br><br>
-        Once you’ve confirmed who needs testing, you can continue.
+        <strong>For home testing:</strong><br>
+        You cannot order more than 4 home test kits at a time.
       </p>
-      {% endif %}
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
@@ -50,27 +44,22 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name'] | default('John')}}<br>{{ data['last-name'] | default('Appleseed')}}</th>
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}</th>
             <td class="govuk-table__cell">
-              {{ data['email-address'] | default('example@example.co.uk')}}
+              {{ data['email-address'] or 'email@example.com' }}
               <br>
-              {{ data['mobile-phone-number'] | default('+44123456789')}}
+              {{ data['mobile-phone-number'] or '+447782808451' }}
             </td>
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a></p></td>
           </tr>
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] or 'Jane' }}<br>{{ data['last-name-person-1'] or 'Wilson' }}</th>
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'Jane' }} {{ data['last-name'] or 'Wilson' }}</th>
             <td class="govuk-table__cell">
-              {{ data['email-address-person-1'] or 'jane.wilson@example.co.uk' }}
+              {{ data['email-address'] or 'janewilson@email.com' }}
               <br>
-              {{ data['mobile-phone-number-person-1'] or '+44663233456' }}
+              {{ data['mobile-phone-number'] or '+44663271472' }}
             </td>
-            <td class="govuk-table__cell">
-              <p class="govuk-body-m">
-                <a href="/antigen/{{version}}/global-registration/check-your-answers-person-1">Edit details</a>
-                <a href="/antigen/{{version}}/global-registration/people-confirmed">Remove</a>
-              </p>
-            </td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a></p></td>
           </tr>
         </tbody>
       </table>
@@ -83,13 +72,13 @@
         </strong>
       </div>
 
-      <form class="form" action="#" method="post" style="display: inline-block;">
+      <form class="form" action="/antigen/{{version}}/global-registration/name-person-1" method="post" style="display: inline-block;">
 
         <button class="govuk-button govuk-button--secondary govuk-!-margin-right-1" data-module="govuk-button">Add another person you live with</button>
 
       </form>
 
-      <form class="form" action="/antigen/{{version}}/action3/people-confirmed-person-1" method="post" style="display: inline-block;">
+      <form class="form" action="/antigen/{{version}}/action3/people-confirmed" method="post" style="display: inline-block;">
 
         <button class="govuk-button" data-module="govuk-button">Save and continue</button>
 
