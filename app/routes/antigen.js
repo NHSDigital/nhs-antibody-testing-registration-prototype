@@ -174,8 +174,11 @@ router.post('/antigen/v2/action3/government-pilot', function (req, res) {
 
 router.post('/antigen/v2/action3/reason-for-test', function (req, res) {
   let reason = req.session.data['reason-for-test']
-  if (reason == "Contact tracers asked me to get a test"){
-    res.redirect('/antigen/v2/refer-and-triage/who-asked-for-test-CT')
+  if (reason == "I have been in contact with someone who's tested positive for coronavirus"){
+    res.redirect('/antigen/v2/refer-and-triage/contact-tracing-code')
+  } 
+  else if (reason == "I was asked to get a test because I visited a venue where others have since tested positive") {
+    res.redirect('/antigen/v2/refer-and-triage/eligible')
   }
   else if (reason == "A healthcare professional has asked me to get a test") {
     res.redirect('/antigen/v2/refer-and-triage/who-asked-for-test-HR')
@@ -185,6 +188,18 @@ router.post('/antigen/v2/action3/reason-for-test', function (req, res) {
   }
   else {
     res.redirect('/antigen/v2/refer-and-triage/cannot-have-test')
+  }
+
+})
+
+router.post('/antigen/v2/action3/reason-for-test-option-2', function (req, res) {
+  let reason = req.session.data['reason-for-test']
+  if (reason == "None of the above"){
+    res.redirect('/antigen/v2/refer-and-triage/cannot-have-test')
+  } else if (reason == "I have been in contact with someone who's tested positive for coronavirus"){
+    res.redirect('/antigen/v2/refer-and-triage/contact-tracing-code')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/eligible')
   }
 
 })
@@ -533,6 +548,15 @@ router.post('/antigen/v2/action3/gp-address-same', function (req, res) {
   }
 })
 
+router.post('/antigen/v2/action3/gp-address-same-option-2', function (req, res) {
+  let gpAdressSame = req.session.data['gp-address-same']
+  if (gpAdressSame == "No"){
+    res.redirect('/antigen/v2/global-registration/address-option-2')
+  } else {
+    res.redirect('/antigen/v2/global-registration/nhs-number-known')
+  }
+})
+
 router.post('/antigen/v2/action3/gp-address-same-person-1', function (req, res) {
   let gpAdressSame = req.session.data['gp-address-same-person-1']
   if (gpAdressSame == "No"){
@@ -786,6 +810,15 @@ router.post('/antigen/v2/action3/delivery-address-same', function (req, res) {
   let deliveryAdressSame = req.session.data['delivery-address-same']
   if (deliveryAdressSame == "No"){
     res.redirect('/antigen/v2/order-home-test-kit/delivery-postcode')
+  } else {
+    res.redirect('/antigen/v2/order-home-test-kit/confirm-email-address')
+  }
+})
+
+router.post('/antigen/v2/action3/delivery-address-same-option-2', function (req, res) {
+  let deliveryAdressSame = req.session.data['delivery-address-same']
+  if (deliveryAdressSame == "No"){
+    res.redirect('/antigen/v2/order-home-test-kit/delivery-postcode-option-2')
   } else {
     res.redirect('/antigen/v2/order-home-test-kit/confirm-email-address')
   }

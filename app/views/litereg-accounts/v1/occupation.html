@@ -34,12 +34,19 @@
           </label>
         </h1>
         <span id="occupation-hint" class="govuk-body">
-          This helps us track which occupations are more at risk from coronavirus.<br><br>
-          We may contact your employer to help us with contact tracing.<br><br>
-          Start entering their occupation below and then choose from the options given.<br><br>
+          This helps us understand which occupations are more at risk from coronavirus.<br><br>
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          We may contact their employer to help us with contact tracing.<br><br>
+          Start entering an occupation below and select from the options given.<br><br>
           If you cannot see their occupation, try a different word.<br><br>
-          If you still cannot see their occupation, select ‘I cannot find the correct occupation’.<br><br>
-          You do not have to share these details if you don't want to.<br><br>
+          If you still cannot see their occupation, enter ‘I cannot find the correct occupation’.<br><br>
+          {% else %}
+          We may contact your employer to help us with contact tracing.<br><br>
+          Start entering an occupation below and select from the options given.<br><br>
+          If you cannot see your occupation, try a different word.<br><br>
+          If you still cannot see your occupation, enter ‘I cannot find the correct occupation’.<br><br>
+          {% endif %}
+          You do not have to share these details if you do not want to.<br><br>
           Occupation (optional)
         </span>
         <div id="occupation-container" class="govuk-!-margin-top-1"></div>

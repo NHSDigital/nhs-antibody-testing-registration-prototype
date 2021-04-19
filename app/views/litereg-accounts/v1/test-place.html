@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Where are you taking the test?" %}
+{% set pageTitle = "Where are you taking your test?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,11 +15,7 @@
   </p>
 </div>
 
-{{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.go(-1);"
-}) }}
-
+<a class="govuk-back-link" href="/litereg-accounts/{{version}}/quarantine-question">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -27,7 +23,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/litereg-accounts/{{version}}/action2/test-place" method="post">
+      <form action="/litereg-accounts/{{version}}/action5/test-place" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="reason-for-test-hint">
@@ -42,46 +38,18 @@
             </legend>
 
             <div class="govuk-radios govuk-!-margin-top-5 govuk-!-bottom-top-5">
-              {% if data['email-address'] == "user@testing.co.uk" %}
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-place-1" name="test-place" type="radio" value="In quarantine after international travel at a government isolation hotel" {{ checked("test-place", "In quarantine after international travel at a government isolation hotel") }}>
+                <input class="govuk-radios__input" id="test-place-1" name="test-place" type="radio" value="At a test site or government quarantine hotel" {{ checked("test-place", "At a test site or government quarantine hotel") }}>
                 <label class="govuk-label govuk-radios__label" for="test-place-1">
-                  In quarantine after international travel at a government isolation hotel
+                  At a test site or government quarantine hotel
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="In quarantine after international travel at home or an accommodation of your choice" {{ checked("test-place", "In quarantine after international travel at home or an accommodation of your choice") }}>
+                <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="At home or an accommodation of your choice" {{ checked("test-place", "At home or an accommodation of your choice") }}>
                 <label class="govuk-label govuk-radios__label" for="test-place-2">
-                  In quarantine after international travel at home or an accommodation of your choice
+                  At home or an accommodation of your choice
                 </label>
               </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="test-place-3" name="test-place" type="radio" value="At home" {{ checked("test-place", "At home") }}>
-              <label class="govuk-label govuk-radios__label" for="test-place-3">
-                At home
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="test-place-4" name="test-place" type="radio" value="At a test site" {{ checked("test-place", "At a test site") }}>
-              <label class="govuk-label govuk-radios__label" for="test-place-4">
-                At a test site
-              </label>
-            </div>
-            {% else %}
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="test-place-1" name="test-place" type="radio" value="At a test site or govenment quarantine hotel" {{ checked("test-place", "At a test site or govenment quarantine hotel") }}>
-              <label class="govuk-label govuk-radios__label" for="test-place-1">
-                At a test site or govenment quarantine hotel
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="At home or an accommodation of your choice" {{ checked("test-place", "At home or an accommodation of your choice") }}>
-              <label class="govuk-label govuk-radios__label" for="test-place-2">
-                At home or an accommodation of your choice
-              </label>
-            </div>
-            {% endif %}
-
             </div>
           </fieldset>
         </div>

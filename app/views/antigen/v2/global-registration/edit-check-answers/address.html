@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Is this the address registered with the person's GP?" %}
+{% set pageTitle = "What is the address registered with the person's GP?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -37,25 +37,38 @@
             This will help us find and update their GP record with their test result.<br><br>
             The test does not have to be sent to this address.
           </span>
-          <div class="govuk-form-group govuk-!-margin-top-5">
-            <label class="govuk-label" for="gp-postcode">
-              Postcode
-            </label>
-            <input class="govuk-input govuk-input--width-10" id="gp-postcode" name="gp-postcode" type="text" autocomplete="postal-code" value="{{ data['gp-postcode'] }}" autofocus>
+
+          <div class="govuk-!-margin-top-6">
+
+          <div id="content-1">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-!-margin-bottom-3" for="gp-postcode" style="line-height: 0.8;">
+                <strong>Postcode</strong>
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="gp-postcode" name="gp-postcode" type="text" autocomplete="postal-code" value="{{ data['gp-postcode'] }}" autofocus>
+            </div>
           </div>
 
           <div id="content-2" style="display: none;">
+            <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
+              <strong>Postcode</strong><br><br>
+              {{ data['gp-postcode'] | default('LS1 3BE') }}
+              <a href="/antigen/{{version}}/global-registration/edit-check-answers/address" class="govuk-!-margin-left-5">
+                Change
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p>
             <div class="govuk-form-group">
               <label class="govuk-label" for="gp-address">
-                <strong class="govuk-!-font-size-24">Select an address</strong>
+                <strong class="govuk-!-font-size-19">Select an address</strong>
               </label>
               <select class="govuk-select" id="gp-address" name="gp-address">
                 <option>5 addresses found</option>
-                <option value="1 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">1 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
-                <option value="2 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">2 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
-                <option value="3 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">3 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
-                <option value="4 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">4 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
-                <option value="5 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">5 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+                <option value="1 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">1 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}</option>
+                <option value="2 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">2 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}</option>
+                <option value="3 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">3 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}</option>
+                <option value="4 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">4 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}</option>
+                <option value="5 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">5 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}</option>
               </select>
             </div>
             <p class="govuk-body">
@@ -64,27 +77,38 @@
           </div>
 
           <div id="content-3" style="display: none;">
+            <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
+              <strong>Postcode</strong><br><br>
+              {{ data['gp-postcode'] | default('LS1 3BE') }}
+              <a href="/antigen/{{version}}/global-registration/edit-check-answers/address" class="govuk-!-margin-left-5">
+                Change
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p>
+
             <div class="govuk-form-group">
-              <label class="govuk-label" for="address-line-1">
-                Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
+              <label class="govuk-label" for="address-line-1-gp">
+                <strong>Building and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="address-line-1-gp" name="address-line-1-gp" type="text" autocomplete="address-line1-gp" value="{{ data['address-line-1-gp'] }}">
             </div>
   
             <div class="govuk-form-group">
-              <label class="govuk-label" for="address-line-2">
+              <label class="govuk-label" for="address-line-2-gp">
                 <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="address-line-2-gp" name="address-line-2-gp" type="text" autocomplete="address-line2-gp" value="{{ data['address-line-2-gp'] }}">
             </div>
   
             <div class="govuk-form-group">
-              <label class="govuk-label" for="address-town">
-                Town or city
+              <label class="govuk-label" for="address-town-gp">
+                <strong>Town or city</strong>
               </label>
               <input class="govuk-input govuk-!-width-one-third" id="address-town-gp" name="address-town-gp" type="text" autocomplete="address-level2-gp" value="{{ data['address-town-gp'] }}">
             </div>
           </div>
+
+        </div>
 
         </fieldset>
 
@@ -104,10 +128,10 @@
 
   function buttonClicked(target) {
     setTimeout(function () {
+      document.getElementById('content-1').style.display = 'none'
       document.getElementById('find-address').style.display = 'none'
       document.getElementById('button-hidden').style.display = 'block'
       document.getElementById('content-2').style.display = 'block'
-      document.getElementById('hidden-link').style.display = 'inline'
       document.getElementById('gp-address').focus()
     }, 100)
   }

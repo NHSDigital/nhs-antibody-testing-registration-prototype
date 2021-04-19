@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Do you know your trace ID?" %}
+{% set pageTitle = "Do you know your NHS Test and Trace ID?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -29,7 +29,7 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                Do you know {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s trace ID?
+                Do you know {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS Test and Trace ID?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
@@ -37,9 +37,9 @@
             </legend>
             <span id="trace-id-known-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              Their trace ID is a 10 digit code we sent them by text.
+              Their NHS Test and Trace ID is an 8 character code we texted them.
               {% else %}
-              Your trace ID is a 10 digit code we sent you by text.
+              Your NHS Test and Trace ID is an 8 character code we texted you.
               {% endif %}
             </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
@@ -47,9 +47,9 @@
                 <input class="govuk-radios__input" id="trace-id-known-1" name="trace-id-known" type="radio" value="Yes" data-aria-controls="conditional-trace-id-known" {{ checked("trace-id-known", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="trace-id-known-1">
                   {% if data['whos-taking-the-test'] == "someone-else" %}
-                  Yes, I know their trace ID
+                  Yes, I know their NHS Test and Trace ID
                   {% else %}
-                  Yes, I know my trace ID
+                  Yes, I know my NHS Test and Trace ID
                   {% endif %}
                 </label>
               </div>
@@ -58,16 +58,16 @@
                   <label class="govuk-label" for="trace-id">
                     trace ID
                   </label>
-                  <input class="govuk-input govuk-!-width-one-third" id="trace-id" name="trace-id" type="text" value="{{ data['trace-id'] }}">
+                  <input class="govuk-input govuk-!-width-two-thirds" id="trace-id" name="trace-id" type="text" value="{{ data['trace-id'] }}">
                 </div>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="trace-id-known-2" name="trace-id-known" type="radio" value="No" {{ checked("trace-id-known", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="trace-id-known-2">
                   {% if data['whos-taking-the-test'] == "someone-else" %}
-                  No, I do not know their trace ID
+                  No, I do not know their NHS Test and Trace ID
                   {% else %}
-                  No, I do not know my trace ID
+                  No, I do not know my NHS Test and Trace ID
                   {% endif %}
                 </label>
               </div>

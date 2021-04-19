@@ -22,6 +22,7 @@ router.use('/', require('./routes/create-account.js'))
 router.use('/', require('./routes/pre-registration.js'))
 router.use('/', require('./routes/delegated-access-results-recorder.js'))
 router.use('/', require('./routes/lfd-collection-registration.js'))
+router.use('/', require('./routes/international-arrivals.js'))
 
 // Pull scope into the homepage to show/hide sections
 // 'SCOPE' is either pulled in from the Heroku App settings or setting in a local .env file eg. SCOPE=antibody
@@ -855,6 +856,81 @@ router.post('/elective-care-testing/v1/action5/symptoms-patient-1', function (re
   }
 
 })
+
+// Version 1 - Elective Care Prelinked Kits - Group select
+
+router.post('/elective-care-testing/v1/prelinked-kits/request-method', function (req, res) {
+  let requestMethod = req.session.data['cuRequestMethod']
+  if (requestMethod == "upload"){
+    res.redirect('/elective-care-testing/v1/prelinked-kits/upload-file')
+  } else {
+    res.redirect('/elective-care-testing/v1/prelinked-kits/date-of-procedure')
+  }
+})
+
+// Version 1 - Elective Care Prelinked Kits - Ethnicity Routes
+
+router.post('/elective-care-testing/v1/prelinked-kits/ethnicity-start', function (req, res) {
+  let ethnicity = req.session.data['cuEthnicStart']
+  if (ethnicity == "Yes"){
+    res.redirect('/elective-care-testing/v1/prelinked-kits/ethnic-group')
+  } else if (ethnicity == "No"){
+    res.redirect('/elective-care-testing/v1/prelinked-kits/work-start')
+  } else {
+    res.redirect('/elective-care-testing/v1/prelinked-kits/ethnicity-start?error=empty')
+  }
+})
+
+router.post('/elective-care-testing/v1/prelinked-kits/work-start', function (req, res) {
+  let work = req.session.data['cuWorkStart']
+  if (work == "Yes"){
+    res.redirect('/elective-care-testing/v1/prelinked-kits/occupation/index')
+  } else if (work == "No"){
+    res.redirect('/elective-care-testing/v1/prelinked-kits/check-your-answers')
+  } else {
+    res.redirect('/elective-care-testing/v1/prelinked-kits/work-start?error=empty')
+  }
+})
+
+router.post('/elective-care-testing/v1/prelinked-kits/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'I do not know') {
+    res.redirect('/elective-care-testing/v1/prelinked-kits/work-start')
+    } else if (answer) {
+      res.redirect('/elective-care-testing/v1/prelinked-kits/ethnic-desc')
+    } else {
+    res.redirect('/elective-care-testing/v1/prelinked-kits/ethnic-group?error=empty')
+    }
+});
+
+router.post('/elective-care-testing/v1/prelinked-kits/ethnic-desc', function (req, res) {
+  let answer = req.body.cuEthnicDesc;
+
+  if (answer == 'I do not know') {
+    res.redirect('/elective-care-testing/v1/prelinked-kits/work-start')
+    } else if (answer) {
+      res.redirect('/elective-care-testing/v1/prelinked-kits/work-start')
+    } else {
+    res.redirect('/elective-care-testing/v1/prelinked-kits/ethnic-desc?error=empty')
+    }
+});
+
+router.post('/elective-care-testing/v1/prelinked-kits/occupation/index', function (req, res) {
+  let answer = req.body.cuInWork;
+
+  if (answer == "Yes, and for the last 2 weeks they've worked from home") {
+    res.redirect('/elective-care-testing/v1/prelinked-kits/occupation/area')
+  } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
+    res.redirect('/elective-care-testing/v1/prelinked-kits/occupation/area')
+  } else if (answer == 'no') {
+    res.redirect('/elective-care-testing/v1/prelinked-kits/check-your-answers')
+  } else if (answer == 'I do not know') {
+    res.redirect('/elective-care-testing/v1/prelinked-kits/occupation/area')
+  } else {
+    res.redirect('/elective-care-testing/v1/prelinked-kits/occupation/index?error=empty')
+    }
+});
 
 // Version 1 - Lite registration - test place route
 
@@ -2635,26 +2711,6 @@ router.post('/lite-registration/v1/action6/home-page', function (req, res) {
     res.redirect('/lite-registration-accounts-mvp/v1/email-address-account')
   }
 
-})
-
-// Version 1 - LiteReg Accounts Coronavirus v2
-router.post('/litereg-accounts/v1/action5/enter-barcode', function (req, res) {
-  let kitBarcodeReference = req.session.data['kit-barcode-reference-1']
-  let emailAddress = req.session.data['email-address']
-  if (kitBarcodeReference.charAt(0) == "C" && kitBarcodeReference.charAt(1) == "O") {
-    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
-  }
-  else if (kitBarcodeReference.charAt(0) == "L") {
-    res.redirect('/litereg-accounts/v1/site-id')
-  }
-  else {
-    if (emailAddress == "user@testing.co.uk") {
-      res.redirect('/litereg-accounts/v1/test-place')
-    }
-    else {
-      res.redirect('/litereg-accounts/v1/are-you-isolating')
-    }
-  }
 })
 
 // Version 1 - LiteReg Accounts Daily Contact Testing

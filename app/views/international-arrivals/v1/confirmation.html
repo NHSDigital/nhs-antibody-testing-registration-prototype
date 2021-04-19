@@ -1,0 +1,67 @@
+set version = "v1" %}
+{% set pageTitle = "We've received your order for international travel test kit" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['coronavirus-account'] == "Yes" %}
+  {% include "includes/account-menu.html" %}
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-8">
+      <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
+    </div>
+
+    <p class="govuk-body">
+      Your order confirmation code is <strong>12334445</strong>. You will need this when completing the Passenger Locator Form
+    </p>
+
+    <h3 class="govuk-heading-s govuk-!-margin-top-6">What happens next</h3>
+    <p class="govuk-body">
+      Enter your code in the <a class="govuk-body" href="#">passenger locator form</a> (PLF) before arriving in England.
+    </p>
+
+    <div class="govuk-warning-text govuk-!-margin-top-6">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        You will not be able to travel if you do not complete the passenger locator Form.
+      </strong>
+    </div>
+
+    <h3 class="govuk-heading-s govuk-!-margin-top-6">If your travel plans change</h3>
+    <p class="govuk-body govuk-!-margin-bottom-2">
+      Call our contact centre:
+    </p>
+    <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-3">
+      <li>England, Wales and Northern Ireland: call 119 (free from mobiles and landlines)</li>
+      <li>Scotland: call 0300 303 2713 (charged at your standard network rate)</li>
+      <li>Overseas: *international number*</li>
+    </ul>
+    <p class="govuk-body">
+      Lines are open 7am to 11pm.
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

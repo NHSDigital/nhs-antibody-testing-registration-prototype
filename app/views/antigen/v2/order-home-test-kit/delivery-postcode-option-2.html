@@ -28,26 +28,32 @@
 
       <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
             {{ pageTitle }}
           </h1>
         </legend>
 
-          <div class="govuk-form-group govuk-!-margin-top-5">
-            <label class="govuk-label" for="delivery-address-postcode">
-              Postcode
-            </label>
-            <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode" name="delivery-address-postcode" type="text" autocomplete="postal-code" value="{{ data['delivery-address-postcode'] }}" autofocus>
-            <a id="hidden-link" href="/antigen/{{version}}/order-home-test-kit/delivery-postcode-option-2" class="govuk-!-margin-left-5 govuk-link govuk-!-font-size-19" style="display: none;">
-              Change
-              <span class="govuk-visually-hidden">your postcode</span>
-            </a>
+          <div id="content-1">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-!-margin-bottom-3" for="delivery-address-postcode" style="line-height: 0.8;">
+                <strong>Postcode</strong>
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode" name="delivery-address-postcode" type="text" autocomplete="postal-code" value="{{ data['delivery-address-postcode'] }}" autofocus>
+            </div>
           </div>
 
           <div id="content-2" style="display: none;">
+            <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
+              <strong>Postcode</strong><br><br>
+              {{ data['delivery-address-postcode'] | default('LS1 3BE') }}
+              <a href="/antigen/{{version}}/order-home-test-kit/delivery-postcode-option-2" class="govuk-!-margin-left-5">
+                Change
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p>
             <div class="govuk-form-group">
               <label class="govuk-label" for="delivery-address">
-                <strong class="govuk-!-font-size-24">Select an address</strong>
+                <strong class="govuk-!-font-size-19">Select an address</strong>
               </label>
               <select class="govuk-select" id="delivery-address" name="delivery-address">
                 <option>5 addresses found</option>
@@ -64,9 +70,17 @@
           </div>
 
           <div id="content-3" style="display: none;">
+            <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
+              <strong>Postcode</strong><br><br>
+              {{ data['delivery-address-postcode'] | default('LS1 3BE') }}
+              <a href="/antigen/{{version}}/order-home-test-kit/delivery-postcode-option-2" class="govuk-!-margin-left-5">
+                Change
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p>
             <div class="govuk-form-group">
               <label class="govuk-label" for="delivery-address-line-1">
-                Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
+                <strong>Building and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="delivery-address-line-1" name="delivery-address-line-1" type="text" autocomplete="address-line1-delivery" value="{{ data['delivery-address-line-1'] }}">
             </div>
@@ -80,7 +94,7 @@
   
             <div class="govuk-form-group">
               <label class="govuk-label" for="delivery-address-town">
-                Town or city
+                <strong>Town or city</strong>
               </label>
               <input class="govuk-input govuk-!-width-one-third" id="delivery-address-town" name="delivery-address-town" type="text" autocomplete="address-level2-delivery" value="{{ data['delivery-address-town'] }}">
             </div>
@@ -104,10 +118,10 @@
 
   function buttonClicked(target) {
     setTimeout(function () {
+      document.getElementById('content-1').style.display = 'none'
       document.getElementById('find-address').style.display = 'none'
       document.getElementById('button-hidden').style.display = 'block'
       document.getElementById('content-2').style.display = 'block'
-      document.getElementById('hidden-link').style.display = 'inline'
       document.getElementById('delivery-address').focus()
     }, 100)
   }
@@ -144,11 +158,5 @@
   }
 
 </script>
-
-<div class="proto-action big">
-  <a href="/antigen/{{version}}/order-home-test-kit/delivery-postcode">
-    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
-  </a>
-</div>
 
 {% endblock %}

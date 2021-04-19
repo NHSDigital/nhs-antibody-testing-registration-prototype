@@ -15,7 +15,11 @@
     </p>
   </div>
 
+  {% if data['travelled-overseas'] == "Yes" %}
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/travelled-to">Back</a>
+  {% else %}
   <a class="govuk-back-link" href="/litereg-accounts/{{version}}/travelled-overseas">Back</a>
+  {% endif %}
 
 {% endblock %}
 
@@ -39,9 +43,13 @@
               </h1>
             </legend>
             <span id="previous-infection-hint" class="govuk-body">
-              We need to know if the person tested recieved a positive result more than 3 months ago. This tells us they may have a second coronavirus infection caused by a different strain of the virus.
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              We need to know if they received a positive result more than 3 months ago. This tells us they may have a second coronavirus infection caused by a different strain of the virus.
+              {% else %}
+              We need to know if you received a positive result more than 3 months ago. This tells us you may have a second coronavirus infection caused by a different strain of the virus.
+              {% endif %}
               <br><br>
-              If a positive result was less than three months ago, answer 'no'.
+              If any positive result was less than 3 months ago, answer 'no'.
             </span>
             <div class="govuk-radios govuk-!-margin-top-6">
               <div class="govuk-radios__item">
