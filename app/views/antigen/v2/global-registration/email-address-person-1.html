@@ -41,19 +41,34 @@
               For a baby or child, enter your own email address.
            </span>
 
-           <div class="govuk-form-group govuk-!-padding-top-4">
-            <label class="govuk-label" for="email-address-person-1">
-              Email address
-            </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="email-address-person-1" name="email-address-person-1" type="text" value="{{ data['email-address-person-1'] }}">
-          </div>
-
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="confirm-email-address-person-1">
-              Confirm email address
-            </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address-person-1" name="confirm-email-address-person-1" type="text" value="{{ data['confirm-email-address-person-1'] }}">
-          </div>
+           <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+             <div class="govuk-radios__item">
+               <input class="govuk-radios__input" id="email-2-person-1" name="email-person-1" type="radio" value="same" {{ checked("email-person-1", "same") }}>
+               <label class="govuk-label govuk-radios__label" for="email-2-person-1">
+                 Use {{ data['email-address'] or 'psmith@example.co.uk'}} (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith'}})
+               </label>
+             </div>
+             <div class="govuk-radios__item">
+               <input class="govuk-radios__input" id="email-1-person-1" name="email-person-1" type="radio" value="different" data-aria-controls="conditional-email-address" {{ checked("email-person-1", "different") }}>
+               <label class="govuk-label govuk-radios__label" for="email-1-person-1">
+                 Use a different email address
+               </label>
+             </div>
+             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
+               <div class="govuk-form-group">
+                 <label class="govuk-label" for="email-address-person-1">
+                   Email address
+                 </label>
+                 <input class="govuk-input govuk-!-width-two-thirds" id="email-address-person-1" name="email-address-person-1" type="tel" value="{{ data['email-address-person-1'] }}">
+               </div>
+               <div class="govuk-form-group">
+                 <label class="govuk-label" for="confirm-email-address-person-1">
+                   Confirm email address
+                 </label>
+                 <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address-person-1" name="confirm-email-address-person-1" type="tel" value="{{ data['confirm-email-address-person-1'] }}">
+               </div>
+             </div>
+            </div>
             {% else %}
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
@@ -65,9 +80,15 @@
            </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-1-person-1" name="email-person-1" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email-person-1", "Yes") }}>
+                <input class="govuk-radios__input" id="email-2-person-1" name="email-person-1" type="radio" value="same" {{ checked("email-person-1", "same") }}>
+                <label class="govuk-label govuk-radios__label" for="email-2-person-1">
+                  Use {{ data['email-address'] or 'psmith@example.co.uk'}} (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith'}})
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-1-person-1" name="email-person-1" type="radio" value="different" data-aria-controls="conditional-email-address" {{ checked("email-person-1", "different") }}>
                 <label class="govuk-label govuk-radios__label" for="email-1-person-1">
-                  Yes, they have an email address
+                  Use a different email address
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
@@ -75,7 +96,7 @@
                   <label class="govuk-label" for="email-address-person-1">
                     Get their permission before you enter their email address.<br><br>
                     Make sure they're happy for their test results to go to this email address. Do not use a work or shared email address unless they're comfortable with others seeing their results.<br><br>
-                    Children need to be aged 16 and over to recieve their results. If the child is younger than 16, you (their parent or guardian) should enter your email address here.<br><br>
+                    Children need to be aged 16 and over to receive their results. If the child is younger than 16, you (their parent or guardian) should enter your email address here.<br><br>
                     Email address
                   </label>
                   <input class="govuk-input govuk-!-width-two-thirds" id="email-address-person-1" name="email-address-person-1" type="tel" value="{{ data['email-address-person-1'] }}">
