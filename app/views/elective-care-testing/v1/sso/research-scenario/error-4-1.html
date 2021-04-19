@@ -1,0 +1,82 @@
+{% set version = "v1" %}
+{% set serviceName = "Elective care management" %}
+{% set pageTitle = "Which groups should Sara Metz belong to?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title" id="error-summary-title">
+        There is a problem
+      </h2>
+      <div class="govuk-error-summary__body">
+        <ul class="govuk-list govuk-error-summary__list">
+          <li>
+            <a href="#group-selection">Select a group</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <form action="4-1c" method="post">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl govuk-!-margin-bottom-6">
+          <span class="govuk-caption-xl">Approve access</span>
+          <h1 class="govuk-fieldset__heading">
+            {{ pageTitle }}
+          </h1>
+        </legend>
+        <div id="contact-hint" class="govuk-hint">
+          This person can access these groups when signed in with a smartcard.
+        </div>
+        <div id="group-selection" class="govuk-checkboxes govuk-form-group--error">
+          <span id="nationality-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Select a group
+          </span>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="group-1" name="group-1" type="checkbox" value="Cardiology">
+            <label class="govuk-label govuk-checkboxes__label" for="group-1">
+              Cardiology
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="group-2" name="group-2" type="checkbox" value="Oncology">
+            <label class="govuk-label govuk-checkboxes__label" for="group-2">
+              Oncology
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="group-3" name="group-3" type="checkbox" value="Radiology">
+            <label class="govuk-label govuk-checkboxes__label" for="group-3">
+              Radiology
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="group-4" name="group-4" type="checkbox" value="Gastroenterology">
+            <label class="govuk-label govuk-checkboxes__label" for="group-4">
+              Gastroenterology
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <button class="govuk-button" type="submit" data-module="govuk-button">
+      Save and continue
+    </button>
+
+</form>
+  </div>
+</div>
+
+{% endblock %}
