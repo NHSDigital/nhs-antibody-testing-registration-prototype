@@ -36,7 +36,7 @@
             <span id="ethnic-background-hint" class="govuk-body">
               This will help us understand how coronavirus is affecting people of different ethnic backgrounds.
             </span>
-            <div class="govuk-radios govuk-!-margin-top-6">
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="ethnic-background-1-person-1" name="ethnic-background-person-1" type="radio" value="Bangladeshi" {{ checked("ethnic-background-person-1", "Bangladeshi") }}>
                 <label class="govuk-label govuk-radios__label" for="ethnic-background-1-person-1">
@@ -62,10 +62,18 @@
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="ethnic-background-5-person-1" name="ethnic-background-person-1" type="radio" value="Another Asian background" {{ checked("ethnic-background-person-1", "Another Asian background") }}>
+                <input class="govuk-radios__input" id="ethnic-background-5-person-1" name="ethnic-background-person-1" type="radio" value="Another Asian background" data-aria-controls="conditional-ethnic-background" {{ checked("ethnic-background-person-1", "Another Asian background") }}>
                 <label class="govuk-label govuk-radios__label" for="ethnic-background-5-person-1">
                   Another Asian background
                 </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-ethnic-background">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="another-ethnic-background-person-1">
+                    How would you describe your background? (optional)
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-third" id="another-ethnic-background-person-1" name="another-ethnic-background-person-1" type="tel" value="{{ data['another-ethnic-background-person-1'] }}">
+                </div>
               </div>
   
               <div class="govuk-radios__divider">or</div>

@@ -159,7 +159,7 @@
             Ethnicity
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['ethnic-group-person-1'] or 'White' }}{% if data['ethnic-background-person-1'] !== 'Prefer not to say' and data['ethnic-background-person-1'] !== undefined %}, {{ data['ethnic-background-person-1'] or 'Irish'}}{% endif %}
+            {{ data['ethnic-group-person-1'] or 'White' }}{% if data['ethnic-background-person-1'] !== 'Prefer not to say' and data['ethnic-background-person-1'] !== undefined %}{% if data['ethnic-background-person-1'] == "Another" %}, {{ data['another-ethnic-background-person-1'] or 'Irish'}}{% else %}, {{ data['ethnic-background-person-1'] or 'Irish'}}{% endif %}{% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/ethnic-group-person-1">
