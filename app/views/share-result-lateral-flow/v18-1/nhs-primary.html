@@ -29,12 +29,16 @@
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Select the area they work in
+                {% else %}
                 {{ pageTitle }}
+                {% endif %}
               </h1>
             </legend>
-            <span id="enter-barcode-number-hint" class="govuk-body">
+          <!--  <span id="enter-barcode-number-hint" class="govuk-body">
               <p>If you’re reporting a result for someone else, answer for them.</p>
-           </span>
+           </span> -->
            <div class="govuk-radios__item">
             <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="trust" onclick="setLocation(this);" {{ checked("country", "Wales") }}>
             <label class="govuk-label govuk-radios__label" for="country-2">
