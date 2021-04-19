@@ -477,7 +477,10 @@ router.post('/antigen/v1/action3/reason-for-test', function (req, res) {
   let reason = req.session.data['reason-for-test']
   if (reason == "None of the above"){
     res.redirect('/antigen/v1/refer-and-triage/cannot-have-test')
-  } else {
+  } else if (reason == "I've been told by contact tracers to get a test") {
+    res.redirect('/antigen/v1/refer-and-triage/contact-tracing-code')
+  }
+  else {
     res.redirect('/antigen/v1/refer-and-triage/')
   }
 

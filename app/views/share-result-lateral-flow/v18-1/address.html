@@ -27,7 +27,11 @@
                 <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                     <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                      {% if data['whos-taking-the-test'] == "someone-else" %}
+                      What's the first line of their address and home postcode?
+                      {% else %}
                       {{ pageTitle }}
+                      {% endif %}
                     </h1>
                   </legend>
 
@@ -41,7 +45,7 @@
     <!-- corresponding html file name included from content folder -->
     <script>
       $(function(){
-        $("#includedContent").load("../content/address.html");
+        $("#includedContent").load("../content/address-switch.html");
       });
     </script>
 
