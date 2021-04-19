@@ -28,11 +28,15 @@
           <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Do they have an email address?
+                {% else %}
                 {{ pageTitle }}
+                {% endif %}
               </h1>
             </legend>
             <span id="email-hint" class="govuk-body">
-              <p>If you’re reporting a result for someone else use their email.</p>
+            <!--  <p>If you’re reporting a result for someone else use their email.</p> -->
               <p>Contact details are used for service related messages (for example, to confirm a result has been reported). If a result is positive, the NHS may also use them for
                 <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing-and-tracing/nhs-test-and-trace-if-youre-contacted-after-testing-positive-for-coronavirus/">contact tracing</a>.</p>
             </span>
@@ -40,7 +44,11 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="email-1">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  Yes, they have an email address
+                  {% else %}
                   Yes, I have an email address
+                  {% endif %}
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
@@ -60,7 +68,11 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="I do not have an email address" {{ checked("email", "I do not have an email address") }}>
                 <label class="govuk-label govuk-radios__label" for="email-2">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  No, they don’t have an email address
+                  {% else %}
                   No, I don’t have an email address
+                  {% endif %}
                 </label>
               </div>
           </fieldset>
