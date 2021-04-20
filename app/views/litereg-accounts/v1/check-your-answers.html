@@ -39,28 +39,9 @@
             {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/name">
+            <a href="/litereg-accounts/{{version}}/name">
               Change
               <span class="govuk-visually-hidden">name</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            First line of address and postcode
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
-              {{ data['home-address'] }}
-            {% else %}
-              {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
-              {{ data['home-postcode'] or 'LS1 3BE' }}
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/postcode">
-              Change
-              <span class="govuk-visually-hidden">first line of address and postcode</span>
             </a>
           </dd>
         </div>
@@ -87,7 +68,7 @@
             {{ data['country'] or 'England' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/country">
+            <a href="/litereg-accounts/{{version}}/country">
               Change
               <span class="govuk-visually-hidden">country of residence</span>
             </a>
@@ -98,16 +79,28 @@
             Contact details
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['email'] == "Yes" %}
-            {{ data['email-address'] }}<br>
-            {% endif %}
+            {% if data['email'] == "No" %}
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              They do not have an email address
+              {% else %}
+              I do not have an email address
+              {% endif %}
+            {% elseif data['email-address'] !== undefined and data['email'] == "No" or data['password'] !== undefined %}
+              {{ data['email-address'] or 'example@testing.co.uk' }}
+            {% elseif data['email-address'] !== undefined %}
+              {{ data['email-address'] or 'bsmith@testing.co.uk' }}
+            {% endif %}<br>
             {{ data['mobile-phone-number'] or '07771900900' }}<br>
             {% if data['landline-number'] == "Yes" %}
-            {{ data['landline-telephone-number'] }}
+            {{ data['landline-telephone-number'] or 0845252323 }}
+            {% else %}
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              {% else %}
+              {% endif %}
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/email-address">
+            <a href="/litereg-accounts/{{version}}/email-address">
               Change
               <span class="govuk-visually-hidden">contact details</span>
             </a>
@@ -121,7 +114,7 @@
             {{ data['date-of-birth-day'] or '15 March 1988' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/date-of-birth">
+            <a href="/litereg-accounts/{{version}}/date-of-birth">
               Change
               <span class="govuk-visually-hidden">date of birth</span>
             </a>
@@ -129,15 +122,15 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Gender
+            Medical Record
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['gender'] or 'Male' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/gender">
+            <a href="/litereg-accounts/{{version}}/gender">
               Change
-              <span class="govuk-visually-hidden">gender</span>
+              <span class="govuk-visually-hidden">medical record</span>
             </a>
           </dd>
         </div>
@@ -146,10 +139,10 @@
             Ethnicity
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['ethnic-group'] or 'White' }}{% if data['ethnic-background'] !== 'Prefer not to say' and data['ethnic-background'] !== undefined %}{% if data['ethnic-background'] == "Another" %}, {{ data['another-ethnic-background'] or 'Irish'}}{% else %}, {{ data['ethnic-background'] or 'Irish'}}{% endif %}{% endif %}
+            {{ data['ethnic-group'] or 'White' }}, {% if data['ethnic-background'] !== 'Prefer not to say' %}{{ data['ethnic-background'] or 'Irish'}}{% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/ethnic-group">
+            <a href="/litereg-accounts/{{version}}/ethnic-group">
               Change
               <span class="govuk-visually-hidden">ethnicity</span>
             </a>
@@ -167,7 +160,7 @@
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/nhs-number-known">
+            <a href="/litereg-accounts/{{version}}/nhs-number-known">
               Change
               <span class="govuk-visually-hidden">NHS number</span>
             </a>
@@ -175,200 +168,7 @@
         </div>
       </dl>
 
-      <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Vaccination and travel history</h2>
-      <p class="govuk-body">If your test is positive, we may use this information for contact tracing.</p>
-
-      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Positive coronavirus test
-          </dt>
-           <dd class="govuk-summary-list__value">
-            {{ data['previous-infection'] or 'No' }}
-           </dd>
-         <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/previous-infection">
-              Change
-              <span class="govuk-visually-hidden">positive coronavirus test</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Coronavirus vaccine
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['vaccine'] == "Yes, they've had 1 dose" and data['vaccine-date'] == "Less than 7 days ago" %}
-            1 dose, less than 7 days ago
-            {% elseif data['vaccine'] == "Yes, they've had 1 dose" and data['vaccine-date'] == "7 to 14 days ago" %}
-            1 dose, 7 to 14 days ago
-            {% elseif data['vaccine'] == "Yes, they've had 1 dose" and data['vaccine-date'] == "More than 14 days ago" %}
-              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
-              1 dose, January {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
-              1 dose, February {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
-              1 dose, March {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
-              1 dose, April {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
-              1 dose, May {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
-              1 dose, June {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
-              1 dose, July {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
-              1 dose, August {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
-              1 dose, September {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "10" %}
-              1 dose, October {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "11" %}
-              1 dose, November {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "12" %}
-              1 dose, December {{ data['vaccine-year'] }}
-              {% endif %}
-            {% elseif data['vaccine'] == "Yes, they've had 2 doses" and data['vaccine-date'] == "Less than 7 days ago" %}
-            2 doses, less than 7 days ago
-            {% elseif data['vaccine'] == "Yes, they've had 2 doses" and data['vaccine-date'] == "7 to 14 days ago" %}
-            2 doses, 7 to 14 days ago
-            {% elseif data['vaccine'] == "Yes, they've had 2 doses" and data['vaccine-date'] == "More than 14 days ago" %}
-              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
-              2 doses, January {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
-              2 doses, February {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
-              2 doses, March {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
-              2 doses, April {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
-              2 doses, May {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
-              2 doses, June {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
-              2 doses, July {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
-              2 doses, August {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
-              2 doses, September {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "10" %}
-              2 doses, October {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "11" %}
-              2 doses, November {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "12" %}
-              2 doses, December {{ data['vaccine-year'] }}
-              {% endif %}
-            {% else %}
-            No
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/coronavirus-vaccine">
-              Change
-              <span class="govuk-visually-hidden">Coronavirus vaccine</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Travelled overseas
-          </dt>
-          {% if data['have-you-travelled-overseas'] !== "Yes" %}
-          <dd class="govuk-summary-list__value">No
-          </dd>
-          {% else %}
-          <dd class="govuk-summary-list__value">Yes, to 
-            {{ data['country-autocomplete'] or 'Ireland' }}<br>
-          </dd>
-          {% endif %}
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/have-you-travelled-overseas">
-              Change
-              <span class="govuk-visually-hidden">country visited</span>
-            </a>
-          </dd>
-        </div>
-      </dl>
-
-      <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Employment and education</h2>
-      <p class="govuk-body">We may use this information to monitor new coronavirus variants</p>
-
-      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Travels to nursery, work or place of education
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
-            Travels to work
-            {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
-            Travels to nursery, school, college or university
-            {% else %}
-            {{ data['currently-in-work'] or 'No' }}
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/currently-in-work">
-              Change
-              <span class="govuk-visually-hidden">currently in work?</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['currently-in-work'] == "Yes - they travel to a workplace" or data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
-            Work
-            {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
-            Study
-            {% endif %}
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
-              {% if data['industry'] !== "Prefer not to say" %}
-              {{ data['industry'] or 'Heath and social care' }}<br>
-              {% endif %}
-              {{ data['occupation-autocomplete'] or 'Prefer not to say' }}<br>
-              {% if data['employer'] !== "Prefer not to say" %}
-              {{ data['employer'] }}
-              {% endif %}
-            {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
-            {{ data['study-grade'] or 'College' }}<br>
-              {% if data['name'] and data['town'] %}
-              {{ data['name'] or 'Prefer not to say' }}, {{ data['town'] or 'Prefer not to say' }}
-              {% endif %}
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/industry">
-              Change
-              <span class="govuk-visually-hidden">area of work</span>
-            </a>
-            {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/study-grade">
-              Change
-              <span class="govuk-visually-hidden">area of work</span>
-            </a>
-            {% endif %}
-          </dd>
-        </div>
-        {% endif %}
-        </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Test kit details</h2>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
@@ -462,36 +262,6 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Doing 7-day repeat testing?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['daily-contact-testing'] or 'No' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/daily-contact-testing">
-              Change
-              <span class="govuk-visually-hidden">doing 7-day repeat testing</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['daily-contact-testing'] == "Yes" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Trace Account ID
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['trace-id'] or 'ae60a100' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/trace-id">
-              Change
-              <span class="govuk-visually-hidden">trace account id</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
               Test date and time
           </dt>
           {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "1" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "01" %}
@@ -568,334 +338,47 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Date of birth
+            Doing 7-day repeat testing?
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['date-of-birth-day'] or ('5') }} {{ data['date-of-birth-month'] or ('June') }} {{ data['date-of-birth-year'] or ('1978') }}
+            {{ data['daily-contact-testing'] or 'No' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/date-of-birth">
+            <a href="/litereg-accounts/{{version}}/daily-contact-testing">
               Change
-              <span class="govuk-visually-hidden">date of birth</span>
+              <span class="govuk-visually-hidden">doing 7-day repeat testing</span>
             </a>
           </dd>
         </div>
+        {% if data['daily-contact-testing'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Name
+            Trace Account ID
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['first-name'] | default('Pete') }} {{ data['last-name'] | default('Smith') }}
+            {{ data['trace-id'] or 'ae60a100' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/name">
+            <a href="/litereg-accounts/{{version}}/trace-id">
               Change
-              <span class="govuk-visually-hidden">name</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Medical Record
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['gender'] | default('Male') }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/global-registration/gender">
-              Change
-              <span class="govuk-visually-hidden">medical record</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Ethnic group
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['ethnic-group'] | default('White') }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/ethnic-group">
-              Change
-              <span class="govuk-visually-hidden">ethnic group</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Ethnic background
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['ethnic-background'] | default('Prefer not to say') }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/ethnic-background">
-              Change
-              <span class="govuk-visually-hidden">ethnic background</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Travels to nursery, work or place of education
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['currently-in-work'] or 'No' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/currently-in-work">
-              Change
-              <span class="govuk-visually-hidden">travel to nursery, work or place of education</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['currently-in-work'] == "Yes - I travel to a workplace" or data['currently-in-work'] == "Yes - they travel to a workplace"%}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Area of work
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['industry'] or 'Heath and social care' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/industry">
-              Change
-              <span class="govuk-visually-hidden">area of work</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Occupation
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['occupation'] or 'Prefer not to say' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/occupation">
-              Change
-              <span class="govuk-visually-hidden">occupation</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Employer
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['employer'] or 'Prefer not to say'}}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/employer">
-              Change
-              <span class="govuk-visually-hidden">employer</span>
-            </a>
-          </dd>
-        </div>
-        {% elseif data['currently-in-work'] == "Yes - I go to nursery, school, college or university" or data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Nursery, school or college
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['study-grade'] or 'Prefer not to say'}}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/study-grade">
-              Change
-              <span class="govuk-visually-hidden">nursery, school or college</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Institution details
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['name'] or 'Prefer not to say'}}<br>
-            {{ data['town'] or 'Prefer not to say'}}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/institution">
-              Change
-              <span class="govuk-visually-hidden">institution details</span>
+              <span class="govuk-visually-hidden">trace account id</span>
             </a>
           </dd>
         </div>
         {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            {% if data['whos-taking-the-test'] == "someone-else" %}
-            Do they have any symptoms?
-            {% else %}
-            Do you have any symptoms?
-            {% endif %}
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['do-you-have-symptoms'] or 'No' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/do-you-have-symptoms">
-              Change
-              <span class="govuk-visually-hidden">do you have any symptoms</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['do-you-have-symptoms'] == "Yes" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Date when symptoms started
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/when-did-symptoms-start">
-              Change
-              <span class="govuk-visually-hidden">date when symptoms started</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Country of residence
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['country'] or 'England' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/country">
-              Change
-              <span class="govuk-visually-hidden">country</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['email'] == "No" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Email
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['whos-taking-the-test'] == "someone-else" %}
-            They do not have an email address
-            {% else %}
-            I do not have an email address
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/email-address">
-              Change
-              <span class="govuk-visually-hidden">contact email address</span>
-            </a>
-          </dd>
-        </div>
-        {% elseif data['email-address'] !== undefined and data['email'] == "No" or data['password'] !== undefined %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Email
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['email-address'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/email-address">
-              Change
-              <span class="govuk-visually-hidden">contact email address</span>
-            </a>
-          </dd>
-        </div>
-        {% elseif data['email-address'] !== undefined %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Email
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['email-address'] or 'bsmith@testing.co.uk' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/email-address">
-              Change
-              <span class="govuk-visually-hidden">contact email address</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Mobile
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['mobile-phone-number'] or '+4478353335' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/mobile-number">
-              Change
-              <span class="govuk-visually-hidden">mobile number</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Landline number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['landline-number'] == "Yes" %}
-            {{ data['landline-telephone-number'] or 0845252323 }}
-            {% else %}
-            {% if data['whos-taking-the-test'] == "someone-else" %}
-            They do not have a landline number
-            {% else %}
-            I do not have a landline number
-            {% endif %}
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/landline-number">
-              Change
-              <span class="govuk-visually-hidden">landline number</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            NHS number known
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['nhs-number-known'] or 'No' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/nhs-number-known">
-              Change
-              <span class="govuk-visually-hidden">NHS number known</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['nhs-number-known'] == "Yes" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            NHS number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['nhs-number'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/nhs-number">
-              Change
-              <span class="govuk-visually-hidden">NHS number</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
+      </dl>
+
+      <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Vaccine and travel history</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Positive coronavirus test
           </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['previous-infection'] or "No" }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
+           <dd class="govuk-summary-list__value">
+            {{ data['previous-infection'] or 'No' }}
+           </dd>
+         <dd class="govuk-summary-list__actions">
             <a href="/litereg-accounts/{{version}}/previous-infection">
               Change
               <span class="govuk-visually-hidden">positive coronavirus test</span>
@@ -904,66 +387,166 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Had coronavirus vaccine
+            Coronavirus vaccine
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['vaccine'] or "Yes, I've had 1 dose" }}
+            {% if data['vaccine'] == "Yes, they've had 1 dose" and data['vaccine-date'] == "Less than 7 days ago" %}
+            1 dose, less than 7 days ago
+            {% elseif data['vaccine'] == "Yes, they've had 1 dose" and data['vaccine-date'] == "7 to 14 days ago" %}
+            1 dose, 7 to 14 days ago
+            {% elseif data['vaccine'] == "Yes, they've had 1 dose" and data['vaccine-date'] == "More than 14 days ago" %}
+              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
+              1 dose, January {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
+              1 dose, February {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
+              1 dose, March {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
+              1 dose, April {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
+              1 dose, May {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
+              1 dose, June {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
+              1 dose, July {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
+              1 dose, August {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
+              1 dose, September {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "10" %}
+              1 dose, October {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "11" %}
+              1 dose, November {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "12" %}
+              1 dose, December {{ data['vaccine-year'] }}
+              {% endif %}
+            {% elseif data['vaccine'] == "Yes, they've had 2 doses" and data['vaccine-date'] == "Less than 7 days ago" %}
+            2 doses, less than 7 days ago
+            {% elseif data['vaccine'] == "Yes, they've had 2 doses" and data['vaccine-date'] == "7 to 14 days ago" %}
+            2 doses, 7 to 14 days ago
+            {% elseif data['vaccine'] == "Yes, they've had 2 doses" and data['vaccine-date'] == "More than 14 days ago" %}
+              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
+              2 doses, January {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
+              2 doses, February {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
+              2 doses, March {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
+              2 doses, April {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
+              2 doses, May {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
+              2 doses, June {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
+              2 doses, July {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
+              2 doses, August {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
+              2 doses, September {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "10" %}
+              2 doses, October {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "11" %}
+              2 doses, November {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "12" %}
+              2 doses, December {{ data['vaccine-year'] }}
+              {% endif %}
+            {% else %}
+            No
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/vaccine">
+            <a href="/litereg-accounts/{{version}}/coronavirus-vaccine">
               Change
-              <span class="govuk-visually-hidden">had coronavirus vaccine</span>
+              <span class="govuk-visually-hidden">Coronavirus vaccine</span>
             </a>
           </dd>
         </div>
-        {% if data['vaccine'] !== "No" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Last dose
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['vaccine-date'] or 'Less than 7 days ago' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/vaccine-date">
-              Change
-              <span class="govuk-visually-hidden">last dose</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Travelled overseas
           </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['have-you-travelled-overseas'] or 'No' }}
+          {% if data['have-you-travelled-overseas'] !== "Yes" %}
+          <dd class="govuk-summary-list__value">No
           </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">Yes, to 
+            {{ data['country-autocomplete'] or 'Ireland' }}<br>
+          </dd>
+          {% endif %}
           <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/travelled-overseas">
+            <a href="/litereg-accounts/{{version}}/have-you-travelled-overseas">
               Change
-              <span class="govuk-visually-hidden">travelled overseas</span>
+              <span class="govuk-visually-hidden">country visited</span>
             </a>
           </dd>
         </div>
-        {% if data['have-you-travelled-overseas'] == "Yes" %}
+      </dl>
+
+      <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Employment and education</h2>
+      <p class="govuk-body">We may use this information to monitor new coronavirus variants</p>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Recent travel destination
+            Travels to nursery, work or place of education
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['country-autocomplete'] }}
+            {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
+            Travels to work
+            {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
+            Travels to nursery, school, college or university
+            {% else %}
+            {{ data['currently-in-work'] or 'No' }}
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/country-visited">
+            <a href="/litereg-accounts/{{version}}/currently-in-work">
               Change
-              <span class="govuk-visually-hidden">recent travel destination</span>
+              <span class="govuk-visually-hidden">currently in work?</span>
             </a>
+          </dd>
+        </div>
+        {% if data['currently-in-work'] == "Yes - they travel to a workplace" or data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
+            Work
+            {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
+            Place of study
+            {% endif %}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
+              {% if data['industry'] !== "Prefer not to say" %}
+              {{ data['industry'] or 'Heath and social care' }}<br>
+              {% endif %}
+              {{ data['occupation-autocomplete'] or 'Prefer not to say' }}<br>
+              {% if data['employer'] !== "Prefer not to say" %}
+              {{ data['employer'] }}
+              {% endif %}
+            {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
+            {{ data['study-grade'] or 'College' }}<br>
+              {% if data['name'] and data['town'] %}
+              {{ data['name'] or 'Prefer not to say' }}, {{ data['town'] or 'Prefer not to say' }}
+              {% endif %}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
+            <a href="/litereg-accounts/{{version}}/industry">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+            {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
+            <a href="/litereg-accounts/{{version}}/study-grade">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+            {% endif %}
           </dd>
         </div>
         {% endif %}
-        
-      </dl>
+        </dl>
 
       <form action="/litereg-accounts/{{version}}/security-check" method="post" novalidate>
 
