@@ -1,7 +1,11 @@
 
   <div class="govuk-panel govuk-panel--confirmation govuk-panel-lft-result">
    <h1 class="govuk-panel__title">
+     {% if data['whos-taking-the-test'] == "someone-else" %}
+     You reported {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s coronavirus test result as void
+     {% else %}
      You reported a void coronavirus test result
+     {% endif %}
    </h1>
    <div class="govuk-panel__body">
      It’s not possible to say if you had coronavirus or were infectious when the test was done
