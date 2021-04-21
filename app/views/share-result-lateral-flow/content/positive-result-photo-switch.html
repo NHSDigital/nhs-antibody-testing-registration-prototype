@@ -33,19 +33,35 @@
   <p class="govuk-body">You must take a different follow-up test today, or as soon as possible.</p>
   {% endif %}
 
-   <p class="govuk-body">This will confirm if you are infectious to others, start contact tracing and
-     enable you to claim financial support if you are eligible.</p>
-   <p class="govuk-body">Follow the instructions you were given to take your follow-up test.
-     If you were not given instructions, book your test below (choose a test site if you can,
-     it’s faster than a home test).</p>
+  {% if data['whos-taking-the-test'] == "someone-else" %}
+  <p class="govuk-body">This will confirm if they are infectious to others, start contact tracing and
+    enable them to claim financial support if they are eligible.</p>
+  <p class="govuk-body">They should follow the instructions they were given to take their follow-up test.
+    If they were not given instructions, book their test below (choose a test site if you can,
+    it’s faster than a home test).</p>
+    {% else %}
+  <p class="govuk-body">This will confirm if you are infectious to others, start contact tracing and
+    enable you to claim financial support if you are eligible.</p>
+  <p class="govuk-body">Follow the instructions you were given to take your follow-up test.
+    If you were not given instructions, book your test below (choose a test site if you can,
+    it’s faster than a home test).</p>
+  {% endif %}
+
   </div>
 
    <div class="govuk-warning-text">
      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
      <strong class="govuk-warning-text__text">
        <span class="govuk-warning-text__assistive">Warning</span>
-       Until you get further advice, you and everyone you live with must self-isolate immediately for 10 days. This includes the day of your test and the next 10 full days. You can leave home for your follow-up test.
+       {% if data['whos-taking-the-test'] == "someone-else" %}
+       Until they get further advice, {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} and everyone they live with must self-isolate immediately for 10 days.
+       This includes the day of the test and the next 10 full days. They can leave home for their follow-up test.
        Care home residents must self-isolate for 14 days.
+       {% else %}
+       Until you get further advice, you and everyone you live with must self-isolate immediately for 10 days.
+       This includes the day of your test and the next 10 full days. You can leave home for your follow-up test.
+       Care home residents must self-isolate for 14 days.
+       {% endif %}
      </strong>
    </div>
 
