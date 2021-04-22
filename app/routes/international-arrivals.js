@@ -33,7 +33,7 @@ router.post('/international-arrivals/v1/action3/travel-route-same-person-1', fun
   if (travelRouteSame == "No") {
     res.redirect('/international-arrivals/v1/cannot-add-person')
   } else {
-    res.redirect('/international-arrivals/v1/personal-details-person-1')
+    res.redirect('/international-arrivals/v1/travel-details-same-person-1')
   }
 })
 
