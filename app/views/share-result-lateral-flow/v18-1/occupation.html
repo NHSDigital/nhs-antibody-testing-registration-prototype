@@ -30,11 +30,15 @@
 
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              Enter {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s occupation if they have one
+              {% else %}
               {{ pageTitle }}
+              {% endif %}
             </h1>
           </legend>
           <span id="occupation-hint" class="govuk-body">
-            <p>If you’re reporting a result for someone else, answer for them.</p>
+          <!--  <p>If you’re reporting a result for someone else, answer for them.</p> -->
             <p>This helps us track which occupations are affected by coronavirus.</p>
             <p>You can <a href="address">continue without answering</a> if you want.</p>
         <!--    <p>We may contact your employer to help us with contact tracing.</p> -->
