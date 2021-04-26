@@ -1,4 +1,4 @@
-{% set version = "v19" %}
+{% set version = "v18-1" %}
 {% set pageTitle = "Which of these best describes you?" %}
 
 {% extends "includes/layout-LFD.html" %}
@@ -24,41 +24,61 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/share-result-lateral-flow/{{version}}/country" method="post">
+      <form action="/share-result-lateral-flow/{{version}}/social-care-uon" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Which of these best describes them?
+                {% else %}
                 {{ pageTitle }}
+                {% endif %}
               </h1>
             </legend>
-            <span id="post-code-hint" class="govuk-body">
+        <!--    <span id="post-code-hint" class="govuk-body">
                 If you’re reporting a result for someone else, answer for them.
-            </span>
+            </span> -->
             <div class="govuk-radios govuk-!-margin-top-5">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="country-1" name="country" type="radio" {{ checked("social-care", "I work in social care") }}>
                 <label class="govuk-label govuk-radios__label" for="country-1">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  They work in social care
+                  {% else %}
                   I work in social care
+                  {% endif %}
                 </label>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="country-5" name="country" type="radio" {{ checked("social-care", "I'm a professional visiting a social care service for work") }}>
                 <label class="govuk-label govuk-radios__label" for="country-5">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  They're a professional visiting a social care service for work
+                  {% else %}
                   I'm a professional visiting a social care service for work
+                  {% endif %}
                 </label>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="country-4" name="country" type="radio" {{ checked("social-care", "I'm getting help and support from social care services") }}>
                 <label class="govuk-label govuk-radios__label" for="country-4">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  They're getting care or support from social care services
+                  {% else %}
                   I'm getting care or support from social care services
+                  {% endif %}
                 </label>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="country-3" name="country" type="radio" {{ checked("social-care", "I'm visiting someone who gets help and support") }}>
                 <label class="govuk-label govuk-radios__label" for="country-3">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  They're visiting someone who gets care or support
+                  {% else %}
                   I'm visiting someone who gets care or support
+                  {% endif %}
                 </label>
               </div>
             </div>
