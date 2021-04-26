@@ -15,6 +15,15 @@ router.post('/lfd-collection-registration/v1/action10/do-you-have-symptoms', fun
   if (symptoms == "Yes") {
     res.redirect('/lfd-collection-registration/v1/different-test')
   } else {
+    res.redirect('/lfd-collection-registration/v1/pharmacy-collection')
+  }
+})
+
+router.post('/lfd-collection-registration/v1/action10/pharmacy-collection', function (req, res) {
+  let pharmacyCollection = req.session.data['pharmacy-collection']
+  if (pharmacyCollection == "Yes") {
+    res.redirect('/lfd-collection-registration/v1/go-to-pharmacy')
+  } else {
     res.redirect('/lfd-collection-registration/v1/nhs-account')
   }
 })
@@ -80,6 +89,42 @@ router.post('/lfd-collection-registration/v1/action10/collecting-for', function 
     res.redirect('/lfd-collection-registration/v1/email-address-another')
   } else {
     res.redirect('/lfd-collection-registration/v1/country')
+  }
+})
+
+router.post('/lfd-collection-registration/v1/action10/find-address', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "England"){
+    res.redirect('/lfd-collection-registration/v1/nhs-testing-programme')
+  } else {
+    res.redirect('/lfd-collection-registration/v1/check-your-answers')
+  }
+})
+
+router.post('/lfd-collection-registration/v1/action10/manual-address', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "England"){
+    res.redirect('/lfd-collection-registration/v1/nhs-testing-programme')
+  } else {
+    res.redirect('/lfd-collection-registration/v1/check-your-answers')
+  }
+})
+
+router.post('/lfd-collection-registration/v1/action10/nhs-testing-programme', function (req, res) {
+  let programme = req.session.data['nhs-testing-programme']
+  if (programme == "Yes" ) {
+      res.redirect('/lfd-collection-registration/v1/work-area')
+  } else {
+      res.redirect('/lfd-collection-registration/v1/check-your-answers')
+  }
+})
+
+router.post('/lfd-collection-registration/v1/action10/work-area', function (req, res) {
+  let workArea = req.session.data['work-area']
+  if (workArea == "Community pharmacy" || workArea == "Dentistry" || workArea == "General practice" || workArea == "Optometry" || workArea == "Other" ) {
+      res.redirect('/lfd-collection-registration/v1/work-postcode')
+  } else {
+      res.redirect('/lfd-collection-registration/v1/trust')
   }
 })
 
