@@ -2809,10 +2809,10 @@ router.post('/antibody/v7/action7/antibody-survey-or-study', function (req, res)
 router.post('/antibody/v7/action7/currently-in-work', function (req, res) {
   let currentlyInWork = req.session.data['currently-in-work']
   let antibodySurveyOrStudy = req.session.data['antibody-survey-or-study']
-  if (currentlyInWork == "Yes"){
-    res.redirect('/antibody/v7/refer-and-triage/area-of-work')
-  } else {
+  if (currentlyInWork == "No"){
     res.redirect('/antibody/v7/refer-and-triage/not-eligible-out-of-work')
+  } else {
+    res.redirect('/antibody/v7/refer-and-triage/area-of-work')
   }
 })
 
