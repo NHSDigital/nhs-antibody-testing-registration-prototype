@@ -1,0 +1,66 @@
+{% set version = "v7" %}
+{% set pageTitle = "What is your participant ID?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <!-- <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div> -->
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/which-antibody-survey-or-study">Back</a>
+ 
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antibody/{{version}}/refer-and-triage/currently-in-work" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="participant-id-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="participant-id-hint" class="govuk-body">
+              A participant ID is a unique number issued by your survey or study to help match your antibody results with their records. If you have a participant ID it is important you enter it.<br><br>
+              This may be found on your study registration document or emails.
+            </span>
+            <div class="govuk-form-group govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+                <label class="govuk-label" for="participant-id">
+                  Participant ID
+                </label>
+                <input class="govuk-input govuk-!-width-two-thirds" id="participant-id" name="participant-id" type="text" value="{{ data['participant-id'] }}">
+            </div>
+          </fieldset>
+        </div>  
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <br>
+        <a class="govuk-link" href="/antibody/{{version}}/refer-and-triage/currently-in-work">I do not have a participant ID</a>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action big">
+  <a href="/antibody/{{version}}/refer-and-triage/participant-id">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
+  </a>
+</div>
+{% endblock %}
