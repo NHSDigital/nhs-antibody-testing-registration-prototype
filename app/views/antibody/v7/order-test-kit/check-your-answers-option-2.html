@@ -129,7 +129,7 @@
             Ethnicity
           </dt>
           <dd class="govuk-summary-list__value govuk-!-width-one-third">
-            {{ data['ethnic-group'] or 'Asian or Asian British, Chinese' }}
+            {{ data['ethnic-group'] or 'White' }}{% if data['ethnic-background'] !== 'Prefer not to say' and data['ethnic-background'] !== undefined %}{% if data['ethnic-background'] == "Another" %}, {{ data['another-ethnic-background'] or 'Another ethnic background'}}{% else %}, {{ data['ethnic-background'] or 'Irish'}}{% endif %}{% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antibody/{{version}}/order-test-kit/ethnic-group">
@@ -143,7 +143,18 @@
             GP registered address
           </dt>
           <dd class="govuk-summary-list__value govuk-!-width-one-third">
-            {{ data['home-address'] or '1 main street<br>SW9 OEU' }}
+            {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
+              {{ data['home-address'] }}
+            {% else %}
+              {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+                {% if data['address-line-2'] %}
+                  {{ data['address-line-2'] }}<br>
+                {% endif %}
+                {% if data['address-town'] %}
+                  {{ data['address-town'] }}<br>
+                {% endif %}
+              {{ data['home-postcode'] or 'LS1 3BE' }}
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antibody/{{version}}/order-test-kit/home-address">
@@ -157,7 +168,26 @@
             Delivery address
           </dt>
           <dd class="govuk-summary-list__value govuk-!-width-one-third">
-            {{ data['delivery-address'] or '1 main street<br>SW9 OEU' }}
+            {% if data['delivery-address-same'] == "No" %}
+
+                {% if data['delivery-address'] and data['delivery-address'] !== "5 addresses found" %}
+                  {{ data['delivery-address'] }}
+                {% else %}
+                  {{ data['delivery-address-line-1'] or '5 Souterhead Road'}}<br>
+                    {% if data['delivery-address-line-2'] %}
+                      {{ data['delivery-address-line-2'] }}<br>
+                    {% endif %}
+                    {% if data['delivery-address-town'] %}
+                      {{ data['delivery-address-town'] }}<br>
+                    {% endif %}
+                  {{ data['delivery-address-postcode'] or 'LS1 3BE' }}
+                {% endif %}
+
+              {% else %}
+
+                Same as home address
+
+              {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antibody/{{version}}/order-test-kit/delivery-address">
