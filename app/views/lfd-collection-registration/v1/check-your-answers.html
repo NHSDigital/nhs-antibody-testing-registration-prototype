@@ -19,10 +19,14 @@
   {% include "includes/account-menu.html" %}
 {% endif %}
 
-{{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.go(-1);"
-}) }}
+{% if data['collecting-for'] == "Another household" %}
+<a class="govuk-back-link" href="/lfd-collection-registration/{{version}}/address-another">Back</a>
+{% elseif data['collecting-for'] == "My household" and data['work-area'] %}
+<a class="govuk-back-link" href="/lfd-collection-registration/{{version}}/occupation">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/lfd-collection-registration/{{version}}/nhs-testing-programme">Back</a>
+{% endif %}
+
 {% endblock %}
 
 {% block content %}
@@ -65,29 +69,6 @@
         </div>
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-!-width-one-third">
-              Home address
-            </dt>
-            <dd class="govuk-summary-list__value govuk-!-width-one-third">
-              {{ data['home-postcode'] or 'SW1H 0EU'}}<br>
-              {% if data['home-address'] %}
-              {{ data['home-address'] }}
-              {% else %}
-              {{ data['address-line-1'] or '43 Tremadoc road'}}<br>
-                {% if data['address-line-2'] %}
-                {{ data['address-line-2'] or 'SW1H 0EU'}}<br>
-                {% endif %}
-              {{ data['address-town'] or 'London'}}
-              {% endif %}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a href="/lfd-collection-registration/{{version}}/address">
-              Change
-              <span class="govuk-visually-hidden">home address</span>
-              </a>
-            </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-third">
               Mobile number
             </dt>
             <dd class="govuk-summary-list__value govuk-!-width-one-third">
@@ -96,7 +77,7 @@
             <dd class="govuk-summary-list__actions">
               <a href="/lfd-collection-registration/{{version}}/mobile-number">
               Change
-              <span class="govuk-visually-hidden">email address</span>
+              <span class="govuk-visually-hidden">mobile number</span>
               </a>
             </dd>
         </div>
@@ -114,6 +95,138 @@
             </a>
           </dd>
         </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Who are you collecting test packs for?
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['collecting-for'] or 'My household' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lfd-collection-registration/{{version}}/collecting-for">
+            Change
+            <span class="govuk-visually-hidden">who are you collecting test packs for</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Country of residence
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['country'] or 'Scotland' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lfd-collection-registration/{{version}}/country">
+            Change
+            <span class="govuk-visually-hidden">country of residence</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Home address
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {% if data['home-address'] %}
+            {{ data['home-address'] }}
+            {% else %}
+            {{ data['address-line-1'] or '43 Tremadoc road'}}<br>
+              {% if data['address-line-2'] %}
+              {{ data['address-line-2'] or 'SW1H 0EU'}}<br>
+              {% endif %}
+            {{ data['address-town'] or 'London'}}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            {% if data['collecting-for'] == 'Another household' %}
+            <a href="/lfd-collection-registration/{{version}}/address-another">
+              Change
+              <span class="govuk-visually-hidden">home address</span>
+            </a>
+            {% else %}
+            <a href="/lfd-collection-registration/{{version}}/address">
+              Change
+              <span class="govuk-visually-hidden">home address</span>
+            </a>
+            {% endif %}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Do you work for NHS England and take part in their staff testing programme?
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['nhs-testing-programme'] or 'No' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lfd-collection-registration/{{version}}/nhs-testing-programme">
+            Change
+            <span class="govuk-visually-hidden">nhs testing programme</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['nhs-testing-programme'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Work area
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['work-area'] or 'General practice' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lfd-collection-registration/{{version}}/work-area">
+            Change
+            <span class="govuk-visually-hidden">work area</span>
+            </a>
+          </dd>
+        </div>
+          {% if data['work-area'] == "Community pharmacy" or data['work-area'] == "Dentistry" or data['work-area'] == "General practice" or data['work-area'] == "Optometry" or data['work-area'] == "Other" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-third">
+              Work postcode
+            </dt>
+            <dd class="govuk-summary-list__value govuk-!-width-one-third">
+              {{ data['work-postcode'] or 'LS1 3BE' }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-collection-registration/{{version}}/work-postcode">
+              Change
+              <span class="govuk-visually-hidden">work postcode</span>
+              </a>
+            </dd>
+          </div>
+          {% else %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-third">
+              NHS trust
+            </dt>
+            <dd class="govuk-summary-list__value govuk-!-width-one-third">
+              {{ data['trust-autocomplete'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-collection-registration/{{version}}/trust">
+              Change
+              <span class="govuk-visually-hidden">trust</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-third">
+              Occupation
+            </dt>
+            <dd class="govuk-summary-list__value govuk-!-width-one-third">
+              {{ data['occupation-autocomplete'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/lfd-collection-registration/{{version}}/occupation">
+              Change
+              <span class="govuk-visually-hidden">occupation</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
       </dl>
 
       <form action="/lfd-collection-registration/{{version}}/action10/check-your-answers" method="post" novalidate>

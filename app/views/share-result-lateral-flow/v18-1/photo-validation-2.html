@@ -30,7 +30,11 @@
         <li>all 4 corners of the test strip are in the outline</li>
         <li>the photo is in focus with no shadows or bright lights on it</li>
         <li>the photo is taken directly from above (not at an angle)</li>
-        <li>no personal information is in the photo, for example paperwork showing your name, address, date of birth or bank details</li>
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        <li>no personal information is in the photo, for example paperwork showing a name, address, date of birth or bank details</li>
+        {% else %}
+        <li>Make sure no personal information is in the photo, for example paperwork showing your name, address, date of birth or bank details.</li>
+        {% endif %}
       </ul>
 
         <div>
@@ -49,7 +53,7 @@
         </div>
 
           <div class="govuk-inset-text">
-            <a href="/share-result-lateral-flow/{{version}}/choose-result">I do not want the service to check my result</a>
+            <a href="/share-result-lateral-flow/{{version}}/choose-result">I do not want the service to check the result</a>
           </div>
 
     </div>

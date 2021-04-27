@@ -1,0 +1,226 @@
+{% set version = "v1" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div> 
+
+{% if data['contact-details-same-person-1'] == "No" %}
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/contact-details-person-1">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/contact-details-same-person-1">Back</a>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+​
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form action="/international-arrivals/{{version}}/people-confirmed-person-1" method="post" novalidate>
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Personal details</h2>
+        <p class="govuk-body">
+          <a href="/international-arrivals/{{version}}/personal-details-person-1">
+            Change
+            <span class="govuk-visually-hidden">name</span>
+          </a>
+        </p>
+      </div>
+      
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Smith' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <!-- <a href="/international-arrivals/{{version}}/personal-details">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a> -->
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Passport number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['passport-number-person-1'] or '50213876' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <!-- <a href="/international-arrivals/{{version}}/personal-details">
+              Change
+              <span class="govuk-visually-hidden">passport number</span>
+            </a> -->
+          </dd>
+        </div>
+      </dl>
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Contact details</h2>
+        <p class="govuk-body">
+          <a href="/international-arrivals/{{version}}/contact-details-person-1">
+            Change
+            <span class="govuk-visually-hidden">name</span>
+          </a>
+        </p>
+      </div>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Mobile number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mobile-phone-number-person-1'] or '077719665478' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <!-- <a href="/international-arrivals/{{version}}/contact-details">
+              Change
+              <span class="govuk-visually-hidden">country of residence</span>
+            </a> -->
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['email-address-person-1'] or 'jsmith@example.co.uk' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <!-- <a href="/international-arrivals/{{version}}/contact-details">
+              Change
+              <span class="govuk-visually-hidden">email address</span>
+            </a> -->
+          </dd>
+        </div>
+      </dl>
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Travel details</h2>
+        <p class="govuk-body">
+          <a href="/international-arrivals/{{version}}/travel-details-same-person-1">
+            Change
+            <span class="govuk-visually-hidden">name</span>
+          </a>
+        </p>
+      </div>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Flight, Eurostar or ferry number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['flight-eurostar-ferry'] or '9W15' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <!-- <a href="/international-arrivals/{{version}}/travel-details">
+              Change
+              <span class="govuk-visually-hidden">flight, eurostar or ferry number</span>
+            </a> -->
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Country you’re departing from
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['port-of-origin'] or 'Hamburg' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <!-- <a href="/international-arrivals/{{version}}/travel-details">
+              Change
+              <span class="govuk-visually-hidden">country of residence</span>
+            </a> -->
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Airport, train station or ferry port you’re arriving at
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['port-of-entry'] or 'Heathrow' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <!-- <a href="/international-arrivals/{{version}}/travel-details">
+              Change
+              <span class="govuk-visually-hidden">country of residence</span>
+            </a> -->
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of entry
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['date-of-entry-month'] == "1" or data['date-of-entry-month'] == "01" %}
+            {{ data['date-of-entry-day'] }} January {{ data['date-of-entry-year'] }}
+            {% elseif data['date-of-entry-month'] == "2" or data['date-of-entry-month'] == "02" %}
+            {{ data['date-of-entry-day'] }} February {{ data['date-of-entry-year'] }}
+            {% elseif data['date-of-entry-month'] == "3" or data['date-of-entry-month'] == "03" %}
+            {{ data['date-of-entry-day'] }} March {{ data['date-of-entry-year'] }}
+            {% elseif data['date-of-entry-month'] == "4" or data['date-of-entry-month'] == "04" %}
+            {{ data['date-of-entry-day'] }} April {{ data['date-of-entry-year'] }}
+            {% elseif data['date-of-entry-month'] == "5" or data['date-of-entry-month'] == "05" %}
+            {{ data['date-of-entry-day'] }} May {{ data['date-of-entry-year'] }}
+            {% elseif data['date-of-entry-month'] == "6" or data['date-of-entry-month'] == "06" %}
+            {{ data['date-of-entry-day'] }} June {{ data['date-of-entry-year'] }}
+            {% elseif data['date-of-entry-month'] == "7" or data['date-of-entry-month'] == "07" %}
+            {{ data['date-of-entry-day'] }} July {{ data['date-of-entry-year'] }}
+            {% elseif data['date-of-entry-month'] == "8" or data['date-of-entry-month'] == "08" %}
+            {{ data['date-of-entry-day'] }} August {{ data['date-of-entry-year'] }}
+            {% elseif data['date-of-entry-month'] == "9" or data['date-of-entry-month'] == "09" %}
+            {{ data['date-of-entry-day'] }} September {{ data['date-of-entry-year'] }}
+            {% elseif data['date-of-entry-month'] == "10" %}
+            {{ data['date-of-entry-day'] }} October {{ data['date-of-entry-year'] }}
+            {% elseif data['date-of-entry-month'] == "11" %}
+            {{ data['date-of-entry-day'] }} November {{ data['date-of-entry-year'] }}
+            {% elseif data['date-of-entry-month'] == "12" %}
+            {{ data['date-of-entry-day'] }} December {{ data['date-of-entry-year'] }}
+            {% else %}
+            5 May 2021
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <!-- <a href="/international-arrivals/{{version}}/travel-details">
+              Change
+              <span class="govuk-visually-hidden">country of residence</span>
+            </a> -->
+          </dd>
+        </div>
+      </dl>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+
+
+  </div>
+{% endblock %}
+

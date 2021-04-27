@@ -15,14 +15,14 @@ router.post('/international-arrivals/v1/action1/travel-route', function (req, re
     if (travelRoute == "red") {
       res.redirect('/international-arrivals/v1/red-package-exit')
     } else {
-      res.redirect('/international-arrivals/v1/travel-details')
+      res.redirect('/international-arrivals/v1/personal-details')
     }
 })
 
 router.post('/international-arrivals/v1/action2/contact-details-same-person-1', function (req, res) {
   let contactDetailsSame = req.session.data['contact-details-same-person-1']
   if (contactDetailsSame == "Yes") {
-    res.redirect('/international-arrivals/v1/travel-route-same-person-1')
+    res.redirect('/international-arrivals/v1/check-your-answers-person-1')
   } else {
     res.redirect('/international-arrivals/v1/contact-details-person-1')
   }
@@ -42,7 +42,7 @@ router.post('/international-arrivals/v1/action4/travel-details-same-person-1', f
   if (travelDetailsSame == "No") {
     res.redirect('/international-arrivals/v1/cannot-add-person')
   } else {
-    res.redirect('/international-arrivals/v1/people-confirmed-person-1')
+    res.redirect('/international-arrivals/v1/contact-details-same-person-1')
   }
 })
 

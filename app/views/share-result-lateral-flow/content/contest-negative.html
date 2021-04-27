@@ -1,13 +1,17 @@
 
 
        <div>
-        <p class="govuk-body">The technology the service uses to check the result guarantees a high level of accuracy and is approved by the UK health regulator (MHRA).</p>
-        <p class="govuk-body">If you want, you can <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/regular-rapid-coronavirus-tests-if-you-do-not-have-symptoms/">take another rapid lateral flow test</a>. </p>
-        <p class="govuk-body">In the meantime, you must follow the advice below to help stop the spread of the virus.</p>
+         <p class="govuk-body">The technology the service uses to check the result guarantees a high level of accuracy and is authorised by the UK health regulator (MHRA).</p>
+         <p class="govuk-body">You can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer">report more details about this service</a> to the MHRA.</p>
+         <p class="govuk-body">You must follow the advice below to help stop the spread of the virus.</p>
        </div>
 
   <div>
-   <h3 class="govuk-heading-m">What you must do</h3>
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <h3 class="govuk-heading-m">What they must do</h3>
+    {% else %}
+    <h3 class="govuk-heading-m">What you must do</h3>
+    {% endif %}
    <p class="govuk-body">Keep following coronavirus advice including:</p>
      <ul class="govuk-list govuk-list--bullet">
        <li>regular handwashing</li>
@@ -15,11 +19,27 @@
        <li>wearing a face covering where recommended</li>
      </ul>
 
-      <p>You only need to self-isolate if:</p>
+     {% if data['whos-taking-the-test'] == "someone-else" %}
+     <p>They only need to self-isolate if:</p>
+     {% else %}
+     <p>You only need to self-isolate if:</p>
+     {% endif %}
       <ul class="govuk-list govuk-list--bullet">
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        <li>they get symptoms of coronavirus</li>
+        {% else %}
         <li>you get symptoms of coronavirus</li>
+        {% endif %}
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        <li>someone they live with tests positive, or has symptoms and has not been tested yet</li>
+        {% else %}
         <li>someone you live with tests positive, or has symptoms and has not been tested yet</li>
+        {% endif %}
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        <li>they've been traced as a contact of someone who tested positive</li>
+        {% else %}
         <li>you've been traced as a contact of someone who tested positive</li>
+        {% endif %}
       </ul>
   </div>
   <div>

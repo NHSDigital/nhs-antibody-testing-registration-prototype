@@ -111,12 +111,22 @@
             Contact details
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['email-person-1'] == "Yes" %}
-            {{ data['email-address-person-1'] }}<br>
+            {% if data['email-person-1'] == "same" %}
+            {{ data['email-address'] or 'psmith@example.co.uk' }}<br>
+            {% else %}
+            {{ data['email-address-person-1'] or 'jwilson@example.co.uk' }}<br>
             {% endif %}
-            {{ data['mobile-phone-number-person-1'] or '07771900900' }}<br>
-            {% if data['landline-number-person-1'] == "Yes" %}
-            {{ data['landline-telephone-number-person-1'] }}
+            {% if data['mobile-number-person-1'] == "same" %}
+            {{ data['mobile-phone-number'] or '07771900900' }}<br>
+            {% else %}
+            {{ data['mobile-phone-number-person-1'] or '07771905678' }}<br>
+            {% endif %}
+            {% if data['landline-number-person-1'] == "same" %}
+            {{ data['landline-telephone-number'] or '077456788765' }}<br>
+            {% elseif data['landline-number-person-1'] == "different" %}
+            {{ data['landline-telephone-number-person-1'] or '1234567890'}}<br>
+            {% else %}
+            else
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
