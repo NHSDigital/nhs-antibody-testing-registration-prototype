@@ -1,5 +1,5 @@
 {% set version = "v7" %}
-{% set pageTitle = "What is your NHS number?" %}
+{% set pageTitle = "What is your home address registered with your GP?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -24,27 +24,27 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/antibody/{{version}}/order-test-kit/postcode" method="post">
+      <form action="/antibody/{{version}}/order-test-kit/home-address" method="post">
 
-        <fieldset class="govuk-fieldset" aria-describedby="nhs-number-hint">
+        <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
               {{ pageTitle }}
             </h1>
           </legend>
-          <span id="nhs-number-hint" class="govuk-body">
-            An NHS number is a 10 digit number, for example 867 406 5600.<br><br>
-            Enter this number with no spaces.
+          <span id="postcode-hint" class="govuk-body">
+            This will help us find and update your GP record with your test result.<br>
+            The test does not have to be sent to this address.
           </span>
-          <div class="govuk-form-group govuk-!-margin-top-4">
-            <label class="govuk-label" for="nhs-number">
-              NHS number
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="home-postcode">
+                Postcode
             </label>
-            <input class="govuk-input govuk-input--width-10" id="nhs-number" name="nhs-number" type="text" value="{{ data['nhs-number'] }}">
+            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}">
           </div>
         </fieldset>
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <button class="govuk-button" data-module="govuk-button">Find address</button>
 
       </form>
 
