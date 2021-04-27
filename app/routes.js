@@ -2805,7 +2805,18 @@ router.post('/antibody/v7/action7/antibody-survey-or-study', function (req, res)
   }
 })
 
-
+// Antibody V7 - Currently in Work
+router.post('/antibody/v7/action7/currently-in-work', function (req, res) {
+  let currentlyInWork = req.session.data['currently-in-work']
+  let antibodySurveyOrStudy = req.session.data['antibody-survey-or-study']
+  if (currentlyInWork == "Yes and I work from home" && antibodySurveyOrStudy == "Yes" || currentlyInWork == "Yes and I travel to work" && antibodySurveyOrStudy == "Yes"){
+    res.redirect('/antibody/v7/refer-and-triage/area-of-work')
+  } else if (currentlyInWork !== "No" && antibodySurveyOrStudy == "No") {
+    res.redirect('/antibody/v7/refer-and-triage/antibody-test')
+  } else {
+    res.redirect('/antibody/v7/refer-and-triage/not-eligible-out-of-work')
+  }
+})
 
 // Antibody V7 - Area of Work
 router.post('/antibody/v7/action7/area-of-work', function (req, res) {
