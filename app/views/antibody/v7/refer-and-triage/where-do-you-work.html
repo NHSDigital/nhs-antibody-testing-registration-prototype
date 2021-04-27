@@ -1,0 +1,76 @@
+{% set version = "v7" %}
+{% set pageTitle = "Where do you work?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/area-of-work">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antibody/{{version}}/refer-and-triage/antibody-test" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="where-do-you-work-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="where-do-you-work-hint" class="govuk-body">
+              Given that you work in social care, please outline where you work.
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="where-do-you-work-1" name="where-do-you-work" type="radio" value="I work in a care home" {{ checked("where-do-you-work", "I work in a care home") }}>
+                <label class="govuk-label govuk-radios__label" for="where-do-you-work-1">
+                  I work in a care home
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="where-do-you-work-2" name="where-do-you-work" type="radio" value="I work in more than one care home" {{ checked("where-do-you-work", "I work in more than one care home") }}>
+                <label class="govuk-label govuk-radios__label" for="where-do-you-work-2">
+                  I work in more than one care home
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="where-do-you-work-3" name="where-do-you-work" type="radio" value="I provide domiciliary care to people in their homes" {{ checked("where-do-you-work", "I provide domiciliary care to people in their homes") }}>
+                <label class="govuk-label govuk-radios__label" for="where-do-you-work-3">
+                  I provide domiciliary care to people in their homes
+                </label>
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="where-do-you-work-4" name="where-do-you-work" type="radio" value="None of the above" {{ checked("where-do-you-work", "None of the above") }}>
+                <label class="govuk-label govuk-radios__label" for="where-do-you-work-4">
+                  None of the above
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

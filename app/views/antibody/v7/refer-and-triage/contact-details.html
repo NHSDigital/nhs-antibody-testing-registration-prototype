@@ -1,0 +1,75 @@
+{% set version = "v7" %}
+{% set pageTitle = "Contact details" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/do-you-have-symptoms">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antibody/{{version}}/refer-and-triage/check-your-answers" method="post">
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+          </legend>
+
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-3">What's your mobile number?</h2>
+
+          <span id="contact-details-hint" class="govuk-body">
+            When we're ready to invite you to order a test, we will send a text message.
+          </span>
+
+          <label class="govuk-label govuk-!-margin-top-3 govuk-!-margin-bottom-3" for="contact-details-mobile-phone-number">
+            Mobile phone number
+          </label>
+          <input class="govuk-input govuk-!-width-one-third" id="contact-details-mobile-phone-number" name="contact-details-mobile-phone-number" type="tel" value="{{ data['contact-details-mobile-phone-number'] }}" aria-describedby="conditional-mobile-hint">
+
+          <label class="govuk-label govuk-!-margin-top-3 govuk-!-margin-bottom-3" for="contact-details-mobile-phone-number">
+            Confirm mobile number
+          </label>
+          <input class="govuk-input govuk-!-width-one-third govuk-!-margin-bottom-3" id="contact-details-mobile-phone-number" name="contact-details-mobile-phone-number" type="tel" value="{{ data['contact-details-mobile-phone-number'] }}">
+
+          <h2 class="govuk-heading-m govuk-!-margin-top-3">What's your email address?</h2>
+
+          <span id="contact-details-hint" class="govuk-body">
+            Your antibody test results will be sent to you by email. If you do not have an email address, that's OK - we can use your mobile phone number.
+          </span>
+
+          <label class="govuk-label govuk-!-margin-top-3 govuk-!-margin-bottom-3" for="contact-details-email-address">
+            Email address (optional)
+          </label>
+          <input class="govuk-input govuk-!-width-one-third" id="contact-details-email-address" name="contact-details-email-address" type="text" value="{{ data['contact-details-email-address'] }}">
+
+          <label class="govuk-label govuk-!-margin-top-3 govuk-!-margin-bottom-3" for="contact-details-email-address">
+            Confirm email address (optional)
+          </label>
+          <input class="govuk-input govuk-!-width-one-third govuk-!-margin-bottom-3" id="contact-details-email-address" name="contact-details-email-address" type="text" value="{{ data['contact-details-email-address'] }}">
+
+        </fieldset>
+
+        <button class="govuk-button govuk-!-margin-top-3" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
