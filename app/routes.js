@@ -2811,6 +2811,8 @@ router.post('/antibody/v7/action7/currently-in-work', function (req, res) {
   let antibodySurveyOrStudy = req.session.data['antibody-survey-or-study']
   if (currentlyInWork == "Yes"){
     res.redirect('/antibody/v7/refer-and-triage/area-of-work')
+  } else if (currentlyInWork == "No" && antibodySurveyOrStudy == "Yes") {
+    res.redirect('/antibody/v7/refer-and-triage/antibody-test')
   } else {
     res.redirect('/antibody/v7/refer-and-triage/not-eligible-out-of-work')
   }

@@ -4,8 +4,11 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-
-  <a class="govuk-back-link" href="/antibody/{{version}}/home-address-manual">Back</a>
+  {% if data['delivery-address-same'] == "Yes" %}
+  <a class="govuk-back-link" href="/antibody/{{version}}/order-test-kit/home-address-question">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/antibody/{{version}}/order-test-kit/delivery-address">Back</a>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
