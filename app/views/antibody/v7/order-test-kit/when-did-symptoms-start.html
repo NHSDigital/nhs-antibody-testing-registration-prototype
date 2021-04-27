@@ -1,0 +1,70 @@
+{% set version = "v7" %}
+{% set pageTitle = "When did your symptoms start?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/order-test-kit/have-you-had-symptoms">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antibody/{{version}}/action7/when-did-symptoms-start" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="symptoms-start-date-hint symptoms-start-date-hint-2">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="symptoms-start-date-hint" class="govuk-body">
+              Enter the date you think it was, roughly.<br>
+            </span>
+            <span id="symptoms-start-date-hint-2" class="govuk-hint">
+              For example 4 2020
+            </span>
+            <div class="govuk-date-input" id="symptoms-start-date">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="symptoms-start-date-month" name="symptoms-start-date-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-month'] }}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="symptoms-start-date-year" name="symptoms-start-date-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-year'] }}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
