@@ -1,0 +1,83 @@
+{% set version = "v7" %}
+{% set pageTitle = "Antibody test kit ordered" %}
+
+{% extends "includes/layout.html" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
+      </div>
+
+      <span id="confirmation-hint" class="govuk-body">
+        You have ordered a coronavirus (COVID-19) antibody home fingerprick blood test.
+              <br><br>
+      </span>
+
+      <h1 class="govuk-heading-m">What happens next</h1>
+
+      <span id="confirmation-hint" class="govuk-body">
+        You’ll be sent an order confirmation.
+        <br><br>
+        It’s usually sent via text or email.
+      <br><br>
+        The test kit should arrive within 5 days.
+      <br><br>
+        You do not have to sign for the test kit.
+      <br><br>
+      </span>
+
+      <h1 class="govuk-heading-m">When your test kit arrives</h1>
+
+      <span id="confirmation-hint" class="govuk-body">
+        Everything you need to take the test is in the kit.
+      <br><br>
+        To get your results send your blood sample for analysis using the pre-paid return packaging. Post your sample in a priority postbox. If you’re not able to safely get to a priority postbox, use your local postbox.
+      <br><br>
+
+        <a href="#">Watch a video on how to collect your blood sample.</a>
+                <br><br>
+      </span>
+
+      <h1 class="govuk-heading-m">If your kit does not arrive</h1>
+      <span id="confirmation-hint" class="govuk-body">
+        Wait 7 working days and contact us to organise a replacement.
+        <br><br>
+      </span>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>England, Wales, Northern Ireland: call 119 (free from moiles and landlines)</li>
+        <li>Scotland: call 0300 303 2713 (charged at your standard network rate)</li>
+      </ul>
+
+      <span id="confirmation-hint" class="govuk-body">
+        This helpline is open from 7am to 11pm.
+      </span>
+
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block bodyEnd %}
+
+{{ data['email-address'] }}
+<div class="proto-action">
+  {% if data['email'] !== "" %}
+  <a href="/antibody/{{version}}/email">
+    <div class="proto-action-icon"></div>
+    <div class="proto-action-text">Check Email</div>
+  </a>
+  {% else %}
+  <a href="/antibody/{{version}}/sms">
+    <div class="proto-action-icon"></div>
+    <div class="proto-action-text">Check SMS</div>
+  </a>
+  {% endif %}
+</div>
+
+{% endblock %}

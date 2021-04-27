@@ -5,7 +5,7 @@
 
 {% block beforeContent %}
 
-  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/contact-details">Back</a>
+  <a class="govuk-back-link" href="/antibody/{{version}}/order-test-kit/ethnic-group">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -21,20 +21,6 @@
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-!-width-one-third">
-            Able to do test
-          </dt>
-          <dd class="govuk-summary-list__value govuk-!-width-one-third">
-            {{ data['fingerprick-test'] or 'Yes' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antibody/{{version}}/refer-and-triage/fingerprick-test">
-              Change
-              <span class="govuk-visually-hidden">fingerprick test</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key govuk-!-width-one-third">
             Current coronavirus symptoms
           </dt>
           <dd class="govuk-summary-list__value govuk-!-width-one-third">
@@ -47,36 +33,7 @@
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key govuk-!-width-one-third">
-            Survey or study
-          </dt>
-          <dd class="govuk-summary-list__value govuk-!-width-one-third">
-            {{ data['antibody-survey-or-study'] or 'No' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antibody/{{version}}/refer-and-triage/antibody-survey-or-study">
-              Change
-              <span class="govuk-visually-hidden">antibody survey or study</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['antibody-survey-or-study'] == 'Yes' %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key govuk-!-width-one-third">
-            Which survey or study?
-          </dt>
-          <dd class="govuk-summary-list__value govuk-!-width-one-third">
-            {{ data['which-antibody-survey-or-study'] or 'Other (not listed above)' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antibody/{{version}}/refer-and-triage/which-antibody-survey-or-study">
-              Change
-              <span class="govuk-visually-hidden">which antibody survey or study</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
+
         </dl>
         <h1 class="govuk-heading-l">Personal details</h1>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -153,6 +110,62 @@
             </a>
           </dd>
         </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            NHS number
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['nhs-number'] or '485 777 3456' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/nhs-number">
+              Change
+              <span class="govuk-visually-hidden">nhs number</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Ethnicity
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['ethnic-group'] or 'Asian or Asian British, Chinese' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/ethnic-group">
+              Change
+              <span class="govuk-visually-hidden">ethnic group</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            GP registered address
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['home-address'] or '1 main street<br>SW9 OEU' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/home-address">
+              Change
+              <span class="govuk-visually-hidden">home Address</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Delivery address
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['delivery-address'] or '1 main street<br>SW9 OEU' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/delivery-address">
+              Change
+              <span class="govuk-visually-hidden">delivery address</span>
+            </a>
+          </dd>
+        </div>
         </dl>
 
         <h1 class="govuk-heading-l">Employment</h1>
@@ -194,7 +207,81 @@
         {% endif %}
       </dl>
 
-      <form action="/antibody/{{version}}/refer-and-triage/antibody-test-2" method="post" novalidate>
+      <h1 class="govuk-heading-l">Vaccination and Coronavirus history</h1>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Positive coronavirus test
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['do-you-have-symptoms'] or 'Yes, March 2021' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/do-you-have-symptoms">
+              Change
+              <span class="govuk-visually-hidden">do you have symptoms</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Previous coronavirus symptoms
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['previous-infection'] or 'No' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/previous-infection">
+              Change
+              <span class="govuk-visually-hidden">previous infection</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Household ever tested positive for coronavirus
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['previous-house-infection'] or 'Yes' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/previous-house-infection">
+              Change
+              <span class="govuk-visually-hidden">previous house infection</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Coronavirus vaccine
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['vaccine'] or '2 doses, October 2020' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/vaccine">
+              Change
+              <span class="govuk-visually-hidden">vaccine</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          By ordering a test kit, I confirm that:
+        </strong>
+      </div>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>The information I've provided is up to date and correct</li>
+        <li>I agree with the <a href="#">Terms and Conditions (opens in new tab)</a> and <a href="#">Privacy Policy (opens in new tab)</a> of this service</li>
+        <li>I am happy for my data to be used for health research</li>
+        <li>I am happy to be contacted about my order</li>
+      </ul>
+      <form action="/antibody/{{version}}/order-test-kit/antibody-test" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 
