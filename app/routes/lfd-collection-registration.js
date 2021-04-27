@@ -74,15 +74,6 @@ router.post('/lfd-collection-registration/v1/user-account/action10/home-page', f
   }
 })
 
-router.post('/lfd-collection-registration/v1/action10/mobile-number', function (req, res) {
-  let mobileNumber = req.session.data['mobile-number']
-  if (mobileNumber == "No"){
-    res.redirect('/lfd-collection-registration/v1/contact-centre')
-  } else {
-    res.redirect('/lfd-collection-registration/v1/collecting-for')
-  }
-})
-
 router.post('/lfd-collection-registration/v1/action10/collecting-for', function (req, res) {
   let collectingFor = req.session.data['collecting-for']
   if (collectingFor == "Another household"){
