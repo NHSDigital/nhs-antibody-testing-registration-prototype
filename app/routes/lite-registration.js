@@ -615,7 +615,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
       } else if (ethnicGroup == "Another ethnic group") {
         res.redirect('/share-result-lateral-flow/v18-1/ethnic-background-another')
       } else {
-        res.redirect('/share-result-lateral-flow/v18-1/occupation')
+        res.redirect('/share-result-lateral-flow/v18-1/postcode-lookup')
       }
 
     })
@@ -635,7 +635,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
       } else if (ethnicGroup == "Another ethnic group") {
         res.redirect('/share-result-lateral-flow/v19/ethnic-background-another')
       } else {
-        res.redirect('/share-result-lateral-flow/v19/occupation')
+        res.redirect('/share-result-lateral-flow/v19/postcode-lookup')
       }
 
     })
@@ -655,7 +655,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
       } else if (ethnicGroup == "Another ethnic group") {
         res.redirect('/share-result-lateral-flow/v19-1/ethnic-background-another')
       } else {
-        res.redirect('/share-result-lateral-flow/v19-1/occupation')
+        res.redirect('/share-result-lateral-flow/v19-1/postcode-lookup')
       }
 
     })
@@ -675,7 +675,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
       } else if (ethnicGroup == "Another ethnic group") {
         res.redirect('/share-result-lateral-flow/v19-2/ethnic-background-another')
       } else {
-        res.redirect('/share-result-lateral-flow/v19-2/occupation')
+        res.redirect('/share-result-lateral-flow/v19-2/postcode-lookup')
       }
 
     })
@@ -695,7 +695,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
       } else if (ethnicGroup == "Another ethnic group") {
         res.redirect('/share-result-lateral-flow/v19-3/ethnic-background-another')
       } else {
-        res.redirect('/share-result-lateral-flow/v19-3/occupation')
+        res.redirect('/share-result-lateral-flow/v19-3/postcode-lookup')
       }
 
     })
@@ -715,7 +715,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
       } else if (ethnicGroup == "Another ethnic group") {
         res.redirect('/share-result-lateral-flow/v19-4/ethnic-background-another')
       } else {
-        res.redirect('/share-result-lateral-flow/v19-4/occupation')
+        res.redirect('/share-result-lateral-flow/v19-4/postcode-lookup')
       }
 
     })
