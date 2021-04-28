@@ -2811,8 +2811,10 @@ router.post('/antibody/v7/action7/currently-in-work', function (req, res) {
   let antibodySurveyOrStudy = req.session.data['antibody-survey-or-study']
   if (currentlyInWork == "Yes and I work from home" && antibodySurveyOrStudy == "Yes" || currentlyInWork == "Yes and I travel to work" && antibodySurveyOrStudy == "Yes"){
     res.redirect('/antibody/v7/refer-and-triage/area-of-work')
-  } else if (currentlyInWork !== "No" && antibodySurveyOrStudy == "No") {
+  } else if (currentlyInWork == "No" && antibodySurveyOrStudy == "Yes") {
     res.redirect('/antibody/v7/refer-and-triage/antibody-test')
+  } else if (currentlyInWork !== "No" && antibodySurveyOrStudy == "No") {
+    res.redirect('/antibody/v7/refer-and-triage/area-of-work-no-survey')
   } else {
     res.redirect('/antibody/v7/refer-and-triage/not-eligible-out-of-work')
   }
@@ -2892,7 +2894,7 @@ router.post('/antibody/v7/action8/home-address-question', function (req, res) {
   }
 })
 
-// Version 2 - Registration - Ethnic group route
+// Version V7 - Registration - Ethnic group route
 router.post('/antibody/v7/action8/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
@@ -2907,7 +2909,7 @@ router.post('/antibody/v7/action8/ethnic-group', function (req, res) {
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/antibody/v7/order-test-kit/ethnic-background-another')
   } else {
-    res.redirect('/antibody/v7/order-test-kit/occupation')
+    res.redirect('/antibody/v7/order-test-kit/check-your-answers')
   }
 
 })
