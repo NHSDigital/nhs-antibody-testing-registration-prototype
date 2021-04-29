@@ -1,19 +1,12 @@
 {% set version = "v19" %}
 {% set pageTitle = "Manage saved details" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-LFD.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
+
+    <!-- div for include from content folder -->
+    <div id="includedContent"></div>
 
   <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/user-account/home-page">Back</a>
 {% endblock %}
@@ -23,6 +16,8 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+
+      <p class="govuk-body">You can save up to 10 people in your account.</p>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
@@ -59,4 +54,12 @@
 
     </div>
   </div>
+
+    <!-- corresponding html file name included from content folder -->
+    <script>
+      $(function(){
+        $("#includedContent").load("/includes/account-menu.html");
+      });
+    </script>
+
 {% endblock %}
