@@ -1,0 +1,47 @@
+{% set version = "v1" %}
+{% set pageTitle = "Confirmation email" %}
+{% extends "includes/layout.html" %}
+
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-9">
+        Your order confirmation for a green travel package
+      </h1>
+
+      <p class="govuk-body">
+        Dear {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}<br><br>
+        Thank you for ordering a green travel package. We’ve received your payment of {% if data['first-name-person-1'] %}£210.00{% else %}£105.00{% endif %}.
+      </p>
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-8"><strong>Keep this email as proof of payment – you’ll need to show it at ...</strong></h3>
+
+      <h2 class="govuk-heading-m"><strong>Important: your booking reference number is 12334445.</strong></h2>
+      <p class="govuk-body">Enter this into your <a href="https://www.gov.uk/provide-journey-contact-details-before-travel-uk" class="govuk-link">Passenger Locator Form (PLF)</a> within 48 hours of your travel to England.</p>
+      
+     <h2 class="govuk-heading-m">What your travel package will contain</h2>
+     <p class="govuk-body">Your test package will contain 1 swab test. You must take the test on day 2 (where your day of arrival in England is day 0). Your travel package will arrive in time for you to take your day 2 test.</p>
+     
+    <ul class="govuk-list govuk-list--bullet">
+      <li>You must <a class="govuk-link" target="blank" href="../../litereg-accounts/v1/index.html">register each test</a> on the day you take it so you get the results</li>
+      <li>Take a test on day 2</li>
+      <li>Return the test by post straight after you take it</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">How to take the test</h2>
+    <p class="govuk-body">You’ll take the test yourself. The test involves taking a swab of the inside of your nose and the back of your throat using a long cotton bud that is provided.Read the instructions about how to take the test carefully. There is also guidanceonline. Here is a helpful video about how to take the test.</p>
+
+    <h2 class="govuk-heading-m">Returning the test</h2>
+    <p class="govuk-body">You must return the test by post. Follow the instructions on how to do this. It’s safe for you to leave where you’re staying to post the test.</p>
+
+    <h2 class="govuk-heading-m">Getting the test result</h2>
+    <p class="govuk-body">You should receive your test result by text and email within 2 days of returning it.</p>
+
+    </div>
+  </div>
+
+{% endblock %}
