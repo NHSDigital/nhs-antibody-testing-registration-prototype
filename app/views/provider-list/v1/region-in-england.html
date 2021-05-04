@@ -1,0 +1,46 @@
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  COVID Test providers
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/provider-list/v1/arrival-date">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Where will you be staying in England?</h1>
+
+      <form class="form" action="/provider-list/v1/test-kit-type" method="post">
+
+        <p>This will help us find providers in your region.</p>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="region">
+            Select region
+          </label>
+          <select class="govuk-select" id="region" name="region">
+            <option value="empty" selected>Please select</option>
+            <option value="east-midlands">East Midlands</option>
+            <option value="east-of-england">East of England</option>
+            <option value="greater-london">Greater London</option>
+            <option value="north-east">North East</option>
+            <option value="north-west">North West</option>
+            <option value="south-east">South East</option>
+            <option value="west-midlands">West Midlands</option>
+            <option value="yorkshire-and-humber">Yorkshire and the Humber</option>
+          </select>
+        </div>
+
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
