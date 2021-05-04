@@ -11,10 +11,18 @@
       <p class="govuk-body">An example payment description</p>
       <p class="govuk-body govuk-!-margin-bottom-1"><span>Total amount:</span></p>
       <p class="govuk-body govuk-!-font-size-36 govuk-!-margin-bottom-0">
-        {% if data['first-name-person-1'] %}
-        £420.00
+        {% if data['travel-route'] == "green" %}
+          {% if data['first-name-person-1'] %}
+          £210.00
+          {% else %}
+          £105.00
+          {% endif %}
         {% else %}
-        £210.00
+          {% if data['first-name-person-1'] %}
+          £420.00
+          {% else %}
+          £210.00
+          {% endif %}
         {% endif %}
       </p>
     </div>
@@ -100,28 +108,35 @@
             <label class="govuk-label" for="billing-address-line-1">
               <strong>Building number or name and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>
             </label>
-            <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-2" id="billing-address-line-1" name="billing-address-line-1" type="text" autocomplete="address-line1-billing" value="{{ data['billing-address-line-1'] }}"><br>
-            <input class="govuk-input govuk-!-width-two-thirds" id="billing-address-line-2" name="billing-address-line-2" type="text" autocomplete="address-line2-billing" value="{{ data['billing-address-line-2'] }}">
+            {% if data['delivery-address'] !== "5 addresses found" %}
+            <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-2" id="billing-address-line-1" name="billing-address-line-1" type="text" autocomplete="address-line1-billing" value="{{ data['billing-address-line-1'] or '1 Souterhead road' }}"><br>
+            <input class="govuk-input govuk-!-width-two-thirds" id="billing-address-line-2" name="billing-address-line-2" type="text" autocomplete="address-line2-billing" value="{{ data['billing-address-line-2'] or data['delivery-address-line-2'] }}">
+            {% else %}
+            <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-2" id="billing-address-line-1" name="billing-address-line-1" type="text" autocomplete="address-line1-billing" value="{{ data['billing-address-line-1'] or data['delivery-address-line-1'] }}"><br>
+            <input class="govuk-input govuk-!-width-two-thirds" id="billing-address-line-2" name="billing-address-line-2" type="text" autocomplete="address-line2-billing" value="{{ data['billing-address-line-2'] or data['delivery-address-line-2'] }}">
+            {% endif %}
           </div>
           <div class="govuk-form-group">
             <label class="govuk-label" for="billing-address-town">
               <strong>Town or city</strong>
             </label>
-            <input class="govuk-input govuk-!-width-one-third" id="billing-address-town" name="billing-address-town" type="text" autocomplete="address-level2-billing" value="{{ data['billing-address-town'] }}">
+            <input class="govuk-input govuk-!-width-one-third" id="billing-address-town" name="billing-address-town" type="text" autocomplete="address-level2-billing" value="{{ data['billing-address-town'] or data['delivery-address-town'] or 'London' }} ">
           </div>
           <div class="govuk-form-group">
             <label class="govuk-label" for="billing-postcode">
               <strong>Postcode</strong>
             </label>
-            <input class="govuk-input govuk-!-width-one-third" id="billing-postcode" name="billing-postcode" type="text" autocomplete="postal-code" value="{{ data['billing-postcode'] }}">
+            <input class="govuk-input govuk-!-width-one-third" id="billing-postcode" name="billing-postcode" type="text" autocomplete="postal-code" value="{{ data['billing-postcode'] or data['delivery-address-postcode'] or 'LS1 3BE' }}">
           </div>
 
           <div class="govuk-form-group">
             <label class="govuk-label" for="confirmation-email-address">
-              <strong style="line-height: 1.7em;">What's your email address?</strong><br>
-              Email address
+              <strong>Email</strong><br>
+              <span class="govuk-hint">
+                We'll send your payment confirmation here
+              </span>
             </label>
-            <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-top-2" id="confirmation-email-address" name="confirmation-email-address" type="text" value="{{ data['confirmation-email-address'] }}">
+            <input class="govuk-input govuk-!-width-two-thirds" id="confirmation-email-address" name="confirmation-email-address" type="text" value="{{ data['confirmation-email-address'] or data['email-address'] or 'example@email.com' }}">
             <div class="govuk-inset-text">
               <p class="govuk-hint govuk-!-margin-bottom-1">An email will be sent to:</p>
               <p class="govuk-body govuk-!-font-size-24">{{ data['confirmation-email-address'] or 'example@email.com' }}</p>
