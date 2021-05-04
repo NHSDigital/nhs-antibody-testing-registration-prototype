@@ -1,0 +1,192 @@
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/provider-list/v1/test-kit-type">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">Providers of day 2 coronavirus testing for international arrivals</h1>
+      
+      <p>You will be travelling into England from a country on the <span><strong>GREEN</strong></span> list. This means:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>you must have a <span><strong>negative test</strong></span> within 72 hours prior to travelling</li>
+          <li>you must take a test <span><strong>on or before day 2</strong></span> after arrival</li>
+          <li>you must book your day 2 test <span><strong>before travelling</strong></span></li>
+          <li>you are <span><strong>not</strong></span> required to quarantine</li>
+        </ul>
+
+        <hr class="govuk-section-break govuk-section-break--visible">
+        <br>
+      <h2 class="govuk-heading-m">The providers listed below are able to provide testing kits based on:</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Arrival date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['arrival-date-month'] == "1" or data['arrival-date-month'] == "01" %}
+            {{ data['arrival-date-day'] }} January {{ data['arrival-date-year'] }}
+            {% elseif data['arrival-date-month'] == "2" or data['arrival-date-month'] == "02" %}
+            {{ data['arrival-date-day'] }} February {{ data['arrival-date-year'] }}
+            {% elseif data['arrival-date-month'] == "3" or data['arrival-date-month'] == "03" %}
+            {{ data['arrival-date-day'] }} March {{ data['arrival-date-year'] }}
+            {% elseif data['arrival-date-month'] == "4" or data['arrival-date-month'] == "04" %}
+            {{ data['arrival-date-day'] }} April {{ data['arrival-date-year'] }}
+            {% elseif data['arrival-date-month'] == "5" or data['arrival-date-month'] == "05" %}
+            {{ data['arrival-date-day'] }} May {{ data['arrival-date-year'] }}
+            {% elseif data['arrival-date-month'] == "6" or data['arrival-date-month'] == "06" %}
+            {{ data['arrival-date-day'] }} June {{ data['arrival-date-year'] }}
+            {% elseif data['arrival-date-month'] == "7" or data['arrival-date-month'] == "07" %}
+            {{ data['arrival-date-day'] }} July {{ data['arrival-date-year'] }}
+            {% elseif data['arrival-date-month'] == "8" or data['arrival-date-month'] == "08" %}
+            {{ data['arrival-date-day'] }} August {{ data['arrival-date-year'] }}
+            {% elseif data['arrival-date-month'] == "9" or data['arrival-date-month'] == "09" %}
+            {{ data['arrival-date-day'] }} September {{ data['arrival-date-year'] }}
+            {% elseif data['arrival-date-month'] == "10" %}
+            {{ data['arrival-date-day'] }} October {{ data['arrival-date-year'] }}
+            {% elseif data['arrival-date-month'] == "11" %}
+            {{ data['arrival-date-day'] }} November {{ data['arrival-date-year'] }}
+            {% elseif data['arrival-date-month'] == "12" %}
+            {{ data['arrival-date-day'] }} December {{ data['arrival-date-year'] }}
+            {% else %}
+            5 May 2021
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/provider-list/v1/arrival-date">
+              Change
+              <span class="govuk-visually-hidden"> arrival date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Region
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['region'] == "east-midlands" %}
+            East Midlands, Nationwide (England)
+            {% elseif data['region'] == "east-of-england" %}
+            East of England, Nationwide (England)
+            {% elseif data['region'] == "greater-london" %}
+            Greater London, Nationwide (England)
+            {% elseif data['region'] == "north-east" %}
+            North East, Nationwide (England)
+            {% elseif data['region'] == "north-west" %}
+            North West, Nationwide (England)
+            {% elseif data['region'] == "south-east" %}
+            South East, Nationwide (England)
+            {% elseif data['region'] == "west-midlands" %}
+            West Midlands, Nationwide (England)
+            {% elseif data['region'] == "yorkshire-and-humber" %}
+            Yorkshire and the Humber, Nationwide (England)
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/provider-list/v1/region-in-england">
+              Change
+              <span class="govuk-visually-hidden"> date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test kit type
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['kit-type'] == "test-site-supervised" %}
+            At a testing site (supervised)
+            {% elseif data['kit-type'] == "test-site-unsupervised" %}
+            At a testing site (unsupervised)
+            {% elseif data['kit-type'] == "at-home" %}
+            At home self-test (unsupervised)
+            {% elseif data['kit-type'] == "no-preference" %}
+            No preference
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/provider-list/v1/test-kit-type">
+              Change
+              <span class="govuk-visually-hidden"> contact information</span>
+            </a>
+          </dd>
+        </div>
+        
+      </dl>
+      <div class="govuk-inset-text">
+        Prices shown in this list are indicative based on the standard testing service. COVID test providers may offer discounts or partnerships with travel providers. Check with directly with providers for details.
+      </div>
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Test kit providers</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-third">Name of provider</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Contact telephone</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Email address</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-sixth">Price (indicative)</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">SameDayDoctor, partnered with Oncologica and Randox</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+            <td class="govuk-table__cell"><strong>£105.00</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">SameDayDoctor, partnered with Oncologica and Randox</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+            <td class="govuk-table__cell"><strong>£105.00</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">SameDayDoctor, partnered with Oncologica and Randox</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+            <td class="govuk-table__cell"><strong>£105.00</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">SameDayDoctor, partnered with Oncologica and Randox</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+            <td class="govuk-table__cell"><strong>£105.00</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">SameDayDoctor, partnered with Oncologica and Randox</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+            <td class="govuk-table__cell"><strong>£105.00</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">SameDayDoctor, partnered with Oncologica and Randox</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+            <td class="govuk-table__cell"><strong>£105.00</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">SameDayDoctor, partnered with Oncologica and Randox</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+            <td class="govuk-table__cell"><strong>£105.00</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">SameDayDoctor, partnered with Oncologica and Randox</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+            <td class="govuk-table__cell"><strong>£105.00</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    
+  </div>
+{% endblock %}
