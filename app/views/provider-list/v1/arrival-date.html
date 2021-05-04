@@ -1,0 +1,64 @@
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  COVID Test providers
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/provider-list/v1/departure-country">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">When will you arrive in the UK?</h1>
+
+      <form class="form" action="/provider-list/v1/region-in-england" method="post">
+
+        <p>This will help us find providers with tests available for your arrival.</p>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="arrival-date-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              
+            </legend>
+            <div id="arrival-date-hint" class="govuk-hint">
+              For example, 31 7 2021
+            </div>
+            <div class="govuk-date-input" id="arrival-date">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="arrival-date-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="arrival-date-day" name="arrival-date-day" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="arrival-date-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="arrival-date-month" name="arrival-date-month" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="arrival-date-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="arrival-date-year" name="arrival-date-year" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+              </div>
+            </div>
+        
+          </fieldset>
+        </div>
+        
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

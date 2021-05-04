@@ -1,0 +1,59 @@
+{% set version = "v1" %}
+{% block pageTitle %}
+  COVID Test providers
+{% endblock %}
+{% extends "includes/layout.html" %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="/provider-list/v1/region-in-england">Back</a>
+{% endblock %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <h1 class="govuk-fieldset__heading">
+          How would you prefer to get tested?
+        </h1>
+      </legend>
+      <form action="/provider-list/{{version}}/test-providers" method="post">
+        <p>Different providers offer coronavirus test kits either:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>at a testing site where a member of staff will supervise testing</li>
+          <li>at a testing site whaere you will self-test unsupervised</li>
+          <li>sent to your home for self-testing unsupervised</li>
+        </ul>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="kit-type-1" name="kit-type" type="radio" value="test-site-supervised" {{ checked("kit-type", "test-site-supervised") }}>
+                <label class="govuk-label govuk-radios__label" for="kit-type-1">
+                  At a testing site (supervised)
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="kit-type-2" name="kit-type" type="radio" value="test-site-unsupervised" {{ checked("kit-type", "test-site-unsupervised") }}>
+                <label class="govuk-label govuk-radios__label" for="kit-type-2">
+                  At a testing site (unsupervised)
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="kit-type-3" name="kit-type" type="radio" value="at-home" {{ checked("kit-type", "at-home") }}>
+                <label class="govuk-label govuk-radios__label" for="kit-type-3">
+                  At home (unsupervised)
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="kit-type-4" name="kit-type" type="radio" value="no-preference" {{ checked("kit-type", "no-preference") }}>
+                <label class="govuk-label govuk-radios__label" for="kit-type-4">
+                  No preference
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
