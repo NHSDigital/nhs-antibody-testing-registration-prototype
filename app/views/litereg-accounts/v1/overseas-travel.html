@@ -4,7 +4,7 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-<div class="govuk-phase-banner">
+  <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
         alpha
@@ -15,10 +15,8 @@
     </p>
   </div>
 
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/enter-barcode">Back</a>
+
 {% endblock %}
 
 {% block content %}
@@ -31,17 +29,17 @@
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-                            {% if data['whos-taking-the-test'] == "someone-else" %}
-                            Did {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} travel to any countries outside of the UK and Ireland within the last 14 days?
-                            {% else %}
-                            {{ pageTitle }}
-                            {% endif %}
-                        </h1>
+                      <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                        {% if data['whos-taking-the-test'] == "someone-else" %}
+                        Did {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} travel to any countries outside of the UK and Ireland within the last 14 days?
+                        {% else %}
+                        {{ pageTitle }}
+                        {% endif %}
+                      </h1>
                     </legend>
                     <span id="travelled-overseas-hint" class="govuk-body">
-                        This will help us test the vaccine against different forms of coronavirus from different countries.<br><br> 
-                      </span>
+                      This will help us test the vaccine against variants of coronavirus from different countries.<br><br> 
+                    </span>
 
                     <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
 

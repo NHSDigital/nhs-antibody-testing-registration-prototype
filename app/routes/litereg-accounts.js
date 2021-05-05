@@ -49,16 +49,16 @@ router.post('/litereg-accounts/v1/action9/coronavirus-account', function (req, r
 
 // Version 1 - Lite Registration Accounts - enter barcode route
 
-router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
-  let uniqueBarcode = req.session.data['kit-barcode-reference-1']
-  if (uniqueBarcode == "LHE00000501") {
-    res.redirect('/litereg-accounts/v1/site-id')
-  } else if (uniqueBarcode == "COE00000501") {
-    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
-  } else {
-    res.redirect('/litereg-accounts/v1/quarantine-question')
-  }
-})
+// router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
+//   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+//   if (uniqueBarcode == "LHE00000501") {
+//     res.redirect('/litereg-accounts/v1/site-id')
+//   } else if (uniqueBarcode == "COE00000501") {
+//     res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+//   } else {
+//     res.redirect('/litereg-accounts/v1/quarantine-question')
+//   }
+// })
 
 // Version 1 - Lite Registration Accounts - Test date route
 
@@ -79,19 +79,47 @@ router.post('/litereg-accounts/v1/action9/do-you-have-symptoms', function (req, 
   if (symptoms == "Yes") {
     res.redirect('/litereg-accounts/v1/when-did-symptoms-start')
   } else {
-    res.redirect('/litereg-accounts/v1/check-your-answers')
+    res.redirect('/litereg-accounts/v1/previous-infection')
   }
 
 })
 
   // Version 2 - Lite Registration Accounts - Overseas travel route
 
-  router.post('/litereg-accounts/v2/action9/overseas-travel', function (req, res) {
-    let overseasTravel = req.session.data['travelled-overseas']
+  // router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
+  //   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+  //   if (uniqueBarcode == "LHE00000501") {
+  //     res.redirect('/litereg-accounts/v1/site-id')
+  //   } else if (uniqueBarcode == "COE00000501") {
+  //     res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+  //   } else {
+  //     res.redirect('/litereg-accounts/v1/test-place')
+  //   }
+  // })
+
+  router.post('/litereg-accounts/v1/action9/overseas-travel', function (req, res) {
+    let overseasTravel = req.session.data['have-you-travelled-overseas']
+    let uniqueBarcode = req.session.data['kit-barcode-reference-1']
     if (overseasTravel == "Yes") {
-      res.redirect('/litereg-accounts/v2/travelled-to')
+      res.redirect('/litereg-accounts/v1/travel-route')
+    } else if (uniqueBarcode == "LHE00000501") {
+      res.redirect('/litereg-accounts/v1/site-id')
+    } else if (uniqueBarcode == "COE00000501") {
+      res.redirect('/litereg-accounts/v1/royal-mail-barcode')
     } else {
-      res.redirect('/litereg-accounts/v2/previous-infection')
+      res.redirect('/litereg-accounts/v1/test-place')
+    }
+
+  })
+
+  router.post('/litereg-accounts/v1/action9/travelled-to', function (req, res) {
+    let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+    if (uniqueBarcode == "LHE00000501") {
+      res.redirect('/litereg-accounts/v1/site-id')
+    } else if (uniqueBarcode == "COE00000501") {
+      res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+    } else {
+      res.redirect('/litereg-accounts/v1/test-place')
     }
 
   })
