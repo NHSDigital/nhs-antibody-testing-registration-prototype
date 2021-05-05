@@ -30,18 +30,14 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} know their NHS number?
+                Do you know {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
               </h1>
             </legend>
             <span id="nhs-number-known-hint" class="govuk-body">
-              {% if data['whos-taking-the-test'] == "someone-else" %}
-              <strong>It’s OK if they do not, they can still continue.</strong><br><br>
-              {% else %}
               <strong>It’s OK if you do not, you can still continue.</strong><br><br>
-              {% endif %}
               It’s 10 digits long, and usually on prescriptions or a hospital or GP letter.<br><br>
               In Scotland, it’s known as a CHI number. In Northern Ireland, it’s known as an H&C number.
             </span>
@@ -51,7 +47,7 @@
                   <input class="govuk-radios__input" id="nhs-number-known-1" name="nhs-number-known" type="radio" onclick="setLocation(this);" value="nhs-number" {{ checked("nhs-number-known", "Yes") }}>
                   <label class="govuk-label govuk-radios__label" for="nhs-number-known-1">
                     {% if data['whos-taking-the-test'] == "someone-else" %}
-                    Yes, they know their NHS number
+                    Yes, I know their NHS number
                     {% else %}
                     Yes, I know my NHS number
                     {% endif %}
@@ -61,7 +57,7 @@
                   <input class="govuk-radios__input" id="nhs-number-known-2" name="nhs-number-known" type="radio" onclick="setLocation(this);" value="check-answers" {{ checked("nhs-number-known", "No") }}>
                   <label class="govuk-label govuk-radios__label" for="nhs-number-known-2">
                     {% if data['whos-taking-the-test'] == "someone-else" %}
-                    No, they do not know their NHS number
+                    No, I do not know their NHS number
                     {% else %}
                     No, I do not know my NHS number
                     {% endif %}

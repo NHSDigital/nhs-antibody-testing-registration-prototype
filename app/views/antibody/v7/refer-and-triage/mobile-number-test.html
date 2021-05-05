@@ -1,0 +1,56 @@
+{% set version = "v7" %}
+{% set pageTitle = "What is your mobile number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/gender">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antibody/{{version}}/refer-and-triage/email-address" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="mobile-number-hint" class="govuk-body">
+             When we're ready to invite you to order a test, we will send a text message.
+            </span>
+            <div class="govuk-form-group govuk-!-margin-top-5">
+              <label class="govuk-label" for="mobile-phone-number">
+                Mobile phone number
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="mobile-phone-number" name="mobile-phone-number" type="tel" value="{{ data['mobile-phone-number'] }}" aria-describedby="conditional-mobile-hint">
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mobile-phone-number">
+                Confirm mobile number
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="confirm-mobile-phone-number" name="confirm-mobile-phone-number" type="tel" value="{{ data['confirm-mobile-phone-number'] }}">
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+
+      </form>
+      <div class="proto-action big">
+        <a href="/antibody/{{version}}/refer-and-triage/contact-details">
+          <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

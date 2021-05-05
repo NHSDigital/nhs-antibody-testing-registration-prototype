@@ -12,7 +12,11 @@
       </h1>
     </legend>
     <span id="name-hint" class="govuk-body">
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      We are asking this question so in future, {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s result can be saved to their GP record.
+      {% else %}
       We are asking this question so in future, your result can be saved to your GP record.
+      {% endif %}
     </span>
     <div class="govuk-radios govuk-!-margin-top-5">
       <div class="govuk-radios__item">

@@ -23,6 +23,7 @@ router.use('/', require('./routes/pre-registration.js'))
 router.use('/', require('./routes/delegated-access-results-recorder.js'))
 router.use('/', require('./routes/lfd-collection-registration.js'))
 router.use('/', require('./routes/international-arrivals.js'))
+router.use('/', require('./routes/provider-list.js'))
 
 // Pull scope into the homepage to show/hide sections
 // 'SCOPE' is either pulled in from the Heroku App settings or setting in a local .env file eg. SCOPE=antibody
@@ -63,9 +64,9 @@ router.post('/antibody/v2/action/consent', function (req, res) {
   consent = req.session.data['consent'];
 
   if (consent == "No") {
-    res.redirect('/antibody/v2/refer-and-triage/not-eligible')
+    res.redirect('/antibody/v7/order-test-kit/not-eligible')
   } else {
-    res.redirect('/antibody/v2/refer-and-triage/comfortable-doing-test')
+    res.redirect('/antibody/v7/order-test-kit/comfortable-doing-test')
   }
 })
 
@@ -86,9 +87,9 @@ router.post('/antibody/v2/action/comfortable-doing-test', function (req, res) {
   consent = req.session.data['consent'];
   let comfortableDoingTest = req.session.data['comfortable-doing-test']
   if (comfortableDoingTest == "No" || consent == "No"){
-    res.redirect('/antibody/v2/refer-and-triage/not-eligible')
+    res.redirect('/antibody/v7/order-test-kit/not-eligible')
   } else {
-    res.redirect('/antibody/v2/refer-and-triage/do-you-have-symptoms')
+    res.redirect('/antibody/v7/order-test-kit/do-you-have-symptoms')
   }
 })
 
@@ -108,9 +109,9 @@ router.post('/antibody/v2/action/do-you-have-symptoms', function (req, res) {
   let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
 
   if (doYouHaveSymptoms == "Yes"){
-    res.redirect('/antibody/v2/refer-and-triage/antigen-test')
+    res.redirect('/antibody/v7/order-test-kit/antigen-test')
   } else {
-    res.redirect('/antibody/v2/refer-and-triage/eligible')
+    res.redirect('/antibody/v7/order-test-kit/eligible')
   }
 
 })
@@ -131,9 +132,9 @@ router.post('/antibody/v2/action/have-you-had-symptoms', function (req, res) {
   let haveYouHadSymptoms = req.session.data['have-you-had-symptoms']
 
   if (haveYouHadSymptoms == "Yes"){
-    res.redirect('/antibody/v2/refer-and-triage/when-did-symptoms-start')
+    res.redirect('/antibody/v7/order-test-kit/when-did-symptoms-start')
   } else {
-    res.redirect('/antibody/v2/refer-and-triage/tested-positive')
+    res.redirect('/antibody/v7/order-test-kit/tested-positive')
   }
 
 })
@@ -169,9 +170,9 @@ router.post('/antibody/v2/action/mobile-number', function (req, res) {
   let mobileNumber = req.session.data['mobile-number']
 
   if (mobileNumber == "Yes"){
-    res.redirect('/antibody/v2/refer-and-triage/email-address')
+    res.redirect('/antibody/v7/order-test-kit/email-address')
   } else {
-    res.redirect('/antibody/v2/refer-and-triage/not-eligible')
+    res.redirect('/antibody/v7/order-test-kit/not-eligible')
   }
 
 })
@@ -192,9 +193,9 @@ router.post('/antibody/v2/action/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/antibody/v2/refer-and-triage/ethnic-background')
+    res.redirect('/antibody/v7/order-test-kit/ethnic-background')
   } else {
-    res.redirect('/antibody/v2/refer-and-triage/working')
+    res.redirect('/antibody/v7/order-test-kit/working')
   }
 
 })
@@ -214,9 +215,9 @@ router.post('/antibody/v1/action/working', function (req, res) {
 router.post('/antibody/v2/action/working', function (req, res) {
   let inWork = req.session.data['currently-in-work']
   if (inWork == "No"){
-    res.redirect('/antibody/v2/refer-and-triage/occupation')
+    res.redirect('/antibody/v7/order-test-kit/occupation')
   } else {
-    res.redirect('/antibody/v2/refer-and-triage/occupation')
+    res.redirect('/antibody/v7/order-test-kit/occupation')
   }
 })
 
@@ -237,9 +238,9 @@ router.post('/antibody/v2/action/tested-positive', function (req, res) {
   let testedPositive = req.session.data['tested-positive']
 
   if (testedPositive == "Yes"){
-    res.redirect('/antibody/v2/refer-and-triage/tested-positive-date')
+    res.redirect('/antibody/v7/order-test-kit/tested-positive-date')
   } else {
-    res.redirect('/antibody/v2/refer-and-triage/household')
+    res.redirect('/antibody/v7/order-test-kit/household')
   }
 
 })
@@ -284,17 +285,17 @@ router.post('/antibody/v2/action2/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/antibody/v2/refer-and-triage/ethnic-background-asian')
+    res.redirect('/antibody/v7/order-test-kit/ethnic-background-asian')
   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-    res.redirect('/antibody/v2/refer-and-triage/ethnic-background-black')
+    res.redirect('/antibody/v7/order-test-kit/ethnic-background-black')
   } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-    res.redirect('/antibody/v2/refer-and-triage/ethnic-background-mixed')
+    res.redirect('/antibody/v7/order-test-kit/ethnic-background-mixed')
   } else if (ethnicGroup == "White") {
-    res.redirect('/antibody/v2/refer-and-triage/ethnic-background-white')
+    res.redirect('/antibody/v7/order-test-kit/ethnic-background-white')
   } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('/antibody/v2/refer-and-triage/ethnic-background-another')
+    res.redirect('/antibody/v7/order-test-kit/ethnic-background-another')
   } else {
-    res.redirect('/antibody/v2/refer-and-triage/occupation')
+    res.redirect('/antibody/v7/order-test-kit/occupation')
   }
 
 })
@@ -2764,6 +2765,154 @@ router.post('/litereg-accounts/v1/action2/vaccine-date', function (req, res) {
   }
 })
 
+// Antibody V7 - Fingerprick Test
+router.post('/antibody/v7/action4/fingerprick-test', function (req, res) {
+  let fingerprickTest = req.session.data['fingerprick-test']
+  if (fingerprickTest == "Yes, I'm OK doing this") {
+    res.redirect('/antibody/v7/refer-and-triage/do-you-have-symptoms')
+  }
+  else {
+    res.redirect('/antibody/v7/refer-and-triage/not-eligible-fingerprick-test')
+  }
+})
 
+// Antibody V7 - Do You Have Symptoms
+router.post('/antibody/v7/action7/do-you-have-symptoms', function (req, res) {
+  let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
+  if (doYouHaveSymptoms == "Yes"){
+    res.redirect('/antibody/v7/refer-and-triage/not-eligible-has-symptoms')
+  } else {
+    res.redirect('/antibody/v7/refer-and-triage/mobile-number')
+  }
+})
+
+// Antibody V7 - Mobile Number
+router.post('/antibody/v7/action7/mobile-number', function (req, res) {
+  let mobileNumber = req.session.data['mobile-number']
+  if (mobileNumber == "Yes"){
+    res.redirect('/antibody/v7/refer-and-triage/antibody-survey-or-study')
+  } else {
+    res.redirect('/antibody/v7/refer-and-triage/not-eligible-mobile-number')
+  }
+})
+
+// Antibody V7 - Antibody Survey or Study
+router.post('/antibody/v7/action7/antibody-survey-or-study', function (req, res) {
+  let antibodySurveyOrStudy = req.session.data['antibody-survey-or-study']
+  if (antibodySurveyOrStudy == "Yes"){
+    res.redirect('/antibody/v7/refer-and-triage/which-antibody-survey-or-study')
+  } else {
+    res.redirect('/antibody/v7/refer-and-triage/currently-in-work')
+  }
+})
+
+// Antibody V7 - Currently in Work
+router.post('/antibody/v7/action7/currently-in-work', function (req, res) {
+  let currentlyInWork = req.session.data['currently-in-work']
+  let antibodySurveyOrStudy = req.session.data['antibody-survey-or-study']
+  if (currentlyInWork == "Yes and I work from home" && antibodySurveyOrStudy == "Yes" || currentlyInWork == "Yes and I travel to work" && antibodySurveyOrStudy == "Yes"){
+    res.redirect('/antibody/v7/refer-and-triage/area-of-work')
+  } else if (currentlyInWork == "No" && antibodySurveyOrStudy == "Yes") {
+    res.redirect('/antibody/v7/refer-and-triage/antibody-test')
+  } else if (currentlyInWork !== "No" && antibodySurveyOrStudy == "No") {
+    res.redirect('/antibody/v7/refer-and-triage/area-of-work-no-survey')
+  } else {
+    res.redirect('/antibody/v7/refer-and-triage/not-eligible-out-of-work')
+  }
+})
+
+// Antibody V7 - Area of Work
+router.post('/antibody/v7/action7/area-of-work', function (req, res) {
+  let areaOfWork = req.session.data['area-of-work']
+  if (areaOfWork == "Social care"){
+    res.redirect('/antibody/v7/refer-and-triage/where-do-you-work')
+  }
+  else if (areaOfWork == "None of the above") {
+    res.redirect('/antibody/v7/refer-and-triage/not-eligible-none-of-the-above')
+  }
+  else {
+    res.redirect('/antibody/v7/refer-and-triage/antibody-test')
+  }
+})
+
+// Antibody V7 - Do You Have Symptoms V2
+router.post('/antibody/v7/action8/do-you-have-symptoms', function (req, res) {
+  let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
+  if (doYouHaveSymptoms == "Yes"){
+    res.redirect('/antibody/v7/order-test-kit/get-swab-test')
+  } else {
+    res.redirect('/antibody/v7/order-test-kit/have-you-had-symptoms')
+  }
+})
+
+// Antibody V7 - Have You Had Symptoms
+router.post('/antibody/v7/action8/have-you-had-symptoms', function (req, res) {
+  let haveYouHadSymptoms = req.session.data['have-you-had-symptoms']
+  if (haveYouHadSymptoms == "Yes"){
+    res.redirect('/antibody/v7/order-test-kit/when-did-symptoms-start')
+  } else {
+    res.redirect('/antibody/v7/order-test-kit/previous-infection')
+  }
+})
+
+// Antibody V7 - Previous Infection
+router.post('/antibody/v7/action8/previous-infection', function (req, res) {
+  let previousInfection = req.session.data['previous-infection']
+  if (previousInfection == "Yes"){
+    res.redirect('/antibody/v7/order-test-kit/swab-test-date')
+  } else {
+    res.redirect('/antibody/v7/order-test-kit/previous-house-infection')
+  }
+})
+
+// Antibody V7 -  Vaccine
+router.post('/antibody/v7/action8/vaccine', function (req, res) {
+  let vaccine = req.session.data['vaccine']
+  if (vaccine == "No"){
+    res.redirect('/antibody/v7/order-test-kit/nhs-number-known')
+  } else {
+    res.redirect('/antibody/v7/order-test-kit/vaccine-date')
+  }
+})
+
+// Antibody V7 -  NHS Number Known
+router.post('/antibody/v7/action8/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+  if (nhsNumberKnown == "No"){
+    res.redirect('/antibody/v7/order-test-kit/postcode')
+  } else {
+    res.redirect('/antibody/v7/order-test-kit/nhs-number')
+  }
+})
+
+// Antibody V7 -  Home Address Question
+router.post('/antibody/v7/action8/home-address-question', function (req, res) {
+  let deliveryAddressSame = req.session.data['delivery-address-same']
+  if (deliveryAddressSame == "No"){
+    res.redirect('/antibody/v7/order-test-kit/delivery-postcode')
+  } else {
+    res.redirect('/antibody/v7/order-test-kit/ethnic-group')
+  }
+})
+
+// Version V7 - Registration - Ethnic group route
+router.post('/antibody/v7/action8/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/antibody/v7/order-test-kit/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/antibody/v7/order-test-kit/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/antibody/v7/order-test-kit/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/antibody/v7/order-test-kit/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/antibody/v7/order-test-kit/ethnic-background-another')
+  } else {
+    res.redirect('/antibody/v7/order-test-kit/check-your-answers')
+  }
+
+})
 
 module.exports = router

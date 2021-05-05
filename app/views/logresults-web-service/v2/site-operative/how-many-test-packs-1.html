@@ -15,11 +15,7 @@
   </p>
 </div>
 
-{% if data['lot-reference-1'] %}
 <a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/enter-lot-reference">Back</a>
-{% else %}
-<a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/lot-reference">Back</a>
-{% endif %}
 
 {% endblock %}
 
@@ -31,25 +27,29 @@
     <form action="/logresults-web-service/{{version}}/site-operative/lot-references-summary" method="post">
 
       <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="lot-reference-hint lot-reference-2-hint">
+        <fieldset class="govuk-fieldset" aria-describedby="how-many-test-packs-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-              How many test packs with LOT reference {{ data['lot-reference-1'] or 'XF1289347' }} are you giving out?
+              How many test packs with LOT reference {{ data['lot-reference-1'] or 'X2102703' }} are you giving out?
             </h1>
           </legend>
 
+          <span id="how-many-test-packs-hint" class="govuk-body">
+            You can give out a maximum of 4 test packs to this person.
+          </span>
+
           <div class="govuk-radios govuk-!-margin-top-5">
             <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="number-of-packs-1-1" name="number-of-packs-1" type="radio" value="1" {{ checked("number-of-packs-1", "1") }}>
-                <label class="govuk-label govuk-radios__label" for="number-of-packs-1-1">
-                    1
-                </label>
+              <input class="govuk-radios__input" id="number-of-packs-1-1" name="number-of-packs-1" type="radio" value="1" {{ checked("number-of-packs-1", "1") }}>
+              <label class="govuk-label govuk-radios__label" for="number-of-packs-1-1">
+                  1
+              </label>
             </div>
             <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="number-of-packs-1-2" name="number-of-packs-1" type="radio" value="2" {{ checked("number-of-packs-1", "2") }}>
-                <label class="govuk-label govuk-radios__label" for="number-of-packs-1-2">
-                    2
-                </label>
+              <input class="govuk-radios__input" id="number-of-packs-1-2" name="number-of-packs-1" type="radio" value="2" {{ checked("number-of-packs-1", "2") }}>
+              <label class="govuk-label govuk-radios__label" for="number-of-packs-1-2">
+                  2
+              </label>
             </div>
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="number-of-packs-1-3" name="number-of-packs-1" type="radio" value="3" {{ checked("number-of-packs-1", "3") }}>

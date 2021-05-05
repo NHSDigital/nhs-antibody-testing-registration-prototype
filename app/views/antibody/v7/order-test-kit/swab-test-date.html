@@ -1,0 +1,60 @@
+{% set version = "v7" %}
+{% set pageTitle = "When did you take this swab test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/order-test-kit/previous-infection">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antibody/{{version}}/order-test-kit/previous-house-infection" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="swab-test-date-hint swab-test-date-hint-2">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="swab-test-date-hint" class="govuk-body">
+              Enter the date you think it was, roughly.<br>
+            </span>
+            <span id="swab-test-date-hint-2" class="govuk-hint">
+              For example 4 2020
+            </span>
+            <div class="govuk-date-input" id="swab-test-date">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="swab-test-date-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="swab-test-date-month" name="swab-test-date-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['swab-test-date-month'] }}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="swab-test-date-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="swab-test-date-year" name="swab-test-date-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['swab-test-date-year'] }}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

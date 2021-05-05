@@ -13,6 +13,26 @@ function loadJSONFromFile(fileName, path = "app/data/") {
 
 // VERSION 2
 
+router.post('/logresults-web-service/v2/site-operative/action13/confirm-collect-code', function (req, res) {
+  let transactionCount = req.session.data['transaction-count']
+  if (transactionCount) {
+    res.redirect('/logresults-web-service/v2/site-operative/lot-reference-same')
+  } else {
+    res.redirect('/logresults-web-service/v2/site-operative/enter-lot-reference')
+  }
+
+})
+
+router.post('/logresults-web-service/v2/site-operative/action13/lot-reference-same', function (req, res) {
+  let lotReferenceSame = req.session.data['lot-reference-same']
+  if (lotReferenceSame == "Yes") {
+    res.redirect('/logresults-web-service/v2/site-operative/how-many-test-packs-1')
+  } else {
+    res.redirect('/logresults-web-service/v2/site-operative/enter-lot-reference')
+  }
+
+})
+
 router.post('/logresults-web-service/v2/site-operative/action13/more-test-packs', function (req, res) {
   let moreTestPacks = req.session.data['more-test-packs']
   let lotReference1 = req.session.data['lot-reference-1']

@@ -1,0 +1,80 @@
+{% set version = "v7" %}
+{% set pageTitle = "Tell us which survey or study" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/antibody-survey-or-study">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antibody/{{version}}/refer-and-triage/participant-id" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="which-antibody-survey-or-study-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <!-- <span id="which-antibody-survey-or-study-hint" class="govuk-body">
+             For example, the CASS or SIREN study or the COVID Symptom Study app (by ZOE).
+            </span> -->
+            <div class="govuk-radios govuk-!-margin-top-4">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="which-antibody-survey-or-study-1" name="which-antibody-survey-or-study" type="radio" value="CASS" {{ checked("which-antibody-survey-or-study", "CASS") }}>
+                <label class="govuk-label govuk-radios__label" for="which-antibody-survey-or-study-1">
+                  CASS<br><span class="govuk-hint">COVID-19 Antibody Survey of Education Staff (Scotland)</span>
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="which-antibody-survey-or-study-2" name="which-antibody-survey-or-study" type="radio" value="HICC Consortium Study" {{ checked("which-antibody-survey-or-study", "HICC Consortium Study") }}>
+                <label class="govuk-label govuk-radios__label" for="which-antibody-survey-or-study-2">
+                 HICC Consortium Study<br><span class="govuk-hint">Humoral Immune Correlaes of COVID-19</span>
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="which-antibody-survey-or-study-3" name="which-antibody-survey-or-study" type="radio" value="SIREN study" {{ checked("which-antibody-survey-or-study", "SIREN study") }}>
+                <label class="govuk-label govuk-radios__label" for="which-antibody-survey-or-study-3">
+                  SIREN study<br><span class="govuk-hint">Sarscov2 Immunity and Re-infection Evaluation</span>
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="which-antibody-survey-or-study-4" name="which-antibody-survey-or-study" type="radio" value="COVID Symptom Study app" {{ checked("which-antibody-survey-or-study", "COVID Symptom Study app") }}>
+                <label class="govuk-label govuk-radios__label" for="which-antibody-survey-or-study-4">
+                  COVID Symptom Study app<br><span class="govuk-hint">by ZOE</span>
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="which-antibody-survey-or-study-5" name="which-antibody-survey-or-study" type="radio" value="COVID-19 Infection Survey" {{ checked("which-antibody-survey-or-study", "COVID-19 Infection Survey") }}>
+                <label class="govuk-label govuk-radios__label" for="which-antibody-survey-or-study-5">
+                  COVID-19 Infection Survey<br><span class="govuk-hint">Office for National Statistics</span>
+                </label>
+              </div>
+        
+              <div class="govuk-radios__divider">or</div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="which-antibody-survey-or-study-6" name="which-antibody-survey-or-study" type="radio" value="Other" {{ checked("which-antibody-survey-or-study", "Other") }}>
+                <label class="govuk-label govuk-radios__label" for="which-antibody-survey-or-study-6">
+                  None of the above
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,397 @@
+{% set version = "v7" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/order-test-kit/ethnic-group">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <h1 class="govuk-heading-l">Antibody test details</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Current coronavirus symptoms
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['do-you-have-symptoms'] or 'No' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/do-you-have-symptoms">
+              Change
+              <span class="govuk-visually-hidden">do you have symptoms</span>
+            </a>
+          </dd>
+        </div>
+
+        </dl>
+        <h1 class="govuk-heading-l">Personal details</h1>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['first-name'] or 'Joe' }} {{ data['last-name'] or 'Bloggs' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/name">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['date-of-birth-day'] or '01'}} {{ data['date-of-birth-month'] or 'April' }} {{ data['date-of-birth-year'] or '1992' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/date-of-birth">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Medical record
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['gender'] or 'Male' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/gender">
+              Change
+              <span class="govuk-visually-hidden">medical record</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Contact details
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['contact-details-email-address'] or 'joebloggs@email.com'}}<br>
+            {{ data['contact-details-mobile-phone-number'] or '01234 567 890'}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/contact-details">
+              Change
+              <span class="govuk-visually-hidden">contact details</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Country of residence
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['country'] or 'England' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/country">
+              Change
+              <span class="govuk-visually-hidden">country</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            NHS number
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['nhs-number'] or '485 777 3456' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/nhs-number">
+              Change
+              <span class="govuk-visually-hidden">nhs number</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Ethnicity
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['ethnic-group'] or 'White' }}{% if data['ethnic-background'] !== 'Prefer not to say' and data['ethnic-background'] !== undefined %}{% if data['ethnic-background'] == "Another" %}, {{ data['another-ethnic-background'] or 'Another ethnic background'}}{% else %}, {{ data['ethnic-background'] or 'Irish'}}{% endif %}{% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/ethnic-group">
+              Change
+              <span class="govuk-visually-hidden">ethnic group</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            GP registered address
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+                {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
+                  {{ data['home-address'] }}
+                {% else %}
+                  {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+                    {% if data['address-line-2'] %}
+                      {{ data['address-line-2'] }}<br>
+                    {% endif %}
+                    {% if data['address-town'] %}
+                      {{ data['address-town'] }}<br>
+                    {% endif %}
+                  {{ data['home-postcode'] or 'LS1 3BE' }}
+                {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/home-address">
+              Change
+              <span class="govuk-visually-hidden">home Address</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Delivery address
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {% if data['delivery-address-same'] == "No" %}
+
+                {% if data['delivery-address'] and data['delivery-address'] !== "5 addresses found" %}
+                  {{ data['delivery-address'] }}
+                {% else %}
+                  {{ data['delivery-address-line-1'] or '5 Souterhead Road'}}<br>
+                    {% if data['delivery-address-line-2'] %}
+                      {{ data['delivery-address-line-2'] }}<br>
+                    {% endif %}
+                    {% if data['delivery-address-town'] %}
+                      {{ data['delivery-address-town'] }}<br>
+                    {% endif %}
+                  {{ data['delivery-address-postcode'] or 'LS1 3BE' }}
+                {% endif %}
+
+              {% else %}
+
+                Same as home address
+
+              {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/delivery-address">
+              Change
+              <span class="govuk-visually-hidden">delivery address</span>
+            </a>
+          </dd>
+        </div>
+        </dl>
+
+        <h1 class="govuk-heading-l">Employment</h1>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+
+       <div class="govuk-summary-list__row">
+         <dt class="govuk-summary-list__key govuk-!-width-one-third">
+          Are you currently in work?
+         </dt>
+         <dd class="govuk-summary-list__value govuk-!-width-one-third">
+           {{ data['currently-in-work'] or 'Yes and I work from home' }}
+         </dd>
+         <dd class="govuk-summary-list__actions">
+           <a href="/antibody/{{version}}/refer-and-triage/working">
+             Change
+             <span class="govuk-visually-hidden">are you currently in work</span>
+           </a>
+         </dd>
+       </div>
+       {% if data['currently-in-work'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Work
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['area-of-work'] or 'Other' }}
+            {% if data ['area-of-work' == 'Social care'] %}
+            <br> {{ data['where-do-you-work' or 'None of the above']}}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/area-of-work">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+      </dl>
+
+      <h1 class="govuk-heading-l">Vaccination and Coronavirus history</h1>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Positive coronavirus test
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['do-you-have-symptoms'] or 'Yes, March 2021' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/do-you-have-symptoms">
+              Change
+              <span class="govuk-visually-hidden">do you have symptoms</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Previous coronavirus symptoms
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['previous-infection'] or 'No' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/previous-infection">
+              Change
+              <span class="govuk-visually-hidden">previous infection</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Household ever tested positive for coronavirus
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['previous-house-infection'] or 'Yes' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/previous-house-infection">
+              Change
+              <span class="govuk-visually-hidden">previous house infection</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Coronavirus vaccine
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {% if data['vaccine'] == "Yes, 1 dose" and data['vaccine-date'] == "Less than 7 days ago" %}
+            1 dose, less than 7 days ago
+            {% elseif data['vaccine'] == "Yes, 1 dose" and data['vaccine-date'] == "7 to 14 days ago" %}
+            1 dose, 7 to 14 days ago
+            {% elseif data['vaccine'] == "Yes, 1 dose" and data['vaccine-date'] == "More than 14 days ago" %}
+              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
+              1 dose, January {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
+              1 dose, February {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
+              1 dose, March {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
+              1 dose, April {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
+              1 dose, May {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
+              1 dose, June {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
+              1 dose, July {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
+              1 dose, August {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
+              1 dose, September {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "10" %}
+              1 dose, October {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "11" %}
+              1 dose, November {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "12" %}
+              1 dose, December {{ data['vaccine-year'] }}
+              {% endif %}
+            {% elseif data['vaccine'] == "Yes, 2 doses" and data['vaccine-date'] == "Less than 7 days ago" %}
+            2 doses, less than 7 days ago
+            {% elseif data['vaccine'] == "Yes, 2 doses" and data['vaccine-date'] == "7 to 14 days ago" %}
+            2 doses, 7 to 14 days ago
+            {% elseif data['vaccine'] == "Yes, 2 doses" and data['vaccine-date'] == "More than 14 days ago" %}
+              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
+              2 doses, January {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
+              2 doses, February {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
+              2 doses, March {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
+              2 doses, April {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
+              2 doses, May {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
+              2 doses, June {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
+              2 doses, July {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
+              2 doses, August {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
+              2 doses, September {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "10" %}
+              2 doses, October {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "11" %}
+              2 doses, November {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "12" %}
+              2 doses, December {{ data['vaccine-year'] }}
+              {% endif %}
+            {% else %}
+            No
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/order-test-kit/vaccine">
+              Change
+              <span class="govuk-visually-hidden">vaccine</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          By ordering a test kit, I confirm that:
+        </strong>
+      </div>
+
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+        <li>The information I've provided is up to date and correct</li>
+        <li>I agree with the <a href="#">Terms and Conditions (opens in new tab)</a> and <a href="#">Privacy Policy (opens in new tab)</a> of this service</li>
+        <li>I am happy for my data to be used for health research</li>
+        <li>I am happy to be contacted about my order</li>
+      </ul>
+
+      <form action="/antibody/{{version}}/order-test-kit/antibody-test" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          I agree to the checks, place my order
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action big">
+  <a href="/antibody/{{version}}/order-test-kit/check-your-answers-option-2">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 2</div>
+  </a>
+</div>
+{% endblock %}

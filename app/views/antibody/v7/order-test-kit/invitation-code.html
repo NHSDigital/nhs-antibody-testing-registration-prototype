@@ -1,0 +1,68 @@
+{% set version = "v7" %}
+{% set pageTitle = "Get a coronavirus test if you have an invite code" %}
+
+{% extends "includes/layout.html" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+        <p class="govuk-body-1">Use this service to:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>order an antibody fingerprick blood test to do at home</li>
+          <li>order a PCR swab test to do at home</li>
+          <li>book an appointment for a PCR swab test</li>
+        </ul>
+
+      <form action="/antibody/{{version}}/order-test-kit" method="post">
+
+        <div class="govuk-form-group govuk-!-margin-top-6">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="invitation-code-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              Enter your invite code
+            </legend>
+            <span id="invitation-code-hint" class="govuk-hint">
+              This is the 16 digit code you received in the text message we sent you.
+            </span>
+
+            <div class="govuk-!-display-inline-block govuk-!-margin-top-5 uppercase govuk-form-group">
+              <label for="invitation-code-1" class="govuk-label govuk-visually-hidden"> Invitation code field 1</label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="invitation-code-1" name="invitation-code-1" type="text" spellcheck="false" value="{{ data['invitation-code-1'] }}">
+            </div>
+            -
+            <div class="govuk-!-display-inline-block govuk-!-margin-top-5 uppercase govuk-form-group">
+              <label for="invitation-code-2" class="govuk-label govuk-visually-hidden"> Invitation code field 2</label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="invitation-code-2" name="invitation-code-2" spellcheck="false" value="{{ data['invitation-code-2'] }}">
+            </div>
+            -
+            <div class="govuk-!-display-inline-block govuk-!-margin-top-5 uppercase govuk-form-group">
+              <label for="invitation-code-3" class="govuk-label govuk-visually-hidden"> Invitation code field 3</label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="invitation-code-3" name="invitation-code-3" type="text" spellcheck="false" value="{{ data['invitation-code-3'] }}">
+            </div> -
+            <div class="govuk-!-display-inline-block govuk-!-margin-top-5 uppercase govuk-form-group">
+              <label for="invitation-code-4" class="govuk-label govuk-visually-hidden"> Invitation code field 4</label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="invitation-code-4" name="invitation-code-4" type="text" spellcheck="false" value="{{ data['invitation-code-4'] }}">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        <p class="govuk-body">
+          We cannot re-send your code if you lost it. If you do not have this code, but think you're eligible for a test, you can:
+        </p>
+        <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
+          <li><a href="../refer-and-triage/">apply for an antibody test</a></li><br>
+          <li><a href="../../../antigen/v1/govuk/get-coronavirus-test.html">apply for a PCR swab test</a></li>
+        </ul>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

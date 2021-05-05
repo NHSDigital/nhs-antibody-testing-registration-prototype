@@ -157,6 +157,36 @@ router.post('/lfd-home-ordering/v1/action10/dct-opt-in', function (req, res) {
 
 })
 
+router.post('/lfd-home-ordering/v1/action10/date-of-birth', function (req, res) {
+    let country = req.session.data['country']
+    if (country == "England" ) {
+        res.redirect('/lfd-home-ordering/v1/nhs-testing-programme')
+    } else {
+        res.redirect('/lfd-home-ordering/v1/check-your-answers')
+    }
+
+})
+
+router.post('/lfd-home-ordering/v1/action10/nhs-testing-programme', function (req, res) {
+    let programme = req.session.data['nhs-testing-programme']
+    if (programme == "Yes" ) {
+        res.redirect('/lfd-home-ordering/v1/work-area')
+    } else {
+        res.redirect('/lfd-home-ordering/v1/check-your-answers')
+    }
+
+})
+
+router.post('/lfd-home-ordering/v1/action10/work-area', function (req, res) {
+    let workArea = req.session.data['work-area']
+    if (workArea == "Community pharmacy" || workArea == "Dentistry" || workArea == "General practice" || workArea == "Optometry" || workArea == "Other" ) {
+        res.redirect('/lfd-home-ordering/v1/work-postcode')
+    } else {
+        res.redirect('/lfd-home-ordering/v1/trust')
+    }
+
+})
+
 router.post('/lfd-home-ordering/v1/action10/home-address-question', function (req, res) {
     let deliveryAddressSame = req.session.data['delivery-address-same']
     if (deliveryAddressSame == "No" ) {

@@ -1,0 +1,209 @@
+{% set version = "v7" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/contact-details">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <h1 class="govuk-heading-l">Antibody test details</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Able to do test
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['fingerprick-test'] or 'Yes' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/fingerprick-test">
+              Change
+              <span class="govuk-visually-hidden">fingerprick test</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Current coronavirus symptoms
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['do-you-have-symptoms'] or 'No' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/do-you-have-symptoms">
+              Change
+              <span class="govuk-visually-hidden">do you have symptoms</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Survey or study
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['antibody-survey-or-study'] or 'No' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/antibody-survey-or-study">
+              Change
+              <span class="govuk-visually-hidden">antibody survey or study</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['antibody-survey-or-study'] == 'Yes' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Which survey or study?
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['which-antibody-survey-or-study'] or 'Other (not listed above)' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/which-antibody-survey-or-study">
+              Change
+              <span class="govuk-visually-hidden">which antibody survey or study</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        </dl>
+        <h1 class="govuk-heading-l">Personal details</h1>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['first-name'] or 'Joe' }} {{ data['last-name'] or 'Bloggs' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/name">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['date-of-birth-day'] or '01'}} {{ data['date-of-birth-month'] or 'April' }} {{ data['date-of-birth-year'] or '1992' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/date-of-birth">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Medical record
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['gender'] or 'Male' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/gender">
+              Change
+              <span class="govuk-visually-hidden">medical record</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Contact details
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['contact-details-email-address'] or 'joebloggs@email.com'}}<br>
+            {{ data['contact-details-mobile-phone-number'] or '01234 567 890'}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/contact-details">
+              Change
+              <span class="govuk-visually-hidden">contact details</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Country of residence
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['country'] or 'England' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/country">
+              Change
+              <span class="govuk-visually-hidden">country</span>
+            </a>
+          </dd>
+        </div>
+        </dl>
+
+        <h1 class="govuk-heading-l">Employment</h1>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+
+       <div class="govuk-summary-list__row">
+         <dt class="govuk-summary-list__key govuk-!-width-one-third">
+          Are you currently in work?
+         </dt>
+         <dd class="govuk-summary-list__value govuk-!-width-one-third">
+           {{ data['currently-in-work'] or 'Yes and I work from home' }}
+         </dd>
+         <dd class="govuk-summary-list__actions">
+           <a href="/antibody/{{version}}/refer-and-triage/working">
+             Change
+             <span class="govuk-visually-hidden">are you currently in work</span>
+           </a>
+         </dd>
+       </div>
+       {% if data['currently-in-work'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Work
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['area-of-work'] or 'Other' }}
+            {% if data ['area-of-work' == 'Social care'] %}
+            <br> {{ data['where-do-you-work' or 'None of the above']}}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antibody/{{version}}/refer-and-triage/area-of-work">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+      </dl>
+
+      <form action="/antibody/{{version}}/refer-and-triage/antibody-test-2" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
