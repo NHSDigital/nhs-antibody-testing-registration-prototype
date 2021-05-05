@@ -580,6 +580,44 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
 
     })
 
+        // Version 17 - LFD Results sharing - Test reason
+        router.post('/share-result-lateral-flow/v17/action6/test-reason', function (req, res) {
+          let testReason = req.session.data['test-reason']
+    
+          if (testReason == "A social care service"){
+            res.redirect('/share-result-lateral-flow/v17/social-care')
+          } else if (testReason == "A nursery, school, college, childcare provider or other education provider") {
+            res.redirect('/share-result-lateral-flow/v17/school-type')
+          } else if (testReason == "The NHS as part of staff testing") {
+            res.redirect('/share-result-lateral-flow/v17/nhs-primary')
+          } else if (testReason == "An employer or organisation") {
+            res.redirect('/share-result-lateral-flow/v17/employer-uon')
+          } else {
+            res.redirect('/share-result-lateral-flow/v17/country')
+          }
+    
+        })
+
+        // Version 17 - LFD Results sharing - NHS primary or secondary
+        router.post('/share-result-lateral-flow/v17/action6/nhs-route', function (req, res) {
+          let nhsRoute = req.session.data['nhs-route']
+          if (nhsRoute == "Acute (hospital) trust" 
+          || nhsRoute == "Community health trust" 
+          || nhsRoute == "Ambulance service trust" 
+          || nhsRoute == "Mental health trust"
+          || nhsRoute == "Welsh Health Board") {
+            res.redirect('/share-result-lateral-flow/v17/trust')
+          } else if (nhsRoute == "Community pharmacy"
+          || nhsRoute == "Dentistry"
+          || nhsRoute == "General Practice"
+          || nhsRoute == "Optometry") {
+            res.redirect('/share-result-lateral-flow/v17/postcode')
+          } else {
+            res.redirect('/share-result-lateral-flow/v17/country')
+          }
+    
+        })
+
     // Version 18 - LFD Results sharing - Ethnic group route
     router.post('/share-result-lateral-flow/v18/action6/ethnic-group', function (req, res) {
       let ethnicGroup = req.session.data['ethnic-group']
