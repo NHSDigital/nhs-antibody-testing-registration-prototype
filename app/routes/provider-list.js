@@ -51,4 +51,14 @@ router.post('/provider-list/v1/departure-country-select', function (req, res) {
   res.redirect('/provider-list/v1/arrival-date')
 })
 
+// Provider list - route 3
+
+router.post('/provider-list/v2/amber-or-green', function (req, res) {
+    let amberOrGreen = req.session.data['trafficlight']
+  if (amberOrGreen == "Amber"){
+    res.redirect('/provider-list/v2/amber-list1')
+  }else
+  res.redirect('/provider-list/v2/green-list1')
+}) 
+
 module.exports = router
