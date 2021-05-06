@@ -1288,4 +1288,16 @@ router.post('/share-result-lateral-flow/v19-2/action9/check-mobile', function (r
       }
       })
 
+
+          // Version 20 - LDF self report accounts - Who's taking the test route
+
+          router.post('/share-result-lateral-flow/v20/action9/whos-taking-the-test', function (req, res) {
+            let person = req.session.data['whos-taking-the-test']
+            if (person == "myself") {
+              res.redirect('/share-result-lateral-flow/v20/coronavirus-account')
+            } else {
+              res.redirect('/share-result-lateral-flow/v20/home-org-use')
+            }
+          })
+
 module.exports = router
