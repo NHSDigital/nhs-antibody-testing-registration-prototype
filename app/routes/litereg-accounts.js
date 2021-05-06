@@ -1294,7 +1294,7 @@ router.post('/share-result-lateral-flow/v19-2/action9/check-mobile', function (r
           router.post('/share-result-lateral-flow/v20/action9/whos-taking-the-test', function (req, res) {
             let person = req.session.data['whos-taking-the-test']
             if (person == "myself") {
-              res.redirect('/share-result-lateral-flow/v20/coronavirus-account')
+              res.redirect('/share-result-lateral-flow/v20/home-org-use')
             } else {
               res.redirect('/share-result-lateral-flow/v20/home-org-use')
             }
