@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/provider-list/v1/test-kit-type">Back</a>
+  <a class="govuk-back-link" href="/provider-list/v2/amber-or-green">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -37,51 +37,125 @@
             </h2>
           </div>
           <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
-            <div class="govuk-form-group">
-              <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
-                <legend class="govuk-fieldset__legend">
-                  Which types of waste do you transport?
-                </legend>
-                <div id="waste-hint" class="govuk-hint">
-                  Select all that apply.
-                </div>
-                <div class="govuk-checkboxes">
-                  <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
-                    <label class="govuk-label govuk-checkboxes__label" for="waste">
-                      Waste from animal carcasses
-                    </label>
+            <form action="/provider-list/v2/amber-list1" method="post">
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="filter-region">
+                  <legend class="govuk-fieldset__legend">
+                    By region:
+                  </legend>
+                  <div id="filter-region" class="govuk-hint">
+                    Select all that apply.
                   </div>
-                  <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
-                    <label class="govuk-label govuk-checkboxes__label" for="waste-2">
-                      Waste from mines or quarries
-                    </label>
+                  <div class="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region" name="region" type="checkbox" value="north-west">
+                      <label class="govuk-label govuk-checkboxes__label" for="region">
+                        North West
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-2" name="region" type="checkbox" value="north-east">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-2">
+                        North East
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-3" name="region" type="checkbox" value="west-midlands">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-3">
+                        West Midlands
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-4" name="region" type="checkbox" value="east-midlands">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-4">
+                        East Midlands
+                      </label>
+                    </div><div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-5" name="region" type="checkbox" value="east-of-england">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-5">
+                        East of England
+                      </label>
+                    </div><div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-6" name="region" type="checkbox" value="south-west">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-6">
+                        South West
+                      </label>
+                    </div><div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-7" name="region" type="checkbox" value="south-east">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-7">
+                        South East
+                      </label>
+                    </div><div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-8" name="region" type="checkbox" value="greater-london">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-8">
+                        Greater London
+                      </label>
+                    </div>
                   </div>
-                  <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-                    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-                      Farm or agricultural waste
-                    </label>
+                  <br> <br>
+                </fieldset>
+                <fieldset class="govuk-fieldset" aria-describedby="filter-kit">
+                  <legend class="govuk-fieldset__legend">
+                    By test kit type:
+                  </legend>
+                  <div id="filter-kit" class="govuk-hint">
+                    Select all that apply.
                   </div>
-                </div>
-            
-              </fieldset>
-            </div>
+                  <div class="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="kit-type" name="kit-type" type="checkbox" value="test-site-supervised">
+                      <label class="govuk-label govuk-checkboxes__label" for="kit-type">
+                        At a testing site (supervised)
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="kit-type-2" name="kit-type" type="checkbox" value="test-site-unsupervised">
+                      <label class="govuk-label govuk-checkboxes__label" for="kit-type-2">
+                        At a testing site (unsupervised)
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="kit-type-3" name="kit-type" type="checkbox" value="at-home-unsupervised">
+                      <label class="govuk-label govuk-checkboxes__label" for="kit-type-3">
+                        At home (unsupervised)
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+                <br><br>
+                <fieldset class="govuk-fieldset" aria-describedby="release-kit">
+                  <legend class="govuk-fieldset__legend">
+                    Test to release: (optional volutntary scheme in addition to day 2 and day 8 testing)
+                  </legend>
+                  <div class="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="release-kit" name="release-kit" type="checkbox" value="release kit">
+                      <label class="govuk-label govuk-checkboxes__label" for="release-kit">
+                        Test to release kits available
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <button class="govuk-button" data-module="govuk-button">Apply filters</button>
+            </form>
           </div>
         </div>
       </div>
-      <div class="govuk-form-group">
-        <label class="govuk-label" for="sort">
-          Sort by
-        </label>
-        <select class="govuk-select" id="sort" name="sort">
-          <option value="published">Recently published</option>
-          <option value="updated" selected>Recently updated</option>
-          <option value="views">Most views</option>
-          <option value="comments">Most comments</option>
-        </select>
-      </div>
+      <form action="/provider-list/v2/amber-list1" method="post">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="sort">
+            Sort by
+          </label>
+          <select class="govuk-select" id="sort" name="sort">
+            <option value="alphabetical">Provider name (A-Z)</option>
+            <option value="updated" selected>Price (low-high)</option>
+            <option value="views">Price (high-low)</option>
+            <option value="comments">Rating (high-low)</option>
+            <option value="comments">Fastest turnaround time</option>
+          </select>
+        </div>
+      </form>
       <table class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m">Test kit providers</caption>
         <thead class="govuk-table__head">
