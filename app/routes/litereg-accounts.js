@@ -49,6 +49,15 @@ router.post('/litereg-accounts/v1/action9/coronavirus-account', function (req, r
 
 // Version 1 - Lite Registration Accounts - enter barcode route
 
+router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
+  let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+  if (uniqueBarcode == "LAMP") {
+    res.redirect('/litereg-accounts/v1/which-university')
+  } else {
+    res.redirect('/litereg-accounts/v1/overseas-travel')
+  }
+})
+
 // router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
 //   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
 //   if (uniqueBarcode == "LHE00000501") {
