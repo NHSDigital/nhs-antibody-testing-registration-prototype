@@ -1,0 +1,45 @@
+{% set version = "v2" %}
+{% block pageTitle %}
+  COVID test providers
+{% endblock %}
+{% extends "includes/layout.html" %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="/provider-list/v2">Back</a>
+{% endblock %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+      <form action="/provider-list/{{version}}/amber-or-green" method="post">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Where are you arriving at in the UK?
+              </h1>
+            </legend>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="amber" name="trafficlight" type="radio" value="Amber" {{ checked("trafficlight", "Amber") }}>
+                <label class="govuk-label govuk-radios__label" for="amber">
+                  Amber
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="green" name="trafficlight" type="radio" value="Green" {{ checked("trafficlight", "Green") }}>
+                <label class="govuk-label govuk-radios__label" for="green">
+                  Green
+                </label>
+              </div>
+              <br>
+              <div>
+                <p>If you're not sure whether you have been to an amber or a green list country, <span><a href="#">check the list of Red, Amber and Green countries</a></span>
+                </p> 
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
