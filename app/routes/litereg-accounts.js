@@ -49,6 +49,15 @@ router.post('/litereg-accounts/v1/action9/coronavirus-account', function (req, r
 
 // Version 1 - Lite Registration Accounts - enter barcode route
 
+router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
+  let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+  if (uniqueBarcode == "LAMP") {
+    res.redirect('/litereg-accounts/v1/which-university')
+  } else {
+    res.redirect('/litereg-accounts/v1/overseas-travel')
+  }
+})
+
 // router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
 //   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
 //   if (uniqueBarcode == "LHE00000501") {
@@ -1287,5 +1296,17 @@ router.post('/share-result-lateral-flow/v19-2/action9/check-mobile', function (r
         res.redirect('/share-result-lateral-flow/v19-4/user-account/agreement')
       }
       })
+
+
+          // Version 20 - LDF self report accounts - Who's taking the test route
+
+          router.post('/share-result-lateral-flow/v20/action9/whos-taking-the-test', function (req, res) {
+            let person = req.session.data['whos-taking-the-test']
+            if (person == "myself") {
+              res.redirect('/share-result-lateral-flow/v20/home-org-use')
+            } else {
+              res.redirect('/share-result-lateral-flow/v20/home-org-use')
+            }
+          })
 
 module.exports = router
