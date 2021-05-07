@@ -1,0 +1,81 @@
+{% set version = "v1" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  
+  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/lot-references-summary">Back</a>
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom6">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test location
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['location-code'] or 'CU19' }}<br>
+            Coventry University - Students union
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lamp-test-return/{{version}}/location-code">
+              Change
+              <span class="govuk-visually-hidden">qr code</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test kit barcode reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['number-of-tests-1'] %}
+            {{ data['barcode-reference-1'] or 'X7772345' }}<br>
+            {% endif %}
+            {% if data['number-of-tests-2'] %}
+            {{ data['barcode-reference-2'] or 'X7772346' }}<br>
+            {% endif %}
+            {% if data['number-of-tests-3'] %}
+            {{ data['barcode-reference-3'] or 'X7772347' }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lamp-test-return/{{version}}/test-kits-summary">
+              Change
+              <span class="govuk-visually-hidden">lot reference</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <form action="/lamp-test-return/{{version}}/confirmation" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
