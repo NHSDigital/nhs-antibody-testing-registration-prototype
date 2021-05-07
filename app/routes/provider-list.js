@@ -61,4 +61,14 @@ router.post('/provider-list/v2/amber-or-green', function (req, res) {
   res.redirect('/provider-list/v2/green-list1')
 }) 
 
+// Provider list - route 4
+
+router.post('/provider-list/v2/green-list1', function (req,res) {
+  let greenFilter = req.session.data['region']
+if (greenFilter == "north-west"){
+  res.redirect('/provider-list/v2/green-list-filtered')
+}else
+  res.redirect('/provider-list/v2/green-list2')
+})
+
 module.exports = router
