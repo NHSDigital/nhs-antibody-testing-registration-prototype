@@ -1,0 +1,81 @@
+{% set version = "v1" %}
+{% set pageTitle = "What's your location code?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/lamp-test-return/{{version}}/">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/lamp-test-return/{{version}}/confirm-location" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="location-code-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+
+          <a href="/lamp-test-return/{{version}}/scan-location-code" role="button" draggable="false" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8 govuk-button--secondary" data-module="govuk-button">
+            Scan location code
+          </a>
+
+          <br>
+
+          <span id="location-code-hint" class="govuk-body">
+            The drop off location code will be either 3 or 4 characters.
+          </span>
+
+          <!-- <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                What does the LOT reference look like?
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <img src="/public/images/lot-reference.png" alt="barcode number" width="80%" />
+            </div>
+          </details> -->
+
+          <div class="govuk-form-group govuk-!-margin-top-4">
+            <label class="govuk-label" for="lot-reference-1">
+              LOT reference
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="location-code-1" name="location-code-1" type="text" value={{ data['location-code-1'] }}>
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="location-code-1-confirm">
+              Confirm LOT reference
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="location-code-1-confirm" name="location-code-1-confirm" type="text" value={{ data['location-code-1-confirm'] }}>
+          </div>
+
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
