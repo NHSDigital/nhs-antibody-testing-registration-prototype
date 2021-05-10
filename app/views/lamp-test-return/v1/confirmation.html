@@ -1,0 +1,54 @@
+{% set version = "v1" %}
+{% set pageTitle = "You can now drop your tests off" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-panel govuk-panel--confirmation govuk-!-padding-5 govuk-!-margin-bottom-8">
+        <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
+        <p class="govuk-body" style="color: #ffffff">
+          <strong>
+            Coventry University Students Union<br><br>
+            {% if data['number-of-tests-3'] %}
+            3x test kits
+            {% elseif data['number-of-tests-2'] %}
+            2x test kits
+            {% else %}
+            1x test kit
+            {% endif %}
+          </strong>
+        </p>
+      </div>
+
+      <p class="govuk-body">
+        The results will be sent to the contact details provided when the tests were registered. This should be in 2-3 days.
+      </p>
+
+        <form action="/lamp-test-return/{{version}}/" method="post">
+          <input class="govuk-input govuk-!-width-two-thirds" id="number-of-tests-1" name="number-of-tests-1" type="text" value="" style="display: none;">
+          <input class="govuk-input govuk-!-width-two-thirds" id="number-of-tests-2" name="number-of-tests-2" type="text" value="" style="display: none;">
+          <input class="govuk-input govuk-!-width-two-thirds" id="number-of-tests-3" name="number-of-tests-3" type="text" value="" style="display: none;">
+
+            <button class="govuk-button" data-module="govuk-button">Finish</button>
+        </form>
+      
+    </div>
+  </div>
+{% endblock %}
