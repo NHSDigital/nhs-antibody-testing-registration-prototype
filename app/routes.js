@@ -319,7 +319,7 @@ router.post('/antibody/v2/action2/nhs-number-known', function (req, res) {
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antibody/v2/global-registration/nhs-number')
   } else {
-    res.redirect('/antibody/v2/global-registration/check-your-answers')
+    res.redirect('/antibody/v2/global-registration/antibody-test')
   }
 
 })
@@ -2130,4 +2130,56 @@ router.post('/antibody/v7/action8/ethnic-group', function (req, res) {
 
 })
 
+// Antigen V2 - Antibody Test
+router.post('/antigen/v2/action2/antibody-test', function (req, res) {
+  let antibodyTest = req.session.data['antibody-test']
+
+  if (antibodyTest == "Yes"){
+    res.redirect('/antigen/v2/global-registration/fingerprick-test')
+  }
+  else  {
+    res.redirect('/antigen/v2/global-registration/cannot-get-test')
+  }
+})
+
+// Antigen V2 - Fingerprick Test
+router.post('/antigen/v2/action2/fingerprick-test', function (req, res) {
+  let fingerprickTest = req.session.data['fingerprick-test']
+
+  if (fingerprickTest == "Yes"){
+    res.redirect('/antigen/v2/global-registration/delivery-postcode')
+  }
+  else  {
+    res.redirect('/antigen/v2/global-registration/cannot-get-test')
+  }
+})
+
+
+// Antigen V2 - Antibody Test Person 1
+router.post('/antigen/v2/action2/antibody-test-person-1', function (req, res) {
+  let antibodyTestPersonOne = req.session.data['antibody-test-person-1']
+
+  if (antibodyTestPersonOne == "Yes"){
+    res.redirect('/antigen/v2/global-registration/fingerprick-test-person-1')
+  }
+  else  {
+    res.redirect('/antigen/v2/global-registration/cannot-get-test-person-1')
+  }
+})
+
+// Antigen V2 - Fingerprick Test Person 1
+router.post('/antigen/v2/action2/fingerprick-test-person-1', function (req, res) {
+  let fingerprickTestPersonOne = req.session.data['fingerprick-test-person-1']
+  let fingerprickTest = req.session.data['fingerprick-test']
+
+  if (fingerprickTestPersonOne == "Yes" && fingerprickTest == "Yes"){
+    res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
+  }
+  else if (fingerprickTestPersonOne == "Yes")  {
+    res.redirect('/antigen/v2/global-registration/delivery-postcode-person-1')
+  }
+  else {
+    res.redirect('/antigen/v2/global-registration/cannot-get-test-person-1')
+  }
+})
 module.exports = router

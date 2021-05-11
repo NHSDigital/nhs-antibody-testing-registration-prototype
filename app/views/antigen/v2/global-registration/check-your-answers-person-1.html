@@ -300,7 +300,7 @@
           <dd class="govuk-summary-list__value">No
           </dd>
           {% else %}
-          <dd class="govuk-summary-list__value">Yes, to 
+          <dd class="govuk-summary-list__value">Yes, to
             {{ data['country-autocomplete-person-1'] or 'Ireland' }}<br>
           </dd>
           {% endif %}
@@ -377,6 +377,65 @@
           </dd>
         </div>
         {% endif %}
+        </dl>
+        <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Antibody test details</h2>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Opt in
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['antibody-test-person-1'] == "Yes" %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/antibody-test-person-1">
+                Change
+                <span class="govuk-visually-hidden">antibody test</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Able to do test
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['fingerprick-test-person-1'] == "Yes" %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/fingerprick-tes-person-1t">
+                Change
+                <span class="govuk-visually-hidden">fingerprick test</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['fingerprick-test-person-1'] == "Yes" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Delivery address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['fingerprick-test-person-1'] == "Yes" %}
+              {{ data['delivery-address-person-1'] }}
+              {% else %}
+              No
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/delivery-address">
+                Change
+                <span class="govuk-visually-hidden">delivery address</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
         </dl>
 
       <form action="/antigen/{{version}}/global-registration/people-confirmed-person-1" method="post" novalidate>
