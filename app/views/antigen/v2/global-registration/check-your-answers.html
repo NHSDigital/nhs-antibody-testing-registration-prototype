@@ -400,6 +400,7 @@
               </a>
             </dd>
           </div>
+          {% if data['antibody-test'] == "Yes" %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Able to do test
@@ -424,11 +425,7 @@
               Delivery address
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['fingerprick-test'] == "Yes" %}
-              {{ data['delivery-address'] }}
-              {% else %}
-              No
-              {% endif %}
+              {{ data['delivery-address-postcode'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/antigen/{{version}}/global-registration/delivery-address">
@@ -437,6 +434,7 @@
               </a>
             </dd>
           </div>
+          {% endif %}
           {% endif %}
         </dl>
 
