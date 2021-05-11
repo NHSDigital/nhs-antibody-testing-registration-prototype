@@ -2169,13 +2169,14 @@ router.post('/antigen/v2/action2/antibody-test-person-1', function (req, res) {
 
 // Antigen V2 - Fingerprick Test Person 1
 router.post('/antigen/v2/action2/fingerprick-test-person-1', function (req, res) {
-  let fingerprickTestPersonOne = req.session.data['fingerprick-test-person-1']
-  let fingerprickTest = req.session.data['fingerprick-test']
+  let leadBookerAddress = req.session.data['delivery-address-antibody']
+  let leadBookerPostcode = req.session.data['delivery-address-postcode-manual-antibody']
+  let fingerprickTest = req.session.data['fingerprick-test-person-1']
 
-  if (fingerprickTestPersonOne == "Yes" && fingerprickTest == "Yes"){
+  if (fingerprickTest == "Yes" && leadBookerAddress || fingerprickTest == "Yes" && leadBookerPostcode){
     res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
   }
-  else if (fingerprickTestPersonOne == "Yes")  {
+  else if (fingerprickTest == "Yes")  {
     res.redirect('/antigen/v2/global-registration/delivery-postcode-person-1')
   }
   else {
