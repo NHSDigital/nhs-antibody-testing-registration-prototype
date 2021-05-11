@@ -2130,6 +2130,7 @@ router.post('/antibody/v7/action8/ethnic-group', function (req, res) {
 
 })
 
+<<<<<<< HEAD
 // Antigen V2 - Antibody Test
 router.post('/antigen/v2/action2/antibody-test', function (req, res) {
   let antibodyTest = req.session.data['antibody-test']
@@ -2206,4 +2207,6 @@ router.post('/antigen/v2/action2/nhs-number-known-person-1', function (req, res)
   }
 
 })
+=======
+>>>>>>> ef0225b294ec2246703db8e422b6312801d88bac
 module.exports = router
