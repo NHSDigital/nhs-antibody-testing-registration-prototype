@@ -319,7 +319,7 @@ router.post('/antibody/v2/action2/nhs-number-known', function (req, res) {
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antibody/v2/global-registration/nhs-number')
   } else {
-    res.redirect('/antibody/v2/global-registration/antibody-test')
+    res.redirect('/antibody/v2/global-registration/check-your-answers')
   }
 
 })
@@ -2181,5 +2181,29 @@ router.post('/antigen/v2/action2/fingerprick-test-person-1', function (req, res)
   else {
     res.redirect('/antigen/v2/global-registration/cannot-get-test-person-1')
   }
+})
+
+// Antigen V2 - NHS Number Known
+router.post('/antigen/v2/action2/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/antigen/v2/global-registration/nhs-number')
+  } else {
+    res.redirect('/antigen/v2/global-registration/antibody-test')
+  }
+
+})
+
+// Antigen V2 - NHS Number Known Person 1
+router.post('/antigen/v2/action2/nhs-number-known-person-1', function (req, res) {
+  let nhsNumberKnownPersonOne = req.session.data['nhs-number-known-person-1']
+
+  if (nhsNumberKnownPersonOne == "Yes"){
+    res.redirect('/antigen/v2/global-registration/nhs-number-person-1')
+  } else {
+    res.redirect('/antigen/v2/global-registration/antibody-test-person-1')
+  }
+
 })
 module.exports = router
