@@ -15,7 +15,11 @@
   </p>
 </div>
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/fingerprick-test-person-1">Back</a>
+{% if data['fingerprick-test-person-1'] == "No" and data['antibody-test-person-1'] == "Yes" %}
+<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/fingerprick-test-person-1">Back</a>
+{% elseif data['fingerprick-test-person-1'] == "No" and data['antibody-test-person-1'] == "No" or data['fingerprick-test-person-1'] == undefined and data['antibody-test-person-1'] == "No" %}
+<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/antibody-test-person-1">Back</a>
+{% endif %}
 
 {% endblock %}
 
