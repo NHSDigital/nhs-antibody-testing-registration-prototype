@@ -1,0 +1,44 @@
+{% set version = "v7" %}
+{% set pageTitle = "What is your NHS number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/order-test-kit/nhs-number-known">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antibody/{{version}}/order-test-kit/postcode" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="nhs-number-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="nhs-number-hint" class="govuk-body">
+            An NHS number is a 10 digit number, for example 867 406 5600.<br><br>
+            Enter this number with no spaces.
+          </span>
+          <div class="govuk-form-group govuk-!-margin-top-4">
+            <label class="govuk-label" for="nhs-number">
+              NHS number
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="nhs-number" name="nhs-number" type="text" value="{{ data['nhs-number'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

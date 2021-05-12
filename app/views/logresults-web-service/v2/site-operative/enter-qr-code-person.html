@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Enter the person's QR code manually" %}
+{% set pageTitle = "Enter collect code reference manually" %}
 
 {% extends "includes/layout.html" %}
 
@@ -23,33 +23,43 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
   
-      <form action="/logresults-web-service/{{version}}/site-operative/lot-reference" method="post">
+      <form action="/logresults-web-service/{{version}}/site-operative/action13/confirm-collect-code" method="post">
   
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
+          <fieldset class="govuk-fieldset" aria-describedby="confirm-collect-code-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
                 {{ pageTitle }}
               </h1>
             </legend>
+            <span id="confirm-collect-code-hint" class="govuk-body">
+              You’ll find the person’s collect code reference under the collect code.
+            </span>
 
-            <a href="/logresults-web-service/{{version}}/site-operative/qr-code-person" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-              Scan QR code
-            </a>
-  
+            <div class="govuk-!-width-two-thirds govuk-!-margin-top-6 govuk-!-margin-bottom-4" style="display: flex; justify-content:flex-start; flex-direction: column; align-items: center;">
+              <img src="/public/images/qr-collect.png" alt="barcode number" width="40%" />
+              <p class="govuk-body govuk-!-margin-top-3">Collect code reference: 12653234356</p>
+            </div>
+            
             <div class="govuk-form-group">
               <label class="govuk-label" for="qr-code-person-1">
-                Enter QR code
+                Enter collect code reference
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="qr-code-person-1" name="qr-code-person-1" type="text" value={{ data['qr-code-person-1'] }}>
             </div>
 
-            <div class="govuk-form-group">
+            <div class="govuk-form-group govuk-!-margin-bottom-6">
               <label class="govuk-label" for="qr-code-person-1-confirm">
-                Confirm QR code
+                Confirm collect code reference
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="qr-code-person-1-confirm" name="qr-code-person-1-confirm" type="text" value={{ data['qr-code-person-1-confirm'] }}>
             </div>
+
+            <p class="govuk-body govuk-!-margin-top-4">
+              <a href="/logresults-web-service/{{version}}/site-operative/qr-code-person" draggable="false" class="govuk-link govuk-!-margin-top-2 govuk-!-margin-bottom-8">
+                Scan the collect code
+              </a>
+            </p>
             
           </fieldset>
         </div>

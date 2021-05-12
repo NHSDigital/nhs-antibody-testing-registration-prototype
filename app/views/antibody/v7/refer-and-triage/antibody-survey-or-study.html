@@ -1,0 +1,53 @@
+{% set version = "v7" %}
+{% set pageTitle = "Are you taking part in an antibody survey or study?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/mobile-number">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antibody/{{version}}/action7/antibody-survey-or-study" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="antibody-survey-or-study-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="antibody-survey-or-study-hint" class="govuk-body">
+             For example, the CASS or SIREN study or the COVID Symptom Study app (by ZOE).
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-4">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="antibody-survey-or-study-1" name="antibody-survey-or-study" type="radio" value="Yes" {{ checked("antibody-survey-or-study", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="antibody-survey-or-study-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="antibody-survey-or-study-2" name="antibody-survey-or-study" type="radio" value="No" {{ checked("antibody-survey-or-study", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="antibody-survey-or-study-2">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

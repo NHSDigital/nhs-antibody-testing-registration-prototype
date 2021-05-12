@@ -1,0 +1,92 @@
+{% set version = "v7" %}
+{% set pageTitle = "Are you OK doing a fingerprick blood test at home?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antibody/{{version}}/action4/fingerprick-test" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="fingerprick-test-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="fingerprick-test-hint" class="govuk-hint">
+            The kit contains step-by-step instructions and a fingerprick tool (you will not see any needle). Ask a friend or family member to help if you want.
+            </span>
+            <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                Do not do this test if you take anticoagulants ('blood thinning' medicines) or you have a blood clotting disorder such as haemophilia.
+              </strong>
+            </div>
+            <span id="fingerprick-test-hint" class="govuk-hint">
+            Watch how to collect your blood sample:
+            </span>
+            <div class="govuk-!-margin-bottom-5 videoWrapper">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/zCqo7MhQT6U" frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Video transcript: What is a fingerprick test
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+
+              </div>
+            </details>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="fingerprick-test-1" name="fingerprick-test" type="radio" value="Yes, I'm OK doing this" {{ checked("fingerprick-test", "Yes, I'm OK doing this") }}>
+                <label class="govuk-label govuk-radios__label" for="fingerprick-test-1">
+                  Yes, I'm OK doing this
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="fingerprick-test-2" name="fingerprick-test" type="radio" value="No, I am not OK doing this" {{ checked("fingerprick-test", "No, I am not OK doing this") }}>
+                <label class="govuk-label govuk-radios__label" for="fingerprick-test-2">
+                  No, I am not OK doing this
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <style media="screen">
+    .videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+  </style>
+
+{% endblock %}

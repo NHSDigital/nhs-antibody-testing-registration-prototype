@@ -27,21 +27,18 @@
     <form action="/antigen/{{version}}/global-registration/nhs-number-known" method="post">
 
       <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-            {{ pageTitle }}
-          </h1>
-        </legend>
-
-          <span id="post-code-hint" class="govuk-body">
-            This will help us find and update their GP record with their test result.<br><br>
-            The test does not have to be sent to this address.
-          </span>
-
-          <div class="govuk-!-margin-top-6">
 
           <div id="content-1">
-            <div class="govuk-form-group">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                Enter the postcode registered with the person's GP
+              </h1>
+            </legend>
+    
+              <span id="post-code-hint" class="govuk-body">
+                This will help us find and update the GP record with their test result.
+              </span>
+            <div class="govuk-form-group govuk-!-margin-top-6">
               <label class="govuk-label govuk-!-margin-bottom-3" for="gp-postcode" style="line-height: 0.8;">
                 <strong>Postcode</strong>
               </label>
@@ -50,11 +47,21 @@
           </div>
 
           <div id="content-2" style="display: none;">
-            <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                Select the address registered with the person's GP
+              </h1>
+            </legend>
+    
+              <span id="post-code-hint" class="govuk-body">
+                This will help us find and update the GP record with their test result.<br><br>
+                If you cannot find the address in the list, select "I cannot find the address" and enter it manually.
+              </span>
+            <p class="govuk-!-margin-bottom-6 govuk-!-margin-top-6" style="line-height: 0.8;">
               <strong>Postcode</strong><br><br>
               {{ data['gp-postcode'] | default('LS1 3BE') }}
               <a href="/antigen/{{version}}/global-registration/address-option-2" class="govuk-!-margin-left-5">
-                Change
+                <strong>Change</strong>
                 <span class="govuk-visually-hidden">your postcode</span>
               </a>
             </p>
@@ -72,19 +79,25 @@
               </select>
             </div>
             <p class="govuk-body">
-              <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">I can't find my address in the list</a>
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">I cannot find my address in the list</a>
             </p>
           </div>
 
           <div id="content-3" style="display: none;">
-            <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                Enter the address registered with the person's GP
+              </h1>
+            </legend>
+    
+            <!-- <p class="govuk-!-margin-bottom-6 govuk-!-margin-top-6" style="line-height: 0.8;">
               <strong>Postcode</strong><br><br>
               {{ data['gp-postcode'] | default('LS1 3BE') }}
               <a href="/antigen/{{version}}/global-registration/address-option-2" class="govuk-!-margin-left-5">
-                Change
+                <strong>Change</strong>
                 <span class="govuk-visually-hidden">your postcode</span>
               </a>
-            </p>
+            </p> -->
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="address-line-1-gp">
@@ -106,9 +119,14 @@
               </label>
               <input class="govuk-input govuk-!-width-one-third" id="address-town-gp" name="address-town-gp" type="text" autocomplete="address-level2-gp" value="{{ data['address-town-gp'] }}">
             </div>
-          </div>
 
-        </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="gp-postcode-manual">
+                <strong>Postcode</strong>
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="gp-postcode-manual" name="gp-postcode-manual" type="text" autocomplete="postal-code" value="{{ data['gp-postcode-manual'] }}">
+            </div>
+          </div>
 
         </fieldset>
 

@@ -1,10 +1,10 @@
 {% set version = "v1" %}
-{% set pageTitle = "Did you travel to any countries outside of the UK and Ireland within the last 14 days?" %}
+{% set pageTitle = "Did you travel to any countries outside of the UK and Ireland within the last 10 days?" %}
 
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-<div class="govuk-phase-banner">
+  <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
         alpha
@@ -15,10 +15,8 @@
     </p>
   </div>
 
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/enter-barcode">Back</a>
+
 {% endblock %}
 
 {% block content %}
@@ -31,38 +29,38 @@
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-                            {% if data['whos-taking-the-test'] == "someone-else" %}
-                            Did {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} travel to any countries outside of the UK and Ireland within the last 14 days?
-                            {% else %}
-                            {{ pageTitle }}
-                            {% endif %}
-                        </h1>
+                      <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                        {% if data['whos-taking-the-test'] == "someone-else" %}
+                        Did they travel to any countries outside of the UK and Ireland within the last 10 days?
+                        {% else %}
+                        {{ pageTitle }}
+                        {% endif %}
+                      </h1>
                     </legend>
                     <span id="travelled-overseas-hint" class="govuk-body">
-                        This will help us test the vaccine against different forms of coronavirus from different countries.<br><br> 
-                      </span>
+                      This will help us test the vaccine against variants of coronavirus from different countries.<br><br>
+                    </span>
 
-                    <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+                    <div class="govuk-radios govuk-!-margin-top-5" data-module="govuk-radios">
 
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="have-you-travelled-overseas-1" name="have-you-travelled-overseas" data-aria-controls="conditional-have-you-travelled-overseas-1" type="radio" value="Yes" {{ checked("have-you-travelled-overseas", "Yes") }}>
+                            <input class="govuk-radios__input" id="have-you-travelled-overseas-1" name="have-you-travelled-overseas" type="radio" value="Yes" {{ checked("have-you-travelled-overseas", "Yes") }}>
                             <label class="govuk-label govuk-radios__label" for="have-you-travelled-overseas-1">
                               {% if data['whos-taking-the-test'] == "someone-else" %}
                               Yes, they travelled overseas
                               {% else %}
                               Yes, I travelled overseas
-                              {% endif %}   
+                              {% endif %}
                             </label>
                         </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="have-you-travelled-overseas-2" name="have-you-travelled-overseas" type="radio" value="No" {{ checked("have-you-travelled-overseas", "No") }}>
-                            <label class="govuk-label govuk-radios__label" for="v-2">
+                            <label class="govuk-label govuk-radios__label" for="have-you-travelled-overseas-2">
                               {% if data['whos-taking-the-test'] == "someone-else" %}
                               No, they did not travel overseas
                               {% else %}
                               No, I did not travel overseas
-                              {% endif %}   
+                              {% endif %}
                             </label>
                         </div>
                     </div>

@@ -1,0 +1,55 @@
+{% set version = "v7" %}
+{% set pageTitle = "Place your order" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/order-test-kit/check-your-answers-option-2">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-0">{{ pageTitle }}</h1>
+      <hr class="govuk-section-break govuk-!-margin-top-5 govuk-section-break--xl govuk-section-break--visible">
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          By ordering a test kit, I confirm that:
+        </strong>
+      </div>
+
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+        <li>The information I've provided is up to date and correct</li>
+        <li>I agree with the <a href="#">Terms and Conditions (opens in new tab)</a> and <a href="#">Privacy Policy (opens in new tab)</a> of this service</li>
+        <li>I am happy for my data to be used for health research</li>
+        <li>I am happy to be contacted about my order</li>
+      </ul>
+
+      <form action="/antibody/{{version}}/order-test-kit/antibody-test" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          I agree to the checks, place my order
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action big">
+  <a href="/antibody/{{version}}/order-test-kit/check-your-answers">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
+  </a>
+</div>
+{% endblock %}

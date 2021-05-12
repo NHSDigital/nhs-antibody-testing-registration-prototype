@@ -1,0 +1,66 @@
+{% set version = "v2" %}
+{% set pageTitle = "What's the LOT reference?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['lot-reference-1'] %}
+<a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/enter-lot-reference">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/lot-reference">Back</a>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/logresults-web-service/{{version}}/site-operative/action13/lot-reference-same" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="lot-reference-hint lot-reference-2-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+              Is the LOT reference {{ data['transaction-count'] or 'XF1289347' }}?
+            </h1>
+          </legend>
+
+          <div class="govuk-radios govuk-!-margin-top-5">
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="lot-reference-same-1" name="lot-reference-same" type="radio" value="Yes" {{ checked("lot-reference-same", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="lot-reference-same-1">
+                    Yes
+                </label>
+            </div>
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="lot-reference-same-2" name="lot-reference-same" type="radio" value="No" {{ checked("lot-reference-same", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="lot-reference-same-2">
+                    No
+                </label>
+            </div>
+          </div>
+          
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

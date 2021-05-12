@@ -1,0 +1,413 @@
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  COVID test providers
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/provider-list/v2/amber-or-green">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <h1 class="govuk-heading-xl">Providers of day 2 and day 8 coronavirus testing for international arrivals</h1>
+      
+      <p>You will be travelling into England from a country on the <span><strong>AMBER</strong></span> list. This means:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>you must have a <span><strong>negative test</strong></span> within 72 hours prior to travelling</li>
+          <li>you must take a test <span><strong>on or before day 2</strong></span> for variant surveillance and a test <span><strong>on or after day 8</strong></span> to check that you do not have COVID-19</li>
+          <li>you must book your day 2 test <span><strong>before travelling</strong></span></li>
+          <li>you are required to <span><strong>quarantine for 10 days</strong></span> in your own accommodation</li>
+        </ul>
+
+        <hr class="govuk-section-break govuk-section-break--visible">
+        
+      <div class="govuk-inset-text">
+        Prices shown in this list are indicative based on the standard testing service. COVID test providers may offer discounts or partnerships with travel providers. Check with directly with providers for details.
+      </div>
+      <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+        <div class="govuk-accordion__section ">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                Filter results
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+            <form action="/provider-list/v2/amber-list1" method="post">
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="filter-region">
+                  <legend class="govuk-fieldset__legend">
+                    By region:
+                  </legend>
+                  <div id="filter-region" class="govuk-hint">
+                    Select all that apply.
+                  </div>
+                  <div class="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region" name="region" type="checkbox" value="north-west">
+                      <label class="govuk-label govuk-checkboxes__label" for="region">
+                        North West
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-2" name="region" type="checkbox" value="north-east">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-2">
+                        North East
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-3" name="region" type="checkbox" value="west-midlands">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-3">
+                        West Midlands
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-4" name="region" type="checkbox" value="east-midlands">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-4">
+                        East Midlands
+                      </label>
+                    </div><div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-5" name="region" type="checkbox" value="east-of-england">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-5">
+                        East of England
+                      </label>
+                    </div><div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-6" name="region" type="checkbox" value="south-west">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-6">
+                        South West
+                      </label>
+                    </div><div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-7" name="region" type="checkbox" value="south-east">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-7">
+                        South East
+                      </label>
+                    </div><div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="region-8" name="region" type="checkbox" value="greater-london">
+                      <label class="govuk-label govuk-checkboxes__label" for="region-8">
+                        Greater London
+                      </label>
+                    </div>
+                  </div>
+                  <br> <br>
+                </fieldset>
+                <fieldset class="govuk-fieldset" aria-describedby="filter-kit">
+                  <legend class="govuk-fieldset__legend">
+                    By test kit type:
+                  </legend>
+                  <div id="filter-kit" class="govuk-hint">
+                    Select all that apply.
+                  </div>
+                  <div class="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="kit-type" name="kit-type" type="checkbox" value="test-site-supervised">
+                      <label class="govuk-label govuk-checkboxes__label" for="kit-type">
+                        At a testing site (supervised)
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="kit-type-2" name="kit-type" type="checkbox" value="test-site-unsupervised">
+                      <label class="govuk-label govuk-checkboxes__label" for="kit-type-2">
+                        At a testing site (unsupervised)
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="kit-type-3" name="kit-type" type="checkbox" value="at-home-unsupervised">
+                      <label class="govuk-label govuk-checkboxes__label" for="kit-type-3">
+                        At home (unsupervised)
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+                <br><br>
+                <fieldset class="govuk-fieldset" aria-describedby="release-kit">
+                  <legend class="govuk-fieldset__legend">
+                    Test to release: (optional, voluntary scheme in addition to day 2 and day 8 testing)
+                  </legend>
+                  <div class="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="release-kit" name="release-kit" type="checkbox" value="release kit">
+                      <label class="govuk-label govuk-checkboxes__label" for="release-kit">
+                        Test to release kits available
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+                <br>
+                <a href='#'>What is test to release? (opens in a new tab)</a>
+              </div>
+              <button class="govuk-button" data-module="govuk-button">Apply filters</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <form action="/provider-list/v2/amber-list1" method="post">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="sort">
+            Sort by
+          </label>
+          <select class="govuk-select" id="sort" name="sort">
+            <option value="alphabetical">Provider name (A-Z)</option>
+            <option value="updated" selected>Price (low-high)</option>
+            <option value="views">Price (high-low)</option>
+            <option value="comments">Rating (high-low)</option>
+            <option value="comments">Fastest turnaround time</option>
+          </select>
+        </div>
+      </form>
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Test kit providers</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Name of provider</th>
+            <th scope="col" class="govuk-table__header govuk-table__header  govuk-table__header--numeric">Price (indicative)</th>
+            <th scope="col" class="govuk-table__header govuk-table__header  govuk-table__header--numeric">Rating</th>
+            <th scope="col" class="govuk-table__header govuk-table__header  govuk-table__header--numeric">Turnaround time (hours)</th>
+            <th scope="col" class="govuk-table__header">Contact telephone</th>
+            <th scope="col" class="govuk-table__header">Email address</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">1 Health Hub Ltd, partnered with 20/30 Labs</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£350.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.2/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)1865 423 425</td>
+            <td class="govuk-table__cell">info@mayfieldclinic.co.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">100 Covid Clear, partnered with Yourgene and Salient Bio</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£190.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2.5/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)121 704 2669</td>
+            <td class="govuk-table__cell">administrator@mums.me.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">101 Testing, partnered wiith Nonacus</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£180.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">72</td>
+            <td class="govuk-table__cell">44 (0)1582 249 216</td>
+            <td class="govuk-table__cell">info@fusion-radiology.com</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">20/30 Labs, partnered with Nonacus</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£170.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">36</td>
+            <td class="govuk-table__cell">44 (0)121 314 0789</td>
+            <td class="govuk-table__cell">info@fakirchemist.co.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">258 Postal Testing By Racoo Screening Ltd, partnered with Oncologica and Randox</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£290.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4.9/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">24</td>
+            <td class="govuk-table__cell">44 (0)20 7531 7120</td>
+            <td class="govuk-table__cell">city@samedaydoctor.co.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">AccendoLAB Ltd, partnered with Oncologica</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£200.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.2/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)203 405 0860</td>
+            <td class="govuk-table__cell">info@northwayclinic.co.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Acethetix TA testing services, partnered with Nationwide Pathology</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£210.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">36</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">1214pharmacyltd@gmail.com</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Advisa medica, partnered with Nationwide Pathology</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£170.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4.8/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">24</td>
+            <td class="govuk-table__cell">44 (0)20 3637 0384</td>
+            <td class="govuk-table__cell">cs@medicinesonline.org.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Avante Health Ltd, partnered with Oncologica and 20/30 Labs and Salient Bio</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£210.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">36</td>
+            <td class="govuk-table__cell">44 (0)1753 847 663</td>
+            <td class="govuk-table__cell">hello@worldtravelclinic.co.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">B Pharma Ltd, partnered with BioGrad</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£260.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4.9/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)20 7935 1000</td>
+            <td class="govuk-table__cell">info@thelondongeneralpractice.com</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Better2Know, partnered with Nationwide Pathology</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£210.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">24</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">covid@linburydoctors.co.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">BioGrad Diagnostic Laboratories Ltd</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£180.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.2/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">36</td>
+            <td class="govuk-table__cell">44 (0)208 908 1960</td>
+            <td class="govuk-table__cell">covid@optipharm.co.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Brunswick Hygiene Ltd, partnered with Nonacus</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£110.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+          </tr>          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Centennial Medical Care, partnered with Nationwide</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£250.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.2/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)1865 423 425</td>
+            <td class="govuk-table__cell">info@mayfieldclinic.co.uk</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">CHB Medical Limited, partnered with BioGrad</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£180.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2.5/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)121 704 2669</td>
+            <td class="govuk-table__cell">administrator@mums.me.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Church Pharmacy, partnered with Nonacus</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£180.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">72</td>
+            <td class="govuk-table__cell">44 (0)1582 249 216</td>
+            <td class="govuk-table__cell">info@fusion-radiology.com</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Circular1 Health Ltd</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£170.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">36</td>
+            <td class="govuk-table__cell">44 (0)121 314 0789</td>
+            <td class="govuk-table__cell">info@fakirchemist.co.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">CityDoc Medical Limited, partnered with Yourgene, Salient Bio, Randox and Oncologica</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£290.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4.9/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">24</td>
+            <td class="govuk-table__cell">44 (0)20 7531 7120</td>
+            <td class="govuk-table__cell">city@samedaydoctor.co.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Clinicare UK, partnered with Nonacus</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£200.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.2/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)203 405 0860</td>
+            <td class="govuk-table__cell">info@northwayclinic.co.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Coker Chest Clinic, partnered with Oncologica</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£210.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">36</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">1214pharmacyltd@gmail.com</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Collingwood Health Ltd, partnered with Nonacus</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£170.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4.8/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">24</td>
+            <td class="govuk-table__cell">44 (0)20 3637 0384</td>
+            <td class="govuk-table__cell">cs@medicinesonline.org.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Collinson, partnered with AlphaBioLabs, Circular 1 Health, Ignomix and Oncologica</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£210.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">36</td>
+            <td class="govuk-table__cell">44 (0)1753 847 663</td>
+            <td class="govuk-table__cell">hello@worldtravelclinic.co.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Concepto Clinic, partnered with Oncologica</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£260.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4.9/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)20 7935 1000</td>
+            <td class="govuk-table__cell">info@thelondongeneralpractice.com</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Confirm Testing, partnered with Oncologica</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£210.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">24</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">covid@linburydoctors.co.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Consultant Clinic, partnered with BioGrad</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£180.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.2/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">36</td>
+            <td class="govuk-table__cell">44 (0)208 908 1960</td>
+            <td class="govuk-table__cell">covid@optipharm.co.uk</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Cov19care Ltd, partnered with Oncologica</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£120.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">CovClinics, partnered with BioGrad</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£120.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">CovGuard, partnered with Nonacus</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£170.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Covid Clear, partnered with Yourgene and Salient Bio</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£160.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Covid Home Test, partnered with Oncologica</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£140.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Covid Smart Ltd, partnered with BioGrad and Randox</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£160.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Covid-19 Testing at Work, partnered with Salient Bio</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£200.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+          </tr><tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">CTM, administering NHS Test and Trace tests</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£170.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3.4/5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">48</td>
+            <td class="govuk-table__cell">44 (0)20 3301 1100</td>
+            <td class="govuk-table__cell">hello@testingforall.org</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    
+  </div>
+{% endblock %}

@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Where should the test kits be sent?" %}
+{% set pageTitle = "Enter the postcode where the test kits should be sent" %}
 
 {% extends "includes/layout.html" %}
 
@@ -27,13 +27,13 @@
     <form action="/antigen/{{version}}/order-home-test-kit/confirm-email-address" method="post">
 
       <fieldset class="govuk-fieldset">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-            {{ pageTitle }}
-          </h1>
-        </legend>
 
           <div id="content-1">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                Enter the postcode where the PCR test kits should be sent
+              </h1>
+            </legend>
             <div class="govuk-form-group">
               <label class="govuk-label govuk-!-margin-bottom-3" for="delivery-address-postcode" style="line-height: 0.8;">
                 <strong>Postcode</strong>
@@ -43,11 +43,16 @@
           </div>
 
           <div id="content-2" style="display: none;">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                Select the address where the PCR test kits should be sent
+              </h1>
+            </legend>
             <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
               <strong>Postcode</strong><br><br>
               {{ data['delivery-address-postcode'] | default('LS1 3BE') }}
-              <a href="/antigen/{{version}}/order-home-test-kit/delivery-postcode-option-2" class="govuk-!-margin-left-5">
-                Change
+              <a href="/antigen/{{version}}/order-home-test-kit/delivery-postcode" class="govuk-!-margin-left-5">
+                <strong>Change</strong>
                 <span class="govuk-visually-hidden">your postcode</span>
               </a>
             </p>
@@ -65,19 +70,24 @@
               </select>
             </div>
             <p class="govuk-body">
-              <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">I can't find my address in the list</a>
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">I cannot find my address in the list</a>
             </p>
           </div>
 
           <div id="content-3" style="display: none;">
-            <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                Enter the address where the PCR test kits should be sent
+              </h1>
+            </legend>
+            <!-- <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
               <strong>Postcode</strong><br><br>
               {{ data['delivery-address-postcode'] | default('LS1 3BE') }}
               <a href="/antigen/{{version}}/order-home-test-kit/delivery-postcode-option-2" class="govuk-!-margin-left-5">
-                Change
+                <strong>Change</strong>
                 <span class="govuk-visually-hidden">your postcode</span>
               </a>
-            </p>
+            </p> -->
             <div class="govuk-form-group">
               <label class="govuk-label" for="delivery-address-line-1">
                 <strong>Building and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>
@@ -97,6 +107,13 @@
                 <strong>Town or city</strong>
               </label>
               <input class="govuk-input govuk-!-width-one-third" id="delivery-address-town" name="delivery-address-town" type="text" autocomplete="address-level2-delivery" value="{{ data['delivery-address-town'] }}">
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="delivery-address-postcode-manual">
+                <strong>Postcode</strong>
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode-manual" name="delivery-address-postcode-manual" type="text" autocomplete="postal-code" value="{{ data['delivery-address-postcode-manual'] }}">
             </div>
           </div>
 

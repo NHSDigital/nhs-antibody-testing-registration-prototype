@@ -35,22 +35,21 @@
 
         <div id="content-1">
           <span id="post-code-hint" class="govuk-body">
-            This will help us find and update their GP record with their test result.<br>
-            The test does not have to be sent to this address.<br><br>
-            <strong>
-            {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
-              {{ data['home-address'] }}
-            {% else %}
-              {{ data['address-line-1'] or '5 Souterhead Road'}}, 
-                {% if data['address-line-2'] %}
-                  {{ data['address-line-2'] }}, 
-                {% endif %}
-                {% if data['address-town'] %}
-                  {{ data['address-town'] }},
-                {% endif %}
-              {{ data['home-postcode'] or 'LS1 3BE' }}
-            {% endif %}
-            </strong>
+            <strong class="govuk-!-font-size-24">
+              {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
+                {{ data['home-address'] }}
+              {% else %}
+                {{ data['address-line-1'] or '5 Souterhead Road'}}, 
+                  {% if data['address-line-2'] %}
+                    {{ data['address-line-2'] }}, 
+                  {% endif %}
+                  {% if data['address-town'] %}
+                    {{ data['address-town'] }},
+                  {% endif %}
+                {{ data['home-postcode'] or 'LS1 3BE' }}
+              {% endif %}
+            </strong><br><br>
+            This will help us find and update the GP record with their test results.
           </span>
           <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">
             <div class="govuk-radios__item">

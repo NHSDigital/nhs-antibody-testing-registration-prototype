@@ -51,14 +51,23 @@ router.post('/litereg-accounts/v1/action9/coronavirus-account', function (req, r
 
 router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
-  if (uniqueBarcode == "LHE00000501") {
-    res.redirect('/litereg-accounts/v1/site-id')
-  } else if (uniqueBarcode == "COE00000501") {
-    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+  if (uniqueBarcode == "LAMP") {
+    res.redirect('/litereg-accounts/v1/which-university')
   } else {
-    res.redirect('/litereg-accounts/v1/quarantine-question')
+    res.redirect('/litereg-accounts/v1/overseas-travel')
   }
 })
+
+// router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
+//   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+//   if (uniqueBarcode == "LHE00000501") {
+//     res.redirect('/litereg-accounts/v1/site-id')
+//   } else if (uniqueBarcode == "COE00000501") {
+//     res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+//   } else {
+//     res.redirect('/litereg-accounts/v1/quarantine-question')
+//   }
+// })
 
 // Version 1 - Lite Registration Accounts - Test date route
 
@@ -79,19 +88,47 @@ router.post('/litereg-accounts/v1/action9/do-you-have-symptoms', function (req, 
   if (symptoms == "Yes") {
     res.redirect('/litereg-accounts/v1/when-did-symptoms-start')
   } else {
-    res.redirect('/litereg-accounts/v1/check-your-answers')
+    res.redirect('/litereg-accounts/v1/previous-infection')
   }
 
 })
 
   // Version 2 - Lite Registration Accounts - Overseas travel route
 
-  router.post('/litereg-accounts/v2/action9/overseas-travel', function (req, res) {
-    let overseasTravel = req.session.data['travelled-overseas']
+  // router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
+  //   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+  //   if (uniqueBarcode == "LHE00000501") {
+  //     res.redirect('/litereg-accounts/v1/site-id')
+  //   } else if (uniqueBarcode == "COE00000501") {
+  //     res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+  //   } else {
+  //     res.redirect('/litereg-accounts/v1/test-place')
+  //   }
+  // })
+
+  router.post('/litereg-accounts/v1/action9/overseas-travel', function (req, res) {
+    let overseasTravel = req.session.data['have-you-travelled-overseas']
+    let uniqueBarcode = req.session.data['kit-barcode-reference-1']
     if (overseasTravel == "Yes") {
-      res.redirect('/litereg-accounts/v2/travelled-to')
+      res.redirect('/litereg-accounts/v1/travel-route')
+    } else if (uniqueBarcode == "LHE00000501") {
+      res.redirect('/litereg-accounts/v1/site-id')
+    } else if (uniqueBarcode == "COE00000501") {
+      res.redirect('/litereg-accounts/v1/royal-mail-barcode')
     } else {
-      res.redirect('/litereg-accounts/v2/previous-infection')
+      res.redirect('/litereg-accounts/v1/test-place')
+    }
+
+  })
+
+  router.post('/litereg-accounts/v1/action9/travelled-to', function (req, res) {
+    let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+    if (uniqueBarcode == "LHE00000501") {
+      res.redirect('/litereg-accounts/v1/site-id')
+    } else if (uniqueBarcode == "COE00000501") {
+      res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+    } else {
+      res.redirect('/litereg-accounts/v1/test-place')
     }
 
   })
@@ -989,6 +1026,41 @@ router.post('/share-result-lateral-flow/v17/action9/check-mobile', function (req
   }
   })
 
+
+  // Version 17.1 - LDF self report accounts - Who's taking the test route
+
+  router.post('/share-result-lateral-flow/v17-1/action9/whos-taking-the-test', function (req, res) {
+    let person = req.session.data['whos-taking-the-test']
+    if (person == "myself") {
+      res.redirect('/share-result-lateral-flow/v17-1/coronavirus-account')
+    } else {
+      res.redirect('/share-result-lateral-flow/v17-1/country')
+    }
+  })
+
+  // Version 17.1 - LDF self report accounts - Create password route
+
+  router.post('/share-result-lateral-flow/v17-1/action9/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/share-result-lateral-flow/v17-1/user-account/create-password-error')
+  } else {
+    res.redirect('/share-result-lateral-flow/v17-1/user-account/check-email')
+  }
+  })
+
+  // Version 17.1 - LDF self report accounts - check mobile route
+  router.post('/share-result-lateral-flow/v17-1/action9/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/share-result-lateral-flow/v17-1/user-account/check-mobile-error')
+  } else {
+    res.redirect('/share-result-lateral-flow/v17-1/user-account/agreement')
+  }
+  })
+
+
   // Version 18 - LDF self report accounts - Who's taking the test route
 
   router.post('/share-result-lateral-flow/v18/action9/whos-taking-the-test', function (req, res) {
@@ -1054,5 +1126,187 @@ router.post('/share-result-lateral-flow/v18-1/action9/check-mobile', function (r
     res.redirect('/share-result-lateral-flow/v18-1/user-account/agreement')
   }
   })
+
+
+  // Version 19 - LDF self report accounts - Who's taking the test route
+
+  router.post('/share-result-lateral-flow/v19/action9/whos-taking-the-test', function (req, res) {
+    let person = req.session.data['whos-taking-the-test']
+    if (person == "myself") {
+      res.redirect('/share-result-lateral-flow/v19/coronavirus-account')
+    } else {
+      res.redirect('/share-result-lateral-flow/v19/home-org-use')
+    }
+  })
+
+  // Version 19 - LDF self report accounts - Create password route
+
+router.post('/share-result-lateral-flow/v19/action9/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/share-result-lateral-flow/v19/user-account/create-password-error')
+  } else {
+    res.redirect('/share-result-lateral-flow/v19/user-account/check-email')
+  }
+  })
+
+// Version 19 - LDF self report accounts - check mobile route
+router.post('/share-result-lateral-flow/v19/action9/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/share-result-lateral-flow/v19/user-account/check-mobile-error')
+  } else {
+    res.redirect('/share-result-lateral-flow/v19/user-account/agreement')
+  }
+  })
+
+
+  // Version 19.1 - LDF self report accounts - Who's taking the test route
+
+  router.post('/share-result-lateral-flow/v19-1/action9/whos-taking-the-test', function (req, res) {
+    let person = req.session.data['whos-taking-the-test']
+    if (person == "myself") {
+      res.redirect('/share-result-lateral-flow/v19-1/coronavirus-account')
+    } else {
+      res.redirect('/share-result-lateral-flow/v19-1/home-org-use')
+    }
+  })
+
+  // Version 19.1 - LDF self report accounts - Create password route
+
+router.post('/share-result-lateral-flow/v19-1/action9/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/share-result-lateral-flow/v19-1/user-account/create-password-error')
+  } else {
+    res.redirect('/share-result-lateral-flow/v19-1/user-account/check-email')
+  }
+  })
+
+// Version 19.1 - LDF self report accounts - check mobile route
+router.post('/share-result-lateral-flow/v19-1/action9/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/share-result-lateral-flow/v19-1/user-account/check-mobile-error')
+  } else {
+    res.redirect('/share-result-lateral-flow/v19-1/user-account/agreement')
+  }
+  })
+
+  // Version 19.2 - LDF self report accounts - Who's taking the test route
+
+  router.post('/share-result-lateral-flow/v19-2/action9/whos-taking-the-test', function (req, res) {
+    let person = req.session.data['whos-taking-the-test']
+    if (person == "myself") {
+      res.redirect('/share-result-lateral-flow/v19-2/coronavirus-account')
+    } else {
+      res.redirect('/share-result-lateral-flow/v19-2/home-org-use')
+    }
+  })
+
+  // Version 19.2 - LDF self report accounts - Create password route
+
+router.post('/share-result-lateral-flow/v19-2/action9/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/share-result-lateral-flow/v19-2/user-account/create-password-error')
+  } else {
+    res.redirect('/share-result-lateral-flow/v19-2/user-account/check-email')
+  }
+  })
+
+// Version 19.2 - LDF self report accounts - check mobile route
+router.post('/share-result-lateral-flow/v19-2/action9/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/share-result-lateral-flow/v19-2/user-account/check-mobile-error')
+  } else {
+    res.redirect('/share-result-lateral-flow/v19-2/user-account/agreement')
+  }
+  })
+
+
+  // Version 19.3 - LDF self report accounts - Who's taking the test route
+
+    router.post('/share-result-lateral-flow/v19-3/action9/whos-taking-the-test', function (req, res) {
+      let person = req.session.data['whos-taking-the-test']
+      if (person == "myself") {
+        res.redirect('/share-result-lateral-flow/v19-3/coronavirus-account')
+      } else {
+        res.redirect('/share-result-lateral-flow/v19-3/home-org-use')
+      }
+    })
+
+    // Version 19.3 - LDF self report accounts - Create password route
+
+  router.post('/share-result-lateral-flow/v19-3/action9/create-password', function (req, res) {
+    let password = req.session.data['password']
+    let confirmPassword = req.session.data['confirm-password']
+    if (password == "" || confirmPassword == "") {
+      res.redirect('/share-result-lateral-flow/v19-3/user-account/create-password-error')
+    } else {
+      res.redirect('/share-result-lateral-flow/v19-3/user-account/check-email')
+    }
+    })
+
+  // Version 19.3 - LDF self report accounts - check mobile route
+
+  router.post('/share-result-lateral-flow/v19-3/action9/check-mobile', function (req, res) {
+    let securityCode = req.session.data['security-code']
+    if (securityCode == "") {
+      res.redirect('/share-result-lateral-flow/v19-3/user-account/check-mobile-error')
+    } else {
+      res.redirect('/share-result-lateral-flow/v19-3/user-account/agreement')
+    }
+    })
+
+    // Version 19.4 - LDF self report accounts - Who's taking the test route
+
+      router.post('/share-result-lateral-flow/v19-4/action9/whos-taking-the-test', function (req, res) {
+        let person = req.session.data['whos-taking-the-test']
+        if (person == "myself") {
+          res.redirect('/share-result-lateral-flow/v19-4/coronavirus-account')
+        } else {
+          res.redirect('/share-result-lateral-flow/v19-4/home-org-use')
+        }
+      })
+
+      // Version 19.4 - LDF self report accounts - Create password route
+
+    router.post('/share-result-lateral-flow/v19-4/action9/create-password', function (req, res) {
+      let password = req.session.data['password']
+      let confirmPassword = req.session.data['confirm-password']
+      if (password == "" || confirmPassword == "") {
+        res.redirect('/share-result-lateral-flow/v19-4/user-account/create-password-error')
+      } else {
+        res.redirect('/share-result-lateral-flow/v19-4/user-account/check-email')
+      }
+      })
+
+    // Version 19.4 - LDF self report accounts - check mobile route
+
+    router.post('/share-result-lateral-flow/v19-4/action9/check-mobile', function (req, res) {
+      let securityCode = req.session.data['security-code']
+      if (securityCode == "") {
+        res.redirect('/share-result-lateral-flow/v19-4/user-account/check-mobile-error')
+      } else {
+        res.redirect('/share-result-lateral-flow/v19-4/user-account/agreement')
+      }
+      })
+
+
+          // Version 20 - LDF self report accounts - Who's taking the test route
+
+          router.post('/share-result-lateral-flow/v20/action9/whos-taking-the-test', function (req, res) {
+            let person = req.session.data['whos-taking-the-test']
+            if (person == "myself") {
+              res.redirect('/share-result-lateral-flow/v20/home-org-use')
+            } else {
+              res.redirect('/share-result-lateral-flow/v20/home-org-use')
+            }
+          })
 
 module.exports = router

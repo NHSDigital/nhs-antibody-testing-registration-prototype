@@ -1,25 +1,21 @@
-<div class="govuk-panel govuk-panel--confirmation govuk-panel-lft-result">
-   <h1 class="govuk-panel__title">
-     {% if data['whos-taking-the-test'] == "someone-else" %}
-     {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s coronavirus test result is negative
-     {% else %}
-     Your coronavirus test result is negative
-     {% endif %}
-   </h1>
-   <div class="govuk-panel__body">
-     {% if data['whos-taking-the-test'] == "someone-else" %}
-     It’s likely they were not infectious when the test was done
-     {% else %}
-     It’s likely you were not infectious when the test was done
-     {% endif %}
-   </div>
-</div>
+    <div class="govuk-panel govuk-panel--confirmation govuk-panel-lft-result">
+       <h1 class="govuk-panel__title">
+         The coronavirus test result is negative
+       </h1>
+       <div class="govuk-panel__body">
+         {% if data['whos-taking-the-test'] == "someone-else" %}
+         It’s likely {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} was not infectious when the test was done
+         {% else %}
+         It’s likely you were not infectious when the test was done
+         {% endif %}
+       </div>
+    </div>
 
 <div>
 <br><p class="govuk-body">This result has been reported to the NHS.</p>
 
   {% if data['whos-taking-the-test'] == "someone-else" %}
-  <h2 class="govuk-heading-m">What {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} needs to know</h2>
+  <h2 class="govuk-heading-m">What they need to know</h2>
   {% else %}
   <h2 class="govuk-heading-m">What you need to know</h2>
   {% endif %}
@@ -59,7 +55,7 @@
  <br>
 
  <div class="govuk-inset-text">
-  <a href="contest-negative">I think the service incorrectly read my result</a>
+  <a href="contest-negative">I think the service incorrectly read the result</a>
 </div>
 
  <h3 class="govuk-heading-m">Help and advice</h3>

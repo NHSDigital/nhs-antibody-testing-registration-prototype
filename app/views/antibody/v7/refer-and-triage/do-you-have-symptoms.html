@@ -1,0 +1,59 @@
+{% set version = "v7" %}
+{% set pageTitle = "Do you currently have coronavirus symptoms?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/fingerprick-test">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antibody/{{version}}/action7/do-you-have-symptoms" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="symptoms-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="symptoms-hint" class="">
+              <p class="govuk-body">The main symptoms of coronavirus are:</p>
+              <ul class="govuk-list govuk-list--bullet">
+              <li>a high temperature</li>
+                <li>new, continuous cough</li>
+                <li>loss or change to your sense of smell or taste</li>
+              </ul>
+              <p class="govuk-body">Most people with coronavirus have at least one of these symptoms.</p>
+            </span>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="do-you-have-symptoms-1" name="do-you-have-symptoms" type="radio" value="Yes" {{ checked("do-you-have-symptoms", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1">
+                  Yes, I currently have at least one of these symptoms
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="do-you-have-symptoms-2" name="do-you-have-symptoms" type="radio" value="No" {{ checked("do-you-have-symptoms", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2">
+                  No, I currently do not have any of these symptoms
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% set version = "v7" %}
+{% set pageTitle = "Are you currently in work?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+
+  {% if data['antibody-survey-or-study'] == "Yes" %}
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/participant-id">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/antibody/{{version}}/refer-and-triage/antibody-survey-or-study">Back</a>
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antibody/{{version}}/action7/currently-in-work" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="currently-in-work-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="currently-in-work-hint" class="govuk-body">
+              This will help us understand how coronavirus is affecting people in different industries.<br><br>
+              This means if you're in work at the moment, not on leave of absense (for example, on maternity or paternity leave, sick leave or furlough).
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="currently-in-work-1" name="currently-in-work" type="radio" value="Yes and I work from home" {{ checked("currently-in-work", "Yes and I work from home") }}>
+                <label class="govuk-label govuk-radios__label" for="currently-in-work-1">
+                  Yes and I work from home
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="currently-in-work-2" name="currently-in-work" type="radio" value="Yes and I travel to work" {{ checked("currently-in-work", "Yes and I travel to work") }}>
+                <label class="govuk-label govuk-radios__label" for="currently-in-work-2">
+                  Yes and I travel to work
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="currently-in-work-3" name="currently-in-work" type="radio" value="No" {{ checked("currently-in-work", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="currently-in-work-3">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

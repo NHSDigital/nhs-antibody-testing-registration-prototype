@@ -1,0 +1,61 @@
+{% set version = "v7" %}
+{% set pageTitle = "What is your delivery address?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antibody/{{version}}/order-test-kit/delivery-postcode">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antibody/{{version}}/order-test-kit/ethnic-group" method="post">
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-5">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+
+          <p>
+            Postcode<br><br>
+            <strong>{{ data['delivery-address-postcode'] | default('LS1 3BE') }}</strong>
+            <a href="/antibody/{{version}}/order-test-kit/delivery-postcode" class="govuk-!-margin-left-5">
+              Change
+              <span class="govuk-visually-hidden">your postcode</span>
+            </a>
+          </p>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="delivery-address">
+              <strong class="govuk-!-font-size-24">Address</strong>
+            </label>
+            <select class="govuk-select" id="delivery-address" name="delivery-address">
+              <option>5 addresses found</option>
+              <option value="1 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}">1 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}</option>
+              <option value="2 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}">2 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}</option>
+              <option value="3 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}">3 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}</option>
+              <option value="4 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}">4 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}</option>
+              <option value="5 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}">5 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}</option>
+            </select>
+          </div>
+
+        </fieldset>
+
+        <p class="govuk-body"><a href="/antibody/{{version}}/order-test-kit/delivery-address-manual">I can't find my address on the list</a></p>
+
+        <button class="govuk-button" type="submit" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

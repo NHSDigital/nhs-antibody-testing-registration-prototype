@@ -1,0 +1,100 @@
+{% set version = "v2" %}
+{% set pageTitle = "Are you OK doing a fingerprick blood test at home?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/antibody-test">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antigen/{{version}}/action2/fingerprick-test" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="fingerprick-test-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="fingerprick-test-hint" class="govuk-body">
+            You can ask a friend or relative to help if you want.<br><br>
+            The kit contains step-by-step instructions and a fingerprick tool (you will not see a needle).
+            </span><br><br>
+            <span id="fingerprick-test-hint" class="govuk-body">
+            Watch how to collect your blood sample:
+            </span>
+            <div class="govuk-!-margin-bottom-5 govuk-!-margin-top-4 videoWrapper">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/okTozcGMDlU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Video transcript: What is a fingerprick test
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body">
+                  There are a few things you need to do to prepare before doing your test, like drinking lots of water, soaking your hand in warm water and exercising if safe to do so.<br><br>
+                  Next, you'll use a lancet to prick the corner of your fingertip. It's only a small prick and you won't see any of the needle.<br><br>
+                  You'll then massage your hand, and fill your tube to the 600 line. Then you'll put the cap on and slowly turn the tube upside down.<br><br>
+                  Finally, you'll label your tube, package everything up and pop it in a postbox.
+                </p>
+              </div>
+              <div class="govuk-details__text">
+
+              </div>
+            </details>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="fingerprick-test-1" name="fingerprick-test" type="radio" value="Yes" {{ checked("fingerprick-test", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="fingerprick-test-1">
+                  Yes, I'm OK doing this
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="fingerprick-test-2" name="fingerprick-test" type="radio" value="No" {{ checked("fingerprick-test", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="fingerprick-test-2">
+                  No, I am not OK doing this
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            Do not do this test if you take anticoagulants ('blood thinning' medicines) or you have a blood clotting disorder such as haemophilia.
+          </strong>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <style media="screen">
+    .videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+  </style>
+
+{% endblock %}

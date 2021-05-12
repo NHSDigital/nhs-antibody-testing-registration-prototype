@@ -29,15 +29,13 @@
       <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-            Is this the home address registered with {{ data['first-name-person-1'] | default('Jane') }} {{ data['last-name-person-1'] | default('Wilson') }}'s GP?
+            Is this the address registered with {{ data['first-name-person-1'] | default('Jane') }} {{ data['last-name-person-1'] | default('Wilson') }}'s GP?
           </h1>
         </legend>
 
         <div id="content-1">
           <span id="post-code-hint" class="govuk-body">
-            This will help us find and update their GP record with their test result.<br>
-            The test does not have to be sent to this address.<br><br>
-            <strong>
+            <strong class="govuk-!-font-size-24">
               {% if data['gp-address-same'] !== "No" %}
                 {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
                   {{ data['home-address'] }}
@@ -49,7 +47,7 @@
                     {% if data['address-town'] %}
                       {{ data['address-town'] }},
                     {% endif %}
-                  {{ data['home-postcode'] or 'LS1 3BE' }}
+                  {{ data['home-postcode-manual'] or 'LS1 3BE' }}
                 {% endif %}
               {% else %}
                 {% if data['gp-address'] and data['gp-address'] !== "5 addresses found" %}
@@ -62,10 +60,11 @@
                     {% if data['address-town-gp'] %}
                       {{ data['address-town-gp'] }},
                     {% endif %}
-                  {{ data['gp-postcode'] or 'LS1 3BE' }}
+                  {{ data['gp-postcode-manual'] or 'LS1 3BE' }}
                 {% endif %}
             {% endif %}
-            </strong>
+            </strong><br><br>
+            This will help us find and update the GP record with their test results.
           </span>
           <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">
             <div class="govuk-radios__item">
