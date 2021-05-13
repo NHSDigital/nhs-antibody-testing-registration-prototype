@@ -1,0 +1,198 @@
+{% set version = "v2" %}
+{% set pageTitle = "Enter the person's collect code manually" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/logresults-web-service/{{version}}/site-operative/qr-code-person">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+  
+      <form action="/logresults-web-service/{{version}}/site-operative/action13/confirm-collect-code" method="post">
+  
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="confirm-collect-code-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="confirm-collect-code-hint" class="govuk-body">
+              The collect code is an x digit code which the person will either have in an email or text message.
+            </span>
+
+            <p class="govuk-body govuk-!-margin-top-4 govuk-!-margin-bottom-6">
+              <a href="/logresults-web-service/{{version}}/site-operative/qr-code-person" draggable="false" class="govuk-link govuk-!-margin-top-2">
+                Scan the collect code
+              </a>
+            </p>
+            
+<!-- 
+            <div class="govuk-!-width-two-thirds govuk-!-margin-top-6 govuk-!-margin-bottom-4" style="display: flex; justify-content:flex-start; flex-direction: column; align-items: center;">
+              <img src="/public/images/qr-collect.png" alt="barcode number" width="40%" />
+              <p class="govuk-body govuk-!-margin-top-3">Collect code reference: 12653234356</p>
+            </div> -->
+            
+            
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="qr-code-1-person-1">
+                Enter collect code
+              </label>
+              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-1-person-1" name="qr-code-1-person-1" type="text" autofocus value={{ data['qr-code-1-person-1'] }}>
+              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-2-person-1" name="qr-code-2-person-1" type="text" value={{ data['qr-code-2-person-1'] }}>
+              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-3-person-1" name="qr-code-3-person-1" type="text" value={{ data['qr-code-3-person-1'] }}>
+              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-4-person-1" name="qr-code-4-person-1" type="text" value={{ data['qr-code-4-person-1'] }}>
+              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-5-person-1" name="qr-code-5-person-1" type="text" value={{ data['qr-code-5-person-1'] }}>
+            </div>
+
+            <div class="govuk-form-group govuk-!-margin-bottom-6">
+              <label class="govuk-label" for="qr-code-person-1-confirm">
+                Confirm collect code
+              </label>
+              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-1-person-1-confirm" name="qr-code-1-person-1-confirm" type="text" autofocus value={{ data['qr-code-1-person-1-confirm'] }}>
+            </div>
+            
+          </fieldset>
+        </div>
+  
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+  
+      </form>
+  
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var interval1 = setInterval(lookForInputChange1, 200);
+
+    function lookForInputChange1()
+      {
+        console.log('first')
+          var inputChange = document.getElementById("qr-code-1-person-1").value;
+          var nextInput = document.getElementById("qr-code-2-person-1");
+          if (inputChange.length === 4) {
+              console.log('it is 4 from func 1')
+              nextInput.focus()
+              lookForInputChange2()
+              clearInterval(interval1)
+          } else {
+            console.log('less than 4 from func 1')
+          }
+      }
+
+      function lookForInputChange2()
+      {
+        var interval2 = setInterval(function() {
+          console.log('second')
+          var inputChange = document.getElementById("qr-code-2-person-1").value;
+          var nextInput = document.getElementById("qr-code-3-person-1");
+          if (inputChange.length === 4) {
+              console.log('it is 4 from func 2')
+              nextInput.focus()
+              lookForInputChange3()
+              clearInterval(interval2)
+          } else {
+            console.log('less than 4 from func 2')
+          }
+        }, 200);
+        
+      }
+
+      function lookForInputChange3()
+      {
+        var interval3 = setInterval(function() {
+        console.log('third')
+          var inputChange = document.getElementById("qr-code-3-person-1").value;
+          var nextInput = document.getElementById("qr-code-4-person-1");
+          if (inputChange.length === 4) {
+              console.log('it is 4 from func 3')
+              nextInput.focus()
+              var interval4 = setInterval(lookForInputChange4, 200);
+              clearInterval(interval3)
+          } else {
+            console.log('less than 4 from func 3')
+          }
+        }, 200);
+      }
+
+      function lookForInputChange4()
+      {
+        var interval4 = setInterval(function() {
+        console.log('fourth')
+          var inputChange = document.getElementById("qr-code-4-person-1").value;
+          var nextInput = document.getElementById("qr-code-5-person-1");
+          if (inputChange.length === 4) {
+              console.log('it is 4 from func 4')
+              nextInput.focus()
+              var interval5 = setInterval(lookForInputChange5, 200);
+              clearInterval(interval4)
+          } else {
+            console.log('less than 4 from func 4')
+          }
+        }, 200);
+      }
+
+      function lookForInputChange5()
+      {
+        var interval5 = setInterval(function() {
+        console.log('fifth')
+          var inputChange = document.getElementById("qr-code-5-person-1").value;
+          var input = document.getElementById("qr-code-5-person-1");
+          if (inputChange.length === 4) {
+              console.log('it is 4 from func 5')
+              // input.blur()
+              clearInterval(interval5)
+          } else {
+            console.log('less than 4 from func 5')
+          }
+        }, 200);
+      }
+
+      // function lookForInputChange6()
+      // {
+      //   var interval6 = setInterval(function() {
+      //   console.log('sixth')
+      //     var inputChange = document.getElementById("qr-code-1-person-1-confirm").value;
+      //     var nextInput = document.getElementById("qr-code-2-person-1-confirm");
+      //     if (inputChange.length === 4) {
+      //         console.log('it is 4 from func 6')
+      //         nextInput.focus()
+      //         var interval7 = setInterval(lookForInputChange7, 200);
+      //         clearInterval(interval6)
+      //     } else {
+      //       console.log('less than 4 from func 6')
+      //     }
+      //   }, 200);
+      // }
+
+      // function lookForInputChange7()
+      // {
+      //   var interval7 = setInterval(function() {
+      //     clearInterval(interval7)
+      //   }, 200);
+      // }
+  
+  </script>  
+
+<div class="proto-action big" style="bottom: 130px;">
+  <a href="/logresults-web-service/{{version}}/site-operative/enter-qr-code-person">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
+  </a>
+</div>
+
+{% endblock %}
