@@ -1,49 +1,82 @@
 {% set version = "v1" %}
-{% set pageTitle = "Check your mobile phone" %}
+{% set pageTitle = "Text message" %}
 
-<!DOCTYPE html>
-<!-- [if lt IE 9]><html class="ie8" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if gt IE 9]><html lang="en" style="{{ html_style }}"> -->
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-
-    <title>{% block pageTitle %}{{pageTitle}} - NHS.UK{% endblock %}</title>
-
-    <link href="https://www.nhs.uk/" rel="preconnect">
-    <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin>
-
-    <link href="/public/stylesheets/nhs_application.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="/public/stylesheets/nhsuk-site.css" media="all" rel="stylesheet" type="text/css" />
-
-    <!-- <script src="nhsuk.min.js" defer></script> -->
-  </head>
-
-  <body class="{{ bodyClasses }}" style="background-color: black ;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-size: 20px;
-  font-weight: normal;
-  margin: 50px auto;
-  display: flex;
-  flex-direction: column;">
-
-    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+{% extends "includes/layout.html" %}
 
 
+{% block header %}
 
-    {% block main %}
+{% endblock %}
 
+{% block content %}
 
+  <style>
+    body {
+      background-color: #f3f2f1 !important;
+      -webkit-text-size-adjust: 100%;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: normal;
+      margin: 50px auto;
+      display: flex;
+      flex-direction: column;
+    }
 
-      <div style="background-color: #eaeaea; border-radius: 10px; width: 60%; position: absolute; left: 20%; top: 15%; padding: 40px; padding-bottom: 0px">
+    .app-text-message {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 320px;
+      min-height: 420px;
+    }
+
+    .app-text-message__text {
+      max-width: 255px;
+      word-wrap: break-word;
+      margin-bottom: 12px;
+      line-height: 24px;
+      position:relative;
+      padding:10px 20px;
+      border-radius:25px;
+      background:#E5E5EA;
+      color:black;
+      
+      &:before, &:after {
+        content:"";
+        position:absolute;
+        bottom:-2px;
+        height:20px;
+      }
+
+       &:before {
+        left:-7px;
+        border-left:20px solid #E5E5EA;
+        border-bottom-right-radius: 16px 14px;
+        transform:translate(0, -2px);
+      }
+
+      &:after {
+        left:4px;
+        width:26px;
+        background:white;
+        border-bottom-right-radius: 10px;
+        transform:translate(-30px, -2px);
+      }
+    }
+    </style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h1 class="govuk-heading-l">Text message</h1>
+
+      <div class="app-text-message">
         <p>
           Dear Pete Boam<br>
           Date of birth: 19 July 1976<br><br>
 
           Here is your collect code:<br><br>
 
-          NYX7  CT5Z   8VF7  7FW4<br><br>
+          <span class="govuk-!-margin-right-2">NYX7</span><span class="govuk-!-margin-right-2">CT5Z</span><span class="govuk-!-margin-right-2">8VF7</span><span>7FW4</span><br><br>
 
           Show this code at a collection point to pick up your test packs.<br><br>
 
@@ -59,19 +92,19 @@
         </p>
       </div>
 
-
-
-    {% endblock %}
-
-  </body>
-
-  {% block bodyEnd %}
-  <div style="background-color: #ffeb3b; height: 35px; width: 114px; position: absolute; right: 0; display: flex; align-items: center; box-shadow: -7px -7px 12px -7px rgba(0, 0, 0, 0.85)">
-    <a style="font-weight: bold; text-decoration: none; outline: none; background-color: none" href="../../share-result-lateral-flow/v17/">
-      <div class="proto-action-text govuk-!-margin-left-3" style="font-size: 1rem">Report results</div>
-    </a>
+    </div>
   </div>
-  {% endblock %}
 
+{% endblock %}
 
-</html>
+{% block footer %}
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action big" style="height: auto">
+  <a href="../../share-result-lateral-flow/v17/">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Report results</div>
+  </a>
+</div>
+{% endblock %}
