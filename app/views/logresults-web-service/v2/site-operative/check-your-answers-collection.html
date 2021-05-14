@@ -28,10 +28,14 @@
       <dl class="govuk-summary-list govuk-!-margin-bottom6">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            QR code
+            Collect code
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['qr-code-person-1'] or 'ABCD1234' }}
+            {% if data['qr-code-person-1'] %}
+            {{ data['qr-code-person-1'] or 'NYX7 CT5Z 8VF7 7FW4' }}
+            {% else %}
+            <span class="govuk-!-margin-right-2">{{ data['qr-code-1-person-1'] or 'NYX7' }}</span><span class="govuk-!-margin-right-2">{{ data['qr-code-2-person-1'] or 'CT5Z' }}</span><span class="govuk-!-margin-right-2">{{ data['qr-code-3-person-1'] or '8VF7' }}</span><span>{{ data['qr-code-4-person-1'] or '7FW4' }}</span>
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/logresults-web-service/{{version}}/site-operative/edit-answers/qr-code-person">

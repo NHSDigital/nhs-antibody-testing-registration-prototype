@@ -52,20 +52,20 @@
               <label class="govuk-label" for="qr-code-person-1">
                 Enter collect code
               </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="qr-code-person-1" name="qr-code-person-1" type="text" autofocus value={{ data['qr-code-person-1'] }}>
+              <input maxlength="25" class="govuk-input govuk-!-width-two-thirds" id="qr-code-person-1" name="qr-code-person-1" type="text" autofocus value={{ data['qr-code-person-1'] }}>
             </div>
 
             <div class="govuk-form-group govuk-!-margin-bottom-6">
               <label class="govuk-label" for="qr-code-person-1-confirm">
                 Confirm collect code
               </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="qr-code-person-1-confirm" name="qr-code-person-1-confirm" type="text" value={{ data['qr-code-person-1-confirm'] }}>
+              <input maxlength="25" class="govuk-input govuk-!-width-two-thirds" id="qr-code-person-1-confirm" name="qr-code-person-1-confirm" type="text" value={{ data['qr-code-person-1-confirm'] }}>
             </div>
             
           </fieldset>
         </div>
   
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <button class="govuk-button" data-module="govuk-button" id="continue-button">Continue</button>
   
       </form>
   
@@ -73,46 +73,42 @@
   </div>
 
   <script type="text/javascript">
-    submitEvent()
-  
-    function selectInput(target) {
-      setTimeout(function () {
-        document.getElementById('home-address').focus()
-      }, 100)
-    }
-  
-    // function buttonClicked2(target) {
-    //   setTimeout(function () {
-    //     document.getElementById('home-address').value = '5 addresses found'
-    //     document.getElementById('content-2').style.display = 'none'
-    //     document.getElementById('content-3').style.display = 'block'
-    //     document.getElementById('home-postcode').focus()
-    //   }, 100)
-    // }
-  
-    function submitEvent() {
-      var input = document.getElementById('qr-code-person-1')
-      var inputConfirmation = document.getElementById('qr-code-person-1-confirm')
-      input.addEventListener('onChange', function (event) {
-        event.preventDefault()
-        if (input.value.length === 4) {
-          event.preventDefault()
-          selectInput(input)
-        } else {
-          event.preventDefault()
-          inputChanged(input)
-        }
-      })
-      // selectedLink.addEventListener('click', function (event) {
-      //   event.preventDefault()
-      //   if (selectedLink.getAttribute('disabled') === 'disabled') {
-      //   } else {
-      //     event.preventDefault()
-      //     buttonClicked2(selectedLink)
-      //   }
-      // })
-      
-    }
+  lookForInputChange1()
+
+  function lookForInputChange1() {
+    var interval1 = setInterval(function() {
+      let inputValue = document.getElementById("qr-code-person-1").value;
+      if (inputValue.length === 4) {
+        document.getElementById("qr-code-person-1").value = inputValue + "   "
+      } else if (inputValue.length === 11) {
+        document.getElementById("qr-code-person-1").value = inputValue + "   "
+      } else if (inputValue.length === 18) {
+        document.getElementById("qr-code-person-1").value = inputValue + "   "
+      } else if (inputValue.length === 25) {
+        var nextInput = document.getElementById("qr-code-person-1-confirm");
+        nextInput.focus()
+        clearInterval(interval1)
+        lookForInputChange2()
+      }
+    }, 200); 
+  }
+
+  function lookForInputChange2() {
+    var interval2 = setInterval(function() {
+      let inputValue = document.getElementById("qr-code-person-1-confirm").value;
+      if (inputValue.length === 4) {
+        document.getElementById("qr-code-person-1-confirm").value = inputValue + "   "
+      } else if (inputValue.length === 11) {
+        document.getElementById("qr-code-person-1-confirm").value = inputValue + "   "
+      } else if (inputValue.length === 18) {
+        document.getElementById("qr-code-person-1-confirm").value = inputValue + "   "
+      } else if (inputValue.length === 25) {
+        var nextElem = document.getElementById("continue-button");
+        nextElem.focus()
+        clearInterval(interval2)
+      }
+    }, 200); 
+  }
   
   </script>  
 
