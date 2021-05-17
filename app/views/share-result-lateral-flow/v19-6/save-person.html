@@ -1,5 +1,5 @@
 {% set version = "v19-6" %}
-{% set pageTitle = "Do you want to save their details to your household?" %}
+{% set pageTitle = "Do you want to save their details to your account?" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -31,30 +31,36 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                Do you want to save {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s to your household?
+                Do you want to save {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s to your account?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
               </h1>
             </legend>
               <span id="nhs-number-hint" class="govuk-body">
-                If this person is part of your household, you can save their details to your Test and Trace account. This makes reporting future test results quicker and easier.
+                If they’re part of your household, you can save their details to your account. This makes reporting future test results quicker and easier.
               </span>
               <br>
               <br>
             <div class="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }}>
-                <label class="govuk-label govuk-radios__label" for="country-1">
-                  Yes
-                </label>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="Scotland" {{ checked("country", "Scotland") }}>
-                <label class="govuk-label govuk-radios__label" for="country-4">
-                  No
-                </label>
-              </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="yes" name="coronavirus-account-v2" type="radio">
+                  <label class="govuk-label govuk-radios__label" for="yes">
+                    <strong>Yes</strong>
+                    <span id="sign-in-item-hint" class="govuk-hint" style="color: #000000;">
+                      I want to save this person's details and have permission.
+                    </span>
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="no" name="coronavirus-account-v2" type="radio">
+                  <label class="govuk-label govuk-radios__label" for="no">
+                    <strong>No</strong>
+                    <span id="sign-in-item-hint" class="govuk-hint" style="color: #000000;">
+                      I do not want to save their details to my account
+                    </span>
+                  </label>
+                </div>
             </div>
           </fieldset>
         </div>
