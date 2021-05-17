@@ -2185,13 +2185,13 @@ router.post('/antigen/v2/action2/fingerprick-test-person-1', function (req, res)
 })
 
 // Antigen V2 - NHS Number Known
-router.post('/antigen/v2/action2/nhs-number-known', function (req, res) {
+router.post('/antigen/v2/action4/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
 
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antigen/v2/global-registration/nhs-number')
   } else {
-    res.redirect('/antigen/v2/global-registration/antibody-test')
+    res.redirect('/antigen/v2/global-registration/check-your-answers')
   }
 
 })
@@ -2203,9 +2203,8 @@ router.post('/antigen/v2/action2/nhs-number-known-person-1', function (req, res)
   if (nhsNumberKnownPersonOne == "Yes"){
     res.redirect('/antigen/v2/global-registration/nhs-number-person-1')
   } else {
-    res.redirect('/antigen/v2/global-registration/antibody-test-person-1')
+    res.redirect('/antigen/v2/global-registration/check-your-answers')
   }
 
 })
-
 module.exports = router
