@@ -2169,18 +2169,14 @@ router.post('/antigen/v2/action2/antibody-test-person-1', function (req, res) {
 })
 
 // Antigen V2 - Fingerprick Test Person 1
-router.post('/antigen/v2/action2/fingerprick-test-person-1', function (req, res) {
+router.post('/antigen/v2/action6/fingerprick-test-person-1', function (req, res) {
   let fingerprickTestPersonOne = req.session.data['fingerprick-test-person-1']
-  let fingerprickTest = req.session.data['fingerprick-test']
 
-  if (fingerprickTestPersonOne == "Yes" && fingerprickTest == "Yes"){
-    res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
-  }
-  else if (fingerprickTestPersonOne == "Yes")  {
-    res.redirect('/antigen/v2/global-registration/delivery-postcode-person-1')
+  if (fingerprickTestPersonOne == "None of these"){
+    res.redirect('/antigen/v2/global-registration/fingerprick-test-person-1-error')
   }
   else {
-    res.redirect('/antigen/v2/global-registration/cannot-get-test-person-1')
+    res.redirect('/antigen/v2/global-registration/delivery-address-person-1')
   }
 })
 
@@ -2204,6 +2200,30 @@ router.post('/antigen/v2/action2/nhs-number-known-person-1', function (req, res)
     res.redirect('/antigen/v2/global-registration/nhs-number-person-1')
   } else {
     res.redirect('/antigen/v2/global-registration/check-your-answers')
+  }
+
+})
+
+// Antigen V2 - Delivery Address
+router.post('/antigen/v2/action2/delivery-address', function (req, res) {
+  let deliveryAddress = req.session.data['delivery-address']
+
+  if (deliveryAddress == "Yes"){
+    res.redirect('/antigen/v2/global-registration/antibody-test-confirmation')
+  } else {
+    res.redirect('/antigen/v2/global-registration/delivery-postcode')
+  }
+
+})
+
+// Antigen V2 - Delivery Address Person 1
+router.post('/antigen/v2/action2/delivery-address-person-1', function (req, res) {
+  let deliveryAddressPersonOne = req.session.data['delivery-address-person-1']
+
+  if (deliveryAddressPersonOne == "Yes"){
+    res.redirect('/antigen/v2/global-registration/antibody-test-confirmation')
+  } else {
+    res.redirect('/antigen/v2/global-registration/delivery-postcode-person-1')
   }
 
 })
