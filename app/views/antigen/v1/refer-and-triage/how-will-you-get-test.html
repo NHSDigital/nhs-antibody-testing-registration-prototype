@@ -17,7 +17,7 @@
 {% endblock %}
 
 {% block content %}
-{% include "includes/gtm-noscript.html" %}
+  {% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -25,7 +25,7 @@
       <form action="/antigen/{{version}}/action3/how-will-you-get-test" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="ethnic-group-hint">
+          <fieldset class="govuk-fieldset" aria-describedby="drive-through-1-hint drive-through-2-hint drive-through-3-hint drive-through-4-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                 {{ pageTitle }}
@@ -38,7 +38,7 @@
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text govuk-!-font-size-19">
                 <span class="govuk-warning-text__assistive">Warning</span>
-                If no tests are available online, do not call helplines to get a test. You will not be able to get a test through the helplines.
+                If no tests are available online, do not call the contact centre to get a test. You will not be able to get a test through the contact centre.
               </strong>
             </div>
             <div class="govuk-radios govuk-!-margin-top-5">
@@ -51,40 +51,40 @@
                   <ul class="govuk-list govuk-list--bullet">
                     <li><span id="drive-through-1-hint">you need to book your test as soon as possible</span></li>
                     <li><span id="drive-through-2-hint">you or someone you live with must drive to the test site by car, small van or motorbike (some sites do not accept motorbikes)</span></li>
-                    <li><span id="drive-through-3-hint">site staff will tell you if an assistant does the swab test for you or if you do it yourself</span></li>
+                    <li><span id="drive-through-4-hint">at some test sites, you may be able to ask a staff member to do the test for you</span></li>
                   </ul>
-                  <span id="drive-through-4-hint" class="govuk-body-m">
-                      <strong>Your nearest test site by road is Enfield - Mobile Unit</strong><br><br>
-                      DRIVE THROUGH ONLY - North Square Car Park, St Martins Road<br>
-                      Edmonton Green<br>
-                      N9 0SN<br>
-                      <strong>5.3 miles</strong> by road<br><br>
-                      71 appointments available.
+                  <span id="drive-through-4-hint">
+                    <strong>Your nearest test site by road is Camden The Forum - Mobile Unit</strong><br><br>
+                    "Drive Through Only", This test site is outdoors in the corner of Greenwood Place nearest the O2 Forum. It is not at the Greenwood Centre so please do not enter that building, Greenwood Place<br>
+                    Kentish Town<br>
+                    NW5 1LB<br>
+                    <strong>3.6 miles</strong> by road<br><br>
+                    179 appointments available.
                   </span>
               </div>
               {% endif %}
               {% if data['home-postcode'] !== "N000" %}
               <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="way-to-test-2" name="way-to-test" type="radio" value="walk-in" {{ checked("way-to-test", "walk-in") }} aria-describedby="walk-in-1-hint walk-in-2-hint walk-in-3-hint walk-in-4-hint">
+                <input class="govuk-radios__input" id="way-to-test-2" name="way-to-test" type="radio" value="walk-in" {{ checked("way-to-test", "walk-in") }} aria-describedby="walk-in-1-hint walk-in-2-hint walk-in-3-hint walk-in-4-hint walk-in-5-hint">
                 <label class="govuk-label govuk-radios__label" for="way-to-test-2">
                   <span class="govuk-body-l"><strong>At a walk-through test site</strong></span>
                 </label>
                 <ul class="govuk-list govuk-list--bullet">
-                    <li><span id="walk-in-1-hint">you need to book your test appointment as soon as possible</span></li>
-                    <li><span id="walk-in-2-hint">you can walk or cycle to the site (do not go by public transport or taxi)</span></li>
-                    <li><span id="walk-in-3-hint">site staff will tell you if an assistant does the swab for you, or if you do it yourself</span></li>
+                  <li><span id="walk-in-1-hint">you need to book your test slot as soon as possible</span></li>
+                  <li><span id="walk-in-2-hint">do not travel to the test site by public transport or taxi</span></li>
+                  <li><span id="walk-in-3-hint">you can choose to go by foot, bike or car (parking may not be available on site)</span></li>
+                  <li><span id="walk-in-5-hint">you can ask for a staff member to guide you as you do this test yourself</span></li>
                   </ul>
-                  <span id="walk-in-4-hint" class="govuk-body-m">
-                      <strong>Your nearest test site by road is Haringey Stamford Hill - Walk through site</strong><br><br>
-                      Stamford Hill Primary School<br>
-                      Haringey<br>
-                      N15 6HD<br>
-                      <strong>1.8 miles</strong> by road<br><br>
-                      78 appointments available.
+                  <span id="walk-in-5-hint" class="govuk-body-m">
+                    <strong>Your nearest test site by road is Alexandra Palace Paddock - Walk through site</strong><br><br>
+                    Alexandra Palace Paddock Car Park No 7 & 8<br>
+                    Haringey<br>
+                    N22 7AY<br>
+                    <strong>2.6 miles</strong> by road<br><br>
+                    208 appointments available.
                   </span>
               </div>
               {% endif %}
-              {% if data['email'] == "Yes" %}
               <div class="govuk-radios__item govuk-!-margin-top-6">
                 <input class="govuk-radios__input" id="way-to-test-3" name="way-to-test" type="radio" value="home testing" {{ checked("way-to-test", "home testing") }} aria-describedby="home-testing-1-hint home-testing-2-hint home-testing-3-hint">
                 <label class="govuk-label govuk-radios__label" for="way-to-test-3">
@@ -96,7 +96,6 @@
                   <li><span id="home-testing-3-hint">it’s important that you return your test as soon as possible after doing it</span></li>
                 </ul>
               </div>
-              {% endif %}
             </div>
           </fieldset>
         </div>

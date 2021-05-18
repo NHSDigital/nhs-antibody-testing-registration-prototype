@@ -23,6 +23,16 @@ router.post('/antigen/v1/action3/reason-for-test-option-2', function (req, res) 
 
 })
 
+router.post('/antigen/v1/action3/1-have-you-travelled-overseas-person-1', function (req, res) {
+  let OverseasTravel = req.session.data['have-you-travelled-overseas-person-1']
+  if (OverseasTravel == "No"){
+    res.redirect('/antigen/v1/global-registration/previous-infection-person-1')
+  } else {
+    res.redirect('/antigen/v1/global-registration/1-which-countries-travelled-to-person-1')
+  }
+
+})
+
 
 // Version 2 - Antigen Refer and Triage - Mobile number route
 

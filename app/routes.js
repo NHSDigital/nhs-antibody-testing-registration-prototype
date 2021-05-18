@@ -581,7 +581,7 @@ router.post('/antigen/v1/action3/work-or-study', function (req, res) {
 router.post('/antigen/v1/action3/1-have-you-travelled-overseas', function (req, res) {
   let OverseasTravel = req.session.data['have-you-travelled-overseas']
   if (OverseasTravel == "No"){
-    res.redirect('/antigen/v1/global-registration/vaccine')
+    res.redirect('/antigen/v1/global-registration/previous-infection')
   } else {
     res.redirect('/antigen/v1/global-registration/1-which-countries-travelled-to')
   }
