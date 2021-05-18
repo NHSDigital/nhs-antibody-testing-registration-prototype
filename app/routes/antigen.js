@@ -862,11 +862,13 @@ router.post('/antigen/v2/action2/antibody-test', function (req, res) {
 // Antigen V2 - Fingerprick Test
 router.post('/antigen/v2/action2/fingerprick-test', function (req, res) {
   let fingerprickTest = req.session.data['fingerprick-test']
+  let wayToTest = req.session.data['way-to-test']
 
   if (fingerprickTest == "Yes"){
     res.redirect('/antigen/v2/global-registration/delivery-postcode')
-  }
-  else  {
+  } else if (fingerprickTest == "No" && wayToTest == "home testing") {
+    res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
+  } else  {
     res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
   }
 })
