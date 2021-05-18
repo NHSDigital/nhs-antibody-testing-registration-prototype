@@ -867,7 +867,7 @@ router.post('/antigen/v2/action2/fingerprick-test', function (req, res) {
     res.redirect('/antigen/v2/global-registration/delivery-postcode')
   }
   else  {
-    res.redirect('/antigen/v2/global-registration/cannot-get-test')
+    res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
   }
 })
 

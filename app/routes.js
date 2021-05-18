@@ -2143,17 +2143,17 @@ router.post('/antigen/v2/action2/antibody-test', function (req, res) {
   }
 })
 
-// Antigen V2 - Fingerprick Test
-router.post('/antigen/v2/action2/fingerprick-test', function (req, res) {
-  let fingerprickTest = req.session.data['fingerprick-test']
+// // Antigen V2 - Fingerprick Test
+// router.post('/antigen/v2/action2/fingerprick-test', function (req, res) {
+//   let fingerprickTest = req.session.data['fingerprick-test']
 
-  if (fingerprickTest == "Yes"){
-    res.redirect('/antigen/v2/global-registration/delivery-postcode')
-  }
-  else  {
-    res.redirect('/antigen/v2/global-registration/cannot-get-test')
-  }
-})
+//   if (fingerprickTest == "Yes"){
+//     res.redirect('/antigen/v2/global-registration/delivery-postcode')
+//   }
+//   else  {
+//     res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
+//   }
+// })
 
 
 // Antigen V2 - Antibody Test Person 1
@@ -2221,7 +2221,7 @@ router.post('/antigen/v2/action2/delivery-address-person-1', function (req, res)
   let deliveryAddressPersonOne = req.session.data['delivery-address-person-1']
 
   if (deliveryAddressPersonOne == "Yes"){
-    res.redirect('/antigen/v2/global-registration/antibody-test-confirmation')
+    res.redirect('/antigen/v2/global-registration/antibody-test-confirmation-person-1')
   } else {
     res.redirect('/antigen/v2/global-registration/delivery-postcode-person-1')
   }

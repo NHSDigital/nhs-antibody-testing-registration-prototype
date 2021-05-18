@@ -1,0 +1,118 @@
+{% set version = "v2" %}
+{% set pageTitle = "Confirm people for antibody testing" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/delivery-postcode-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antigen/{{version}}/action3/people-confirmed" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="antibody-test-confirmation-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="antibody-test-confirmation-hint" class="govuk-body">
+              If these people test positive for coronavirus we will send out an antibody kit to them.<br><br>
+              Once you've confirmed who's willing to take an antibody test, please continue to book your PCR test.
+            </span>
+
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-half"></th>
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                {% if data['fingerprick-test-person-1'] == " ," %}
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</th>
+                  <td class="govuk-table__cell">
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/antibody-test-confirmation-only-person-1" class="govuk-link">Remove</a></p></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}</th>
+                  <td class="govuk-table__cell">
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/antibody-test-confirmation" class="govuk-link"">Remove</a></p></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">Delivery address</th>
+                  <td class="govuk-table__cell">
+                    {{ data['address'] or '1 Main Street'}}
+                    <br>
+                    {{ data['delivery-address-postcode-antibody'] or 'UB3 2RP' }}
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/delivery-postcode">Edit details</a></p></td>
+                </tr>
+                {% elseif data['fingerprick-test-person-1'] == " " %}
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</th>
+                  <td class="govuk-table__cell">
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/antibody-all-removed" class="govuk-link">Remove</a></p></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">Delivery address</th>
+                  <td class="govuk-table__cell">
+                    {{ data['address'] or '1 Main Street'}}
+                    <br>
+                    {{ data['delivery-address-postcode-antibody'] or 'UB3 2RP' }}
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/delivery-postcode">Edit details</a></p></td>
+                </tr>
+                {% elseif data['fingerprick-test-person-1'] == "" %}
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}</th>
+                  <td class="govuk-table__cell">
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/antibody-all-removed" class="govuk-link"">Remove</a></p></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">Delivery address</th>
+                  <td class="govuk-table__cell">
+                    {{ data['address'] or '1 Main Street'}}
+                    <br>
+                    {{ data['delivery-address-postcode-antibody'] or 'UB3 2RP' }}
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/delivery-postcode">Edit details</a></p></td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
