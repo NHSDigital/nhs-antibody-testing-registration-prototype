@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What is your occupation?" %}
+{% set pageTitle = "Enter the work details of the person who needs a test" %}
 
 {% extends "includes/layout.html" %}
 
@@ -19,33 +19,45 @@
 {% endblock %}
 
 {% block content %}
-{% include "includes/gtm-noscript.html" %}
+  {% include "includes/gtm-noscript.html" %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form lass="form" action="/antigen/{{version}}/global-registration/employer" method="post">
-      <div class="govuk-form-group">
+    <form class="form" action="/antigen/{{version}}/global-registration/1-have-you-travelled-overseas" method="post">
+      <div class="govuk-form-group govuk-!-margin-bottom-0">
         <h1 class="govuk-label-wrapper govuk-!-margin-bottom-8">
           <label class="govuk-label govuk-label--xl" for="occupation">
-            What’s the occupation of the person needing a test?
+            {{ pageTitle }}
           </label>
         </h1>
         <span id="occupation-hint" class="govuk-body">
-          This helps us track which occupations are more at risk from coronavirus.<br><br>
-          Start entering an occupation below and then choose from the options provided.<br><br>
-          If you cannot see the occupation try typing a different keyword or use a more general description.<br><br>
-          If you still cannot see your occupation, select ‘I cannot find the correct occupation’.<br><br>
-          Occupation
+          This helps us understand which occupations are more at risk from coronavirus.<br><br>
+          We may contact your employer to help us with contact tracing.<br><br>
+          Start entering an occupation below and select from the options given.<br><br>
+          If you cannot see your occupation, try a different word.<br><br>
+          If you still cannot see your occupation, enter ‘I cannot find the correct occupation’.<br><br>
+          You do not have to share these details if you do not want to.<br><br><br>
         </span>
-        <div id="occupation-container" class="govuk-!-margin-top-1"></div>
+        <fieldset class="govuk-fieldset">
+					<label class="govuk-label" for="occupation-autocomplete">
+					  Occupation (optional)
+					</label>
+          <div id="occupation-container" name="occupation-autocomplete"></div>
+        </fieldset>
+      </div>
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="employer">
+          Employer (optional)
+        </label>
+        <input class="govuk-input govuk-!-width-three-quarters" id="employer" name="employer" type="text" value="{{ data['employer'] }}">
       </div>
 
       <button class="govuk-button" type="submit" data-module="govuk-button">
         Continue
       </button>
+      <br>
+      <a class="govuk-link" href="/genomic-variants/1-have-you-travelled-overseas">Prefer not to say</a>
     </form>
-
-    <a class="govuk-link" href="/antigen/{{version}}/global-registration/employer">Prefer not to say / not applicable</a>
 
   </div>
 </div>
@@ -624,9 +636,14 @@
     autoselect: true,
     element: document.querySelector('#occupation-container'),
     id: 'occupation',
+    name: 'occupation-autocomplete',
     source: occupations,
+    defaultValue: "{{ data['occupation-autocomplete'] }}",
     displayMenu: 'overlay',
-    minLength: 2
+    minLength: 2,
+    tNoResults: function() {
+    return "Other"
+  }
   });
 </script>
 {% endblock %}

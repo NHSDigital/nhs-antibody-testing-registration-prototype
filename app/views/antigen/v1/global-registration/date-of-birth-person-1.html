@@ -27,16 +27,16 @@
       <form action="/antigen/{{version}}/global-registration/do-you-have-symptoms-person-1" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" role="group" aria-describedby="date-of-birth-hint">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="date-of-birth-hint date-of-birth-hint-2">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
-                What's {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }}'s date of birth?
+                What's {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}'s date of birth?
               </h1>
             </legend>
             <span id="date-of-birth-hint" class="govuk-hint">
               For example, 31 3 1980
             </span>
-            <div class="govuk-date-input" id="date-of-birth">
+            <div class="govuk-date-input govuk-!-margin-bottom-6" id="date-of-birth">
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
                   <label class="govuk-label govuk-date-input__label" for="date-of-birth-person-1-day">
@@ -62,6 +62,9 @@
                 </div>
               </div>
             </div>
+            <span id="date-of-birth-hint-2" class="govuk-body">
+              If {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} is aged 11 or under, their parent or guardian needs to swab test them.
+            </span>
           </fieldset>
         </div>
 

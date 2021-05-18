@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Where in the UK does the person needing a test live?" %}
+{% set pageTitle = "Where in the UK does the person who needs a test live?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,10 +15,11 @@
     </p>
   </div>
 
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  {% if data['vaccine'] !== "No" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/vaccine-date">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/vaccine">Back</a>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
