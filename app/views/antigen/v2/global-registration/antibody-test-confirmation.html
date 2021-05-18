@@ -14,7 +14,11 @@
     </span>
   </p>
 </div>
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/delivery-postcode">Back</a>
+{% if data['delivery-address'] == "No" %}
+<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/delivery-postcode">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/delivery-address">Back</a>
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -55,9 +59,21 @@
                 <tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header">Delivery address</th>
                   <td class="govuk-table__cell">
-                    {{ data['address'] or '1 Main Street'}}
-                    <br>
-                    {{ data['delivery-address-postcode-antibody'] or 'UB3 2RP' }}
+                    {% if data['delivery-address-person-1'] !== "No" %}
+                      {% if data['gp-address'] and data['gp-address'] !== "5 addresses found" %}
+                        {{ data['gp-address'] }}
+                      {% else %}
+                        {{ data['address-line-1-gp'] or '5 Souterhead Road'}}<br>
+                        {{ data['gp-postcode'] or 'LS1 3BE' }}
+                      {% endif %}
+                    {% else %}
+                      {% if data['delivery-address-antibody'] and data['delivery-address-antibody'] !== "5 addresses found" %}
+                        {{ data['delivery-address-antibody'] }}
+                      {% else %}
+                        {{ data['delivery-address-line-1-antibody'] or '5 Souterhead Road'}}<br>
+                        {{ data['delivery-address-postcode-antibody'] or 'LS1 3BE' }}
+                      {% endif %}
+                    {% endif %}
                   </td>
                   <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/delivery-postcode">Edit details</a></p></td>
                 </tr>
