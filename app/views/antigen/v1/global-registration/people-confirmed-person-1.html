@@ -40,27 +40,22 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name'] | default('John')}}<br>{{ data['last-name'] | default('Appleseed')}}</th>
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}</th>
             <td class="govuk-table__cell">
-              {{ data['email-address'] | default('example@example.co.uk')}}
+              {{ data['email-address'] or 'email@example.com' }}
               <br>
-              {{ data['mobile-phone-number'] | default('+44123456789')}}
+              {{ data['mobile-phone-number'] or '+447782808451' }}
             </td>
             <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a></p></td>
           </tr>
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] }}<br>{{ data['last-name-person-1'] }}</th>
+            <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}</th>
             <td class="govuk-table__cell">
-              {{ data['email-address-person-1'] }}
+              {{ data['email-address-person-1'] or 'janewilson@email.com' }}
               <br>
-              {{ data['mobile-phone-number-person-1'] }}
+              {{ data['mobile-phone-number-person-1'] or '+44663271472' }}
             </td>
-            <td class="govuk-table__cell">
-              <p class="govuk-body-m">
-                <a href="/antigen/{{version}}/global-registration/check-your-answers-person-1">Edit details</a>
-                <a href="/antigen/{{version}}/global-registration/people-confirmed">Remove</a>
-              </p>
-            </td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers-person-1">Edit details</a></p></td>
           </tr>
         </tbody>
       </table>
@@ -69,15 +64,27 @@
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
         <strong class="govuk-warning-text__text govuk-!-font-size-19">
           <span class="govuk-warning-text__assistive">Warning</span>
-          People you live with who do not have symptoms are not eligible for this test. Do not order tests for them, unless you've been asked to. Ordering unnecessary tests is wasting NHS resources.
+          People you live with who do not have symptoms can only get a PCR test if they’ve been in contact with someone who’s tested positive for COVID-19, or they have been asked to get a PCR test. Ordering unnecessary tests is wasting NHS resources.
         </strong>
       </div>
+
+      {% if data['way-to-test'] === "home testing" %}
 
       <form class="form" action="/antigen/{{version}}/order-home-test-kit" method="post" style="display: inline-block;">
 
         <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">Save and continue</button>
 
       </form>
+
+      {% else %}
+
+      <form class="form" action="/antigen/{{version}}/site-appointment-booking/find-test-site" method="post" style="display: inline-block;">
+
+        <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">Save and continue</button>
+
+      </form>
+
+      {% endif %}
 
       <form class="form" action="#" method="post" style="display: inline-block;">
 
