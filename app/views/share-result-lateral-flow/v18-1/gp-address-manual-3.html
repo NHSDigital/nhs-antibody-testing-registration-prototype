@@ -18,7 +18,11 @@
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-5">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              What is the address registered with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s GP?
+              {% else %}
               {{ pageTitle }}
+              {% endif %}
             </h1>
           </legend>
           <label class="govuk-label" for="postcode">
