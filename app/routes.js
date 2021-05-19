@@ -2143,19 +2143,6 @@ router.post('/antigen/v2/action2/antibody-test', function (req, res) {
   }
 })
 
-// // Antigen V2 - Fingerprick Test
-// router.post('/antigen/v2/action2/fingerprick-test', function (req, res) {
-//   let fingerprickTest = req.session.data['fingerprick-test']
-
-//   if (fingerprickTest == "Yes"){
-//     res.redirect('/antigen/v2/global-registration/delivery-postcode')
-//   }
-//   else  {
-//     res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
-//   }
-// })
-
-
 // Antigen V2 - Antibody Test Person 1
 router.post('/antigen/v2/action2/antibody-test-person-1', function (req, res) {
   let antibodyTestPersonOne = req.session.data['antibody-test-person-1']
@@ -2178,30 +2165,6 @@ router.post('/antigen/v2/action6/fingerprick-test-person-1', function (req, res)
   else {
     res.redirect('/antigen/v2/global-registration/delivery-address-person-1')
   }
-})
-
-// Antigen V2 - NHS Number Known
-router.post('/antigen/v2/action4/nhs-number-known', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
-
-  if (nhsNumberKnown == "Yes"){
-    res.redirect('/antigen/v2/global-registration/nhs-number')
-  } else {
-    res.redirect('/antigen/v2/global-registration/check-your-answers')
-  }
-
-})
-
-// Antigen V2 - NHS Number Known Person 1
-router.post('/antigen/v2/action2/nhs-number-known-person-1', function (req, res) {
-  let nhsNumberKnownPersonOne = req.session.data['nhs-number-known-person-1']
-
-  if (nhsNumberKnownPersonOne == "Yes"){
-    res.redirect('/antigen/v2/global-registration/nhs-number-person-1')
-  } else {
-    res.redirect('/antigen/v2/global-registration/check-your-answers')
-  }
-
 })
 
 // Antigen V2 - Delivery Address
