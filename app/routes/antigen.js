@@ -865,7 +865,7 @@ router.post('/antigen/v2/action2/fingerprick-test', function (req, res) {
   let wayToTest = req.session.data['way-to-test']
 
   if (fingerprickTest == "Yes"){
-    res.redirect('/antigen/v2/global-registration/delivery-postcode')
+    res.redirect('/antigen/v2/global-registration/delivery-address')
   } else if (fingerprickTest == "No" && wayToTest == "home testing") {
     res.redirect('/antigen/v2/order-home-test-kit/')
   } else  {
