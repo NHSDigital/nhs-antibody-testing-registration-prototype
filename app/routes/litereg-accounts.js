@@ -1391,12 +1391,12 @@ router.post('/share-result-lateral-flow/v19-2/action9/check-mobile', function (r
 
           // Version 19.7 - LDF self report accounts - check mobile route
 
-          router.post('/share-result-lateral-flow/v19-6/action9/check-mobile', function (req, res) {
+          router.post('/share-result-lateral-flow/v19-7/action9/check-mobile', function (req, res) {
             let securityCode = req.session.data['security-code']
             if (securityCode == "") {
-              res.redirect('/share-result-lateral-flow/v19-6/user-account/check-mobile-error')
+              res.redirect('/share-result-lateral-flow/v19-7/user-account/check-mobile-error')
             } else {
-              res.redirect('/share-result-lateral-flow/v19-6/user-account/agreement')
+              res.redirect('/share-result-lateral-flow/v19-7/user-account/agreement')
             }
             })
 
