@@ -29,23 +29,56 @@
         <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-              What's the first line of {{ data['first-name-person-1'] | default('Xavier') }} {{ data['last-name-person-1'] | default('Aker') }}'s address and home postcode?
+              What is the home address registered with {{ data['first-name-person-1'] | default('Jane') }} {{ data['last-name-person-1'] | default('Wilson') }}'s GP?
             </h1>
           </legend>
           <span id="post-code-hint" class="govuk-body">
-            Enter the first line of their address and home postcode (ideally the one they gave their GP)
+            This will help us find and update their GP record with their test result. The test does not have to be sent to this address.
           </span>
-          <div class="govuk-form-group govuk-!-margin-top-5">
-            <label class="govuk-label" for="address">
-              First line of address
-            </label>
-            <input class="govuk-input govuk-input--width-10" id="address" name="address" type="text" value="{{ data['address'] }}">
+          <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6 govuk-!-margin-bottom-7" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="address-1-person-1" name="address-person-1" type="radio" value="{{data['address']}}" {{ checked("address-person-1", "data['address']") }}>
+              <label class="govuk-label govuk-radios__label" for="address-1-person-1">
+                {{ data['address'] or '24 Green Lane' }} (the same as {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }})
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="address-1-person-1" name="address-person-1" type="radio" value="Somewhere else" data-aria-controls="conditional-address" {{ checked("address-person-1", "Somewhere else") }}>
+              <label class="govuk-label govuk-radios__label" for="address-1-person-1">
+                Somewhere else
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-address">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="address-other-person-1">
+                  First line of address
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="address-other-person-1" name="address-other-person-1" type="tel" value="{{ data['address-other-person-1'] }}">
+              </div>
+            </div>
           </div>
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="home-postcode">
-              Postcode
-            </label>
-            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}">
+
+          <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6 govuk-!-margin-bottom-7" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="home-postcode-1-person-1" name="home-postcode-person-1" type="radio" value="Yes" {{ checked("home-postcode-person-1", "Yes") }}>
+              <label class="govuk-label govuk-radios__label" for="home-postcode-1-person-1">
+                {{ data['home-postcode'] or 'LS1 3BE' }} (the same as {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }})
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="home-postcode-2-person-1" name="home-postcode-person-1" type="radio" value="Somewhere else" data-aria-controls="conditional-home-postcode-person-1" {{ checked("home-postcode-person-1", "Somewhere else") }}>
+              <label class="govuk-label govuk-radios__label" for="address-1-person-1">
+                Somewhere else
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-home-postcode-person-1">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="postcode-other-person-1">
+                  Postcode
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="home-postcode-other-person-1" name="home-postcode-other-person-1" type="tel" value="{{ data['home-postcode-other-person-1'] }}">
+              </div>
+            </div>
           </div>
         </fieldset>
 

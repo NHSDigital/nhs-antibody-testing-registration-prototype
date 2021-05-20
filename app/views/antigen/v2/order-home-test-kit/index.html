@@ -24,11 +24,17 @@
 
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">We need to ask a few more questions about {{ data['first-name'] | default('John') }} {{ data['last-name'] | default('Appleseed') }}</h1>
 
-    <p class="govuk-body">This is so we can deliver the test kit to your home.</p>
+    <p class="govuk-body">This is so we can deliver the test kit to their home.</p>
 
+    {% if data['delivery-address-postcode-antibody'] or data['delivery-address-postcode-antibody-placeholder'] %}
+    <a href="/antigen/{{version}}/order-home-test-kit/confirm-email-address" role="button" draggable="false" class="govuk-button govuk-!-margin-top-5 govuk-!-margin-bottom-8" data-module="govuk-button">
+      Continue
+    </a>
+    {% else %}
     <a href="/antigen/{{version}}/order-home-test-kit/delivery-address-same" role="button" draggable="false" class="govuk-button govuk-!-margin-top-5 govuk-!-margin-bottom-8" data-module="govuk-button">
       Continue
     </a>
+    {% endif %}
 
   </div>
 </div>
