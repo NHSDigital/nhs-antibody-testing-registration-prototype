@@ -1,0 +1,76 @@
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout-lab-7-services.html' %}
+<!--
+  In /views/layout.html you can:
+    - change the header and footer
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title inside the pageTitle block -->
+{% block pageTitle %}
+Prescriptions and pharmacies - NHS.UK
+{% endblock %}
+
+
+<!-- Breadcrumb goes inside the beforeContent block -->
+{% block beforeContent %}
+{% from 'details/macro.njk' import details %}
+
+
+{% endblock %}
+<!-- Your page content goes inside the content block -->
+<!-- More info and code for the page layout can be found at https://beta.nhs.uk/service-manual/styles-components-patterns/layout -->
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+
+    <div class="nhsuk-grid-column-two-thirds">
+      <!-- Change the page title here -->
+
+      <nav class="nhsuk-u-margin-bottom-3" aria-label="Breadcrumb">
+          <div >
+            <ol class="nhsuk-breadcrumb__list ">
+                <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="/lab-7/">Home</a></li>
+              <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="/lab-7/nhs-services">NHS services</a></li>
+
+            </ol>
+            <p class="nhsuk-breadcrumb__back"><a class="nhsuk-breadcrumb__backlink" href="/lab-7/nhs-services">NHS services</a></p>
+          </div>
+        </nav>
+
+
+      <h1>Prescriptions and pharmacies</h1>
+      <p class="nhsuk-lede-text">Order repeat prescriptions, prescription charges, how pharmacists can help you with medical advice and medicines
+          </p>
+
+          {{ actionLink({
+            "text": "Find a pharmacy near you",
+            "href": "javascript:void(0);"
+          }) }}
+
+
+
+      <section id="key-links" >
+        <!--<h3 class="nhsuk-u-margin-bottom-0">Pages in this guide</h3>-->
+        <ul class="key-links" class="nhsuk-u-padding-top-0">
+          <li><a href="/lab-7/nhs-services/prescriptions/order-repeat-prescriptions-online" title="">Order a repeat prescription online</a></li>
+          <li><a href="javascript:void(0);" title="">Save money with a prescription prepayment certificate (PPC)</a></li>
+          <li><a href="javascript:void(0);" title="">Start using electronic prescriptions</a></li>
+          <li><a href="javascript:void(0);" title="">NHS prescription charge</a></li>
+          <li><a href="javascript:void(0);" title="">Am I entitled to free prescriptions?</a></li>
+          <li><a href="javascript:void(0);" title="">Can my GP prescribe extra medication to cover my holiday?</a></li>
+          <li><a href="javascript:void(0);" title="">Pharmacies</a></li>
+
+        </ul>
+    </section>
+
+
+
+
+
+
+
+
+    </div>
+</div>
+{% endblock %}

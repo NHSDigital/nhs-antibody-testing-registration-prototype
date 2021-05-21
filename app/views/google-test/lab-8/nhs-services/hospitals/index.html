@@ -1,0 +1,72 @@
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout-lab-7-services.html' %}
+<!--
+  In /views/layout.html you can:
+    - change the header and footer
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title inside the pageTitle block -->
+{% block pageTitle %}
+  Find services near you - NHS.UK
+{% endblock %}
+
+
+<!-- Breadcrumb goes inside the beforeContent block -->
+{% block beforeContent %}
+{% from 'details/macro.njk' import details %}
+
+
+{% endblock %}
+<!-- Your page content goes inside the content block -->
+<!-- More info and code for the page layout can be found at https://beta.nhs.uk/service-manual/styles-components-patterns/layout -->
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+
+    <div class="nhsuk-grid-column-two-thirds">
+      <!-- Change the page title here -->
+
+      <nav class="nhsuk-u-margin-bottom-3" aria-label="Breadcrumb">
+          <div >
+            <ol class="nhsuk-breadcrumb__list ">
+                <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="/lab-7/">Home</a></li>
+              <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="/lab-7/nhs-services">NHS services</a></li>
+
+            </ol>
+            <p class="nhsuk-breadcrumb__back"><a class="nhsuk-breadcrumb__backlink" href="/lab-7/nhs-services">NHS services</a></p>
+          </div>
+        </nav>
+
+
+      <h1>Hospitals</h1>
+      <p class="nhsuk-lede-text">About NHS hospitals, booking and changing appointments with NHS e-Referral service and going into hospital
+          </p>
+
+          {{ actionLink({
+            "text": "Find a hospital near you",
+            "href": "javascript:void(0);"
+          }) }}
+
+      <section id="key-links" >
+        <!--<h3 class="nhsuk-u-margin-bottom-0">Pages in this guide</h3>-->
+        <ul class="key-links" class="nhsuk-u-padding-top-0">
+          <li><a href="javascript:void(0);" title="">About NHS hospital services</a></li>
+          <li><a href="javascript:void(0);" title="">Guide to NHS waiting times in England</a></li>
+          <li><a href="javascript:void(0);" title="">What is PALS (Patient Advice and Liaison Service)?</a></li>
+          <li><a href="/lab-7/nhs-services/hospitals/e-referrals-service" title="">NHS e-Referral service</a></li>
+          <li><a href="/lab-7/nhs-services/hospitals/going-into-hospital" title="">Going into hospital as an inpatient or outpatient</a></li>
+
+
+        </ul>
+    </section>
+
+
+
+
+
+
+
+    </div>
+</div>
+{% endblock %}
