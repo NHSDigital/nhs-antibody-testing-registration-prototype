@@ -1,5 +1,5 @@
 {% set version = "v18-1" %}
-{% set pageTitle = "Confirm your result" %}
+{% set pageTitle = "Check and report the result" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -30,25 +30,16 @@
           <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                Confirm the result
-                {% else %}
                 {{ pageTitle }}
-                {% endif %}
               </h1>
             </legend>
-
-            {% if data['whos-taking-the-test'] == "someone-else" %}
-            <h2 class="govuk-heading-m">Upload a photo of the test strip and the service will confirm the result</h2>
-            {% else %}
-            <h2>Upload a photo of the test strip and the service will confirm the result</h2>
-            {% endif %}
-
+            <h2 class="govuk-heading-m">Upload a photo of the test strip and the service will tell you if the result is
+              positive, negative or void</h2>
 
               <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+                <li>it uses fast and accurate Automated Decision Making</li>
+                <li>takes less than 20 seconds</li>
                 <li>you must be on a smartphone or tablet</li>
-                <li>it takes less than 20 seconds</li>
-                <li>it is accurate and reliable</li>
               </ul>
 
               <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
@@ -69,21 +60,11 @@
             </fieldset>
           </div>
 
-          {% if data['whos-taking-the-test'] == "someone-else" %}
-          <p>By continuing, I agree to provide the person who took the test with the correct advice based on their result</p>
-          {% else %}
-          <p>By continuing, you agree to follow the advice based on your result</p>
-          {% endif %}
-
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
       </form>
 
-      {% if data['whos-taking-the-test'] == "someone-else" %}
-      <p><a class="govuk-link" href="/share-result-lateral-flow/{{version}}/choose-result">I do not want the service to confirm the result</a></p>
-      {% else %}
-      <p><a class="govuk-link" href="/share-result-lateral-flow/{{version}}/choose-result">I do not want the service to confirm my result</a></p>
-      {% endif %}
+      <p><a class="govuk-link" href="/share-result-lateral-flow/{{version}}/choose-result">I don't want to upload a photo</a></p>
 
     </div>
   </div>
