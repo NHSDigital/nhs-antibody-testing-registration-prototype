@@ -52,9 +52,12 @@
           </a>
         </div>
 
-          <div class="govuk-inset-text">
-            <a href="/share-result-lateral-flow/{{version}}/choose-result">I do not want the service to check the result</a>
-          </div>
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        <p><a class="govuk-link" href="/share-result-lateral-flow/{{version}}/choose-result">They do not want the service to confirm the result</a></p>
+        {% else %}
+        <p><a class="govuk-link" href="/share-result-lateral-flow/{{version}}/choose-result">I do not want the service to confirm my result</a></p>
+        {% endif %}
+
 
     </div>
 </div>
