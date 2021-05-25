@@ -60,16 +60,16 @@
               <option value="5 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">5 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
             </select>
           </div>
-
+          <p class="govuk-body"><a href="/share-result-lateral-flow/{{version}}/home-address-manual">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            I can't find their address on the list
+            {% else %}
+            I can't find my address on the list
+            {% endif %}
+            </a></p>
         </fieldset>
 
-        <p class="govuk-body"><a href="/share-result-lateral-flow/{{version}}/home-address-manual">
-          {% if data['whos-taking-the-test'] == "someone-else" %}
-          I can't find their address on the list
-          {% else %}
-          I can't find my address on the list
-          {% endif %}
-          </a></p>
+<br>
 
         <button class="govuk-button" type="submit" data-module="govuk-button">
           Continue
