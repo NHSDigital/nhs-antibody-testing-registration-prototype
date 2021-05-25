@@ -870,12 +870,23 @@ router.post('/antigen/v2/action2/fingerprick-test', function (req, res) {
 
   if (fingerprickTest == "Yes"){
     res.redirect('/antigen/v2/global-registration/delivery-address')
-  } else if (fingerprickTest == "No" && wayToTest == "home testing") {
-    res.redirect('/antigen/v2/order-home-test-kit/')
-  } else  {
-    res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
+  } else {
+    res.redirect('/antigen/v2/global-registration/antibody-test-confirmation')
   }
 })
+
+// router.post('/antigen/v2/action2/fingerprick-test', function (req, res) {
+//   let fingerprickTest = req.session.data['fingerprick-test']
+//   let wayToTest = req.session.data['way-to-test']
+
+//   if (fingerprickTest == "Yes"){
+//     res.redirect('/antigen/v2/global-registration/delivery-address')
+//   } else if (fingerprickTest == "No" && wayToTest == "home testing") {
+//     res.redirect('/antigen/v2/order-home-test-kit/')
+//   } else  {
+//     res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
+//   }
+// })
 
 
 // Antigen V2 - Antibody Test Person 1
@@ -892,20 +903,30 @@ router.post('/antigen/v2/action2/antibody-test-person-1', function (req, res) {
 
 // Antigen V2 - Fingerprick Test Person 1
 router.post('/antigen/v2/action2/fingerprick-test-person-1', function (req, res) {
-  // let leadBookerAddress = req.session.data['delivery-address-antibody']
-  // let leadBookerPostcode = req.session.data['delivery-address-postcode-manual-antibody']
   let fingerprickTest = req.session.data['fingerprick-test-person-1']
-  let wayToTest = req.session.data['way-to-test']
 
   if (fingerprickTest == "1,2" || fingerprickTest == "2" || fingerprickTest == "1"){
     res.redirect('/antigen/v2/global-registration/delivery-address-person-1')
-  } else if (fingerprickTest == "1,None of these" || fingerprickTest == "2,None of these" || fingerprickTest == "1,2,None of these") {
+  } else if (fingerprickTest == "1,No one" || fingerprickTest == "2,No one" || fingerprickTest == "1,2,No one") {
     res.redirect('/antigen/v2/global-registration/fingerprick-test-person-1-error')
-  } else if (fingerprickTest == "None of these" && wayToTest == "home testing") {
+  } else {
     res.redirect('/antigen/v2/order-home-test-kit/')
-  } else  {
-    res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
   }
 })
+
+// router.post('/antigen/v2/action2/fingerprick-test-person-1', function (req, res) {
+//   let fingerprickTest = req.session.data['fingerprick-test-person-1']
+//   let wayToTest = req.session.data['way-to-test']
+
+//   if (fingerprickTest == "1,2" || fingerprickTest == "2" || fingerprickTest == "1"){
+//     res.redirect('/antigen/v2/global-registration/delivery-address-person-1')
+//   } else if (fingerprickTest == "1,No one" || fingerprickTest == "2,No one" || fingerprickTest == "1,2,No one") {
+//     res.redirect('/antigen/v2/global-registration/fingerprick-test-person-1-error')
+//   } else if (fingerprickTest == "No one" && wayToTest == "home testing") {
+//     res.redirect('/antigen/v2/order-home-test-kit/')
+//   } else  {
+//     res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
+//   }
+// })
 
 module.exports = router
