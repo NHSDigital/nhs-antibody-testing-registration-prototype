@@ -39,13 +39,35 @@
           <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
             <summary class="govuk-details__summary">
               <span class="govuk-details__summary-text">
-              What to do if you do not know this number
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                What to do if they cannot find this number
+                {% else %}
+                What to do if you cannot find this number
+                {% endif %}
               </span>
             </summary>
             <div class="govuk-details__text">
-              <p class="govuk-body">Get the UON from the social care service, employer or organisation that gave you the test kit.</p>
-              <p>You can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noopener noreferrer">find a care home’s UON online (opens in a new tab)</a>.</p>
-              <p class="govuk-body">If you still need help, call the contact centre:</p>
+              <p class="govuk-body">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Get the UON from the social care service, employer or organisation that gave them the test kit.
+                {% else %}
+                Get the UON from the social care service, employer or organisation that gave you the test kit.
+                {% endif %}
+              </p>
+              <p>
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                They can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noopener noreferrer">find a care home’s UON online (opens in a new tab)</a>. 
+                {% else %}
+                You can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noopener noreferrer">find a care home’s UON online (opens in a new tab)</a>.
+                {% endif %}
+              </p>
+              <p class="govuk-body">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                If they still need help, call the contact centre:
+                {% else %}
+                If you still need help, call the contact centre:
+                {% endif %}
+              </p>
                 <ul class="govuk-list govuk-list--bullet">
                   <li>119 if you’re in England, Wales or Northern Ireland</li>
                   <li>0300 303 2713 if you’re in Scotland</li>

@@ -1,11 +1,11 @@
 {% set version = "v2" %}
-{% set pageTitle = "Would you be willing to take an antibody test?" %}
+{% set pageTitle = "Who would also be willing to take a separate antibody test?" %}
 
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/check-your-answers">Back</a>
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/check-your-answers-person-1">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -14,21 +14,22 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/antigen/{{version}}/action2/fingerprick-test" method="post">
+      <form class="form" action="/antigen/{{version}}/action2/edit/fingerprick-test-person-1" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="fingerprick-test-hint">
+          <fieldset class="govuk-fieldset" aria-describedby="fingerprick-test-person-1-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
-                Would {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }} also be willing to take a separate antibody test?
+                {{ pageTitle }}
               </h1>
             </legend>
             <span id="fingerprick-test-hint" class="govuk-body">
               If you test positive for coronavirus, we will send you an antibody kit - a fingerprick blood test to see if you’ve had a previous infection. This will help the NHS learn more about who’s had the virus more than once, and how it has spread.<br><br>
               You will need to do 2 tests, 3 weeks apart. You do the test at home by yourself. You can ask a friend or relative to help if you want.<br><br>
-              If you agree the antibody test kits will be sent to you automatically.
+              If you agree the antibody test kits will be sent to you automatically.<br><br>
+              Antibody tests are only available to people aged 18 and over.
             </span><br><br><br>
-            
+
             <details class="govuk-details" data-module="govuk-details">
               <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">
@@ -62,21 +63,30 @@
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text">
                 <span class="govuk-warning-text__assistive">Warning</span>
-                By selecting Yes you confirm that you are OK doing a fingerprick blood test, and do not take anticoagulants ('blood-thinning' medicines) or  have a blood clotting disorder such as haemophilia. 
+                By selecting continue you confirm that these household members are OK doing a fingerprick blood test, and do not take anticoagulants ('blood-thinning' medicines) or  have a blood clotting disorder such as haemophilia. 
               </strong>
             </div>
 
-            <div class="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="fingerprick-test-1" name="fingerprick-test" type="radio" value="Yes" {{ checked("fingerprick-test", "Yes") }}>
-                <label class="govuk-label govuk-radios__label" for="fingerprick-test-1">
-                  Yes
+            <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="fingerprick-test-person-1-1" name="fingerprick-test-person-1" type="checkbox" value="1" {{ checked("fingerprick-test-person-1", "1") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="fingerprick-test-person-1-1">
+                  {{ data['first-name'] | default('Pete') }} {{ data['last-name'] | default('Smith')}}
+                  <span class="govuk-!-padding-left-3">( {{ data['date-of-birth-day'] or '6 December 1976' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }} )</span>
                 </label>
               </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="fingerprick-test-2" name="fingerprick-test" type="radio" value="No" {{ checked("fingerprick-test", "No") }}>
-                <label class="govuk-label govuk-radios__label" for="fingerprick-test-2">
-                  No
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="fingerprick-test-person-1-2" name="fingerprick-test-person-1" type="checkbox" value="2" {{ checked("fingerprick-test-person-1", "2") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="fingerprick-test-person-1-2">
+                  {{ data['first-name-person-1'] | default('Jane') }} {{ data['last-name-person-1'] | default('Wilson') }}
+                  <span class="govuk-!-padding-left-3">( {{ data['date-of-birth-day-person-1'] or '15 March 2002' }} {{ data['date-of-birth-month-person-1'] }} {{ data['date-of-birth-year-person-1'] }} )</span>
+                </label>
+              </div>
+              <div class="govuk-radios__divider">or</div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="fingerprick-test-person-1-3" name="fingerprick-test-person-1" type="checkbox" value="No one" {{ checked("fingerprick-test-person-1", "No one") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="fingerprick-test-person-1-3">
+                  No one
                 </label>
               </div>
             </div>
