@@ -14,10 +14,10 @@
     </span>
   </p>
 </div>
-{% if data['delivery-address-person-1'] == "No" %}
-<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/delivery-postcode-person-1">Back</a>
-{% else %}
+{% if data['fingerprick-test-person-1'] !== "No one" %}
 <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/delivery-address-person-1">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/fingerprick-test-person-1">Back</a>
 {% endif %}
 {% endblock %}
 
@@ -93,7 +93,7 @@
                     Opted in for antibody testing
                     {% endif %}
                   </td>
-                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a></p></td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/check-your-answers">Edit details</a></p></td>
                 </tr>
                 <tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header">
@@ -146,10 +146,11 @@
                     {% endif %}
                   </td>
                   <td class="govuk-table__cell">
-                    <p class="govuk-body-m govuk-!-margin-bottom-2"><a href="/antigen/{{version}}/global-registration/check-your-answers-person-1">Edit details</a></p>
+                    <p class="govuk-body-m govuk-!-margin-bottom-2"><a href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/check-your-answers-person-1">Edit details</a></p>
                     <p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/antibody-test-confirmation" class="govuk-link"">Remove</a></p>
                   </td>
                 </tr>
+                {% if data['fingerprick-test-person-1'] == "1" or data['fingerprick-test-person-1'] == "1,2" or data['fingerprick-test-person-1'] == "2" %}
                 <tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header">Delivery address</th>
                   <td class="govuk-table__cell">
@@ -171,10 +172,17 @@
                   </td>
                   <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/delivery-postcode-person-1">Edit details</a></p></td>
                 </tr>
+                {% endif %}
               </tbody>
             </table>
 
         </div>
+
+        {% if data['fingerprick-test-person-1'] == "No one" %}
+        <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode-antibody-placeholder" name="delivery-address-postcode-antibody-placeholder" type="text" autocomplete="postal-code" value="" style="display: none;">
+
+        <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode" name="delivery-address-postcode-antibody" type="text" autocomplete="postal-code" value="" style="display: none;">
+        {% endif %}
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 

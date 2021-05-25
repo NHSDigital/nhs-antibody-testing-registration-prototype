@@ -15,7 +15,7 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/delivery-address">Back</a>
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/delivery-address-person-1">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +24,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/antigen/{{version}}/global-registration/antibody-test-confirmation" method="post">
+    <form action="/antigen/{{version}}/global-registration/antibody-test-confirmation-person-1" method="post">
 
       <fieldset class="govuk-fieldset">
 
@@ -50,8 +50,8 @@
             </legend>
             <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
               <strong>Postcode</strong><br><br>
-              {{ data['delivery-address-postcode-antibody'] or 'LS1 3BE' }}
-              <a href="/antigen/{{version}}/global-registration/delivery-postcode" class="govuk-!-margin-left-5">
+              {{ data['delivery-address-postcode-antibody'] | default('LS1 3BE') }}
+              <a href="/antigen/{{version}}/global-registration/delivery-postcode-person-1" class="govuk-!-margin-left-5">
                 <strong>Change</strong>
                 <span class="govuk-visually-hidden">your postcode</span>
               </a>
@@ -106,14 +106,14 @@
               <label class="govuk-label" for="delivery-address-town-antibody">
                 <strong>Town or city</strong>
               </label>
-              <input class="govuk-input govuk-!-width-one-third" id="delivery-address-town" name="delivery-address-town-antibody" type="text" autocomplete="address-level2-delivery" value="{{ data['delivery-address-town-antibody'] }}">
+              <input class="govuk-input govuk-!-width-one-third" id="delivery-address-town-antibody" name="delivery-address-town-antibody" type="text" autocomplete="address-level2-delivery" value="{{ data['delivery-address-town-antibody'] }}">
             </div>
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="delivery-address-postcode-manual-antibody">
                 <strong>Postcode</strong>
               </label>
-              <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode-manual" name="delivery-address-postcode-manual-antibody" type="text" autocomplete="postal-code" value="{{ data['delivery-address-postcode-manual-antibody'] }}">
+              <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode-manual-antibody" name="delivery-address-postcode-manual-antibody" type="text" autocomplete="postal-code" value="{{ data['delivery-address-postcode-manual-antibody'] }}">
             </div>
           </div>
 

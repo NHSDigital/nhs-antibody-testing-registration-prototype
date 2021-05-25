@@ -910,7 +910,20 @@ router.post('/antigen/v2/action2/fingerprick-test-person-1', function (req, res)
   } else if (fingerprickTest == "1,No one" || fingerprickTest == "2,No one" || fingerprickTest == "1,2,No one") {
     res.redirect('/antigen/v2/global-registration/fingerprick-test-person-1-error')
   } else {
-    res.redirect('/antigen/v2/order-home-test-kit/')
+    res.redirect('/antigen/v2/global-registration/antibody-test-confirmation-person-1')
+  }
+})
+
+// Antigen V2 - Fingerprick Test Person 1
+router.post('/antigen/v2/action2/edit/fingerprick-test-person-1', function (req, res) {
+  let fingerprickTest = req.session.data['fingerprick-test-person-1']
+
+  if (fingerprickTest == "1,2" || fingerprickTest == "2" || fingerprickTest == "1"){
+    res.redirect('/antigen/v2/global-registration/edit-check-answers-person-1/delivery-address-person-1')
+  } else if (fingerprickTest == "1,No one" || fingerprickTest == "2,No one" || fingerprickTest == "1,2,No one") {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers-person-1/fingerprick-test-person-1-error')
+  } else {
+    res.redirect('/antigen/v2/global-registration/antibody-test-confirmation-person-1')
   }
 })
 
