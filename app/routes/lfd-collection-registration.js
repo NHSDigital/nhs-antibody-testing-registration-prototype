@@ -83,6 +83,15 @@ router.post('/lfd-collection-registration/v1/action10/collecting-for', function 
   }
 })
 
+router.post('/lfd-collection-registration/v1/action10/country', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "England") {
+    res.redirect('/lfd-collection-registration/v1/address')
+  } else {
+    res.redirect('/lfd-collection-registration/v1/service-unavailable-country')
+  }
+})
+
 router.post('/lfd-collection-registration/v1/action10/find-address', function (req, res) {
   let country = req.session.data['country']
   if (country == "England"){
