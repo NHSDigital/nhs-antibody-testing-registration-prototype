@@ -1,5 +1,5 @@
-{% set version = "v19-8" %}
-{% set pageTitle = "Enter the unique organisation number for the care home or employer" %}
+{% set version = "v17-1" %}
+{% set pageTitle = "Enter the unique organisation number (UON)" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,7 +15,7 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/home-org-use">Back</a>
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
 
 {% endblock %}
 
@@ -33,27 +33,55 @@
                 {{ pageTitle }}
               </h1>
             </legend>
-           <span id="enter-barcode-number-hint" class="govuk-body">
-             This is 8 digits. It is sometimes called a “UON”.
-           </span>
+            <span id="enter-barcode-number-hint" class="govuk-body">
+              This is a reference number for the employer or organisation.
+              It is 8 digits and sometimes called a “UON”.
+            </span>
 
-            <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                What to do if you cannot find this number
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-                <p class="govuk-body">Get the unique organisation number from the care home or employer.</p>
-                <p>You can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noopener noreferrer">find a care home’s UON online (opens in a new tab)</a>.</p>
-                <p class="govuk-body">If you still need help, call the contact centre:</p>
-                  <ul class="govuk-list govuk-list--bullet">
-                    <li>119 if you’re in England, Wales or Northern Ireland</li>
-                    <li>0300 303 2713 if you’re in Scotland</li>
-                  </ul>
-                  <p class="govuk-body">Lines are open 7am to 11pm.</p>
-              </div>
-            </details>
+             <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+               <summary class="govuk-details__summary">
+                 <span class="govuk-details__summary-text">
+                   {% if data['whos-taking-the-test'] == "someone-else" %}
+                   What to do if they cannot find this number
+                   {% else %}
+                   What to do if you cannot find this number
+                   {% endif %}
+                 </span>
+               </summary>
+               <div class="govuk-details__text">
+                 <p class="govuk-body">
+                   {% if data['whos-taking-the-test'] == "someone-else" %}
+                   Get the UON from the employer or organisation that gave them the test kit.
+                   {% else %}
+                   Get the UON from the employer or organisation that gave you the test kit.
+                   {% endif %}
+                 </p>
+                 <p class="govuk-body">
+                   {% if data['whos-taking-the-test'] == "someone-else" %}
+                   They can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">find the UON online (opens in a new tab)</a>.
+                   {% else %}
+                   You can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">find the UON online (opens in a new tab)</a>.
+                   {% endif %}
+                 </p>
+                 <p class="govuk-body">
+                   {% if data['whos-taking-the-test'] == "someone-else" %}
+                   If they still need help, call the contact centre:
+                   {% else %}
+                   If you still need help, call the contact centre:
+                   {% endif %}
+                 </p>
+                   <ul class="govuk-list govuk-list--bullet">
+                     {% if data['whos-taking-the-test'] == "someone-else" %}
+                     <li>119 if they’re in England, Wales or Northern Ireland</li>
+                     <li>0300 303 2713 if they’re in Scotland</li>
+                     {% else %}
+                     <li>119 if you’re in England, Wales or Northern Ireland</li>
+                     <li>0300 303 2713 if you’re in Scotland</li>
+                     {% endif %}
+                   </ul>
+                   <p class="govuk-body">Lines are open 7am to 11pm.</p>
+               </div>
+             </details>
             <br>
 
             <div class="govuk-form-group">
@@ -67,8 +95,17 @@
         </div>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
-
       </form>
+
+      <p>
+          <a class="govuk-link" href="/share-result-lateral-flow/{{version}}/postcode2">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            They don't know the UON
+            {% else %}
+            I don't know the UON
+            {% endif %}
+          </a>
+      </p>
 
     </div>
   </div>
