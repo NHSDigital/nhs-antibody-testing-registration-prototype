@@ -802,6 +802,47 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
 
     })
 
+
+    // Version 19.8 - LFD Results sharing - Ethnic group route
+    router.post('/share-result-lateral-flow/v19-8/action6/ethnic-group', function (req, res) {
+      let ethnicGroup = req.session.data['ethnic-group']
+
+      if (ethnicGroup == "Asian or Asian British"){
+        res.redirect('/share-result-lateral-flow/v19-8/ethnic-background-asian')
+      } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+        res.redirect('/share-result-lateral-flow/v19-8/ethnic-background-black')
+      } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+        res.redirect('/share-result-lateral-flow/v19-8/ethnic-background-mixed')
+      } else if (ethnicGroup == "White") {
+        res.redirect('/share-result-lateral-flow/v19-8/ethnic-background-white')
+      } else if (ethnicGroup == "Another ethnic group") {
+        res.redirect('/share-result-lateral-flow/v19-8/ethnic-background-another')
+      } else {
+        res.redirect('/share-result-lateral-flow/v19-8/postcode-lookup')
+      }
+
+    })
+
+    // Version 19.9 - LFD Results sharing - Ethnic group route
+    router.post('/share-result-lateral-flow/v19-9/action6/ethnic-group', function (req, res) {
+      let ethnicGroup = req.session.data['ethnic-group']
+
+      if (ethnicGroup == "Asian or Asian British"){
+        res.redirect('/share-result-lateral-flow/v19-9/ethnic-background-asian')
+      } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+        res.redirect('/share-result-lateral-flow/v19-9/ethnic-background-black')
+      } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+        res.redirect('/share-result-lateral-flow/v19-9/ethnic-background-mixed')
+      } else if (ethnicGroup == "White") {
+        res.redirect('/share-result-lateral-flow/v19-9/ethnic-background-white')
+      } else if (ethnicGroup == "Another ethnic group") {
+        res.redirect('/share-result-lateral-flow/v19-9/ethnic-background-another')
+      } else {
+        res.redirect('/share-result-lateral-flow/v19-9/postcode-lookup')
+      }
+
+    })
+
         // Version 20 - LFD Results sharing - Ethnic group route
         router.post('/share-result-lateral-flow/v20/action6/ethnic-group', function (req, res) {
           let ethnicGroup = req.session.data['ethnic-group']
