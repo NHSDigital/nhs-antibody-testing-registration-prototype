@@ -4,16 +4,8 @@
 {% extends "includes/layout-LFD.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
 
   <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/home-org-use">Back</a>
 {% endblock %}
@@ -23,7 +15,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/share-result-lateral-flow/{{version}}/country" method="post">
+      <form action="/share-result-lateral-flow/{{version}}/test-date" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
@@ -45,7 +37,7 @@
           <div class="govuk-radios__item">
             <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="trust" onclick="setLocation(this);" {{ checked("country", "Northern Ireland") }}>
             <label class="govuk-label govuk-radios__label" for="country-3">
-              Ambulance service trust (England only)
+               Ambulance service trust (England only)
             </label>
           </div>
           <div class="govuk-radios__item">
@@ -102,5 +94,11 @@
 
     </div>
   </div>
+
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
 
 {% endblock %}
