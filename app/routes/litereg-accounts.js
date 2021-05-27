@@ -1443,7 +1443,7 @@ router.post('/share-result-lateral-flow/v19-2/action9/check-mobile', function (r
                   if (person == "myself") {
                     res.redirect('/share-result-lateral-flow/v19-9/coronavirus-account')
                   } else {
-                    res.redirect('/share-result-lateral-flow/v19-9/home-org-use')
+                    res.redirect('/share-result-lateral-flow/v19-9/test-for-work')
                   }
                 })
 
