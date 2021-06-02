@@ -14,6 +14,7 @@
   {{ pageHeading }} - COVID-19
 {% endblock %}
 
+
 {% block beforeContent %}
 <div class="">
   <div class="govuk-grid-row">
@@ -36,6 +37,18 @@
 
 {% block content %}
 
+<div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+  <h2 class="govuk-error-summary__title" id="error-summary-title">
+    There is a problem
+  </h2>
+  <div class="govuk-error-summary__body">
+    <ul class="govuk-list govuk-error-summary__list">
+      <li>
+        <a href="#passport-issued-error">Date of test must be a maximum of one day in the future</a>
+      </li>
+    </ul>
+  </div>
+</div>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -72,7 +85,7 @@
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="contact-3" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-3">
         <label class="govuk-label govuk-radios__label" for="contact-3">
-          A differenct
+          A different date
         </label>
       </div>
       <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-3">
@@ -82,7 +95,7 @@
         For example, 26 3 2020
       </div>
       <span id="passport-issued-error" class="govuk-error-message">
-     <span class="govuk-visually-hidden">Error:</span> Date and time of test must be less than 24 hours in the future
+     <span class="govuk-visually-hidden">Error:</span> Date of test must be a maximum of one day in the future
    </span>
       <div class="govuk-date-input" id="passport-issued">
         <div class="govuk-date-input__item">
@@ -112,41 +125,33 @@
   </fieldset>
 </div>
 
-{% call govukFieldset({
-    legend: {
-      text: "Enter a time",
-      classes: "govuk-fieldset__legend--s",
-      isPageHeading: false
-    }
-  }) %}
 
-    {{ govukInput({
-      label: {
-        text: "Time"
-      },
-      classes: "govuk-input--width-2",
-      id: "covidUploadTime",
-      name: "cuTime"
-    }) }}
 
-    {{ govukRadios({
-        classes: "govuk-radios--inline",
-        idPrefix: "covidUpload",
-        name: "cuAMPM",
-        items: [
-          {
-            value: "am",
-            text: "am"
-          },
-          {
-            value: "pm",
-            text: "pm"
-          }
-        ]
-      }) }}
+<div c  <h2 class="govuk-heading-s">
+    Enter a time
+  </h2>
+<div class="govuk-form-group">
+<label class="govuk-label" for="width-2">
+  Time
+</label>
+<input class="govuk-input govuk-input--width-2" id="width-2" name="width-2" type="text"></div>
 
-  {% endcall %}
-  
+<div class="govuk-radios govuk-radios--inline">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input govuk-input--error" id="changed-name" name="changed-name" type="radio" value="yes">
+        <label class="govuk-label govuk-radios__label" for="changed-name">
+          am
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input govuk-input--error" id="changed-name-2" name="changed-name" type="radio" value="no">
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          pm
+        </label>
+      </div>
+    </div>
+</div>
+<br>
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
