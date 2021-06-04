@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "LOT references" %}
+{% set pageTitle = "Check your answers" %}
 
 {% extends "includes/layout.html" %}
 
@@ -28,6 +28,26 @@
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom6">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+            Collect code
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['qr-code-person-1'] %}
+            {{ data['qr-code-person-1'] or 'NYX7 CT5Z 8VF7 7FW4' }}
+            {% else %}
+            <span class="govuk-!-margin-right-2">{{ data['qr-code-1-person-1'] or 'NYX7' }}</span><span class="govuk-!-margin-right-2">{{ data['qr-code-2-person-1'] or 'CT5Z' }}</span><span class="govuk-!-margin-right-2">{{ data['qr-code-3-person-1'] or '8VF7' }}</span><span>{{ data['qr-code-4-person-1'] or '7FW4' }}</span>
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/logresults-web-service/{{version}}/site-operative/edit-answers/qr-code-person">
+              Change
+              <span class="govuk-visually-hidden">qr code</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-8">
         {% if data['number-of-packs-1'] %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
@@ -138,16 +158,6 @@
         {% endif %}
       </dl>
 
-      <form action="/logresults-web-service/{{version}}/site-operative/check-your-answers-collection" method="post" novalidate>
-
-        <input type="hidden" name="answers-checked" value="true">
-
-        <button type="submit" class="govuk-button govuk-!-margin-bottom-4" data-module="govuk-button">
-          Continue
-        </button>
-
-      </form>
-
       {% if data['number-of-packs-1'] %}
         {% if data['number-of-packs-2'] %}
             {% if data['number-of-packs-3'] %}
@@ -240,6 +250,17 @@
         {% endif %}
       {% endif %}
 
+      <form action="/logresults-web-service/{{version}}/site-operative/confirmation-collection" method="post" novalidate>
+
+        <input class="govuk-input govuk-!-width-two-thirds" id="transaction-count" name="transaction-count" type="text" value="{{ data['lot-reference-1'] or 'X2102703' }}" style="display: none;">
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
 
     </div>
   </div>

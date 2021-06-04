@@ -4,7 +4,7 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/nhs-number-known">Back</a>
+<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/nhs-number-known">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -36,7 +36,33 @@
             Date of birth
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['date-of-birth-day'] or '15 March 1988' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+            {% if data['date-of-birth-month'] == "1" or data['date-of-birth-month'] == "01" %}
+            {{ data['date-of-birth-day'] }} January {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "2" or data['date-of-birth-month'] == "02" %}
+            {{ data['date-of-birth-day'] }} February {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "3" or data['date-of-birth-month'] == "03" %}
+            {{ data['date-of-birth-day'] }} March {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "4" or data['date-of-birth-month'] == "04" %}
+            {{ data['date-of-birth-day'] }} April {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "5" or data['date-of-birth-month'] == "05" %}
+            {{ data['date-of-birth-day'] }} May {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "6" or data['date-of-birth-month'] == "06" %}
+            {{ data['date-of-birth-day'] }} June {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "7" or data['date-of-birth-month'] == "07" %}
+            {{ data['date-of-birth-day'] }} July {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "8" or data['date-of-birth-month'] == "08" %}
+            {{ data['date-of-birth-day'] }} August {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "9" or data['date-of-birth-month'] == "09" %}
+            {{ data['date-of-birth-day'] }} September {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "10" %}
+            {{ data['date-of-birth-day'] }} October {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "11" %}
+            {{ data['date-of-birth-day'] }} November {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "12" %}
+            {{ data['date-of-birth-day'] }} December {{ data['date-of-birth-year'] }}
+            {% else %}
+            6 December 1976
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/index">
@@ -250,81 +276,46 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Country of residence
+            Travelled overseas
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['country'] or 'England' }}
+            {{ data['have-you-travelled-overseas'] or 'No' }}
           </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/country">
+         <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/1-have-you-travelled-overseas">
               Change
-              <span class="govuk-visually-hidden">country of residence</span>
+              <span class="govuk-visually-hidden">travelled overseas</span>
             </a>
           </dd>
         </div>
-        {% if data['country'] == "Northern Ireland" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            First line of address and postcode
+            Country visited
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['address'] or 'Chancery Lane' }}<br>
-            {{ data['home-postcode'] or 'LS1 3BE' }}
+            {{ data['country-autocomplete'] or 'Ireland' }}
           </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/address">
+         <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/1-which-countries-travelled-to">
               Change
-              <span class="govuk-visually-hidden">first line of address and postcode</span>
+              <span class="govuk-visually-hidden">country visited</span>
             </a>
           </dd>
         </div>
-        {% else %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            First line of address and postcode
+            Positive coronavirus test
           </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['address'] or '24 Green Lane' }}<br>
-            {{ data['home-postcode'] or 'LS1 3BE' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/address">
+           <dd class="govuk-summary-list__value">
+            {{ data['previous-infection'] or 'No' }}
+           </dd>
+         <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/previous-infection">
               Change
-              <span class="govuk-visually-hidden">first line of address and postcode</span>
+              <span class="govuk-visually-hidden">positive coronavirus test</span>
             </a>
           </dd>
         </div>
-        {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            NHS number known
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['nhs-number-known'] or 'No' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/nhs-number-known">
-              Change
-              <span class="govuk-visually-hidden">NHS number known</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['nhs-number-known'] == "Yes" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            NHS number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['nhs-number'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/nhs-number">
-              Change
-              <span class="govuk-visually-hidden">NHS number</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Had coronavirus vaccine
@@ -398,26 +389,62 @@
             </dd>
           </div>
           {% endif %}
+          {% endif %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Travelled Overseas
+              Country of residence
             </dt>
-          {% if data['have-you-travelled-overseas'] == "Yes" %}
-            <dd class="govuk-summary-list__value">Yes, to 
-              {{ data['country-autocomplete'] or 'Ireland' }}<br>
+            <dd class="govuk-summary-list__value">
+              {{ data['country'] or 'England' }}
             </dd>
-           <dd class="govuk-summary-list__actions">
-              <a href="/genomic-variants/1-which-countries-travelled-to">
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/country">
                 Change
-                <span class="govuk-visually-hidden">country visited</span>
-          {% else %}
-             <dd class="govuk-summary-list__value">No<br>
+                <span class="govuk-visually-hidden">country of residence</span>
+              </a>
             </dd>
-           <dd class="govuk-summary-list__actions">
-              <a href="/genomic-variants/1-have-you-travelled-overseas">
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              First line of address and postcode
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['address'] or 'Chancery Lane' }}<br>
+              {{ data['home-postcode'] or 'LS1 3BE' }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/address">
                 Change
-                <span class="govuk-visually-hidden">country visited</span>
-           {% endif %}
+                <span class="govuk-visually-hidden">first line of address and postcode</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              NHS number known
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['nhs-number-known'] or 'No' }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/nhs-number-known">
+                Change
+                <span class="govuk-visually-hidden">NHS number known</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['nhs-number-known'] == "Yes" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              NHS number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['nhs-number'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/nhs-number">
+                Change
+                <span class="govuk-visually-hidden">NHS number</span>
               </a>
             </dd>
           </div>

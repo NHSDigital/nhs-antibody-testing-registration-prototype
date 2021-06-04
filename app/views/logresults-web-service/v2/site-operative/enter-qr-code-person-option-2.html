@@ -48,25 +48,18 @@
               <p class="govuk-body govuk-!-margin-top-3">Collect code reference: 12653234356</p>
             </div> -->
             
-            
             <div class="govuk-form-group">
-              <label class="govuk-label" for="qr-code-1-person-1">
+              <label class="govuk-label" for="qr-code-person-1">
                 Enter collect code
               </label>
-              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-1-person-1" name="qr-code-1-person-1" type="text" autofocus value={{ data['qr-code-1-person-1'] }}>
-              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-2-person-1" name="qr-code-2-person-1" type="text" value={{ data['qr-code-2-person-1'] }}>
-              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-3-person-1" name="qr-code-3-person-1" type="text" value={{ data['qr-code-3-person-1'] }}>
-              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-4-person-1" name="qr-code-4-person-1" type="text" value={{ data['qr-code-4-person-1'] }}>
+              <input maxlength="25" class="govuk-input govuk-!-width-two-thirds" id="qr-code-person-1" name="qr-code-person-1" type="text" autofocus value={{ data['qr-code-person-1'] }}>
             </div>
 
             <div class="govuk-form-group govuk-!-margin-bottom-6">
-              <label class="govuk-label" for="qr-code-5-person-1">
+              <label class="govuk-label" for="qr-code-person-1-confirm">
                 Confirm collect code
               </label>
-              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-5-person-1" name="qr-code-5-person-1" type="text" autofocus value={{ data['qr-code-5-person-1'] }}>
-              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-6-person-1" name="qr-code-6-person-1" type="text" autofocus value={{ data['qr-code-6-person-1'] }}>
-              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-7-person-1" name="qr-code-7-person-1" type="text" autofocus value={{ data['qr-code-7-person-1'] }}>
-              <input maxlength="4" class="govuk-input govuk-input--width-3 govuk-!-margin-right-2" id="qr-code-8-person-1" name="qr-code-8-person-1" type="text" autofocus value={{ data['qr-code-8-person-1'] }}>
+              <input maxlength="25" class="govuk-input govuk-!-width-two-thirds" id="qr-code-person-1-confirm" name="qr-code-person-1-confirm" type="text" value={{ data['qr-code-person-1-confirm'] }}>
             </div>
             
           </fieldset>
@@ -80,128 +73,43 @@
   </div>
 
   <script type="text/javascript">
+  lookForInputChange1()
 
-    const inputs = document.getElementsByTagName("input");
-
-    for (i=0; i<=inputs.length; i++) {
-      if (inputs[i].value.length !== 4) {
-        lookForInputChange1()
-        break;
-      } else {
-        document.getElementById("qr-code-1-person-1").blur()
+  function lookForInputChange1() {
+    var interval1 = setInterval(function() {
+      let inputValue = document.getElementById("qr-code-person-1").value;
+      if (inputValue.length === 4) {
+        document.getElementById("qr-code-person-1").value = inputValue + "   "
+      } else if (inputValue.length === 11) {
+        document.getElementById("qr-code-person-1").value = inputValue + "   "
+      } else if (inputValue.length === 18) {
+        document.getElementById("qr-code-person-1").value = inputValue + "   "
+      } else if (inputValue.length === 25) {
+        var nextInput = document.getElementById("qr-code-person-1-confirm");
+        nextInput.focus()
+        clearInterval(interval1)
+        lookForInputChange2()
       }
-    }
-    
+    }, 100); 
+  }
 
-    function lookForInputChange1() {
+  function lookForInputChange2() {
+    var interval2 = setInterval(function() {
+      let inputValue = document.getElementById("qr-code-person-1-confirm").value;
+      if (inputValue.length === 4) {
+        document.getElementById("qr-code-person-1-confirm").value = inputValue + "   "
+      } else if (inputValue.length === 11) {
+        document.getElementById("qr-code-person-1-confirm").value = inputValue + "   "
+      } else if (inputValue.length === 18) {
+        document.getElementById("qr-code-person-1-confirm").value = inputValue + "   "
+      } else if (inputValue.length === 25) {
+        var nextElem = document.getElementById("continue-button");
+        nextElem.focus()
+        clearInterval(interval2)
+      }
+    }, 100); 
+  }
   
-      var interval1 = setInterval(function() {
-        var inputChange = document.getElementById("qr-code-1-person-1").value;
-        var nextInput = document.getElementById("qr-code-2-person-1");
-        if (inputChange.length === 4) {
-          nextInput.focus()
-          lookForInputChange2()
-          clearInterval(interval1)
-        }
-      }, 200); 
-    }
-
-      function lookForInputChange2() {
-
-        var interval2 = setInterval(function() {
-          var inputChange = document.getElementById("qr-code-2-person-1").value;
-          var nextInput = document.getElementById("qr-code-3-person-1");
-          if (inputChange.length === 4) {
-            nextInput.focus()
-            lookForInputChange3()
-            clearInterval(interval2)
-          }
-        }, 200);
-      }
-
-      function lookForInputChange3() {
-
-        var interval3 = setInterval(function() {
-          var inputChange = document.getElementById("qr-code-3-person-1").value;
-          var nextInput = document.getElementById("qr-code-4-person-1");
-          if (inputChange.length === 4) {
-            nextInput.focus()
-            lookForInputChange4()
-            clearInterval(interval3)
-          }
-        }, 200);
-      }
-
-      function lookForInputChange4() {
-
-        var interval4 = setInterval(function() {
-          var inputChange = document.getElementById("qr-code-4-person-1").value;
-          var nextInput = document.getElementById("qr-code-5-person-1");
-          if (inputChange.length === 4) {
-            nextInput.focus()
-            lookForInputChange5()
-            clearInterval(interval4)
-          }
-        }, 200);
-      }
-
-      function lookForInputChange5() {
-
-        var interval5 = setInterval(function() {
-          var inputChange = document.getElementById("qr-code-5-person-1").value;
-          var nextInput = document.getElementById("qr-code-6-person-1");
-          if (inputChange.length === 4) {
-            nextInput.focus()
-            lookForInputChange6()
-            clearInterval(interval5)
-          }
-        }, 200);
-      }
-
-      function lookForInputChange6() {
-
-        var interval6 = setInterval(function() {
-          var inputChange = document.getElementById("qr-code-6-person-1").value;
-          var nextInput = document.getElementById("qr-code-7-person-1");
-          if (inputChange.length === 4) {
-            nextInput.focus()
-            lookForInputChange7()
-            clearInterval(interval6)
-          }
-        }, 200);
-      }
-
-      function lookForInputChange7() {
-
-        var interval7 = setInterval(function() {
-          var inputChange = document.getElementById("qr-code-7-person-1").value;
-          var nextInput = document.getElementById("qr-code-8-person-1");
-          if (inputChange.length === 4) {
-            nextInput.focus()
-            lookForInputChange8()
-            clearInterval(interval7)
-          }
-        }, 200);
-      }
-
-      function lookForInputChange8() {
-
-        var interval8 = setInterval(function() {
-          var inputChange = document.getElementById("qr-code-8-person-1").value;
-          var nextInput = document.getElementById("continue-button");
-          if (inputChange.length === 4) {
-            nextInput.focus()
-            clearInterval(interval8)
-          }
-        }, 200);
-      }
-  
-  </script>  
-
-<div class="proto-action big" style="bottom: 130px;">
-  <a href="/logresults-web-service/{{version}}/site-operative/enter-qr-code-person">
-    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
-  </a>
-</div>
+  </script>
 
 {% endblock %}
