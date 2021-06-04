@@ -389,7 +389,7 @@ router.post('/antigen/v2/action3/currently-in-work', function (req, res) {
   } else if (inWork == "Yes - they go to nursery, school, college or university"){
     res.redirect('/antigen/v2/global-registration/study-grade')
   } else {
-    res.redirect('/genomic-variants/1-have-you-travelled-overseas')
+    res.redirect('/antigen/v2/global-registration/1-have-you-travelled-overseas')
   }
 })
 
@@ -402,6 +402,16 @@ router.post('/antigen/v2/action3/currently-in-work-person-1', function (req, res
   } else {
     res.redirect('/antigen/v2/global-registration/1-have-you-travelled-overseas-person-1')
   }
+})
+
+router.post('/antigen/v2/action3/1-have-you-travelled-overseas', function (req, res) {
+  let OverseasTravel = req.session.data['have-you-travelled-overseas']
+  if (OverseasTravel == "No"){
+    res.redirect('/antigen/v2/global-registration/previous-infection')
+  } else {
+    res.redirect('/antigen/v2/global-registration/1-which-countries-travelled-to')
+  }
+
 })
 
 router.post('/antigen/v2/action3/1-have-you-travelled-overseas-person-1', function (req, res) {
