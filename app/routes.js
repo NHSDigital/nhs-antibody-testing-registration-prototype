@@ -1965,7 +1965,7 @@ router.post('/litereg-accounts/v1/action3/do-you-have-symptoms', function (req, 
     res.redirect('/litereg-accounts/v1/when-did-symptoms-start')
   }
   else {
-    res.redirect('/litereg-accounts/v1/travelled-overseas')
+    res.redirect('/litereg-accounts/v1/previous-infection')
   }
 })
 
@@ -2190,4 +2190,17 @@ router.post('/antigen/v2/action2/delivery-address-person-1', function (req, res)
   }
 
 })
+
+// LiteReg Accounts - Test Place
+router.post('/litereg-accounts/v1/action4/test-place', function (req, res) {
+  let testPlace = req.session.data['test-place']
+
+  if (testPlace == "At a test site or government quarantine hotel"){
+    res.redirect('/litereg-accounts/v1/site-id')
+  } else {
+    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+  }
+
+})
+
 module.exports = router
