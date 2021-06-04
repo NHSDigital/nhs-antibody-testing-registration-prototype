@@ -59,6 +59,19 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+    <h2 class="govuk-error-summary__title" id="error-summary-title">
+    There is a problem
+    </h2>
+    <div class="govuk-error-summary__body">
+    <ul class="govuk-list govuk-error-summary__list">
+      <li>
+        <a href="#passport-issued-error">Time of test must be less than 24 hours in the future for Alun Smith</a>
+      </li>
+    </ul>
+    </div>
+    </div>
+
       <h1 class="govuk-heading-xl">
         {{ pageHeading | safe }}
       </h1>
@@ -70,30 +83,15 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-      <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m">Test results summary</caption>
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Negative</td>
-            <td class="govuk-table__cell">8</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Void</td>
-            <td class="govuk-table__cell">0</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Positive</td>
-            <td class="govuk-table__cell">2</td>
-          </tr>
-        </tbody>
-      </table>
 
-      <h2 class="govuk-heading-m">Records 1 to 10 of 10</h2>
+
+
+      <h2 class="govuk-heading-m">Records 1 to 10 of 20</h2>
       <form class="" action="/{{ version }}/bulk/pcr" method="get">
-      
+
         <ul class="card-table">
 
-          <li class="card-table__item" id="entry-1">
+            <li class="card-table__item card-table__item--error" id="entry-1">
             <div class="card-table__form">
               <div class="card-table__form-column column-8">
                 <dl class="card-table__summary">
@@ -163,6 +161,7 @@
                           <input class="govuk-input govuk-date-input__input govuk-input--width-4" value="2021" id="covidUpload-year" name="cuOrgType-year1" type="text" autocomplete="bday-year" pattern="[0-9]*" inputmode="numeric">
                         </div>
                       </div>
+                    </div>
 
                     </fieldset>
                   </div>
@@ -178,19 +177,23 @@
                   }
                 }) %}
 
-                <div class="govuk-form-group">
+                <div class="govuk-form-group govuk-form-group--error">
+                  <span id="passport-issued-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Time of test must be less than 24 hours in the future for Alun Smith
+    </span>
                   <div class="govuk-date-input__item govuk-!-margin-right-1">
                     <label class="govuk-label govuk-!-font-size-16" for="covidUploadHour">
                       Hour
                     </label>
-                    <input class="govuk-input govuk-input--width-2" value="10" id="covidUploadHour" name="cuTime1" type="text">
+                    <input class="govuk-input govuk-input--width-2 govuk-input--error" value="10" id="covidUploadHour" name="cuTime1" type="text">
                   </div>
 
-                  <div class="govuk-date-input__item">
-                    <label class="govuk-label govuk-!-font-size-16" for="covidUploadAMPM">
+                  <div class="govuk-date-input__item ">
+                    <label class="govuk-label govuk-!-font-size-16 " for="covidUploadAMPM">
                       am or pm
                     </label>
-                    <select class="govuk-select govuk-input--width-4" id="covidUploadAMPM" name="cuAMPM1">
+                    <select class="govuk-select govuk-input--width-4 govuk-input--error" id="covidUploadAMPM" name="cuAMPM1">
+                      <span class="govuk-input--error"</span>
                       <option value="am">am</option>
                       <option value="pm">pm</option>
                     </select>
@@ -222,8 +225,8 @@
               </div>
             </div>
           </li>
-          
-          
+
+
         </ul>
 
       </form>
@@ -236,9 +239,8 @@
         <a class="govuk-!-font-size-16 destructive-action" href="#">Delete entry</a>
       </p>
     </div>
+  </div>
 
-
-    </div>
 
         {% set items = [
 
@@ -264,7 +266,6 @@
 
               <div class="card-table__form-column column-8">
                   <dl class="card-table__summary">
-                    <dt>Name</dt>
                     <dt class="govuk-visually-hidden">Name</dt>
                     <dd>{{ item.name }}</dd>
                     <dd class="dob">{{ item.dob }}</dd>
@@ -288,7 +289,6 @@
               </div>
 
               <div class="card-table__form-column column-16">
-
                 <div class="govuk-form-group">
                   <fieldset class="govuk-fieldset" role="group">
 
@@ -339,8 +339,6 @@
               </div>
 
                 <div class="card-table__form-column column-12">
-                  <dl class="card-table__summary">
-                  <dt>Time of swab test</dt>
 
                   {% call govukFieldset({
                     legend: {
@@ -409,48 +407,12 @@
         </ul>
         {% endfor %}
 
-            <div class="card-table__form-column column-6" style="display:none">
-              <p>
-                <a class="govuk-!-font-size-16 destructive-action" href="#">Delete entry</a>
-              </p>
-            </div>
 
 
 
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-6">Confirm records 1 to 10</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-6">Confirm records 1 to 10 of 20</h2>
 
-                <div class="govuk-form-group">
-                  <fieldset class="govuk-fieldset" aria-describedby="reupload">
-                    <form class="" action="" method="post">
-                    <legend class="govuk-fieldset__legend">
-                      <h2 class="govuk-heading-m govuk-!-margin-top-6">Are records 1 to 10 of 10 correct?</h2>
-                    </legend>
-                    <div id="reupload" class="govuk-hint">
-                      You can re-upload a new version of the spreadsheet if you have not selected the correct 'Test type' or if you entered the data incorrectly.
-                    </div>
-                    <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
-                      <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="yes" data-aria-controls="conditional-reupload">
-                        <label class="govuk-label govuk-radios__label" for="reupload">
-                          Yes, I confirm the details are correct
-                          </label>
-                      </div>
-                      <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-reupload">
-                        <div class="govuk-warning-text">
-                  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-                  <strong class="govuk-warning-text__text">
-                    <span class="govuk-warning-text__assistive">Warning</span>
-                    You are reporting 2 positive lateral flow test results
-                  </strong>
-                </div>
-                </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="no" data-aria-controls="reupload">
-              <label class="govuk-label govuk-radios__label" for="reupload">
-                No, edit and re-upload the spreadsheet
-              </label>
-            </div>
 
         {{ govukCheckboxes({
           idPrefix: "covidUploadCheckbox",
@@ -462,19 +424,10 @@
             }
           ]
         }) }}
-        <br>
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
-            <div class="govuk-checkboxes">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
-                <label class="govuk-label govuk-checkboxes__label" for="waste">
-                  I confirm there are <span class="govuk-body govuk-!-font-weight-bold">2</span> positive test results
-                </label>
-              </div>
-              <br>
-            <input class="govuk-button" type="submit" value="Save and continue">
-          </div>
-        </div>
 
-        {% endblock %}
+
+
+              <form class="" action="/{{ version }}/bulk/pcr" method="get">
+            <input class="govuk-button" type="submit" value="Save and continue to records 11 to 20">
+
+{% endblock %}
