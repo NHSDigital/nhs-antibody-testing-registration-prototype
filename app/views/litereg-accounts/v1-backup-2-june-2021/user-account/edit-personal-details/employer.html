@@ -1,0 +1,57 @@
+{% set version = "v1" %}
+{% set pageTitle = "What is the name of your employer?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/user-account/edit-personal-details/home-page">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/litereg-accounts/{{version}}/user-account/edit-personal-details/home-page" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="employer-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="employer-hint" class="govuk-body">
+              This helps us trace your work colleagues if you test positive for coronavirus.
+            </span>
+            <div class="govuk-form-group govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+                <label class="govuk-label" for="employer">
+                  Employer Name
+                </label>
+                <input class="govuk-input govuk-!-width-two-thirds" id="employer" name="employer" type="text" value="{{ data['employer'] }}">
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        <a class="govuk-link" href="/litereg-accounts/{{version}}/user-account/edit-personal-details/home-page" style="display: block">Prefer not to say</a>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
