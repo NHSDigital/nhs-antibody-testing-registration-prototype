@@ -1,4 +1,4 @@
-{% set pageHeading = "Check before you delete this person’s registration" %}
+{% set pageHeading = "Delete Alun Smith’s registration?" %}
 {% set version = "organisational/lft/carehome-registration" %}
 {% extends "includes/layout.html" %}
 
@@ -37,47 +37,31 @@
           {{ pageHeading }}
         </h1>
 
-<form>
-        <p>If you delete this person’s details, you will need to re-upload the spreadsheet to register a test for them again. </p>
+        <p>If you delete this person’s details, you will need to re-upload the spreadsheet to add them to your registration again. </p>
 
-        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Name
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Alun Smith
-            </dd>
-            <dd class="govuk-summary-list__actions">
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Date of birth
-            </dt>
-            <dd class="govuk-summary-list__value">
-              23 June 1980
-            </dd>
-            <dd class="govuk-summary-list__actions">
-
-            </dd>
-            </dl>
-
-            {% from "govuk/components/button/macro.njk" import govukButton %}
-
-    <div class="govuk-button-group">
-      {{ govukButton({
-        text: "Delete"
-      }) }}
-
-      <a class="govuk-link" href="#">Cancel</a>
-    </div>
-
-          </form>
-
-
-
-        </div>
+        <div class="govuk-form-group">
+    <div class="govuk-radios govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name" name="changed-name" type="radio" value="yes">
+        <label class="govuk-label govuk-radios__label" for="changed-name">
+          Yes, delete Alun Smith's registration
+        </label>
       </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name-2" name="changed-name" type="radio" value="no">
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          No, keep Alun Smith’s registration
+        </label>
+      </div>
+    </div>
+</div>
+
+
+<div class="govuk-button-group">
+  <button class="govuk-button" data-module="govuk-button">
+    Save and continue
+  </button>
+
+</div>
 
 {% endblock %}
