@@ -1,7 +1,7 @@
-{% set version = "v20" %}
-{% set pageTitle = "Where in the UK do you live?" %}
+{% set version = "v1" %}
+{% set pageTitle = "What country do you live in?" %}
 
-{% extends "includes/layout-LFD.html" %}
+{% extends "includes/layout.html" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
@@ -15,8 +15,7 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
-
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/user-account/edit-personal-details/home-page">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -24,21 +23,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/share-result-lateral-flow/{{version}}/test-date" method="post">
+      <form class="form" action="/litereg-accounts/{{version}}/user-account/edit-personal-details/home-page" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                Where in the UK do they live?
-                {% else %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                 {{ pageTitle }}
-                {% endif %}
               </h1>
             </legend>
-
-
             <div class="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }}>
@@ -47,21 +40,21 @@
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="Scotland" {{ checked("country", "Scotland") }}>
-                <label class="govuk-label govuk-radios__label" for="country-4">
-                  Scotland
+                <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="Wales" {{ checked("country", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-2">
+                  Wales
                 </label>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="Northern Ireland" {{ checked("country", "Northern Ireland") }}>
                 <label class="govuk-label govuk-radios__label" for="country-3">
-                  Northern Ireland (or Republic of Ireland residents who work or study in Northern Ireland)
+                  Northern Ireland
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="Wales" {{ checked("country", "Wales") }}>
-                <label class="govuk-label govuk-radios__label" for="country-2">
-                  Wales
+                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="Scotland" {{ checked("country", "Scotland") }}>
+                <label class="govuk-label govuk-radios__label" for="country-4">
+                  Scotland
                 </label>
               </div>
             </div>
