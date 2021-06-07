@@ -19,25 +19,11 @@
     text: "Back",
     href: "javascript:window.history.go(-1);"
   }) }}
-  
-  <!-- {% if data['way-to-test'] == "drive-through" %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/visiting-drive-through">Back</a>
-  {% elseif data['way-to-test'] == "walk-in" %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/visiting-walk-through">Back</a>
-  {% elseif data['way-to-test'] == "home testing" %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/ordering-home-test-kit">Back</a>
-  {% elseif data['way-to-test'] == undefined and data['email'] !== "Yes" and data['do-you-have-a-car'] == "Yes" and data['home-postcode'] == "N0000" %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/visiting-drive-through">Back</a>
-  {% elseif data['way-to-test'] == undefined and data['email'] !== "Yes" and data['do-you-have-a-car'] == "No" and data['home-postcode'] !== "N0000" %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/visiting-walk-through">Back</a>
-  {% elseif data['way-to-test'] == undefined and data['email'] == "Yes" and data['do-you-have-a-car'] == "No" and data['home-postcode'] == "N0000" %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/ordering-home-test-kit">Back</a>
-  {% endif %} -->
 
 {% endblock %}
 
 {% block content %}
-{% include "includes/gtm-noscript.html" %}
+  {% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -47,8 +33,8 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="date-of-birth-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
-                {{ pageTitle }}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-9">
+                What's {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s date of birth?
               </h1>
             </legend>
             <span id="date-of-birth-hint" class="govuk-hint">
@@ -82,6 +68,8 @@
             </div>
           </fieldset>
         </div>
+
+        <p class="govuk-body govuk-!-margin-bottom-7">If {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }} is aged 11 or under, their parent or guardian needs to swab test them.</p>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 

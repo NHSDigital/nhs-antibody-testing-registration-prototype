@@ -461,16 +461,14 @@ router.post('/antigen/v1/action3/follow-up-test', function (req, res) {
 // Version 1 - Antigen Refer and Triage - Government pilot route
 
 router.post('/antigen/v1/action3/government-pilot', function (req, res) {
-  let governmentPilot = req.session.data['government-pilot']
+  let governmentPilot = req.session.data['professional-pilot']
   let symptoms = req.session.data['do-you-have-symptoms']
-  if (governmentPilot == "Yes"){
-    res.redirect('/antigen/v1/refer-and-triage/which-pilot')
-  } else if (governmentPilot == "No" && symptoms == "No") {
+  let followUpTest = req.session.data['follow-up-test']
+  if (governmentPilot == "None of the above" && symptoms == "No" && followUpTest == "No") {
     res.redirect('/antigen/v1/refer-and-triage/reason-for-test')
   } else {
     res.redirect('/antigen/v1/refer-and-triage/')
   }
-
 })
 
 // Version 1 - Antigen Refer and Triage - Reason for test route
