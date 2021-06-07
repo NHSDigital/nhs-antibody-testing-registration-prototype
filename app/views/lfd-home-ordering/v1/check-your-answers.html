@@ -15,7 +15,13 @@
     </p>
   </div>
   
-  <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/date-of-birth">Back</a>
+  {% if data['country'] == "England" and data['nhs-testing-programme'] == "No" %}
+  <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/nhs-testing-programme">Back</a>
+  {% elseif data['country'] == "England" and data['nhs-testing-programme'] == "Yes" %}
+  <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/occupation">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/country">Back</a>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
