@@ -56,7 +56,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <h2 class="govuk-heading-m">Records 1 to 10 of 20</h2>
+      <h2 class="govuk-heading-m">Records 1 to 10 of 10</h2>
 <div>
         <ul class="card-table">
 
@@ -166,34 +166,37 @@
     </ul>
 {% endfor %}
 
-<div class="govuk-form-group">
-  <fieldset class="govuk-fieldset" aria-describedby="reupload">
+<h2 class="govuk-heading-m govuk-!-margin-top-6">Are records 1 to 10 of 10 correct?</h2>
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
     <form class="" action="" method="post">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-        <h2 class="govuk-heading-m govuk-!-margin-top-6">Are records 1 to 10 of 20 correct?</h2>
-    </legend>
-    <div id="changed-name-hint" class="govuk-hint">
-      You can re-upload a new version of the spreadsheet if you have not selected the correct 'Test type' or if you entered the data incorrectly.
-    </div>
-    <div class="govuk-radios govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="yes">
-        <label class="govuk-label govuk-radios__label" for="changed-name">
-          Yes, I confirm the details are correct
-          </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="no">
-        <label class="govuk-label govuk-radios__label" for="reupload">
-          No, edit and re-upload the spreadsheet
-        </label>
-      </div>
-    </div>
 
-  </fieldset>
+{{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "reuploadpcr",
+  name: "reuploadpcr",
+  fieldset: {
+
+  },
+  hint: {
+    text: "You can re-upload a new version of the spreadsheet if you have not selected the correct 'Test type' or if you entered the data incorrectly.
+  "
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes, I confirm the details are correct"
+    },
+    {
+      value: "no",
+      text: "No, edit and reupload the spreadsheet"
+    }
+  ]
+}) }}
+<form class="" action="" method="get">
+    <input class="govuk-button" type="submit" value="Save and continue">
+</form>
+
 </div>
-
-    </div>
-          <form class="" action="/{{ version }}/bulk/pcr" method="get">
-        <input class="govuk-button" type="submit" value="Save and continue to records 11 to 20">
+</div>
 {% endblock %}
