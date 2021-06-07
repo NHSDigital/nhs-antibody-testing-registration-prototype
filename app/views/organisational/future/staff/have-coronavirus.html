@@ -5,13 +5,13 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "Is " + fullname + " currently in work?" %}
+{% set pageHeading = "Do you currently have coronavirus symptoms?" %}
  {% set version = "organisational/lft/carehome-registration" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - {{ serviceName }}
+  {{ pageHeading }} - COVID-19
 {% endblock %}
 
 {% block beforeContent %}
@@ -35,52 +35,45 @@
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="" method="post">
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
 
+      <p>The main symptoms of coronavirus are:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          a high temperature
+        </li>
+        <li>
+          a new, continuous cough
+        </li>
+        <li>
+          a loss or change to your sense of smell or taste
+        </li>
+      </ul>
+
+      <p>Most people with coronavirus have at least one of these symptoms.</p>
+
+      <form class="" action="" method="post">
         {{ govukRadios({
-            idPrefix: "cuInWork",
-            name: "cuInWork",
-            fieldset: {
-              legend: {
-                text: pageHeading,
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--xl"
-              }
-            },
-            hint: {
-              html: "<p>This will help us understand more about the spread of the virus.</p>"
-            },
+            idPrefix: "cuCoronavirus",
+            name: "cuCoronavirus",
             items: [
               {
-                value: "Yes, and for the last 2 weeks they've worked from home",
-                text: "Yes, and for the last 2 weeks they've worked from home"
+                value: "Yes",
+                html: "Yes, I have at least one of these symptoms"
               },
               {
-                value: "Yes, and for the last 2 weeks they've travelled to work",
-                text: "Yes, and for the last 2 weeks they've travelled to work"
-              },
-              {
-                value: "no",
-                text: "No"
-              },
-              {
-                divider: "or"
-              },
-              {
-                value: "Prefer not to say",
-                text: "Prefer not to say"
+                value: "No",
+                text: "No, I do not have any of these symptoms"
               }
             ]
           }) }}
-
         <input class="govuk-button" type="submit" value="Continue">
-
       </form>
-
     </div>
   </div>
 

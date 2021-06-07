@@ -192,39 +192,36 @@
     </ul>
 {% endfor %}
 
-  <div class="govuk-form-group">
-    <fieldset class="govuk-fieldset" aria-describedby="reupload">
-      <form class="" action="" method="post">
-      <legend class="govuk-fieldset__legend">
-        <h2 class="govuk-heading-m govuk-!-margin-top-6">Are records 1 to 10 of 10 correct?</h2>
-      </legend>
-      <div id="reupload" class="govuk-hint">
-        You can re-upload a new version of the spreadsheet if you have not selected the correct 'Test type' or if you entered the data incorrectly.
-      </div>
-      <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
-        <div class="govuk-radios__item">
-          <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="yes" data-aria-controls="conditional-reupload">
-          <label class="govuk-label govuk-radios__label" for="reupload">
-            Yes, I confirm the details are correct
-            </label>
-        </div>
-        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-reupload">
-          <div class="govuk-warning-text">
-    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-    <strong class="govuk-warning-text__text">
-      <span class="govuk-warning-text__assistive">Warning</span>
-      You are reporting 2 positive lateral flow test results
-    </strong>
-  </div>
-  </div>
-<div class="govuk-radios__item">
-  <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="no" data-aria-controls="reupload">
-  <label class="govuk-label govuk-radios__label" for="reupload">
-    No, edit and re-upload the spreadsheet
-  </label>
+<h2 class="govuk-heading-m govuk-!-margin-top-6">Are records 1 to 10 of 10 correct?</h2>
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+    <form class="" action="" method="post">
+
+{{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "reupload",
+  name: "reupload",
+  fieldset: {
+
+  },
+  hint: {
+    text: "You can re-upload a new version of the spreadsheet if you have not selected the correct 'Test type' or if you entered the data incorrectly.
+  "
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes, I confirm the details are correct"
+    },
+    {
+      value: "no",
+      text: "No, edit and reupload the spreadsheet"
+    }
+  ]
+}) }}
+    <input class="govuk-button" type="submit" value="Save and continue">
+</form>
+
 </div>
-      </fieldset>
-    </div>
-          <form class="" action="/{{ version }}/bulk/pcr" method="get">
-        <input class="govuk-button" type="submit" value="Save and continue">
+</div>
 {% endblock %}

@@ -1076,7 +1076,7 @@ router.post('/organisational/lft/carehome-registration/single/have-return-box', 
   if (answer == 'yes') {
     res.redirect('/organisational/lft/carehome-registration/single/return-box')
   } else if (answer == 'no') {
-      res.redirect('/organisational/lft/carehome-registration/single/add-second-test')
+      res.redirect('/organisational/lft/carehome-registration/single/check-pcr')
     } else {
     res.redirect('/organisational/lft/carehome-registration/single/have-return-box?error=empty')
     }
@@ -1119,19 +1119,19 @@ router.post('/organisational/lft/carehome-registration/single/add-another-slice2
 });
 
 
-router.post('/organisational/lft/carehome-registration/bulk/lft-mvp2', function (req, res) {
+router.post('/organisational/lft/carehome-registration/enhancements/lft-bulk-delete', function (req, res) {
   let answer = req.body.reupload;
 
   if (answer == 'yes') {
-    res.redirect('/organisational/lft/carehome-registration/bulk/pcr-mvp2')
+    res.redirect('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete')
   } else if (answer == 'no') {
       res.redirect('/organisational/lft/carehome-registration/bulk/upload')
     } else {
-    res.redirect('/organisational/lft/carehome-registration/bulk/lft-mvp2?error=empty')
+    res.redirect('/organisational/lft/carehome-registration/enhancements/lft-bulk-delete?error=empty')
     }
 });
 
-router.post('/organisational/lft/carehome-registration/bulk/pcr-mvp2', function (req, res) {
+router.post('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete', function (req, res) {
   let answer = req.body.reuploadpcr;
 
   if (answer == 'yes') {
@@ -1139,7 +1139,7 @@ router.post('/organisational/lft/carehome-registration/bulk/pcr-mvp2', function 
   } else if (answer == 'no') {
       res.redirect('/organisational/lft/carehome-registration/bulk/upload')
     } else {
-    res.redirect('/organisational/lft/carehome-registration/bulk/pcr-mvp2?error=empty')
+    res.redirect('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete?error=empty')
     }
 });
 
@@ -1155,6 +1155,8 @@ router.post('/organisational/lft/carehome-registration/UON-check-radio', functio
     res.redirect('/organisational/lft/carehome-registration/UON-check-radio?error=empty')
     }
 });
+
+
 
 
 
