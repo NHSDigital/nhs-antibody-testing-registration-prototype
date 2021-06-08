@@ -20,6 +20,7 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
+
       <h1 class="govuk-heading-l govuk-!-margin-bottom-7">
         {% if data['whos-taking-the-test'] == "someone-else" %}
         Check the answers for {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}
@@ -359,23 +360,35 @@
             {{ data['mobile-phone-number'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/share-result-lateral-flow/{{version}}/mobile-number">
+            <a href="/share-result-lateral-flow/{{version}}/mobile">
               Change
-              <span class="govuk-visually-hidden">mobile</span>
+              <span class="govuk-visually-hidden"> mobile</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Save details to account?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['save-person'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/save-person">
+              Change
+              <span class="govuk-visually-hidden"> save details to account</span>
             </a>
           </dd>
         </div>
 
       </dl>
 
-      <form action="/share-result-lateral-flow/{{version}}/save-person" method="post" novalidate>
-
+      <form action="/share-result-lateral-flow/{{version}}/choose-result" method="post" novalidate>
         <input type="hidden" name="answers-checked" value="true">
-
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Continue
         </button>
-
       </form>
 
     </div>
