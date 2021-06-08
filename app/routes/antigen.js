@@ -574,19 +574,47 @@ router.post('/antigen/v2/action3/address-person-1', function (req, res) {
 
 router.post('/antigen/v2/action3/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
+  let country = req.session.data['country']
+  let birthYear = req.session.data['date-of-birth-year']
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antigen/v2/global-registration/nhs-number')
-  } else {
+  } else if (nhsNumberKnown == "No" && country == "England" && parseInt(birthYear) <= 2003 ) {
     res.redirect('/antigen/v2/global-registration/fingerprick-test')
+  } else {
+    res.redirect('/antigen/v2/global-registration/check-your-answers')
   }
 })
 
 router.post('/antigen/v2/action3/nhs-number-known-person-1', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known-person-1']
+  let country = req.session.data['country']
+  let birthYear = req.session.data['date-of-birth-person-1-year']
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antigen/v2/global-registration/nhs-number-person-1')
-  } else {
+  } else if (nhsNumberKnown == "No" && country == "England" && parseInt(birthYear) <= 2003 ) {
     res.redirect('/antigen/v2/global-registration/fingerprick-test-person-1')
+  } else {
+    res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
+  }
+})
+
+router.post('/antigen/v2/action3/nhs-number', function (req, res) {
+  let country = req.session.data['country']
+  let birthYear = req.session.data['date-of-birth-year']
+  if (country == "England" && parseInt(birthYear) <= 2003 ){
+    res.redirect('/antigen/v2/global-registration/fingerprick-test')
+  } else {
+    res.redirect('/antigen/v2/global-registration/check-your-answers')
+  }
+})
+
+router.post('/antigen/v2/action3/nhs-number-person-1', function (req, res) {
+  let country = req.session.data['country']
+  let birthYear = req.session.data['date-of-birth-person-1-year']
+  if (country == "England" && parseInt(birthYear) <= 2003 ){
+    res.redirect('/antigen/v2/global-registration/fingerprick-test-person-1')
+  } else {
+    res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
   }
 })
 
@@ -636,16 +664,6 @@ router.post('/antigen/v2/global-registration/edit-check-answers-person-1/action9
 // })
 
 router.post('/antigen/v2/action3/people-confirmed', function (req, res) {
-  let chosenWayToTest = req.session.data['way-to-test']
-  if (chosenWayToTest == "drive-through" || chosenWayToTest == "walk-through"){
-    res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
-  } else {
-    res.redirect('/antigen/v2/order-home-test-kit/')
-  }
-
-})
-
-router.post('/antigen/v2/action3/people-confirmed-person-1', function (req, res) {
   let chosenWayToTest = req.session.data['way-to-test']
   if (chosenWayToTest == "drive-through" || chosenWayToTest == "walk-through"){
     res.redirect('/antigen/v2/site-appointment-booking/find-test-site')
