@@ -5,7 +5,12 @@
 
 {% block beforeContent %}
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/check-your-answers">Back</a>
+  {% if data['nhs-number-known'] == "Yes" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/nhs-number">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/nhs-number-known">Back</a>
+  {% endif %}
+
 {% endblock %}
 
 {% block content %}
@@ -14,7 +19,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/antigen/{{version}}/action2/fingerprick-test" method="post">
+      <form class="form" action="/antigen/{{version}}/global-registration/check-your-answers" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="fingerprick-test-hint">
@@ -24,12 +29,13 @@
               </h1>
             </legend>
             <span id="fingerprick-test-hint" class="govuk-body">
-              If you test positive for coronavirus, we will send you an antibody kit - a fingerprick blood test to see if you’ve had a previous infection. This will help the NHS learn more about who’s had the virus more than once, and how it has spread.<br><br>
-              You will need to do 2 tests, 3 weeks apart. You do the test at home by yourself. You can ask a friend or relative to help if you want.<br><br>
-              If you agree the antibody test kits will be sent to you automatically.
+              <strong>They will only receive an antibody test kit if they test positive for coronavirus.</strong><br><br>
+              The antibody test is a 'fingerprick' blood test to see if you've had a previous infection. This will help the NHS learn more about who's had the virus more than once, and how it has spread.<br><br>
+              They will be sent 2 antibody test kits. The kits will arrive by post at their home address 3 weeks apart. They do each test on themselves at home. They can ask a friend or relative to help.<br><br>
+              The antibody tests have to be completed and posted back straight away. It's safe to leave home to post a test while you are self-isolating.
             </span><br><br><br>
             
-            <details class="govuk-details" data-module="govuk-details">
+            <details class="govuk-details govuk-!-margin-bottom-2" data-module="govuk-details">
               <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">
                   Video: How to collect your blood sample
@@ -58,29 +64,29 @@
               </div>
             </details>
 
-            <div class="govuk-warning-text">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                By selecting Yes you confirm that you are OK doing a fingerprick blood test, and do not take anticoagulants ('blood-thinning' medicines) or  have a blood clotting disorder such as haemophilia. 
-              </strong>
-            </div>
-
             <div class="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="fingerprick-test-1" name="fingerprick-test" type="radio" value="Yes" {{ checked("fingerprick-test", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="fingerprick-test-1">
-                  Yes
+                  Yes, they are willing to do an antibody test
                 </label>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="fingerprick-test-2" name="fingerprick-test" type="radio" value="No" {{ checked("fingerprick-test", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="fingerprick-test-2">
-                  No
+                  No, they are not willing to do an antibody test
                 </label>
               </div>
             </div>
           </fieldset>
+        </div>
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            By selecting Yes you confirm that you are OK doing a fingerprick blood test, and do not take anticoagulants ('blood-thinning' medicines) or  have a blood clotting disorder such as haemophilia. 
+          </strong>
         </div>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>

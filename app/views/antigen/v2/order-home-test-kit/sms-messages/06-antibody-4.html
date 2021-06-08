@@ -1,0 +1,97 @@
+{% set version = "v2" %}
+{% set pageTitle = "Text message" %}
+
+{% extends "includes/layout.html" %}
+
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    body {
+      background-color: #f3f2f1 !important;
+      -webkit-text-size-adjust: 100%;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: normal;
+      margin: 50px auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-text-message {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 340px;
+      min-height: 420px;
+    }
+
+    .app-text-message__text {
+      max-width: 255px;
+      word-wrap: break-word;
+      margin-bottom: 12px;
+      line-height: 24px;
+      position:relative;
+      padding:10px 20px;
+      border-radius:25px;
+      background:#E5E5EA;
+      color:black;
+      
+      &:before, &:after {
+        content:"";
+        position:absolute;
+        bottom:-2px;
+        height:20px;
+      }
+
+       &:before {
+        left:-7px;
+        border-left:20px solid #E5E5EA;
+        border-bottom-right-radius: 16px 14px;
+        transform:translate(0, -2px);
+      }
+
+      &:after {
+        left:4px;
+        width:26px;
+        background:white;
+        border-bottom-right-radius: 10px;
+        transform:translate(-30px, -2px);
+      }
+    }
+    </style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h1 class="govuk-heading-l">Text message</h1>
+
+      <div class="app-text-message">
+        <h2 class="govuk-heading-s">UK_Gov</h2>
+        <p class="app-text-message__text">
+          Dear {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}<br><br>
+          Your antibody test kit arrives in 2-3 days.<br><br>
+          It is much easier to do the blood test if you follow the tips on the "how to" video and always read the instructions in your test kit.<br><br>
+          Go to: <a class="govuk-link" href="https://www.gov.uk/taking-antibody-blood-sample">www.gov.uk/taking-antibody-blood-sample</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action big">
+  <a href="/antigen/{{version}}/order-home-test-kit/sms-messages/07-antibody-5">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">SMS - 3 days after 25 days</div>
+  </a>
+</div>
+{% endblock %}

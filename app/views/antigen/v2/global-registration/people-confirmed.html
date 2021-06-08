@@ -45,8 +45,36 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}</th>
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</th>
             <td class="govuk-table__cell">
+              {% if data['date-of-birth-month'] == "1" or data['date-of-birth-month'] == "01" %}
+              {{ data['date-of-birth-day'] }} January {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "2" or data['date-of-birth-month'] == "02" %}
+              {{ data['date-of-birth-day'] }} February {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "3" or data['date-of-birth-month'] == "03" %}
+              {{ data['date-of-birth-day'] }} March {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "4" or data['date-of-birth-month'] == "04" %}
+              {{ data['date-of-birth-day'] }} April {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "5" or data['date-of-birth-month'] == "05" %}
+              {{ data['date-of-birth-day'] }} May {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "6" or data['date-of-birth-month'] == "06" %}
+              {{ data['date-of-birth-day'] }} June {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "7" or data['date-of-birth-month'] == "07" %}
+              {{ data['date-of-birth-day'] }} July {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "8" or data['date-of-birth-month'] == "08" %}
+              {{ data['date-of-birth-day'] }} August {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "9" or data['date-of-birth-month'] == "09" %}
+              {{ data['date-of-birth-day'] }} September {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "10" %}
+              {{ data['date-of-birth-day'] }} October {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "11" %}
+              {{ data['date-of-birth-day'] }} November {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "12" %}
+              {{ data['date-of-birth-day'] }} December {{ data['date-of-birth-year'] }}
+              {% else %}
+              6 December 1976
+              {% endif %}
+              <br>
               {{ data['email-address'] or 'email@example.com' }}
               <br>
               {{ data['mobile-phone-number'] or '+447782808451' }}

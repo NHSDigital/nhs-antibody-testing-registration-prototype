@@ -32,7 +32,7 @@
             Email address
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['email-address'] | default('example@example.co.uk')}}
+            {{ data['email-address'] or 'example@example.co.uk' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/antigen/{{version}}/order-home-test-kit/confirm-email-address">
@@ -40,49 +40,6 @@
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Home address
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {% if data['gp-address-same'] !== "No" %}
-
-                {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
-                  {{ data['home-address'] }}
-                {% else %}
-                  {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
-                    {% if data['address-line-2'] %}
-                      {{ data['address-line-2'] }}<br>
-                    {% endif %}
-                    {% if data['address-town'] %}
-                      {{ data['address-town'] }}<br>
-                    {% endif %}
-                  {{ data['home-postcode'] or 'LS1 3BE' }}
-                {% endif %}
-
-              {% else %}
-
-                {% if data['gp-address'] and data['gp-address'] !== "5 addresses found" %}
-                    {{ data['gp-address'] }}
-                {% else %}
-                    {{ data['address-line-1-gp'] or '5 Souterhead Road'}}<br>
-                    {% if data['address-line-2-gp'] %}
-                      {{ data['address-line-2-gp'] }}<br>
-                    {% endif %}
-                    {% if data['address-town-gp'] %}
-                      {{ data['address-town-gp'] }}<br>
-                    {% endif %}
-                    {{ data['gp-postcode'] or 'LS1 3BE' }}
-                {% endif %}
-
-              {% endif %}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/antigen/{{version}}/order-home-test-kit/postcode">
-                Change<span class="govuk-visually-hidden">home address</span>
-              </a>
-            </dd>
-          </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Delivery address
@@ -104,7 +61,6 @@
                 {{ data['delivery-address-postcode'] or 'LS1 3BE' }}
               {% endif %}
             {% endif %}
-
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/antigen/{{version}}/order-home-test-kit/delivery-address-same">

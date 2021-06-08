@@ -15,10 +15,7 @@
   </p>
 </div>
 
-{{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.go(-1);"
-}) }}
+<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/fingerprick-test">Back</a>
 
 {% endblock %}
 
@@ -55,7 +52,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            First line of address and postcode
+            Home address
           </dt>
           <dd class="govuk-summary-list__value">
             {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
@@ -74,7 +71,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            First line of address and postcode, registered with GP
+            GP registered address
           </dt>
           {% if data['gp-address-same'] !== "No" %}
           <dd class="govuk-summary-list__value">
@@ -141,7 +138,33 @@
             Date of birth
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['date-of-birth-day'] or '15 March 1988' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+            {% if data['date-of-birth-month'] == "1" or data['date-of-birth-month'] == "01" %}
+            {{ data['date-of-birth-day'] }} January {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "2" or data['date-of-birth-month'] == "02" %}
+            {{ data['date-of-birth-day'] }} February {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "3" or data['date-of-birth-month'] == "03" %}
+            {{ data['date-of-birth-day'] }} March {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "4" or data['date-of-birth-month'] == "04" %}
+            {{ data['date-of-birth-day'] }} April {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "5" or data['date-of-birth-month'] == "05" %}
+            {{ data['date-of-birth-day'] }} May {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "6" or data['date-of-birth-month'] == "06" %}
+            {{ data['date-of-birth-day'] }} June {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "7" or data['date-of-birth-month'] == "07" %}
+            {{ data['date-of-birth-day'] }} July {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "8" or data['date-of-birth-month'] == "08" %}
+            {{ data['date-of-birth-day'] }} August {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "9" or data['date-of-birth-month'] == "09" %}
+            {{ data['date-of-birth-day'] }} September {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "10" %}
+            {{ data['date-of-birth-day'] }} October {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "11" %}
+            {{ data['date-of-birth-day'] }} November {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "12" %}
+            {{ data['date-of-birth-day'] }} December {{ data['date-of-birth-year'] }}
+            {% else %}
+            6 December 1976
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/edit-check-answers/date-of-birth">
@@ -378,12 +401,11 @@
         </div>
         {% endif %}
         </dl>
-        {% if data['fingerprick-test'] == "Yes" or data['fingerprick-test-person-1'] %}
         <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Antibody test details</h2>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Opt in
+              Agreed to do antibody testing
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['fingerprick-test'] or 'Yes' }}
@@ -395,7 +417,7 @@
               </a>
             </dd>
           </div>
-          <div class="govuk-summary-list__row">
+          <!-- <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Delivery address
             </dt>
@@ -414,23 +436,16 @@
                 <span class="govuk-visually-hidden">delivery address</span>
               </a>
             </dd>
-          </div>
+          </div> -->
         </dl>
-        {% endif %}
 
-      <form action="/antigen/{{version}}/global-registration/fingerprick-test" method="post" style="display: inline-block;" novalidate>
+      <form action="/antigen/{{version}}/global-registration/people-confirmed" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Save and continue
         </button>
-
-      </form>
-
-      <form class="form" action="/antigen/{{version}}/global-registration/name-person-1" method="post" style="display: inline-block;">
-
-        <button class="govuk-button govuk-button--secondary govuk-!-margin-left-1" data-module="govuk-button">Add person you live with</button>
 
       </form>
 

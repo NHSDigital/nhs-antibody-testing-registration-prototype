@@ -460,11 +460,23 @@ router.post('/antigen/v2/action9/coronavirus-vaccine', function (req, res) {
 router.post('/antigen/v2/action9/coronavirus-vaccine-person-1', function (req, res) {
   let vaccine = req.session.data['vaccine-person-1']
   if (vaccine == "No"){
-    res.redirect('/antigen/v2/global-registration/country-person-1')
+    res.redirect('/antigen/v2/global-registration/gp-address-same-person-1')
   } else {
     res.redirect('/antigen/v2/global-registration/coronavirus-vaccine-date-person-1')
   }
 })
+
+// Version 2 - Antigen Global Registration - Country route
+
+// router.post('/antigen/v2/action3/country', function (req, res) {
+//   let country = req.session.data['country']
+//   let birthYear = req.session.data['date-of-birth-year']
+//   if (country == "England" && parseInt(birthYear) <= 2003 ){
+//     res.redirect('/antigen/v2/global-registration/home-address')
+//   } else {
+//     res.redirect('/antigen/v2/global-registration/gp-address-same')
+//   }
+// })
 
 // Version 2 - Antigen Global Registration - Coronavirus vaccine edit cehck answers route
 
@@ -565,7 +577,7 @@ router.post('/antigen/v2/action3/nhs-number-known', function (req, res) {
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antigen/v2/global-registration/nhs-number')
   } else {
-    res.redirect('/antigen/v2/global-registration/check-your-answers')
+    res.redirect('/antigen/v2/global-registration/fingerprick-test')
   }
 })
 
@@ -574,7 +586,7 @@ router.post('/antigen/v2/action3/nhs-number-known-person-1', function (req, res)
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antigen/v2/global-registration/nhs-number-person-1')
   } else {
-    res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
+    res.redirect('/antigen/v2/global-registration/fingerprick-test-person-1')
   }
 })
 

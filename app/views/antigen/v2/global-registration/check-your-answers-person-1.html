@@ -53,7 +53,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            First line of address and postcode, registered with GP
+            GP registered address
           </dt>
             {% if data['gp-address-same-person-1'] !== "No" %}
               {% if data['gp-address-same'] !== "No" %}
@@ -378,19 +378,14 @@
         </div>
         {% endif %}
         </dl>
-        {% if data['fingerprick-test-person-1'] %}
         <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Antibody test details</h2>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Opt in
+              Agreed to do antibody testing
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['fingerprick-test-person-1'] == "1,2" or data['fingerprick-test-person-1'] == "2" %}
-              Yes
-              {% else %}
-              No 
-              {% endif %}
+              {{ data['fingerprick-test-person-1'] or 'Yes' }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/antigen/{{version}}/global-registration/fingerprick-test-person-1">
@@ -399,47 +394,15 @@
               </a>
             </dd>
           </div>
-          {% if data['fingerprick-test-person-1'] == "1,2" or data['fingerprick-test-person-1'] == "2" %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Delivery address
-            </dt>
-            <dd class="govuk-summary-list__value">
-
-              {{ data['delivery-address-person-1-postcode'] }}
-
-              {% if data['delivery-address-antibody'] and data['delivery-address-antibody'] !== "5 addresses found" %}
-              {{ data['delivery-address-antibody'] }}
-              {% else %}
-                {{ data['delivery-address-line-1-antibody'] or '5 Souterhead Road'}}<br>
-                {{ data['delivery-postcode-antibody'] or 'LS1 3BE' }}
-              {% endif %}
-
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a href="/antigen/{{version}}/global-registration/delivery-postcode-person-1">
-                Change
-                <span class="govuk-visually-hidden">delivery address</span>
-              </a>
-            </dd>
-          </div>
-          {% endif %}
         </dl>
-        {% endif %}
 
-      <form action="/antigen/{{version}}/global-registration/fingerprick-test-person-1" method="post" style="display: inline-block;" novalidate>
+      <form action="/antigen/{{version}}/global-registration/people-confirmed-person-1" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Save and continue
         </button>
-
-      </form>
-
-      <form class="form" action="#" method="post" style="display: inline-block;">
-
-        <button class="govuk-button govuk-button--secondary govuk-!-margin-left-1" data-module="govuk-button">Add person you live with</button>
 
       </form>
 
