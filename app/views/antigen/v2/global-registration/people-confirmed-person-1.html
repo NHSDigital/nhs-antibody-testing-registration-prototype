@@ -112,9 +112,17 @@
               15 March 2002
               {% endif %}
               <br>
+              {% if data['email-person-1'] == "same" %}
+              {{ data['email-address'] or 'email@example.com' }}
+              {% else %}
               {{ data['email-address-person-1'] or 'janewilson@email.com' }}
+              {% endif %}
               <br>
+              {% if data['mobile-number-person-1'] == "same" %}
+              {{ data['mobile-phone-number'] or '+447782808451' }}
+              {% else %}
               {{ data['mobile-phone-number-person-1'] or '+44663271472' }}
+              {% endif %}
             </td>
             <td class="govuk-table__cell"><p class="govuk-body-m">
               <a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a><br>
