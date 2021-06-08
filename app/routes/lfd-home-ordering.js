@@ -15,7 +15,7 @@ function loadJSONFromFile(fileName, path = "app/data/") {
 router.post('/lfd-home-ordering/v1/action10/do-you-have-symptoms', function (req, res) {
     let symptoms = req.session.data['do-you-have-symptoms']
     if (symptoms == "No" ) {
-      res.redirect('/lfd-home-ordering/v1/country')
+      res.redirect('/lfd-home-ordering/v1/coronavirus-account')
     } else {
       res.redirect('/lfd-home-ordering/v1/different-test')
     }
@@ -32,17 +32,17 @@ router.post('/lfd-home-ordering/v1/action11/contact-with-positive', function (re
 
 })
 
-router.post('/lfd-home-ordering/v1/action10/country', function (req, res) {
-    let country = req.session.data['country']
-    if (country == "England" ) {
-      res.redirect('/lfd-home-ordering/v1/coronavirus-account')
-    } else if (country == "Scotland" ) {
-      res.redirect('/lfd-home-ordering/v1/scottish-isles')
-    } else {
-      res.redirect('/lfd-home-ordering/v1/country-test-unavailable')
-    }
+// router.post('/lfd-home-ordering/v1/action10/country', function (req, res) {
+//     let country = req.session.data['country']
+//     if (country == "England" ) {
+//       res.redirect('/lfd-home-ordering/v1/coronavirus-account')
+//     } else if (country == "Scotland" ) {
+//       res.redirect('/lfd-home-ordering/v1/scottish-isles')
+//     } else {
+//       res.redirect('/lfd-home-ordering/v1/country-test-unavailable')
+//     }
 
-})
+// })
 
 router.post('/lfd-home-ordering/v1/action10/work-from-home', function (req, res) {
   let workFromHome = req.session.data['work-from-home']
@@ -157,7 +157,7 @@ router.post('/lfd-home-ordering/v1/action10/dct-opt-in', function (req, res) {
 
 })
 
-router.post('/lfd-home-ordering/v1/action10/date-of-birth', function (req, res) {
+router.post('/lfd-home-ordering/v1/action10/country', function (req, res) {
     let country = req.session.data['country']
     if (country == "England" ) {
         res.redirect('/lfd-home-ordering/v1/nhs-testing-programme')

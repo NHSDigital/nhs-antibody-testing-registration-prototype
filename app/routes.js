@@ -1,4 +1,4 @@
- express = require('express')
+express = require('express')
 const router = express.Router()
 
 // $('.govuk-error-summary').hide()
@@ -461,18 +461,14 @@ router.post('/antigen/v1/action3/follow-up-test', function (req, res) {
 // Version 1 - Antigen Refer and Triage - Government pilot route
 
 router.post('/antigen/v1/action3/government-pilot', function (req, res) {
-  let governmentPilot = req.session.data['government-pilot']
-  let whichPilot = req.session.data['professional-pilot']
+  let governmentPilot = req.session.data['professional-pilot']
   let symptoms = req.session.data['do-you-have-symptoms']
   let followUpTest = req.session.data['follow-up-test']
-  if (followUpTest == "Yes") {
-    res.redirect('/antigen/v1/refer-and-triage/')
-  } else if (governmentPilot == "No" && symptoms == "No" && followUpTest == "No" || whichPilot == "None of the above" && symptoms == "No" && followUpTest == "No") {
+  if (governmentPilot == "None of the above" && symptoms == "No" && followUpTest == "No") {
     res.redirect('/antigen/v1/refer-and-triage/reason-for-test')
   } else {
-    res.redirect('/antigen/v1/refer-and-triage/eligible')
+    res.redirect('/antigen/v1/refer-and-triage/')
   }
-
 })
 
 // Version 1 - Antigen Refer and Triage - Reason for test route
@@ -1967,7 +1963,7 @@ router.post('/litereg-accounts/v1/action3/do-you-have-symptoms', function (req, 
     res.redirect('/litereg-accounts/v1/when-did-symptoms-start')
   }
   else {
-    res.redirect('/litereg-accounts/v1/travelled-overseas')
+    res.redirect('/litereg-accounts/v1/previous-infection')
   }
 })
 
@@ -2192,4 +2188,17 @@ router.post('/antigen/v2/action2/delivery-address-person-1', function (req, res)
   }
 
 })
+
+// LiteReg Accounts - Test Place
+router.post('/litereg-accounts/v1/action4/test-place', function (req, res) {
+  let testPlace = req.session.data['test-place']
+
+  if (testPlace == "At a test site or government quarantine hotel"){
+    res.redirect('/litereg-accounts/v1/site-id')
+  } else {
+    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+  }
+
+})
+
 module.exports = router
