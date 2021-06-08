@@ -98,11 +98,23 @@
 
       </form>
 
-      <form class="form" action="/antigen/{{version}}/action3/people-confirmed" method="post" style="display: inline-block;">
+      {% if data['way-to-test'] == "drive-through" or data['way-to-test'] == "walk-through" %}
+
+      <form class="form" action="/antigen/{{version}}/site-appointment-booking/" method="post" style="display: inline-block;">
 
         <button class="govuk-button" data-module="govuk-button">Save and continue</button>
 
       </form>
+
+      {% else %}
+
+      <form class="form" action="/antigen/{{version}}/order-home-test-kit/" method="post" style="display: inline-block;">
+
+        <button class="govuk-button" data-module="govuk-button">Save and continue</button>
+
+      </form>
+
+      {% endif %}
 
     </div>
   </div>
