@@ -15,7 +15,12 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/country-person-1">Back</a>
+  {% if data['vaccine-person-1'] == "No" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/coronavirus-vaccine-person-1">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/coronavirus-vaccine-date-person-1">Back</a>
+  {% endif %}
+
 {% endblock %}
 
 {% block content %}
@@ -64,7 +69,8 @@
                 {% endif %}
             {% endif %}
             </strong><br><br>
-            This will help us find and update the GP record with their test results.
+            This will help us find and update the GP record with their test results.<br><br>
+            If you're not registered with a GP in the UK, that's OK. Select "I don't know".
           </span>
           <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">
             <div class="govuk-radios__item">

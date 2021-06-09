@@ -15,7 +15,8 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/country">Back</a>
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/home-address">Back</a>
+
 {% endblock %}
 
 {% block content %}
@@ -29,7 +30,7 @@
       <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-            {{ pageTitle }}
+            Is this the address registered with {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s GP?
           </h1>
         </legend>
 
@@ -49,7 +50,8 @@
                 {{ data['home-postcode'] or 'LS1 3BE' }}
               {% endif %}
             </strong><br><br>
-            This will help us find and update the GP record with their test results.
+            This will help us find and update the GP record with their test results.<br><br>
+            If you're not registered with a GP in the UK, that's OK. Select "I don't know".
           </span>
           <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">
             <div class="govuk-radios__item">
