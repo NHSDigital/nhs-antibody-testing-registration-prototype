@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Enter a postcode" %}
+{% set pageTitle = "Enter the postcode to find their home address in the UK" %}
 
 {% extends "includes/layout.html" %}
 
@@ -26,31 +26,47 @@
 
       <form action="/antigen/{{version}}/global-registration/check-your-answers" method="post">
 
-        <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-              {{ pageTitle }}
-            </h1>
-          </legend>
+        <fieldset class="govuk-fieldset" aria-describedby="post-code-hint-1 post-code-hint-2 post-code-hint-3">
 
-          <span id="post-code-hint" class="govuk-body">
-            Enter a postcode to find out how to get a test near you.
-          </span>
-          <div class="govuk-form-group govuk-!-margin-top-5">
-            <label class="govuk-label" for="home-postcode">
-              Postcode
-            </label>
-            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}" autofocus>
-            <a id="hidden-link" href="/antigen/{{version}}/refer-and-triage/postcode-option-2" class="govuk-!-margin-left-5 govuk-link govuk-!-font-size-19" style="display: none;">
-              Change
-              <span class="govuk-visually-hidden">your postcode</span>
-            </a>
+          <div id="content-1">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                Enter the postcode to find {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address in the UK
+              </h1>
+            </legend>
+            <span id="post-code-hint-1" class="govuk-body">
+              If you do not have a home address in the UK, enter the postcode where you're staying.<br><br>
+            </span>
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-!-margin-bottom-3" for="home-postcode" style="line-height: 0.8;">
+                <strong>Postcode</strong>
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}" autofocus>
+            </div>
           </div>
 
           <div id="content-2" style="display: none;">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                Select {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address
+              </h1>
+            </legend>
+            <span id="post-code-hint-2" class="govuk-body">
+              If you do not have a home address in the UK, select the address where you're staying.<br><br>
+              If you cannot find the address in the list, select "I cannot find the address" and enter it manually.<br><br>
+            </span>
+
+            <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
+              <strong>Postcode</strong><br><br>
+              {{ data['home-postcode'] | default('LS1 3BE') }}
+              <a href="/antigen/{{version}}/refer-and-triage/postcode-option-2" class="govuk-!-margin-left-5">
+                <strong>Change</strong>
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p>
             <div class="govuk-form-group">
               <label class="govuk-label" for="home-address">
-                <strong class="govuk-!-font-size-24">Select an address</strong>
+                <strong>Select an address</strong>
               </label>
               <select class="govuk-select" id="home-address" name="home-address">
                 <option>5 addresses found</option>
@@ -62,14 +78,30 @@
               </select>
             </div>
             <p class="govuk-body">
-              <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">I can't find my address in the list</a>
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">I cannot find my address in the list</a>
             </p>
           </div>
 
           <div id="content-3" style="display: none;">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                Enter {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address in the UK
+              </h1>
+            </legend>
+            <!-- <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
+              <strong>Postcode</strong><br><br>
+              {{ data['home-postcode'] | default('LS1 3BE') }}
+              <a href="/antigen/{{version}}/refer-and-triage/postcode-option-2" class="govuk-!-margin-left-5">
+                <strong>Change</strong>
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p> -->
+            <span id="post-code-hint-3" class="govuk-body">
+              If you do not have a home address in the UK, enter the postcode where you're staying.<br><br>
+            </span>
             <div class="govuk-form-group">
               <label class="govuk-label" for="address-line-1">
-                Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
+                <strong>Building and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="address-line-1" name="address-line-1" type="text" autocomplete="address-line1" value="{{ data['address-line-1'] }}">
             </div>
@@ -83,9 +115,16 @@
   
             <div class="govuk-form-group">
               <label class="govuk-label" for="address-town">
-                Town or city
+                <strong>Town or city</strong>
               </label>
               <input class="govuk-input govuk-!-width-one-third" id="address-town" name="address-town" type="text" autocomplete="address-level2" value="{{ data['address-town'] }}">
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="home-postcode-manual">
+                <strong>Postcode</strong>
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="home-postcode-manual" name="home-postcode-manual" type="text" autocomplete="postal-code" value="{{ data['home-postcode-manual'] }}">
             </div>
           </div>
 
@@ -107,10 +146,10 @@
 
   function buttonClicked(target) {
     setTimeout(function () {
+      document.getElementById('content-1').style.display = 'none'
       document.getElementById('find-address').style.display = 'none'
       document.getElementById('button-hidden').style.display = 'block'
       document.getElementById('content-2').style.display = 'block'
-      document.getElementById('hidden-link').style.display = 'inline'
       document.getElementById('home-address').focus()
     }, 100)
   }
