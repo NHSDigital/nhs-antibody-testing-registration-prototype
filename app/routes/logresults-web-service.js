@@ -33,6 +33,19 @@ router.post('/logresults-web-service/v2/site-operative/action13/lot-reference-sa
 
 })
 
+router.post('/logresults-web-service/v2/site-operative/action13/anonymous-registration', function (req, res) {
+  let confirmation = req.session.data['anonymous-confirm']
+  let transactionCount = req.session.data['transaction-count']
+  if (confirmation == "Yes" && transactionCount) {
+    res.redirect('/logresults-web-service/v2/site-operative/lot-reference-same')
+  } else if (confirmation == "Yes") {
+    res.redirect('/logresults-web-service/v2/site-operative/enter-lot-reference')
+  } else {
+    res.redirect('/logresults-web-service/v2/site-operative/anonymous-registration-option-2-error')
+  }
+
+})
+
 router.post('/logresults-web-service/v2/site-operative/action13/more-test-packs', function (req, res) {
   let moreTestPacks = req.session.data['more-test-packs']
   let lotReference1 = req.session.data['lot-reference-1']
