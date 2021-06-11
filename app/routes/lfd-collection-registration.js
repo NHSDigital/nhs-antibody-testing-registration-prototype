@@ -15,7 +15,7 @@ router.post('/lfd-collection-registration/v1/action10/do-you-have-symptoms', fun
   if (symptoms == "Yes") {
     res.redirect('/lfd-collection-registration/v1/different-test')
   } else {
-    res.redirect('/lfd-collection-registration/v1/pharmacy-collection')
+    res.redirect('/lfd-collection-registration/v1/country')
   }
 })
 
@@ -79,14 +79,14 @@ router.post('/lfd-collection-registration/v1/action10/collecting-for', function 
   if (collectingFor == "Another household"){
     res.redirect('/lfd-collection-registration/v1/email-address-another')
   } else {
-    res.redirect('/lfd-collection-registration/v1/country')
+    res.redirect('/lfd-collection-registration/v1/address')
   }
 })
 
 router.post('/lfd-collection-registration/v1/action10/country', function (req, res) {
   let country = req.session.data['country']
   if (country == "England") {
-    res.redirect('/lfd-collection-registration/v1/address')
+    res.redirect('/lfd-collection-registration/v1/nhs-account')
   } else {
     res.redirect('/lfd-collection-registration/v1/service-unavailable-country')
   }
@@ -128,12 +128,13 @@ router.post('/lfd-collection-registration/v1/action10/work-area', function (req,
   }
 })
 
-router.post('/lfd-collection-registration/v1/action10/check-your-answers', function (req, res) {
-  let signin = req.session.data['coronavirus-account']
-  if (signin == "Yes") {
-    res.redirect('/lfd-collection-registration/v1/confirmation')
+router.post('/lfd-collection-registration/v1/action10/mobile-number', function (req, res) {
+  let mobileNumber = req.session.data['mobile-number']
+  let emailAddress = req.session.data['email-address']
+  if (mobileNumber == "No" && !emailAddress) {
+    res.redirect('/lfd-collection-registration/v1/no-mobile-email')
   } else {
-    res.redirect('/lfd-collection-registration/v1/security-check')
+    res.redirect('/lfd-collection-registration/v1/collecting-for')
   }
 })
 
