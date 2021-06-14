@@ -25,12 +25,30 @@
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-2">
-              <span class="govuk-caption-xl">Group 1</span>
               {{ pageTitle }}
             </h1>
           </legend>
 
-          <!-- <p class="govuk-body">You will still need to inform the patient that their procedure has been cancelled.</p> -->
+          <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text">
+              <span class="govuk-warning-text__assistive">Warning</span>
+              Check that this procedure is cancelled on your own internal system before you continue.
+            </strong>
+          </div>
+
+          <p class="govuk-body">This will help ensure accurate reporting.</p>
+
+          <div class="govuk-form-group">
+            <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+                <label class="govuk-label govuk-checkboxes__label" for="waste">
+                  I’ve checked this procedure is cancelled on my system.
+                </label>
+              </div>
+            </div>
+          </div>
 
           <table class="govuk-table">
             <tbody class="govuk-table__body">
@@ -46,13 +64,23 @@
                 <th scope="row" class="govuk-table__header">NHS number</th>
                 <td class="govuk-table__cell">485 777 3456</td>
               </tr>
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">Reason for cancellation</th>
+                <td class="govuk-table__cell">
+                  <div class="govuk-form-group">
+                    <select class="govuk-select" id="sort" name="sort">
+                      <option value="option-one">Reason for cancellation</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
 
         </fieldset>
 
         <button class="govuk-button govuk-button--warning" data-module="govuk-button">
-          Confirm cancellation
+          Confirm procedure cancellation
         </button>
 
       </form>
