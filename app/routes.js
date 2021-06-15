@@ -25,6 +25,7 @@ router.use('/', require('./routes/lfd-collection-registration.js'))
 router.use('/', require('./routes/international-arrivals.js'))
 router.use('/', require('./routes/provider-list.js'))
 router.use('/', require('./routes/lamp-test-return.js'))
+router.use('/', require('./routes/bulk-order-home-kits.js'))
 
 // Pull scope into the homepage to show/hide sections
 // 'SCOPE' is either pulled in from the Heroku App settings or setting in a local .env file eg. SCOPE=antibody
@@ -606,6 +607,18 @@ router.post('/antigen/v1/action3/do-you-have-symptoms-person-1', function (req, 
     res.redirect('/antigen/v1/global-registration/when-did-symptoms-start-person-1')
   } else {
     res.redirect('/antigen/v1/global-registration/mobile-number-person-1')
+  }
+
+})
+
+// Version 1 - Antigen Global Registration - Do you have symptoms person 1 route
+
+router.post('/antigen/v1/action3/landline-number-person-1', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "home testing"){
+    res.redirect('/antigen/v1/global-registration/email-address-home-person-1')
+  } else {
+    res.redirect('/antigen/v1/global-registration/email-address-person-1')
   }
 
 })

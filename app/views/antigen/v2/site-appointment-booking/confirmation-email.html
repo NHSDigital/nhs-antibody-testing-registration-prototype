@@ -86,13 +86,13 @@
 
     <p class="govuk-body">You may also want to bring a bottle of water, as we cannot provide water at the test site.</p>
 
-    <div class="govuk-warning-text govuk-!-margin-top-7">
+    <!-- <div class="govuk-warning-text govuk-!-margin-top-7">
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text govuk-!-font-size-19">
         <span class="govuk-warning-text__assistive">Warning</span>
         If you have symptoms, you and everyone you live with should <a target="blank" class="govuk-link" href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">self-isolate</a> immediately and not leave home until you get your test results. You can leave home to get or post a test.
       </strong>
-    </div>
+    </div> -->
 
     <h2 class="govuk-heading-m">What happens at the test site</h2>
 
@@ -134,6 +134,11 @@
 
     <p class="govuk-body">If you are Deaf and need a BSL interpreter during your drive-through test, <a href="#">download the free InterpreterNow app</a> before you appointment.</p>
 
+    <h3 class="govuk-heading-m">Antibody testing</h3>
+    <p class="govuk-body">
+      If you agreed to do antibody testing, you will receive your 1st test kit in the post 2-3 days after you get a positive coronavirus result. Your 2nd antibody test kit will arrive 3 weeks later. The kit contains clear instructions on how to do the test. It's important that you do the test and post it back <strong>as soon as possible</strong>. It is safe to leave home to post your test while you're self-isolating. <a class="govuk-link" target="blank" href="#">Find more info on how to prepare for, take and return the antibody test</a>.
+    </p>
+
     <h2 class="govuk-heading-m">Can you help the NHS?</h2>
 
     <p class="govuk-body">If you are over 50 and recently developed coronavirus symptoms, you may be able to take part in a clinical trial. <a href="#">Find out more and check if you qualify</a>.</p>
@@ -141,20 +146,10 @@
     </div>
   </div>
 
-{% endblock %}
+  <div class="proto-action big">
+    <a href="/antigen/{{version}}/sms-messages/01-test-result-1">
+      <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Text message 1</div>
+    </a>
+  </div>
 
-{% block bodyEnd %}
-{% if data['vehicle-registration-number'] !== undefined %}
-<div class="proto-action" style="width: 140px">
-  <a href="/antigen/{{version}}/site-appointment-booking/instructions-drive-through">
-    <div class="proto-action-text govuk-!-margin-left-3">Read instructions</div>
-  </a>
-</div>
-{% else %}
-<div class="proto-action" style="width: 140px">
-  <a href="/antigen/{{version}}/site-appointment-booking/instructions-walk-through">
-    <div class="proto-action-text govuk-!-margin-left-3">Read instructions</div>
-  </a>
-</div>
-{% endif %}
 {% endblock %}

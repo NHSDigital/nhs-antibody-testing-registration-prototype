@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What is your delivery address?" %}
+{% set pageTitle = "Enter your delivery address" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,17 +15,14 @@
 
       <form action="/antigen/{{version}}/order-home-test-kit/confirm-email-address" method="post">
 
-        <fieldset class="govuk-fieldset" aria-describedby="delivery-address-manual-hint">
+        <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-5">
               {{ pageTitle }}
             </h1>
           </legend>
-          <span id="delivery-address-manual-hint" class="govuk-hint govuk-!-margin-bottom-6">
-            This will be the address your test kit is sent to.
-          </span>
           <p>
-            <strong class="govuk-!-margin-bottom-4 govuk-!-display-block govuk-!-font-size-24">Postcode</strong>
+            <strong class="govuk-!-margin-bottom-4 govuk-!-display-block" style="font-weight: normal;">Postcode</strong>
             <strong>{{ data['delivery-address-postcode'] | default('LS1 3BE') }}</strong>
             <a href="/antibody/{{version}}/home-testing/delivery-address" class="govuk-!-margin-left-5">
               Change
@@ -34,8 +31,8 @@
           </p>
 
           <div class="govuk-form-group">
-            <label class="govuk-label govuk-!-font-size-24" for="address-line-1">
-              <strong>Building and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>
+            <label class="govuk-label" for="address-line-1">
+              Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
             </label>
             <input class="govuk-input" id="delivery-address-line-1" name="delivery-address-line-1" type="text" autocomplete="delivery-address-line1">
           </div>
@@ -48,8 +45,8 @@
           </div>
 
           <div class="govuk-form-group">
-            <label class="govuk-label govuk-!-font-size-24" for="delivery-address-town">
-              <strong>Town or city</strong>
+            <label class="govuk-label" for="delivery-address-town">
+              Town or city
             </label>
             <input class="govuk-input govuk-!-width-two-thirds" id="delivery-address-town" name="delivery-address-town" type="text" autocomplete="address-level2">
           </div>

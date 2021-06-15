@@ -1,0 +1,52 @@
+{% set version = "v2" %}
+{% set pageTitle = "Site updated" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-6">
+      <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
+      <p class="govuk-body govuk-!-margin-bottom-1" style="color: #ffffff"><strong>Coventry University - {{ data['test-site-1-name'] }}</strong></p>
+      <p class="govuk-body govuk-!-margin-bottom-1" style="color: #ffffff"><strong>Test site ID: SFWR</strong></p>
+      <p class="govuk-body" style="color: #ffffff"><strong>Status: Active</strong></p>
+    </div>
+
+    <h2 class="govuk-heading-m">What happens next?</h2>
+
+    <p class="govuk-body">
+        The site is now available for site staff to record results for
+    </p>
+
+    <div class="inline-button-wrapper" style="justify-content: flex-start;">
+
+        <form action="/logresults-web-service/{{version}}/organisation/manage-sites" method="post" novalidate>
+
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Finish
+          </button>
+
+        </form>
+
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
