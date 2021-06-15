@@ -1,4 +1,4 @@
-{% set pageHeading = "<span class='govuk-caption-xl'>Page 1 of 2</span> Check the lateral flow test details" %}
+{% set pageHeading = "<span class='govuk-caption-xl'>Page 2 of 3</span> Check the lateral flow test details" %}
 {% set version = "organisational/lft/carehome-registration" %}
 {% extends "includes/layout.html" %}
 {% block pageTitle %}
@@ -56,7 +56,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <h2 class="govuk-heading-m">Records 1 to 10 of 20</h2>
+      <h2 class="govuk-heading-m">Records 11 to 20 of 30</h2>
 <div>
         <ul class="card-table">
 
@@ -102,7 +102,7 @@
                 <div class="govuk-form-group">
                   <fieldset class="govuk-fieldset" role="group">
                     <legend class="govuk-fieldset__legend govuk-!-font-size-16 govuk-!-font-weight-bold">
-                      Swab test date and time
+                      Test date and time
                     </legend>
                     <p> 24 March 2020 at 10am</p>
                   </fieldset>
@@ -111,7 +111,6 @@
 
                     <div class="card-table__form-column column-10">
                       <div class="govuk-form-group">
-                        <form class="" action="/organisational/lft/carehome-registration/enhancements/delete" method="get">
                         <button class="govuk-button govuk-button--secondary app-delete-button-bulk-upload govuk-!-margin-bottom-0" data-module="govuk-button">Delete this entry</button>
                         <div>
                   </div>
@@ -176,7 +175,7 @@
                 <div class="govuk-form-group">
                   <fieldset class="govuk-fieldset" role="group">
                     <legend class="govuk-fieldset__legend govuk-!-font-size-16 govuk-!-font-weight-bold">
-                      Swab test date and time
+                      Test date and time
                     </legend>
                     <p> 24 March 2020 at 10am</p>
                   </fieldset>
@@ -185,7 +184,6 @@
 
                     <div class="card-table__form-column column-10">
                       <div class="govuk-form-group">
-                        <form class="" action="/organisational/lft/carehome-registration/enhancements/delete" method="get">
                         <button class="govuk-button govuk-button--secondary app-delete-button-bulk-upload govuk-!-margin-bottom-0" data-module="govuk-button">Delete this entry</button>
                         <div>
                   </div>
@@ -194,39 +192,38 @@
     </ul>
 {% endfor %}
 
-  <div class="govuk-form-group">
-    <fieldset class="govuk-fieldset" aria-describedby="reupload">
-      <form class="" action="" method="post">
-      <legend class="govuk-fieldset__legend">
-        <h2 class="govuk-heading-m govuk-!-margin-top-6">Are records 1 to 10 of 20 correct?</h2>
-      </legend>
-      <div id="reupload" class="govuk-hint">
-        You can re-upload a new version of the spreadsheet if you have not selected the correct 'Test type' or if you entered the data incorrectly.
-      </div>
-      <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
-        <div class="govuk-radios__item">
-          <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="yes" data-aria-controls="conditional-reupload">
-          <label class="govuk-label govuk-radios__label" for="reupload">
-            Yes, I confirm the details are correct
-            </label>
-        </div>
-        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-reupload">
-          <div class="govuk-warning-text">
-    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-    <strong class="govuk-warning-text__text">
-      <span class="govuk-warning-text__assistive">Warning</span>
-      You are reporting 2 positive lateral flow test results
-    </strong>
-  </div>
-  </div>
-<div class="govuk-radios__item">
-  <input class="govuk-radios__input" id="reupload" name="reupload" type="radio" value="no" data-aria-controls="reupload">
-  <label class="govuk-label govuk-radios__label" for="reupload">
-    No, edit and re-upload the spreadsheet
-  </label>
+<h2 class="govuk-heading-m govuk-!-margin-top-6">Are records 11 to 20 of 30 correct?</h2>
+
+<p><a href="#" class="govuk-link">Previous page in list</a></p>
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+    <form class="" action="" method="post">
+
+{{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "reupload",
+  name: "reupload",
+  fieldset: {
+
+  },
+  hint: {
+    text: "If you need to change someone’s details or test type, you must upload a new version of the spreadsheet.
+  "
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes, I confirm the details are correct"
+    },
+    {
+      value: "no",
+      text: "No, edit and upload a new spreadsheet"
+    }
+  ]
+}) }}
+    <input class="govuk-button" type="submit" value="Save and continue to records 21 to 30">
+</form>
+
 </div>
-      </fieldset>
-    </div>
-          <form class="" action="/{{ version }}/bulk/pcr" method="get">
-        <input class="govuk-button" type="submit" value="Save and continue to records 11 to 20">
+</div>
 {% endblock %}
