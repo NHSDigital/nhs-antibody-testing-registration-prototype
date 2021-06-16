@@ -58,10 +58,15 @@
         <fieldset class="govuk-fieldset">
           <div class="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="team-leader-1-status" name="team-leader-1-status" type="checkbox" value="Active" onclick="checkBox()" checked>
+              {% if data['team-leader-1-status-edited'] %}
+              <input class="govuk-checkboxes__input" id="team-leader-1-status" name="team-leader-1-status" type="checkbox" value="Active" {{ checked("team-leader-1-status", "Active" ) }}>
+              {% else %}
+              <input class="govuk-checkboxes__input" id="team-leader-1-status" name="team-leader-1-status" type="checkbox" value="Active" checked>
+              {% endif %}
               <label class="govuk-label govuk-checkboxes__label" for="team-leader-1-status">
                 Active: This team leader can manage staff access at test sites
               </label>
+              <input id="team-leader-1-status-edited" name="team-leader-1-status-edited" type="text" value="edited" style="display: none">
             </div>
           </div>
         </fieldset>
