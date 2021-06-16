@@ -120,10 +120,18 @@
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }}</th>
             <td class="govuk-table__cell">
-              {{ data['mobile-phone-number-person-1'] }}
+              {% if data['mobile-number-person-1'] == "same" %}
+              {{ data['mobile-phone-number'] or '+447782808451' }}
+              {% else %}
+              {{ data['mobile-phone-number-person-1'] or '+44663271472' }}
+              {% endif %}
             </td>
             <td class="govuk-table__cell">
-              {{ data['email-address-person-1'] }}
+              {% if data['email-person-1'] == "same" %}
+              {{ data['email-address'] or 'email@example.com' }}
+              {% else %}
+              {{ data['email-address-person-1'] or 'janewilson@email.com' }}
+              {% endif %}
             </td>
           </tr>
           {% endif %}
