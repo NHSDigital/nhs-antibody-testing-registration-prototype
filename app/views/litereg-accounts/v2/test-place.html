@@ -1,4 +1,4 @@
-{% set version = "v2" %}
+{% set version = "v1" %}
 {% set pageTitle = "Where are you taking your test?" %}
 
 {% extends "includes/layout.html" %}
@@ -15,7 +15,11 @@
   </p>
 </div>
 
-<a class="govuk-back-link" href="/litereg-accounts/{{version}}/quarantine-question">Back</a>
+{% if data['have-you-travelled-overseas'] == "Yes" %}
+<a class="govuk-back-link" href="/litereg-accounts/{{version}}/travelled-to">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/litereg-accounts/{{version}}/overseas-travel">Back</a>
+{% endif %}
 
 {% endblock %}
 
@@ -24,7 +28,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/litereg-accounts/{{version}}/action9/test-place" method="post">
+      <form action="/litereg-accounts/{{version}}/action4/test-place" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="reason-for-test-hint">
