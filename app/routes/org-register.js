@@ -1123,7 +1123,7 @@ router.post('/organisational/lft/carehome-registration/enhancements/lft-bulk-del
   let answer = req.body.reupload;
 
   if (answer == 'yes') {
-    res.redirect('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete')
+    res.redirect('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete-p1')
   } else if (answer == 'no') {
       res.redirect('/organisational/lft/carehome-registration/bulk/upload')
     } else {
@@ -1131,7 +1131,44 @@ router.post('/organisational/lft/carehome-registration/enhancements/lft-bulk-del
     }
 });
 
-router.post('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete', function (req, res) {
+router.post('/organisational/lft/carehome-registration/enhancements/lft-bulk-delete-9', function (req, res) {
+  let answer = req.body.reupload;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete-p1')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/bulk/upload')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/enhancements/lft-bulk-delete-9?error=empty')
+    }
+});
+
+
+router.post('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete-p1', function (req, res) {
+  let answer = req.body.reuploadpcr;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete-p2')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/bulk/upload')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete-p1?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete-p2', function (req, res) {
+  let answer = req.body.reuploadpcr;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete-p3')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/bulk/upload')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete-p2?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete-p3', function (req, res) {
   let answer = req.body.reuploadpcr;
 
   if (answer == 'yes') {
@@ -1139,7 +1176,7 @@ router.post('/organisational/lft/carehome-registration/enhancements/pcr-bulk-del
   } else if (answer == 'no') {
       res.redirect('/organisational/lft/carehome-registration/bulk/upload')
     } else {
-    res.redirect('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete?error=empty')
+    res.redirect('/organisational/lft/carehome-registration/enhancements/pcr-bulk-delete-p3?error=empty')
     }
 });
 
