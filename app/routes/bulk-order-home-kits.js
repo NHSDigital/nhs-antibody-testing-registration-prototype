@@ -15,7 +15,7 @@ router.post('/bulk-order-home-kits/v1/action1/login', function (req, res) {
     if (emailAddress == "user@testing.co.uk" ) {
       res.redirect('/bulk-order-home-kits/v1/manage-organisation/')
     } else {
-      res.redirect('/bulk-order-home-kits/v1/nhs-login/create-password')
+      res.redirect('/bulk-order-home-kits/v1/order-kits/')
     }
 
 })
