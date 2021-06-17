@@ -15,11 +15,10 @@
     </p>
   </div>
 
-<a class="govuk-back-link" href="/litereg-accounts/{{version}}/travel-route">Back</a>
+<a class="govuk-back-link" href="/litereg-accounts/{{version}}/overseas-travel">Back</a>
 {% endblock %}
 
 {% block content %}
-{% include "includes/gtm-noscript.html" %}
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -31,30 +30,43 @@
         </ul>
         <hr />
       </div>
-       <form action="/litereg-accounts/{{version}}/action9/travelled-to" method="post">
-            <div class="govuk-form-group govuk-!-margin-bottom-0">
-              <h1 class="govuk-label-wrapper govuk-!-margin-bottom-8">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-                  {% if data['whos-taking-the-test'] == "someone-else" %}
-                    Which country did they spend most time in?
-                    {% else %}
-                    {{ pageTitle }}
-                    {% endif %}
-                </legend>
-              </h1>
-              <span id="last-country-visited-hint" class="govuk-body">
-                Start entering a country below and then choose from the options provided.<br><br>
-              </span>
+       <form action="/litereg-accounts/{{version}}/vaccine" method="post">
 
-              <fieldset class="govuk-fieldset">
-                <label class="govuk-label" for="country-visited-autocomplete">
-                  Country
-                </label>
-                <div id="country-visited-container" name="country-visited-autocomplete"></div>
-              </fieldset>
-
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                          {% if data['whos-taking-the-test'] == "someone-else" %}
+                          Which country did {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} spend most time in?
+                          {% else %}
+                          {{ pageTitle }}
+                          {% endif %}
+                        </h1>
+                    </legend>
+                   <span id="last-country-visited-hint" class="govuk-body">
+                      Start entering a country below and then choose from the options provided.
+ <!--                        Enter each country you actually visited. If you caught a connecting flight and did not leave the airport, do not add this country. <br><br>
+						This will help us test the vaccine against different forms of coronavirus from different countries.<br><br>
+						Start entering a country below and then choose from the options provided.<br><br>
+						If you travelled to more than 1 country, please add them.--><br><br> 
+						
+                    </span>
+					
+					
+					<fieldset class="govuk-fieldset">
+					<label class="govuk-label" for="country-visited">
+					  Country
+					</label>
+			          <div id="country-container" name="country-visited"></div>
+			        </fieldset>
+						
+<!-- 						<span class="govuk-body">
+						<a class="govuk-link" href="#">Add another country</a>
+						</span> -->
 					  </div>
             <button class="govuk-button" data-module="govuk-button">Continue</button>
+	                </fieldset>
+
         </form>
 
     </div>
@@ -474,11 +486,11 @@
 
   accessibleAutocomplete({
     autoselect: true,
-    element: document.querySelector('#country-visited-container'),
+    element: document.querySelector('#country-container'),
     id: 'country-visited',
-    name: 'country-visited-autocomplete',
+    name: 'country-autocomplete',
     source: countries,
-    defaultValue: '{{ data["country-visited-autocomplete"] }}',
+    defaultValue: '{{ data['country-autocomplete'] }}',
     displayMenu: 'overlay',
     minLength: 2,
     tNoResults: function() {
