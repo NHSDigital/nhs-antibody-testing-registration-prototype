@@ -16,7 +16,7 @@
   </div>
   
   {% if data['email-address'] == "user@testing.co.uk" %}
-  <a class="govuk-back-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-organisation">Back</a>
+  <a class="govuk-back-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/">Back</a>
   {% endif %}
 {% endblock %}
 
@@ -31,157 +31,264 @@
         <p class="govuk-body">Here you can view and track the home test kit orders placed by your team for the last 10 days.</p>
       </div>
 
-      <a href="/bulk-order-home-kits/{{version}}/manage-organisation/add-team-leader" role="button" draggable="false" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-top-4" data-module="govuk-button" style="display: inline-block;">
+      <a href="/bulk-order-home-kits/{{version}}/order-kits/what-test-package-order" role="button" draggable="false" class="govuk-button" data-module="govuk-button" style="display: inline-block;">
         Order tests
       </a>
 
      </div>
 
-     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-
-      {% if data['team-leader-1-first-name'] != undefined and data['team-leader-1-first-name'] != "" %}
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              {{ data['team-leader-1-first-name'] }} {{ data['team-leader-1-last-name'] }}
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['team-leader-1-email-address'] }}
-            </dd>
-            <dd class="govuk-summary-list__value">
-              <p style="text-align: center">
-                {% if data['team-leader-1-status'] == undefined and data['team-leader-1-status-edited'] == "edited" %}
-                  <strong class="govuk-tag govuk-tag--red">
-                    INACTIVE
-                  </strong>
-                {% else %}
-                  <strong class="govuk-tag govuk-tag--green">
-                    ACTIVE
-                  </strong>
-                {% endif %}
-                </p>
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leader-1">
-                Manage<span class="govuk-visually-hidden">team leader 1</span>
-              </a>
-            </dd>
-          </div>
-        </dl>
-      {% endif %}
-      {% if data['team-leader-2-first-name'] != undefined and data['team-leader-2-first-name'] != "" %}
-      <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            {{ data['team-leader-2-first-name'] }} {{ data['team-leader-2-last-name'] }}
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['team-leader-2-email-address'] }}
-          </dd>
-          <dd class="govuk-summary-list__value">
-            <p style="text-align: center">
-              {% if data['team-leader-2-status'] == undefined and data['team-leader-2-status-edited'] == "edited" %}
-              <strong class="govuk-tag govuk-tag--red">
-                INACTIVE
-              </strong>
-            {% elseif data['team-leader-2-status'] == "Active" %}
-            <strong class="govuk-tag govuk-tag--green">
-                ACTIVE
-            </strong>
-            {% else %}
-              <strong class="govuk-tag govuk-tag--yellow">
-                INVITED
-              </strong>
-            {% endif %}
-              </p>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leader-2">
-              Manage<span class="govuk-visually-hidden">team leader 2</span>
-            </a>
-          </dd>
-        </div>
-      </dl>
-      {% endif %}
-      {% if data['team-leader-3-first-name'] != undefined and data['team-leader-3-first-name'] != "" %}
-      <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            {{ data['team-leader-3-first-name'] }} {{ data['team-leader-3-last-name'] }}
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['team-leader-3-email-address'] }}
-          </dd>
-          <dd class="govuk-summary-list__value">
-            <p style="text-align: center">
-              {% if data['team-leader-3-status'] == undefined and data['team-leader-3-status-edited'] == "edited" %}
-              <strong class="govuk-tag govuk-tag--red">
-                INACTIVE
-              </strong>
-            {% else %}
-              <strong class="govuk-tag govuk-tag--green">
-                ACTIVE
-              </strong>
-            {% endif %}
-            </p>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leader-3">
-              Manage<span class="govuk-visually-hidden">team leader 3</span>
-            </a>
-          </dd>
-        </div>
-      </dl>
-      {% endif %}
-      {% if data['team-leader-4-first-name'] != undefined and data['team-leader-4-first-name'] != "" %}
-      <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            {{ data['team-leader-4-first-name'] }} {{ data['team-leader-4-last-name'] }}
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['team-leader-4-email-address'] }}
-          </dd>
-          <dd class="govuk-summary-list__value">
-            <p style="text-align: center">
-              {% if data['team-leader-4-status'] == undefined and data['team-leader-4-status-edited'] == "edited" %}
-                <strong class="govuk-tag govuk-tag--red">
-                  INACTIVE
-                </strong>
-              {% else %}
-                <strong class="govuk-tag govuk-tag--green">
-                  ACTIVE
-                </strong>
-              {% endif %}
-            </p>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leader-4">
-              Manage<span class="govuk-visually-hidden">team leader 4</span>
-            </a>
-          </dd>
-        </div>
-      </dl>
-      {% endif %}
-
-      {% if data['team-leader-1-first-name'] == undefined or data['team-leader-1-first-name'] == "" and data['repeat-user'] !== "Yes" %}
-      <p class="govuk-margin-!-top-4">Add team leaders, so they can manage test site access for staff.</p>
+      {% if data['order-1-reference'] == undefined or data['order-1-reference'] == "" %}
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Order</th>
+            <th scope="col" class="govuk-table__header">Date ordered</th>
+            <th scope="col" class="govuk-table__header">Recipients</th>
+            <th scope="col" class="govuk-table__header"></th>
+            <th scope="col" class="govuk-table__header"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" style="border-bottom: none">
+              
+            </td>
+            <td class="govuk-table__cell" style="border-bottom: none">
+              
+            </td>
+            <td class="govuk-table__cell" style="border-bottom: none">
+              
+            </td>
+            <td class="govuk-table__cell" style="border-bottom: none">
+              
+            </td>
+            <td class="govuk-table__cell" style="border-bottom: none">
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
       {% else %}
-      <div class="bottom-pagination">
-        <p class="govuk-hint govuk-margin-!-top-4">1 to 10 of 100 items</p>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Order</th>
+            <th scope="col" class="govuk-table__header">Date ordered</th>
+            <th scope="col" class="govuk-table__header">Recipients</th>
+            <th scope="col" class="govuk-table__header"></th>
+            <th scope="col" class="govuk-table__header"><th scope="col" class="govuk-table__header"></th></th>
+          </tr>
+        </thead>
+          {% if data['email-address'] == "user@testing.co.uk" %}
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                {{ data['order-1-reference'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-1-date'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-1-recipients'] }}
+              </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--green">
+                  {{ data['order-1-status'] }}
+                </strong>
+              </td>
+              <td class="govuk-table__cell">
+                <td class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/order-kits/">
+                    View order<span class="govuk-visually-hidden">view order</span>
+                  </a>
+                </td>
+              </td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                {{ data['order-2-reference'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-2-date'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-2-recipients'] }}
+              </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--red">
+                  {{ data['order-2-status'] }}
+                </strong>
+              </td>
+              <td class="govuk-table__cell">
+                <td class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/order-kits/">
+                    View order<span class="govuk-visually-hidden">view order</span>
+                  </a>
+                </td>
+              </td>
+            </tr>
+            {% if data['order-3-reference'] %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                {{ data['order-3-reference'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-3-date'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-3-recipients'] }}
+              </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--red">
+                  {{ data['order-3-status'] }}
+                </strong>
+              </td>
+              <td class="govuk-table__cell">
+                <td class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/order-kits/">
+                    View order<span class="govuk-visually-hidden">view order</span>
+                  </a>
+                </td>
+              </td>
+            </tr>
+            {% endif %}
+            {% if data['order-4-reference'] %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                {{ data['order-4-reference'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-4-date'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-4-recipients'] }}
+              </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  {{ data['order-4-status'] }}
+                </strong>
+              </td>
+              <td class="govuk-table__cell">
+                <td class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/order-kits/">
+                    View order<span class="govuk-visually-hidden">view order</span>
+                  </a>
+                </td>
+              </td>
+            </tr>
+            {% endif %}
+          </tbody>
+          {% else %}
+          <tbody class="govuk-table__body">
+            {% if data['order-1-reference'] %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                {{ data['order-1-reference'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-1-date'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-1-recipients'] }}
+              </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--green">
+                  {{ data['order-1-status'] }}
+                </strong>
+              </td>
+              <td class="govuk-table__cell">
+                <td class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/order-kits/">
+                    View order<span class="govuk-visually-hidden">view order</span>
+                  </a>
+                </td>
+              </td>
+            </tr>
+            {% endif %}
+            {% if data['order-2-reference'] %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                {{ data['order-2-reference'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-2-date'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-2-recipients'] }}
+              </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--red">
+                  {{ data['order-2-status'] }}
+                </strong>
+              </td>
+              <td class="govuk-table__cell">
+                <td class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/order-kits/">
+                    View order<span class="govuk-visually-hidden">view order</span>
+                  </a>
+                </td>
+              </td>
+            </tr>
+            {% endif %}
+            {% if data['order-3-reference'] %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                {{ data['order-3-reference'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-3-date'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-3-recipients'] }}
+              </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--red">
+                  {{ data['order-3-status'] }}
+                </strong>
+              </td>
+              <td class="govuk-table__cell">
+                <td class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/order-kits/">
+                    View order<span class="govuk-visually-hidden">view order</span>
+                  </a>
+                </td>
+              </td>
+            </tr>
+            {% endif %}
+            {% if data['order-4-reference'] %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                {{ data['order-4-reference'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-4-date'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {{ data['order-4-recipients'] }}
+              </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  {{ data['order-4-status'] }}
+                </strong>
+              </td>
+              <td class="govuk-table__cell">
+                <td class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/order-kits/">
+                    View order<span class="govuk-visually-hidden">view order</span>
+                  </a>
+                </td>
+              </td>
+            </tr>
+            {% endif %}
+          </tbody>
+          {% endif %}
+        </table>
+      {% endif %}
 
-        <div>
-            <p class="govuk-body">
-              <a href="#" class="govuk-!-margin-right-3">Previous</a>
-              <a href="#" class="govuk-!-margin-right-3">1</a>
-              <a href="#" class="govuk-!-margin-right-3">2</a>
-              <span class="govuk-!-margin-right-3" style="border: 1px solid #000000; padding: 1px 3px">3</span>
-              <span class="govuk-!-margin-right-3">...</span>
-              <a href="#" class="govuk-!-margin-right-3">10</a>
-              <a href="#">Next</a>
-            </p>
-        </div>
-      </div>
+      {% if data['order-1-reference'] == undefined or data['order-1-reference'] == "" and data['repeat-user'] !== "Yes" %}
+      <p class="govuk-margin-!-top-4 govuk-hint" style="text-align: center;">No orders. Orders you request will appear here.</p>
+      {% else %}
+      <p class="govuk-body"><a href="#" class="goovuk-link">View all</a></p>
       {% endif %}
 
     </div>
