@@ -15,7 +15,7 @@
     </p>
   </div>
   
-  <a class="govuk-back-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-organisation">Back</a>
+  <a class="govuk-back-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -26,33 +26,133 @@
     
       <div>
         {% if data['team-leader-1-first-name'] == undefined or data['team-leader-1-first-name'] == "" %}
-        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">0 team leaders</h1>
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">0 PCR Home Test Operatives</h1>
+        {% elseif data['team-leader-1-first-name'] and data['team-leader-2-first-name'] == undefined %}
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">1 PCR Home Test Operative</h1>
+        {% elseif data['team-leader-1-first-name'] and data['team-leader-2-first-name'] and data['team-leader-3-first-name'] == undefined %}
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">2 PCR Home Test Operatives</h1>
+        {% elseif data['team-leader-1-first-name'] and data['team-leader-2-first-name'] and data['team-leader-3-first-name'] and data['team-leader-4-first-name'] == undefined %}
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">3 PCR Home Test Operatives</h1>
         {% else %}
-        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">3 team leaders</h1>
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">4 PCR Home Test Operatives</h1>
         {% endif %}
-        <p class="govuk-hint">Coventry University</p>
+        <p class="govuk-hint">Surge testing</p>
       </div>
 
       <a href="/bulk-order-home-kits/{{version}}/manage-organisation/add-team-leader" role="button" draggable="false" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-top-4" data-module="govuk-button" style="display: inline-block;">
-         Add new team leader
+        Add new operative
       </a>
 
      </div>
 
      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-     {% if data['team-leader-1-first-name'] != undefined and data['team-leader-1-first-name'] != "" %}
-     <dl class="govuk-summary-list">
+      {% if data['team-leader-1-first-name'] != undefined and data['team-leader-1-first-name'] != "" %}
+      <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {{ data['team-leader-1-first-name'] }} {{ data['team-leader-1-last-name'] }}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['team-leader-1-email-address'] }}
+            </dd>
+            <dd class="govuk-summary-list__value">
+              <p style="text-align: center">
+                {% if data['team-leader-1-status'] == undefined and data['team-leader-1-status-edited'] == "edited" %}
+                  <strong class="govuk-tag govuk-tag--red">
+                    INACTIVE
+                  </strong>
+                {% else %}
+                  <strong class="govuk-tag govuk-tag--green">
+                    ACTIVE
+                  </strong>
+                {% endif %}
+                </p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leader-1">
+                Manage<span class="govuk-visually-hidden">team leader 1</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+      {% endif %}
+      {% if data['team-leader-2-first-name'] != undefined and data['team-leader-2-first-name'] != "" %}
+      <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            {{ data['team-leader-1-first-name'] }} {{ data['team-leader-1-last-name'] }}
+            {{ data['team-leader-2-first-name'] }} {{ data['team-leader-2-last-name'] }}
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['team-leader-1-email-address'] }}
+            {{ data['team-leader-2-email-address'] }}
           </dd>
           <dd class="govuk-summary-list__value">
             <p style="text-align: center">
-              {% if data['team-leader-1-status'] == undefined and data['team-leader-1-status-edited'] == "edited" %}
+              {% if data['team-leader-2-status'] == undefined and data['team-leader-2-status-edited'] == "edited" %}
+              <strong class="govuk-tag govuk-tag--red">
+                INACTIVE
+              </strong>
+            {% elseif data['team-leader-2-status'] == "Active" %}
+            <strong class="govuk-tag govuk-tag--green">
+                ACTIVE
+            </strong>
+            {% else %}
+              <strong class="govuk-tag govuk-tag--yellow">
+                INVITED
+              </strong>
+            {% endif %}
+              </p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leader-2">
+              Manage<span class="govuk-visually-hidden">team leader 2</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+      {% endif %}
+      {% if data['team-leader-3-first-name'] != undefined and data['team-leader-3-first-name'] != "" %}
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ data['team-leader-3-first-name'] }} {{ data['team-leader-3-last-name'] }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['team-leader-3-email-address'] }}
+          </dd>
+          <dd class="govuk-summary-list__value">
+            <p style="text-align: center">
+              {% if data['team-leader-3-status'] == undefined and data['team-leader-3-status-edited'] == "edited" %}
+              <strong class="govuk-tag govuk-tag--red">
+                INACTIVE
+              </strong>
+            {% else %}
+              <strong class="govuk-tag govuk-tag--green">
+                ACTIVE
+              </strong>
+            {% endif %}
+            </p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leader-3">
+              Manage<span class="govuk-visually-hidden">team leader 3</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+      {% endif %}
+      {% if data['team-leader-4-first-name'] != undefined and data['team-leader-4-first-name'] != "" %}
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ data['team-leader-4-first-name'] }} {{ data['team-leader-4-last-name'] }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['team-leader-4-email-address'] }}
+          </dd>
+          <dd class="govuk-summary-list__value">
+            <p style="text-align: center">
+              {% if data['team-leader-4-status'] == undefined and data['team-leader-4-status-edited'] == "edited" %}
                 <strong class="govuk-tag govuk-tag--red">
                   INACTIVE
                 </strong>
@@ -61,67 +161,18 @@
                   ACTIVE
                 </strong>
               {% endif %}
-              </p>
+            </p>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leader-1">
-              Manage<span class="govuk-visually-hidden">team leader 1</span>
+            <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leader-4">
+              Manage<span class="govuk-visually-hidden">team leader 4</span>
             </a>
           </dd>
         </div>
       </dl>
-     {% endif %}
-     {% if data['team-leader-2-first-name'] != undefined and data['team-leader-2-first-name'] != "" %}
-     <dl class="govuk-summary-list">
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          {{ data['team-leader-2-first-name'] }} {{ data['team-leader-2-last-name'] }}
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ data['team-leader-2-email-address'] }}
-        </dd>
-        <dd class="govuk-summary-list__value">
-          <p style="text-align: center">
-              <strong class="govuk-tag govuk-tag--green">
-                ACTIVE
-              </strong>
-            </p>
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leader-2">
-            Manage<span class="govuk-visually-hidden">team leader 2</span>
-          </a>
-        </dd>
-      </div>
-    </dl>
-     {% endif %}
-     {% if data['team-leader-3-first-name'] != undefined and data['team-leader-3-first-name'] != "" %}
-     <dl class="govuk-summary-list">
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          {{ data['team-leader-3-first-name'] }} {{ data['team-leader-3-last-name'] }}
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ data['team-leader-3-email-address'] }}
-        </dd>
-        <dd class="govuk-summary-list__value">
-          <p style="text-align: center">
-              <strong class="govuk-tag govuk-tag--green">
-                ACTIVE
-              </strong>
-            </p>
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leader-3">
-            Manage<span class="govuk-visually-hidden">team leader 3</span>
-          </a>
-        </dd>
-      </div>
-    </dl>
-     {% endif %}
+      {% endif %}
 
-
-      {% if data['team-leader-1-first-name'] == undefined or data['team-leader-1-first-name'] == "" %}
+      {% if data['team-leader-1-first-name'] == undefined or data['team-leader-1-first-name'] == "" and data['repeat-user'] !== "Yes" %}
       <p class="govuk-margin-!-top-4">Add team leaders, so they can manage test site access for staff.</p>
       {% else %}
       <div class="bottom-pagination">

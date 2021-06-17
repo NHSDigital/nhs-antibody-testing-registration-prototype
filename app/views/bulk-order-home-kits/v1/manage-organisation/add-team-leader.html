@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Add a team leader" %}
+{% set pageTitle = "Add a home test operative" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,7 +15,11 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leaders">Back</a>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+
 {% endblock %}
 
 {% block content %}
@@ -30,7 +34,7 @@
           </label>
         </h1>
 
-        <p class="govuk-body govuk-!-margin-bottom-6">Adding a team leader will let them manage test site access for staff.</p>
+        <p class="govuk-body govuk-!-margin-bottom-6">Enter details of a home test leader so they can order test kits.</p>
 
         {% if data['team-leader-1-first-name'] == undefined and data['team-leader-2-first-name'] == undefined and data['team-leader-3-first-name'] == undefined %}
 
@@ -51,7 +55,7 @@
         <div class="govuk-form-group">
           <label class="govuk-label govuk-!-margin-top-4" for="team-leader-1-email-address">
             Email address<br>
-            <span class="govuk-hint" style="padding-top: 5px">We'll send them an email invitation to this address</span>
+            <span class="govuk-hint" style="padding-top: 5px">We will send an invite to this email</span>
           </label>
           <input class="govuk-input govuk-!-width-one-half" id="team-leader-1-email-address" name="team-leader-1-email-address" type="text" value="{{ data['team-leader-1-email-address'] }}">
         </div>
@@ -59,7 +63,7 @@
         <div class="govuk-form-group">
           <label class="govuk-label govuk-!-margin-top-4" for="team-leader-1-mobile-number">
             Mobile number<br>
-            <span class="govuk-hint" style="padding-top: 5px">We'll text a code to this number</span>
+            <span class="govuk-hint" style="padding-top: 5px">We will text a code to this number</span>
           </label>
           <input class="govuk-input govuk-!-width-one-half" id="team-leader-1-mobile-number" name="team-leader-1-mobile-number" type="text" value="{{ data['team-leader-1-mobile-number'] }}">
         </div>
@@ -83,7 +87,7 @@
         <div class="govuk-form-group">
           <label class="govuk-label govuk-!-margin-top-4" for="team-leader-2-email-address">
             Email address<br>
-            <span class="govuk-hint" style="padding-top: 5px">We'll send them an email invitation to this address</span>
+            <span class="govuk-hint" style="padding-top: 5px">We will send an invite to this email</span>
           </label>
           <input class="govuk-input govuk-!-width-one-half" id="team-leader-2-email-address" name="team-leader-2-email-address" type="text" value="{{ data['team-leader-2-email-address'] }}">
         </div>
@@ -91,41 +95,73 @@
         <div class="govuk-form-group">
           <label class="govuk-label govuk-!-margin-top-4" for="team-leader-2-mobile-number">
             Mobile number<br>
-            <span class="govuk-hint" style="padding-top: 5px">We'll text a code to this number</span>
+            <span class="govuk-hint" style="padding-top: 5px">We will text a code to this number</span>
           </label>
           <input class="govuk-input govuk-!-width-one-half" id="team-leader-2-mobile-number" name="team-leader-2-mobile-number" type="text" value="{{ data['team-leader-2-mobile-number'] }}">
+        </div>
+
+        {% elseif data['team-leader-2-first-name'] != undefined and data['team-leader-3-first-name'] == undefined %}
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="team-leader-3-first-name">
+            First name
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="team-leader-3-first-name" name="team-leader-3-first-name" type="text" value="{{ data['team-leader-3-first-name'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="team-leader-3-last-name">
+            Last name
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="team-leader-3-last-name" name="team-leader-3-last-name" type="text" value="{{ data['team-leader-3-last-name'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="team-leader-3-email-address">
+            Email address<br>
+            <span class="govuk-hint" style="padding-top: 5px">We will send an invite to this email</span>
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="team-leader-3-email-address" name="team-leader-3-email-address" type="text" value="{{ data['team-leader-3-email-address'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="team-leader-3-mobile-number">
+            Mobile number<br>
+            <span class="govuk-hint" style="padding-top: 5px">We will text a code to this number</span>
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="team-leader-3-mobile-number" name="team-leader-3-mobile-number" type="text" value="{{ data['team-leader-3-mobile-number'] }}">
         </div>
 
           {% else %}
 
           <div class="govuk-form-group">
-            <label class="govuk-label govuk-!-margin-top-4" for="team-leader-3-first-name">
+            <label class="govuk-label govuk-!-margin-top-4" for="team-leader-4-first-name">
               First name
             </label>
-            <input class="govuk-input govuk-!-width-one-half" id="team-leader-3-first-name" name="team-leader-3-first-name" type="text" value="{{ data['team-leader-3-first-name'] }}">
+            <input class="govuk-input govuk-!-width-one-half" id="team-leader-4-first-name" name="team-leader-4-first-name" type="text" value="{{ data['team-leader-4-first-name'] }}">
           </div>
   
           <div class="govuk-form-group">
-            <label class="govuk-label govuk-!-margin-top-4" for="team-leader-3-last-name">
+            <label class="govuk-label govuk-!-margin-top-4" for="team-leader-4-last-name">
               Last name
             </label>
-            <input class="govuk-input govuk-!-width-one-half" id="team-leader-3-last-name" name="team-leader-3-last-name" type="text" value="{{ data['team-leader-3-last-name'] }}">
+            <input class="govuk-input govuk-!-width-one-half" id="team-leader-4-last-name" name="team-leader-4-last-name" type="text" value="{{ data['team-leader-4-last-name'] }}">
           </div>
   
           <div class="govuk-form-group">
-            <label class="govuk-label govuk-!-margin-top-4" for="team-leader-3-email-address">
+            <label class="govuk-label govuk-!-margin-top-4" for="team-leader-4-email-address">
               Email address<br>
-              <span class="govuk-hint" style="padding-top: 5px">We'll send them an email invitation to this address</span>
+              <span class="govuk-hint" style="padding-top: 5px">We will send an invite to this email</span>
             </label>
-            <input class="govuk-input govuk-!-width-one-half" id="team-leader-3-email-address" name="team-leader-3-email-address" type="text" value="{{ data['team-leader-3-email-address'] }}">
+            <input class="govuk-input govuk-!-width-one-half" id="team-leader-4-email-address" name="team-leader-4-email-address" type="text" value="{{ data['team-leader-4-email-address'] }}">
           </div>
   
           <div class="govuk-form-group">
-            <label class="govuk-label govuk-!-margin-top-4" for="team-leader-3-mobile-number">
+            <label class="govuk-label govuk-!-margin-top-4" for="team-leader-4-mobile-number">
               Mobile number<br>
-              <span class="govuk-hint" style="padding-top: 5px">We'll text a code to this number</span>
+              <span class="govuk-hint" style="padding-top: 5px">We will text a code to this number</span>
             </label>
-            <input class="govuk-input govuk-!-width-one-half" id="team-leader-3-mobile-number" name="team-leader-3-mobile-number" type="text" value="{{ data['team-leader-3-mobile-number'] }}">
+            <input class="govuk-input govuk-!-width-one-half" id="team-leader-4-mobile-number" name="team-leader-4-mobile-number" type="text" value="{{ data['team-leader-4-mobile-number'] }}">
           </div>
 
           {% endif %}
