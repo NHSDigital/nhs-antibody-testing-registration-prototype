@@ -53,7 +53,32 @@
           </fieldset>
         </div>
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <div style="display: none;">
+          <input id="test-package" name="test-package" type="radio" value="" checked>
+          {% if data['order-1-reference'] == undefined %}
+          <input id="order-1-reference" name="order-1-reference" type="number" value="1234567789">
+          <input id="order-1-date" name="order-1-date" type="text" value="12 Feb 2022">
+          <input id="order-1-recipients" name="order-1-recipients" type="text" value="22">
+          <input id="order-1-status" name="order-1-status" type="text" value="Processed">
+          {% elseif data['order-1-reference'] and data['order-2-reference'] == undefined %}
+          <input id="order-2-reference" name="order-2-reference" type="number" value="5233577726">
+          <input id="order-2-date" name="order-2-date" type="text" value="13 Feb 2022">
+          <input id="order-2-recipients" name="order-2-recipients" type="text" value="-">
+          <input id="order-2-status" name="order-2-status" type="text" value="Error">
+          {% elseif data['order-1-reference'] and data['order-2-reference'] and data['order-3-reference'] == undefined %}
+          <input id="order-3-reference" name="order-3-reference" type="number" value="3531883692">
+          <input id="order-3-date" name="order-3-date" type="text" value="20 Feb 2022">
+          <input id="order-3-recipients" name="order-3-recipients" type="text" value="120">
+          <input id="order-3-status" name="order-3-status" type="text" value="Partially processed">
+          {% else %}
+          <input id="order-4-reference" name="order-4-reference" type="number" value="1231373062">
+          <input id="order-4-date" name="order-4-date" type="text" value="21 Feb 2022">
+          <input id="order-4-recipients" name="order-4-recipients" type="text" value="-">
+          <input id="order-4-status" name="order-4-status" type="text" value="Submitted">
+          {% endif %}
+        </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">Continue</button>
 
       </form>
 

@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Site updated" %}
+{% set pageTitle = "You've updated PCR Home Test Operative details" %}
 
 {% extends "includes/layout.html" %}
 
@@ -23,20 +23,22 @@
 
     <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-6">
       <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
-      <p class="govuk-body govuk-!-margin-bottom-1" style="color: #ffffff"><strong>Coventry University - {{ data['test-site-2-name'] }}</strong></p>
-      <p class="govuk-body govuk-!-margin-bottom-1" style="color: #ffffff"><strong>Test site ID: SFWR</strong></p>
-      <p class="govuk-body" style="color: #ffffff"><strong>Status: Active</strong></p>
+      <p class="govuk-body govuk-!-margin-bottom-1" style="color: #ffffff">
+        <strong>
+          Name: {{ data['team-leader-4-first-name'] }} {{ data['team-leader-4-last-name'] }}<br><br>
+          Status: {% if data['team-leader-4-status'] == "Active" %}Active{% else %}Inactive{% endif %}<br><br>
+          Contact: {{ data['team-leader-4-mobile-number'] }} / {{ data['team-leader-4-email-address'] }}
+        </strong>
+      </p>
     </div>
 
-    <h2 class="govuk-heading-m">What happens next?</h2>
-
-    <p class="govuk-body">
-        The site is now available for site staff to record results for
+    <p class="govuk-body govuk-!-margin-bottom-7">
+      This operative can now order bulk PCR home test kits.
     </p>
 
     <div class="inline-button-wrapper" style="justify-content: flex-start;">
 
-        <form action="/bulk-order-home-kits/{{version}}/manage-organisation/manage-sites" method="post" novalidate>
+        <form action="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leaders" method="post" novalidate>
 
           <button type="submit" class="govuk-button" data-module="govuk-button">
             Finish

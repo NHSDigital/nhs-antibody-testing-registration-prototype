@@ -30,38 +30,58 @@
           </label>
         </h1>
 
-        <p class="govuk-body">
-            Email address: {{ data['team-leader-2-email-address'] }}<br>
-            Mobile-number: {{ data['team-leader-2-mobile-number'] }}
-        </p>
+        <p class="govuk-body">This person has not yet accepted their invitation to be a Home Test Operative. <a href="#" class="govuk-link">Send them a new temporary password now.</a></p>
 
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
         <div class="govuk-form-group">
-            <label class="govuk-label govuk-!-margin-top-4" for="team-leader-2-first-name">
-              First name
-            </label>
-            <input class="govuk-input govuk-!-width-one-half" id="team-leader-2-first-name" name="team-leader-2-first-name" type="text" value="{{ data['team-leader-2-first-name'] }}">
-          </div>
-  
-          <div class="govuk-form-group">
-            <label class="govuk-label govuk-!-margin-top-4" for="team-leader-2-last-name">
-              Last name
-            </label>
-            <input class="govuk-input govuk-!-width-one-half" id="team-leader-2-last-name" name="team-leader-2-last-name" type="text" value="{{ data['team-leader-2-last-name'] }}">
-          </div>
+          <label class="govuk-label govuk-!-margin-top-4" for="team-leader-2-first-name">
+            First name
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="team-leader-2-first-name" name="team-leader-2-first-name" type="text" value="{{ data['team-leader-2-first-name'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="team-leader-2-last-name">
+            Last name
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="team-leader-2-last-name" name="team-leader-2-last-name" type="text" value="{{ data['team-leader-2-last-name'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="team-leader-2-email-address">
+            Email address
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="team-leader-2-email-address" name="team-leader-2-email-address" type="text" value="{{ data['team-leader-2-email-address'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="team-leader-2-mobile-number">
+            Mobile number
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="team-leader-2-mobile-number" name="team-leader-2-mobile-number" type="text" value="{{ data['team-leader-2-mobile-number'] }}">
+        </div>
 
       </div>
 
-      <p class="govuk-body">Status</p>
+      <div style="border-left: 10px solid #b1b4b6;" class="govuk-!-margin-top-6">
+        <p class="govuk-body" style="padding: 1em">You're changing details that the home test operative uses to sign in</p>
+      </div>
+
+      <p class="govuk-body"><strong>Status</strong></p>
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
           <div class="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="site-2-status" name="site-2-status" type="checkbox" value="Active" onclick="checkBox()" checked>
-              <label class="govuk-label govuk-checkboxes__label" for="site-2-status">
+              {% if data['team-leader-2-status-edited'] %}
+              <input class="govuk-checkboxes__input" id="team-leader-2-status" name="team-leader-2-status" type="checkbox" value="Active" {{ checked("team-leader-2-status", "Active" ) }}>
+              {% else %}
+              <input class="govuk-checkboxes__input" id="team-leader-2-status" name="team-leader-2-status" type="checkbox" value="Active" checked>
+              {% endif %}
+              <label class="govuk-label govuk-checkboxes__label" for="team-leader-2-status">
                 Active: This team leader can manage staff access at test sites
               </label>
+              <input id="team-leader-2-status-edited" name="team-leader-2-status-edited" type="text" value="edited" style="display: none">
             </div>
           </div>
         </fieldset>
