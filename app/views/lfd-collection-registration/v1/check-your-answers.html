@@ -119,7 +119,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-!-width-one-third">
-            Who are you collecting test packs for?
+            Who you are collecting for
           </dt>
           <dd class="govuk-summary-list__value govuk-!-width-one-third">
             {{ data['collecting-for'] }}
@@ -127,10 +127,91 @@
           <dd class="govuk-summary-list__actions">
             <a href="/lfd-collection-registration/{{version}}/collecting-for">
             Change
-            <span class="govuk-visually-hidden">who are you collecting test packs for</span>
+            <span class="govuk-visually-hidden">who you are collecting for</span>
             </a>
           </dd>
         </div>
+        {% if data['collecting-for'] == "Another household" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Recipient's email address
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {% if data['email-another'] == "Yes" %}
+            {{ data['email-address-another'] }}
+            {% elseif data['email-another'] == "No" or data['email-another'] == "I do not know" %}
+            Not Provided
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lfd-collection-registration/{{version}}/email-address-another">
+            Change
+            <span class="govuk-visually-hidden">email address</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Recipient's mobile number
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {% if data['mobile-number-another'] == "No" %}
+            Not provided
+            {% elseif data['mobile-number-another'] == "Yes" %}
+            {{ data['mobile-phone-number-another'] }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lfd-collection-registration/{{version}}/mobile-number-another">
+            Change
+            <span class="govuk-visually-hidden">mobile number</span>
+            </a>
+          </dd>
+      </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Recipient's country of residence
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {{ data['country'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lfd-collection-registration/{{version}}/country-another">
+            Change
+            <span class="govuk-visually-hidden">country of residence</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Recipient's home address
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-one-third">
+            {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
+            {{ data['home-address'] }}
+            {% else %}
+            {{ data['address-line-1'] }}<br>
+              {% if data['address-line-2'] %}
+              {{ data['address-line-2'] }}<br>
+              {% endif %}
+            {{ data['address-town'] }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            {% if data['collecting-for'] == 'Another household' %}
+            <a href="/lfd-collection-registration/{{version}}/address-another">
+              Change
+              <span class="govuk-visually-hidden">home address</span>
+            </a>
+            {% else %}
+            <a href="/lfd-collection-registration/{{version}}/address">
+              Change
+              <span class="govuk-visually-hidden">home address</span>
+            </a>
+            {% endif %}
+          </dd>
+        </div>
+        {% else %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-!-width-one-third">
             Country of residence
@@ -177,7 +258,7 @@
         {% if data['country'] != 'Scotland' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-!-width-one-third">
-            Do you work for the NHS in England and take part in their staff testing programme?
+            Work for the NHS
           </dt>
           <dd class="govuk-summary-list__value govuk-!-width-one-third">
             {{ data['nhs-testing-programme'] }}
@@ -185,7 +266,7 @@
           <dd class="govuk-summary-list__actions">
             <a href="/lfd-collection-registration/{{version}}/nhs-testing-programme">
             Change
-            <span class="govuk-visually-hidden">nhs testing programme</span>
+            <span class="govuk-visually-hidden">work for the NHS</span>
             </a>
           </dd>
         </div>
@@ -194,7 +275,7 @@
         {% if data['nhs-testing-programme'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-!-width-one-third">
-            Work area
+            Area of work
           </dt>
           <dd class="govuk-summary-list__value govuk-!-width-one-third">
             {{ data['work-area'] }}
@@ -202,7 +283,7 @@
           <dd class="govuk-summary-list__actions">
             <a href="/lfd-collection-registration/{{version}}/work-area">
             Change
-            <span class="govuk-visually-hidden">work area</span>
+            <span class="govuk-visually-hidden">area of work</span>
             </a>
           </dd>
         </div>
@@ -224,7 +305,7 @@
           {% else %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-!-width-one-third">
-              NHS trust
+              NHS trust name
             </dt>
             <dd class="govuk-summary-list__value govuk-!-width-one-third">
               {{ data['trust-autocomplete'] }}
@@ -232,7 +313,7 @@
             <dd class="govuk-summary-list__actions">
               <a href="/lfd-collection-registration/{{version}}/trust">
               Change
-              <span class="govuk-visually-hidden">trust</span>
+              <span class="govuk-visually-hidden">NHS trust name</span>
               </a>
             </dd>
           </div>
@@ -251,6 +332,7 @@
               </a>
             </dd>
           </div>
+        {% endif %}
         {% endif %}
       </dl>
 
