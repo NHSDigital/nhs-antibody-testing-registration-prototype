@@ -74,22 +74,34 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Ethnicity
+              Ethnic group
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['ethnic-group'] }}
-              {% if data['ethnic-group'] !== "Prefer not to say" %}
-              {{ data['ethnic-background'] }}
-              {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/share-result-lateral-flow/{{version}}/ethnic-group">
                 Change
-                <span class="govuk-visually-hidden"> ethnicity</span>
+                <span class="govuk-visually-hidden">ethnic group</span>
               </a>
             </dd>
           </div>
-
+          {% if data['ethnic-group'] !== "Prefer not to say" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Ethnic background
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['ethnic-background'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/ethnic-background">
+                Change
+                <span class="govuk-visually-hidden">ethnic background</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
 
           <!-- {% if data['do-you-have-symptoms'] == "Yes" %}
           <div class="govuk-summary-list__row">
