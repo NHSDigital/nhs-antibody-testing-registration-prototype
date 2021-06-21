@@ -44,6 +44,10 @@
                 </label>
                 <input class="govuk-input govuk-input--width-10" id="gp-postcode-person-1" name="gp-postcode-person-1" type="text" autocomplete="postal-code" value="{{ data['gp-postcode-person-1'] }}" autofocus>
               </div>
+              <p class="govuk-body">
+                <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">Enter address manually</a>
+              </p>
+              <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
             </div>
 
             <div id="content-2" style="display: none;">
@@ -55,11 +59,11 @@
       
                 <span id="post-code-hint" class="govuk-body">
                   This will help us find and update their GP record with their test result.<br><br>
-                  If you cannot find their address in the list, select "I cannot find their address" and enter it manually.
+                  If you cannot find their address in the list, select "I cannot find the address" and enter it manually.
                 </span>
               <p class="govuk-!-margin-bottom-6 govuk-!-margin-top-6" style="line-height: 0.8;">
                 <strong>Postcode</strong><br><br>
-                {{ data['gp-postcode-person-1'] | default('LS1 3BE') }}
+                <strong>{{ data['gp-postcode-person-1'] | default('LS1 3BE') }}</strong>
                 <a href="/antigen/{{version}}/global-registration/address-person-1" class="govuk-!-margin-left-5">
                   <strong>Change</strong>
                   <span class="govuk-visually-hidden">your postcode</span>
@@ -70,7 +74,7 @@
                   <strong class="govuk-!-font-size-19">Select an address</strong>
                 </label>
                 <select class="govuk-select" id="gp-address-person-1" name="gp-address-person-1">
-                  <option>5 addresses found</option>
+                  <option>Select from 5 addresses</option>
                   <option value="1 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}">1 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}</option>
                   <option value="2 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}">2 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}</option>
                   <option value="3 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}">3 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}</option>
@@ -79,8 +83,11 @@
                 </select>
               </div>
               <p class="govuk-body">
-                <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">I cannot find their address in the list</a>
+                <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">I cannot find the address in the list</a>
               </p>
+              <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
+                Continue
+              </button>
             </div>
 
             <div id="content-3" style="display: none;">
@@ -125,15 +132,12 @@
                 </label>
                 <input class="govuk-input govuk-input--width-10" id="gp-postcode-person-1-manual" name="gp-postcode-person-1-manual" type="text" autocomplete="postal-code" value="{{ data['gp-postcode-person-1-manual'] }}">
               </div>
+              <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
+                Continue
+              </button>
             </div>
 
         </fieldset>
-
-        <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
-
-        <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" style="display:none" type="submit" data-module="govuk-button">
-          Continue
-        </button>
 
       </form>
 
@@ -146,8 +150,8 @@
   function buttonClicked(target) {
     setTimeout(function () {
       document.getElementById('content-1').style.display = 'none'
-      document.getElementById('find-address').style.display = 'none'
-      document.getElementById('button-hidden').style.display = 'block'
+      // document.getElementById('find-address').style.display = 'none'
+      // document.getElementById('button-hidden').style.display = 'block'
       document.getElementById('content-2').style.display = 'block'
       document.getElementById('gp-address-person-1').focus()
     }, 100)
@@ -155,7 +159,8 @@
 
   function buttonClicked2(target) {
     setTimeout(function () {
-      document.getElementById('gp-address-person-1').value = '5 addresses found'
+      document.getElementById('gp-address-person-1').value = 'Select from 5 addresses'
+      document.getElementById('content-1').style.display = 'none'
       document.getElementById('content-2').style.display = 'none'
       document.getElementById('content-3').style.display = 'block'
       document.getElementById('gp-postcode-person-1').focus()
@@ -165,6 +170,7 @@
   function submitEvent() {
     var selects = document.getElementById('find-address')
     var selectedLink = document.getElementById('manual-address')
+    var selectedLink2 = document.getElementById('manual-address-2')
     selects.addEventListener('click', function (event) {
       event.preventDefault()
       if (selects.getAttribute('disabled') === 'disabled') {
@@ -179,6 +185,14 @@
       } else {
         event.preventDefault()
         buttonClicked2(selectedLink)
+      }
+    })
+    selectedLink2.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selectedLink2.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked2(selectedLink2)
       }
     })
     
