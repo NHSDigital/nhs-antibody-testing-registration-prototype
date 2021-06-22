@@ -40,6 +40,10 @@
               </label>
               <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode" name="delivery-address-postcode" type="text" autocomplete="postal-code" value="{{ data['delivery-address-postcode'] }}" autofocus>
             </div>
+            <p class="govuk-body">
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">Enter address manually</a>
+            </p>
+            <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
           </div>
 
           <div id="content-2" style="display: none;">
@@ -50,7 +54,7 @@
             </legend>
             <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
               <strong>Postcode</strong><br><br>
-              {{ data['delivery-address-postcode'] | default('LS1 3BE') }}
+              <strong>{{ data['delivery-address-postcode'] | default('LS1 3BE') }}</strong>
               <a href="/antigen/{{version}}/order-home-test-kit/delivery-postcode" class="govuk-!-margin-left-5">
                 <strong>Change</strong>
                 <span class="govuk-visually-hidden">your postcode</span>
@@ -61,7 +65,7 @@
                 <strong class="govuk-!-font-size-19">Select an address</strong>
               </label>
               <select class="govuk-select" id="delivery-address" name="delivery-address">
-                <option>5 addresses found</option>
+                <option>Select from 5 addresses</option>
                 <option value="1 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}">1 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}</option>
                 <option value="2 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}">2 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}</option>
                 <option value="3 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}">3 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}</option>
@@ -70,8 +74,11 @@
               </select>
             </div>
             <p class="govuk-body">
-              <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">I cannot find my address in the list</a>
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find my address in the list</a>
             </p>
+            <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
+              Continue
+            </button>
           </div>
 
           <div id="content-3" style="display: none;">
@@ -115,15 +122,12 @@
               </label>
               <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode-manual" name="delivery-address-postcode-manual" type="text" autocomplete="postal-code" value="{{ data['delivery-address-postcode-manual'] }}">
             </div>
+            <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
+              Continue
+            </button>
           </div>
 
         </fieldset>
-
-        <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
-
-        <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" style="display:none" type="submit" data-module="govuk-button">
-          Continue
-        </button>
 
       </form>
 
@@ -136,8 +140,8 @@
   function buttonClicked(target) {
     setTimeout(function () {
       document.getElementById('content-1').style.display = 'none'
-      document.getElementById('find-address').style.display = 'none'
-      document.getElementById('button-hidden').style.display = 'block'
+      // document.getElementById('find-address').style.display = 'none'
+      // document.getElementById('button-hidden').style.display = 'block'
       document.getElementById('content-2').style.display = 'block'
       document.getElementById('delivery-address').focus()
     }, 100)
@@ -145,7 +149,8 @@
 
   function buttonClicked2(target) {
     setTimeout(function () {
-      document.getElementById('delivery-address').value = '5 addresses found'
+      document.getElementById('delivery-address').value = 'Select from 5 addresses'
+      document.getElementById('content-1').style.display = 'none'
       document.getElementById('content-2').style.display = 'none'
       document.getElementById('content-3').style.display = 'block'
       document.getElementById('delivery-address-postcode').focus()
@@ -155,6 +160,7 @@
   function submitEvent() {
     var selects = document.getElementById('find-address')
     var selectedLink = document.getElementById('manual-address')
+    var selectedLink2 = document.getElementById('manual-address-2')
     selects.addEventListener('click', function (event) {
       event.preventDefault()
       if (selects.getAttribute('disabled') === 'disabled') {
@@ -169,6 +175,14 @@
       } else {
         event.preventDefault()
         buttonClicked2(selectedLink)
+      }
+    })
+    selectedLink2.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selectedLink2.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked2(selectedLink2)
       }
     })
     

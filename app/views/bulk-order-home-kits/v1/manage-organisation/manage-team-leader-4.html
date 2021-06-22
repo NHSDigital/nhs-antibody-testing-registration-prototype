@@ -1,0 +1,97 @@
+{% set version = "v1" %}
+{% set pageTitle = "Team leader details" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leaders">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form lass="form" action="/bulk-order-home-kits/{{version}}/manage-organisation/team-leader-4-updated-confirmation" method="post">
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper govuk-!-margin-bottom-5">
+          <label class="govuk-label govuk-label--xl" for="institution">
+            {{ data['team-leader-4-first-name'] }} {{ data['team-leader-4-last-name'] }}
+          </label>
+        </h1>
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="team-leader-4-first-name">
+            First name
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="team-leader-4-first-name" name="team-leader-4-first-name" type="text" value="{{ data['team-leader-4-first-name'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="team-leader-4-last-name">
+            Last name
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="team-leader-4-last-name" name="team-leader-4-last-name" type="text" value="{{ data['team-leader-4-last-name'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="team-leader-4-email-address">
+            Email address
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="team-leader-4-email-address" name="team-leader-4-email-address" type="text" value="{{ data['team-leader-4-email-address'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-!-margin-top-4" for="team-leader-4-mobile-number">
+            Mobile number
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="team-leader-4-mobile-number" name="team-leader-4-mobile-number" type="text" value="{{ data['team-leader-4-mobile-number'] }}">
+        </div>
+
+      </div>
+
+      <p class="govuk-body"><strong>Status</strong></p>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              {% if data['team-leader-4-status-edited'] %}
+              <input class="govuk-checkboxes__input" id="team-leader-4-status" name="team-leader-4-status" type="checkbox" value="Active" {{ checked("team-leader-4-status", "Active" ) }}>
+              {% else %}
+              <input class="govuk-checkboxes__input" id="team-leader-4-status" name="team-leader-4-status" type="checkbox" value="Active" checked>
+              {% endif %}
+              <label class="govuk-label govuk-checkboxes__label" for="team-leader-1-status">
+                Active: This team leader can manage staff access at test sites
+              </label>
+              <input id="team-leader-4-status-edited" name="team-leader-4-status-edited" type="text" value="edited" style="display: none">
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" type="submit" data-module="govuk-button">
+        Save and continue
+      </button>
+
+      <a href="/bulk-order-home-kits/{{version}}/manage-organisation/manage-team-leaders" role="button" draggable="false" class="govuk-button govuk-button--secondary right-button-margin" data-module="govuk-button" style="display: inline-block;">
+        Cancel
+      </a>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
