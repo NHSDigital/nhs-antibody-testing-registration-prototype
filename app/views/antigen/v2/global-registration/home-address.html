@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Enter the postcode to find their home address in the UK" %}
+{% set pageTitle = "Enter the postcode to find their home address" %}
 
 {% extends "includes/layout.html" %}
 
@@ -31,11 +31,11 @@
           <div id="content-1">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                Enter the postcode to find {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address in the UK
+                Enter the postcode to find {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address
               </h1>
             </legend>
             <span id="post-code-hint-1" class="govuk-body">
-              If you do not have a home address in the UK, enter the postcode where you're staying.<br><br>
+              If they do not have a home address in the UK, enter the address where they’re staying.<br><br>
             </span>
             <div class="govuk-form-group">
               <label class="govuk-label govuk-!-margin-bottom-3" for="home-postcode" style="line-height: 0.8;">
@@ -43,6 +43,10 @@
               </label>
               <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}" autofocus>
             </div>
+            <p class="govuk-body">
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">Enter address manually</a>
+            </p>
+            <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
           </div>
 
           <div id="content-2" style="display: none;">
@@ -52,13 +56,13 @@
               </h1>
             </legend>
             <span id="post-code-hint-2" class="govuk-body">
-              If you do not have a home address in the UK, select the address where you're staying.<br><br>
+              If they do not have a home address in the UK, enter the address where they’re staying.<br><br>
               If you cannot find the address in the list, select "I cannot find the address" and enter it manually.<br><br>
             </span>
 
             <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
               <strong>Postcode</strong><br><br>
-              {{ data['home-postcode'] | default('LS1 3BE') }}
+              <strong>{{ data['home-postcode'] | default('LS1 3BE') }}</strong>
               <a href="/antigen/{{version}}/refer-and-triage/postcode-option-2" class="govuk-!-margin-left-5">
                 <strong>Change</strong>
                 <span class="govuk-visually-hidden">your postcode</span>
@@ -69,7 +73,7 @@
                 <strong>Select an address</strong>
               </label>
               <select class="govuk-select" id="home-address" name="home-address">
-                <option>5 addresses found</option>
+                <option>Select from 5 addresses</option>
                 <option value="1 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">1 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
                 <option value="2 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">2 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
                 <option value="3 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">3 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
@@ -78,14 +82,17 @@
               </select>
             </div>
             <p class="govuk-body">
-              <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">I cannot find my address in the list</a>
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find the address in the list</a>
             </p>
+            <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
+              Continue
+            </button>
           </div>
 
           <div id="content-3" style="display: none;">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                Enter {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address in the UK
+                Enter {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address
               </h1>
             </legend>
             <!-- <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
@@ -96,9 +103,9 @@
                 <span class="govuk-visually-hidden">your postcode</span>
               </a>
             </p> -->
-            <span id="post-code-hint-3" class="govuk-body">
+            <!-- <span id="post-code-hint-3" class="govuk-body">
               If you do not have a home address in the UK, enter the postcode where you're staying.<br><br>
-            </span>
+            </span> -->
             <div class="govuk-form-group">
               <label class="govuk-label" for="address-line-1">
                 <strong>Building and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>
@@ -126,15 +133,12 @@
               </label>
               <input class="govuk-input govuk-input--width-10" id="home-postcode-manual" name="home-postcode-manual" type="text" autocomplete="postal-code" value="{{ data['home-postcode-manual'] }}">
             </div>
+            <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
+              Continue
+            </button>
           </div>
 
         </fieldset>
-
-        <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
-
-        <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" style="display:none" type="submit" data-module="govuk-button">
-          Continue
-        </button>
 
       </form>
 
@@ -147,8 +151,8 @@
   function buttonClicked(target) {
     setTimeout(function () {
       document.getElementById('content-1').style.display = 'none'
-      document.getElementById('find-address').style.display = 'none'
-      document.getElementById('button-hidden').style.display = 'block'
+      // document.getElementById('find-address').style.display = 'none'
+      // document.getElementById('button-hidden').style.display = 'block'
       document.getElementById('content-2').style.display = 'block'
       document.getElementById('home-address').focus()
     }, 100)
@@ -156,7 +160,8 @@
 
   function buttonClicked2(target) {
     setTimeout(function () {
-      document.getElementById('home-address').value = '5 addresses found'
+      document.getElementById('home-address').value = 'Select from 5 addresses'
+      document.getElementById('content-1').style.display = 'none'
       document.getElementById('content-2').style.display = 'none'
       document.getElementById('content-3').style.display = 'block'
       document.getElementById('home-postcode').focus()
@@ -166,6 +171,7 @@
   function submitEvent() {
     var selects = document.getElementById('find-address')
     var selectedLink = document.getElementById('manual-address')
+    var selectedLink2 = document.getElementById('manual-address-2')
     selects.addEventListener('click', function (event) {
       event.preventDefault()
       if (selects.getAttribute('disabled') === 'disabled') {
@@ -180,6 +186,14 @@
       } else {
         event.preventDefault()
         buttonClicked2(selectedLink)
+      }
+    })
+    selectedLink2.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selectedLink2.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked2(selectedLink2)
       }
     })
     
