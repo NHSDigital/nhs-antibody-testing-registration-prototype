@@ -858,7 +858,7 @@ router.post('/organisational/test-pass/create-single-reg/reg-with-pass/have-coro
 
 
 
-router.post('/organisational/test-pass/create-pass/spreadsheet', function (req, res) {
+router.post('/organisational/test-pass/create-pass/how', function (req, res) {
   let answer = req.body.spreadsheet;
 
   if (answer == 'yes') {
@@ -866,7 +866,7 @@ router.post('/organisational/test-pass/create-pass/spreadsheet', function (req, 
   } else if (answer == 'no') {
       res.redirect('/organisational/test-pass/create-pass/who-single')
     } else {
-    res.redirect('/organisational/test-pass/create-pass/spreadsheet?error=empty')
+    res.redirect('/organisational/test-pass/create-pass/how?error=empty')
     }
 });
 
