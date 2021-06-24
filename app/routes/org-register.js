@@ -858,15 +858,15 @@ router.post('/organisational/test-pass/create-single-reg/reg-with-pass/have-coro
 
 
 
-router.post('/organisational/test-pass/create-pass/spreadsheet', function (req, res) {
+router.post('/organisational/test-pass/create-pass/how', function (req, res) {
   let answer = req.body.spreadsheet;
 
   if (answer == 'yes') {
-    res.redirect('/organisational/test-pass/create-pass/who-bulk')
+    res.redirect('/organisational/test-pass/create-pass/upload')
   } else if (answer == 'no') {
       res.redirect('/organisational/test-pass/create-pass/who-single')
     } else {
-    res.redirect('/organisational/test-pass/create-pass/spreadsheet?error=empty')
+    res.redirect('/organisational/test-pass/create-pass/how?error=empty')
     }
 });
 
@@ -1017,6 +1017,9 @@ router.post('/organisational/test-pass/create-pass/staff/travel2', function (req
     res.redirect('/organisational/test-pass/create-pass/staff/travel2?error=empty')
     }
 });
+
+
+
 
 // lft/carehome-registration
 
@@ -1195,6 +1198,157 @@ router.post('/organisational/lft/carehome-registration/UON-check-radio', functio
 
 
 
+// // test-pass/reg-with-pass
+
+router.post('/organisational/test-pass/reg-with-pass/confirm-UON', function (req, res) {
+  let answer = req.body.changeUON;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-with-pass/how')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-with-pass/UON')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/UON-check-radio?error=empty')
+    }
+});
+
+
+router.post('/organisational/test-pass/reg-with-pass/how', function (req, res) {
+  let answer = req.body.cuUploadType;
+
+  if (answer == 'bulk') {
+    res.redirect('/organisational/test-pass/reg-with-pass/bulk/who')
+  } else if (answer == 'single') {
+      res.redirect('/organisational/test-pass/reg-with-pass/single/have-pass')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/how?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-with-pass/bulk/lft-bulk', function (req, res) {
+  let answer = req.body.reupload;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-with-pass/bulk/pcr-bulk')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-with-pass/bulk/upload')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/bulk/lft-bulk?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-with-pass/bulk/pcr-bulk', function (req, res) {
+  let answer = req.body.reuploadpcr;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-with-pass/bulk/create-pass')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-with-pass/bulk/upload')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/bulk/pcr-bulk?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-with-pass/single/have-pass', function (req, res) {
+  let answer = req.body.havepass;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/pass-details')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-with-pass/single/personal-details')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/have-pass?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-with-pass/single/have-coronavirus', function (req, res) {
+  let answer = req.body.cuCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/when-symptoms')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/testkit')
+    }
+});
+
+router.post('/organisational/test-pass/reg-with-pass/single/have-return-box', function (req, res) {
+  let answer = req.body.outerreturnbox;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/return-box')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-with-pass/single/check-pcr')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/have-return-box?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-with-pass/single/add-another', function (req, res) {
+  let answer = req.body.addanotherperson;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/have-pass')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-with-pass/single/single-check')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/add-another?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-with-pass/single/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/contact')
+    } else if (answer) {
+      res.redirect('/organisational/test-pass/reg-with-pass/single/ethnic-desc')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-with-pass/single/occupation/index', function (req, res) {
+  let answer = req.body.cuInWork;
+
+  if (answer == "Yes, and for the last 2 weeks they've worked from home") {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/occupation/area')
+  } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/occupation/area')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/have-coronavirus')
+  } else if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/occupation/area')
+  } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/occupation/index?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-with-pass/single/save-pass', function (req, res) {
+  let answer = req.body.savepass;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/send-codes')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-with-pass/single/have-coronavirus')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/save-pass?error=empty')
+    }
+});
+
+
+// test-pass/create-pass
+
+router.post('/organisational/test-pass/create-pass/confirm-UON', function (req, res) {
+  let answer = req.body.changeUON;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/create-pass/how')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/create-pass/UON')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/UON-check-radio?error=empty')
+    }
+});
 
 
 module.exports = router

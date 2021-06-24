@@ -1,20 +1,37 @@
-{% set pageHeading = "Enter John Smith's work details" %}
- {% set version = "organisational/test-pass" %}
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      John Smith
+  {% endif %}
+{% endset %}
+{% set pageHeading = "Enter " + fullname | trim + "'s work details" %}
+ {% set version = "organisational/test-pass/reg-with-pass" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - {{ serviceName }}
+  {{ pageHeading }} - COVID-19
 {% endblock %}
+
 {% block beforeContent %}
-<div class=“”>
-  <div class=“govuk-grid-row”>
-    <div class=“govuk-grid-column-full”>
-      <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
     </div>
   </div>
 </div>
-
 {% endblock %}
 
 {% block content %}
@@ -28,7 +45,7 @@
 
       <p>This helps us understand how coronavirus is affecting people in different workplaces.</p>
 
-      <form action="/{{ version }}/create-pass/staff/check-your-answers" method="get">
+      <form action="/{{ version }}/single/save-pass" method="get">
 
           <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper">
@@ -70,14 +87,6 @@
               name: "cuEmployer"
             }) }}
 
-            <div class="govuk-checkboxes">
-                  <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
-                    <label class="govuk-label govuk-checkboxes__label" for="waste">
-                      <span class="govuk-body govuk-!-font-weight-bold">Set as default travel and work details for staff members</span>
-                    </label>
-                  </div>
-              <br>
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
