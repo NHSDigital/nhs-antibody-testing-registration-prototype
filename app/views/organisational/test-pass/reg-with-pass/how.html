@@ -1,5 +1,5 @@
-{% set pageHeading = "Who are you registering?" %}
-{% set version = "organisational/test-pass/create-pass" %}
+{% set pageHeading = "How do you want to register tests?" %}
+{% set version = "organisational/test-pass/reg-with-pass" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -31,10 +31,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/{{version}}/bulk/upload" method="get">
+      <form class="" action="" method="post">
         {{ govukRadios({
-            idPrefix: "cuStaff",
-            name: "cuStaff",
+            idPrefix: "cuUploadType",
+            name: "cuUploadType",
             fieldset: {
               legend: {
                 text: pageHeading,
@@ -44,16 +44,18 @@
             },
             items: [
               {
-                value: "Staff",
-                text: "Staff"
+                value: "bulk",
+                text: "Use our spreadsheet to add a list of people",
+                hint: {
+                  html: 'Enter and upload details for up to 100 people at a time'
+                }
               },
               {
-                value: "Residents",
-                text: "Residents"
-              },
-              {
-                value: "Care partners",
-                text: "Care partners and/or visitors (Northern Ireland only)"
+                value: "single",
+                text: "Add each person's details one by one",
+                hint: {
+                  html: "Use an online form to enter their details"
+                }
               }
             ]
           }) }}

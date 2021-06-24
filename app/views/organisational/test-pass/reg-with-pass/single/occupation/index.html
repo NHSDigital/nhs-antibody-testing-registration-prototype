@@ -1,5 +1,13 @@
-{% set pageHeading = "Who are you registering?" %}
-{% set version = "organisational/test-pass/create-pass" %}
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      John Smith
+  {% endif %}
+{% endset %}
+{% set pageHeading = "Is " + fullname + " currently in work?" %}
+ {% set version = "organisational/test-pass/reg-with-pass" %}
+{% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -31,10 +39,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/{{version}}/bulk/upload" method="get">
+      <form class="" action="" method="post">
+
         {{ govukRadios({
-            idPrefix: "cuStaff",
-            name: "cuStaff",
+            idPrefix: "cuInWork",
+            name: "cuInWork",
             fieldset: {
               legend: {
                 text: pageHeading,
@@ -42,21 +51,32 @@
                 classes: "govuk-fieldset__legend--xl"
               }
             },
+            hint: {
+              html: "<p>This will help us understand more about the spread of the virus.</p>"
+            },
             items: [
               {
-                value: "Staff",
-                text: "Staff"
+                value: "Yes, and for the last 2 weeks they've worked from home",
+                text: "Yes, and for the last 2 weeks they've worked from home"
               },
               {
-                value: "Residents",
-                text: "Residents"
+                value: "Yes, and for the last 2 weeks they've travelled to work",
+                text: "Yes, and for the last 2 weeks they've travelled to work"
               },
               {
-                value: "Care partners",
-                text: "Care partners and/or visitors (Northern Ireland only)"
+                value: "no",
+                text: "No"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "Prefer not to say",
+                text: "Prefer not to say"
               }
             ]
           }) }}
+
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>
