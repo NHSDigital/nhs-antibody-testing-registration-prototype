@@ -1,5 +1,5 @@
 {% set version = "v22" %}
-{% set pageTitle = "Would you like to sign in or create an account to save your details?" %}
+{% set pageTitle = "Sign in or create an account" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -26,37 +26,20 @@
 
       <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
 
-    <!--  <p class="govuk-body">Set up an account and you won't need to re-enter your details when you report further
-        test results.</p> -->
+      <p class="govuk-body">Creating an account takes 2 minutes. It uses <a href="https://www.nhs.uk/nhs-services/online-services/nhs-log-in/" target="_blank" rel="noreferrer">NHS login</a>.</p>
+      <div class="govuk-inset-text">Using an account saves 5 minutes when reporting for anyone in your household, including children.</div>
 
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="sign-in-hint">
-          <div class="govuk-radios">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="coronavirus-account-v2-1" name="coronavirus-account-v2" type="radio" value="/share-result-lateral-flow/{{version}}/user-account/login-email" onclick="setLocation(this);"  {{ checked("coronavirus-account-v2-1", "Sign in or create an account with NHS login") }}>
-              <label class="govuk-label govuk-radios__label" for="coronavirus-account-v2-1">
-                <strong>Sign in or create an account</strong>
-                <span id="sign-in-item-hint" class="govuk-hint" style="color: #000000;">
-                  Creating an account takes 2 minutes. You can add all household members and save 5 minutes when reporting each result.
-                </span>
-              </label>
-
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="coronavirus-account-v2-2" name="coronavirus-account-v2" type="radio" value="/share-result-lateral-flow/{{version}}/whos-taking-the-test" onclick="setLocation(this);" {{ checked("coronavirus-account-v2-2", "Continue without an account") }}>
-              <label class="govuk-label govuk-radios__label" for="coronavirus-account-v2-2">
-                <strong>Continue without an account</strong>
-                <span id="sign-in-2-item-hint" class="govuk-hint" style="color: #000000;">
-                  Your details won't be saved for future tests and all information will have to be re-entered.
-                </span>
-              </label>
-
-            </div>
+         <div style="margin-top: 30px">
+              <a href="/share-result-lateral-flow/{{version}}/user-account/login-email-create" class="govuk-button govuk-u-margin-bottom-8" style="margin-right: 20px">
+                Create account
+              </a>
+              <a href="/share-result-lateral-flow/{{version}}/user-account/login-email-signin" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Sign in
+              </a>
           </div>
-        </fieldset>
-      </div>
 
-      <button class="govuk-button" data-module="govuk-button">Continue</button>
+          <br>
+          <p class="govuk-body"><a href="/share-result-lateral-flow/{{version}}/whos-taking-the-test">Continue without an account</p>
 
       </form>
     </div>

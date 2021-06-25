@@ -1,5 +1,5 @@
 {% set version = "v22" %}
-{% set pageTitle = "Agree to share your NHS login information" %}
+{% set pageTitle = "Enter your email address" %}
 
 <!DOCTYPE html>
 <!-- [if lt IE 9]><html class="ie8" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if gt IE 9]><html lang="en" style="{{ html_style }}"> -->
@@ -11,8 +11,8 @@
 
     <title>{% block pageTitle %}{{pageTitle}} - NHS.UK{% endblock %}</title>
 
-    <link href="https://www.nhs.uk/" rel="preconnect">
-    <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin>
+    <!-- <link href="https://www.nhs.uk/" rel="preconnect">
+    <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin> -->
 
     <link href="/public/stylesheets/nhs_application.css" media="all" rel="stylesheet" type="text/css" />
     <link href="/public/stylesheets/nhsuk-site.css" media="all" rel="stylesheet" type="text/css" />
@@ -20,7 +20,7 @@
     <!-- <script src="nhsuk.min.js" defer></script> -->
   </head>
 
-  <body class="{{ bodyClasses }}">
+  <body>
 
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
@@ -42,32 +42,40 @@
     {% endblock %}
 
     {% block main %}
-    <div class="nhsuk-width-container {{ containerClasses }}">
-        <main class="nhsuk-main-wrapper {{ mainClasses }}" id="maincontent" role="main" style="padding: 1em">
 
-        <form action="/share-result-lateral-flow/{{version}}/whos-taking-the-test" method="post">
+      <form action="/share-result-lateral-flow/{{version}}/user-account/enter-password" method="post">
 
+        <div class="nhsuk-width-container">
+          <main class="nhsuk-main-wrapper" id="maincontent" role="main">
             {% block content %}
-            <h1 class="nhsuk-heading-l nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-6">{{ pageTitle }}</h1>
+            <h1 class="nhsuk-heading-l nhsuk-u-margin-bottom-6">{{ pageTitle }}</h1>
 
-            <p>To continue, you need to agree to share your NHS login information with GOV.UK</p>
-            <p class="nhsuk-u-margin-bottom-2">GOV.UK will use your:</p>
-            <ul class="nhsuk-u-margin-left-4">
-                <li>Email address</li>
-                <li>Mobile number</li>
-            </ul>
-
-            <p class="nhsuk-body nhsuk-u-margin-bottom-6">If you agree, read their terms and use of privacy policy to check how your information will be used</p>
+            <div class="nhsuk-form-group">
+              <label class="nhsuk-label" for="email-address">
+                Email address
+              </label>
+              <input class="nhsuk-input nhsuk-u-width-one-third" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+            </div>
 
             <button class="nhsuk-button" data-module="govuk-button">Continue</button>
 
-            <p><a href="/share-result-lateral-flow/{{version}}/user-account/continue-without-account">I do not agree to share this information</a></p>
+            <div class="nhsuk-inset-text nhsuk-u-width-two-thirds">
+              <span class="nhsuk-u-visually-hidden">Information: </span>
+              <h2 class="nhsuk-heading-m">What is NHS login?</h2>
+              <p>You can use our NHS login to access health websites and apps that have the NHS login button. If you do not have an NHS login, enter your email address to set one up.</p>
+            </div>
+
+            <div class="nhsuk-warning-callout nhsuk-u-margin-bottom-3 nhsuk-u-width-two-thirds">
+              <h3 class="nhsuk-warning-callout__label">Coronavirus (COVID-19)</h3>
+              <p>For health information and advice, read <a class="nhsuk-link" href="#">NHS guidance about coronavirus.</a></p>
+            </div>
 
             {% endblock %}
+          </main>
+        </div>
+
         </form>
-      </main>
-    </div>
-    {% endblock %}
+      {% endblock %}
 
   </body>
 
@@ -87,6 +95,6 @@
         <p class="nhsuk-footer__copyright">&copy; Crown copyright</p>
       </div>
     </div>
+  </footer>
   {% endblock %}
-
 </html>
