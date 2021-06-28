@@ -1204,11 +1204,11 @@ router.post('/organisational/test-pass/reg-with-pass/confirm-UON', function (req
   let answer = req.body.changeUON;
 
   if (answer == 'yes') {
-    res.redirect('/organisational/test-pass/reg-with-pass/how')
+    res.redirect('/organisational/test-pass/reg-with-pass/test-pass-info')
   } else if (answer == 'no') {
       res.redirect('/organisational/test-pass/reg-with-pass/UON')
     } else {
-    res.redirect('/organisational/test-pass/reg-with-pass/UON-check-radio?error=empty')
+    res.redirect('/organisational/test-pass/reg-with-pass/confirm-UON?error=empty')
     }
 });
 
@@ -1289,7 +1289,7 @@ router.post('/organisational/test-pass/reg-with-pass/single/add-another', functi
   if (answer == 'yes') {
     res.redirect('/organisational/test-pass/reg-with-pass/single/have-pass')
   } else if (answer == 'no') {
-      res.redirect('/organisational/test-pass/reg-with-pass/single/single-check')
+      res.redirect('/organisational/test-pass/reg-with-pass/single/single-check-pass')
     } else {
     res.redirect('/organisational/test-pass/reg-with-pass/single/add-another?error=empty')
     }
@@ -1315,7 +1315,7 @@ router.post('/organisational/test-pass/reg-with-pass/single/occupation/index', f
   } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
     res.redirect('/organisational/test-pass/reg-with-pass/single/occupation/area')
   } else if (answer == 'no') {
-    res.redirect('/organisational/test-pass/reg-with-pass/single/have-coronavirus')
+    res.redirect('/organisational/test-pass/reg-with-pass/single/save-pass')
   } else if (answer == 'Prefer not to say') {
     res.redirect('/organisational/test-pass/reg-with-pass/single/occupation/area')
   } else {
@@ -1351,4 +1351,117 @@ router.post('/organisational/test-pass/create-pass/confirm-UON', function (req, 
 });
 
 
+// // test-pass/reg-without-pass
+
+router.post('/organisational/test-pass/reg-without-pass/confirm-UON', function (req, res) {
+  let answer = req.body.changeUON;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-without-pass/test-pass-info')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-without-pass/UON')
+    } else {
+    res.redirect('/organisational/test-pass/reg-without-pass/confirm-UON?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-without-pass/how', function (req, res) {
+  let answer = req.body.cuUploadType;
+
+  if (answer == 'bulk') {
+    res.redirect('/organisational/test-pass/reg-without-pass/bulk/who')
+  } else if (answer == 'single') {
+      res.redirect('/organisational/test-pass/reg-without-pass/single/have-pass')
+    } else {
+    res.redirect('/organisational/test-pass/reg-without-pass/how?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-without-pass/single/have-pass', function (req, res) {
+  let answer = req.body.havepass;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/pass-details')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-without-pass/single/personal-details')
+    } else {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/have-pass?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-without-pass/single/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/contact')
+    } else if (answer) {
+      res.redirect('/organisational/test-pass/reg-without-pass/single/ethnic-desc')
+    } else {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-without-pass/single/occupation/index', function (req, res) {
+  let answer = req.body.cuInWork;
+
+  if (answer == "Yes, and for the last 2 weeks they've worked from home") {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/occupation/area')
+  } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/occupation/area')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/save-pass')
+  } else if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/occupation/area')
+  } else {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/occupation/index?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-without-pass/single/save-pass', function (req, res) {
+  let answer = req.body.savepass;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/send-codes')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-without-pass/single/have-coronavirus')
+    } else {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/save-pass?error=empty')
+    }
+});
+
+
+router.post('/organisational/test-pass/reg-without-pass/single/have-coronavirus', function (req, res) {
+  let answer = req.body.cuCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/when-symptoms')
+    } else {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/testkit')
+    }
+});
+
+router.post('/organisational/test-pass/reg-without-pass/single/have-return-box', function (req, res) {
+  let answer = req.body.outerreturnbox;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/return-box')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-without-pass/single/check-pcr')
+    } else {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/have-return-box?error=empty')
+    }
+});
+
+
+router.post('/organisational/test-pass/reg-without-pass/single/add-another', function (req, res) {
+  let answer = req.body.addanotherperson;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/have-pass')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-without-pass/single/single-check-pass')
+    } else {
+    res.redirect('/organisational/test-pass/reg-without-pass/single/add-another?error=empty')
+    }
+});
 module.exports = router

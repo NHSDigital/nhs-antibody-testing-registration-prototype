@@ -1,0 +1,57 @@
+{% set pageHeading = "Do you want to create a test registration code for John Smith?" %}
+ {% set version = "organisational/test-pass/reg-without-pass" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+{% block beforeContent %}
+<div class=“”>
+  <div class=“govuk-grid-row”>
+    <div class=“govuk-grid-column-full”>
+      <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+      <form class="form" action="" method="post">
+
+<p>A test registration code is a 8 digit code that can be used instead of entering someone personal details.</p>
+
+{{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "savepass",
+  name: "savepass",
+  fieldset: {
+
+  },
+
+  items: [
+    {
+      value: "yes",
+      text: "Yes, create a test registration code for John Smith"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+
+</div>
+</div>
+<button class="govuk-button" data-module="govuk-button">
+  Continue
+</button>
+
+{% endblock %}
