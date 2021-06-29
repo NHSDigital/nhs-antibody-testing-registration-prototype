@@ -1,0 +1,59 @@
+{% set version = "v3" %}
+{% set pageTitle = "Sign in or create your account" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+
+      <p class="govuk-body">A coronavirus testing account lets you save your details, so you do not need to enter them each time you register a test.<br><br>Here you can:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
+        <li>Sign in using existing NHS login details</li>
+        <li>Sign up by creating an NHS login using your email and your UK mobile phone number</li>
+        <li>Continue without an account</li>
+      </ul>
+
+
+    </div>
+  </div>
+
+  <div class="inline-buttons-wrapper">
+    <form class="form" action="/litereg-accounts/v2/user-account/login-email" method="post">
+              <button class="govuk-!-font-size-19 govuk-!-margin-bottom-5 nhsuk-button-style" type="submit">
+                Sign up or sign in
+              </button>
+            </form>
+            <form class="form" action="/litereg-accounts/v2/enter-barcode" method="post">
+              <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Continue without an account
+              </button>
+            </form>
+
+</div>
+
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action" style="width: 150px;">
+  <a href="/litereg-accounts/v2/coronavirus-account-v2.html">
+    <div class="proto-action-text govuk-!-margin-left-3">Version 2</div>
+  </a>
+</div>
+{% endblock %}

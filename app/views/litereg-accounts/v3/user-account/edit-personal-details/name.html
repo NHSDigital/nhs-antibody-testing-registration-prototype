@@ -1,5 +1,5 @@
-{% set version = "v2" %}
-{% set pageTitle = "What’s the name of the person who needs a test?" %}
+{% set version = "v3" %}
+{% set pageTitle = "What’s your name?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,24 +15,19 @@
   </p>
 </div>
 
-{{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.go(-1);"
-}) }}
+<a class="govuk-back-link" href="/litereg-accounts/{{version}}/user-account/edit-personal-details/home-page">Back</a>
 {% endblock %}
 
 {% block content %}
-  {% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
 
-      <form action="/antigen/{{version}}/refer-and-triage/mobile-number" method="post">
+      <form class="form" action="/litereg-accounts/{{version}}/user-account/edit-personal-details/home-page" method="post">
 
         <fieldset class="govuk-fieldset">
-          <p class="govuk-body">Try to enter the exact name registered with the person's GP.</p>
 
           <div class="govuk-form-group">
             <label class="govuk-label" for="first-name">
@@ -55,12 +50,6 @@
       </form>
 
     </div>
-  </div>
-
-  <div class="proto-action big">
-    <a href="/antigen/{{version}}/refer-and-triage/index-option2">
-      <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 2</div>
-    </a>
   </div>
 
 {% endblock %}
