@@ -1,5 +1,5 @@
-{% set version = "v1" %}
-{% set pageTitle = "Were you asked to take part in daily contact testing?" %}
+{% set version = "v3" %}
+{% set pageTitle = "Are you taking part in the 'daily contact testing' pilot?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -35,13 +35,20 @@
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
                 Are they taking part in the 'daily contact testing' pilot?
+                {% endif %}
+                {% if data['email-address'] == "user@testing.co.uk" %}
+                Were you asked to take part in daily contact testing?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
               </h1>
             </legend>
             <span id="daily-contact-testing-hint" class="govuk-body">
+              {% if data['email-address'] == "user@testing.co.uk" %}
               This means taking a test everyday for 7 days (usually because you're in contact with someone who has tested positive for coronavirus).
+              {% else %}
+              Only a small number of organisations are inviting their employees to take part in this pilot. If you are not sure, select no.
+              {% endif %}
             </span>
             <div class="govuk-radios govuk-!-margin-top-5 govuk-!-bottom-top-5">
               <div class="govuk-radios__item">
@@ -56,12 +63,14 @@
                   No
                 </label>
               </div>
+              {% if data['email-address'] == "user@testing.co.uk" %}
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="daily-contact-testing-3" name="daily-contact-testing" type="radio" value="I do not know" {{ checked("daily-contact-testing", "I do not know") }}>
                 <label class="govuk-label govuk-radios__label" for="daily-contact-testing-3">
                   I do not know
                 </label>
               </div>
+              {% endif %}
             </div>
           </fieldset>
         </div>

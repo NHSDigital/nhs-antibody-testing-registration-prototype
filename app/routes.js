@@ -1917,6 +1917,54 @@ router.post('/litereg-accounts/v1/action8/vaccine', function (req, res) {
 })
 
 
+
+
+
+// Version 3 - Lite reg accounts - Confirm Site ID
+
+router.post('/litereg-accounts/v3/action6/confirm-site-id', function (req, res) {
+  let confirmSiteID = req.session.data['confirm-site-id']
+  if (confirmSiteID == "Yes") {
+    res.redirect('/litereg-accounts/v3/contact-testing')
+  } else {
+    res.redirect('/litereg-accounts/v3/site-id')
+  }
+
+})
+
+// Version 3 - Lite reg accounts - Have You Travelled
+
+router.post('/litereg-accounts/v3/action7/have-you-travelled', function (req, res) {
+  let haveYouTravelled = req.session.data['have-you-travelled']
+  if (haveYouTravelled == "Yes") {
+    res.redirect('/litereg-accounts/v3/travelled-most-to')
+  } else {
+    res.redirect('/litereg-accounts/v3/vaccine')
+  }
+
+})
+
+// Version 3 - Antigen Vaccine
+router.post('/litereg-accounts/v3/action8/vaccine', function (req, res) {
+  let vaccine = req.session.data['vaccine']
+  let emailAddress = req.session.data['email-address']
+  if (vaccine == "No"){
+    if (emailAddress == "user@testing.co.uk") {
+      res.redirect('/litereg-accounts/v3/check-your-answers')
+    }
+    else {
+      res.redirect('/litereg-accounts/v3/country')
+    }
+  } else {
+    res.redirect('/litereg-accounts/v3/vaccine-date')
+  }
+
+})
+
+
+
+
+
 // Version 1 - Antigen vaccine-person-1
 router.post('/antigen/v1/action8/vaccine-person-1', function (req, res) {
   let vaccinePerson1 = req.session.data['vaccine-person-1']
@@ -1988,6 +2036,60 @@ router.post('/litereg-accounts/v1/action2/vaccine-date', function (req, res) {
   }
   else {
     res.redirect('/litereg-accounts/v1/country')
+  }
+})
+
+
+
+
+// Version 3 - LiteReg Accounts Daily Contact Testing
+router.post('/litereg-accounts/v3/action5/daily-contact-testing', function (req, res) {
+  let dailyContactTesting = req.session.data['daily-contact-testing']
+  if (dailyContactTesting  == "Yes") {
+    res.redirect('/litereg-accounts/v3/account-id')
+  }
+  else {
+    res.redirect('/litereg-accounts/v3/test-date')
+  }
+})
+
+// Version 3 - LiteReg Accounts Travelled Overseas
+router.post('/litereg-accounts/v3/action3/travelled-overseas', function (req, res) {
+  let travelledOverseas = req.session.data['travelled-overseas']
+  let emailAddress = req.session.data['email-address']
+  if (travelledOverseas  == "Yes") {
+    res.redirect('/litereg-accounts/v3/travelled-to')
+  }
+  else {
+    if (emailAddress == "user@testing.co.uk") {
+      res.redirect('/litereg-accounts/v3/vaccine')
+    }
+    else {
+      res.redirect('/litereg-accounts/v3/previous-infection')
+    }
+
+  }
+})
+
+// Version 3 - LiteReg Accounts Do you have symptoms
+router.post('/litereg-accounts/v3/action3/do-you-have-symptoms', function (req, res) {
+  let doYouHaveSymptoms = req.session.data['do-you-have-symptoms']
+  if (doYouHaveSymptoms  == "Yes") {
+    res.redirect('/litereg-accounts/v3/when-did-symptoms-start')
+  }
+  else {
+    res.redirect('/litereg-accounts/v3/previous-infection')
+  }
+})
+
+// Version 3 - LiteReg Accounts vaccine date
+router.post('/litereg-accounts/v3/action2/vaccine-date', function (req, res) {
+  let emailAddress = req.session.data['email-address']
+  if (emailAddress == "user@testing.co.uk") {
+    res.redirect('/litereg-accounts/v3/check-your-answers')
+  }
+  else {
+    res.redirect('/litereg-accounts/v3/country')
   }
 })
 
