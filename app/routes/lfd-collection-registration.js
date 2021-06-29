@@ -15,7 +15,7 @@ router.post('/lfd-collection-registration/v1/action10/do-you-have-symptoms', fun
   if (symptoms == "Yes") {
     res.redirect('/lfd-collection-registration/v1/different-test')
   } else {
-    res.redirect('/lfd-collection-registration/v1/country')
+    res.redirect('/lfd-collection-registration/v1/nhs-account')
   }
 })
 
@@ -45,7 +45,7 @@ router.post('/lfd-collection-registration/v1/user-account/action10/login-email',
       res.redirect('/lfd-collection-registration/v1/user-account/create-password')
   }
 })
-    
+
 router.post('/lfd-collection-registration/v1/action10/create-password', function (req, res) {
   let password = req.session.data['password']
   let confirmPassword = req.session.data['confirm-password']
@@ -79,14 +79,14 @@ router.post('/lfd-collection-registration/v1/action10/collecting-for', function 
   if (collectingFor == "Another household"){
     res.redirect('/lfd-collection-registration/v1/email-address-another')
   } else {
-    res.redirect('/lfd-collection-registration/v1/address')
+    res.redirect('/lfd-collection-registration/v1/country')
   }
 })
 
 router.post('/lfd-collection-registration/v1/action10/country', function (req, res) {
   let country = req.session.data['country']
   if (country == "England") {
-    res.redirect('/lfd-collection-registration/v1/nhs-account')
+    res.redirect('/lfd-collection-registration/v1/address')
   } else {
     res.redirect('/lfd-collection-registration/v1/service-unavailable-country')
   }
