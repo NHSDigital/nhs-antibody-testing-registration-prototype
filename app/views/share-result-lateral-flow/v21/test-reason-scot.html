@@ -1,5 +1,5 @@
 {% set version = "v21" %}
-{% set pageTitle = "Tell us why you took this test" %}
+{% set pageTitle = "Tell us the main reason you took this test" %}
 
 {% extends "includes/layout.html" %}
 
@@ -28,43 +28,71 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+              <h1 class="govuk-heading-l">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Tell us the main reason {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} took this test
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
             </legend>
             <div class="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-reason-1" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/school-name" onclick="setLocation(this);" {{ checked("test-reason", "  To go to school, college or university") }}>
+                <input class="govuk-radios__input" id="test-reason-1" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/school-name" onclick="setLocation(this);" {{ checked("test-reason-scot", "To attend school, college or university") }}>
                 <label class="govuk-label govuk-radios__label" for="test-reason-1">
-                  To go to school, college or university
+                  To attend school, college or university
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-reason-2" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("test-reason", "Someone in the household goes to school or college") }}>
+                <input class="govuk-radios__input" id="test-reason-2" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("test-reason-scot", "Live with someone who is shielding and want to protect them") }}>
                 <label class="govuk-label govuk-radios__label" for="test-reason-2">
-                  To take part in regular testing (for example for my caring responsibilities, voluntary work or social activities)
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  They live with someone who is shielding and want to protect them
+                  {% else %}
+                  I live with someone who is shielding and want to protect them
+                  {% endif %}
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-reason-3" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("test-reason", "As someone in a support or childcare bubble of a student") }}>
+                <input class="govuk-radios__input" id="test-reason-3" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("test-reason-scot", "Cases are high in the local area") }}>
                 <label class="govuk-label govuk-radios__label" for="test-reason-3">
-                  To protect someone I live with who is shielding
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  Cases are high in their local area
+                  {% else %}
+                  Cases are high in my local area
+                  {% endif %}
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-reason-3" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("test-reason", "As someone in a support or childcare bubble of a student") }}>
-                <label class="govuk-label govuk-radios__label" for="test-reason-3">
-                  For reassurance before social contact (for example visiting family, socialising, beauty appointment or attending an event)
-                </label>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-reason-4" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("test-reason", "As a foster carer") }}>
+                <input class="govuk-radios__input" id="test-reason-4" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("test-reason-scot", "To attend an event") }}>
                 <label class="govuk-label govuk-radios__label" for="test-reason-4">
-                  For testing before I travel within the UK
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  So they can attend an event
+                  {% else %}
+                  So I can attend an event
+                  {% endif %}
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-reason-5" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("test-reason-scot", "To visit a care home") }}>
+                <label class="govuk-label govuk-radios__label" for="test-reason-5">
+                  To visit a care home
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-reason-6" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("test-reason-scot", "To travel within the UK") }}>
+                <label class="govuk-label govuk-radios__label" for="test-reason-6">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  So they can travel within the UK
+                  {% else %}
+                  So I can travel within the UK
+                  {% endif %}
                 </label>
               </div>
               <div class="govuk-radios__divider">or</div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-reason-5" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/test-reason-2" onclick="setLocation(this);" {{ checked("test-reason", "  Another reason") }}>
-                <label class="govuk-label govuk-radios__label" for="test-reason-5">
+                <input class="govuk-radios__input" id="test-reason-7" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/test-reason-2" onclick="setLocation(this);" {{ checked("test-reason-scot", "  Another reason") }}>
+                <label class="govuk-label govuk-radios__label" for="test-reason-7">
                   Another reason
                 </label>
               </div>
