@@ -31,15 +31,10 @@
               {{ pageTitle }}
             </h1>
           </legend>
-          <span id="nhs-number-hint" class="govuk-body">
-            Your NHS number is a 10 digit number. Please enter the number with no spaces, for example 8674065600.
-          </span>
-          <div class="govuk-form-group govuk-!-margin-top-5">
-            <label class="govuk-label" for="nhs-number">
-              NHS number
-            </label>
-            <input class="govuk-input govuk-input--width-10" id="nhs-number" name="nhs-number" type="text" value="{{ data['nhs-number'] }}">
-          </div>
+
+          <!-- div for include from content folder -->
+          <div id="includedContent"></div>
+
         </fieldset>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
@@ -48,5 +43,13 @@
 
     </div>
   </div>
+
+
+      <!-- corresponding html file name included from content folder -->
+      <script>
+        $(function(){
+          $("#includedContent").load("../content/nhs-number.html");
+        });
+      </script>
 
 {% endblock %}
