@@ -2316,6 +2316,18 @@ router.post('/litereg-accounts/v1/action4/test-place', function (req, res) {
 
 })
 
+// LiteReg Accounts - Test Place
+router.post('/litereg-accounts/v3/action4/test-place', function (req, res) {
+  let testPlace = req.session.data['test-place']
+
+  if (testPlace == "At a test site or government quarantine hotel"){
+    res.redirect('/litereg-accounts/v3/site-id')
+  } else {
+    res.redirect('/litereg-accounts/v3/royal-mail-barcode')
+  }
+
+})
+
 
 
 module.exports = router
