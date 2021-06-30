@@ -1335,6 +1335,19 @@ router.post('/organisational/test-pass/reg-with-pass/single/save-pass', function
     }
 });
 
+router.post('/organisational/test-pass/reg-with-pass/bulk/send-all-codes', function (req, res) {
+  let answer = req.body.contact;
+
+  if (answer == 'same') {
+    res.redirect('/organisational/test-pass/reg-with-pass/bulk/check')
+  } else if (answer == 'different') {
+      res.redirect('/organisational/test-pass/reg-with-pass/bulk/send-codes')
+    } else if (answer == 'no') {
+        res.redirect('/organisational/test-pass/reg-with-pass/bulk/check')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/bulk/send-all-codes?error=empty')
+    }
+});
 
 // test-pass/create-pass
 
@@ -1464,4 +1477,6 @@ router.post('/organisational/test-pass/reg-without-pass/single/add-another', fun
     res.redirect('/organisational/test-pass/reg-without-pass/single/add-another?error=empty')
     }
 });
+
+
 module.exports = router

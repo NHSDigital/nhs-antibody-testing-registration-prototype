@@ -1,9 +1,11 @@
 {% set pageHeading = "<span class='govuk-caption-xl'>Page 1 of 1</span> Check the lateral flow test details" %}
-{% set version = "organisational/lft/carehome-registration" %}
+{% set version = "organisational/test-pass/reg-with-pass" %}
 {% extends "includes/layout.html" %}
+
 {% block pageTitle %}
    Enter the test details for each person - COVID-19
 {% endblock %}
+
 {% block beforeContent %}
 <div class="">
   <div class="govuk-grid-row">
@@ -14,6 +16,7 @@
       },
       html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
       }) }}
+
       {{ govukBackLink({
         text: "Back",
         href: "javascript:window.history.go(-1);"
@@ -22,6 +25,8 @@
   </div>
 </div>
 {% endblock %}
+
+
 {% block phaseBanner %}
 <div class="">
   <div class="govuk-grid-row">
@@ -32,6 +37,7 @@
       },
       html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
       }) }}
+
       {{ govukBackLink({
         text: "Back",
         href: "javascript:window.history.go(-1);"
@@ -40,24 +46,36 @@
   </div>
 </div>
 {% endblock %}
+
 {% block content %}
+
 {% set prePop %}
  {% if data.cuOrgPrepopDate %}
+
  {% endif %}
 {% endset %}
+
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       <h1 class="govuk-heading-xl">
         {{ pageHeading | safe }}
       </h1>
+
       <p>Check that each person's lateral flow test result has been entered correctly. You can check up to 10 records at a time using this page.</p>
+
     </div>
   </div>
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
+
+
       <h2 class="govuk-heading-m">Records 1 to 10 of 10</h2>
-<div>
+      <form class="" action="/{{ version }}/bulk/pcr-bulk" method="get">
+
         <ul class="card-table">
 
           <li class="card-table__item" id="entry-1">
@@ -72,6 +90,7 @@
                   </dd>
                 </dl>
               </div>
+
               <div class="card-table__form-column column-16">
                 {{ govukInput({
                   label: {
@@ -84,41 +103,123 @@
                   name: "cuTestKitCode1"
                 }) }}
               </div>
-              <div class="card-table__form-column column-8">
+
+              <div class="card-table__form-column column-16">
                 <div class="govuk-form-group">
                   <fieldset class="govuk-fieldset" role="group">
+
                     <legend class="govuk-fieldset__legend govuk-!-font-size-16 govuk-!-font-weight-bold">
-                      Test result
+
+                      Date of swab test
+
                     </legend>
-                    <p><strong class="govuk-tag govuk-tag--red">Positive
-                    </strong><br><a href="/{{version}}/enhancements/result" <span class="govuk-body govuk-!-font-size-16">Change result</a></p>
-                    <div>
+
+
+                    <div class="govuk-date-input" id="covidUpload">
+
+                      <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                          <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-day">
+                            Day
+                          </label>
+
+                          <input class="govuk-input govuk-date-input__input govuk-input--width-2" value="01" id="covidUpload-day" name="cuOrgType-day1" type="text" autocomplete="bday-day" pattern="[0-9]*" inputmode="numeric">
+                        </div>
+                      </div>
+
+                      <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                          <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-month">
+                            Month
+                          </label>
+
+
+                          <input class="govuk-input govuk-date-input__input govuk-input--width-2" value="03" id="covidUpload-month" name="cuOrgType-month1" type="text" autocomplete="bday-month" pattern="[0-9]*" inputmode="numeric">
+                        </div>
+                      </div>
+
+                      <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                          <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-year">
+                            Year
+                          </label>
+
+
+                          <input class="govuk-input govuk-date-input__input govuk-input--width-4" value="2021" id="covidUpload-year" name="cuOrgType-year1" type="text" autocomplete="bday-year" pattern="[0-9]*" inputmode="numeric">
+                        </div>
+                      </div>
                     </div>
+
                     </fieldset>
                   </div>
               </div>
 
               <div class="card-table__form-column column-12">
-                <div class="govuk-form-group">
-                  <fieldset class="govuk-fieldset" role="group">
-                    <legend class="govuk-fieldset__legend govuk-!-font-size-16 govuk-!-font-weight-bold">
-                      Test date and time
-                    </legend>
-                    <p> 24 March 2020 at 10am</p>
-                  </fieldset>
-                </div>
-                </div>
 
-                    <div class="card-table__form-column column-10">
-                      <div class="govuk-form-group">
-                        <a href="/organisational/lft/carehome-registration/enhancements/delete-lft"><button class="govuk-button govuk-button--secondary app-delete-button-bulk-upload govuk-!-margin-bottom-0" data-module="govuk-button">Delete this entry</button></a>
-                        <div>
+                {% call govukFieldset({
+                  legend: {
+                    text: "Time of swab test",
+                    classes: "govuk-!-font-size-16 govuk-!-font-weight-bold",
+                    isPageHeading: false
+                  }
+                }) %}
+
+                <div class="govuk-form-group">
+                  <div class="govuk-date-input__item govuk-!-margin-right-1">
+                    <label class="govuk-label govuk-!-font-size-16" for="covidUploadHour">
+                      Hour
+                    </label>
+                    <input class="govuk-input govuk-input--width-2" value="10" id="covidUploadHour" name="cuTime1" type="text">
                   </div>
+
+                  <div class="govuk-date-input__item">
+                    <label class="govuk-label govuk-!-font-size-16" for="covidUploadAMPM">
+                      am or pm
+                    </label>
+                    <select class="govuk-select govuk-input--width-4" id="covidUploadAMPM" name="cuAMPM1">
+                      <option value="am">am</option>
+                      <option value="pm">pm</option>
+                    </select>
+                  </div>
+
+                </div>
               </div>
-</li>
-</ul>
+              <div >
+              <p class="govuk-body-s govuk-!-font-weight-bold govuk-!-padding-top-4 govuk-!-margin-bottom-1">Test result</p>
+              <div class="govuk-radios govuk-radios--inline">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="changed-name"  name="changed-name" type="radio" value="yes">
+                  <label class="govuk-label govuk-radios__label" for="changed-name">
+                    Negative
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="changed-name-2" name="changed-name-2" type="radio" value="no">
+                  <label class="govuk-label govuk-radios__label" for="changed-name-2">
+                    Void
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="changed-name-2" name="changed-name-3" type="radio" value="no" checked="checked">
+                  <label class="govuk-label govuk-radios__label" for="changed-name-2">
+                    Positive
+                  </label>
+                </div>
+              </div>
+            </div>
+          </li>
+
+
+        </ul>
+
+      </form>
+      {% endcall %}
+
+
+
 
         {% set items = [
+
         { name: "Filomena Guyton", id: 2, dob: "29 June 1975", value: "C70267321", positive:"1", negative:"1", void:"1" },
         { name: "Pete Smith", id: 3, dob: "24 April 1984", value: "C70266322", positive:"2", negative:"2", void:"2" },
         { name: "Susan Watson", id: 4, dob: "23 October 1982", value: "C70265323", positive:"3", negative:"3", void:"3" },
@@ -128,15 +229,19 @@
         { name: "Ruby Howard", id: 8, dob: "4 January 1987", value: "C70268327", positive:"7", negative:"7", void:"7" },
         { name: "Ariannie Wright", id: 9, dob: "16 April 1976", value: "C70266328", positive:"8", negative:"8", void:"8" },
         { name: "John Smith", id: 10, dob: "24 January 1972", value: "C70260329", positive:"9", negative:"9", void:"9" }
+
         ] %}
         {% for item in items %}
+
+
         <ul class="card-table">
         <li class="card-table__item" id="entry-{{ item.id }}">
           <div class="card-table__form">
+
             <div class="govuk-form-group">
+
               <div class="card-table__form-column column-8">
                   <dl class="card-table__summary">
-                    <dt>Name</dt>
                     <dt class="govuk-visually-hidden">Name</dt>
                     <dd>{{ item.name }}</dd>
                     <dd class="dob">{{ item.dob }}</dd>
@@ -145,84 +250,172 @@
                     </dd>
                   </dl>
               </div>
+
               <div class="card-table__form-column column-16">
                 {{ govukInput({
                   label: {
                     text: "Test kit barcode",
-                    classes: "govuk-!-font-size-16 govuk-!-font-weight-bold govuk-!-margin-bottom-3"
+                    classes: "govuk-!-font-size-16"
                   },
                   classes: "govuk-input--width-10",
-                  value: "C70268320",
-                  id: "cuTestKitCode1",
-                  name: "cuTestKitCode1"
+                  value: item.value,
+                  id: "cuTestKitCode" + item.id,
+                  name: "cuTestKitCode" + item.id
                 }) }}
               </div>
-              <div class="card-table__form-column column-8">
+
+              <div class="card-table__form-column column-16">
                 <div class="govuk-form-group">
                   <fieldset class="govuk-fieldset" role="group">
-                    <legend class="govuk-fieldset__legend govuk-!-font-size-16 govuk-!-font-weight-bold">
-                      Test result
-                    </legend>
-        <p><strong class="govuk-tag govuk-tag--grey">Negative</strong>
-        <br><a href="#" <span class="govuk-body govuk-!-font-size-16">Change result</a></p>
 
-                    <div>
+                    <legend class="govuk-fieldset__legend govuk-!-font-size-16 govuk-!-font-weight-bold govuk-visually-hidden">
+
+                      Date of swab test
+
+                    </legend>
+
+
+                    <div class="govuk-date-input" id="covidUploadDATE">
+
+                      <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                          <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-day">
+                            Day
+                          </label>
+
+                          <input class="govuk-input govuk-date-input__input govuk-input--width-2" value="01" id="covidUpload-day" name="cuOrgType-day{{ item.id }}" type="text" autocomplete="bday-day" pattern="[0-9]*" inputmode="numeric">
+                        </div>
+                      </div>
+
+                      <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                          <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-month">
+                            Month
+                          </label>
+
+
+                          <input class="govuk-input govuk-date-input__input govuk-input--width-2" value="03" id="covidUpload-month" name="cuOrgType-month{{ item.id }}" type="text" autocomplete="bday-month" pattern="[0-9]*" inputmode="numeric">
+                        </div>
+                      </div>
+
+                      <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                          <label class="govuk-label govuk-date-input__label govuk-!-font-size-16" for="covidUpload-year">
+                            Year
+                          </label>
+
+
+                          <input class="govuk-input govuk-date-input__input govuk-input--width-4" value="2021" id="covidUpload-year" name="cuOrgType-year{{ item.id }}" type="text" autocomplete="bday-year" pattern="[0-9]*" inputmode="numeric">
+                        </div>
+                      </div>
+
                     </div>
                     </fieldset>
                   </div>
               </div>
 
-              <div class="card-table__form-column column-12">
-                <div class="govuk-form-group">
-                  <fieldset class="govuk-fieldset" role="group">
-                    <legend class="govuk-fieldset__legend govuk-!-font-size-16 govuk-!-font-weight-bold">
-                      Test date and time
-                    </legend>
-                    <p> 24 March 2020 at 10am</p>
-                  </fieldset>
+                <div class="card-table__form-column column-12">
+
+                  {% call govukFieldset({
+                    legend: {
+                      text: "Time of swab test",
+                      classes: "govuk-!-font-size-16 govuk-!-font-weight-bold govuk-visually-hidden",
+                      isPageHeading: false
+                    }
+                  }) %}
+                    <div class="govuk-date-input__item govuk-!-margin-right-1">
+                      <label class="govuk-label govuk-!-font-size-16" for="covidUploadHour{{ item.id }}">
+                        Hour
+                      </label>
+                      <input class="govuk-input govuk-input--width-2" value="10" id="covidUploadHour{{ item.id }}" name="cuTime{{ item.id }}" type="text">
+                    </div>
+
+                    <div class="govuk-date-input__item">
+                      <label class="govuk-label govuk-!-font-size-16" for="covidUploadAMPM{{ item.id }}">
+                        am or pm
+                      </label>
+                      <select class="govuk-select govuk-input--width-4" id="covidUpload{{ item.id }}" name="cuAMPM{{ item.id }}">
+                        <option value="am">am</option>
+                        <option value="pm">pm</option>
+                      </select>
+                    </div>
+
                 </div>
+            </div>
+
+            <div class="govuk-form-group">
+              <p class="govuk-body-s govuk-!-font-weight-bold govuk-!-padding-top-4 govuk-!-margin-bottom-1">Test result</p>
+              <div class="govuk-radios govuk-radios--inline">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="changed-name" name="negative-{{ item.negative }}" type="radio" value="yes" checked>
+                  <label class="govuk-label govuk-radios__label" for="changed-name">
+                    Negative
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="changed-name-2" name="void-{{ item.void }}" type="radio" value="no">
+                  <label class="govuk-label govuk-radios__label" for="changed-name-2">
+                    Void
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="changed-name-3" name="positive-{{ item.positive }}" type="radio" value="no">
+                  <label class="govuk-label govuk-radios__label" for="changed-name-2">
+                    Positive
+                  </label>
                 </div>
 
-                    <div class="card-table__form-column column-10">
-                      <div class="govuk-form-group">
-                        <a href="/organisational/lft/carehome-registration/enhancements/delete-lft"><button class="govuk-button govuk-button--secondary app-delete-button-bulk-upload govuk-!-margin-bottom-0" data-module="govuk-button">Delete this entry</button></a>
-                        <div>
-                  </div>
-              </div>
-    </li>
-    </ul>
-{% endfor %}
 
-<h2 class="govuk-heading-m govuk-!-margin-top-6">Are records 1 to 10 of 10 correct?</h2>
 
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
-    <form class="" action="" method="post">
+              {% endcall %}
 
-{{ govukRadios({
-  classes: "govuk-radios",
-  idPrefix: "reupload",
-  name: "reupload",
-  fieldset: {
+            </div>
+            </div>
 
-  },
-  hint: {
-    text: "If you need to change someone’s details or test type, you must upload a new version of the spreadsheet.
-  "
-  },
-  items: [
-    {
-      value: "yes",
-      text: "Yes, I confirm the details are correct"
-    },
-    {
-      value: "no",
-      text: "No, edit and upload a new spreadsheet"
-    }
-  ]
-}) }}
-    <input class="govuk-button" type="submit" value="Save and continue">
-</form>
+            <div class="card-table__form-column column-6" style="display:none">
+              <p>
+                <a class="govuk-!-font-size-16 destructive-action" href="#">Delete entry</a>
+              </p>
+            </div>
 
-</div>
-</div>
+          </div>
+        </li>
+        </ul>
+        {% endfor %}
+
+
+
+
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-6">Confirm records 1 to 10 of 10</h2>
+
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+          <form class="" action="" method="post">
+
+      {{ govukRadios({
+        classes: "govuk-radios",
+        idPrefix: "reupload",
+        name: "reupload",
+        fieldset: {
+
+        },
+        hint: {
+          text: "If you need to change someone’s details or test type, you must upload a new version of the spreadsheet.
+        "
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes, I confirm the details are correct"
+          },
+          {
+            value: "no",
+            text: "No, edit and upload a new spreadsheet"
+          }
+        ]
+      }) }}
+
+              <form class="" action="" method="get">
+            <input class="govuk-button" type="submit" value="Save and continue">
+
 {% endblock %}

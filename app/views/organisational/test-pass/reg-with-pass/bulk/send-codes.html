@@ -1,62 +1,280 @@
-{% set pageHeading = "Check the details for each person" %}
- {% set version = "organisational/test-pass/reg-with-pass" %}
-{% set serviceName = "Get a coronavirus test" %}
+{% set pageHeading = "Provide contact details to receive an individual's test registration code" %}
+{% set version = "organisational/test-pass/reg-with-pass" %}
 {% extends "includes/layout.html" %}
-
 {% block pageTitle %}
-  {{ pageHeading }} - {{ serviceName }}
+   Enter the test details for each person - COVID-19
 {% endblock %}
 {% block beforeContent %}
-<div class=“”>
-  <div class=“govuk-grid-row”>
-    <div class=“govuk-grid-column-full”>
-      <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
     </div>
   </div>
 </div>
-
 {% endblock %}
-
+{% block phaseBanner %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
 {% block content %}
+
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
+      <p>You are creating test registration codes for the following people.</p>
+      <p>An individual's test registration codes will be emailed and texted to the contact details provided below. These are the contact details which you have entered to receive theindividual's coronavirus test results.</p>
+      <p>You can add an additional contact to receive the test registration code.</p>
 
-      <h1 class="govuk-heading-xl">Would you like to send the test registration code's to an additional contact?</h1>
+</div>
+</div>
 
-      <form class="form" action="/organisational/test-pass/reg-with-pass/bulk/check" method="post">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
 
-<p>An individual's test registration codes will be emailed and texted to the contact details provided for that individual in the spreadsheet.</p>
+      <h2 class="govuk-heading-m">Records 1 to 6 of 6</h2>
+<div>
 
-<div class="govuk-form-group">
-<div class="govuk-radios govuk-radios">
-  <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
-        <div class="govuk-radios__item">
-          <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
-          <label class="govuk-label govuk-radios__label" for="contact">
-            Yes, enter an additional email address to receive the test registration codes
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Name</th>
+        <th scope="col" class="govuk-table__header">Date of birth</th>
+        <th scope="col" class="govuk-table__header">Contact details</th>
+        <th scope="col" class="govuk-table__header">Additonal contact to receive <br>test registration code</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <td scope="row" class="govuk-table__cell">John Smith<br><a href="#" class="govuk-link">View details</a></td>
+        <td class="govuk-table__cell">01 January 1990</td>
+        <td class="govuk-table__cell">johnsmith@gmail.com<br>07654 123 123 </td>
+        <td class="govuk-table__cell"> <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact" name="contact" type="checkbox" value="email" data-aria-controls="conditional-contact">
+        <label class="govuk-label govuk-checkboxes__label" for="contact">
+          Email address (optional)
+        </label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-email">
+            Email address
           </label>
-        </div>
-        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="contact-by-email">
-              Email address
-            </label>
-            <input class="govuk-input govuk-!-width-one-third" id="contact-by-email" name="contact-by-email" type="email" spellcheck="false"></div>
-        </div>
-<div class="govuk-radios__item">
-  <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="no">
-  <label class="govuk-label govuk-radios__label" for="changed-name-2">
-    No, only send the test registration codes to the contact details provided in the spreadsheet
-  </label>
-</div>
-</div>
+          <input class="govuk-input govuk-!-width-full" id="contact-by-email" name="contact-by-email" type="email" spellcheck="false"></div>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-2" name="contact" type="checkbox" value="phone" data-aria-controls="conditional-contact-2">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-2">
+          Mobile number (optional)
+        </label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-2">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-phone">
+            Mobile number
+          </label>
+          <input class="govuk-input govuk-!-width-full" id="contact-by-phone" name="contact-by-phone" type="tel"></div>
+      </div></td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td scope="row" class="govuk-table__cell">Joe Davies<br><a href="#" class="govuk-link">View details</a></td>
+        <td class="govuk-table__cell">21 March 1998</td>
+        <td class="govuk-table__cell">joe@hotmail.com<br>07654 123 123</td>
+        <td class="govuk-table__cell"> <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact" name="contact" type="checkbox" value="email" data-aria-controls="conditional-contact">
+        <label class="govuk-label govuk-checkboxes__label" for="contact">
+          Email address (optional)
+        </label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-email">
+            Email address
+          </label>
+          <input class="govuk-input govuk-!-width-full" id="contact-by-email" name="contact-by-email" type="email" spellcheck="false"></div>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-2" name="contact" type="checkbox" value="phone" data-aria-controls="conditional-contact-2">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-2">
+          Mobile number (optional)
+        </label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-2">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-phone">
+            Mobile number
+          </label>
+          <input class="govuk-input govuk-!-width-full" id="contact-by-phone" name="contact-by-phone" type="tel"></div>
+      </div></td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td scope="row" class="govuk-table__cell">Ellie Jones<br><a href="#" class="govuk-link">View details</a></td>
+        <td class="govuk-table__cell">01 January 1990</td>
+        <td class="govuk-table__cell">elliejones@gmail.com <br>07654 123 123</td>
+        <td class="govuk-table__cell">  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact" name="contact" type="checkbox" value="email" data-aria-controls="conditional-contact">
+        <label class="govuk-label govuk-checkboxes__label" for="contact">
+          Email address (optional)
+        </label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-email">
+            Email address
+          </label>
+          <input class="govuk-input govuk-!-width-full" id="contact-by-email" name="contact-by-email" type="email" spellcheck="false"></div>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-2" name="contact" type="checkbox" value="phone" data-aria-controls="conditional-contact-2">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-2">
+          Mobile number (optional)
+        </label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-2">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-phone">
+            Mobile number
+          </label>
+          <input class="govuk-input govuk-!-width-full" id="contact-by-phone" name="contact-by-phone" type="tel"></div>
+      </div></td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td scope="row" class="govuk-table__cell">Georgie Brash<br><a href="#" class="govuk-link">View details</a></td>
+        <td class="govuk-table__cell">21 March 1998</td>
+        <td class="govuk-table__cell">georgie@hotmail.com<br>07654 123 123</td>
+        <td class="govuk-table__cell"> <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact" name="contact" type="checkbox" value="email" data-aria-controls="conditional-contact">
+        <label class="govuk-label govuk-checkboxes__label" for="contact">
+          Email address (optional)
+        </label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-email">
+            Email address
+          </label>
+          <input class="govuk-input govuk-!-width-full" id="contact-by-email" name="contact-by-email" type="email" spellcheck="false"></div>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-2" name="contact" type="checkbox" value="phone" data-aria-controls="conditional-contact-2">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-2">
+          Mobile number (optional)
+        </label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-2">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-phone">
+            Mobile number
+          </label>
+          <input class="govuk-input govuk-!-width-full" id="contact-by-phone" name="contact-by-phone" type="tel"></div>
+      </div></td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td scope="row" class="govuk-table__cell">John Smith<br><a href="#" class="govuk-link">View details</a></td>
+        <td class="govuk-table__cell">01 January 1990</td>
+        <td class="govuk-table__cell">johnsmith@gmail.com<br>07654 123 123</td>
+        <td class="govuk-table__cell">  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact" name="contact" type="checkbox" value="email" data-aria-controls="conditional-contact">
+        <label class="govuk-label govuk-checkboxes__label" for="contact">
+          Email address (optional)
+        </label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-email">
+            Email address
+          </label>
+          <input class="govuk-input govuk-!-width-full" id="contact-by-email" name="contact-by-email" type="email" spellcheck="false"></div>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-2" name="contact" type="checkbox" value="phone" data-aria-controls="conditional-contact-2">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-2">
+          Mobile number (optional)
+        </label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-2">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-phone">
+            Mobile number
+          </label>
+          <input class="govuk-input govuk-!-width-full" id="contact-by-phone" name="contact-by-phone" type="tel"></div>
+      </div></td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td scope="row" class="govuk-table__cell">Joe Davies<br><a href="#" class="govuk-link">View details</a></td>
+        <td class="govuk-table__cell">21 March 1998</td>
+        <td class="govuk-table__cell">joe@hotmail.com<br>07654 123 123</td>
+        <td class="govuk-table__cell">  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact" name="contact" type="checkbox" value="email" data-aria-controls="conditional-contact">
+        <label class="govuk-label govuk-checkboxes__label" for="contact">
+          Email address (optional)
+        </label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-email">
+            Email address
+          </label>
+          <input class="govuk-input govuk-!-width-full" id="contact-by-email" name="contact-by-email" type="email" spellcheck="false"></div>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-2" name="contact" type="checkbox" value="phone" data-aria-controls="conditional-contact-2">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-2">
+          Mobile number (optional)
+        </label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-2">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-phone">
+            Mobile number
+          </label>
+          <input class="govuk-input govuk-!-width-full" id="contact-by-phone" name="contact-by-phone" type="tel"></div>
+      </div>
+    </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+<form class="" action="/organisational/test-pass/reg-with-pass/bulk/send-codes" method="get">
+    <input class="govuk-button" type="submit" value="Save and continue">
+</form>
 
 </div>
-
 </div>
-<button class="govuk-button" data-module="govuk-button">
-  Save and continue
-</button>
-
 {% endblock %}
