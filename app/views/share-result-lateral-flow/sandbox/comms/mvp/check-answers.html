@@ -1,4 +1,4 @@
-{% set version = "v17-1" %}
+{% set version = "sandbox" %}
 {% set pageTitle = "Check the answers" %}
 
 {% extends "includes/layout-LFD.html" %}
@@ -135,7 +135,7 @@
               Country
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['country'] }}
+              Scotland
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/share-result-lateral-flow/{{version}}/country">
@@ -145,39 +145,21 @@
             </dd>
           </div>
 
-          {% if data['email'] == "Yes" %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Contact details
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['email-address'] }}<br>
-              {{ data['mobile-phone-number'] }}
+              07221 745 535<br>
+              Texts only for reporting Positive result
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/share-result-lateral-flow/{{version}}/got-email">
+              <a href="/share-result-lateral-flow/{{version}}/comms/mvp/mobile">
                 Change
-                <span class="govuk-visually-hidden">email address</span>
+                <span class="govuk-visually-hidden"> mobile</span>
               </a>
             </dd>
           </div>
-          {% elseif data['email'] !== "Yes" %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Contact details
-            </dt>
-            <dd class="govuk-summary-list__value">
-              I do not have an email address<br>
-              {{ data['mobile-phone-number'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a href="/share-result-lateral-flow/{{version}}/got-email">
-                Change
-                <span class="govuk-visually-hidden">email address</span>
-              </a>
-            </dd>
-          </div>
-          {% endif %}
 
         <!--  <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
