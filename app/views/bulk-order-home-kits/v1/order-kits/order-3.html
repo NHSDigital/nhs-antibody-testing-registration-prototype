@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Order number 1234567799" %}
+{% set pageTitle = "Order 1234567899" %}
 
 {% extends "includes/layout.html" %}
 
@@ -23,7 +23,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/bulk-order-home-kits/{{version}}/order-kits/confirmation-bulk-upload" method="post">
+      <form action="/bulk-order-home-kits/{{version}}/order-kits/what-test-package-order" method="post">
 
 
         <div class="govuk-form-group">
@@ -31,19 +31,39 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                 {{ pageTitle }}
-              </h1><strong class="govuk-tag govuk-tag--yellow">
-                SUBMITTED
+              </h1><strong class="govuk-tag govuk-tag--red">
+                INCOMPLETE
               </strong>
             </legend>
+            <p class="govuk-body">Your order is incomplete as some orders have missing or invalid information.</p>
             <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
             <span id="upload-patient-list-1-hint" class="govuk-body">
-              Targeted surge test<br><br>
-              Submitted 25 Mar 2022<br><br>
-              <a class="govuk-link" href="#">Download full.CSV</a><br><br>
+              Individuals: 200<br><br>
+              Test package: {{ data['order-1-test-package'] or 'Sequenced pre-linked PCR test kit' }}<br><br>
+              Order received: 12 Feb 2022<br><br>
+              Order processed: 13 Feb 2022<br><br>
+              <a class="govuk-link" href="#">OriginalName.csv</a><br><br>
             </span>
+
+            <span id="upload-patient-list-1-hint" class="govuk-body">
+              <strong>89 Errors detected</strong><br><br>
+            </span>
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+            <p class="govuk-body">
+              You can download the error file to view the errors, make corrections and upload the corrected file as a new bulk order.<br><br>
+              Do not upload all of the information again, just the ones with errors.
+            </p>
+
+            <span id="upload-patient-list-2-hint" class="govuk-body">
+              <a class="govuk-link" href="#">OriginalName_Error.csv</a><br><br>
+            </span>
+
 
           </fieldset>
         </div>
+
+        <button class="govuk-button" data-module="govuk-button">Upload correct file to continue</button>
 
       </form>
 

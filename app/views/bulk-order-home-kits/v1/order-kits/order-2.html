@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Order number 1234567899" %}
+{% set pageTitle = "Order 1234567990" %}
 
 {% extends "includes/layout.html" %}
 
@@ -32,36 +32,35 @@
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                 {{ pageTitle }}
               </h1><strong class="govuk-tag govuk-tag--red">
-                PARTIALLY PROCESSED
+                FAILED
               </strong>
             </legend>
+            <p class="govuk-body">Your order failed to process as the file upload had missing or invalid information.</p>
             <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
             <span id="upload-patient-list-1-hint" class="govuk-body">
-              200 recipients<br><br>
-              Targeted surge test<br><br>
-              Submitted 25 Mar 2022<br><br>
-              <a class="govuk-link" href="#">Download full.CSV</a><br><br>
+              Test package: {{ data['order-1-test-package'] or 'Sequenced pre-linked PCR test kit' }}<br><br>
+              Order received: 19 Feb 2022<br><br>
+              Order processed: 20 Feb 2022<br><br>
+              <a class="govuk-link" href="#">OriginalName.csv</a><br><br>
             </span>
 
             <span id="upload-patient-list-1-hint" class="govuk-body">
-              <strong>89 Errors detected</strong><br><br>
+              <strong>Errors detected</strong><br><br>
             </span>
             <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
             <p class="govuk-body">
-              Some orders have missing or invalid information. You can view the error file to see which ones need reentering again. When you have corrected the errors, you should reload the file again.<br><br>
-              You do not need to upload all of the recipients again, just the ones with errors.
+              You can download the error file to view the errors, make corrections and upload the corrected file as a new bulk order.
             </p>
 
             <span id="upload-patient-list-2-hint" class="govuk-body">
-              <a class="govuk-link" href="#">Download error.CSV</a><br><br>
+              <a class="govuk-link" href="#">OriginalName_Error.csv</a><br><br>
             </span>
-
 
           </fieldset>
         </div>
 
-        <button class="govuk-button" data-module="govuk-button">Upload correct file to continue</button>
+        <button class="govuk-button" data-module="govuk-button">Continue to upload correct file</button>
 
       </form>
 
