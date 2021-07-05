@@ -1,0 +1,39 @@
+{% set version = "v23" %}
+{% set pageTitle = "You reported a positive coronavirus test result" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <!-- <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/choose-result">Back</a> -->
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="https://www.gov.uk/get-coronavirus-test/" method="post">
+
+         <!-- div for include from content folder -->
+         <div id="includedContent"></div>
+
+       </form>
+     </div>
+   </div>
+
+   <!-- corresponding html file name included from content folder -->
+   <script>
+     $(function(){
+       $("#includedContent").load("../content/positive-result-switch.html");
+     });
+     $(function(){
+       $("#includedContent1").load("/includes/LFD-account-menu-end.html");
+     });
+   </script>
+
+
+{% endblock %}
