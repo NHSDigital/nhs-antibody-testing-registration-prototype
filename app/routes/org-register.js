@@ -1196,6 +1196,67 @@ router.post('/organisational/lft/carehome-registration/UON-check-radio', functio
     }
 });
 
+//June CI
+
+router.post('/organisational/lft/carehome-registration/June-CI/lft-bulk-p1', function (req, res) {
+  let answer = req.body.lftp1;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/June-CI/lft-bulk-p2')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/June-CI/upload')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/June-CI/lft-bulk-p1?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/June-CI/lft-bulk-p2', function (req, res) {
+  let answer = req.body.lftp1;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/June-CI/pcr-bulk-p1')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/June-CI/upload')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/June-CI/lft-bulk-p2?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/June-CI/pcr-bulk-p1', function (req, res) {
+  let answer = req.body.reuploadpcr;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/June-CI/pcr-bulk-p2')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/June-CI/upload')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/June-CI/pcr-bulk-p1?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/June-CI/pcr-bulk-p2', function (req, res) {
+  let answer = req.body.reuploadpcr;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/June-CI/pcr-bulk-p3')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/June-CI/upload')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/June-CI/pcr-bulk-p2?error=empty')
+    }
+});
+
+router.post('/organisational/lft/carehome-registration/June-CI/pcr-bulk-p3', function (req, res) {
+  let answer = req.body.reuploadpcr;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/lft/carehome-registration/June-CI/check')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/lft/carehome-registration/June-CI/upload')
+    } else {
+    res.redirect('/organisational/lft/carehome-registration/June-CI/pcr-bulk-p3?error=empty')
+    }
+});
 
 
 // // test-pass/reg-with-pass
