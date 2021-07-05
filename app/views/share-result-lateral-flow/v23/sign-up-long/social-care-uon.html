@@ -1,0 +1,103 @@
+{% set version = "v23" %}
+{% set pageTitle = "Enter the unique organisation number (UON)" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/share-result-lateral-flow/{{version}}/social-care-uon-check" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+         <span id="enter-barcode-number-hint" class="govuk-body">
+           This is a reference number for the employer, organisation or social care service. It is 8 digits and sometimes called a “UON”.
+         </span>
+
+          <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                What to do if they cannot find this number
+                {% else %}
+                What to do if you cannot find this number
+                {% endif %}
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <p class="govuk-body">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Get the UON from the social care service, employer or organisation that gave them the test kit.
+                {% else %}
+                Get the UON from the social care service, employer or organisation that gave you the test kit.
+                {% endif %}
+              </p>
+              <p>
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                They can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noopener noreferrer">find a care home’s UON online (opens in a new tab)</a>.
+                {% else %}
+                You can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noopener noreferrer">find a care home’s UON online (opens in a new tab)</a>.
+                {% endif %}
+              </p>
+              <p class="govuk-body">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                If they still need help, call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.
+                {% else %}
+                If you still need help, call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.
+                {% endif %}
+              </p>
+                <!-- <ul class="govuk-list govuk-list--bullet">
+                  <li>119 if you’re in England, Wales or Northern Ireland</li>
+                  <li>0300 303 2713 if you’re in Scotland</li>
+                </ul>
+                <p class="govuk-body">Lines are open 7am to 11pm.</p> -->
+            </div>
+          </details>
+          <br>
+
+      <!--    <a href="/share-result-lateral-flow/{{version}}/scan-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Scan my barcode
+          </a> -->
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="social-care-uon">
+              Unique organisation number
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="social-care-uon" name="social-care-uon" type="text" value={{ data['social-care-uon'] }}>
+          </div>
+
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  <!--  <p><a href="/share-result-lateral-flow/{{version}}/postcode2">I cannot find the UON</a></p> -->
+
+  </div>
+</div>
+
+<!-- corresponding html file name included from content folder -->
+<script>
+  $(function(){
+    $("#includedContent1").load("/includes/LFD-account-menu.html");
+  });
+</script>
+
+
+{% endblock %}
