@@ -903,30 +903,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
 
         })
 
-        // Version 23 - LFD Results sharing - Ethnic group route
-        router.post('/share-result-lateral-flow/v23/action6/ethnic-group', function (req, res) {
-          let ethnicGroup = req.session.data['ethnic-group']
-          let useDetails = req.session.data['use-details']
-          let useDetails1 = req.session.data['use-details1']
-          let postcode = req.session.data['postcode-checkbox']
-
-          if (ethnicGroup == "Asian or Asian British"){
-            res.redirect('/share-result-lateral-flow/v23/ethnic-background-asian')
-          } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-            res.redirect('/share-result-lateral-flow/v23/ethnic-background-black')
-          } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-            res.redirect('/share-result-lateral-flow/v23/ethnic-background-mixed')
-          } else if (ethnicGroup == "White") {
-            res.redirect('/share-result-lateral-flow/v23/ethnic-background-white')
-          } else if (ethnicGroup == "Another ethnic group") {
-            res.redirect('/share-result-lateral-flow/v23/ethnic-background-another')
-          } else if (useDetails == "Yes" && !postcode || useDetails == "No" || useDetails1 == "No") {
-            res.redirect('/share-result-lateral-flow/v23/postcode-lookup')
-          } else {
-            res.redirect('/share-result-lateral-flow/v23/postcode-lookup-2')
-          }
-
-        })
+        
 
 
   // Version 1 - Lite Registration lateral flow with Accounts - Ethnic group route
@@ -1066,29 +1043,65 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
     let useDetails = req.session.data['use-details']
     let useDetails1 = req.session.data['use-details1']
     let name = req.session.data['name-checkbox']
+    let whosTakingTheTest = req.session.data['whos-taking-the-test']
     if (useDetails == "Yes" && !name || useDetails == "No" || useDetails1 == "No") {
+      res.redirect('/share-result-lateral-flow/v23/name')
+    } else if (whosTakingTheTest == "someone-else") {
       res.redirect('/share-result-lateral-flow/v23/name')
     } else {
       res.redirect('/share-result-lateral-flow/v23/dob')
     }
   })
 
-  router.post('/share-result-lateral-flow/v23/dob', function (req, res) {
+  router.post('/share-result-lateral-flow/v23/action/dob', function (req, res) {
     let useDetails = req.session.data['use-details']
     let useDetails1 = req.session.data['use-details1']
     let medicalRecord = req.session.data['medical-record-checkbox']
+    let whosTakingTheTest = req.session.data['whos-taking-the-test']
     if (useDetails == "Yes" && !medicalRecord || useDetails == "No" || useDetails1 == "No") {
+      res.redirect('/share-result-lateral-flow/v23/gender')
+    } else if (whosTakingTheTest == "someone-else") {
       res.redirect('/share-result-lateral-flow/v23/gender')
     } else {
       res.redirect('/share-result-lateral-flow/v23/ethnic-group')
     }
   })
 
+  router.post('/share-result-lateral-flow/v23/action6/ethnic-group', function (req, res) {
+    let ethnicGroup = req.session.data['ethnic-group']
+    let useDetails = req.session.data['use-details']
+    let useDetails1 = req.session.data['use-details1']
+    let postcode = req.session.data['postcode-checkbox']
+    let whosTakingTheTest = req.session.data['whos-taking-the-test']
+
+    if (ethnicGroup == "Asian or Asian British"){
+      res.redirect('/share-result-lateral-flow/v23/ethnic-background-asian')
+    } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+      res.redirect('/share-result-lateral-flow/v23/ethnic-background-black')
+    } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+      res.redirect('/share-result-lateral-flow/v23/ethnic-background-mixed')
+    } else if (ethnicGroup == "White") {
+      res.redirect('/share-result-lateral-flow/v23/ethnic-background-white')
+    } else if (ethnicGroup == "Another ethnic group") {
+      res.redirect('/share-result-lateral-flow/v23/ethnic-background-another')
+    } else if (useDetails == "Yes" && !postcode || useDetails == "No" || useDetails1 == "No") {
+      res.redirect('/share-result-lateral-flow/v23/postcode-lookup')
+    } else if (whosTakingTheTest == "someone-else") {
+      res.redirect('/share-result-lateral-flow/v23/postcode-lookup')
+    } else {
+      res.redirect('/share-result-lateral-flow/v23/postcode-lookup-2')
+    }
+
+  })
+
   router.post('/share-result-lateral-flow/v23/ethnic-background', function (req, res) {
     let useDetails = req.session.data['use-details']
     let useDetails1 = req.session.data['use-details1']
     let postcode = req.session.data['postcode-checkbox']
+    let whosTakingTheTest = req.session.data['whos-taking-the-test']
     if (useDetails == "Yes" && !postcode || useDetails == "No" || useDetails1 == "No") {
+      res.redirect('/share-result-lateral-flow/v23/postcode-lookup')
+    } else if (whosTakingTheTest == "someone-else") {
       res.redirect('/share-result-lateral-flow/v23/postcode-lookup')
     } else {
       res.redirect('/share-result-lateral-flow/v23/postcode-lookup-2')
@@ -1101,12 +1114,13 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
     let useDetails1 = req.session.data['use-details1']
     let email = req.session.data['email-checkbox']
     let mobile = req.session.data['mobile-checkbox']
+    let whosTakingTheTest = req.session.data['whos-taking-the-test']
 
     if (useDetails == "Yes" && !email || useDetails == "No" || useDetails1 == "No") {
       res.redirect('/share-result-lateral-flow/v23/got-email')
     } else if (useDetails == "Yes" && !mobile || useDetails == "No" || useDetails1 == "No") {
       res.redirect('/share-result-lateral-flow/v23/mobile')
-    } else if (useDetails == "someone-else") {
+    } else if (whosTakingTheTest == "someone-else") {
         res.redirect('/share-result-lateral-flow/v23/got-email')
     } else {
       res.redirect('/share-result-lateral-flow/v23/check-answers')
@@ -1114,13 +1128,15 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
 
   })
 
-  router.post('/share-result-lateral-flow/v23/action/email', function (req, res) {
+  router.post('/share-result-lateral-flow/v23/action/got-email', function (req, res) {
     let useDetails = req.session.data['use-details']
     let useDetails1 = req.session.data['use-details1']
     let mobile = req.session.data['mobile-checkbox']
     let whosTakingTheTest = req.session.data['whos-taking-the-test']
 
     if (useDetails == "Yes" && !mobile || useDetails == "No" || useDetails1 == "No") {
+      res.redirect('/share-result-lateral-flow/v23/mobile')
+    } else if (whosTakingTheTest == "someone-else") {
       res.redirect('/share-result-lateral-flow/v23/mobile')
     } else {
       res.redirect('/share-result-lateral-flow/v23/check-answers')
