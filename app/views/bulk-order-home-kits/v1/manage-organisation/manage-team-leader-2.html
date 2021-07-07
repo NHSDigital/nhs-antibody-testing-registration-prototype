@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Team leader details" %}
+{% set pageTitle = "Team operative details" %}
 
 {% extends "includes/layout.html" %}
 
@@ -24,13 +24,11 @@
 
     <form lass="form" action="/bulk-order-home-kits/{{version}}/manage-organisation/team-leader-2-updated-confirmation" method="post">
       <div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper govuk-!-margin-bottom-5">
-          <label class="govuk-label govuk-label--xl" for="institution">
-            {{ data['team-leader-2-first-name'] }} {{ data['team-leader-2-last-name'] }}
-          </label>
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+          {{ data['team-leader-2-first-name'] or 'Marie' }} {{ data['team-leader-2-last-name'] or 'Halls' }}
         </h1>
 
-        <p class="govuk-body">This person has not yet accepted their invitation to be a Home Test Operative. <a href="#" class="govuk-link">Send them a new temporary password now.</a></p>
+        <p class="govuk-body">This person has not yet accepted their invitation to be a home test operative. <a href="#" class="govuk-link">Send them a new temporary password now.</a></p>
 
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
@@ -79,7 +77,7 @@
               <input class="govuk-checkboxes__input" id="team-leader-2-status" name="team-leader-2-status" type="checkbox" value="Active" checked>
               {% endif %}
               <label class="govuk-label govuk-checkboxes__label" for="team-leader-2-status">
-                Active: This team leader can manage staff access at test sites
+                Tick this box to allow this person to bulk order home test kits
               </label>
               <input id="team-leader-2-status-edited" name="team-leader-2-status-edited" type="text" value="edited" style="display: none">
             </div>

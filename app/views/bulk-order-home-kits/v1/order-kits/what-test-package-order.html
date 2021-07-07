@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What test package do you want to order?" %}
+{% set pageTitle = "Choose a test package" %}
 
 {% extends "includes/layout.html" %}
 
@@ -25,26 +25,26 @@
 
       <form action="/bulk-order-home-kits/{{version}}/order-kits/upload-file-test-package" method="post">
 
-        <fieldset class="govuk-fieldset">
+        <fieldset class="govuk-fieldset" aria-describedby="test-package-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-              What test package do you want to order?
+              {{ pageTitle }}
             </h1>
           </legend>
-
-
-          
+          <span id="test-package-hint" class="govuk-body">
+            You can order one of these kit types:
+          </span><br><br>
           <div class="govuk-radios">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="test-package-1" name="test-package" type="radio" value="Targeted surge testing" {{ checked("test-package", "Targeted surge testing") }}>
+              <input class="govuk-radios__input" id="test-package-1" name="test-package" type="radio" value="Sequenced pre-linked PCR test kit" {{ checked("test-package", "Sequenced pre-linked PCR test kit") }}>
               <label class="govuk-label govuk-radios__label" for="test-package-1">
-                Targeted surge testing
+                Sequenced pre-linked PCR test kit
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="test-package-2" name="test-package" type="radio" value="Private provider validation" {{ checked("test-package", "Private provider validation") }}>
+              <input class="govuk-radios__input" id="test-package-2" name="test-package" type="radio" value="Private provider validation kit" {{ checked("test-package", "Private provider validation kit") }}>
               <label class="govuk-label govuk-radios__label" for="test-package-2">
-                Private provider validation
+                Private provider validation kit
               </label>
             </div>
           </div>

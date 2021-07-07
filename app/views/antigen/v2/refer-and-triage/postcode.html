@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Enter a postcode to find test sites near you" %}
+{% set pageTitle = "Enter a postcode" %}
 
 {% extends "includes/layout.html" %}
 
@@ -26,12 +26,15 @@
 
       <form action="/antigen/{{version}}/refer-and-triage/do-you-have-a-car" method="post">
 
-        <fieldset class="govuk-fieldset">
+        <fieldset class="govuk-fieldset" aria-describedby="postcode-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
               {{ pageTitle }}
             </h1>
           </legend>
+          <span id="postcode-hint">
+            This is so we can show test site options near you. You can still order a home test if you prefer.
+          </span>
           <div class="govuk-form-group govuk-!-margin-top-5">
             <label class="govuk-label" for="home-postcode">
               Postcode

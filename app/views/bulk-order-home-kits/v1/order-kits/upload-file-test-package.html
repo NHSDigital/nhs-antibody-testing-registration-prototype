@@ -26,26 +26,27 @@
       <form action="/bulk-order-home-kits/{{version}}/order-kits/confirmation-bulk-upload" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="upload-patient-list-1-hint upload-patient-list-2-hint upload-patient-list-3-hint upload-patient-list-4-hint upload-patient-list-5-hint">
+          <fieldset class="govuk-fieldset" aria-describedby="upload-patient-list-1-hint upload-patient-list-2-hint upload-patient-list-3-hint upload-patient-list-4-hint upload-patient-list-5-hint upload-patient-list-6-hint upload-patient-list-7-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                 {{ pageTitle }}
               </h1>
             </legend>
             <span id="upload-patient-list-1-hint" class="govuk-body">
-              Enter the details of the people you are ordering PCR home test kits for.
+              Enter the details of the people you are ordering home test kits for.
             </span>
 
             <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5 govuk-!-margin-bottom-6">
-              <li><span id="upload-patient-list-2-hint"><a href="#" class="govuk-link">download our spreadsheet</a></span></li>
-              <li><span id="upload-patient-list-3-hint">do not add any sheets, rows or columns</span></li>
-              <li><span id="upload-patient-list-4-hint">the maximum file size is 6MB. If you need to place a larger order, please submit more than one spreadsheet</span></li>
-              <li><span id="upload-patient-list-5-hint">save the completed spreadsheet as a .csv (UTF-8) and upload it here</span></li>
+              <li><span id="upload-patient-list-2-hint"><a href="#" class="govuk-link">download our template .csv file</a></span></li>
+              <li><span id="upload-patient-list-3-hint">fill in all fields to avoid errors</span></li>
+              <li><span id="upload-patient-list-4-hint">the maximum file size is 5MB which is around 10,000 people</span></li>
+              <li><span id="upload-patient-list-5-hint">you must create an 'individual ID' for each order</span></li>
+              <li><span id="upload-patient-list-6-hint">Only use an individual ID once in each file. It needs to be less than 20 characters</span></li>
             </ul>
 
             <div class="govuk-form-group govuk-!-margin-top-8 govuk-!-margin-bottom-6">
               <label class="govuk-label" for="file-upload-1">
-                Upload a file
+                Upload the file
               </label>
               <input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file">
             </div>
@@ -60,21 +61,22 @@
           <input id="order-1-date" name="order-1-date" type="text" value="21 Feb 2022">
           <input id="order-1-recipients" name="order-1-recipients" type="text" value="22">
           <input id="order-1-status" name="order-1-status" type="text" value="Processed">
+          <input id="order-1-test-package" name="order-1-test-package" type="text" value="{{ data['test-package'] }}">
           {% elseif data['order-1-reference'] and data['order-2-reference'] == undefined %}
           <input id="order-2-reference" name="order-2-reference" type="number" value="5233577726">
           <input id="order-2-date" name="order-2-date" type="text" value="20 Feb 2022">
           <input id="order-2-recipients" name="order-2-recipients" type="text" value="-">
-          <input id="order-2-status" name="order-2-status" type="text" value="Error">
+          <input id="order-2-status" name="order-2-status" type="text" value="Failed">
           {% elseif data['order-1-reference'] and data['order-2-reference'] and data['order-3-reference'] == undefined %}
           <input id="order-3-reference" name="order-3-reference" type="number" value="3531883692">
           <input id="order-3-date" name="order-3-date" type="text" value="13 Feb 2022">
           <input id="order-3-recipients" name="order-3-recipients" type="text" value="120">
-          <input id="order-3-status" name="order-3-status" type="text" value="Partially processed">
+          <input id="order-3-status" name="order-3-status" type="text" value="Incomplete">
           {% else %}
           <input id="order-4-reference" name="order-4-reference" type="number" value="1231373062">
           <input id="order-4-date" name="order-4-date" type="text" value="12 Feb 2022">
           <input id="order-4-recipients" name="order-4-recipients" type="text" value="-">
-          <input id="order-4-status" name="order-4-status" type="text" value="Submitted">
+          <input id="order-4-status" name="order-4-status" type="text" value="Received">
           {% endif %}
         </div>
 

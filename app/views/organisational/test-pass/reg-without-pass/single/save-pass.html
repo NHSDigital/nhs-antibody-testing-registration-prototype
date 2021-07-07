@@ -1,4 +1,4 @@
-{% set pageHeading = "Do you want to create a test registration code for John Smith?" %}
+{% set pageHeading = "Would you like to create a test registration code for John Smith?" %}
  {% set version = "organisational/test-pass/reg-without-pass" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -26,27 +26,34 @@
 
       <form class="form" action="" method="post">
 
-<p>A test registration code is a 8 digit code that can be used instead of entering someone personal details.</p>
+        <p>A test registration code is a unique 8 digit number that saves an individual’s personal details. When you use this code, you will no longer need to enter these details every time you register a test or report a result on their behalf.</p>
 
-{{ govukRadios({
-  classes: "govuk-radios",
-  idPrefix: "savepass",
-  name: "savepass",
-  fieldset: {
+        {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "savepass",
+          name: "savepass",
+          fieldset: {
 
-  },
+          },
 
-  items: [
-    {
-      value: "yes",
-      text: "Yes, create a test registration code for John Smith"
-    },
-    {
-      value: "no",
-      text: "No"
-    }
-  ]
-}) }}
+          items: [
+            {
+              value: "yes",
+              text: "Yes, create a test registration code for John Smith",
+              hint: {
+                text: "We’ll save their personal details to this code for future use. You won’t have to re-enter these details the next time you register a test for this person."
+              }
+            },
+            {
+              value: "no",
+              text: "No, continue without a test registration code",
+              hint: {
+                text: "Their personal details will not be saved and all information will have to be re-entered."
+              }
+            }
+          ]
+        }) }}
+
 
 </div>
 </div>

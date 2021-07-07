@@ -1,0 +1,70 @@
+{% set version = "v1" %}
+{% set pageTitle = "Order 1234567990" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div> 
+
+  <a class="govuk-back-link" href="/bulk-order-home-kits/{{version}}/order-kits/">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/bulk-order-home-kits/{{version}}/order-kits/what-test-package-order" method="post">
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="upload-patient-list-1-hint upload-patient-list-2-hint upload-patient-list-3-hint upload-patient-list-4-hint upload-patient-list-5-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1><strong class="govuk-tag govuk-tag--red">
+                FAILED
+              </strong>
+            </legend>
+            <p class="govuk-body">Your order failed to process as the file upload had missing or incorrect information.</p>
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+            <span id="upload-patient-list-1-hint" class="govuk-body">
+              Test package: {{ data['order-1-test-package'] or 'Sequenced pre-linked PCR test kit' }}<br><br>
+              Order received: 19 Feb 2022<br><br>
+              Order processed: 20 Feb 2022<br><br>
+              <a class="govuk-link" href="#">OriginalName.csv</a><br><br>
+            </span>
+
+            <span id="upload-patient-list-1-hint" class="govuk-body">
+              <strong>Errors detected</strong><br><br>
+            </span>
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+            <p class="govuk-body">
+              Download the error file to see the errors, make corrections and upload the corrected file as a new bulk order.
+            </p>
+
+            <span id="upload-patient-list-2-hint" class="govuk-body">
+              <a class="govuk-link" href="#">OriginalName_Error.csv</a><br><br>
+            </span>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue to upload correct file</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

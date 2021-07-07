@@ -903,6 +903,27 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
 
         })
 
+        // Version 23 - LFD Results sharing - Ethnic group route
+        router.post('/share-result-lateral-flow/v23/action6/ethnic-group', function (req, res) {
+          let ethnicGroup = req.session.data['ethnic-group']
+
+          if (ethnicGroup == "Asian or Asian British"){
+            res.redirect('/share-result-lateral-flow/v23/ethnic-background-asian')
+          } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+            res.redirect('/share-result-lateral-flow/v23/ethnic-background-black')
+          } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+            res.redirect('/share-result-lateral-flow/v23/ethnic-background-mixed')
+          } else if (ethnicGroup == "White") {
+            res.redirect('/share-result-lateral-flow/v23/ethnic-background-white')
+          } else if (ethnicGroup == "Another ethnic group") {
+            res.redirect('/share-result-lateral-flow/v23/ethnic-background-another')
+          } else {
+            res.redirect('/share-result-lateral-flow/v23/postcode-lookup')
+          }
+
+        })
+
+
 
 
   // Version 1 - Lite Registration lateral flow with Accounts - Ethnic group route
@@ -1025,6 +1046,26 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
       res.redirect('/lite-registration-lateral-flow-accounts/v1/user-account/check-mobile-error')
     } else {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/user-account/agreement')
+    }
+  })
+
+  //Version 23 - Lateral Flow
+  router.post('/share-result-lateral-flow/v23/sign-in-short/whos-taking-the-test', function (req, res) {
+    let whosTakingTheTest = req.session.data['whos-taking-the-test']
+    if (whosTakingTheTest == "someone-else") {
+      res.redirect('/share-result-lateral-flow/v23/sign-in-short/test-for-work')
+    } else {
+      res.redirect('/share-result-lateral-flow/v23/account-details-from-nhs-account')
+    }
+  })
+
+  router.post('/share-result-lateral-flow/v23/account-details-from-nhs-account', function (req, res) {
+    let useDetails = req.session.data['use-details']
+    let country = req.session.data['country-checkbox']
+    if (useDetails == "Yes" && country || useDetails == "No") {
+      res.redirect('/share-result-lateral-flow/v23/country')
+    } else {
+      res.redirect('/share-result-lateral-flow/v23/sign-in-short/test-for-work')
     }
   })
 
