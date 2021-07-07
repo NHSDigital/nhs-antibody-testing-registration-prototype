@@ -1,5 +1,5 @@
-{% set pageHeading = "Enter their personal details" %}
- {% set version = "organisational/test-pass/reg-without-pass" %}
+{% set pageHeading = "Enter their test registration code details" %}
+ {% set version = "organisational/test-pass/reg-with-pass" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
@@ -37,7 +37,9 @@
       </h1>
 
 
-      <form class="" action="/{{ version }}/single/ethnic-group" method="get">
+      <form class="" action="/{{ version }}/single/have-coronavirus" method="get">
+        <p>These details will help us locate the correct records.</p>
+        <p>You can add up to 30 individuals at one time.</p>
         {{ govukInput({
           label: {
             text: "First name"
@@ -88,64 +90,25 @@
             ]
           }) }}
 
-        {{ govukRadios({
-          idPrefix: "covidUpload",
-          name: "cuGender",
-          fieldset: {
-            legend: {
-              text: "Which of the following is on their medical record?",
-              isPageHeading: true,
-              classes: "govuk-body"
-            }
-          },
-            hint: {
-              text: "We are asking this question so we can find their GP record and save their test result there."
-            },
-            items: [
-            {
-              value: "Female",
-              text: "Female"
-            },
-            {
-              value: "Male",
-              text: "Male"
-            },
-            {
-              value: "Other",
-              text: "Other/ Not specified/ I do not know"
-            }
-          ]
-        }) }}
-
-        {% from "govuk/components/details/macro.njk" import govukDetails %}
-
-{{ govukDetails({
-  summaryText: "Why are there not more options?",
-  text: "We understand there are other ways a person may answer this question. In this case we just need to know what's on the person's GP record"
-}) }}
 
         {{ govukInput({
           label: {
-            text: "NHS number (optional)"
+            text: "Test registration code"
           },
           hint: {
-            text: "Their NHS number is a 10 digit number, like 123 456 7890. They can find it on any letter the NHS has sent them, on a prescription, or by logging in to some GP online services."
+            text: "It is 8 digits long, for example 12341234"
           },
           classes: "govuk-input--width-20",
           id: "covidUpload",
-          name: "cuNHSnumber"
+          name: "testregistrationcode"
         }) }}
 
-      <a href="#" class="govuk-link govuk-link--no-visited-state">How to find your NHS number</a>
+      <p><a href="/organisational/test-pass/reg-with-pass/single/who" class="govuk-link govuk-link--no-visited-state">I do not know thier test registration code</a></p>
       </div>
       </div>
       <br> <br>
 
         <input class="govuk-button" type="submit" value="Continue">
 
-      </form>
-
-    </div>
-  </div>
 
 {% endblock %}
