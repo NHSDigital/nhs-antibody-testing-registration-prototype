@@ -1,0 +1,266 @@
+{% set version = "v23" %}
+{% set pageTitle = "Do you want to use these details from your NHS account?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-7">
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        Check the answers for {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}
+        {% else %}
+        {{ pageTitle }}
+        {% endif %}
+      </h1>
+
+    <!--  <p class="govuk-body">Photo successfully uploaded</p> -->
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-4">
+
+      <!--   <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test location
+          </dt>
+          {% if data['test-place'] == "home" %}
+          <dd class="govuk-summary-list__value">
+            At home
+          </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            At a test site
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/test-place">
+              Change
+              <span class="govuk-visually-hidden">test location</span>
+            </a>
+          </dd>
+        </div>
+       {% if data['test-place'] == "site" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test site
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['site-id'] | default('De Montfort University')}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/find-test-site">
+              Change
+              <span class="govuk-visually-hidden">test site</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %} -->
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name 
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Medical record (male, female, other...)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['gender-1'] or 'Male'}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+
+        {% if data['email'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['email-address'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        {% elseif data['email'] !== "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            They do not have an email address
+            {% else %}
+            I do not have an email address
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Mobile
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mobile-phone-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Country of residence
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['country'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+  <!--      <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test date and time
+          </dt>
+          {% if data['swab-test-date'] == "different" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} {{ data['date-of-swab-test-month'] }} {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            {{ data['swab-test-date'] }}
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/test-date">
+              Change
+              <span class="govuk-visually-hidden">test date and time</span>
+            </a>
+          </dd>
+        </div> -->
+       
+
+        <!-- {% if data['do-you-have-symptoms'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of onset
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/symptoms-start">
+              Change
+              <span class="govuk-visually-hidden">date of onset</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %} -->
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Postcode
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['home-postcode'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            NHS number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['nhs-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+
+      </dl>
+
+      <form action="/share-result-lateral-flow/{{version}}/account-details-from-nhs-account" method="post" novalidate>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            </legend>
+            <span id="test-for-work-hint" class="govuk-body">
+              You can review and update details before you submit this form.
+            </span>
+            <br><br><br>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="use-details-1" name="use-details" type="radio" value="Yes" {{ checked("useDetails", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="use-details-1">
+                  Yes, use these details
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="use-details-2" name="use-details" type="radio" value="No" {{ checked("useDetails", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="use-details-2">
+                  No, do not use these details 
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    
+  </div>
+
+  <div class="proto-action big">
+    <a href="/share-result-lateral-flow/{{version}}/account-details-from-nhs-account-v2">
+      <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 2</div>
+    </a>
+  </div>
+
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+
+{% endblock %}

@@ -1049,4 +1049,24 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
     }
   })
 
+  //Version 23 - Lateral Flow
+  router.post('/share-result-lateral-flow/v23/sign-in-short/whos-taking-the-test', function (req, res) {
+    let whosTakingTheTest = req.session.data['whos-taking-the-test']
+    if (whosTakingTheTest == "someone-else") {
+      res.redirect('/share-result-lateral-flow/v23/sign-in-short/test-for-work')
+    } else {
+      res.redirect('/share-result-lateral-flow/v23/account-details-from-nhs-account')
+    }
+  })
+
+  router.post('/share-result-lateral-flow/v23/account-details-from-nhs-account', function (req, res) {
+    let useDetails = req.session.data['use-details']
+    let country = req.session.data['country-checkbox']
+    if (useDetails == "Yes" && country || useDetails == "No") {
+      res.redirect('/share-result-lateral-flow/v23/country')
+    } else {
+      res.redirect('/share-result-lateral-flow/v23/sign-in-short/test-for-work')
+    }
+  })
+
 module.exports = router
