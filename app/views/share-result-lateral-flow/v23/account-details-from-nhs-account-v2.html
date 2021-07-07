@@ -30,6 +30,7 @@
 
     <!--  <p class="govuk-body">Photo successfully uploaded</p> -->
 
+    <form action="/share-result-lateral-flow/{{version}}/country" method="post" novalidate>
       <dl class="govuk-summary-list govuk-!-margin-bottom-7">
 
       <!--   <div class="govuk-summary-list__row">
@@ -92,7 +93,7 @@
           <dt class="govuk-summary-list__key column-width-title">
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
               <div class="govuk-checkboxes__item">
-                <input checked class="govuk-checkboxes__input" id="medical-record-checkbox" name="mmedical-record-checkbox" type="checkbox" value="medical-record">
+                <input checked class="govuk-checkboxes__input" id="medical-record-checkbox" name="medical-record-checkbox" type="checkbox" value="medical-record">
                 <label class="govuk-label govuk-checkboxes__label" for="medical-record-checkbox">
                   <strong>Medical record (male, female, other...)</strong>
                 </label>
@@ -118,7 +119,7 @@
               </div>
             </div>
           <dd class="govuk-summary-list__value">
-            {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+            {{ data['date-of-birth-day'] or '12 June 1987' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
@@ -135,7 +136,7 @@
               </div>
             </div>
           <dd class="govuk-summary-list__value">
-            {{ data['email'] }} 
+            {{ data['email-address'] or 'psmith@example.com' }} 
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
@@ -152,13 +153,13 @@
               </div>
             </div>
           <dd class="govuk-summary-list__value">
-            {{ data['mobile-phone-number'] }}
+            {{ data['mobile-phone-number'] or '+44684356332' }}
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
         </div>
 
-        <div class="govuk-summary-list__row">
+        <!-- <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key column-width-title">
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
               <div class="govuk-checkboxes__item">
@@ -174,7 +175,7 @@
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
-        </div>
+        </div> -->
   <!--      <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Test date and time
@@ -225,7 +226,7 @@
               </div>
             </div>
           <dd class="govuk-summary-list__value">
-            {{ data['home-postcode'] }}
+            {{ data['home-postcode'] or 'LS1 3BE' }}
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
@@ -243,7 +244,7 @@
               </div>
             </div>
           <dd class="govuk-summary-list__value">
-            {{ data['nhs-number'] }}
+            {{ data['nhs-number'] or '123 456 789' }}
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
@@ -253,33 +254,23 @@
       </dl>
 
       <p class="govuk-body">
-        We will only use this information within Test and Trace to help you register and report your Covid-19 Test results.<br>
-        data: {{ data['country-checkbox']}}
-    </p>
+        We will only use this information within Test and Trace to help you register and report your Covid-19 Test results.
+      </p>
 
-      <div class="inline-button-wrapper" style="justify-content: flex-start;">
+      <input style="display:none" id="use-details" name="use-details" type="text" value="Yes">
 
-        <form action="/share-result-lateral-flow/{{version}}/account-details-from-nhs-account" method="post" novalidate>
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Use selected details
+      </button>
 
-          <input style="display:none" id="use-details" name="use-details" type="text" value="Yes">
+  </form>
 
-          <button type="submit" class="govuk-button" data-module="govuk-button">
-            Use selected details
-          </button>
-
-        </form>
-
-        <form action="/share-result-lateral-flow/{{version}}/account-details-from-nhs-account" method="post" class="right-button-margin" novalidate>
-
-          <input style="display:none" id="use-details" name="use-details" type="text" value="No">
-
-          <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-            I'll enter them myself
-          </button>
-
-        </form>
-
-    </div>
+  <form action="/share-result-lateral-flow/{{version}}/country" method="post" novalidate>
+    <input style="display:none" id="use-details" name="use-details" type="text" value="No">
+    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      I'll enter them myself
+    </button>
+  </form>
 
     <div class="proto-action big">
       <a href="/share-result-lateral-flow/{{version}}/account-details-from-nhs-account">

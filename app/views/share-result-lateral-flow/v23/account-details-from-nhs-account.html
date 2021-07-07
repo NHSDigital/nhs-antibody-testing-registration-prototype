@@ -95,7 +95,7 @@
             Date of birth
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+            {{ data['date-of-birth-day'] or '12 June 1987' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
@@ -107,7 +107,7 @@
             Email
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['email-address'] }}
+            {{ data['email-address'] or 'psmith@example.com' }}
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
@@ -133,12 +133,12 @@
             Mobile
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['mobile-phone-number'] }}
+            {{ data['mobile-phone-number'] or '+44684356332' }}
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
+        <!-- <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Country of residence
           </dt>
@@ -147,7 +147,7 @@
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
-        </div>
+        </div> -->
   <!--      <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Test date and time
@@ -192,7 +192,7 @@
             Postcode
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['home-postcode'] }}
+            {{ data['home-postcode'] or 'LS1 3BE' }}
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
@@ -204,7 +204,7 @@
             NHS number
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['nhs-number'] }}
+            {{ data['nhs-number'] or '123 456 789' }}
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
@@ -212,7 +212,7 @@
 
       </dl>
 
-      <form action="/share-result-lateral-flow/{{version}}/account-details-from-nhs-account" method="post" novalidate>
+      <form action="/share-result-lateral-flow/{{version}}/country" method="post" novalidate>
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
@@ -224,14 +224,14 @@
             <br><br><br>
             <div class="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="use-details-1" name="use-details" type="radio" value="Yes" {{ checked("useDetails", "Yes") }}>
-                <label class="govuk-label govuk-radios__label" for="use-details-1">
+                <input class="govuk-radios__input" id="use-details1-1" name="use-details1" type="radio" value="Yes" {{ checked("use-details1", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="use-details1-1">
                   Yes, use these details
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="use-details-2" name="use-details" type="radio" value="No" {{ checked("useDetails", "No") }}>
-                <label class="govuk-label govuk-radios__label" for="use-details-2">
+                <input class="govuk-radios__input" id="use-details1-2" name="use-details1" type="radio" value="No" {{ checked("use-details1", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="use-details1-2">
                   No, do not use these details 
                 </label>
               </div>
