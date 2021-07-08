@@ -1,5 +1,6 @@
-{% set pageHeading = "Confirm you have consent" %}
+{% set pageHeading = "Security check" %}
 {% set version = "organisational/test-pass/reg-with-pass" %}
+{% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -31,27 +32,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        {{ pageHeading }}
-      </h1>
+      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
-      <form class="" action="/{{ version }}/UON" method="get">
-        {{ govukCheckboxes({
-          idPrefix: "covidUpload",
-          name: "cuConfirm",
-          items: [
-            {
-              value: "agreed",
-              text: "I confirm I'm authorised to register each person on behalf of my organisation"
-            },
-            {
-              value: "agreedContact",
-              text: "I confirm each person knows that their test results will go to the contact details I enter"
-            }
-          ]
-        }) }}
-        <input class="govuk-button" type="submit" value="Continue">
+      <p>Complete the security check to submit your application.</p>
 
+      <img class="govuk-!-margin-top-6 govuk-!-margin-bottom-6" src="/public/images/cap.png" alt="Image of a reCAPTCHA" onclick="this.src='/public/images/capchecked.png'">
+
+      <form class="" action="/{{ version }}/several/confirmation" method="get">
+
+        <input class="govuk-button" type="submit" value="Submit">
 
       </form>
 
