@@ -1043,11 +1043,32 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
     let useDetails = req.session.data['use-details']
     let useDetails1 = req.session.data['use-details1']
     let name = req.session.data['name-checkbox']
+    let medicalRecord = req.session.data['medical-record-checkbox']
     let whosTakingTheTest = req.session.data['whos-taking-the-test']
     if (useDetails == "Yes" && !name || useDetails == "No" || useDetails1 == "No") {
       res.redirect('/share-result-lateral-flow/v23/name')
+    } else if (useDetails == "Yes" && !medicalRecord || useDetails1 == "Yes") {
+      res.redirect('/share-result-lateral-flow/v23/gender')
     } else if (whosTakingTheTest == "someone-else") {
       res.redirect('/share-result-lateral-flow/v23/name')
+    } else {
+      res.redirect('/share-result-lateral-flow/v23/ethnic-group')
+    }
+  })
+
+  router.post('/share-result-lateral-flow/v23/action/name', function (req, res) {
+    let useDetails = req.session.data['use-details']
+    let useDetails1 = req.session.data['use-details1']
+    let medicalRecord = req.session.data['medical-record-checkbox']
+    let whosTakingTheTest = req.session.data['whos-taking-the-test']
+    if (useDetails == "Yes" && !medicalRecord) {
+      res.redirect('/share-result-lateral-flow/v23/gender')
+    } else if (useDetails == "No" || useDetails1 == "No") {
+      res.redirect('/share-result-lateral-flow/v23/dob')
+    } else if (useDetails == "Yes" && medicalRecord || useDetails1 == "Yes") {
+      res.redirect('/share-result-lateral-flow/v23/ethnic-group')
+    }  else if (whosTakingTheTest == "someone-else") {
+      res.redirect('/share-result-lateral-flow/v23/gender')
     } else {
       res.redirect('/share-result-lateral-flow/v23/dob')
     }
@@ -1146,11 +1167,16 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
 
   router.post('/share-result-lateral-flow/v23/action/mobile', function (req, res) {
     let whosTakingTheTest = req.session.data['whos-taking-the-test']
-
-    if (whosTakingTheTest == "Myself") {
-      res.redirect('/share-result-lateral-flow/v23/check-answers')
-    } else {
+    let useDetails = req.session.data['use-details']
+    let useDetails1 = req.session.data['use-details1']
+    if (useDetails == "No" || useDetails1 == "No") {
       res.redirect('/share-result-lateral-flow/v23/nhs-number-known')
+    } else if (useDetails == "Yes") {
+      res.redirect('/share-result-lateral-flow/v23/check-answers')
+    } else if (whosTakingTheTest == "someone-else") {
+      res.redirect('/share-result-lateral-flow/v23/nhs-number-known')
+    } else {
+      res.redirect('/share-result-lateral-flow/v23/check-answers')
     }
 
   })
