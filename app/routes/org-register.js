@@ -1540,4 +1540,69 @@ router.post('/organisational/test-pass/reg-without-pass/single/add-another', fun
 });
 
 
+
+
+//test-pass/reg-with-pass/several
+
+router.post('/organisational/test-pass/reg-with-pass/several/second-pass', function (req, res) {
+  let answer = req.body.addanother;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/have-pass')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-with-pass/several/third-pass')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/several/second-pass?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-with-pass/several/third-pass', function (req, res) {
+  let answer = req.body.addanother2;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/have-pass')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-with-pass/several/multiple-pass')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/several/third-pass?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/reg-with-pass/several/multiple-pass', function (req, res) {
+  let answer = req.body.addanother;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-with-pass/single/have-pass')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-with-pass/several/symptoms')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/several/multiple-pass?error=empty')
+    }
+});
+
+
+router.post('/organisational/test-pass/reg-with-pass/several/symptoms', function (req, res) {
+  let answer = req.body.cuCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/test-pass/reg-with-pass/several/select-symptoms')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/several/date')
+    }
+});
+
+
+router.post('/organisational/test-pass/reg-with-pass/several/have-return-box', function (req, res) {
+  let answer = req.body.outerreturnbox;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/reg-with-pass/several/return-box')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/reg-with-pass/several/add-test-details-p2')
+    } else {
+    res.redirect('/organisational/test-pass/reg-with-pass/several/have-return-box?error=empty')
+    }
+});
+
+
 module.exports = router

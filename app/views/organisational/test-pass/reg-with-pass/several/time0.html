@@ -64,6 +64,51 @@
 
       <form class="" action="/{{ version }}/single/have-return-box" method="get">
 
+
+        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+
+
+        {% set textHtml %}
+        {{ govukInput({
+          id: "contact-by-text",
+          name: "contact-by-text",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Mobile phone number"
+          }
+        }) }}
+        {% endset -%}
+
+        {{ govukCheckboxes({
+          idPrefix: "contact",
+          name: "contact",
+          fieldset: {
+            legend: {
+              text: "How would you like to be contacted?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all options that are relevant to you."
+          },
+          items: [
+
+            {
+              value: "text message",
+              text: "Text message",
+              conditional: {
+                html: anotherDate
+              }
+            }
+          ]
+        }) }}
+
+
         {{ govukRadios({
             idPrefix: "covidUpload",
             name: "cuDate",
