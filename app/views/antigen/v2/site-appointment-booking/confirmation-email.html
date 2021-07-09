@@ -15,13 +15,15 @@
 
      <h2 class="govuk-heading-m">Date of birth: {{ data['date-of-birth-day'] or '15 March 1988' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}</h2>
 
-     <p class="govuk-body">Your pass to access the test site -</p>
-     <p class="govuk-body"><strong>Have this ready to show staff when you arrive</strong></p>
+     <p class="govuk-body">
+      Your pass to access the test site -<br>
+       <strong>Have this ready to show staff when you arrive</strong>
+      </p>
 
      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
      <div style="display: flex; justify-content: center;">
-       <img src="/public/images/QR_code.png" alt="randox number" style="height: 20%; width: 20%;" />
+       <img src="/public/images/qr-collect.png" alt="randox number" style="height: 40%; width: 40%;" />
      </div>
 
      <p class="govuk-body govuk-!-margin-top-6 govuk-!-margin-bottom-8" style="text-align: center;">Pass ID: 12653234356</p>
@@ -34,39 +36,39 @@
               Lee Valley Athletics Centre<br>
               London<br>
               N9 0AR
-            {% endif %}
-            {% if data['test-site'] == "Greenwich" %}
+            {% elseif data['test-site'] == "Greenwich" %}
               <strong>Greenwich (drive in only - no motorbikes)</strong><br>
               TFL Car Park, Edmund Halley Way<br>
               London<br>
               SE10 0PH
-            {% endif %}
-            {% if data['test-site'] == "Twickenham" %}
+            {% elseif data['test-site'] == "Twickenham" %}
               <strong>Twickenham (drive in only - no motorbikes)</strong><br>
               Twickenham Stadium, 200 Whitton Road, Gate D<br>
               Twickenham<br>
               TW1 1DZ
-            {% endif %}
-            {% if data['test-site'] == "Haringey Stamford Hill" %}
+            {% elseif data['test-site'] == "Haringey Stamford Hill" %}
               <strong>Haringey Stamford Hill - Walk through site</strong><br>
               Stamford Hill Primary School<br>
               Haringey<br>
               N15 6HD
-            {% endif %}
-            {% if data['test-site'] == "Hackney Sandford Court" %}
+            {% elseif data['test-site'] == "Hackney Sandford Court" %}
               <strong>Hackney Sandford Court - Walk through site</strong><br>
               Sandford Court, Bethune Rd<br>
               London<br>
               N16 5BB
-            {% endif %}
-            {% if data['test-site'] == "Camden Ramsay Hall" %}
+            {% elseif data['test-site'] == "Camden Ramsay Hall" %}
               <strong>Camden Ramsay Hall - Walk through site</strong>br>
               Ramsay Hall (No step free access)<br>
               Camden<br>
               W1T 5HB
+            {% else %}
+              <strong>Heathrow airport test site</strong><br><br>
+              125 testing lane<br>
+              Highbury & Islington<br>
+              RM4 3RS
             {% endif %}
             <br><br>
-          <strong>Date:</strong> {{ data['appointment-date'] or '30 October' }} 2020<br>
+          <strong>Date:</strong> {{ data['appointment-date'] or '30 Oct' }} 2020<br>
           <strong>Time:</strong> {{ data['time'] or '9:30am to 10:00am' }}<br>
           {% if data['vehicle-registration-number'] !== undefined %}
           <strong>Vehicle:</strong> {{ data['vehicle-registration-number'] or 'CU57ABC' }}
@@ -135,7 +137,8 @@
 
     <h3 class="govuk-heading-m">Antibody testing</h3>
     <p class="govuk-body">
-      If you agreed to do antibody testing, you will receive your 1st test kit in the post 2-3 days after you get a positive coronavirus result. Your 2nd antibody test kit will arrive 3 weeks later. The kit contains clear instructions on how to do the test. It's important that you do the test and post it back <strong>as soon as possible</strong>. You can leave home to post a test kit while self-isolating. <a class="govuk-link" target="blank" href="#">Find more info on how to prepare for, take and return the antibody test</a>.
+      If you test positive for COVID-19 and agreed to do antibody testing, you will receive your first antibody test kit in the post 2 to 3 days after getting your positive result. Your second antibody test will arrive 3 weeks later.<br><br>
+      The kit contains clear instructions on how to do the test. It's important you do the test and post it back <strong>as soon as possible</strong>. You can leave home to post a test kit while self-isolating. <a class="govuk-link" target="blank" href="#">Find more info on how to prepare for, take and return the antibody test</a>.
     </p>
 
     <h2 class="govuk-heading-m">Do you need a BSL interpreter?</h2>
