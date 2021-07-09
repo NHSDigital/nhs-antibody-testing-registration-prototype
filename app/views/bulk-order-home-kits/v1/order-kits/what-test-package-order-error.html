@@ -1,0 +1,79 @@
+{% set version = "v1" %}
+{% set pageTitle = "Order test package" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/bulk-order-home-kits/{{version}}/order-kits/upload-file-test-package">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/bulk-order-home-kits/{{version}}/order-kits/upload-file-test-package" method="post">
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+          <h2 class="govuk-error-summary__title" id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+              <li>
+                <a href="#team-leader-4-first-name">Select an option</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <fieldset class="govuk-fieldset" aria-describedby="test-package-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <div class="govuk-form-group--error">
+            <span id="where-do-you-live-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select an option
+            </span>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-package-1" name="test-package" type="radio" value="Sequenced pre-linked PCR test kit" {{ checked("test-package", "Sequenced pre-linked PCR test kit") }}>
+                <label class="govuk-label govuk-radios__label" for="test-package-1">
+                  Sequenced pre-linked PCR test kit
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-package-2" name="test-package" type="radio" value="Private provider validation kit" {{ checked("test-package", "Private provider validation kit") }}>
+                <label class="govuk-label govuk-radios__label" for="test-package-2">
+                  Private provider validation kit
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+        </fieldset>
+
+        <button class="govuk-button govuk-!-margin-top-6" type="submit" data-module="govuk-button">
+          Continue
+        </button>
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -2328,6 +2328,66 @@ router.post('/litereg-accounts/v3/action4/test-place', function (req, res) {
 
 })
 
+// Bulk Order Home Kits - Manage Team Leader 1
+router.post('/bulk-order-test-kits/v1/action1/manage-team-leader-1', function (req, res) {
+  let teamLeader1FirstName = req.session.data['team-leader-1-first-name']
+  let teamLeader1LastName = req.session.data['team-leader-1-last-name']
+  let teamLeader1Email = req.session.data['team-leader-1-email-address']
+  let teamLeader1Mobile = req.session.data['team-leader-1-mobile-number']
+  if (teamLeader1FirstName == "" || teamLeader1LastName == "" || teamLeader1Email == "" || teamLeader1Mobile == "" ){
+    res.redirect('/bulk-order-home-kits/v1/manage-organisation/manage-team-leader-1-error')
+  } else {
+    res.redirect('/bulk-order-home-kits/v1/manage-organisation/team-leader-1-updated-confirmation')
+  }
+})
 
+// Bulk Order Home Kits - Manage Team Leader 2
+router.post('/bulk-order-test-kits/v1/action1/manage-team-leader-2', function (req, res) {
+  let teamLeader1FirstName = req.session.data['team-leader-2-first-name']
+  let teamLeader1LastName = req.session.data['team-leader-2-last-name']
+  let teamLeader1Email = req.session.data['team-leader-2-email-address']
+  let teamLeader1Mobile = req.session.data['team-leader-2-mobile-number']
+  if (teamLeader1FirstName == "" || teamLeader1LastName == "" || teamLeader1Email == "" || teamLeader1Mobile == "" ){
+    res.redirect('/bulk-order-home-kits/v1/manage-organisation/manage-team-leader-2-error')
+  } else {
+    res.redirect('/bulk-order-home-kits/v1/manage-organisation/team-leader-2-updated-confirmation')
+  }
+})
+
+// Bulk Order Home Kits - Manage Team Leader 3
+router.post('/bulk-order-test-kits/v1/action1/manage-team-leader-3', function (req, res) {
+  let teamLeader1FirstName = req.session.data['team-leader-3-first-name']
+  let teamLeader1LastName = req.session.data['team-leader-3-last-name']
+  let teamLeader1Email = req.session.data['team-leader-3-email-address']
+  let teamLeader1Mobile = req.session.data['team-leader-3-mobile-number']
+  if (teamLeader1FirstName == "" || teamLeader1LastName == "" || teamLeader1Email == "" || teamLeader1Mobile == "" ){
+    res.redirect('/bulk-order-home-kits/v1/manage-organisation/manage-team-leader-3-error')
+  } else {
+    res.redirect('/bulk-order-home-kits/v1/manage-organisation/team-leader-3-updated-confirmation')
+  }
+})
+
+// Bulk Order Home Kits - Manage Team Leader 4
+router.post('/bulk-order-test-kits/v1/action1/manage-team-leader-4', function (req, res) {
+  let teamLeader1FirstName = req.session.data['team-leader-4-first-name']
+  let teamLeader1LastName = req.session.data['team-leader-4-last-name']
+  let teamLeader1Email = req.session.data['team-leader-4-email-address']
+  let teamLeader1Mobile = req.session.data['team-leader-4-mobile-number']
+  if (teamLeader1FirstName == "" || teamLeader1LastName == "" || teamLeader1Email == "" || teamLeader1Mobile == "" ){
+    res.redirect('/bulk-order-home-kits/v1/manage-organisation/manage-team-leader-4-error')
+  } else {
+    res.redirect('/bulk-order-home-kits/v1/manage-organisation/team-leader-4-updated-confirmation')
+  }
+})
+
+// Bulk Order Home Kits - What Test Pacakge Order
+router.post('/bulk-order-test-kits/v1/action1/what-test-package-order', function (req, res) {
+  let testPackage = req.session.data['test-package']
+  if (testPackage == "Sequenced pre-linked PCR test kit" || testPackage == "Private provider validation kit"){
+    res.redirect('/bulk-order-home-kits/v1/order-kits/upload-file-test-package')
+  } else {
+    res.redirect('/bulk-order-home-kits/v1/order-kits/what-test-package-order-error')
+  }
+})
 
 module.exports = router
