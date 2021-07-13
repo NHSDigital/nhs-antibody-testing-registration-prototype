@@ -1,5 +1,5 @@
-{% set version = "v2" %}
-{% set pageTitle = "Is this the address registered with the person's GP?" %}
+{% set version = "v3" %}
+{% set pageTitle = "Is this the address registered with your GP?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -30,7 +30,11 @@
       <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
             Is this the address registered with {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s GP?
+            {% else %}
+            {{ pageTitle }}
+            {% endif %}
           </h1>
         </legend>
 
@@ -50,8 +54,14 @@
                 {{ data['home-postcode'] or 'LS1 3BE' }}
               {% endif %}
             </strong><br><br>
-            This will help us find and update the GP record with their test results.<br><br>
-            <strong>If they're not registered with a GP in the UK, that's OK. Select "I don't know".</strong>
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            This will help us find and update their GP record with their test result.<br><br>
+            <strong>If they're not registered with a GP in the UK, select "I do not know".</strong>
+            {% else %}
+            This will help us find and update your GP record with your test result.<br><br>
+            <strong>If you're not registered with a GP in the UK, select "I do not know".</strong>
+            {% endif %}
+            
           </span>
           <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">
             <div class="govuk-radios__item">
@@ -69,7 +79,7 @@
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="gp-address-same-3" name="gp-address-same" type="radio" value="I don't know" {{ checked("gp-address-same", "I don't know") }}>
               <label class="govuk-label govuk-radios__label" for="gp-address-same-3">
-                I don't know
+                I do not know
               </label>
             </div>
           </div>

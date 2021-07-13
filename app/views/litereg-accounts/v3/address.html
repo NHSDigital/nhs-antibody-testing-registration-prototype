@@ -32,7 +32,7 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                What is their address?
+                What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s address?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
@@ -41,13 +41,13 @@
 
             <span id="post-code-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              <strong>Enter the postcode that is registered with their GP.</strong>
-              This will help us find and update the GP record with their result.<br><br>
-              If they're not registered with a GP in the UK, that's OK. Enter the address and the postcode where they're staying instead.
+              <strong>Enter the postcode that is registered with their GP.</strong><br><br>
+              This will help us find and update their GP record with their result.<br><br>
+              If they're not registered with a GP in the UK, enter the postcode where they're staying.
               {% else %}
-              <strong>Enter the postcode that is registered with your GP.</strong><br>
-              This will help us find and update the GP record with your result.<br><br>
-              If you're not registered with a GP in the UK, that's OK. Enter the address and the postcode where you're staying instead.
+              <strong>Enter the postcode that is registered with your GP.</strong><br><br>
+              This will help us find and update your GP record with your result.<br><br>
+              If you're not registered with a GP in the UK, enter the postcode where you're staying.
               {% endif %}
             </span>
             <div class="govuk-form-group govuk-!-margin-top-6">
@@ -66,26 +66,26 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                What is their address?
+                What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s address?
                 {% else %}
-                What is your address?
+                {{ pageTitle }}
                 {% endif %}
               </h1>
             </legend>
 
             <span id="post-code-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              <strong>Select the address that is registered with their GP.</strong>
-              This will help us find and update the GP record with their result.<br><br>
-              If they're not registered with a GP in the UK, that's OK. Enter the address and the postcode where they're staying instead.
+              <strong>Select the address that is registered with their GP.</strong><br><br>
+              This will help us find and update their GP record with their result.<br><br>
+              If they're not registered with a GP in the UK, select the address where they're staying.
               {% else %}
-              <strong>Select the address that is registered with your GP.</strong><br>
-              This will help us find and update the GP record with your result.<br><br>
-              If you're not registered with a GP in the UK, that's OK. Enter the address and the postcode where you're staying instead.
+              <strong>Select the address that is registered with your GP.</strong><br><br>
+              This will help us find and update your GP record with your result.<br><br>
+              If you're not registered with a GP in the UK, select the address where you're staying.
               {% endif %}
             </span>
             <p class="govuk-!-margin-bottom-6 govuk-!-margin-top-6" style="line-height: 0.8;">
-              <strong class="govuk-!-font-size-24">Postcode</strong><br><br>
+              <span>Postcode</span><br><br>
               <strong>{{ data['gp-postcode'] | default('LS1 3BE') }}</strong>
               <a href="/litereg-accounts/{{version}}/address" class="govuk-!-margin-left-5">
                 <strong>Change</strong>
@@ -94,7 +94,7 @@
             </p>
             <div class="govuk-form-group">
               <label class="govuk-label" for="gp-address">
-                <strong class="govuk-!-font-size-24">Select an address</strong>
+                Select an address
               </label>
               <select class="govuk-select" id="gp-address" name="gp-address">
                 <option>5 addresses found</option>
@@ -124,22 +124,18 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                What is their address?
+                Enter the address registered with {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s GP
                 {% else %}
-                {{ pageTitle }}
+                Enter the address registered with your GP
                 {% endif %}
               </h1>
             </legend>
     
             <span id="post-code-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              <strong>Enter the address that is registered with their GP.</strong>
-              This will help us find and update the GP record with their result.<br><br>
-              If they're not registered with a GP in the UK, that's OK. Enter the address and the postcode where they're staying instead.
+              This will help us find and update their GP record with their test result.
               {% else %}
-              <strong>Enter the address that is registered with your GP.</strong><br>
-              This will help us find and update the GP record with your result.<br><br>
-              If you're not registered with a GP in the UK, that's OK. Enter the address and the postcode where you're staying instead.
+              This will help us find and update your GP record with your test result.
               {% endif %}
             </span>
             <div class="govuk-form-group govuk-!-margin-top-5">
