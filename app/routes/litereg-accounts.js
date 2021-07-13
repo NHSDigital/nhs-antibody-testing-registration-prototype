@@ -807,7 +807,7 @@ router.post('/litereg-accounts/v3/action7/vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
   let loginEmail = req.session.data['email-address']
   if (vaccine == "No" && loginEmail == "user@testing.co.uk") {
-    res.redirect('/litereg-accounts/v3/check-your-answers')
+    res.redirect('/litereg-accounts/v3/fingerprick-test')
   } else if (vaccine == "No" && loginEmail != "user@testing.co.uk") {
     res.redirect('/litereg-accounts/v3/country')
   } else {
