@@ -708,6 +708,17 @@ router.post('/litereg-accounts/v3/action9/currently-in-work', function (req, res
 
 })
 
+// Version 3 - Lite Registration Accounts - GP address same route
+
+router.post('/litereg-accounts/v3/action/gp-address-same', function (req, res) {
+  let gpAdressSame = req.session.data['gp-address-same']
+  if (gpAdressSame == "No"){
+    res.redirect('/litereg-accounts/v3/action/address')
+  } else {
+    res.redirect('/litereg-accounts/v3/action/nhs-number-known')
+  }
+})
+
 // Version 3 - Lite Registration Accounts - NHS number known route
 
 router.post('/litereg-accounts/v3/action9/nhs-number-known', function (req, res) {
@@ -715,7 +726,7 @@ router.post('/litereg-accounts/v3/action9/nhs-number-known', function (req, res)
   if (nhsNumberKnown == "Yes"){
     res.redirect('/litereg-accounts/v3/nhs-number')
   } else {
-    res.redirect('/litereg-accounts/v3/check-your-answers')
+    res.redirect('/litereg-accounts/v3/fingerprick-test')
   }
 
 })

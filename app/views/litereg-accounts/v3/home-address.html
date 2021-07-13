@@ -1,5 +1,5 @@
 {% set version = "v3" %}
-{% set pageTitle = "What is your address?" %}
+{% set pageTitle = "What is your home address in the UK?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -24,7 +24,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/litereg-accounts/{{version}}/email-address" method="post">
+    <form action="/litereg-accounts/{{version}}/gp-address-same" method="post">
 
       <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
 
@@ -32,7 +32,7 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                What is their address?
+                What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address in the UK?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
@@ -41,13 +41,9 @@
 
             <span id="post-code-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              <strong>Enter the postcode that is registered with their GP.</strong>
-              This will help us find and update the GP record with their result.<br><br>
-              If they're not registered with a GP in the UK, that's OK. Enter the address and the postcode where they're staying instead.
+              If they do not have a home address in the UK, enter the postcode where they're staying.
               {% else %}
-              <strong>Enter the postcode that is registered with your GP.</strong><br>
-              This will help us find and update the GP record with your result.<br><br>
-              If you're not registered with a GP in the UK, that's OK. Enter the address and the postcode where you're staying instead.
+              If you do not have a home address in the UK, enter the postcode where you're staying.
               {% endif %}
             </span>
             <div class="govuk-form-group govuk-!-margin-top-6">
@@ -66,22 +62,18 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                What is their address?
+                What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address in the UK?
                 {% else %}
-                What is your address?
+                {{ pageTitle }}
                 {% endif %}
               </h1>
             </legend>
 
             <span id="post-code-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              <strong>Select the address that is registered with their GP.</strong>
-              This will help us find and update the GP record with their result.<br><br>
-              If they're not registered with a GP in the UK, that's OK. Enter the address and the postcode where they're staying instead.
+              If they do not have a home address in the UK, select the address where they're staying.
               {% else %}
-              <strong>Select the address that is registered with your GP.</strong><br>
-              This will help us find and update the GP record with your result.<br><br>
-              If you're not registered with a GP in the UK, that's OK. Enter the address and the postcode where you're staying instead.
+              If you do not have a home address in the UK, select the address where you're staying.
               {% endif %}
             </span>
             <p class="govuk-!-margin-bottom-6 govuk-!-margin-top-6" style="line-height: 0.8;">
@@ -105,15 +97,10 @@
                 <option value="5 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">5 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}</option>
               </select>
             </div>
-            {% if data['whos-taking-the-test'] == "someone-else" %}
+
             <p class="govuk-body">
-              <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find their address in the list</a>
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find the address in the list</a>
             </p>
-            {% else %}
-            <p class="govuk-body">
-              <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find my address in the list</a>
-            </p>
-            {% endif %}
             
             <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
               Continue
@@ -124,7 +111,7 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                What is their address?
+                What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address in the UK?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
@@ -137,9 +124,7 @@
               This will help us find and update the GP record with their result.<br><br>
               If they're not registered with a GP in the UK, that's OK. Enter the address and the postcode where they're staying instead.
               {% else %}
-              <strong>Enter the address that is registered with your GP.</strong><br>
-              This will help us find and update the GP record with your result.<br><br>
-              If you're not registered with a GP in the UK, that's OK. Enter the address and the postcode where you're staying instead.
+              If you do not have a home address in the UK, enter the address and postcode where you're staying.
               {% endif %}
             </span>
             <div class="govuk-form-group govuk-!-margin-top-5">
