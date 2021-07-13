@@ -713,9 +713,9 @@ router.post('/litereg-accounts/v3/action9/currently-in-work', function (req, res
 router.post('/litereg-accounts/v3/action/gp-address-same', function (req, res) {
   let gpAdressSame = req.session.data['gp-address-same']
   if (gpAdressSame == "No"){
-    res.redirect('/litereg-accounts/v3/action/address')
+    res.redirect('/litereg-accounts/v3/address')
   } else {
-    res.redirect('/litereg-accounts/v3/action/nhs-number-known')
+    res.redirect('/litereg-accounts/v3/email-address')
   }
 })
 
