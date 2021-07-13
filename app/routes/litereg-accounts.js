@@ -715,7 +715,7 @@ router.post('/litereg-accounts/v3/action9/nhs-number-known', function (req, res)
   if (nhsNumberKnown == "Yes"){
     res.redirect('/litereg-accounts/v3/nhs-number')
   } else {
-    res.redirect('/litereg-accounts/v3/check-your-answers')
+    res.redirect('/litereg-accounts/v3/fingerprick-test')
   }
 
 })
