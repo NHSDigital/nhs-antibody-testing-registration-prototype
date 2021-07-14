@@ -1280,7 +1280,7 @@ router.post('/organisational/test-pass/reg-with-pass/how', function (req, res) {
   if (answer == 'bulk') {
     res.redirect('/organisational/test-pass/reg-with-pass/bulk/who')
   } else if (answer == 'single') {
-      res.redirect('/organisational/test-pass/reg-with-pass/single/have-pass')
+      res.redirect('/organisational/test-pass/reg-with-pass/single/date')
     } else {
     res.redirect('/organisational/test-pass/reg-with-pass/how?error=empty')
     }
@@ -1390,7 +1390,7 @@ router.post('/organisational/test-pass/reg-with-pass/single/save-pass', function
   if (answer == 'yes') {
     res.redirect('/organisational/test-pass/reg-with-pass/single/send-codes')
   } else if (answer == 'no') {
-      res.redirect('/organisational/test-pass/reg-with-pass/single/have-coronavirus')
+      res.redirect('/organisational/test-pass/reg-with-pass/several/check')
     } else {
     res.redirect('/organisational/test-pass/reg-with-pass/single/save-pass?error=empty')
     }
@@ -1586,8 +1586,10 @@ router.post('/organisational/test-pass/reg-with-pass/several/symptoms', function
 
   if (answer == 'Yes') {
     res.redirect('/organisational/test-pass/reg-with-pass/several/select-symptoms')
+  } else if (answer == 'No') {
+      res.redirect('/organisational/test-pass/reg-with-pass/several/check-mass')
     } else {
-    res.redirect('/organisational/test-pass/reg-with-pass/several/date')
+    res.redirect('/organisational/test-pass/reg-with-pass/several/symptoms?error=empty')
     }
 });
 

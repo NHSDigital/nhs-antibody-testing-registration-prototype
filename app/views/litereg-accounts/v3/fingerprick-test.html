@@ -1,0 +1,131 @@
+{% set version = "v3" %}
+{% set pageTitle = "Would you also be willing to take 2 separate antibody tests?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/litereg-accounts/{{version}}/check-your-answers" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="fingerprick-test-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Would {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }} also be willing to take 2 separate antibody tests?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+            </legend>
+            <span id="fingerprick-test-hint" class="govuk-body">
+              The antibody tests will help the NHS learn how likely people are to get COVID-19 a second time or after a vaccination, and the impact of variants.<br><br>
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+                If they agree to antibody testing and they test positive for COVID-19, they may be sent antibody tests.<br><br>
+                If they are sent antibody tests, they will:<br><br>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>be posted 2 antibody tests 3 weeks apart to their home address</li>
+                  <li>do a fingerprick blood test on themselves at home each time</li>
+                  <li>need to post back the completed antibody tests</li>
+                  <li>get the test results sent to them</li>
+                </ul>
+              {% else %}
+                If you agree to antibody testing and you test positive for COVID-19, you may be sent antibody tests.<br><br>
+                If you are sent antibody tests, you will:<br><br>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>be posted 2 antibody tests 3 weeks apart to your home address</li>
+                  <li>do a fingerprick blood test on yourself at home each time</li>
+                  <li>need to post back the completed antibody tests</li>
+                  <li>get the test results sent to you</li>
+                </ul>
+              {% endif %}
+              
+            </span>
+
+            <div class="govuk-warning-text govuk-!-margin-top-7">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                By selecting Yes you confirm that they are OK doing a fingerprick blood test, and do not take anticoagulants ('blood-thinning' medicines) or have a blood clotting disorder such as haemophilia. 
+                {% else %}
+                By selecting Yes you confirm that you are OK doing a fingerprick blood test, and do not take anticoagulants ('blood-thinning' medicines) or have a blood clotting disorder such as haemophilia. 
+                {% endif %}
+              </strong>
+            </div>
+
+            <div class="govuk-radios govuk-!-margin-top-7">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="fingerprick-test-1" name="fingerprick-test" type="radio" value="Yes" {{ checked("fingerprick-test", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="fingerprick-test-1">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Yes, they are willing to do the antibody tests
+                {% else %}
+                Yes, I am willing to do the antibody tests
+                {% endif %}
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="fingerprick-test-2" name="fingerprick-test" type="radio" value="No" {{ checked("fingerprick-test", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="fingerprick-test-2">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  No, they are not willing to do the antibody tests
+                  {% else %}
+                  No, I am not willing to do the antibody tests
+                  {% endif %}
+                </label>
+              </div>
+            </div>
+
+            <details class="govuk-details govuk-!-margin-bottom-2 govuk-!-margin-top-6" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Video: How to collect your blood sample
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <div class="govuk-!-margin-bottom-5 govuk-!-margin-top-4 videoWrapper">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/BUgBOSgnMv0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+              </div>
+            </details>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <style media="screen">
+    .videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+  </style>
+
+{% endblock %}
