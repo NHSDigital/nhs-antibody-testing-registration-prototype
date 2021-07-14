@@ -1,0 +1,65 @@
+{% set version = "sandbox" %}
+{% set pageTitle = "Choose when to be contacted (optional)" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/comms/strategic/email">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/comms/strategic/check-answers-both" method="post">
+
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                      {{ pageTitle }}
+                    </h1>
+                  </legend>
+
+                  <p>You currently only get confirmations if you report a Positive result. You have the option to get confirmations for all results.</p>
+
+                        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                          <div class="govuk-hint">
+                            This only applies to this service
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+                            <label class="govuk-label govuk-checkboxes__label" for="waste">
+                              Get a confirmation email for all results (optional)
+                            </label>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="text" name="text" type="checkbox" value="carcasses">
+                            <label class="govuk-label govuk-checkboxes__label" for="text">
+                              Get a confirmation text for all results (optional)
+                            </label>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
