@@ -374,7 +374,11 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Do you have symptoms?
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            Do they have any symptoms?
+            {% else %}
+            Do you have any symptoms?
+            {% endif %}
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['do-you-have-symptoms'] or 'No' }}
@@ -402,91 +406,6 @@
           </dd>
         </div>
         {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Had coronavirus vaccine
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['vaccine'] }}
-
-              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
-              1 dose, January {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
-              1 dose, February {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
-              1 dose, March {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
-              1 dose, April {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
-              1 dose, May {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
-              1 dose, June {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
-              1 dose, July {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
-              1 dose, August {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
-              1 dose, September {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "10" %}
-              1 dose, October {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "11" %}
-              1 dose, November {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "12" %}
-              1 dose, December {{ data['vaccine-year'] }}
-              {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/vaccine">
-              Change
-              <span class="govuk-visually-hidden">had coronavirus vaccine</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['vaccine'] !== "No" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Last dose
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['vaccine-date'] !== "different" %}
-              {{ data['vaccine-date'] }}
-            {% else %}
-              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
-              1 dose, January {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
-              1 dose, February {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
-              1 dose, March {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
-              1 dose, April {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
-              1 dose, May {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
-              1 dose, June {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
-              1 dose, July {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
-              1 dose, August {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
-              1 dose, September {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "10" %}
-              1 dose, October {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "11" %}
-              1 dose, November {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month'] == "12" %}
-              1 dose, December {{ data['vaccine-year'] }}
-              {% endif %}
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/vaccine">
-              Change
-              <span class="govuk-visually-hidden">last dose</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Country of residence
@@ -602,6 +521,104 @@
             <a href="/litereg-accounts/{{version}}/nhs-number">
               Change
               <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Positive coronavirus test
+          </dt>
+           <dd class="govuk-summary-list__value">
+            {{ data['previous-infection'] or 'No' }}
+           </dd>
+         <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/previous-infection">
+              Change
+              <span class="govuk-visually-hidden">positive coronavirus test</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Had coronavirus vaccine
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['vaccine'] }}
+
+              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
+              1 dose, January {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
+              1 dose, February {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
+              1 dose, March {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
+              1 dose, April {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
+              1 dose, May {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
+              1 dose, June {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
+              1 dose, July {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
+              1 dose, August {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
+              1 dose, September {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "10" %}
+              1 dose, October {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "11" %}
+              1 dose, November {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "12" %}
+              1 dose, December {{ data['vaccine-year'] }}
+              {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/vaccine">
+              Change
+              <span class="govuk-visually-hidden">had coronavirus vaccine</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['vaccine'] !== "No" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Last dose
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['vaccine-date'] !== "different" %}
+              {{ data['vaccine-date'] }}
+            {% else %}
+              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
+              1 dose, January {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
+              1 dose, February {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
+              1 dose, March {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
+              1 dose, April {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
+              1 dose, May {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
+              1 dose, June {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
+              1 dose, July {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
+              1 dose, August {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
+              1 dose, September {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "10" %}
+              1 dose, October {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "11" %}
+              1 dose, November {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "12" %}
+              1 dose, December {{ data['vaccine-year'] }}
+              {% endif %}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/vaccine">
+              Change
+              <span class="govuk-visually-hidden">last dose</span>
             </a>
           </dd>
         </div>

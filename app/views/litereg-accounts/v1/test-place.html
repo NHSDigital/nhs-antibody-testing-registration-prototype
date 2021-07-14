@@ -50,10 +50,17 @@
                 </label>
               </div>
               <div class="govuk-radios__item">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="At home or an accommodation of their choice" {{ checked("test-place", "At home or an accommodation of their choice") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-2">
+                  At home or an accommodation of their choice
+                </label>
+                {% else %}
                 <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="At home or an accommodation of your choice" {{ checked("test-place", "At home or an accommodation of your choice") }}>
                 <label class="govuk-label govuk-radios__label" for="test-place-2">
                   At home or an accommodation of your choice
                 </label>
+                {% endif %}
               </div>
             </div>
           </fieldset>
