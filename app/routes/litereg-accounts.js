@@ -609,7 +609,7 @@ router.post('/litereg-accounts/v3/action9/test-date', function (req, res) {
 
 })
 
-// Version 1 - Lite Registration Accounts - Do you have symptoms route
+// Version 3 - Lite Registration Accounts - Do you have symptoms route
 
 router.post('/litereg-accounts/v3/action9/do-you-have-symptoms', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
