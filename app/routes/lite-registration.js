@@ -1223,7 +1223,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
 
 
   // Version 25 - LFD Results sharing - Ethnic group route
-  router.post('/share-result-lateral-flow/v25/action6/ethnic-group', function (req, res) {
+  router.post('/share-result-lateral-flow/v25/action/ethnic-group', function (req, res) {
     let ethnicGroup = req.session.data['ethnic-group']
 
     if (ethnicGroup == "Asian or Asian British"){
@@ -1395,7 +1395,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
   })
 
   // Version 25-1 - LFD Results sharing - Ethnic group route
-  router.post('/share-result-lateral-flow/v25-1/action6/ethnic-group', function (req, res) {
+  router.post('/share-result-lateral-flow/v25-1/action/ethnic-group', function (req, res) {
     let ethnicGroup = req.session.data['ethnic-group']
 
     if (ethnicGroup == "Asian or Asian British"){
