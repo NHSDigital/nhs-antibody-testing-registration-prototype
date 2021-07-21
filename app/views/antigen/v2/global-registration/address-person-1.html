@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Is this the address registered with the person's GP?" %}
+{% set pageTitle = "What is the person's GP?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -31,12 +31,14 @@
             <div id="content-1">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-                  Enter the postcode registered with {{ data['first-name-person-1'] | default('Jane') }} {{ data['last-name-person-1'] | default('Wilson') }}'s GP
+                  What is {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}'s address?
                 </h1>
               </legend>
       
                 <span id="post-code-hint" class="govuk-body">
-                  This will help us find and update their GP record with their test result.
+                  <strong>Use the address registered with their GP.</strong><br><br>
+                  This will help us find and update their GP record with their result.<br><br>
+                  If they're not registered with a GP in the UK, use the address where they're staying.
                 </span>
               <div class="govuk-form-group govuk-!-margin-top-6">
                 <label class="govuk-label govuk-!-margin-bottom-3" for="gp-postcode-person-1" style="line-height: 0.8;">
@@ -53,14 +55,15 @@
             <div id="content-2" style="display: none;">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-                  Select the address registered with {{ data['first-name-person-1'] | default('Jane') }} {{ data['last-name-person-1'] | default('Wilson') }}'s GP
+                  What is {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}'s address?
                 </h1>
               </legend>
       
-                <span id="post-code-hint" class="govuk-body">
-                  This will help us find and update their GP record with their test result.<br><br>
-                  If you cannot find their address in the list, select "I cannot find the address" and enter it manually.
-                </span>
+              <span id="post-code-hint" class="govuk-body">
+                <strong>Use the address registered with their GP.</strong><br><br>
+                This will help us find and update their GP record with their result.<br><br>
+                If they're not registered with a GP in the UK, use the address where they're staying.
+              </span>
               <p class="govuk-!-margin-bottom-6 govuk-!-margin-top-6" style="line-height: 0.8;">
                 <strong>Postcode</strong><br><br>
                 <strong>{{ data['gp-postcode-person-1'] | default('LS1 3BE') }}</strong>
@@ -83,7 +86,7 @@
                 </select>
               </div>
               <p class="govuk-body">
-                <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">I cannot find the address in the list</a>
+                <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find the address in the list</a>
               </p>
               <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
                 Continue
@@ -93,7 +96,7 @@
             <div id="content-3" style="display: none;">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-                  Enter the address registered with {{ data['first-name-person-1'] | default('Jane') }} {{ data['last-name-person-1'] | default('Wilson') }}'s GP
+                  Enter the address registered with {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}'s GP
                 </h1>
               </legend>
 <!-- 
@@ -105,6 +108,9 @@
                   <span class="govuk-visually-hidden">your postcode</span>
                 </a>
               </p> -->
+              <span id="post-code-hint" class="govuk-body">
+                This will help us find and update the GP record with their test result.<br><br>
+              </span>
               <div class="govuk-form-group">
                 <label class="govuk-label" for="address-line-1-gp-person-1">
                   <strong>Building and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>

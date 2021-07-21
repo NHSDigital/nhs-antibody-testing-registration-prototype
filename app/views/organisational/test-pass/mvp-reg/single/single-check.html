@@ -1,0 +1,199 @@
+{% set staff %}
+  {% if data.cuStaff %}
+    {{ data.cuStaff }}
+    {% else %}
+      Staff
+  {% endif %}
+{% endset %}
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      John Smith
+  {% endif %}
+{% endset %}
+
+{% set symptoms %}
+  {% if data["symptom-day"] and data["symptom-month"] and data["symptom-year"]  %}
+    {{ data["symptom-day"]}} {{ data["symptom-month"] | monthToWord }} {{ data["symptom-year"]}}
+  {% else %}
+    31 March 1975
+  {% endif %}
+{% endset %}
+
+{% set whenVaccine %}
+  {% if data["cuVaccineDate-month"] and data["cuVaccineDate-year"]  %}
+     {{ data["cuVaccineDate-month"] | monthToWord }} {{ data["cuVaccineDate-year"]}}
+  {% else %}
+    March 1975
+  {% endif %}
+{% endset %}
+
+{% set timeDate %}
+  {% if data.cuDate and data.cuTime %}
+    {% if data.cuDate == "Another date" %}
+      {{ data["cuExactDate-day"]}} {{ data["cuExactDate-month"] | monthToWord }} {{ data["cuExactDate-year"]}}:
+    {% else %}
+      {{ data.cuDate | returnDateShort }}:
+    {% endif %}
+    {{ data.cuTime }}{{data.cuAMPM}}
+
+  {% else %}
+    {{ "Today" | returnDateShort }}: 9am
+  {% endif %}
+{% endset %}
+
+
+{% set pageHeading = "Check before you register your test kits" %}
+ {% set version = "organisational/test-pass/mvp-reg" %}
+{% set serviceName = "Get a coronavirus test" %}
+
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Unique organisation number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            12341234
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Organisation details
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Dorset Care Givers<br>BH12 8YY
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of registrations
+          </dt>
+          <dd class="govuk-summary-list__value">
+            4
+          </dd>
+          <dd class="govuk-summary-list__actions">
+
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Lateral flow test registrations
+          </dt>
+          <dd class="govuk-summary-list__value">
+              2
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#">
+              Change
+              <span class="govuk-visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <p class="govuk-body">Negative results</p>
+          </dt>
+          <dt class="govuk-summary-list__value">
+              1
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a href="#">
+
+              <span class="govuk-visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <p class="govuk-body">Void results</p>
+          </dt>
+          <dt class="govuk-summary-list__value">
+              0
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a href="#">
+
+              <span class="govuk-visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <p class="govuk-body">Positive results</p>
+          </dt>
+          <dt class="govuk-summary-list__value">
+              1
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a href="#">
+
+              <span class="govuk-visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            PCR registrations
+          </dt>
+          <dd class="govuk-summary-list__value">
+            2
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#">
+              Change
+              <span class="govuk-visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+
+      <form class="" action="/{{ version }}/single/security" method="get">
+
+        <input class="govuk-button" type="submit" value="Confirm">
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
