@@ -32,10 +32,8 @@
         </div> -->
 
 
-        <div style="position: relative;">
-          <div style="border: dashed white 2px; position: absolute; width: 16%; height: 75%; top: 3rem; left: 31%">
-
-          </div>
+        <div style="position: relative; display: flex; justify-content: center; align-items: center;" class="camera-test-result">
+          <div style="border: dashed white 2px; width: 16%; height: 75%; position: absolute;"></div>
           <video id="video" class="camera-test-result" autoplay></video>
         </div>
         <br><br>
@@ -50,6 +48,24 @@
   </div>
 
   <script type="text/javascript">
+
+if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+  console.log("enumerateDevices() not supported.");
+  return;
+}
+
+// List cameras and microphones.
+
+navigator.mediaDevices.enumerateDevices()
+  .then(function(devices) {
+    devices.forEach(function(device) {
+      console.log(device.kind + ": " + device.label +
+        " id = " + device.deviceId);
+    });
+  })
+  .catch(function(e) {
+    console.log(e.name + ": " + e.message);
+  });
 
 // Grab elements, create settings, etc.
 var video = document.getElementById('video');
