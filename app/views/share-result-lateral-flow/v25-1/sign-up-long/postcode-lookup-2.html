@@ -1,0 +1,81 @@
+{% set version = "v23" %}
+{% set pageTitle = "What is your home address?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/postcode-lookup">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/got-email" method="post">
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-5">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s home address?
+              {% else %}
+              {{ pageTitle }}
+              {% endif %}
+            </h1>
+          </legend>
+          <label class="govuk-label" for="postcode">
+            <strong class="govuk-!-font-size-24">Postcode</strong>
+          </label>
+          <p>
+            {{ data['home-postcode'] | default('LS1 3BE') }}LS1 3BE
+            <a href="/share-result-lateral-flow/{{version}}/postcode-lookup" class="govuk-!-margin-left-5">
+              Change
+              <span class="govuk-visually-hidden">your postcode</span>
+            </a>
+          </p><br>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="home-address">
+              Select an address
+            </label>
+            <select class="govuk-select" id="home-address" name="home-address">
+              <option>Select from 5 addresses</option>
+              <option value="1 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">1 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+              <option value="2 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">2 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+              <option value="3 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">3 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+              <option value="4 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">4 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+              <option value="5 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">5 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+            </select>
+          </div>
+
+        </fieldset>
+
+        <p class="govuk-body"><a href="/share-result-lateral-flow/{{version}}/home-address-manual">
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          I can't find their address on the list
+          {% else %}
+          I can't find my address on the list
+          {% endif %}
+          </a></p>
+
+        <button class="govuk-button" type="submit" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+{% endblock %}
