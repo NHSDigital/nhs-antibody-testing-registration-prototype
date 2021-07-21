@@ -14,7 +14,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/share-result-lateral-flow/{{version}}/action/got-email" method="post">
+      <form class="form" action="/share-result-lateral-flow/{{version}}/mobile" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
@@ -58,17 +58,18 @@
                   </label>
                   <input class="govuk-input" id="email-address-confirm" name="email-address-confirm" type="text" value="{{ data['email-address-confirm'] or 'Pete.Smith@exampleemail.com'  }}" aria-describedby="conditional-email-address-hint">
                 </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="I do not have an email address" {{ checked("email", "I do not have an email address") }}>
+                  <label class="govuk-label govuk-radios__label" for="email-2">
+                    {% if data['whos-taking-the-test'] == "someone-else" %}
+                    No, they don’t have an email address
+                    {% else %}
+                    No, I don’t have an email address
+                    {% endif %}
+                  </label>
+                </div>
               </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="I do not have an email address" {{ checked("email", "I do not have an email address") }}>
-                <label class="govuk-label govuk-radios__label" for="email-2">
-                  {% if data['whos-taking-the-test'] == "someone-else" %}
-                  No, they don’t have an email address
-                  {% else %}
-                  No, I don’t have an email address
-                  {% endif %}
-                </label>
-              </div>
+              
           </fieldset>
         </div>
 
