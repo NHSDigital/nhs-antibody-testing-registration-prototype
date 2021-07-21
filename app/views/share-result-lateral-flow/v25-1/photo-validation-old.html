@@ -1,0 +1,105 @@
+{% extends 'layouts/layout.html' %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'back-link/macro.njk' import backLink %}
+
+{% block pageTitle %}
+Complete your antibody test
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l govuk-u-margin-bottom-6">Check and send your photo</h1>
+    <!--  <p class="govuk-body">Please check your photo against our guidelines before you send it.</p> -->
+
+      <h2 class="govuk-heading-s">Before you send your photo, make sure it is:</h2>
+        <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+          <li class="list-menu li p" style = "background: none; border-bottom: none">
+            is inside the guidelines
+          </li>
+          <li class="list-menu li p" style = "background: none; border-bottom: none">
+            is clear and has no shadows or bright lights on it
+          </li>
+          <li class="list-menu li p" style = "background: none; border-bottom: none">
+            is taken from directly above
+          </li>
+        </ul>
+
+        <div>
+          <figure class="govuk-image govuk-form-group govuk-u-margin-bottom-6" style = "background-color: transparent; border-bottom: none;">
+            <img class="govuk-image__img" src="/images/blurryTestNew.jpg" alt="image of a test device">
+          </figure>
+        </div>
+
+          <div class="govuk-inset-text govuk-u-margin-bottom-6 govuk-u-margin-top-0">
+            <span class="govuk-u-visually-hidden">Information:</span>
+            <p>
+              <!-- You have <span class="govuk-u-font-weight-bold" id="ab-timer-container"><span id="ab-timer-minutes">15</span>:<span id="ab-timer-seconds">00</span></span> minutes left to take a photo and send it to us to get your results. -->
+              <!-- removed as per PO request until actual time length becomes known -->
+              You have <span class="govuk-u-font-weight-bold">xx:xx</span> minutes left to take and send the photo.
+            </p>
+        </div>
+
+        <div class="govuk-u-margin-bottom-8">
+        <a href="16-1-photoerror" class="govuk-button govuk-u-margin-bottom-4 govuk-u-margin-right-3">
+          Submit photo
+        </a>
+        <a href="15-photosubmit" class="govuk-button govuk-button--secondary govuk-u-margin-bottom-0">
+          Re-take your photo
+        </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+
+
+<script>
+  let timeStarted = Date.now()
+  let timeAtEnd = Date.now() + (15 * 60 * 1000)
+
+  function getTimeRemaining(endtime) {
+  const total = endtime - Date.now();
+  const seconds = Math.floor( (total/1000) % 60 );
+  const minutes = Math.floor( (total/1000/60) % 60 );
+  const hours = Math.floor( (total/(1000*60*60)) % 24 );
+  const days = Math.floor( total/(1000*60*60*24) );
+
+  return {
+    total,
+    days,
+    hours,
+    minutes,
+    seconds
+  };
+}
+
+const reduceTimer = () => {
+  timeAtEnd = Date.now() + 5000
+}
+
+document.getElementById("ab-timer-container").addEventListener("click", reduceTimer)
+
+const timer = setInterval(() => {
+  const minutesEl = document.getElementById("ab-timer-minutes")
+  const secondsEl = document.getElementById("ab-timer-seconds")
+  const continueEl = document.getElementById("ab-timer-continue")
+  const remaining = getTimeRemaining(timeAtEnd)
+  // Pad our strings
+  minutesEl.innerText = remaining.minutes > 0 ? ('00'+remaining.minutes).slice(-2) : "00"
+  secondsEl.innerText = remaining.seconds > 0 ? ('00'+remaining.seconds).slice(-2) : "00"
+  if (timeAtEnd <= Date.now()) {
+    continueEl.removeAttribute('disabled')
+    clearInterval(timer)
+  }
+}, 1000)
+
+</script>
+
+{% endblock %}

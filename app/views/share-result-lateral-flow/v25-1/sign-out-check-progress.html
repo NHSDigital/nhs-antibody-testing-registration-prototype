@@ -1,0 +1,61 @@
+{% set version = "v25-1" %}
+{% set pageTitle = "Are you sure you want to sign out?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+
+  <!-- div for include from content folder -->
+  <div id="includedContent"></div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <p>If you sign out, your progress will be lost.</p>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="https://www.gov.uk/find-coronavirus-support" onclick="setLocation(this);" >
+                <label class="govuk-label govuk-radios__label" for="country-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="javascript:history.go(-1)" onclick="setLocation(this);" >
+                <label class="govuk-label govuk-radios__label" for="country-4">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+    <!-- corresponding html file name included from content folder -->
+    <script>
+      $(function(){
+        $("#includedContent").load("/includes/LFD-account-menu.html");
+      });
+    </script>
+
+{% endblock %}
