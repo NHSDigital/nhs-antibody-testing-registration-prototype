@@ -1415,14 +1415,14 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
   })
 
   //Version 25 - Lateral Flow
-  router.post('/share-result-lateral-flow/v25-1/action/whos-taking-the-test', function (req, res) {
-    let whosTakingTheTest = req.session.data['whos-taking-the-test']
-    if (whosTakingTheTest == "someone-else") {
-      res.redirect('/share-result-lateral-flow/v25-1/sign-in-short/country')
-    } else {
-      res.redirect('/share-result-lateral-flow/v25-1/account-details-from-nhs-account')
-    }
-  })
+  // router.post('/share-result-lateral-flow/v25-1/action/whos-taking-the-test', function (req, res) {
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+  //   if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25-1/sign-in-short/country')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25-1/account-details-from-nhs-account')
+  //   }
+  // })
 
   // router.post('/share-result-lateral-flow/v25/action/barcode', function (req, res) {
   //   let useDetails = req.session.data['use-details']
