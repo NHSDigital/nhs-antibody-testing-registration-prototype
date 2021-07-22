@@ -1125,6 +1125,24 @@ router.post('/organisational/test-pass/create-pass/residents/create-second-code/
 });
 
 
+router.post('/organisational/test-pass/create-pass/residents/create-second-code/select-address', function (req, res) {
+  let answer = req.body.selectAddress;
+
+  if (answer == 'wandsworth') {
+    res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/check-your-answers')
+  } else if (answer == 'dorchester') {
+      res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/check-your-answers')
+    } else if (answer == 'west') {
+        res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/check-your-answers')
+      } else if (answer == 'different') {
+          res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/address')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/create-pass/residents/create-second-code/select-address?error=empty')
+    }
+});
+
+
+
 // test-pass/MVP-reg
 
 router.post('/organisational/test-pass/MVP-reg/confirm-UON', function (req, res) {
