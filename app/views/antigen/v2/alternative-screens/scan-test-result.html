@@ -44,21 +44,43 @@
   </div>
 
   <script type="text/javascript">
+
+// var constraintsObject = { facingMode: constraint };
+
+// constraintsObject.facingMode = constraint;
+
+// var constraints = {
+//   facingMode: { exact: "user" }
+// };
   
 
 // Grab elements, create settings, etc.
 var video = document.getElementById('video');
 
 // Get access to the camera!
+// if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+//     // Not adding `{ audio: true }` since we only want video now
+//     navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+//         //video.src = window.URL.createObjectURL(stream);
+//         video.srcObject = stream;
+//         video.play();
+//     });
+// }
+
 if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    // Not adding `{ audio: true }` since we only want video now
-    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-        //video.src = window.URL.createObjectURL(stream);
+navigator.mediaDevices.getUserMedia({
+  audio: false,
+  video: {
+    facingMode: 'environment'
+  }
+})
+.then(function(stream) {
+        // video.src = window.URL.createObjectURL(stream);
         video.srcObject = stream;
         video.play();
-    });
+    })
+.catch(console.error);
 }
-
   </script>
 
 {% endblock %}
