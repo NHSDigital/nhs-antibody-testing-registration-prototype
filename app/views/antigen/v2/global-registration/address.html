@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "What is the address registered with the person's GP?" %}
+{% set pageTitle = "What is their address?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -31,12 +31,14 @@
           <div id="content-1">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-                Enter the postcode registered with {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s GP
+                What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s address?
               </h1>
             </legend>
     
               <span id="post-code-hint" class="govuk-body">
-                This will help us find and update the GP record with their test result.
+                <strong>Use the address registered with their GP.</strong><br><br>
+                This will help us find and update the GP record with their result.<br><br>
+                If they're not registered with a GP in the UK, use the address where they're staying.
               </span>
             <div class="govuk-form-group govuk-!-margin-top-6">
               <label class="govuk-label govuk-!-margin-bottom-3" for="gp-postcode" style="line-height: 0.8;">
@@ -48,18 +50,31 @@
               <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">Enter address manually</a>
             </p>
             <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
+
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  If you do not have a fixed address
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                You can use the postcode of a nearby reference address, such as your GP.<br><br>
+                You can also call 119 (free from mobiles and landlines) - lines are open 7am to 11pm.
+              </div>
+            </details>
           </div>
 
           <div id="content-2" style="display: none;">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-                Select the address registered with {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s GP
+                What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s address?
               </h1>
             </legend>
     
               <span id="post-code-hint" class="govuk-body">
-                This will help us find and update the GP record with their test result.<br><br>
-                If you cannot find the address in the list, select "I cannot find the address" and enter it manually.
+                <strong>Use the address registered with their GP.</strong><br><br>
+                This will help us find and update the GP record with their result.<br><br>
+                If they're not registered with a GP in the UK, use the address where they're staying.
               </span>
             <p class="govuk-!-margin-bottom-6 govuk-!-margin-top-6" style="line-height: 0.8;">
               <strong>Postcode</strong><br><br>
@@ -105,7 +120,9 @@
                 <span class="govuk-visually-hidden">your postcode</span>
               </a>
             </p> -->
-
+            <span id="post-code-hint" class="govuk-body">
+              This will help us find and update the GP record with their test result.<br><br>
+            </span>
             <div class="govuk-form-group">
               <label class="govuk-label" for="address-line-1-gp">
                 <strong>Building and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>

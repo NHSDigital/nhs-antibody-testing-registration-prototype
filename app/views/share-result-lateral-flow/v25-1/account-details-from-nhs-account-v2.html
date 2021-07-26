@@ -1,0 +1,257 @@
+{% set version = "v25-1" %}
+{% set pageTitle = "Your details" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-7">
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        Check the answers for {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}
+        {% else %}
+        {{ pageTitle }}
+        {% endif %}
+      </h1>
+
+      <p class="govuk-body govuk-!-margin-bottom-6">These details are used in your NHS login. They can be used whenever you report a result to save you time.</p>
+
+<p class="govuk-body govuk-!-margin-bottom-1">NHS number: 785 677 5576</p><p class="govuk-body govuk-!-margin-bottom-6">Date of birth: 5 January 1978</p>
+
+
+    <!--  <p class="govuk-body">Photo successfully uploaded</p> -->
+
+    <div style="position: relative;">
+
+    <form action="/share-result-lateral-flow/{{version}}/country" method="post" novalidate>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-7">
+
+      <!--   <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test location
+          </dt>
+          {% if data['test-place'] == "home" %}
+          <dd class="govuk-summary-list__value">
+            At home
+          </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            At a test site
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/test-place">
+              Change
+              <span class="govuk-visually-hidden">test location</span>
+            </a>
+          </dd>
+        </div>
+       {% if data['test-place'] == "site" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test site
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['site-id'] | default('De Montfort University')}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/find-test-site">
+              Change
+              <span class="govuk-visually-hidden">test site</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %} -->
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key column-width-title">
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input checked class="govuk-checkboxes__input" id="name-checkbox" name="name-checkbox" type="checkbox" value="name">
+                <label class="govuk-label govuk-checkboxes__label" for="name-checkbox">
+                  <strong>Name</strong>
+                </label>
+              </div>
+            </div>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key column-width-title">
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input checked class="govuk-checkboxes__input" id="medical-record-checkbox" name="medical-record-checkbox" type="checkbox" value="medical-record">
+                <label class="govuk-label govuk-checkboxes__label" for="medical-record-checkbox">
+                  <strong>Medical record (male, female, other...)</strong>
+                </label>
+              </div>
+            </div>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['gender-1'] or 'Male'}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key column-width-title">
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input checked class="govuk-checkboxes__input" id="email-checkbox" name="email-checkbox" type="checkbox" value="email">
+                <label class="govuk-label govuk-checkboxes__label" for="email-checkbox">
+                  <strong>Email</strong>
+                </label>
+              </div>
+            </div>
+          <dd class="govuk-summary-list__value">
+            {{ data['email-address'] or 'psmith@example.com' }} 
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key column-width-title">
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input checked class="govuk-checkboxes__input" id="mobile-checkbox" name="mobile-checkbox" type="checkbox" value="mobile">
+                <label class="govuk-label govuk-checkboxes__label" for="mobile-checkbox">
+                  <strong>Mobile</strong>
+                </label>
+              </div>
+            </div>
+          <dd class="govuk-summary-list__value">
+            {{ data['mobile-phone-number'] or '+44684356332' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+
+        <!-- <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key column-width-title">
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input checked class="govuk-checkboxes__input" id="country-checkbox" name="country-checkbox" type="checkbox" value="country-of-residence">
+                <label class="govuk-label govuk-checkboxes__label" for="country-checkbox">
+                  <strong>Country of residence</strong>
+                </label>
+              </div>
+            </div>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['country'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div> -->
+  <!--      <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test date and time
+          </dt>
+          {% if data['swab-test-date'] == "different" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} {{ data['date-of-swab-test-month'] }} {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            {{ data['swab-test-date'] }}
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/test-date">
+              Change
+              <span class="govuk-visually-hidden">test date and time</span>
+            </a>
+          </dd>
+        </div> -->
+       
+
+        <!-- {% if data['do-you-have-symptoms'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of onset
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/symptoms-start">
+              Change
+              <span class="govuk-visually-hidden">date of onset</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %} -->
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input checked class="govuk-checkboxes__input" id="postcode-checkbox" name="postcode-checkbox" type="checkbox" value="postcode">
+                <label class="govuk-label govuk-checkboxes__label" for="postcode-checkbox">
+                  <strong>Postcode</strong>
+                </label>
+              </div>
+            </div>
+          <dd class="govuk-summary-list__value">
+            {{ data['home-postcode'] or 'LS1 3BE' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+
+      </dl>
+
+      <p class="govuk-body">
+        We will only use this information within NHS Test and Trace to help you report your COVID-19 test results.
+      </p>
+
+      <input style="display:none" id="use-details" name="use-details" type="text" value="Yes">
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Use selected details
+      </button>
+
+  </form>
+
+  <form action="/share-result-lateral-flow/{{version}}/country" method="post" novalidate class="inline-form">
+    <input style="display:none" id="use-details" name="use-details" type="text" value="No">
+    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      I'll enter them myself
+    </button>
+  </form>
+
+</div>
+
+    <div class="proto-action big">
+      <a href="/share-result-lateral-flow/{{version}}/account-details-from-nhs-account">
+        <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
+      </a>
+    </div>
+
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+{% endblock %}

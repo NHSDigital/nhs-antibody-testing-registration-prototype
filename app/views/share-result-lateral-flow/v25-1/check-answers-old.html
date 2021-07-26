@@ -1,0 +1,411 @@
+{% set version = "v25-1" %}
+{% set pageTitle = "Check answers and report result" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['nhs-number-known'] == "Yes" %}
+  <a class="govuk-back-link" href="/lite-registration-lateral-flow/{{version}}/nhs-number">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/lite-registration-lateral-flow/{{version}}/nhs-number-known">Back</a>
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-7">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test location
+          </dt>
+          {% if data['test-place'] == "home" %}
+          <dd class="govuk-summary-list__value">
+            At home
+          </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            At a test site
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/test-place">
+              Change
+              <span class="govuk-visually-hidden">test location</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['test-place'] == "site" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test site
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['site-id'] | default('De Montfort University')}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/find-test-site">
+              Change
+              <span class="govuk-visually-hidden">test site</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test kit barcode reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['kit-barcode-reference-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/enter-barcode">
+              Change
+              <span class="govuk-visually-hidden">test kit barcode reference</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test date and time
+          </dt>
+          {% if data['swab-test-date'] == "different" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} {{ data['date-of-swab-test-month'] }} {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            {{ data['swab-test-date'] }}
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/test-date">
+              Change
+              <span class="govuk-visually-hidden">test date and time</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/date-of-birth">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name'] }} {{ data['last-name'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/name">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Gender
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['gender'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/gender">
+              Change
+              <span class="govuk-visually-hidden">gender</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnic group
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ethnic-group'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/ethnic-group">
+              Change
+              <span class="govuk-visually-hidden">ethnic group</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['ethnic-group'] !== "Prefer not to say" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnic background
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ethnic-background'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/ethnic-background">
+              Change
+              <span class="govuk-visually-hidden">ethnic background</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Do you have any symptoms?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['do-you-have-symptoms'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/do-you-have-symptoms">
+              Change
+              <span class="govuk-visually-hidden">do you have any symptoms</span>
+            </a>
+          </dd>
+        </div>
+        <!-- {% if data['do-you-have-symptoms'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of onset
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/symptoms-start">
+              Change
+              <span class="govuk-visually-hidden">date of onset</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %} -->
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Country of residence
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['country'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/country">
+              Change
+              <span class="govuk-visually-hidden">country of residence</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Postcode
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['home-postcode'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/postcode">
+              Change
+              <span class="govuk-visually-hidden">postcode</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['email'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['email-address'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/email-address">
+              Change
+              <span class="govuk-visually-hidden">email address</span>
+            </a>
+          </dd>
+        </div>
+        {% elseif data['email'] !== "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            I do not have an email address
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/email-address">
+              Change
+              <span class="govuk-visually-hidden">email address</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Mobile
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mobile-phone-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/mobile-number">
+              Change
+              <span class="govuk-visually-hidden">mobile</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['landline-number'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Landline number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['landline-telephone-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/landline-number">
+              Change
+              <span class="govuk-visually-hidden">landline number</span>
+            </a>
+          </dd>
+        </div>
+        {% elseif data['landline-number'] !== "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Landline number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            I do not have a landline number
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/landline-number">
+              Change
+              <span class="govuk-visually-hidden">landline number</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <!-- <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Are you currently in work?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['currently-in-work'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/currently-in-work">
+              Change
+              <span class="govuk-visually-hidden">are you currently in work?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['currently-in-work'] !== "No" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Area of work
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['industry'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/industry">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Occupation
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['occupation'] | default('Prefer not to say') }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/occupation">
+              Change
+              <span class="govuk-visually-hidden">occupation</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Employer
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['employer'] | default('Prefer not to say')}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/employer">
+              Change
+              <span class="govuk-visually-hidden">employer</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %} -->
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            NHS number known
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['nhs-number-known'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/nhs-number-known">
+              Change
+              <span class="govuk-visually-hidden">NHS number known</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['nhs-number-known'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            NHS number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['nhs-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/lite-registration-lateral-flow/{{version}}/nhs-number">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+      </dl>
+
+      <form action="/lite-registration-lateral-flow/{{version}}/security-check" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Report result
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

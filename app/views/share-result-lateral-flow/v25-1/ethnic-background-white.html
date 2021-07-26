@@ -1,0 +1,90 @@
+{% set version = "v25-1" %}
+{% set pageTitle = "Which one best describes your White background?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+  <div id="includedContent1"></div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/ethnic-group">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/share-result-lateral-flow/{{version}}/postcode-lookup" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="ethnic-background-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Which one best describes {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s ethnic background?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+            </legend>
+            <span id="ethnic-background-hint" class="govuk-body">
+              <!-- If you’re reporting a result for someone else, answer for them.
+            <br><br> -->
+              This will help us understand how coronavirus is affecting people of different ethnic backgrounds.
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-6">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-background-1" name="ethnic-background" type="radio" value="British, English, Northern Irish, Scottish, or Welsh" {{ checked("ethnic-background", "British, English, Northern Irish, Scottish, or Welsh") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-1">
+                  British, English, Northern Irish, Scottish, or Welsh
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-background-2" name="ethnic-background" type="radio" value="Irish" {{ checked("ethnic-background", "Irish") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-2">
+                  Irish
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-background-3" name="ethnic-background" type="radio" value="Irish Traveller or Gypsy" {{ checked("ethnic-background", "Irish Traveller or Gypsy") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-3">
+                  Irish Traveller or Gypsy
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-background-4" name="ethnic-background" type="radio" value="Another White background" {{ checked("ethnic-background", "Another White background") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-4">
+                  Another White background
+                </label>
+              </div>
+
+              <div class="govuk-radios__divider">or</div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-background-5" name="ethnic-background" type="radio" value="Prefer not to say" {{ checked("ethnic-background", "Prefer not to say") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-5">
+                  Prefer not to say
+                </label>
+              </div>
+
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+
+{% endblock %}

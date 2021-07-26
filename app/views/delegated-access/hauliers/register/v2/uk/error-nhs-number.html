@@ -1,0 +1,85 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set serviceName = "Manage haulier COVID-19 testing" %}
+{% set pageTitle = "Do you know your NHS number?" %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+<details class="govuk-details govuk-!-margin-bottom-0" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      English
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <a href="#" class="govuk-link">Polskie</a><br />
+    <a href="#" class="govuk-link">Română</a><br />
+    <a href="#" class="govuk-link">български</a><br />
+    <a href="#" class="govuk-link">čeština</a><br />
+    <a href="#" class="govuk-link">Dutch</a><br />
+    <a href="#" class="govuk-link">Français</a><br />
+    <a href="#" class="govuk-link">Deutsche</a><br />
+    <a href="#" class="govuk-link">Magyar</a><br />
+    <a href="#" class="govuk-link">Lietuvis</a><br />
+    <a href="#" class="govuk-link">русский</a><br />
+    <a href="#" class="govuk-link">Español</a><br />
+    <a href="#" class="govuk-link">Türk</a><br />
+    <a href="#" class="govuk-link">Cymraeg</a>
+  </div>
+</details>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#field-1">Enter a NHS number</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form action="" method="post">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="nhs-number-hint" class="govuk-hint">
+              An NHS number is 10 digits, for example 876 406 5600.
+            </span>
+            <p class="govuk-body">Enter this number with no spaces.</p>
+            <div class="govuk-form-group govuk-form-group--error">
+              <label class="govuk-label" for="">
+                NHS number
+              </label>
+              <span id="#error-1" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Enter a NHS number
+              </span>
+              <input class="govuk-input govuk-input--error govuk-input--width-10" id="field-1" name="nhs-number" type="text" value="{{ data['nhs-number'] }}">
+            </div>
+          </fieldset>
+        </div>
+        <button class="govuk-button" type="submit" data-module="govuk-button">
+          Continue
+        </button>
+        <p class="govuk-body">How to find an NHS number <a class="govuk-link" href="#">https://www.nhs.uk/find-nhs-number/what-is-your-name</a></p>
+        <p class="govuk-body">In Scotland it is known as a CHI number. In Northern Ireland, it is known as an H&C number.</p>
+        <p class="govuk-body">If you do not have it, you can still continue.</p>
+
+      </form>
+    </div>
+  </div>
+
+
+{% endblock %}

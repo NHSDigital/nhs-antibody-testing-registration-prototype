@@ -1,0 +1,78 @@
+{% set pageHeading = "Where should we send John Smith's test registration code?" %}
+ {% set version = "organisational/test-pass" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+{% block beforeContent %}
+<div class=“”>
+  <div class=“govuk-grid-row”>
+    <div class=“govuk-grid-column-full”>
+      <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">Where should we send John Smith’s test registration code?</h1>
+
+      <form class="form" action="/{{ version }}/create-pass/residents/select-address" method="get">
+
+          <p>We’ll send their test registration code (and any future test results) to the contact details you provid</p>
+          <p>If the contact details do not belong to the person being registered, make sure you have their consent for their code and results to go to another email address or mobile number.</p>
+
+          <h4 class="govuk-heading-s">Enter an email address</h4>
+
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-form-group">
+      <label class="govuk-label" for="address-line-1">
+        Email address <span class="govuk-visually-hidden">line 1 of 2</span>
+      </label>
+      <input class="govuk-input" id="address-line-1" name="address-line-1" type="text"></div>
+      <div class="govuk-form-group">
+      <label class="govuk-label" for="address-line-1">
+        Confirm email address <span class="govuk-visually-hidden">line 1 of 2</span>
+      </label>
+      <input class="govuk-input" id="address-line-1" name="address-line-1" type="text"></div>
+      </<fieldset>
+
+  <h4 class="govuk-heading-s">Enter a mobile number</h4>
+  <fieldset class="govuk-fieldset">
+    <div class="govuk-form-group">
+  <label class="govuk-label" for="address-line-1">
+  Mobile number (optional)
+  </label>
+  <input class="govuk-input" id="address-line-1" name="address-line-1" type="text"></div>
+  <div class="govuk-form-group">
+    <div class="govuk-form-group">
+  <label class="govuk-label" for="address-line-1">
+  Confirm mobile number (optional)
+  </label>
+  <input class="govuk-input" id="address-line-1" name="address-line-1" type="text"></div>
+  <div class="govuk-form-group">
+  </<fieldset>
+
+    <div class="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+        <label class="govuk-label govuk-checkboxes__label" for="waste"><p class="govuk-body govuk-!-font-weight-bold">Set as default contact details for care home residents</p>
+        </label>
+      </div>
+      <br>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

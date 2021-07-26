@@ -32,7 +32,7 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                What is the home address registered with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s GP?
+                What is the address registered with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s GP?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
@@ -55,8 +55,8 @@
               
             </span>
             <div class="govuk-form-group govuk-!-margin-top-6">
-              <label class="govuk-label govuk-!-margin-bottom-3" for="gp-postcode" style="line-height: 0.8;">
-                Postcode
+              <label class="govuk-label govuk-!-margin-bottom-3 govuk-!-font-size-24" for="gp-postcode" style="line-height: 0.8;">
+                <strong>Postcode</strong>
               </label>
               <input class="govuk-input govuk-input--width-10" id="gp-postcode" name="gp-postcode" type="text" autocomplete="postal-code" value="{{ data['gp-postcode'] }}" autofocus>
             </div>
@@ -70,7 +70,7 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                What is the home address registered with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s GP?
+                What is the address registered with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s GP?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
@@ -113,9 +113,15 @@
                 <option value="5 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">5 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}</option>
               </select>
             </div>
+            {% if data['whos-taking-the-test'] == "someone-else" %}
             <p class="govuk-body">
-              <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find the address in this list</a>
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find their address in the list</a>
             </p>
+            {% else %}
+            <p class="govuk-body">
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find my address in the list</a>
+            </p>
+            {% endif %}
             <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
               Continue
             </button>
@@ -125,7 +131,7 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                What is the home address registered with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s GP?
+                What is the address registered with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s GP?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}

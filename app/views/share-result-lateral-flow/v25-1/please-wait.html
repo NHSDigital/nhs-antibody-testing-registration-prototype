@@ -1,0 +1,59 @@
+{% set version = "v25-1" %}
+{% set pageTitle = "Your result is being sent. Do not close this window." %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- back link -->
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .ccms-loader {
+    border: 12px solid #DEE0E2;
+    border-radius: 50%;
+    border-top-color: #005EA5;
+    width: 80px;
+    height: 80px;
+    -webkit-animation: spin 0.7s linear infinite;
+    animation: spin 0.7s linear infinite;
+    text-align: center;
+    margin: 20px auto 10px;
+  }
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+
+      <div style="text-align: center; margin: 20px auto">
+        <div class="ccms-loader"></div>
+        <br>
+        <p class="govuk-body">Your result is being sent. Do not close this window.</p>
+      </div>
+
+      <a href="/share-result-lateral-flow/{{version}}/positive-result" id="button" style="display: none"></a>
+
+    </div>
+  </div>
+
+<script type="text/javascript">
+  loadingSpinner()
+  function loadingSpinner(target) {
+    setTimeout(function () {
+      document.getElementById('button').click();
+    }, 4000)
+  }
+</script>
+
+{% endblock %}

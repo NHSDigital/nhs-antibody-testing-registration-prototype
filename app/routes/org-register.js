@@ -970,19 +970,19 @@ router.post('/organisational/test-pass/create-pass/create-more/other/ethnic-grou
     }
 });
 
-router.post('/organisational/test-pass/create-pass/staff/travel', function (req, res) {
-  let answer = req.body.travel;
+router.post('/organisational/test-pass/create-pass/staff/occupation/index', function (req, res) {
+  let answer = req.body.cuInWork;
 
-  if (answer == 'workplace') {
-    res.redirect('/organisational/test-pass/create-pass/staff/areawork')
-  } else if (answer == 'education') {
-    res.redirect('/organisational/test-pass/create-pass/staff/attendeducation')
+  if (answer == "Yes, and for the last 2 weeks they've worked from home") {
+    res.redirect('/organisational/test-pass/create-pass/staff/occupation/area')
+  } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
+    res.redirect('/organisational/test-pass/create-pass/staff/occupation/area')
   } else if (answer == 'no') {
-    res.redirect('/organisational/test-pass/create-pass/checkyouranswers')
+    res.redirect('/organisational/test-pass/create-pass/staff/check-your-answers')
   } else if (answer == 'Prefer not to say') {
-    res.redirect('/organisational/test-pass/create-pass/checkyouranswers')
+    res.redirect('/organisational/test-pass/create-pass/staff/occupation/area')
   } else {
-    res.redirect('/organisational/test-pass/create-pass/staff/areawork?error=empty')
+    res.redirect('/organisational/test-pass/create-pass/staff/occupation/index?error=empty')
     }
 });
 
@@ -1017,6 +1017,221 @@ router.post('/organisational/test-pass/create-pass/staff/travel2', function (req
     res.redirect('/organisational/test-pass/create-pass/staff/travel2?error=empty')
     }
 });
+
+// test-pass/create-pass
+
+router.post('/organisational/test-pass/create-pass/confirm-UON', function (req, res) {
+  let answer = req.body.changeUON;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/create-pass/who')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/create-pass/UON')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/UON-check-radio?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/who', function (req, res) {
+  let answer = req.body.cuWho;
+
+  if (answer == 'Staff') {
+    res.redirect('/organisational/test-pass/create-pass/staff/personal')
+  } else if (answer == 'Residents') {
+      res.redirect('/organisational/test-pass/create-pass/residents/personal')
+  } else if (answer == 'Visitors') {
+        res.redirect('/organisational/test-pass/create-pass/staff/personal')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/who?error=empty')
+    }
+});
+
+
+router.post('/organisational/test-pass/create-pass/staff/create-more', function (req, res) {
+  let answer = req.body.CreateMoreStaff;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/create-pass/who')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/create-pass/security')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/staff/create-more?error=empty')
+    }
+});
+
+
+router.post('/organisational/test-pass/create-pass/residents/create-second-code/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/confirm-contact')
+    } else if (answer) {
+      res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/ethnic-desc')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/residents/select-address', function (req, res) {
+  let answer = req.body.selectAddress;
+
+  if (answer == 'wandsworth') {
+    res.redirect('/organisational/test-pass/create-pass/residents/check-your-answers')
+  } else if (answer == 'dorchester') {
+      res.redirect('/organisational/test-pass/create-pass/residents/check-your-answers')
+    } else if (answer == 'west') {
+        res.redirect('/organisational/test-pass/create-pass/residents/check-your-answers')
+      } else if (answer == 'different') {
+          res.redirect('/organisational/test-pass/create-pass/residents/address')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/create-pass/residents/select-address?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/residents/create-more', function (req, res) {
+  let answer = req.body.CreateMoreResidents;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/who')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/create-pass/security')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/residents/create-more?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/residents/create-second-code/confirm-contact', function (req, res) {
+  let answer = req.body.changeContact;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/select-address')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/contact')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/confirm-contact?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/create-pass/residents/create-second-code/create-more', function (req, res) {
+  let answer = req.body.CreateMoreResidents;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/who')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/create-pass/security')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/create-more?error=empty')
+    }
+});
+
+
+router.post('/organisational/test-pass/create-pass/residents/create-second-code/select-address', function (req, res) {
+  let answer = req.body.selectAddress;
+
+  if (answer == 'wandsworth') {
+    res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/check-your-answers')
+  } else if (answer == 'dorchester') {
+      res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/check-your-answers')
+    } else if (answer == 'west') {
+        res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/check-your-answers')
+      } else if (answer == 'different') {
+          res.redirect('/organisational/test-pass/create-pass/residents/create-second-code/address')
+    } else {
+    res.redirect('/organisational/test-pass/create-pass/create-pass/residents/create-second-code/select-address?error=empty')
+    }
+});
+
+
+
+// test-pass/MVP-reg
+
+router.post('/organisational/test-pass/MVP-reg/confirm-UON', function (req, res) {
+  let answer = req.body.changeUON;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/MVP-reg/how')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/MVP-reg/UON')
+    } else {
+    res.redirect('/organisational/test-pass/MVP-reg/confirm-UON?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/mvp-reg/how', function (req, res) {
+  let answer = req.body.cuUploadType;
+
+  if (answer == 'bulk') {
+    res.redirect('/organisational/test-pass/mvp-reg/single/have-pass')
+  } else if (answer == 'single') {
+      res.redirect('/organisational/test-pass/mvp-reg/single/have-pass')
+    } else {
+    res.redirect('/organisational/test-pass/mvp-reg/how?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/mvp-reg/single/have-pass', function (req, res) {
+  let answer = req.body.havepass;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/mvp-reg/single/pass-details')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/mvp-reg/single/who')
+    } else {
+    res.redirect('/organisational/test-pass/mvp-reg/single/have-pass?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/mvp-reg/single/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/mvp-reg/single/contact')
+    } else if (answer) {
+      res.redirect('/organisational/test-pass/mvp-reg/single/ethnic-desc')
+    } else {
+    res.redirect('/organisational/test-pass/mvp-reg/single/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/mvp-reg/single/occupation/index', function (req, res) {
+  let answer = req.body.cuInWork;
+
+  if (answer == "Yes, and for the last 2 weeks they've worked from home") {
+    res.redirect('/organisational/test-pass/mvp-reg/single/occupation/area')
+  } else if (answer == "Yes, and for the last 2 weeks they've travelled to work") {
+    res.redirect('/organisational/test-pass/mvp-reg/single/occupation/area')
+  } else if (answer == 'no') {
+    res.redirect('/organisational/test-pass/mvp-reg/single/save-pass')
+  } else if (answer == 'Prefer not to say') {
+    res.redirect('/organisational/test-pass/mvp-reg/single/occupation/area')
+  } else {
+    res.redirect('/organisational/test-pass/mvp-reg/single/occupation/index?error=empty')
+    }
+});
+
+router.post('/organisational/test-pass/mvp-reg/single/have-coronavirus', function (req, res) {
+  let answer = req.body.cuCoronavirus;
+
+  if (answer == 'Yes') {
+    res.redirect('/organisational/test-pass/mvp-reg/single/when-symptoms')
+    } else {
+    res.redirect('/organisational/test-pass/mvp-reg/single/daily-contact-testing')
+    }
+});
+
+router.post('/organisational/test-pass/mvp-reg/single/add-another', function (req, res) {
+  let answer = req.body.addanotherperson;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/test-pass/mvp-reg/single/have-pass')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/test-pass/mvp-reg/single/single-check')
+    } else {
+    res.redirect('/organisational/test-pass/mvp-reg/single/add-another?error=empty')
+    }
+});
+
+
 
 
 
@@ -1410,19 +1625,6 @@ router.post('/organisational/test-pass/reg-with-pass/bulk/send-all-codes', funct
     }
 });
 
-// test-pass/create-pass
-
-router.post('/organisational/test-pass/create-pass/confirm-UON', function (req, res) {
-  let answer = req.body.changeUON;
-
-  if (answer == 'yes') {
-    res.redirect('/organisational/test-pass/create-pass/how')
-  } else if (answer == 'no') {
-      res.redirect('/organisational/test-pass/create-pass/UON')
-    } else {
-    res.redirect('/organisational/test-pass/create-pass/UON-check-radio?error=empty')
-    }
-});
 
 
 // // test-pass/reg-without-pass

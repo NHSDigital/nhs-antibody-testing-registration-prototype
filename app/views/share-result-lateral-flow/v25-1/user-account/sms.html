@@ -1,0 +1,74 @@
+{% set version = "v25-1" %}
+{% set pageTitle = "Check your mobile phone" %}
+
+<!DOCTYPE html>
+<!-- [if lt IE 9]><html class="ie8" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if gt IE 9]><html lang="en" style="{{ html_style }}"> -->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+
+    <title>{% block pageTitle %}{{pageTitle}} - NHS.UK{% endblock %}</title>
+
+    <link href="https://www.nhs.uk/" rel="preconnect">
+    <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin>
+ 
+    <link href="/public/stylesheets/nhs_application.css" media="all" rel="stylesheet" type="text/css" />   
+    <link href="/public/stylesheets/nhsuk-site.css" media="all" rel="stylesheet" type="text/css" />   
+
+    <!-- <script src="nhsuk.min.js" defer></script> -->
+  </head>
+
+  <body class="{{ bodyClasses }}" style="background-color: #f3f2f1 !important;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;">
+
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    
+
+
+    {% block main %}
+    <div class="nhsuk-width-container {{ containerClasses }}">
+        <main class="nhsuk-main-wrapper {{ mainClasses }}" id="maincontent" role="main" style="padding: 1em">
+            
+            {% block content %}
+            <div style="background-color: #fff;
+            padding: 20px;
+            max-width: 320px;
+            min-height: 420px;">
+                <p class="nhsuk-body">NHS login</p>
+                <div style="max-width: 255px;
+                word-wrap: break-word;
+                margin-bottom: 12px;
+                line-height: 24px;
+                position:relative;
+                padding:10px 20px;
+                border-radius:25px;
+                background:#E5E5EA;
+                color:black;">
+                    <p class="nhsuk-body">536831 is your NHS login security code</p>
+                </div>
+            </div>
+            {% endblock %}
+
+      </main>
+    </div>
+    {% endblock %}
+
+  </body>
+  
+  {% block bodyEnd %}
+  <div style="background-color: #ffeb3b; height: 35px; width: 114px; position: absolute; right: 0; display: flex; align-items: center; box-shadow: -7px -7px 12px -7px rgba(0, 0, 0, 0.85)">
+    <a style="font-weight: bold; text-decoration: none; outline: none; background-color: none" href="/share-result-lateral-flow/{{version}}/user-account/check-mobile">
+      <div class="proto-action-text govuk-!-margin-left-3" style="font-size: 1rem">Back to site</div>
+    </a>
+  </div>
+  {% endblock %}
+
+
+</html>

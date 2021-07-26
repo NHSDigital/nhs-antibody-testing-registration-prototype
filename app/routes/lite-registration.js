@@ -903,7 +903,27 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
 
         })
 
-        
+        // Version 24 - LFD Results sharing - Ethnic group route
+        router.post('/share-result-lateral-flow/v24/action6/ethnic-group', function (req, res) {
+          let ethnicGroup = req.session.data['ethnic-group']
+
+          if (ethnicGroup == "Asian or Asian British"){
+            res.redirect('/share-result-lateral-flow/v24/ethnic-background-asian')
+          } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+            res.redirect('/share-result-lateral-flow/v24/ethnic-background-black')
+          } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+            res.redirect('/share-result-lateral-flow/v24/ethnic-background-mixed')
+          } else if (ethnicGroup == "White") {
+            res.redirect('/share-result-lateral-flow/v24/ethnic-background-white')
+          } else if (ethnicGroup == "Another ethnic group") {
+            res.redirect('/share-result-lateral-flow/v24/ethnic-background-another')
+          } else {
+            res.redirect('/share-result-lateral-flow/v24/postcode-lookup')
+          }
+
+        })
+
+
 
 
   // Version 1 - Lite Registration lateral flow with Accounts - Ethnic group route
@@ -1027,6 +1047,26 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
     } else {
       res.redirect('/lite-registration-lateral-flow-accounts/v1/user-account/agreement')
     }
+  })
+
+   // Version 23 - LFD Results sharing - Ethnic group route
+   router.post('/share-result-lateral-flow/v23/action6/ethnic-group', function (req, res) {
+    let ethnicGroup = req.session.data['ethnic-group']
+
+    if (ethnicGroup == "Asian or Asian British"){
+      res.redirect('/share-result-lateral-flow/v23/ethnic-background-asian')
+    } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+      res.redirect('/share-result-lateral-flow/v23/ethnic-background-black')
+    } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+      res.redirect('/share-result-lateral-flow/v23/ethnic-background-mixed')
+    } else if (ethnicGroup == "White") {
+      res.redirect('/share-result-lateral-flow/v23/ethnic-background-white')
+    } else if (ethnicGroup == "Another ethnic group") {
+      res.redirect('/share-result-lateral-flow/v23/ethnic-background-another')
+    } else {
+      res.redirect('/share-result-lateral-flow/v23/postcode-lookup')
+    }
+
   })
 
   //Version 23 - Lateral Flow
@@ -1180,5 +1220,352 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
     }
 
   })
+
+
+  // Version 25 - LFD Results sharing - Ethnic group route
+  router.post('/share-result-lateral-flow/v25/action/ethnic-group', function (req, res) {
+    let ethnicGroup = req.session.data['ethnic-group']
+
+    if (ethnicGroup == "Asian or Asian British"){
+      res.redirect('/share-result-lateral-flow/v25/ethnic-background-asian')
+    } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+      res.redirect('/share-result-lateral-flow/v25/ethnic-background-black')
+    } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+      res.redirect('/share-result-lateral-flow/v25/ethnic-background-mixed')
+    } else if (ethnicGroup == "White") {
+      res.redirect('/share-result-lateral-flow/v25/ethnic-background-white')
+    } else if (ethnicGroup == "Another ethnic group") {
+      res.redirect('/share-result-lateral-flow/v25/ethnic-background-another')
+    } else {
+      res.redirect('/share-result-lateral-flow/v25/postcode-lookup')
+    }
+
+  })
+
+  //Version 25 - Lateral Flow
+  router.post('/share-result-lateral-flow/v25/action/whos-taking-the-test', function (req, res) {
+    let whosTakingTheTest = req.session.data['whos-taking-the-test']
+    if (whosTakingTheTest == "someone-else") {
+      res.redirect('/share-result-lateral-flow/v25/sign-in-short/country')
+    } else {
+      res.redirect('/share-result-lateral-flow/v25/account-details-from-nhs-account')
+    }
+  })
+
+  // router.post('/share-result-lateral-flow/v25/action/barcode', function (req, res) {
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let name = req.session.data['name-checkbox']
+  //   let medicalRecord = req.session.data['medical-record-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+  //   if (useDetails == "Yes" && !name || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25/name')
+  //   } else if (useDetails == "Yes" && !medicalRecord || useDetails1 == "Yes") {
+  //     res.redirect('/share-result-lateral-flow/v25/gender')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25/name')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-group')
+  //   }
+  // })
+
+  // router.post('/share-result-lateral-flow/v25/action/name', function (req, res) {
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let medicalRecord = req.session.data['medical-record-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+  //   if (useDetails == "Yes" && !medicalRecord) {
+  //     res.redirect('/share-result-lateral-flow/v25/gender')
+  //   } else if (useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25/dob')
+  //   } else if (useDetails == "Yes" && medicalRecord || useDetails1 == "Yes") {
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-group')
+  //   }  else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25/gender')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25/dob')
+  //   }
+  // })
+
+  // router.post('/share-result-lateral-flow/v25/action/dob', function (req, res) {
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let medicalRecord = req.session.data['medical-record-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+  //   if (useDetails == "Yes" && !medicalRecord || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25/gender')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25/gender')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-group')
+  //   }
+  // })
+
+  // router.post('/share-result-lateral-flow/v25/action6/ethnic-group', function (req, res) {
+  //   let ethnicGroup = req.session.data['ethnic-group']
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let postcode = req.session.data['postcode-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+
+  //   if (ethnicGroup == "Asian or Asian British"){
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-background-asian')
+  //   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-background-black')
+  //   } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-background-mixed')
+  //   } else if (ethnicGroup == "White") {
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-background-white')
+  //   } else if (ethnicGroup == "Another ethnic group") {
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-background-another')
+  //   } else if (useDetails == "Yes" && !postcode || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25/postcode-lookup')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25/postcode-lookup')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25/postcode-lookup-2')
+  //   }
+
+  // })
+
+  // router.post('/share-result-lateral-flow/v25/ethnic-background', function (req, res) {
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let postcode = req.session.data['postcode-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+  //   if (useDetails == "Yes" && !postcode || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25/postcode-lookup')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25/postcode-lookup')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25/postcode-lookup-2')
+  //   }
+
+  // })
+
+  // router.post('/share-result-lateral-flow/v25/action/postcode-lookup-2', function (req, res) {
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let email = req.session.data['email-checkbox']
+  //   let mobile = req.session.data['mobile-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+
+  //   if (useDetails == "Yes" && !email || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v23/got-email')
+  //   } else if (useDetails == "Yes" && !mobile || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25/mobile')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //       res.redirect('/share-result-lateral-flow/v25/got-email')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25/check-answers')
+  //   }
+
+  // })
+
+  // router.post('/share-result-lateral-flow/v25/action/got-email', function (req, res) {
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let mobile = req.session.data['mobile-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+
+  //   if (useDetails == "Yes" && !mobile || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25/mobile')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25/mobile')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25/check-answers')
+  //   }
+
+  // })
+
+  // router.post('/share-result-lateral-flow/v25/action/mobile', function (req, res) {
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   if (useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25/nhs-number-known')
+  //   } else if (useDetails == "Yes") {
+  //     res.redirect('/share-result-lateral-flow/v25/check-answers')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25/nhs-number-known')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25/check-answers')
+  //   }
+
+  // })
+
+  // Version 25-1 - LFD Results sharing - Ethnic group route
+  router.post('/share-result-lateral-flow/v25-1/action/ethnic-group', function (req, res) {
+    let ethnicGroup = req.session.data['ethnic-group']
+
+    if (ethnicGroup == "Asian or Asian British"){
+      res.redirect('/share-result-lateral-flow/v25-1/ethnic-background-asian')
+    } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+      res.redirect('/share-result-lateral-flow/v25-1/ethnic-background-black')
+    } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+      res.redirect('/share-result-lateral-flow/v25-1/ethnic-background-mixed')
+    } else if (ethnicGroup == "White") {
+      res.redirect('/share-result-lateral-flow/v25-1/ethnic-background-white')
+    } else if (ethnicGroup == "Another ethnic group") {
+      res.redirect('/share-result-lateral-flow/v25-1/ethnic-background-another')
+    } else {
+      res.redirect('/share-result-lateral-flow/v25-1/postcode-lookup')
+    }
+
+  })
+
+  //Version 25 - Lateral Flow
+  // router.post('/share-result-lateral-flow/v25-1/action/whos-taking-the-test', function (req, res) {
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+  //   if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25-1/sign-in-short/country')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25-1/account-details-from-nhs-account')
+  //   }
+  // })
+
+  // router.post('/share-result-lateral-flow/v25/action/barcode', function (req, res) {
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let name = req.session.data['name-checkbox']
+  //   let medicalRecord = req.session.data['medical-record-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+  //   if (useDetails == "Yes" && !name || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25/name')
+  //   } else if (useDetails == "Yes" && !medicalRecord || useDetails1 == "Yes") {
+  //     res.redirect('/share-result-lateral-flow/v25/gender')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25/name')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-group')
+  //   }
+  // })
+
+  // router.post('/share-result-lateral-flow/v25-1/action/name', function (req, res) {
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let medicalRecord = req.session.data['medical-record-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+  //   if (useDetails == "Yes" && !medicalRecord) {
+  //     res.redirect('/share-result-lateral-flow/v25-1/gender')
+  //   } else if (useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25-1/gender')
+  //   } else if (useDetails == "Yes" && medicalRecord || useDetails1 == "Yes") {
+  //     res.redirect('/share-result-lateral-flow/v25-1/ethnic-group')
+  //   }  else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25-1/gender')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25-1/gender')
+  //   }
+  // })
+
+  // router.post('/share-result-lateral-flow/v25/action/dob', function (req, res) {
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let medicalRecord = req.session.data['medical-record-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+  //   if (useDetails == "Yes" && !medicalRecord || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25/gender')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25/gender')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-group')
+  //   }
+  // })
+
+  // router.post('/share-result-lateral-flow/v25/action6/ethnic-group', function (req, res) {
+  //   let ethnicGroup = req.session.data['ethnic-group']
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let postcode = req.session.data['postcode-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+
+  //   if (ethnicGroup == "Asian or Asian British"){
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-background-asian')
+  //   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-background-black')
+  //   } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-background-mixed')
+  //   } else if (ethnicGroup == "White") {
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-background-white')
+  //   } else if (ethnicGroup == "Another ethnic group") {
+  //     res.redirect('/share-result-lateral-flow/v25/ethnic-background-another')
+  //   } else if (useDetails == "Yes" && !postcode || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25/postcode-lookup')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25/postcode-lookup')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25/postcode-lookup-2')
+  //   }
+
+  // })
+
+  // router.post('/share-result-lateral-flow/v25-1/ethnic-background', function (req, res) {
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let postcode = req.session.data['postcode-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+  //   if (useDetails == "Yes" && !postcode || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25-1/postcode-lookup')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25-1/postcode-lookup')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25-1/postcode-lookup-2')
+  //   }
+
+  // })
+
+  // router.post('/share-result-lateral-flow/v25/action/postcode-lookup-2', function (req, res) {
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let email = req.session.data['email-checkbox']
+  //   let mobile = req.session.data['mobile-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+
+  //   if (useDetails == "Yes" && !email || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v23/got-email')
+  //   } else if (useDetails == "Yes" && !mobile || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25/mobile')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //       res.redirect('/share-result-lateral-flow/v25/got-email')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25/check-answers')
+  //   }
+
+  // })
+
+  // router.post('/share-result-lateral-flow/v25-1/action/got-email', function (req, res) {
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   let mobile = req.session.data['mobile-checkbox']
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+
+  //   if (useDetails == "Yes" && !mobile || useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25-1/mobile')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25-1/mobile')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25-1/check-answers')
+  //   }
+
+  // })
+
+  // router.post('/share-result-lateral-flow/v25-1/action/mobile', function (req, res) {
+  //   let whosTakingTheTest = req.session.data['whos-taking-the-test']
+  //   let useDetails = req.session.data['use-details']
+  //   let useDetails1 = req.session.data['use-details1']
+  //   if (useDetails == "No" || useDetails1 == "No") {
+  //     res.redirect('/share-result-lateral-flow/v25-1/nhs-number-known')
+  //   } else if (useDetails == "Yes") {
+  //     res.redirect('/share-result-lateral-flow/v25-1/check-answers')
+  //   } else if (whosTakingTheTest == "someone-else") {
+  //     res.redirect('/share-result-lateral-flow/v25-1/nhs-number-known')
+  //   } else {
+  //     res.redirect('/share-result-lateral-flow/v25-1/check-answers')
+  //   }
+
+  // })
+
+
 
 module.exports = router

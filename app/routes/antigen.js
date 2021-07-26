@@ -572,16 +572,25 @@ router.post('/antigen/v2/action3/address-person-1', function (req, res) {
 
 // Version 2 - Antigen Global Registration - NHS number known route
 
+// router.post('/antigen/v2/action3/nhs-number-known', function (req, res) {
+//   let nhsNumberKnown = req.session.data['nhs-number-known']
+//   let country = req.session.data['country']
+//   let birthYear = req.session.data['date-of-birth-year']
+//   if (nhsNumberKnown == "Yes"){
+//     res.redirect('/antigen/v2/global-registration/nhs-number')
+//   } else if (nhsNumberKnown == "No" && country == "England" && parseInt(birthYear) <= 2003 || nhsNumberKnown == "No" && country == "Scotland" && parseInt(birthYear) <= 2003) {
+//     res.redirect('/antigen/v2/global-registration/fingerprick-test')
+//   } else {
+//     res.redirect('/antigen/v2/global-registration/check-your-answers')
+//   }
+// })
+
 router.post('/antigen/v2/action3/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
-  let country = req.session.data['country']
-  let birthYear = req.session.data['date-of-birth-year']
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antigen/v2/global-registration/nhs-number')
-  } else if (nhsNumberKnown == "No" && country == "England" && parseInt(birthYear) <= 2003 || nhsNumberKnown == "No" && country == "Scotland" && parseInt(birthYear) <= 2003) {
-    res.redirect('/antigen/v2/global-registration/fingerprick-test')
   } else {
-    res.redirect('/antigen/v2/global-registration/check-your-answers')
+    res.redirect('/antigen/v2/global-registration/fingerprick-test')
   }
 })
 
@@ -598,13 +607,23 @@ router.post('/antigen/v2/action3/nhs-number-known-person-1', function (req, res)
   }
 })
 
+// router.post('/antigen/v2/action3/nhs-number', function (req, res) {
+//   let country = req.session.data['country']
+//   let birthYear = req.session.data['date-of-birth-year']
+//   if (country == "England" && parseInt(birthYear) <= 2003 || country == "Scotland" && parseInt(birthYear) <= 2003){
+//     res.redirect('/antigen/v2/global-registration/fingerprick-test')
+//   } else {
+//     res.redirect('/antigen/v2/global-registration/check-your-answers')
+//   }
+// })
+
 router.post('/antigen/v2/action3/nhs-number', function (req, res) {
   let country = req.session.data['country']
   let birthYear = req.session.data['date-of-birth-year']
   if (country == "England" && parseInt(birthYear) <= 2003 || country == "Scotland" && parseInt(birthYear) <= 2003){
     res.redirect('/antigen/v2/global-registration/fingerprick-test')
   } else {
-    res.redirect('/antigen/v2/global-registration/check-your-answers')
+    res.redirect('/antigen/v2/global-registration/fingerprick-test')
   }
 })
 

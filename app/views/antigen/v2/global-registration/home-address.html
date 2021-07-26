@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Enter the postcode to find their home address" %}
+{% set pageTitle = "What is their home address in the UK?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -31,11 +31,11 @@
           <div id="content-1">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                Enter the postcode to find {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address
+                What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address in the UK?
               </h1>
             </legend>
             <span id="post-code-hint-1" class="govuk-body">
-              If they do not have a home address in the UK, enter the address where they’re staying.<br><br>
+              If they do not have a home address in the UK, use the address where they're staying.<br><br>
             </span>
             <div class="govuk-form-group">
               <label class="govuk-label govuk-!-margin-bottom-3" for="home-postcode" style="line-height: 0.8;">
@@ -47,17 +47,28 @@
               <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">Enter address manually</a>
             </p>
             <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
+
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  If you do not have a fixed address
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                You can use the postcode of a nearby reference address, such as your GP.<br><br>
+                You can also call 119 (free from mobiles and landlines) - lines are open 7am to 11pm.
+              </div>
+            </details>
           </div>
 
           <div id="content-2" style="display: none;">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                Select {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address
+                What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address in the UK?
               </h1>
             </legend>
             <span id="post-code-hint-2" class="govuk-body">
-              If they do not have a home address in the UK, enter the address where they’re staying.<br><br>
-              If you cannot find the address in the list, select "I cannot find the address" and enter it manually.<br><br>
+              If they do not have a home address in the UK, use the address where they're staying.<br><br>
             </span>
 
             <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
@@ -103,9 +114,9 @@
                 <span class="govuk-visually-hidden">your postcode</span>
               </a>
             </p> -->
-            <!-- <span id="post-code-hint-3" class="govuk-body">
-              If you do not have a home address in the UK, enter the postcode where you're staying.<br><br>
-            </span> -->
+            <span id="post-code-hint-3" class="govuk-body">
+              If they do not have a home address in the UK, enter the address where they're staying.<br><br>
+            </span>
             <div class="govuk-form-group">
               <label class="govuk-label" for="address-line-1">
                 <strong>Building and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>

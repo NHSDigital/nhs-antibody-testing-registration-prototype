@@ -29,7 +29,13 @@
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
-                {{ pageTitle }}
+                <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  Select the area they work in
+                  {% else %}
+                  {{ pageTitle }}
+                  {% endif %}
+                </h1>
               </h1>
             </legend>
            <div class="govuk-radios__item">
@@ -88,14 +94,14 @@
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-8" name="country" type="radio" value="postcode" onclick="setLocation(this);" {{ checked("country", "Wales") }}>
-                <label class="govuk-label govuk-radios__label" for="country-8">
+                <input class="govuk-radios__input" id="country-11" name="country" type="radio" value="postcode" onclick="setLocation(this);" {{ checked("country", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-11">
                   Optometry
                 </label>
               </div>
               <div class="govuk-radios__divider">or</div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-9" name="country" type="radio" value="postcode" onclick="setLocation(this);" {{ checked("country", "Wales") }}>
+                <input class="govuk-radios__input" id="country-9" name="country" type="radio" value="nhs-other" onclick="setLocation(this);" {{ checked("country", "Wales") }}>
                 <label class="govuk-label govuk-radios__label" for="country-9">
                   Other NHS organisations and special health authorities
                 </label>

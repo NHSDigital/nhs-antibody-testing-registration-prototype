@@ -55,13 +55,21 @@
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="do-you-have-symptoms-1" name="do-you-have-symptoms" type="radio" value="Yes" {{ checked("do-you-have-symptoms", "Yes") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1">
+                                {% if data['whos-taking-the-test'] == "someone-else" %}
+                                Yes, they currently have at least one of these symptoms
+                                {% else %}
                                 Yes, I currently have at least one of these symptoms
+                                {% endif %}
                             </label>
                         </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="do-you-have-symptoms-2" name="do-you-have-symptoms" type="radio" value="No" {{ checked("do-you-have-symptoms", "No") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2">
+                                {% if data['whos-taking-the-test'] == "someone-else" %}
+                                No, they currently do not have any of these symptoms
+                                {% else %}
                                 No, I currently do not have any of these symptoms
+                                {% endif %}
                             </label>
                         </div>
                     </div>

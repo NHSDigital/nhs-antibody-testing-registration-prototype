@@ -1,0 +1,87 @@
+{% set version = "v25-1" %}
+{% set pageTitle = "What is your result?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/mobile">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/#" method="post">
+
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+          <h2 class="govuk-error-summary__title" id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+              <li>
+                <a href="#error-1">Select a result</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="govuk-form-group govuk-form-group--error">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="result-hint" class="govuk-body">
+            Use the test kit instructions to answer this.
+            </span>
+            <br>
+            <br>
+            <span id="no-result-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select a result
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="check-answers-positive" onclick="setLocation(this);" {{ checked("choose-result", "Positive") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-1">
+                  Positive
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-2" name="gender" type="radio" value="check-answers-negative" onclick="setLocation(this);" {{ checked("choose-result", "Negative") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-2">
+                  Negative
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-3" name="gender" type="radio" value="check-answers-invalid" onclick="setLocation(this);" {{ checked("choose-result", "Invalid") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-3">
+                  Invalid (also known as a failed or void result)
+                </label>
+              </div>
+          </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

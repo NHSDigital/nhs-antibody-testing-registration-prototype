@@ -1,0 +1,78 @@
+{% set version = "v25" %}
+{% set pageTitle = "Do you know your NHS number?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/mobile">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/nhs-number" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Do you know {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+            </legend>
+            <span id="nhs-number-known-hint" class="govuk-body">
+              This will help us find and update their GP record with your test result.<br><br>
+              An NHS number is a 10 digit number. Enter the number with no spaces, for example 8674065600. It will be on any prescriptions or letters from a GP or hospital.
+            </span>
+            <p class="govuk-!-margin-top-5"><a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/">How to find an NHS number</a></p>
+            <span id="nhs-number-known-hint" class="govuk-body">
+              In Scotland, it’s known as a CHI number. In Northern Ireland, it’s known as an H&C number.<br><br>
+              If you do not have it, you can still continue.
+            </span><br><br>
+            <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="nhs-number-known-1" name="nhs-number-known" type="radio" onclick="setLocation(this);" value="nhs-number" checked {{ checked("nhs-number-known", "Yes") }}>
+                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-1">
+                    {% if data['whos-taking-the-test'] == "someone-else" %}
+                    Yes, I know their NHS number
+                    {% else %}
+                    Yes, I know my NHS number
+                    {% endif %}
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="nhs-number-known-2" name="nhs-number-known" type="radio" onclick="setLocation(this);" value="save-person" {{ checked("nhs-number-known", "No") }}>
+                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-2">
+                    {% if data['whos-taking-the-test'] == "someone-else" %}
+                    No, I do not know their NHS number
+                    {% else %}
+                    No, I do not know my NHS number
+                    {% endif %}
+                  </label>
+                </div>
+              </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+{% endblock %}

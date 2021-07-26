@@ -1,0 +1,99 @@
+{% set version = "v25" %}
+{% set pageTitle = "Is this the address registered with your GP?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/postcode-lookup">Back</a>
+
+{% endblock %}
+
+
+
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/share-result-lateral-flow/{{version}}/got-email" method="post">
+
+      <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            Is this the address registered with their GP?
+            {% else %}
+            {{ pageTitle }}
+            {% endif %}
+          </h1>
+        </legend>
+
+            <div id="content-1">
+
+                <span id="post-code-hint" class="govuk-body">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  This will help us find and update their GP record with their test result.<br>
+                  {% else %}
+                  This will help us find and update your GP record with your test result.<br>
+                  {% endif %}
+
+                        <div class="govuk-inset-text">
+                          {% if data['home-address'] %}
+                            {{ data['home-address'] }}
+                          {% else %}
+                            {{ data['home-address-line-1'] or '12 Church Street'}}<br>
+                              {% if data['home-address-line-2'] %}
+                                {{ data['home-address-line-2'] }}
+                              {% endif %}
+                              {% if data['home-address-town'] %}
+                                {{ data['home-address-town'] }}
+                              {% endif %}
+                            {{ data['home-postcode'] or 'TW12 2EG' }}
+                          {% endif %}
+                          </div>
+                    </span>
+
+          <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="gp-address-same-1" name="gp-address-same" type="radio" value="Yes" {{ checked("gp-address-same", "Yes") }}>
+              <label class="govuk-label govuk-radios__label" for="gp-address-same-1">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="gp-address-same-2" name="gp-address-same" type="radio" value="gp-address-manual" onclick="setLocation(this);" {{ checked("gp-address-same", "No") }}>
+
+              <label class="govuk-label govuk-radios__label" for="gp-address-same-2">
+                No
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="gp-address-same-3" name="gp-address-same" type="radio" value="I don't know" {{ checked("gp-address-same", "I don't know") }}>
+              <label class="govuk-label govuk-radios__label" for="gp-address-same-3">
+                I don't know
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <button class="govuk-button" type="submit" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+<!-- corresponding html file name included from content folder -->
+<script>
+  $(function(){
+    $("#includedContent1").load("/includes/LFD-account-menu.html");
+  });
+</script>
+
+{% endblock %}
