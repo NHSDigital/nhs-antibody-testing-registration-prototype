@@ -1,0 +1,135 @@
+{% set version = "v17-1" %}
+{% set pageTitle = "Select your staff group" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="#">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">  {% if data['whos-taking-the-test'] == "someone-else" %}
+        Select {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s staff group
+        {% else %}
+        {{ pageTitle }}
+        {% endif %}</h1>
+
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="about-work">
+          <div class="govuk-radios">
+          <!--  <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-2" name="about-work" type="radio" value="/share-result-lateral-flow/{{version}}/childcare" onclick="setLocation(this);"  {{ checked("about-work-1", "It’s for a college, school or nursery") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-2">
+                <strong>Additional Clinical Services</strong>
+                <span id="about-work-hint" class="govuk-hint" style="color: #000000;">
+                  Staff supporting those in clinical roles. High level of patient contact
+                </span>
+              </label>
+            </div> -->
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-2" name="about-work" type="radio"  {{ checked("about-work-1", "It’s for a college, school or nursery") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-2">
+                 Additional Professional Scientific and Technical
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-3" name="about-work" type="radio"  {{ checked("about-work-2", "It’s for the NHS in England or Northern Ireland") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-3">
+                Administrative and Clerical
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-4" name="about-work" type="radio"  {{ checked("about-work-2", "It’s for the NHS in England or Northern Ireland") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-4">
+                Allied Health Professionals
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-5" name="about-work" type="radio" {{ checked("about-work-2", "It’s for the NHS in England or Northern Ireland") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-5">
+                Estates and Ancillary
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-6" name="about-work" type="radio"  {{ checked("about-work-2", "It’s for the NHS in England or Northern Ireland") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-6">
+                Healthcare Scientists
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-7" name="about-work" type="radio" {{ checked("about-work-2", "It’s for the NHS in England or Northern Ireland") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-7">
+                Medical and Dental
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-8" name="about-work" type="radio" {{ checked("about-work-2", "It’s for the NHS in England or Northern Ireland") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-8">
+                Nursing and Midwifery Registered
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-10" name="about-work" type="radio" {{ checked("about-work-2", "It’s for the NHS in England or Northern Ireland") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-10">
+                Optometrists and Pharmacists
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-9" name="about-work" type="radio" {{ checked("about-work-2", "It’s for the NHS in England or Northern Ireland") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-9">
+                Students
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-11" name="about-work" type="radio"  {{ checked("about-work-5", "It’s not listed") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-11">
+                Other
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Not sure which staff group to choose?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+             <p><strong>Additional Professional Scientific and Technical</strong><br>Scientific staff, including Psychologists and Social Workers</p>
+             <p><strong>Administrative and Clerical</strong><br>Non-clinical staff, including managers, receptionists, ward clerks and other administrative officers</p>
+             <p><strong>Allied Health Professionals</strong><br>Clinical staff providing diagnostic, technical and therapeutic patient care, including Physiotherapists, Occupational Therapists, Radiographers, Ambulance staff and Paramedics</p>
+             <p><strong>Estates and Ancillary</strong><br>Non-clinical support and maintenance staff, including porters, cleaners and catering staff</p>
+             <p><strong>Healthcare Scientists</strong><br>Qualified and other staff working in Healthcare Scientist and Healthcare Science roles</p>
+             <p><strong>Medical and Dental</strong><br>Doctors and Dentists, including junior doctors</p>
+             <p><strong>Nursing and Midwifery Registered</strong><br>Nurses, Midwives and Healthcare Assistants</p>
+             <p><strong>Optometrists and Pharmacists</strong><br>Optometrists, including Dispensing Opticians. Pharmacists, including Pharmacy Technicians</p>
+             <p><strong>Students</strong><br>Directly employed staff in formal training</p>
+             <p><strong>Other</strong><br>Role not covered by the categories listed</p>
+        </div>
+      </details>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    
+    </div>
+  </div>
+
+{% endblock %}
