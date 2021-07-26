@@ -37,27 +37,35 @@
               If they have one, we may use this number to call them if they have had contact with someone who has tested positive with coronavirus.
            </span>
            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
-             <div class="govuk-radios__item">
-               <input class="govuk-radios__input" id="landline-number-1" name="landline-number" type="radio" value="Yes" data-aria-controls="conditional-landline-number" {{ checked("landline-number", "Yes") }}>
-               <label class="govuk-label govuk-radios__label" for="landline-number-1">
-                 Yes, they have their own landline number
-               </label>
-             </div>
-             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-landline-number">
-               <div class="govuk-form-group">
-                 <label class="govuk-label" for="landline-telephone-number">
-                   Landline phone number
-                 </label>
-                 <input class="govuk-input govuk-!-width-one-third" id="landline-telephone-number" name="landline-telephone-number" type="tel" value="{{ data['landline-telephone-number'] }}">
-               </div>
-             </div>
-             <div class="govuk-radios__item">
-               <input class="govuk-radios__input" id="landline-number-2" name="landline-number" type="radio" value="I do not have a landline" {{ checked("landline-number", "I do not have a landline") }}>
-               <label class="govuk-label govuk-radios__label" for="landline-number-2">
-                 No, they do not have a landline number
-               </label>
-             </div>
-           </div>
+            {% if data['landline-number'] == "Yes" %}
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="landline-number-1-person-1" name="landline-number-person-1" type="radio" value="same" {{ checked("landline-number-person-1", "same") }}>
+              <label class="govuk-label govuk-radios__label" for="landline-number-1-person-1">
+                Yes, it's {{ data['landline-telephone-number'] }} (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }})
+              </label>
+            </div>
+            {% endif %}
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="landline-number-2-person-1" name="landline-number-person-1" type="radio" value="different" data-aria-controls="conditional-landline-number" {{ checked("landline-number-person-1", "different") }}>
+              <label class="govuk-label govuk-radios__label" for="landline-number-2-person-1">
+                Yes, they have their own landline phone number
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-landline-number">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="landline-telephone-number-person-1">
+                  Landline phone number
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="landline-telephone-number-person-1" name="landline-telephone-number-person-1" type="tel" value="{{ data['landline-telephone-number-person-1'] }}">
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="landline-number-3-person-1" name="landline-number-person-1" type="radio" value="They do not have a landline" {{ checked("landline-number-person-1", "They do not have a landline") }}>
+              <label class="govuk-label govuk-radios__label" for="landline-number-3-person-1">
+                No, they do not have a landline phone number
+              </label>
+            </div>
+          </div>
           </fieldset>
         </div>
 

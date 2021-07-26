@@ -146,7 +146,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Medical record
+            Medical record (male, female, other…)
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['gender'] or 'male' }}
@@ -338,6 +338,20 @@
               Last dose
             </dt>
             <dd class="govuk-summary-list__value">
+              More than 14 days ago
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/coronavirus-vaccine-date">
+                Change
+                <span class="govuk-visually-hidden">last dose</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date of vaccination
+            </dt>
+            <dd class="govuk-summary-list__value">
               {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
               January {{ data['vaccine-year'] or '2020' }}
               {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
@@ -369,7 +383,7 @@
             <dd class="govuk-summary-list__actions">
               <a href="/antigen/{{version}}/global-registration/coronavirus-vaccine-date">
                 Change
-                <span class="govuk-visually-hidden">last dose</span>
+                <span class="govuk-visually-hidden">date of vaccination</span>
               </a>
             </dd>
           </div>

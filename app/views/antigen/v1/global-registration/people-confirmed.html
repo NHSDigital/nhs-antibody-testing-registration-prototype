@@ -14,34 +14,67 @@
       </span>
     </p>
   </div>
+
 {% endblock %}
 
 {% block content %}
-{% include "includes/gtm-noscript.html" %}
+  {% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
 
-      <p>You can add up to 3 people you live with for testing.</p>
-
-      <p>A maximum of 2 people can arrive on the same motorbike. If you plan to travel by motorbike, you can only get a test for you and one other person you live with.</p>
-
-      <p>Once you’ve confirmed who needs testing, you can continue.</p>
+      <p class="govuk-body">
+        You can <strong>add up to 3 people</strong> you live with for testing.<br><br>
+        If you need tests for <strong>more than yourself and 3 other people</strong>, you'll need to complete this journey again and place a separate order.<br><br>
+        <strong>For test sites:</strong><br>
+        If you're arriving by motorbike, you can only take one other person you live with. They must wear full helmet and visor.<br><br>
+        If you’re arriving by car or small van, everyone must be in the same vehicle and sit next to a window that opens. You'll stay in your vehicle during your visit.<br><br>
+        <strong>For home testing:</strong><br>
+        You cannot order more than 4 home test kits at a time.
+      </p>
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"><strong class="govuk-!-font-size-24">PCR test</strong></th>
             <th scope="col" class="govuk-table__header govuk-!-width-one-half"></th>
             <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}</th>
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</th>
             <td class="govuk-table__cell">
+              {% if data['date-of-birth-month'] == "1" or data['date-of-birth-month'] == "01" %}
+              {{ data['date-of-birth-day'] }} January {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "2" or data['date-of-birth-month'] == "02" %}
+              {{ data['date-of-birth-day'] }} February {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "3" or data['date-of-birth-month'] == "03" %}
+              {{ data['date-of-birth-day'] }} March {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "4" or data['date-of-birth-month'] == "04" %}
+              {{ data['date-of-birth-day'] }} April {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "5" or data['date-of-birth-month'] == "05" %}
+              {{ data['date-of-birth-day'] }} May {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "6" or data['date-of-birth-month'] == "06" %}
+              {{ data['date-of-birth-day'] }} June {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "7" or data['date-of-birth-month'] == "07" %}
+              {{ data['date-of-birth-day'] }} July {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "8" or data['date-of-birth-month'] == "08" %}
+              {{ data['date-of-birth-day'] }} August {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "9" or data['date-of-birth-month'] == "09" %}
+              {{ data['date-of-birth-day'] }} September {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "10" %}
+              {{ data['date-of-birth-day'] }} October {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "11" %}
+              {{ data['date-of-birth-day'] }} November {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "12" %}
+              {{ data['date-of-birth-day'] }} December {{ data['date-of-birth-year'] }}
+              {% else %}
+              6 December 1976
+              {% endif %}
+              <br>
               {{ data['email-address'] or 'email@example.com' }}
               <br>
               {{ data['mobile-phone-number'] or '+447782808451' }}
@@ -59,19 +92,32 @@
         </strong>
       </div>
 
-      <form class="form" action="/antigen/{{version}}/order-home-test-kit" method="post" style="display: inline-block;">
-
-        <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">Save and continue</button>
-
-      </form>
-
       <form class="form" action="/antigen/{{version}}/global-registration/name-person-1" method="post" style="display: inline-block;">
 
-        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Add person you live with</button>
+        <button class="govuk-button govuk-button--secondary govuk-!-margin-right-1" data-module="govuk-button">Save and add another person you live with</button>
 
       </form>
+
+      {% if data['way-to-test'] == "drive-through" or data['way-to-test'] == "walk-through" %}
+
+      <form class="form" action="/antigen/{{version}}/site-appointment-booking/find-test-site" method="post" style="display: inline-block;">
+
+        <button class="govuk-button" data-module="govuk-button">Save and continue</button>
+
+      </form>
+
+      {% else %}
+
+      <form class="form" action="/antigen/{{version}}/order-home-test-kit/" method="post" style="display: inline-block;">
+
+        <button class="govuk-button" data-module="govuk-button">Save and continue</button>
+
+      </form>
+
+      {% endif %}
 
     </div>
   </div>
 
 {% endblock %}
+
