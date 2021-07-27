@@ -1,5 +1,5 @@
 {% set version = "v17" %}
-{% set pageTitle = "Have you been asked to share your test result with the site manager?" %}
+{% set pageTitle = "Do you want us to share a copy of your result with your employer?" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -28,36 +28,28 @@
           <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                Have they been asked to share their test result with the site manager?
-                {% else %}
                 {{ pageTitle }}
-                {% endif %}
               </h1>
             </legend>
             <span id="email-hint" class="govuk-body">
-              {% if data['whos-taking-the-test'] == "someone-else" %}
-              <p>If so, we can send an email copy of the test result to the manager of the social care facility they'll be visiting. This will save time and they will not have to be tested on site when they visit.</p>
-              {% else %}
-              <p>If so, we can send an email copy of your test result to the manager of the social care facility you'll be visiting. This will save time and you will not have to be tested on site when you visit.</p>
-              {% endif %}
+              <p>We can send a copy of your result email to your manager. If you are happy for us to do this, please enter their email address below.
             </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="email-1">
-                  Yes, share the result with the site manager
+                  Yes, I would like to share my result with my employer
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="email-address">
-                    Site manager's email address
+                    Employer's email address
                   </label>
                   <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}" aria-describedby="conditional-email-address-hint">
                 </div><br>
                 <label class="govuk-label" for="email-address">
-                    Confirm site manager's email address
+                    Confirm employer's email address
                   </label>
                   <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}" aria-describedby="conditional-email-address-hint">
                 </div>
@@ -65,7 +57,7 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="I do not have an email address" {{ checked("email", "I do not have an email address") }}>
                 <label class="govuk-label govuk-radios__label" for="email-2">
-                  No, do not share the result with the site manager
+                  No, I don't want to share my result
                 </label>
               </div>
           </fieldset>
