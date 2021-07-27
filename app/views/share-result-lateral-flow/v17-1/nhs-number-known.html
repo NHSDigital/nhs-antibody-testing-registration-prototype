@@ -36,30 +36,48 @@
                 {% endif %}
               </h1>
             </legend>
+
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            <p>This number helps us quickly save their test result to their NHS COVID Pass.<br>
+              In England, they may be asked to show this pass to get into some events, or to travel abroad.</p>
+            {% else %}
             <p>This number helps us quickly save your test result to your NHS COVID Pass.<br>
               In England, you may be asked to show this pass to get into some events, or to travel abroad.</p>
+            {% endif %}
+
             <div class="govuk-warning-text">
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text">
                 <span class="govuk-warning-text__assistive">Warning</span>
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Not providing their NHS number could cause delays if they wish to attend certain events
+                {% else %}
                 Not providing your NHS number could cause delays if you wish to attend certain events
+                {% endif %}
               </strong>
             </div>
-            <p><a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/">How to find your NHS number</a></p>
+
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            <p><a href="https://www.nhs.uk/nhs-services/online-services/find-nhs-number/" target="_blank" rel="noreferrer">Look up their NHS number</a></p>
+            {% else %}
+            <p><a href="https://www.nhs.uk/nhs-services/online-services/find-nhs-number/" target="_blank" rel="noreferrer">Look up your NHS number</a></p>
+            {% endif %}
+
             <p class="govuk-body">
               <strong>It’s OK if you do not have it, you can still continue</strong>
             </p>
+
             <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="nhs-number-known-1" name="nhs-number-known" type="radio" onclick="setLocation(this);" value="nhs-number" {{ checked("nhs-number-known", "Yes") }}>
                   <label class="govuk-label govuk-radios__label" for="nhs-number-known-1">
-                    Yes, I can provide my NHS number
+                    Yes, I can provide the NHS number
                   </label>
                 </div>
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="nhs-number-known-2" name="nhs-number-known" type="radio" onclick="setLocation(this);" value="check-answers-continue" {{ checked("nhs-number-known", "No") }}>
                   <label class="govuk-label govuk-radios__label" for="nhs-number-known-2">
-                    No, I cannot provide my NHS number
+                    No, I cannot provide the NHS number
                   </label>
                 </div>
               </div>
