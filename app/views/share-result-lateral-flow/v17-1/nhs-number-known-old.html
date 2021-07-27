@@ -1,5 +1,5 @@
 {% set version = "v17-1" %}
-{% set pageTitle = "Can you provide your NHS number?" %}
+{% set pageTitle = "Do you know your NHS number?" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -29,46 +29,31 @@
           <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                Can you provide {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?
-                {% else %}
                 {{ pageTitle }}
-                {% endif %}
               </h1>
             </legend>
-            <p>This number helps us quickly save your test result to your NHS COVID Pass.<br>
-              In England, you may be asked to show this pass to get into some events, or to travel abroad.</p>
-            <div class="govuk-warning-text">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                Not providing your NHS number could cause delays if you wish to attend certain events
-              </strong>
-            </div>
-            <p><a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/">How to find your NHS number</a></p>
-            <p class="govuk-body">
-              <strong>It’s OK if you do not have it, you can still continue</strong>
-            </p>
+            <span id="nhs-number-known-hint" class="govuk-body">
+              <strong>It’s OK if you do not, you can still continue.</strong><br><br>
+              It’s 10 digits long, and usually on prescriptions or a hospital or GP letter.<br><br>
+              In Scotland, it’s known as a CHI number. In Northern Ireland, it’s known as an H&C number.
+            </span>
+            <p class="govuk-!-margin-top-5"><a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/">How to find your NHS number</a></p>
             <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="nhs-number-known-1" name="nhs-number-known" type="radio" onclick="setLocation(this);" value="nhs-number" {{ checked("nhs-number-known", "Yes") }}>
                   <label class="govuk-label govuk-radios__label" for="nhs-number-known-1">
-                    Yes, I can provide my NHS number
+                    Yes, I know my NHS number
                   </label>
                 </div>
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="nhs-number-known-2" name="nhs-number-known" type="radio" onclick="setLocation(this);" value="check-answers-continue" {{ checked("nhs-number-known", "No") }}>
                   <label class="govuk-label govuk-radios__label" for="nhs-number-known-2">
-                    No, I cannot provide my NHS number
+                    No, I do not know my NHS number
                   </label>
                 </div>
               </div>
           </fieldset>
         </div>
-
-        <h2 class="govuk-heading-m">What it looks like</h2>
-        <p>It’s 10 digits long, and usually on prescriptions or a hospital or GP letter.</p>
-        <p>In Scotland, it’s known as a CHI number. In Northern Ireland, it’s known as an H&C number.</p>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
