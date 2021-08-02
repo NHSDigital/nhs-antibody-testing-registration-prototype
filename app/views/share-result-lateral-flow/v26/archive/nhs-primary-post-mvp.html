@@ -1,0 +1,83 @@
+{% set version = "v24" %}
+{% set pageTitle = "Select your NHS service" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/home-org-use">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/country" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="country" {{ checked("country", "England") }}>
+                <label class="govuk-label govuk-radios__label" for="country-1">
+                  General Practice
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="country" onclick="setLocation(this);" {{ checked("country", "Scotland") }}>
+                <label class="govuk-label govuk-radios__label" for="country-4">
+                  Dentistry
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="country" onclick="setLocation(this);" {{ checked("country", "Northern Ireland") }}>
+                <label class="govuk-label govuk-radios__label" for="country-3">
+                  Pharmacy
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="country" onclick="setLocation(this);" {{ checked("country", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-2">
+                  Ophthalmology
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-6" name="country" type="radio" value="country" onclick="setLocation(this);" {{ checked("country", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-6">
+                  Other NHS Employee
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-5" name="country" type="radio" value="nhs-secondary" onclick="setLocation(this);" {{ checked("country", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-5">
+                  None of these
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
