@@ -20,7 +20,6 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-
       <h1 class="govuk-heading-l govuk-!-margin-bottom-7">
         {% if data['whos-taking-the-test'] == "someone-else" %}
         Check the answers for {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}
@@ -29,11 +28,365 @@
         {% endif %}
       </h1>
 
-    <!--  <p class="govuk-body">Photo successfully uploaded</p> -->
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Personal details</h2>
+      <!-- <p class="govuk-body">Check that your personal details are correct. You can change them if they are not.</p> -->
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/name">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Medical record (male, female, other…)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['gender'] or 'Male' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/gender">
+              Change
+              <span class="govuk-visually-hidden">medical record</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnicity
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ethnic-group'] or 'White' }}{% if data['ethnic-background'] !== 'Prefer not to say' and data['ethnic-background'] !== undefined %}{% if data['ethnic-background'] == "Another" %}, {{ data['another-ethnic-background'] or 'Irish'}}{% else %}, {{ data['ethnic-background'] or 'Irish'}}{% endif %}{% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/ethnic-group">
+              Change
+              <span class="govuk-visually-hidden">ethnicity</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Home address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+              {{ data['home-address'] }}
+            {% else %}
+              {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+              {{ data['home-postcode'] or 'LS1 3BE' }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/postcode">
+              Change
+              <span class="govuk-visually-hidden">first line of address and postcode</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            GP registered address
+          </dt>
+          {% if data['gp-address-same'] !== "No" %}
+          <dd class="govuk-summary-list__value">
+            {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+              {{ data['home-address'] }}
+            {% else %}
+              {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+              {{ data['home-postcode'] or 'LS1 3BE' }}
+            {% endif %}
+          </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            {% if data['gp-address'] and data['gp-address'] !== "Select from 5 addresses" %}
+              {{ data['gp-address'] }}
+            {% else %}
+              {{ data['address-line-1-gp'] or '5 Souterhead Road'}}<br>
+              {{ data['gp-postcode'] or 'LS1 3BE' }}
+            {% endif %}
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/address">
+              Change
+              <span class="govuk-visually-hidden">postcode</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Country of residence
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['country'] or 'England' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/country">
+              Change
+              <span class="govuk-visually-hidden">country of residence</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Contact details
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['email'] == "Yes" %}
+            {{ data['email-address'] }}<br>
+            {% endif %}
+            {{ data['mobile-phone-number'] or '07771900900' }}<br>
+            {% if data['landline-number'] == "Yes" %}
+            {{ data['landline-telephone-number'] }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/email-address">
+              Change
+              <span class="govuk-visually-hidden">contact details</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
 
-      <!--   <div class="govuk-summary-list__row">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">NHS login details</h2>
+      <p class="govuk-body">If these NHS login details are incorrect, you can <a href="#" class="govuk-link">change them</a>.</p>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            NHS number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['nhs-number-known'] == "Yes" %}
+            {{ data['nhs-number'] }}
+            {% else %}
+            Not known
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/nhs-number-known">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['date-of-birth-month'] == "1" or data['date-of-birth-month'] == "01" %}
+            {{ data['date-of-birth-day'] }} January {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "2" or data['date-of-birth-month'] == "02" %}
+            {{ data['date-of-birth-day'] }} February {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "3" or data['date-of-birth-month'] == "03" %}
+            {{ data['date-of-birth-day'] }} March {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "4" or data['date-of-birth-month'] == "04" %}
+            {{ data['date-of-birth-day'] }} April {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "5" or data['date-of-birth-month'] == "05" %}
+            {{ data['date-of-birth-day'] }} May {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "6" or data['date-of-birth-month'] == "06" %}
+            {{ data['date-of-birth-day'] }} June {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "7" or data['date-of-birth-month'] == "07" %}
+            {{ data['date-of-birth-day'] }} July {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "8" or data['date-of-birth-month'] == "08" %}
+            {{ data['date-of-birth-day'] }} August {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "9" or data['date-of-birth-month'] == "09" %}
+            {{ data['date-of-birth-day'] }} September {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "10" %}
+            {{ data['date-of-birth-day'] }} October {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "11" %}
+            {{ data['date-of-birth-day'] }} November {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "12" %}
+            {{ data['date-of-birth-day'] }} December {{ data['date-of-birth-year'] }}
+            {% else %}
+            6 December 1976
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/date-of-birth">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Test details</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test date and time
+          </dt>
+          {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "1" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "01" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} January {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% endif %}
+          {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "2" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "02" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} February {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% endif %}
+          {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "3" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "03" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} March {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% endif %}
+          {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "4" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "04" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} April {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% endif %}
+          {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "5" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "05" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} May {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% endif %}
+          {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "6" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "06" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} June {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% endif %}
+          {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "7" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "07" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} July {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% endif %}
+          {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "8" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "08" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} August {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% endif %}
+          {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "9" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "09" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} September {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% endif %}
+          {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "10" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "10" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} October {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% endif %}
+          {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "11" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "11" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} November {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% endif %}
+          {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "12" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "12" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-swab-test-day'] }} December {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+          </dd>
+          {% endif %}
+          {% if data['swab-test-date'] !== "different" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['swab-test-date'] or '24 March 2021' }} : {{ data['swab-test-time'] or '7:00' }}{{ data['swab-test-time-ampm'] or 'am' }}
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/home-testing/swab-test-date">
+              Change
+              <span class="govuk-visually-hidden">test date and time</span>
+              </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test kit barcode reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['kit-barcode-reference-1'] or 'AAJ5678938456' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/">
+              Change
+              <span class="govuk-visually-hidden">test kit barcode reference</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Reasons for taking this test</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test for your job?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['test-for-work'] == "/share-result-lateral-flow/v25-1/test-reason" %}
+            no
+            {% else %}
+            yes
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/test-for-work">
+              Change
+              <span class="govuk-visually-hidden">Test for your job?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['test-for-work'] == "/share-result-lateral-flow/v25-1/test-reason" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Why test taken
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['test-reason'] == "/share-result-lateral-flow/v25-1/school-name" %}
+            To go to school, college or university
+            {% elseif data['test-reason'] == "/share-result-lateral-flow/v25-1/test-date" %}
+            As a foster carer
+            {% else %}
+            Another reason
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/test-reason">
+              Change
+              <span class="govuk-visually-hidden">Why test taken</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        {% if data['test-reason'] == "/share-result-lateral-flow/v25-1/school-name" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name or postcode of education provider
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['school-name-autocomplete'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/school-name">
+              Change
+              <span class="govuk-visually-hidden">name or postcode of education provider</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+      </dl>
+
+
+      
+
+
+
+      <!-- <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+        <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Test location
           </dt>
@@ -68,7 +421,7 @@
             </a>
           </dd>
         </div>
-        {% endif %} -->
+        {% endif %}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -163,7 +516,7 @@
             </a>
           </dd>
         </div>
-  <!--      <div class="govuk-summary-list__row">
+        <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Test date and time
           </dt>
@@ -182,7 +535,7 @@
               <span class="govuk-visually-hidden">test date and time</span>
             </a>
           </dd>
-        </div> -->
+        </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Name
@@ -205,9 +558,9 @@
             {{ data['date-of-birth-day'] or '5 January 1978' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <!-- <a href="/share-result-lateral-flow/{{version}}/date-of-birth">
+            <a href="/share-result-lateral-flow/{{version}}/date-of-birth">
               Change
-              <span class="govuk-visually-hidden">date of birth</span> -->
+              <span class="govuk-visually-hidden">date of birth</span>
             </a>
           </dd>
         </div>
@@ -254,7 +607,7 @@
           </dd>
         </div>
 
-        <!-- {% if data['do-you-have-symptoms'] == "Yes" %}
+        {% if data['do-you-have-symptoms'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Date of onset
@@ -269,7 +622,7 @@
             </a>
           </dd>
         </div>
-        {% endif %} -->
+        {% endif %}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -314,10 +667,10 @@
             {{ data['nhs-number'] or '785 677 5576' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <!-- <a href="/share-result-lateral-flow/{{version}}/nhs-number">
+            <a href="/share-result-lateral-flow/{{version}}/nhs-number">
               Change
               <span class="govuk-visually-hidden">NHS number</span>
-            </a> -->
+            </a>
           </dd>
         </div>
         {% endif %}
@@ -390,7 +743,7 @@
         </div>
         {% endif %}
 
-      </dl>
+      </dl> -->
 
       <form action="/share-result-lateral-flow/{{version}}/choose-result" method="post" novalidate>
         <input type="hidden" name="answers-checked" value="true">
