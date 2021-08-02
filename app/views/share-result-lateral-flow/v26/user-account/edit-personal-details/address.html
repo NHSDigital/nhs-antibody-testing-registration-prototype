@@ -1,0 +1,48 @@
+{% set version = "v24" %}
+{% set pageTitle = "What's the first line of your address and home postcode?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/user-account/edit-personal-details/home-page">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/share-result-lateral-flow/{{version}}/user-account/edit-personal-details/home-page" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="post-code-hint" class="govuk-body">
+            Enter the first line of your address and home postcode (ideally the one you gave your GP).
+            If you’re reporting a result for someone else enter their details.
+          </span>
+          <div class="govuk-form-group govuk-!-margin-top-5">
+            <label class="govuk-label" for="address">
+              First line of address
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="address" name="address" type="text" value="{{ data['address'] }}">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="home-postcode">
+              Postcode
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
