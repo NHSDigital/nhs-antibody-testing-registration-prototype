@@ -26,13 +26,19 @@
           Enter the name or postcode of the education provider, and select from the options provided.
         <br><br>For example, this may include a nursery, school, college, university, childcare provider or other education provider.</span>
         <div class="govuk-form-group govuk-!-margin-top-5">
-          <label id="occupation-hint" class="govuk-label" for="occupation">
+          <!-- <label id="occupation-hint" class="govuk-label" for="occupation">
             Name or postcode of education provider
           </label>
           <div id="school-search-hint" class="govuk-hint">
             Enter 3 or more characters
           </div>
-          <div id="occupation-container" name="occupation"></div>
+          <div id="occupation-container" name="occupation"></div> -->
+          <fieldset class="govuk-fieldset">
+            <label class="govuk-label" for="school-name">
+              Name or postcode of education provider
+            </label>
+            <div id="school-name-container" name="school-name-autocomplete"></div>
+          </fieldset>
         </div>
       </div>
 
@@ -26891,11 +26897,11 @@
 
   accessibleAutocomplete({
     autoselect: true,
-    element: document.querySelector('#occupation-container'),
-    id: 'occupation',
-    name: 'occupation-autocomplete',
+    element: document.querySelector('#school-name-container'),
+    id: 'school-name',
+    name: 'school-name-autocomplete',
     source: occupations,
-    defaultValue: '{{ data['occupation-autocomplete'] }}',
+    defaultValue: '{{ data["school-name-autocomplete"] }}',
     displayMenu: 'overlay',
     minLength: 2,
     tNoResults: function() {
