@@ -1,0 +1,96 @@
+{% set pageHeading = "There is missing or incorrect information in the spreadsheet" %}
+ {% set version = "organisational/lft/carehome-registration" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+{% block beforeContent %}
+
+
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+    </div>
+  </div>
+</div>
+
+<div class=“”>
+  <div class=“govuk-grid-row”>
+    <div class=“govuk-grid-column-full”>
+      <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">There is missing or incorrect information in the spreadsheet</h1>
+
+      <form class="form" action="/organisational/lft/carehome-registration/enhancements/lft-bulk-delete" method="post">
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            <p>The spreadsheet you uploaded contains missing or incorrect information. Correct, save and upload a new version of the spreadsheet.</p>
+          </strong>
+        </div>
+
+  <h2 class="govuk-heading-m">Spreadsheet errors</h2>
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Row</th>
+        <th scope="col" class="govuk-table__header">Person</th>
+        <th scope="col" class="govuk-table__header">Error</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">12</td>
+        <td class="govuk-table__cell">John Smith</td>
+        <td class="govuk-table__cell"><ul class="govuk-list govuk-list--bullet"><li>enter email address</li><li>the format of test kit barcode is incorrect</li>
+</ul></td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">14</td>
+        <td class="govuk-table__cell">Ellie Jones</td>
+        <td class="govuk-table__cell"><ul class="govuk-list govuk-list--bullet"><li>enter valid box ID. The barcode is 16 digits long and starts with CH</li>
+</ul></td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">17</td>
+        <td class="govuk-table__cell">Ju8tin West</td>
+        <td class="govuk-table__cell"><ul class="govuk-list govuk-list--bullet"><li>First name must only include letters a to z, hyphens, spaces and apostrophes</li></ul></td>
+      </tr>
+    </tbody>
+  </table>
+
+<div class="govuk-form-group">
+  <label class="govuk-label" for="file-upload-1">
+    Upload a file
+  </label>
+  <input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file">
+</div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
