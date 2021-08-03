@@ -24,20 +24,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
-        <h2 class="govuk-error-summary__title" id="error-summary-title">
-          There is a problem
-        </h2>
-        <div class="govuk-error-summary__body">
-          <ul class="govuk-list govuk-error-summary__list">
-            <li>
-              <a href="#error-1">Select a date symptoms started</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <form action="/antigen/{{version}}/action3/when-did-symptoms-start" method="post">
+      <form action="/antigen/{{version}}/action3/when-did-symptoms-start-option-2" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset govuk-!-margin-bottom-6" role="group" aria-describedby="symptoms-start-date-1-hint">
@@ -51,18 +38,6 @@
                 If they cannot remember the exact date, select the date they think it was roughly.
               </span>
             </p>
-
-            <details class="govuk-details" data-module="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                  When to stay at home
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-                If they have a <strong>high temperature, a new continuous cough,</strong> or <strong>loss or change to their sense of smell or taste,</strong> they and anyone they live with should <strong>stay at home</strong> until they get their result. They can leave home to get or post a test.<br><br>
-                If they do not have these symptoms they <strong>may not</strong> need to stay at home. Find out more: <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" class="govuk-link" target="blank">when to self-isolate and what to do (opens in a new tab)</a>.
-              </div>
-            </details>
 
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
               <div class="govuk-radios__item">
@@ -119,36 +94,41 @@
                 Before 28 July 2021
               </label>
             </div>
-            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-date-of-onset">
-              <span class="govuk-body"><strong>Enter the date symptoms started</strong></span>
-              <div class="govuk-date-input govuk-!-margin-top-4" id="symptoms-start-date">
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-day">
-                      Day
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="symptoms-start-date-day" name="symptoms-start-date-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-day'] }}">
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-date-of-onset">
+                <span class="govuk-body"><strong>Enter the date symptoms started</strong></span>
+                <div class="govuk-date-input govuk-!-margin-top-4" id="symptoms-start-date">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-day">
+                        Day
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="symptoms-start-date-day" name="symptoms-start-date-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-day'] }}">
+                    </div>
                   </div>
-                </div>
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-month">
-                      Month
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="symptoms-start-date-month" name="symptoms-start-date-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-month'] }}">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-month">
+                        Month
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="symptoms-start-date-month" name="symptoms-start-date-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-month'] }}">
+                    </div>
                   </div>
-                </div>
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-year">
-                      Year
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="symptoms-start-date-year" name="symptoms-start-date-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-year'] }}">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-year">
+                        Year
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="symptoms-start-date-year" name="symptoms-start-date-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-year'] }}">
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            </div>
+
+            <p class="govuk-body govuk-!-margin-top-6">
+              If they have a <strong>high temperature, a new continuous cough,</strong> or <strong>loss or change to their sense of smell or taste,</strong> they and anyone they live with should <strong>stay at home</strong> until they get their result. They can leave home to get or post a test.<br><br>
+              If they do not have these symptoms they <strong>may not</strong> need to stay at home. Find out more: <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" class="govuk-link" target="blank">when to self-isolate and what to do (opens in a new tab)</a>.
+            </p>
 
             <!-- <details class="govuk-details govuk-!-margin-top-7" data-module="govuk-details">
               <summary class="govuk-details__summary">
@@ -184,11 +164,11 @@
     </div>
 
     <div class="proto-action big">
-      <a href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start-error-2-option-2">
+      <a href="/antigen/{{version}}/refer-and-triage/when-did-symptoms-start">
         <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 2</div>
       </a>
     </div>
-
+    
   </div>
 
 {% endblock %}

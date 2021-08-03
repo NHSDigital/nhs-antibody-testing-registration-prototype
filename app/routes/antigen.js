@@ -10,19 +10,6 @@ function loadJSONFromFile(fileName, path = "app/data/") {
   return JSON.parse(jsonFile) // Return JSON as object
 }
 
-router.post('/antigen/v1/action3/reason-for-test-option-2', function (req, res) {
-  let reason = req.session.data['reason-for-test']
-  let whoAsked = req.session.data['who-asked-for-test']
-  if (reason == "None of the above"){
-    res.redirect('/antigen/v1/refer-and-triage/cannot-have-test')
-  } else if (whoAsked == "Contact tracers told me to get a test"){
-    res.redirect('/antigen/v1/refer-and-triage/contact-tracing-code')
-  } else {
-    res.redirect('/antigen/v1/refer-and-triage/')
-  }
-
-})
-
 router.post('/antigen/v1/action3/1-have-you-travelled-overseas-person-1', function (req, res) {
   let OverseasTravel = req.session.data['have-you-travelled-overseas-person-1']
   if (OverseasTravel == "No"){
@@ -83,12 +70,35 @@ router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
 
 })
 
+router.post('/antigen/v2/action3/when-did-symptoms-start-option-2', function (req, res) {
+  let dateOfOnset = req.session.data['date-of-onset']
+  let yearOfOnset = req.session.data['symptoms-start-date-year']
+  if (!dateOfOnset){
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error-2-option-2')
+  } else if (dateOfOnset == "different" && yearOfOnset !== "2020" && yearOfOnset !== "2021"){
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error-option-2')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
+  }
+
+})
+
 // Version 2 - Antigen Refer and Triage - When did symptoms start error route
 
 router.post('/antigen/v2/action3/when-did-symptoms-start-error', function (req, res) {
   let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
   if (yearSymptomsStarted != "2021"){
     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
+  }
+
+})
+
+router.post('/antigen/v2/action3/when-did-symptoms-start-error-option-2', function (req, res) {
+  let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
+  if (yearSymptomsStarted != "2021"){
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start-error-option-2')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/government-pilot')
   }
@@ -148,7 +158,7 @@ router.post('/antigen/v2/action3/government-pilot', function (req, res) {
   if (governmentPilot == "None of the above" && symptoms == "No" && followUpTest == "No") {
     res.redirect('/antigen/v2/refer-and-triage/reason-for-test')
   } else {
-    res.redirect('/antigen/v2/refer-and-triage/eligible')
+    res.redirect('/antigen/v2/refer-and-triage/')
   }
 })
 
@@ -160,7 +170,7 @@ router.post('/antigen/v2/action3/reason-for-test', function (req, res) {
   } else if (whoAsked == "Contact tracers told me to get a test"){
     res.redirect('/antigen/v2/refer-and-triage/contact-tracing-code')
   } else {
-    res.redirect('/antigen/v2/refer-and-triage/eligible')
+    res.redirect('/antigen/v2/refer-and-triage/')
   }
 
 })
@@ -170,7 +180,7 @@ router.post('/antigen/v2/action3/who-asked-for-test-CT', function (req, res) {
   if (whoAskedForTest == "None of the above"){
     res.redirect('/antigen/v2/refer-and-triage/cannot-have-test')
   } else {
-    res.redirect('/antigen/v2/refer-and-triage/eligible')
+    res.redirect('/antigen/v2/refer-and-triage/')
   }
 
 })
@@ -180,7 +190,7 @@ router.post('/antigen/v2/action3/who-asked-for-test-HR', function (req, res) {
   if (whoAskedForTest == "None of the above"){
     res.redirect('/antigen/v2/refer-and-triage/cannot-have-test')
   } else {
-    res.redirect('/antigen/v2/refer-and-triage/eligible')
+    res.redirect('/antigen/v2/refer-and-triage/')
   }
 
 })
@@ -190,7 +200,7 @@ router.post('/antigen/v2/action3/who-asked-for-test-OER', function (req, res) {
   if (whoAskedForTest == "None of the above"){
     res.redirect('/antigen/v2/refer-and-triage/cannot-have-test')
   } else {
-    res.redirect('/antigen/v2/refer-and-triage/eligible')
+    res.redirect('/antigen/v2/refer-and-triage/')
   }
 
 })
