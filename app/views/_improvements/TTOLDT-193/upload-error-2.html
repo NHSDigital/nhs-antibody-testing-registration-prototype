@@ -1,0 +1,197 @@
+{% set pageHeading = "Upload their test details?" %}
+ {% set version = "organisational/lft/carehome-registration" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+{% block beforeContent %}
+
+
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+    </div>
+  </div>
+</div>
+
+<div class=“”>
+  <div class=“govuk-grid-row”>
+    <div class=“govuk-grid-column-full”>
+      <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+  <h2 class="govuk-error-summary__title" id="error-summary-title">
+    There is a problem
+  </h2>
+  <div class="govuk-error-summary__body">
+    <ul class="govuk-list govuk-error-summary__list">
+      <li>
+        <p><a href="#passport-issued-day">The spreadsheet you uploaded contains missing or incorrect information. </a></p>
+        <p>You need to correct the errors below, save and upload a new version of the spreadsheet.</p>
+      </li>
+      <li>
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Row</th>
+              <th scope="col" class="govuk-table__header">Person</th>
+              <th scope="col" class="govuk-table__header">Column</th>
+              <th scope="col" class="govuk-table__header">Error message</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">12</td>
+              <td class="govuk-table__cell">John Smith</td>
+              <td class="govuk-table__cell">Email address</td>
+              <td class="govuk-table__cell">Enter an email address</td>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">12</td>
+        <td class="govuk-table__cell">John Smith</td>
+        <td class="govuk-table__cell">Test kit barcode</td>
+        <td class="govuk-table__cell">The format of test kit barcode is incorrect</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">14</td>
+              <td class="govuk-table__cell">Ellie Jones</td>
+              <td class="govuk-table__cell">Outer return box barcode</td>
+              <td class="govuk-table__cell">The format of the barocde is incorrect. The barcode is 16 digits long and starts with CH</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">17</td>
+              <td class="govuk-table__cell">Ju8tin West</td>
+              <td class="govuk-table__cell">First name</td>
+              <td class="govuk-table__cell">First name must only include letters a to z, hyphens, spaces and apostrophes</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">18</td>
+              <td class="govuk-table__cell">James Kent</td>
+              <td class="govuk-table__cell">NHS number</td>
+              <td class="govuk-table__cell">Must be 10 digits long</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">18</td>
+              <td class="govuk-table__cell">James Kent</td>
+              <td class="govuk-table__cell">Date of birth</td>
+              <td class="govuk-table__cell">Date of birth must not be in the future</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">21</td>
+              <td class="govuk-table__cell">Oliver Wells</td>
+              <td class="govuk-table__cell">Test kit barcode</td>
+              <td class="govuk-table__cell">The format of test kit barcode is incorrect</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">23</td>
+              <td class="govuk-table__cell">Jack Francis</td>
+              <td class="govuk-table__cell">Test kit barcode</td>
+              <td class="govuk-table__cell">The format of test kit barcode is incorrect</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">25</td>
+              <td class="govuk-table__cell">Charlie Greggory</td>
+              <td class="govuk-table__cell">Test kit barcode</td>
+              <td class="govuk-table__cell">The format of test kit barcode is incorrect</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">28</td>
+              <td class="govuk-table__cell">Caspar Barnes</td>
+              <td class="govuk-table__cell">Test kit barcode</td>
+              <td class="govuk-table__cell">The format of test kit barcode is incorrect</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">30</td>
+              <td class="govuk-table__cell">Felix Haining</td>
+              <td class="govuk-table__cell">Test kit barcode</td>
+              <td class="govuk-table__cell">The format of test kit barcode is incorrect</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">33</td>
+              <td class="govuk-table__cell">Ellie Thornton</td>
+              <td class="govuk-table__cell">Test kit barcode</td>
+              <td class="govuk-table__cell">The format of test kit barcode is incorrect</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">41</td>
+              <td class="govuk-table__cell">Luke Barlow</td>
+              <td class="govuk-table__cell">Date of birth</td>
+              <td class="govuk-table__cell">Date of birth must not be in the future</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">50</td>
+              <td class="govuk-table__cell">Will Hoffman</td>
+              <td class="govuk-table__cell">Test kit barcode</td>
+              <td class="govuk-table__cell">The format of test kit barcode is incorrect</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">55</td>
+              <td class="govuk-table__cell">Eloise Greggs</td>
+              <td class="govuk-table__cell">Email address</td>
+              <td class="govuk-table__cell">Enter an email address</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">67</td>
+              <td class="govuk-table__cell">Sarah Martin</td>
+              <td class="govuk-table__cell">Test kit barcode</td>
+              <td class="govuk-table__cell">The format of test kit barcode is incorrect</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Upload their test details</h1>
+
+      <form class="form" action="/organisational/lft/carehome-registration/enhancements/lft-bulk-delete" method="post">
+
+        <p>The spreadsheet allows you to register both PCR and lateral flow tests. You can also report lateral flow test results.</p>
+<p>To do this:</p>
+        <ul class="govuk-list govuk-list--bullet">
+  <li><a href="#" class="govuk-link">download our spreadsheet</a> if you have not already</li>
+  <li>do not add any sheets, row or columns</li>
+  <li>enter details for up to 100 people at a time</li>
+  <li>save the completed spreadsheet and then upload it</li>
+</ul>
+
+
+<div class="govuk-form-group govuk-form-group--error">
+  <label class="govuk-label" for="file-upload-1">
+    Upload a file
+  </label>
+  <span id="file-upload-1-error" class="govuk-error-message">
+    <span class="govuk-visually-hidden">Error:</span> There is missing or incorrect information in the spreadsheet that needs updating
+  </span>
+  <input class="govuk-input govuk-input--error" id="file-upload-1" name="file-upload-1" type="file" aria-describedby="file-upload-1-hint file-upload-1-error">
+</div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
