@@ -1,0 +1,73 @@
+{% set version = "v2" %}
+{% set pageTitle = "What travel package are you ordering?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/international-arrivals/{{version}}/action1/travel-route" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="travel-route-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="travel-route-hint" class="govuk-body">
+            Select the highest category of country (red, amber or green) you’ll visit in the 10 days before you arrive in England. Where red is the highest and green is the lowest. This will help confirm that you’re ordering the correct travel package.<br><br>
+            Check if countries are on the <a href="https://www.gov.uk/guidance/red-amber-and-green-list-rules-for-entering-england" target="blank" class="govuk-link">red, amber or green list</a>.
+          </span>
+
+          <div class="govuk-radios govuk-!-margin-top-6 govuk-!-margin-bottom-6" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="travel-route-1" name="travel-route" type="radio" value="red" {{ checked("travel-route", "red") }}>
+              <label class="govuk-label govuk-radios__label" for="travel-route-1">
+                Red
+                <!-- <a href="https://www.gov.uk/guidance/transport-measures-to-protect-the-uk-from-variant-strains-of-covid-19" target="blank" class="govuk-link">Find out which countries are on the red list</a> -->
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="travel-route-2" name="travel-route" type="radio" value="amber" {{ checked("travel-route", "amber") }}>
+              <label class="govuk-label govuk-radios__label" for="travel-route-2">
+                Amber
+                <!-- <a href="#" target="blank" class="govuk-link">Find out which countries are on the amber list</a> -->
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="travel-route-3" name="travel-route" type="radio" value="green" {{ checked("travel-route", "green") }}>
+              <label class="govuk-label govuk-radios__label" for="travel-route-3">
+                Green
+                <!-- <a href="#" target="blank" class="govuk-link">Find out which countries are on the green list</a> -->
+              </label>
+            </div>
+          </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% set version = "v2" %}
+{% set pageTitle = "Are their travel details the same as yours?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/travel-route-same-person-1">Back</a>
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+​
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <form action="/international-arrivals/{{version}}/action4/travel-details-same-person-1" method="post" novalidate>
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+        Are {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Smith' }}'s travel details the same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}'s?
+      </h1>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col govuk-!-width-one-half"></th>
+            <th scope="col govuk-!-width-one-half"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Flight, Eurostar or ferry number</th>
+            <td class="govuk-table__cell govuk-!-padding-left-2" style="border-left: 1px solid #b1b4b6">{{ data['flight-eurostar-ferry'] or '9W15' }}</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Country you’re departing from</th>
+            <td class="govuk-table__cell govuk-!-padding-left-2" style="border-left: 1px solid #b1b4b6">{{ data['port-of-origin'] or 'Hamburg' }}</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Airport, train station or ferry port you’re arriving at</th>
+            <td class="govuk-table__cell govuk-!-padding-left-2" style="border-left: 1px solid #b1b4b6">{{ data['port-of-entry'] or 'Heathrow' }}</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Date of entry</th>
+            <td class="govuk-table__cell govuk-!-padding-left-2" style="border-left: 1px solid #b1b4b6">{{ data['date-of-entry-day'] or '25 April 2021' }} {{ data['date-of-entry-month'] }} {{ data['date-of-entry-year'] }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="govuk-radios govuk-!-margin-top-6 govuk-!-margin-bottom-6" data-module="govuk-radios">
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="travel-details-same-person-1-1" name="travel-details-same-person-1" type="radio" value="Yes" {{ checked("travel-details-same-person-1", "Yes") }}>
+          <label class="govuk-label govuk-radios__label" for="travel-details-same-person-1-1">
+            Yes
+          </label>
+        </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="travel-details-same-person-1-2" name="travel-details-same-person-1" type="radio" value="No" {{ checked("travel-details-same-person-1", "No") }}>
+          <label class="govuk-label govuk-radios__label" for="travel-details-same-person-1-2">
+            No
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Save and continue
+      </button>
+
+    </form>
+
+  </div>
+
+
+</div>
+{% endblock %}

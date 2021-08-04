@@ -1,0 +1,112 @@
+{% set version = "v2" %}
+{% set pageTitle = "Confirm your payment" %}
+
+{% extends "includes/layout.html" %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row" style="position: relative;">
+    <div class="grey-box">
+      <p class="govuk-body govuk-!-font-size-24">Payment summary</p>
+      <p class="govuk-body">An example payment description</p>
+      <p class="govuk-body govuk-!-margin-bottom-1"><span>Total amount:</span></p>
+      <p class="govuk-body govuk-!-font-size-36 govuk-!-margin-bottom-0">
+        {% if data['travel-route'] == "green" %}
+          {% if data['first-name-person-1'] %}
+          £210.00
+          {% else %}
+          £105.00
+          {% endif %}
+        {% else %}
+          {% if data['first-name-person-1'] %}
+          £420.00
+          {% else %}
+          £210.00
+          {% endif %}
+        {% endif %}
+      </p>
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-8">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key" style="font-weight: normal;">
+            Card number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <strong>************5556</strong>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key" style="font-weight: normal;">
+            Expiry date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <strong>{{ data['date-of-expiry-month'] or '10' }}/{{ data['date-of-expiry-year'] or '22' }}</strong>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key" style="font-weight: normal;">
+            Name on card
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <strong>{{ data['name-on-card'] or 'Pete Smith' }}</strong>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key" style="font-weight: normal;">
+            Billing address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <strong>
+              {{ data['billing-address-line-1'] or '5 Souterhead Road' }}
+              {% if data['billing-address-line-2'] %}
+              {{ data['billing-address-line-2'] }}
+              {% endif %}
+              {{ data['billing-address-town'] or 'Birmingham' }}
+              {{ data['billing-postcode'] or 'LS1 3BE' }}
+            </strong>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key" style="font-weight: normal;">
+            Confirmation email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <strong>{{ data['confirmation-email-address'] or 'example@email.com' }}</strong>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+
+          </dd>
+        </div>
+      </dl>
+
+      <form action="/international-arrivals/{{version}}/confirmation" method="post">
+
+        <button id="button" class="govuk-button govuk-!-margin-bottom-3" type="submit" data-module="govuk-button">
+          Confirm payment
+        </button>
+
+      </form>
+
+      <p class="govuk-!-font-size-16"><a class="govuk-link" href="./enter-card-details.html">Cancel payment</a></p>
+
+    </div>
+  </div>
+
+{% endblock %}

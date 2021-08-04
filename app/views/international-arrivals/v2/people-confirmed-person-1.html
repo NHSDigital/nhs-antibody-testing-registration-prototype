@@ -1,0 +1,79 @@
+{% set version = "v2" %}
+{% set pageTitle = "Confirm people for testing" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <p class="govuk-body">
+        You can order travel packages for up to 3 other people that you're travelling with. They must be staying at the same address as you and ordering the same travel package (green or amber).<br><br>
+        Once you've confirmed who needs testing, you can complete and pay for your order.
+      </p>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-half"></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</th>
+            <td class="govuk-table__cell">
+              {{ data['email-address'] or 'email@example.com' }}
+              <br>
+              {{ data['mobile-phone-number'] or '+447782808451' }}
+            </td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/international-arrivals/{{version}}/contact-details">Edit details</a></p></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Smith' }}</th>
+            <td class="govuk-table__cell">
+              {{ data['email-address-person-1'] or 'jsmith@example.com' }}
+              <br>
+              {{ data['mobile-phone-number-person-1'] or '+447732868489' }}
+            </td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/international-arrivals/{{version}}/contact-details-person-1">Edit details</a></p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="inline-buttons-wrapper">
+        <form class="form" action="/international-arrivals/{{version}}/delivery-address" method="post">
+          <button class="govuk-button" data-module="govuk-button">
+            Save and continue
+          </button>
+        </form>
+        <form class="form" action="#" method="post">
+          <button class="govuk-button govuk-button--secondary govuk-!-margin-right-1" data-module="govuk-button">
+            Add another person
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
