@@ -15,7 +15,7 @@
     </p>
   </div>
 
-<a class="govuk-back-link" href="/international-arrivals/{{version}}/contact-details-same-person-1">Back</a>
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/travel-route-same-person-1">Back</a>
 
 {% endblock %}
 
@@ -24,24 +24,25 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/international-arrivals/{{version}}/check-your-answers-person-1" method="post">
+      <form action="/international-arrivals/{{version}}/vaccine-person-1" method="post">
 
-        <fieldset class="govuk-fieldset" aria-describedby="name-hint">
+        <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                   {{ pageTitle }}
                 </h1>
             </legend>
-            <span id="mobile-number-hint" class="govuk-body">
-              We’ll send confirmation of your order to this email address.
-            </span>
-
-            <div class="govuk-form-group govuk-!-margin-top-5 govuk-!-margin-bottom-4">
-                <label class="govuk-label govuk-!-margin-top-3" for="mobile-phone-number-person-1">
-                    <!-- <strong style="line-height: 1.7em;">What's your mobile number?</strong><br> -->
-                    <strong>Mobile number</strong>
-                </label>
-                <input class="govuk-input govuk-!-width-one-third govuk-!-margin-top-2" id="mobile-phone-number-person-1" name="mobile-phone-number-person-1" type="tel" value="{{ data['mobile-phone-number-person-1'] }}">
+            
+            <h3 class="govuk-heading-m">Mobile number</h3>
+  
+            <div class="govuk-form-group govuk-!-margin-bottom-4">
+              <span id="mobile-number-hint" class="govuk-body">
+                For international numbers include the country code.
+              </span>
+              <label class="govuk-label govuk-!-margin-top-4" for="mobile-phone-number-person-1">
+                  Mobile number
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="mobile-phone-number-person-1" name="mobile-phone-number-person-1" type="tel" value="{{ data['mobile-phone-number-person-1'] or data['mobile-phone-number']}}">
             </div>
             <div class="govuk-form-group">
                 <label class="govuk-label" for="mobile-phone-number-confirm-person-1">
@@ -50,12 +51,13 @@
                 <input class="govuk-input govuk-!-width-one-third" id="mobile-phone-number-confirm-person-1" name="mobile-phone-number-confirm-person-1" type="tel" value="{{ data['mobile-phone-number-confirm-person-1'] }}">
             </div>
 
-            <div class="govuk-form-group govuk-!-margin-top-6 govuk-!-margin-bottom-4">
+            <h3 class="govuk-heading-m">Email address</h3>
+
+            <div class="govuk-form-group govuk-!-margin-bottom-4">
                 <label class="govuk-label" for="email-address-person-1">
-                    <!-- <strong style="line-height: 1.7em;">What's your email address?</strong><br> -->
-                   <strong>Email address</strong>
+                   Email address
                 </label>
-                <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-top-2" id="email-address-person-1" name="email-address-person-1" type="text" value="{{ data['email-address-person-1'] }}">
+                <input class="govuk-input govuk-!-width-two-thirds" id="email-address-person-1" name="email-address-person-1" type="text" value="{{ data['email-address-person-1'] or data['email-address'] }}">
             </div>
             <div class="govuk-form-group">
                 <label class="govuk-label" for="confirm-email-address-person-1">
