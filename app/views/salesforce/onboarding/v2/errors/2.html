@@ -1,0 +1,88 @@
+{% extends "includes/layout.html" %}
+{% set serviceName = "COVID-19" %}
+{% set pageTitle = "What type of organisation are you?" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#field-1">Select an option</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form action="guidance-sign" method="post">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div id="contact-hint" class="govuk-hint">
+              Select one option.
+            </div>
+            <div id="field-1" class="govuk-form-group govuk-!-margin-top-6 govuk-form-group--error">
+              <span class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Select an option
+              </span>
+              <div class="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="" name="radio" type="radio" value="">
+                  <label class="govuk-label govuk-radios__label" for="radio">
+                    Public organisation
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="" name="radio" type="radio" value="">
+                  <label class="govuk-label govuk-radios__label" for="radio">
+                    Private organisation
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="" name="radio" type="radio" value="">
+                  <label class="govuk-label govuk-radios__label" for="radio">
+                    Higher education institution
+                  </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <button class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+      </form>
+
+      <p class="govuk-body">If your organisation type is not listed, call the contact centre: <span class="govuk-!-font-weight-bold">119</span> (free from mobiles and landlines)</p>
+      
+      <p class="govuk-body">Lines are open 7am to 11pm.</p>
+
+    </div>
+  </div>
+
+
+{% endblock %}
