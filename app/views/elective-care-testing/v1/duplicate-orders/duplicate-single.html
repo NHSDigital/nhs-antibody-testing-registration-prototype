@@ -1,6 +1,6 @@
 {% extends "includes/layout.html" %}
-{% set serviceName = "Sign up for coronavirus tests and services" %}
-{% set pageTitle = "Apply for coronavirus test ordering" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% set pageTitle = "Do you need to order another test kit?" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
@@ -13,6 +13,7 @@
       </span>
     </p>
   </div>
+  <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -20,66 +21,51 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <!-- <div class="govuk-inset-text">
-        This service is currently closed for Extra Care and Supported Living organisations.If you have been referred by one of these organisations, contact your local council or Director of Adult Social Services for more information.
-      </div> -->
-
-      <form action="2" method="post">
+      <form action="5" method="post">
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
               <h1 class="govuk-fieldset__heading">
                 {{ pageTitle }}
               </h1>
             </legend>
             <div id="contact-hint" class="govuk-hint">
-              Select one option.
+              You’ve already ordered a test kit. Confirm if you need to order another one, if there’s been a problem.
             </div>
             <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
                 <label class="govuk-label govuk-radios__label" for="contact">
-                  I have a referrer’s unique organisation number (UON)
+                  Yes
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
                 <div class="govuk-form-group">
-                  <label class="govuk-label" for="contact-by-email">
-                    Referrer’s unique organisation number (UON)
+                  <label class="govuk-label" for="sort">
+                    Why are you reordering?
                   </label>
-                  <input class="govuk-input govuk-!-width-one-third" id="contact-by-email" name="contact-by-email" type="email" spellcheck="false" autocomplete="email">
+                  <select class="govuk-select" id="sort" name="sort">
+                    <option value="">Damaged or missing parts</option>
+                    <option value="">Kit did not arrive</option>
+                    <option value="">{-- value --}</option>
+                  </select>
                 </div>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-2">
                 <label class="govuk-label govuk-radios__label" for="contact-2">
-                  I do not have a referrer’s unique organisation number (UON)
+                  No
                 </label>
               </div>
             </div>
           </fieldset>
         </div>
-        <a href="2" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-          Start now
-          <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-          </svg>
-        </a>
+        <button class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
       </form>
+
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
   </div>
 
 
