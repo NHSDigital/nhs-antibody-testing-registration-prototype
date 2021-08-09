@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Confirm tests" %}
+{% set pageTitle = "Confirm people for testing" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,6 +15,8 @@
     </p>
   </div>
 
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/check-your-answers-person-1">Back</a>
+
 {% endblock %}
 
 {% block content %}
@@ -26,16 +28,18 @@
       <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
 
       <p class="govuk-body">
-        You can order travel packages for other people that you're travelling with. They must be quarantining at the same address as you (if applicable).
+        You can order travel packages for other people that you're travelling with. They must have the same delivery address as you.<br><br>
+        Once you've confirmed who needs testing, you can complete and pay for your order.
       </p>
 
-      <table class="govuk-table">
+      <table class="govuk-table govuk-!-margin-bottom-0">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+            <th scope="col" class="govuk-table__header">Name</th>
+            <th scope="col" class="govuk-table__header">Date of birth</th>
+            <th scope="col" class="govuk-table__header">Test</th>
+            <th scope="col" class="govuk-table__header">Amount</th>
+            <th scope="col" class="govuk-table__header"></th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -51,24 +55,45 @@
               {{ data['travel-route'] or 'Day 2 test' }}
             </td>
             <td class="govuk-table__cell">
-              <p class="govuk-body-m" style="display: flex; justify-content: flex-end;">£100</p>
+              <p class="govuk-body-m">£100</p>
+            </td>
+            <td class="govuk-table__cell">
+              <p class="govuk-body-m" style="display: flex; justify-content: flex-end;">
+                <a href="/international-arrivals/{{version}}/check-your-answers">Edit details</a>
+              </p>
             </td>
           </tr>
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Smith' }}</th>
-            <td class="govuk-table__cell">
+            <th scope="row" class="govuk-table__header" style="border-bottom: none">{{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Smith' }}</th>
+            <td class="govuk-table__cell" style="border-bottom: none">
               {{ data['date-of-birth-person-1-day'] or '2' }}/{{ data['date-of-birth-person-1-month'] or '06' }}/{{ data['date-of-birth-person-1-year'] or '1984' }}
               <!-- {{ data['email-address-person-1'] or 'jsmith@example.com' }}
               <br>
               {{ data['mobile-phone-number-person-1'] or '+447732868489' }} -->
             </td>
-            <td class="govuk-table__cell">
-              {{ data['travel-route-same-person-1'] or 'Day 2 & day 8 test' }}
+            <td class="govuk-table__cell" style="border-bottom: none">
+              {{ data['travel-route-same-person-1'] or 'Day 2 and day 8 test' }}
             </td>
-            <td class="govuk-table__cell">
-              <p class="govuk-body-m" style="display: flex; justify-content: flex-end;">£200</p>
+            <td class="govuk-table__cell" style="border-bottom: none">
+              <p class="govuk-body-m">£200</p>
+            </td>
+            <td class="govuk-table__cell" style="border-bottom: none">
+              <p class="govuk-body-m" style="display: flex; justify-content: flex-end;">
+                <a href="/international-arrivals/{{version}}/check-your-answers-person-1">Edit details</a>
+              </p>
             </td>
           </tr>
+        </tbody>
+      </table>
+      <table class="govuk-table govuk-!-margin-bottom-8 govuk-!-margin-top-0">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-third govuk-!-padding-0"></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-third govuk-!-padding-0"></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-third govuk-!-padding-0"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header" style="border: none">
    
@@ -76,11 +101,8 @@
             <td class="govuk-table__cell" style="border: none">
           
             </td>
-            <td class="govuk-table__cell" style="border: none">
-           
-            </td>
-            <td class="govuk-table__cell" style="border: none">
-              <p class="govuk-body-m" style="display: flex; justify-content: flex-end;"><strong class="govuk-!-padding-right-4">Total</strong> £300</p>
+            <td class="govuk-table__cell">
+              <p class="govuk-body-m" style="display: flex; justify-content: flex-end;"><strong class="govuk-!-padding-right-4">Amount to pay</strong> £300</p>
             </td>
           </tr>
         </tbody>
