@@ -1,0 +1,85 @@
+{% set version = "v2" %}
+{% set pageTitle = "When did you have the vaccine?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/vaccine">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/international-arrivals/{{version}}/previous-infection" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="vaccine-date-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{pageTitle}}
+              </h1>
+            </legend>
+            <span id="vaccine-date-hint" class="govuk-body">
+              We are asking this question to better understand how effective the vaccine is.<br><br>
+              If you have only had 1 dose, tell us when they had this dose.<br><br>
+              If you have had 2 doses, tell us when they had the second dose.
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-date-1" name="vaccine-date" type="radio" value="Less than 7 days ago" {{ checked("vaccine-date", "Less than 7 days ago") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-date-1">
+                  Less than 7 days ago
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-date-2" name="vaccine-date" type="radio" value="7 to 14 days ago" {{ checked("vaccine-date", "7 to 14 days ago") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-date-2">
+                  7 to 14 days ago
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-date-3" name="vaccine-date" type="radio" value="More than 14 days ago" data-aria-controls="conditional-vaccine-date" {{ checked("vaccine-date", "More than 14 days ago") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-date-3">
+                  More than 14 days ago
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-vaccine-date">
+                <div class="govuk-form-group" style="display: inline-block">
+                  <label class="govuk-label" for="vaccine-date-input-1" >
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-third" id="vaccine-date-input-1" name="vaccine-date-input-1" type="tel" value="{{ data['vaccine-date-input-1'] }}">
+                </div>
+                <div class="govuk-form-group" style="display: inline-block; margin-left: -120px">
+                  <label class="govuk-label" for="vaccine-date-input-2">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-third" id="vaccine-date-input-2" name="vaccine-date-input-2" type="tel" value="{{ data['vaccine-date-input-2'] }}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
