@@ -2413,7 +2413,7 @@ router.post('/delegated-access/hauliers/register/v2/uk/nhs-number', function (re
     res.redirect('/delegated-access/hauliers/register/v2/uk/nhs-number')
   } else {
     // Send user to ineligible page
-    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-group')
+    res.redirect('/delegated-access/hauliers/register/v2/uk/address')
   }
 
 })
