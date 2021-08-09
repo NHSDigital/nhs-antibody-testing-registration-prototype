@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "We've received your order for international travel packages" %}
+{% set pageTitle = "We've received your order for travel packages" %}
 
 {% extends "includes/layout.html" %}
 
@@ -29,14 +29,10 @@
 
     <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-8">
       <h1 class="govuk-panel__title">
-        {% if data['travel-route'] == "amber" and data['first-name-person-1'] %}
-        We've received your order for amber travel packages
-        {% elseif data['travel-route'] == "amber" %}
-        We've received your order for an amber travel package
-        {% elseif data['travel-route'] == "green" and data['first-name-person-1'] %}
-        We've received your order for green travel packages
+        {% if data['travel-route'] and data['travel-route-same-person-1'] %}
+        We've received your order for 2 travel packages
         {% else %}
-        We've received your order for a green travel package
+        We've received your order for 1 travel package
         {% endif %}
       </h1>
     </div>
@@ -66,13 +62,13 @@
 {% if data['travel-route'] == "green" %}
 <div class="proto-action big">
   <a href="/international-arrivals/{{version}}/confirmation-email-green">
-    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Read instructions</div>
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Confirmation email</div>
   </a>
 </div>
 {% else %}
 <div class="proto-action big">
   <a href="/international-arrivals/{{version}}/confirmation-email-amber">
-    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Read instructions</div>
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Confirmation email</div>
   </a>
 </div>
 {% endif %}
