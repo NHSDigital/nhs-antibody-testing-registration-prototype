@@ -79,10 +79,11 @@ router.post('/international-arrivals/v2/action4/travel-details-same-person-1', f
   if (travelDetailsSame == "No") {
     res.redirect('/international-arrivals/v2/cannot-add-person')
   } else {
-    res.redirect('/international-arrivals/v2/contact-details-same-person-1')
+    res.redirect('/international-arrivals/v2/travel-route-same-person-1')
   }
 })
 
+<<<<<<< HEAD
 router.post('/international-arrivals/v2/action8/vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
   if (vaccine == "No") {
@@ -111,4 +112,41 @@ router.post('/international-arrivals/v2/action5/ethnic-group', function (req, re
   }
 
 })
+=======
+router.post('/international-arrivals/v2/action/vaccine-person-1', function (req, res) {
+  let vaccine = req.session.data['vaccine-person-1']
+  if (vaccine == "No"){
+    res.redirect('/international-arrivals/v2/previous-infection-person-1')
+  } else {
+    res.redirect('/international-arrivals/v2/vaccine-date-person-1')
+  }
+})
+
+router.post('/international-arrivals/v2/action/ethnic-group-person-1', function (req, res) {
+  let ethnicGroupPerson1 = req.session.data['ethnic-group-person-1']
+  if (ethnicGroupPerson1 == "Asian or Asian British"){
+    res.redirect('/international-arrivals/v2/ethnic-background-asian-person-1')
+  } else if (ethnicGroupPerson1 == "Black, African, Black British or Caribbean") {
+    res.redirect('/international-arrivals/v2/ethnic-background-black-person-1')
+  } else if (ethnicGroupPerson1 == "Mixed or multiple ethnic groups") {
+    res.redirect('/international-arrivals/v2/ethnic-background-mixed-person-1')
+  } else if (ethnicGroupPerson1 == "White") {
+    res.redirect('/international-arrivals/v2/ethnic-background-white-person-1')
+  } else if (ethnicGroupPerson1 == "Another ethnic group") {
+    res.redirect('/international-arrivals/v2/ethnic-background-another-person-1')
+  } else {
+    res.redirect('/international-arrivals/v2/currently-in-work-person-1')
+  }
+})
+
+router.post('/international-arrivals/v2/action/nhs-number-known-person-1', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known-person-1']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/international-arrivals/v2/nhs-number-person-1')
+  } else {
+    res.redirect('/international-arrivals/v2/check-your-answers-person-1')
+  }
+})
+
+>>>>>>> 128178df6f124c02390ff18fca51df7e3aeae1f8
 module.exports = router

@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Confirm people for testing" %}
+{% set pageTitle = "Confirm tests" %}
 
 {% extends "includes/layout.html" %}
 
@@ -26,15 +26,15 @@
       <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
 
       <p class="govuk-body">
-        You can order travel packages for up to 3 other people that you're travelling with. They must be staying at the same address as you and ordering the same travel package (green or amber).<br><br>
-        Once you've confirmed who needs testing, you can complete and pay for your order.
+        You can order travel packages for other people that you're travelling with. They must be quarantining at the same address as you (if applicable).
       </p>
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
-            <th scope="col" class="govuk-table__header govuk-!-width-one-half"></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
             <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
           </tr>
         </thead>
@@ -42,20 +42,46 @@
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</th>
             <td class="govuk-table__cell">
-              {{ data['email-address'] or 'email@example.com' }}
+              {{ data['date-of-birth-day'] or '2' }}/{{ data['date-of-birth-month'] or '03' }}/{{ data['date-of-birth-year'] or '1979' }}
+              <!-- {{ data['email-address'] or 'email@example.com' }}
               <br>
-              {{ data['mobile-phone-number'] or '+447782808451' }}
+              {{ data['mobile-phone-number'] or '+447782808451' }} -->
             </td>
-            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/international-arrivals/{{version}}/contact-details">Edit details</a></p></td>
+            <td class="govuk-table__cell">
+              {{ data['travel-route'] or 'Day 2 test' }}
+            </td>
+            <td class="govuk-table__cell">
+              <p class="govuk-body-m" style="display: flex; justify-content: flex-end;">£100</p>
+            </td>
           </tr>
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Smith' }}</th>
             <td class="govuk-table__cell">
-              {{ data['email-address-person-1'] or 'jsmith@example.com' }}
+              {{ data['date-of-birth-person-1-day'] or '2' }}/{{ data['date-of-birth-person-1-month'] or '06' }}/{{ data['date-of-birth-person-1-year'] or '1984' }}
+              <!-- {{ data['email-address-person-1'] or 'jsmith@example.com' }}
               <br>
-              {{ data['mobile-phone-number-person-1'] or '+447732868489' }}
+              {{ data['mobile-phone-number-person-1'] or '+447732868489' }} -->
             </td>
-            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/international-arrivals/{{version}}/contact-details-person-1">Edit details</a></p></td>
+            <td class="govuk-table__cell">
+              {{ data['travel-route-same-person-1'] or 'Day 2 & day 8 test' }}
+            </td>
+            <td class="govuk-table__cell">
+              <p class="govuk-body-m" style="display: flex; justify-content: flex-end;">£200</p>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" style="border: none">
+   
+            </th>
+            <td class="govuk-table__cell" style="border: none">
+          
+            </td>
+            <td class="govuk-table__cell" style="border: none">
+           
+            </td>
+            <td class="govuk-table__cell" style="border: none">
+              <p class="govuk-body-m" style="display: flex; justify-content: flex-end;"><strong class="govuk-!-padding-right-4">Total</strong> £300</p>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -63,7 +89,7 @@
       <div class="inline-buttons-wrapper">
         <form class="form" action="/international-arrivals/{{version}}/delivery-address" method="post">
           <button class="govuk-button" data-module="govuk-button">
-            Save and continue
+            Continue to payment
           </button>
         </form>
         <form class="form" action="#" method="post">

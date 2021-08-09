@@ -1,21 +1,33 @@
 {% set version = "v1" %}
-{% set pageTitle = "Do you know the NHS number of the person who needs a test?" %}
+{% set serviceName = "Manage haulier COVID-19 testing" %}
+{% set pageTitle = "Do you know your NHS number?" %}
 
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-    </p>
+<a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+<details class="govuk-details govuk-!-margin-bottom-0" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      English
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <a href="#" class="govuk-link">Polskie</a><br />
+    <a href="#" class="govuk-link">Română</a><br />
+    <a href="#" class="govuk-link">български</a><br />
+    <a href="#" class="govuk-link">čeština</a><br />
+    <a href="#" class="govuk-link">Dutch</a><br />
+    <a href="#" class="govuk-link">Français</a><br />
+    <a href="#" class="govuk-link">Deutsche</a><br />
+    <a href="#" class="govuk-link">Magyar</a><br />
+    <a href="#" class="govuk-link">Lietuvis</a><br />
+    <a href="#" class="govuk-link">русский</a><br />
+    <a href="#" class="govuk-link">Español</a><br />
+    <a href="#" class="govuk-link">Türk</a><br />
+    <a href="#" class="govuk-link">Cymraeg</a>
   </div>
-
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/country">Back</a>
+</details>
 {% endblock %}
 
 {% block content %}
@@ -24,13 +36,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/antigen/{{version}}/action3/nhs-number-known" method="post">
+      <form action="nhs-number" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-                Do you know {{ data['first-name-person-1'] or 'Pete' }} {{ data['last-name-person-1'] or 'Smith' }}'s NHS number?
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-4">
+                {{ pageTitle }}
               </h1>
             </legend>
             <span id="nhs-number-known-hint" class="govuk-body">
@@ -42,13 +54,13 @@
             </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-padding-top-6" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="nhs-number-known-1" name="nhs-number-known" type="radio" value="Yes" {{ checked("nhs-number-known", "Yes") }}>
-                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-1">
+                  <input class="govuk-radios__input" id="nhs-number-known" name="nhs-number-known" type="radio" value="yes">
+                  <label class="govuk-label govuk-radios__label" for="nhs-number-known">
                     Yes, I do
                   </label>
                 </div>
                 <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="nhs-number-known-2" name="nhs-number-known" type="radio" value="No" {{ checked("nhs-number-known", "No") }}>
+                  <input class="govuk-radios__input" id="nhs-number-known-2" name="nhs-number-known" type="radio" value="no">
                   <label class="govuk-label govuk-radios__label" for="nhs-number-known-2">
                     No, I do not
                   </label>

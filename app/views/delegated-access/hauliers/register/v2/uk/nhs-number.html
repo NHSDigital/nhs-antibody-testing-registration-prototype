@@ -1,7 +1,8 @@
 {% set version = "v1" %}
-{% extends "includes/layout.html" %}
 {% set serviceName = "Manage haulier COVID-19 testing" %}
-{% set pageTitle = "Do you know your NHS number?" %}
+{% set pageTitle = "What's your NHS number?" %}
+
+{% extends "includes/layout.html" %}
 
 {% block beforeContent %}
 <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
@@ -30,40 +31,36 @@
 {% endblock %}
 
 {% block content %}
+{% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="" method="post">
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-fieldset__heading">
-                {{ pageTitle }}
-              </h1>
-            </legend>
-            <span id="nhs-number-hint" class="govuk-hint">
-              An NHS number is 10 digits, for example 876 406 5600.
-            </span>
-            <p class="govuk-body">Enter this number with no spaces.</p>
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="nhs-number">
-                NHS number
-              </label>
-              <input class="govuk-input govuk-input--width-10" id="nhs-number" name="nhs-number" type="text" value="{{ data['nhs-number'] }}">
-            </div>
-          </fieldset>
-        </div>
-        <button class="govuk-button" type="submit" data-module="govuk-button">
-          Continue
-        </button>
-        <p class="govuk-body">How to find an NHS number <a class="govuk-link" href="#">https://www.nhs.uk/find-nhs-number/what-is-your-name</a></p>
-        <p class="govuk-body">In Scotland it is known as a CHI number. In Northern Ireland, it is known as an H&C number.</p>
-        <p class="govuk-body">If you do not have it, you can still continue.</p>
+      <form action="ethnic-group" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="nhs-number-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="nhs-number-hint" class="govuk-body">
+            An NHS number is 10 digits, for example 867 406 5600.<br><br>
+            Enter this number with no spaces.
+          </span>
+          <div class="govuk-form-group govuk-!-margin-top-5">
+            <label class="govuk-label" for="nhs-number">
+              NHS number
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="nhs-number" name="nhs-number" type="text" value="{{ data['nhs-number'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
 
       </form>
+
     </div>
   </div>
-
 
 {% endblock %}

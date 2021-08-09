@@ -2390,4 +2390,32 @@ router.post('/bulk-order-test-kits/v1/action1/what-test-package-order', function
   }
 })
 
+router.post('/delegated-access/hauliers/register/v2/uk/nhs-number-known', function (req, res) {
+  var liveInUk = req.session.data['live-in-uk']
+
+  // Check whether the variable matches a condition
+  if (liveInUk == "yes"){
+    // Send user to next page
+    res.redirect('/delegated-access/hauliers/register/v2/uk/nhs-number-known')
+  } else {
+    // Send user to ineligible page
+    res.redirect('/delegated-access/hauliers/register/v2/non-uk/check-your-answers')
+  }
+
+})
+
+router.post('/delegated-access/hauliers/register/v2/uk/nhs-number', function (req, res) {
+  var isNhsNumberKnown = req.session.data['nhs-number-known']
+
+  // Check whether the variable matches a condition
+  if (isNhsNumberKnown == "yes"){
+    // Send user to next page
+    res.redirect('/delegated-access/hauliers/register/v2/uk/nhs-number')
+  } else {
+    // Send user to ineligible page
+    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-group')
+  }
+
+})
+
 module.exports = router

@@ -24,7 +24,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
   
-      <form action="/antigen/{{version}}/home-testing/swab-test-date" method="post">
+      <form action="/antigen/{{version}}/home-testing/scan-barcode" method="post">
   
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
@@ -33,7 +33,18 @@
                 {{ pageTitle }}
               </h1>
             </legend>
+            
             <span id="enter-barcode-number-hint" class="govuk-body">
+              Use the camera on your phone or computer to scan the test kit barcode. You’ll find these barcodes attached to the plastic tube, plastic bag and return box in the test kit.<br><br>
+              These are different from the pre-paid Royal Mail return package barcode on your box.<br><br>
+              It should look like this:
+            </span>
+
+            <div class="govuk-!-margin-top-5">
+              <img src="/public/images/barcode-number.png" alt="barcode number"/>
+            </div>
+
+            <!-- <span id="enter-barcode-number-hint" class="govuk-body">
               If you have a home test kit, use the camera on your phone or computer to scan one of the identical barcodes on the plastic tube, plastic bag and return box.<br><br>
               Or can manually enter the 11 character reference below the barcode.<br><br>
               If you're using a home test kit, you'll find the identical barcodes inside the home test kit, either attached to the plastic vial, biohazard bag and return box or loose for you to stick on yourself (please read instructions).<br><br>
@@ -48,13 +59,13 @@
               <div class="govuk-details__text">
                 <img src="/public/images/barcode-number.png" alt="barcode number"/>
               </div>
-            </details>
+            </details> -->
 
-            <a href="/antigen/{{version}}/home-testing/scan-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            <!-- <a href="/antigen/{{version}}/home-testing/scan-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
               Scan my barcode
-            </a>
+            </a> -->
   
-            <div class="govuk-form-group">
+            <!-- <div class="govuk-form-group">
               <label class="govuk-label" for="kit-barcode-reference-1">
                 Test kit barcode reference
               </label>
@@ -66,12 +77,18 @@
                 Confirm test kit barcode reference
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }}>
-            </div>
+            </div> -->
             
           </fieldset>
         </div>
   
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <button class="govuk-button" data-module="govuk-button">Scan barcode</button>
+
+        <p class="govuk-body">
+          <a href="/antigen/{{version}}/home-testing/enter-barcode-manual" role="button" draggable="false" class="govuk-link" data-module="govuk-button">
+            Enter barcode manually instead
+          </a>
+        </p>
   
       </form>
   
