@@ -83,7 +83,6 @@ router.post('/international-arrivals/v2/action4/travel-details-same-person-1', f
   }
 })
 
-<<<<<<< HEAD
 router.post('/international-arrivals/v2/action8/vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
   if (vaccine == "No") {
@@ -112,7 +111,6 @@ router.post('/international-arrivals/v2/action5/ethnic-group', function (req, re
   }
 
 })
-=======
 router.post('/international-arrivals/v2/action/vaccine-person-1', function (req, res) {
   let vaccine = req.session.data['vaccine-person-1']
   if (vaccine == "No"){
@@ -148,5 +146,4 @@ router.post('/international-arrivals/v2/action/nhs-number-known-person-1', funct
   }
 })
 
->>>>>>> 128178df6f124c02390ff18fca51df7e3aeae1f8
 module.exports = router
