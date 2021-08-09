@@ -1,0 +1,47 @@
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      Pete Smith
+  {% endif %}
+{% endset %}
+
+{% set dob %}
+  {% if data["cuDOB-day"] and data["cuDOB-month"] and data["cuDOB-year"]  %}
+    {{ data["cuDOB-day"]}} {{ data["cuDOB-month"] | monthToWord }} {{ data["cuDOB-year"]}}
+  {% else %}
+    31 March 1975
+  {% endif %}
+{% endset %}
+
+{% set version = "v1" %}
+{% set pageTitle = "Order confirmed" %}
+
+{% extends "includes/layout.html" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+      <p class="govuk-body govuk-!-margin-bottom-2" style="color: #ffffff">John Smith</p>
+      <p class="govuk-body govuk-!-margin-bottom-0" style="color: #ffffff">31 April 2021</p>
+    </div>
+
+    <h2 class="govuk-heading-s govuk-!-margin-top-8">What happens next?</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>we'll send the order confirmation and test results to you by email</li>
+      <li>we’ll send the order confirmation and test results to the patient by text</li>
+    </ul>
+
+    <a href="/elective-care-testing/v1/prelinked-kits/request-group" role="button" draggable="false" class="govuk-button govuk-!-margin-top-7" data-module="govuk-button">
+      Order more tests
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}

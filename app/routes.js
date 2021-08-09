@@ -2413,7 +2413,26 @@ router.post('/delegated-access/hauliers/register/v2/uk/nhs-number', function (re
     res.redirect('/delegated-access/hauliers/register/v2/uk/nhs-number')
   } else {
     // Send user to ineligible page
-    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-group')
+    res.redirect('/delegated-access/hauliers/register/v2/uk/address')
+  }
+
+})
+
+router.post('/delegated-access/hauliers/register/v2/uk/ethnic-group', function (req, res) {
+let ethnicGroup = req.session.data['ethnic-group']
+
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-background-another')
+  } else {
+    res.redirect('/delegated-access/hauliers/register/v2/uk/check-your-answers')
   }
 
 })
