@@ -144,11 +144,14 @@ router.post('/international-arrivals/v2/action/nhs-number-known-person-1', funct
   if (nhsNumberKnownPerson1 == "Yes"){
     res.redirect('/international-arrivals/v2/nhs-number-person-1')
   } else {
-    res.redirect('/international-arrivals/v2/check-your-answers-person-1')
+    res.redirect('/international-arrivals/v2/registered-with-GP-person-1')
   }
 })
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b405878bce0cbdb37fdec90d1ce88b25f7cbf1a3
 router.post('/international-arrivals/v2/action9/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
   if (nhsNumberKnown == "Yes"){
@@ -158,4 +161,16 @@ router.post('/international-arrivals/v2/action9/nhs-number-known', function (req
   }
 })
 
+<<<<<<< HEAD
+=======
+router.post('/international-arrivals/v2/action/registered-with-GP-person-1', function (req, res) {
+  let registeredWithGP = req.session.data['registered-with-GP-person-1']
+  if (registeredWithGP == "Yes"){
+    res.redirect('/international-arrivals/v2/address-person-1')
+  } else {
+    res.redirect('/international-arrivals/v2/gender-person-1')
+  }
+})
+
+>>>>>>> b405878bce0cbdb37fdec90d1ce88b25f7cbf1a3
 module.exports = router

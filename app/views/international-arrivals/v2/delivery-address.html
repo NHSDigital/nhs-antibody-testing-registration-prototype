@@ -117,6 +117,10 @@
           Continue
         </button>
 
+        <p class="govuk-body">
+          <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find my address in the list</a>
+        </p>
+
       </form>
 
     </div>
@@ -128,6 +132,7 @@
   function buttonClicked(target) {
     setTimeout(function () {
       document.getElementById('content-1').style.display = 'none'
+      document.getElementById('manual-address-2').style.display = 'none'
       document.getElementById('find-address').style.display = 'none'
       document.getElementById('button-hidden').style.display = 'block'
       document.getElementById('content-2').style.display = 'block'
@@ -147,6 +152,7 @@
   function submitEvent() {
     var selects = document.getElementById('find-address')
     var selectedLink = document.getElementById('manual-address')
+    var selectedLink2 = document.getElementById('manual-address-2')
     selects.addEventListener('click', function (event) {
       event.preventDefault()
       if (selects.getAttribute('disabled') === 'disabled') {
@@ -161,6 +167,14 @@
       } else {
         event.preventDefault()
         buttonClicked2(selectedLink)
+      }
+    })
+    selectedLink2.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selectedLink2.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked(selectedLink2)
       }
     })
 

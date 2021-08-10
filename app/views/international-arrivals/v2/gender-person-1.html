@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Which of the following is recorded on their medical record?" %}
+{% set pageTitle = "Which of the following is in their medical records?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,7 +15,11 @@
     </p>
   </div> 
 
+  {% if data['registered-with-GP-person-1'] %}
   <a class="govuk-back-link" href="/international-arrivals/{{version}}/address-person-1">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/registered-with-GP-person-1">Back</a>
+  {% endif %}
 
 {% endblock %}
 
@@ -31,11 +35,11 @@
           <fieldset class="govuk-fieldset" aria-describedby="gender-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                Which of the following is recorded on {{ data['first-name-person-1'] or 'Jane' }}'s medical record?
+                Which of the following is in {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}'s medical records?
               </h1>
             </legend>
             <span id="gender-hint" class="govuk-body">
-              We are asking this question so we can find their GP record and save their result there.
+              We're asking this question so we can find their medical records and save their result.
             </span>
             <div class="govuk-radios govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">

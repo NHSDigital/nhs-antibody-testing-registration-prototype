@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Do you know their NHS number?" %}
+{% set pageTitle = "Do they have an NHS number?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -40,17 +40,37 @@
       <form action="/international-arrivals/{{version}}/action/nhs-number-known-person-1" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint">
+          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint nhs-number-known-hint-2">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                Do you know {{ data['first-name-person-1'] or 'Jane' }}'s NHS number?
+                Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} have an NHS number?
               </h1>
             </legend>
             <span id="nhs-number-known-hint" class="govuk-body">
               <strong>This helps us find and update their GP record with their test result.</strong><br><br>
-              An NHS number is 10 digits. It will be on any prescriptions or letters from a GP or hospital.<br><br>
-              <a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/" target="blank">How to find an NHS number</a><br><br>
-              In Scotland, it’s known as a CHI number. In Northern Ireland, it’s known as an H&C number.<br><br>
+            </span>
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  What an NHS number looks like and how to find it
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                An NHS number is 10 digits. It will be on any prescriptions or letters from a GP or hospital.<br><br>
+                <a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/" target="blank">How to find an NHS number</a>
+              </div>
+            </details>
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  What to do if you live in Scotland or Northern Ireland
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                In Scotland, it’s known as a CHI number. In Northern Ireland, it’s known as an H&C number.
+              </div>
+            </details>
+            <span id="nhs-number-known-hint-2" class="govuk-body">
               If you do not have it, you can still continue.
             </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-padding-top-6" data-module="govuk-radios">
