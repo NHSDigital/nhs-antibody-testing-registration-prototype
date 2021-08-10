@@ -1,6 +1,6 @@
 {% extends "includes/layout.html" %}
 {% set serviceName = "Get a coronavirus test" %}
-{% set pageTitle = "Do you need to order another test kit?" %}
+{% set pageTitle = "An order already exists for this patient" %}
 
 {% block beforeContent %}
   <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
@@ -13,8 +13,16 @@
 
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
 
-      <div class="govuk-hint">
+      <div class="govuk-body">
         You’ve already ordered a test kit. Confirm if you need to order another one, if there’s been a problem.
+      </div>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          If reordered, we'll send the patient a text telling them to throw away the test kit we sent them. This is because each test kit is linked to a specific procedure date.
+        </strong>
       </div>
 
       <form action="confirmation-manual" method="post">
@@ -37,43 +45,41 @@
             </dd>
           </div>
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key" style="vertical-align: top;">
-              Reorder kit
+            <dt class="govuk-summary-list__key">
+              NHS number
             </dt>
             <dd class="govuk-summary-list__value">
-              <div class="govuk-radios govuk-radios--small govuk-radios--conditional" data-module="govuk-radios">
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="radio-1" name="contact" type="radio" value="Yes" data-aria-controls="conditional-1">
-                  <label class="govuk-label govuk-radios__label" for="contact">
-                    Yes
-                  </label>
-                </div>
-                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-1">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label" for="sort">
-                      Why are you reordering?
-                    </label>
-                    <select class="govuk-select" id="sort" name="sort">
-                      <option value="">Incomplete test kits</option>
-                      <option value="">Failed delivery</option>
-                      <option value="">Incorrect address</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="radio-2" name="contact" type="radio" value="No">
-                  <label class="govuk-label govuk-radios__label" for="contact-2">
-                    No
-                  </label>
-                </div>
+              485 777 3456
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key" style="vertical-align: top;">
+              Why are you reordering?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-visually-hidden" for="sort">
+                  Why are you reordering?
+                </label>
+                <select class="govuk-select" id="sort" name="sort">
+                  <option value="">Incomplete test kits</option>
+                  <option value="">Failed delivery</option>
+                  <option value="">Incorrect address</option>
+                </select>
               </div>
             </dd>
           </div>
         </dl>
 
-        <button class="govuk-button" data-module="govuk-button">
-          Continue
-        </button>
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">
+            Order another test kit
+          </button>
+
+          <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Cancel
+          </button>
+        </div>
       </form>
 
     </div>
