@@ -1,0 +1,61 @@
+{% set version = "v2" %}
+{% set pageTitle = "What's your email address?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/mobile-number">Back</a>
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/international-arrivals/{{version}}/vaccine" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+                {{pageTitle}}
+              </h1>
+            </legend>
+
+            <div class="govuk-form-group govuk-!-margin-top-5">
+              <label class="govuk-label" for="email-address-person-1">
+                Email address
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="email-address-person-1" name="email-address-person-1" type="text" spellcheck="false" value="{{ data['email-address-person-1'] }}">
+            </div>
+            <div class="govuk-form-group govuk-!-margin-top-2">
+              <label class="govuk-label" for="confirm-email-address-person-1">
+                Confirm email address
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address-person-1" name="confirm-email-address-person-1" type="text" spellcheck="false" value="{{ data['confirm-email-address-person-1'] }}">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
