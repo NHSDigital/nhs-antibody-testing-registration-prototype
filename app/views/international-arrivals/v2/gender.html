@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Which of the following is recorded on your medical record?" %}
+{% set pageTitle = "Which of the following is in your medical records?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,7 +15,11 @@
     </p>
   </div>
 
+  {% if data['registered-with-GP'] %}
   <a class="govuk-back-link" href="/international-arrivals/{{version}}/address">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/registered-with-GP">Back</a>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -34,7 +38,7 @@
               </h1>
             </legend>
             <span id="gender-hint" class="govuk-body">
-              We are asking this question so we can find your GP record and save your result there.
+              We're asking this question so we can find your medical records and save your results.
             </span>
             <div class="govuk-radios govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
@@ -66,7 +70,7 @@
             </span>
           </summary>
           <div class="govuk-details__text">
-            We understand there may be other ways a person may answer this question. In this case, we just need to know what is on your GP record.
+            We understand there may be other ways a person may answer this question. In this case, we just need to know what is on your medical record.
           </div>
         </details>
 

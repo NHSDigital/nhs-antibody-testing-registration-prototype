@@ -47,14 +47,14 @@ router.post('/international-arrivals/v1/action4/travel-details-same-person-1', f
 })
 
 
-router.post('/international-arrivals/v2/action1/travel-route', function (req, res) {
-    let travelRoute = req.session.data['travel-route']
-    if (travelRoute == "red") {
-      res.redirect('/international-arrivals/v2/red-package-exit')
-    } else {
-      res.redirect('/international-arrivals/v2/personal-details')
-    }
-})
+// router.post('/international-arrivals/v2/action1/travel-route', function (req, res) {
+//     let travelRoute = req.session.data['travel-route']
+//     if (travelRoute == "red") {
+//       res.redirect('/international-arrivals/v2/red-package-exit')
+//     } else {
+//       res.redirect('/international-arrivals/v2/personal-details')
+//     }
+// })
 
 router.post('/international-arrivals/v2/action2/contact-details-same-person-1', function (req, res) {
   let contactDetailsSame = req.session.data['contact-details-same-person-1']
@@ -108,7 +108,7 @@ router.post('/international-arrivals/v2/action5/ethnic-group', function (req, re
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/international-arrivals/v2/ethnic-background-another')
   } else {
-    res.redirect('/international-arrivals/v2/nhs-number-known')
+    res.redirect('/international-arrivals/v2/occupation')
   }
 
 })
@@ -153,7 +153,7 @@ router.post('/international-arrivals/v2/action9/nhs-number-known', function (req
   if (nhsNumberKnown == "Yes"){
     res.redirect('/international-arrivals/v2/nhs-number')
   } else {
-    res.redirect('/international-arrivals/v2/address')
+    res.redirect('/international-arrivals/v2/registered-with-GP')
   }
 })
 
@@ -163,6 +163,15 @@ router.post('/international-arrivals/v2/action/registered-with-GP-person-1', fun
     res.redirect('/international-arrivals/v2/address-person-1')
   } else {
     res.redirect('/international-arrivals/v2/gender-person-1')
+  }
+})
+
+router.post('/international-arrivals/v2/action/registered-with-GP', function (req, res) {
+  let registeredWithGP = req.session.data['registered-with-GP']
+  if (registeredWithGP == "Yes"){
+    res.redirect('/international-arrivals/v2/address')
+  } else {
+    res.redirect('/international-arrivals/v2/gender')
   }
 })
 

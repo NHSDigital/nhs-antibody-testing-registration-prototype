@@ -69,28 +69,27 @@
             Number of packages ordered
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['travel-route'] == "Day 2 and day 8 test" and data['travel-route-person-1'] == "Day 2 and day 8 test" %}
+            {% if data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "undefined" %}
+            1x travel package of 1 test<br>
+            (£105 per person)
+            {% elseif data['travel-route'] == 'Day 2 and day 8 tests' and data['travel-route-same-person-1'] == "undefined" %}
             2x travel packages of 2 tests<br>
             (£210 per person)
-            {% elseif data['travel-route'] == "Day 2 test" and data['travel-route-person-1'] == "Day 2 and day 8 test" %}
+            {% elseif data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "Day 2 test" %}
+            2x travel package of 1 test<br>
+            (£105 per person)
+            {% elseif data['travel-route'] == 'Day 2 and day 8 tests' and data['travel-route-same-person-1'] == "Day 2 test" %}
             1x travel package of 2 tests<br>
             (£210 per person)<br>
             1x travel package of 1 test<br>
             (£105 per person)
-            {% elseif data['travel-route'] == "Day 2 and day 8 test" and data['travel-route-person-1'] == "Day 2 test" %}
-            1x travel package of 2 tests<br>
-            (£210 per person)<br>
+            {% elseif data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "Day 2 and day 8 tests" %}
             1x travel package of 1 test<br>
-            (£105 per person)
-            {% elseif data['travel-route'] == "Day 2 test" and data['travel-route-person-1'] == "Day 2 test" %}
-            2x travel package of 2 tests<br>
+            (£105 per person)<br>
+            1x travel package of 2 tests<br>
             (£210 per person)
-            {% elseif data['travel-route'] == "Day 2 test and day 8 test" and data['travel-route-person-1'] == undefined %}
-            1x travel package of 2 tests<br>
-            (£210 per person)<br>
             {% else %}
-            1x travel package of 1 test<br>
-            (£105 per person)
+            £420
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
@@ -126,19 +125,7 @@
             Total payment
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['travel-route'] == "Day 2 and day 8 test" and data['travel-route-person-1'] == "Day 2 and day 8 test" %}
-            £420
-            {% elseif data['travel-route'] == "Day 2 test" and data['travel-route-person-1'] == "Day 2 and day 8 test" %}
-            £315
-            {% elseif data['travel-route'] == "Day 2 and day 8 test" and data['travel-route-person-1'] == "Day 2 test" %}
-            £315
-            {% elseif data['travel-route'] == "Day 2 test" and data['travel-route-person-1'] == "Day 2 test" %}
-            £420
-            {% elseif data['travel-route'] == "Day 2 test and day 8 test" and data['travel-route-person-1'] == undefined %}
-            £210
-            {% else %}
-            £105
-            {% endif %}
+            {% if data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "undefined" %}£105{% elseif data['travel-route'] == 'Day 2 and day 8 tests' and data['travel-route-same-person-1'] == "undefined" %}£210{% elseif data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "Day 2 test" %}£210{% elseif data['travel-route'] == 'Day 2 and day 8 tests' and data['travel-route-same-person-1'] == "Day 2 test" %}£315{% elseif data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "Day 2 and day 8 tests" %}£315{% else %}£420{% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
 
