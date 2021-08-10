@@ -148,10 +148,6 @@ router.post('/international-arrivals/v2/action/nhs-number-known-person-1', funct
   }
 })
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b405878bce0cbdb37fdec90d1ce88b25f7cbf1a3
 router.post('/international-arrivals/v2/action9/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
   if (nhsNumberKnown == "Yes"){
@@ -161,8 +157,6 @@ router.post('/international-arrivals/v2/action9/nhs-number-known', function (req
   }
 })
 
-<<<<<<< HEAD
-=======
 router.post('/international-arrivals/v2/action/registered-with-GP-person-1', function (req, res) {
   let registeredWithGP = req.session.data['registered-with-GP-person-1']
   if (registeredWithGP == "Yes"){
@@ -172,5 +166,4 @@ router.post('/international-arrivals/v2/action/registered-with-GP-person-1', fun
   }
 })
 
->>>>>>> b405878bce0cbdb37fdec90d1ce88b25f7cbf1a3
 module.exports = router
