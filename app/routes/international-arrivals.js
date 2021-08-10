@@ -83,10 +83,7 @@ router.post('/international-arrivals/v2/action4/travel-details-same-person-1', f
   }
 })
 
-<<<<<<< HEAD
 
-=======
->>>>>>> adbeca1098fb7b86bcbe269f7a40922bd17396eb
 router.post('/international-arrivals/v2/action8/vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
   if (vaccine == "No") {
@@ -115,10 +112,7 @@ router.post('/international-arrivals/v2/action5/ethnic-group', function (req, re
   }
 
 })
-<<<<<<< HEAD
 
-=======
->>>>>>> adbeca1098fb7b86bcbe269f7a40922bd17396eb
 router.post('/international-arrivals/v2/action/vaccine-person-1', function (req, res) {
   let vaccine = req.session.data['vaccine-person-1']
   if (vaccine == "No"){
@@ -154,7 +148,7 @@ router.post('/international-arrivals/v2/action/nhs-number-known-person-1', funct
   }
 })
 
-<<<<<<< HEAD
+
 router.post('/international-arrivals/v2/action9/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
   if (nhsNumberKnown == "Yes"){
@@ -164,6 +158,4 @@ router.post('/international-arrivals/v2/action9/nhs-number-known', function (req
   }
 })
 
-=======
->>>>>>> adbeca1098fb7b86bcbe269f7a40922bd17396eb
 module.exports = router
