@@ -108,7 +108,7 @@ router.post('/international-arrivals/v2/action5/ethnic-group', function (req, re
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/international-arrivals/v2/ethnic-background-another')
   } else {
-    res.redirect('/international-arrivals/v2/occupation')
+    res.redirect('/international-arrivals/v2/nhs-number-known')
   }
 
 })
