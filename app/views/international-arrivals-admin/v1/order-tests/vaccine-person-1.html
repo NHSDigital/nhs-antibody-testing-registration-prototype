@@ -1,0 +1,68 @@
+{% set version = "v1" %}
+{% set pageTitle = "Have they had the coronavirus vaccine?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div> 
+
+  <a class="govuk-back-link" href="/international-arrivals-admin/{{version}}/order-tests/email-address-person-1">Back</a>
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/international-arrivals-admin/{{version}}/order-tests/action/vaccine-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset govuk-!-margin-bottom-7" aria-describedby="vaccine-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                Has {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} had the coronavirus vaccine?
+              </h1>
+            </legend>
+            <span id="vaccine-hint" class="govuk-body">
+              Only vaccines given by the NHS, EU or USA are accepted. Otherwise select 'No'.
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-2-person-1" name="vaccine-person-1" type="radio" value="Yes, I've had 1 dose" {{ checked("vaccine-person-1", "Yes, they've had 1 dose") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-2-person-1">
+                  Yes, they've had 1 dose
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-3-person-1" name="vaccine-person-1" type="radio" value="Yes, I've had 2 doses" {{ checked("vaccine-person-1", "Yes, they've had 2 doses") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-3-person-1">
+                  Yes, they've had 2 doses
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-1-person-1" name="vaccine-person-1" type="radio" value="No" {{ checked("vaccine-person-1", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-1-person-1">
+                  No
+                </label>
+              </div>
+            </div>  
+          </fieldset>
+          <button class="govuk-button" data-module="govuk-button">Continue</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
