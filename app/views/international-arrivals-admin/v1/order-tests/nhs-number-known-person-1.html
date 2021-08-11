@@ -1,0 +1,106 @@
+{% set version = "v1" %}
+{% set pageTitle = "Do they have an NHS number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['ethnic-group-person-1'] == "Asian or Asian British" %}
+  <a class="govuk-back-link" href="/international-arrivals-admin/{{version}}/order-tests/ethnic-background-asian-person-1">Back</a>
+  {% elseif data['ethnic-group-person-1'] == "Black, African, Black British or Caribbean" %}
+  <a class="govuk-back-link" href="/international-arrivals-admin/{{version}}/order-tests/ethnic-background-black-person-1">Back</a>
+  {% elseif data['ethnic-group-person-1'] == "Mixed or multiple ethnic groups" %}
+  <a class="govuk-back-link" href="/international-arrivals-admin/{{version}}/order-tests/ethnic-background-mixed-person-1">Back</a>
+  {% elseif data['ethnic-group-person-1'] == "White" %}
+  <a class="govuk-back-link" href="/international-arrivals-admin/{{version}}/order-tests/ethnic-background-white-person-1">Back</a>
+  {% elseif data['ethnic-group-person-1'] == "Another ethnic group" %}
+  <a class="govuk-back-link" href="/international-arrivals-admin/{{version}}/order-tests/ethnic-background-another-person-1">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/international-arrivals-admin/{{version}}/order-tests/ethnic-group-person-1">Back</a>
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/international-arrivals-admin/{{version}}/order-tests/action/nhs-number-known-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint nhs-number-known-hint-2">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} have an NHS number?
+              </h1>
+            </legend>
+            <span id="nhs-number-known-hint" class="govuk-body">
+              <strong>This helps us find and update their GP record with their test result.</strong><br><br>
+            </span>
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  What an NHS number looks like and how to find it
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                An NHS number is 10 digits. It will be on any prescriptions or letters from a GP or hospital.<br><br>
+                <a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/" target="blank">How to find an NHS number</a>
+              </div>
+            </details>
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  What to do if you live in Scotland or Northern Ireland
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                In Scotland, it’s known as a CHI number. In Northern Ireland, it’s known as an H&C number.
+              </div>
+            </details>
+            <span id="nhs-number-known-hint-2" class="govuk-body">
+              If you do not have it, you can still continue.
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-padding-top-6" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="nhs-number-known-1-person-1" name="nhs-number-known-person-1" type="radio" value="Yes" {{ checked("nhs-number-known-person-1", "Yes") }}>
+                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-1-person-1">
+                    Yes, I can give their NHS number
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="nhs-number-known-2-person-1" name="nhs-number-known-person-1" type="radio" value="No" {{ checked("nhs-number-known-person-1", "No") }}>
+                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-2-person-1">
+                    No, I do not know their NHS number
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="nhs-number-known-3-person-1" name="nhs-number-known-person-1" type="radio" value="No" {{ checked("nhs-number-known-person-1", "No") }}>
+                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-3-person-1">
+                    No, I do not have an NHS number
+                  </label>
+                </div>
+              </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
