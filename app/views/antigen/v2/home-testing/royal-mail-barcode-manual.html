@@ -15,7 +15,7 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/home-testing/date-of-birth">Back</a>
+  <a class="govuk-back-link" href="/antigen/{{version}}/home-testing/royal-mail-barcode">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -42,19 +42,24 @@
               <img src="/public/images/mail-barcode-number.png" alt="barcode number"/>
             </div>
   
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="mail-barcode-reference-1">
-                Royal Mail barcode reference<br>
-                <span class="govuk-hint">For example, AA 1234 5678 9AA</span>
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] }}>
+            <div id="content-1">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="mail-barcode-reference-1">
+                  Royal Mail barcode reference<br>
+                  <span class="govuk-hint">For example, AA 1234 5678 9AA</span>
+                </label>
+                <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] }}>
+              </div>
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="mail-barcode-reference-2">
+                  Confirm Royal Mail barcode reference
+                </label>
+                <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-2" name="mail-barcode-reference-2" type="text" value={{ data['mail-barcode-reference-2'] }}>
+              </div>
             </div>
 
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="mail-barcode-reference-2">
-                Confirm Royal Mail barcode reference
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-2" name="mail-barcode-reference-2" type="text" value={{ data['mail-barcode-reference-2'] }}>
+            <div id="content-2" style="display: none;">
+              
             </div>
             
           </fieldset>
@@ -72,5 +77,37 @@
   
     </div>
   </div>
+
+  <script>
+
+  setTimeout(function () {
+    const content2inner = `
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="mail-barcode-reference-1">
+        Royal Mail barcode reference<br>
+        <span class="govuk-hint">For example, AA 1234 5678 9AA</span>
+      </label>
+      <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] or 'AA22346789AA' }}>
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="mail-barcode-reference-2">
+        Confirm Royal Mail barcode reference
+      </label>
+      <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-2" name="mail-barcode-reference-2" type="text" value={{ data['mail-barcode-reference-2'] or 'AA22346789AA' }}>
+    </div>
+    `
+    const content1 = document.getElementById('content-1');
+    const content2 = document.getElementById('content-2');
+    const URLorigin = document.referrer.replace("antigen/v2/home-testing/scan-mail-barcode", "")
+    const replaced = document.referrer.replace(URLorigin , "")
+      if (replaced == 'antigen/v2/home-testing/scan-mail-barcode') {
+        content1.parentNode.removeChild(content1)
+        content2.style.display = 'block';
+        content2.innerHTML = content2inner
+      }
+      console.log(replaced)
+  }, 50)
+
+  </script>
 
 {% endblock %}
