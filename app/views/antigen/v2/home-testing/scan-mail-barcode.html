@@ -27,9 +27,20 @@
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
         <p class="govuk-body">Position the barcode so it fits inside the square on your mobile or computer's camera.</p>
 
-        <div>
+        <!-- <div>
           <img src="/public/images/camera-view.png" alt="camera view"/>
-        </div>
+        </div> -->
+
+        <script src="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x"></script>
+
+        <scandit-barcode-picker
+          id="barcodePicker"
+          configure.licenseKey="AfZw2mbJRvlIKSgz6zoAZw0OHeoICxgiBHWDJilNOKikD8U1AUoajKVVH9kJCfH7oktCifV75XB5U0pTzU5wNChW3olPZriIs07b5ps2qh8zT5Bx1E/CNg55Kqj/NquFFFc9stpN61DuVV/kXwN2Aq4lji6tAA1gyQzZ7qeQBbQ4mwDVne0K7WjquQ+LupNGOfZ+oHF0CROkIwIjlI1ceACi9KWVVYLHNNwJfravfrCXsBydz8Mx6ioQTY4kaA+8xJF4jLR3P23Fc8EUSQkAHzVZluGFaVbPy380VZ3QK+WmnMxbB6/SZWSGPHoR7W4UldEb1l9s0lwCql75OsP3ZUkM8j8ak3esJrI67O4dbkT8cQVnuePwnhAwqrBT0s+fahMBPHP9FrCAfDuSa2lfUASiK2oWH+Zz9X3RVaV7JHz5mvn7P7/xHCMz54G/ECdpMC2Mb0HOPSxB/H+JUxIM+DDo8o0eDHFMWDxmDX8gGTTTfEK2dDYE4qiiT5zPBhOrGV00uDIIYLkeRPJYX20k7BI332fiK5zA3p5rSz7EChhAVNptiIaSJn7GZsioYJ1YOaEj+tr8Hj8wlP1G10q6S+DCfyWCSttt3JbrJH7jb7hxFR8tVQHUBVG/GHJRtQr8DtPhGZ/oQFO11Ff2EMZWLzcgMqKqYOYFW3B1elzrL0N1AqXFQCEJizRKPZGPEji/GoUq8D2PXglPh6BGEtQE3vP5Dtx8VGSCOKsSgNHOF+ZANY9dDLED6S7Pgxk01QWvm+eKtXrfDSgozb6eTF0/uZ4oWX8AQBb4dt3hSK0sL636nWT/hSJ108JLDdYmqfl2BAKHlrWHROZkNob0Zg=="
+          configure.engineLocation="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x/build/"
+          playSoundOnScan="false"
+          scanSettings.enabledSymbologies='["ean8", "ean13", "upca", "upce", "code128", "code39"]'
+        >
+        </scandit-barcode-picker>
         
         <a href="/antigen/{{version}}/home-testing/royal-mail-barcode" role="button" draggable="false" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
           Cancel
@@ -37,5 +48,22 @@
   
     </div>
   </div>
+
+  <script type="text/javascript">
+
+    submitEvent()
+    
+      function submitEvent() {
+        const barcodePicker = document.getElementById('barcodePicker')
+        barcodePicker.addEventListener('scan', function (event) {
+          event.preventDefault()
+          setTimeout(function () {
+            window.location.href = '/antigen/{{version}}/home-testing/royal-mail-barcode-manual';
+          }, 600)
+        })
+          
+      }
+    
+      </script>
 
 {% endblock %}
