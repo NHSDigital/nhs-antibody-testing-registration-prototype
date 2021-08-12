@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Payment exemption" %}
+{% set pageTitle = "Are you exempt from paying for a travel package?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,27 +15,55 @@
     </p>
   </div>
 
-<a class="govuk-back-link" href="/international-arrivals-admin/{{version}}/order-tests/order-summary">Back</a>
+<a class="govuk-back-link" href="/international-arrivals-admin/{{version}}/order-tests/">Back</a>
 {% endblock %}
 
 {% block content %}
+{% include "includes/gtm-noscript.html" %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
-            {{ pageTitle }}
-        </h1>
-        <p class="govuk-body">
-          If you're exempt from payment call our contact centre:
-        </p>
-        <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
-          <li>England, Wales and Northern Ireland: call 119 (free from mobiles and landlines)</li>
-          <li>Scotland: call 0300 303 2713 (charged at your standard network rate)</li>
-          <li>Overseas: *international number*</li>
-        </ul>
+    <form class="form" action="/international-arrivals-admin/{{version}}/order-tests/action/payment-exemption" method="post">
 
-    </div>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="payment-exemption-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+              {{pageTitle}}
+            </h1>
+          </legend>
+          <span id="payment-exemption-hint" class="govuk-body">
+            Find out more on <a href="#" class="govuk-link">Exemptions - people who do not need to take a test</a>.
+          </span>
+          <div class="govuk-radios govuk-!-margin-top-6">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="payment-exemption-2" name="payment-exemption" type="radio" value="Yes, I need a replacement test kit" {{ checked("payment-exemption", "Yes, I need a replacement test kit") }}>
+              <label class="govuk-label govuk-radios__label" for="payment-exemption-2">
+                Yes, I need a replacement test kit
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="payment-exemption-3" name="payment-exemption" type="radio" value="Yes, I am in financial hardship" {{ checked("payment-exemption", "Yes, I am in financial hardship") }}>
+              <label class="govuk-label govuk-radios__label" for="payment-exemption-3">
+                Yes, I am in financial hardship
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="payment-exemption-1" name="payment-exemption" type="radio" value="No" {{ checked("payment-exemption", "No") }}>
+              <label class="govuk-label govuk-radios__label" for="payment-exemption-1">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
 </div>
 
 {% endblock %}

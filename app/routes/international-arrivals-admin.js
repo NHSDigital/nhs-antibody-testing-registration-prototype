@@ -10,6 +10,17 @@ function loadJSONFromFile(fileName, path = "app/data/") {
   return JSON.parse(jsonFile) // Return JSON as object
 }
 
+router.post('/international-arrivals-admin/v1/order-tests/action/payment-exemption', function (req, res) {
+  let paymentExemption = req.session.data['payment-exemption']
+  if (paymentExemption == "Yes, I need a replacement test kit") {
+    res.redirect('/international-arrivals-admin/v1/order-tests/package-provider')
+  } else if (paymentExemption == "Yes, I am in financial hardship") {
+    res.redirect('/international-arrivals-admin/v1/order-tests/tbc')
+  } else {
+    res.redirect('/international-arrivals-admin/v1/order-tests/travel-route')
+  }
+})
+
 router.post('/international-arrivals-admin/v1/order-tests/action3/travel-route-same-person-1', function (req, res) {
   let travelRouteSame = req.session.data['travel-route-same-person-1']
   if (travelRouteSame == "No") {
