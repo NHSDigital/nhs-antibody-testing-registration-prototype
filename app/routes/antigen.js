@@ -40,6 +40,16 @@ router.post('/antigen/v2/action3/do-you-have-symptoms', function (req, res) {
   if (symptoms == "Yes"){
     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start')
   } else {
+    res.redirect('/antigen/v2/refer-and-triage/secondary-symptoms')
+  }
+
+})
+
+router.post('/antigen/v2/action3/secondary-symptoms', function (req, res) {
+  let symptoms = req.session.data['secondary-symptoms']
+  if (symptoms == "Yes"){
+    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
+  } else {
     res.redirect('/antigen/v2/refer-and-triage/follow-up-test')
   }
 

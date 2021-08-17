@@ -38,17 +38,33 @@
               For international numbers include the country code.
             </span>
 
-            <div class="govuk-form-group govuk-!-margin-top-5">
-              <label class="govuk-label" for="mobile-phone-number-person-1">
-                Mobile number
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number-person-1" name="mobile-phone-number-person-1" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['mobile-phone-number-person-1'] }}">
-            </div>
-            <div class="govuk-form-group govuk-!-margin-top-2">
-              <label class="govuk-label" for="mobile-phone-number-confirm-person-1">
-                Confirm mobile number
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number-confirm-person-1" name="mobile-phone-number-confirm-person-1" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['mobile-phone-number-confirm-person-1'] }}">
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mobile-number-1" name="mobile-number" type="radio" value="Yes" data-aria-controls="conditional-mobile-number" {{ checked("mobile-number", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="mobile-number-1">
+                  Yes, I have a mobile number
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mobile-number">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="mobile-phone-number-person-1">
+                    Mobile number
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number-person-1" name="mobile-phone-number-person-1" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['mobile-phone-number-person-1'] }}">
+                </div>
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="mobile-phone-number-confirm-person-1">
+                    Confirm mobile number
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number-confirm-person-1" name="mobile-phone-number-confirm-person-1" type="tel" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['mobile-phone-number-confirm-person-1'] }}">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mobile-number-2" name="mobile-number" type="radio" value="No" {{ checked("mobile-number", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="mobile-number-2">
+                  No, I do not have a mobile number
+                </label>
+              </div>
             </div>
 
           </fieldset>

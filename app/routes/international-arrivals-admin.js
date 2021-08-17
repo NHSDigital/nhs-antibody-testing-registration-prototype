@@ -39,7 +39,6 @@ router.post('/international-arrivals-admin/v1/order-tests/action4/travel-details
   }
 })
 
-
 router.post('/international-arrivals-admin/v1/order-tests/action8/vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
   if (vaccine == "No") {
@@ -49,7 +48,6 @@ router.post('/international-arrivals-admin/v1/order-tests/action8/vaccine', func
   }
 })
 
-// Version 2 - Registration - Ethnic group route
 router.post('/international-arrivals-admin/v1/order-tests/action5/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
