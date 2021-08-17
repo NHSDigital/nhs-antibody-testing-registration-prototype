@@ -164,8 +164,9 @@ router.post('/antigen/v2/action3/follow-up-test', function (req, res) {
 router.post('/antigen/v2/action3/government-pilot', function (req, res) {
   let governmentPilot = req.session.data['professional-pilot']
   let symptoms = req.session.data['do-you-have-symptoms']
+  let secondarySymptoms = req.session.data['secondary-symptoms']
   let followUpTest = req.session.data['follow-up-test']
-  if (governmentPilot == "None of the above" && symptoms == "No" && followUpTest == "No") {
+  if (governmentPilot == "None of the above" && symptoms == "No" && followUpTest == "No" && secondarySymptoms == "No" ) {
     res.redirect('/antigen/v2/refer-and-triage/reason-for-test')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/')
