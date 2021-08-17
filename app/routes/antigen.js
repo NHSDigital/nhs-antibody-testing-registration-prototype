@@ -37,8 +37,13 @@ router.post('/antigen/v2/action3/mobile-number', function (req, res) {
 
 router.post('/antigen/v2/action3/do-you-have-symptoms', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
+  let screenOption = req.session.data['screen-option']
   if (symptoms == "Yes"){
     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start')
+  } else if (symptoms = "No" && screenOption == "option-1") {
+    res.redirect('/antigen/v2/refer-and-triage/secondary-symptoms')
+  } else if (symptoms = "No" && screenOption == "option-2") {
+    res.redirect('/antigen/v2/refer-and-triage/secondary-symptoms-option-2')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/secondary-symptoms')
   }
