@@ -27,10 +27,8 @@
 
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
 
-      <form action="/international-arrivals-admin/{{version}}/order-tests/date-of-birth" method="post">
-
+      <form action="/international-arrivals-admin/{{version}}/manage-orders/index-option-2" method="post">
         <fieldset class="govuk-fieldset">
-
           <div class="govuk-form-group">
             <label class="govuk-hint" for="reference-number">
               For example, booking refrence number '12345678'
@@ -38,10 +36,98 @@
             <input class="govuk-input govuk-!-width-two-thirds" id="reference-number" name="reference-number" type="text" value="{{ data['reference-number'] }}"><button style="margin-left: 50px; width: 120px;" class="govuk-button" data-module="govuk-button">Search</button>
           </div>
         </fieldset>
-
-
-
       </form>
+
+
+      {% if data['reference-number'] == "12345678" %}
+      <h3 class="govuk-heading-m">3 results</h3>
+      <table class="govuk-table" style="width: 130%">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header ">Name</th>
+            <th scope="col" class="govuk-table__header ">Booking reference</th>
+            <th scope="col" class="govuk-table__header ">Package</th>
+            <th scope="col" class="govuk-table__header ">Dispatch date</th>
+            <th scope="col" class="govuk-table__header ">Status</th>
+            <th scope="col" class="govuk-table__header "></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Jane Smith</td>
+            <td class="govuk-table__cell">12345678</td>
+            <td class="govuk-table__cell">Day 2 and day 8</td>
+            <td class="govuk-table__cell">30 June 2021</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Refunded</strong></td>
+            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity-12345678">View order</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Pete Smith</td>
+            <td class="govuk-table__cell">12345678</td>
+            <td class="govuk-table__cell">Day 2</td>
+            <td class="govuk-table__cell">30 June 2021</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Refunded</strong></td>
+            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity-12345678">View order</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Maggie Smith</td>
+            <td class="govuk-table__cell">12345678</td>
+            <td class="govuk-table__cell">Day 2</td>
+            <td class="govuk-table__cell">30 June 2021</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Refunded</strong></td>
+            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity-12345678">View order</a></td>
+          </tr>
+        </tbody>
+      </table>
+      {% elseif data['reference-number'] == "12345677" %}
+      <h3 class="govuk-heading-m">1 result</h3>
+      <table class="govuk-table" style="width: 130%">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header ">Name</th>
+            <th class="govuk-table__header ">Booking reference</th>
+            <th class="govuk-table__header ">Package</th>
+            <th class="govuk-table__header ">Dispatch date</th>
+            <th class="govuk-table__header ">Status</th>
+            <th class="govuk-table__header "></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rianne Jones</td>
+            <td class="govuk-table__cell">12345677</td>
+            <td class="govuk-table__cell">Day 2</td>
+            <td class="govuk-table__cell">31 June 2021</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Dispatched</strong></td>
+            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity-12345677">View order</a></td>
+          </tr>
+        </tbody>
+      </table>
+      {% elseif data['reference-number'] == "12345676" %}
+      <h3 class="govuk-heading-m">1 result</h3>
+      <table class="govuk-table" style="width: 130%">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header ">Name</th>
+            <th class="govuk-table__header ">Booking reference</th>
+            <th class="govuk-table__header ">Package</th>
+            <th class="govuk-table__header ">Dispatch date</th>
+            <th class="govuk-table__header ">Status</th>
+            <th class="govuk-table__header "></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Zara Alime</td>
+            <td class="govuk-table__cell">12345676</td>
+            <td class="govuk-table__cell">Day 2</td>
+            <td class="govuk-table__cell">3 July 2021</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Scheduled</strong></td>
+            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity-53422776">View order</a></td>
+          </tr>
+        </tbody>
+      </table>
+      {% else %}
       <table class="govuk-table" style="width: 130%">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -57,45 +143,58 @@
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__cell">Jane Smith</td>
             <td class="govuk-table__cell">12345678</td>
-            <td class="govuk-table__cell">Amber</td>
+            <td class="govuk-table__cell">Day 2 and day 8</td>
             <td class="govuk-table__cell">30 June 2021</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Refunded</strong></td>
-            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity">View order</a></td>
+            {% if data['order-12345678-status'] == "Refunded" %}
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
+            {% else %}
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Scheduled</strong></td>
+            {% endif %}
+            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity-12345678">View order</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__cell">Pete Smith</td>
             <td class="govuk-table__cell">12345678</td>
-            <td class="govuk-table__cell">Amber</td>
+            <td class="govuk-table__cell">Day 2</td>
             <td class="govuk-table__cell">30 June 2021</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Refunded</strong></td>
-            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity">View order</a></td>
+            {% if data['order-12345678-status'] == "Refunded" %}
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
+            {% else %}
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Scheduled</strong></td>
+            {% endif %}
+            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity-12345678">View order</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__cell">Maggie Smith</td>
             <td class="govuk-table__cell">12345678</td>
-            <td class="govuk-table__cell">Amber</td>
+            <td class="govuk-table__cell">Day 2</td>
             <td class="govuk-table__cell">30 June 2021</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Refunded</strong></td>
-            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity">View order</a></td>
+            {% if data['order-12345678-status'] == "Refunded" %}
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
+            {% else %}
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Scheduled</strong></td>
+            {% endif %}
+            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity-12345678">View order</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__cell">Rianne Jones</td>
-            <td class="govuk-table__cell">12334445</td>
-            <td class="govuk-table__cell">Green</td>
+            <td class="govuk-table__cell">12345677</td>
+            <td class="govuk-table__cell">Day 2</td>
             <td class="govuk-table__cell">31 June 2021</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Dispatched</strong></td>
-            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity">View order</a></td>
+            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity-12334445">View order</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__cell">Zara Alime</td>
-            <td class="govuk-table__cell">12334455</td>
-            <td class="govuk-table__cell">Amber</td>
+            <td class="govuk-table__cell">12345676</td>
+            <td class="govuk-table__cell">Day 2</td>
             <td class="govuk-table__cell">3 July 2021</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Scheduled</strong></td>
-            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity">View order</a></td>
+            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity-53422776">View order</a></td>
           </tr>
         </tbody>
       </table>
+      {% endif %}
 
       <div class="flex-container" style="display: flex; justify-content: space-between; width: 130%">
         <div>
@@ -109,14 +208,6 @@
   
         <p class="govuk-body" style="text-align: right;">Showing <strong>10</strong> to <strong>20</strong> of <strong>80</strong> results</p>
       </div>
-
-      <!-- <div style="display: inline-block;">
-        <span class="govuk-body-s govuk-!-margin-right-2">Previous</span>
-        <a href="#" class="govuk-link govuk-!-margin-right-2">Next</a>
-        <span class="govuk-body-s govuk-!-margin-right-2">1</span>
-        <a href="#" class="govuk-link govuk-!-margin-right-2">2</a>
-      </div>
-      <p class="govuk-body" style="display: inline-block; text-align: right; width: 130%">Showing <strong>10</strong> to <strong>20</strong> of <strong>80</strong> results</p> -->
 
       <div class="proto-action big">
         <a href="/international-arrivals-admin/{{version}}/manage-orders/">

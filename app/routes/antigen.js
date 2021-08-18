@@ -50,6 +50,16 @@ router.post('/antigen/v2/action3/do-you-have-symptoms', function (req, res) {
 
 })
 
+router.post('/antigen/v2/action3/do-you-have-symptoms-option-2', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes"){
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/follow-up-test')
+  }
+
+})
+
 router.post('/antigen/v2/action3/secondary-symptoms', function (req, res) {
   let symptoms = req.session.data['secondary-symptoms']
   if (symptoms == "Yes"){
