@@ -1,7 +1,7 @@
 {% set version = "v1" %}
 {% set pageTitle = "Search for an order" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-intl-arrivals-admin.html" %}
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
@@ -30,18 +30,19 @@
       <form action="/international-arrivals-admin/{{version}}/manage-orders/search-results" method="post">
 
         <fieldset class="govuk-fieldset">
-
           <div class="govuk-form-group">
-            <label class="govuk-hint" for="first-name">
-              For example, booking refrence number '1245678'
+            <label class="govuk-hint" for="reference-number">
+              For example, booking refrence number '12345678'
             </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="first-name" name="first-name" type="text" value="{{ data['first-name'] }}"><button style="margin-left: 50px; width: 120px;" class="govuk-button" data-module="govuk-button">Search</button>
+            <div class="inline-buttons-wrapper" style="align-items: baseline;">
+              <input class="govuk-input govuk-!-width-two-thirds" id="reference-number" name="reference-number" type="text" value="{{ data['reference-number'] }}">
+              <button class="govuk-button" data-module="govuk-button">Search</button>
+            </div>
           </div>
         </fieldset>
 
-
-
       </form>
+
       <table class="govuk-table" style="width: 130%">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -59,8 +60,8 @@
             <td class="govuk-table__cell">12345678</td>
             <td class="govuk-table__cell">Amber</td>
             <td class="govuk-table__cell">30 June 2021</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red" style="width: 105px; align-content">Refunded</strong></td>
-            <td class="govuk-table__cell"><a href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity">View order</a></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Refunded</strong></td>
+            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity">View order</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__cell">Pete Smith</td>
@@ -68,7 +69,7 @@
             <td class="govuk-table__cell">Amber</td>
             <td class="govuk-table__cell">30 June 2021</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Refunded</strong></td>
-            <td class="govuk-table__cell"><a href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity">View order</a></td>
+            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity">View order</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__cell">Maggie Smith</td>
@@ -76,13 +77,11 @@
             <td class="govuk-table__cell">Amber</td>
             <td class="govuk-table__cell">30 June 2021</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Refunded</strong></td>
-            <td class="govuk-table__cell"><a href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity">View order</a></td>
+            <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals-admin/{{version}}/manage-orders/confirm-identity">View order</a></td>
           </tr>
 
         </tbody>
       </table>
-
-
 
     </div>
   </div>
