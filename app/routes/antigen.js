@@ -35,14 +35,14 @@ router.post('/antigen/v2/action3/mobile-number', function (req, res) {
 
 // Version 2 - Antigen Refer and Triage - Do you have symptoms route
 
-router.post('/antigen/v2/action3/do-you-have-symptoms', function (req, res) {
+router.post('/antigen/v2/action3/do-you-have-symptoms-option-2', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
   let screenOption = req.session.data['screen-option']
   if (symptoms == "Yes"){
     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start')
-  } else if (symptoms = "No" && screenOption == "option-1") {
+  } else if (symptoms = "No" && screenOption == "option-2a") {
     res.redirect('/antigen/v2/refer-and-triage/secondary-symptoms')
-  } else if (symptoms = "No" && screenOption == "option-2") {
+  } else if (symptoms = "No" && screenOption == "option-2b") {
     res.redirect('/antigen/v2/refer-and-triage/secondary-symptoms-option-2')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/secondary-symptoms')
@@ -50,12 +50,22 @@ router.post('/antigen/v2/action3/do-you-have-symptoms', function (req, res) {
 
 })
 
-router.post('/antigen/v2/action3/do-you-have-symptoms-option-2', function (req, res) {
+router.post('/antigen/v2/action3/do-you-have-symptoms', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
   if (symptoms == "Yes"){
     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/follow-up-test')
+  }
+
+})
+
+router.post('/antigen/v2/action/status-page', function (req, res) {
+  let screenOption = req.session.data['screen-option']
+  if (screenOption == "option-2a" || screenOption == "option-2b" ){
+    res.redirect('/antigen/v2/refer-and-triage/do-you-have-symptoms-option-2')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/do-you-have-symptoms')
   }
 
 })
@@ -182,6 +192,8 @@ router.post('/antigen/v2/action3/government-pilot', function (req, res) {
   let secondarySymptoms = req.session.data['secondary-symptoms']
   let followUpTest = req.session.data['follow-up-test']
   if (governmentPilot == "None of the above" && symptoms == "No" && followUpTest == "No" && secondarySymptoms == "No" ) {
+    res.redirect('/antigen/v2/refer-and-triage/reason-for-test')
+  } else if (governmentPilot == "None of the above" && symptoms == "No" && followUpTest == "No" && secondarySymptoms == undefined ) {
     res.redirect('/antigen/v2/refer-and-triage/reason-for-test')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/')
