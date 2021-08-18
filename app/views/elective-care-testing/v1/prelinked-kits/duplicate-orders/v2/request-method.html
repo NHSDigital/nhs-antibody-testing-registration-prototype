@@ -1,0 +1,61 @@
+{% set version = "v1" %}
+{% set pageTitle = "How do you want to add patient details?" %}
+
+{% set group %}
+  {% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+    {% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="request-group">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl"> {{ group }}</span>
+       <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+          {{ pageTitle }}
+        </h1>
+
+      <form class="" action="date-of-procedure" method="post">
+        {{ govukRadios({
+            idPrefix: "cuRequestMethod",
+            name: "cuRequestMethod",
+            fieldset: {
+              legend: {
+                text: pageHeading,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            items: [
+              {
+                value: "upload",
+                html: "Use our spreadsheet to add a list of patients",
+                hint: {
+                  text: "Enter and upload details for up to 100 people at a time"
+                }
+              },
+              {
+                value: "manual",
+                html: "Add each person's details one by one",
+                hint: {
+                  text: "Use an online form to enter their details"
+                }
+              }
+            ]
+          }) }}
+        <input class="govuk-button" type="submit" value="Continue">
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
