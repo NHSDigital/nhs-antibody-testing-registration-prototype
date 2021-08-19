@@ -30,7 +30,7 @@
 
           <div id="content-1">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
                 What is the address registered with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s GP?
                 {% else %}
@@ -48,9 +48,9 @@
               <br><br>
               
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              If they're not registered with a doctor in the UK, that's OK. Enter the address and postcode where they're staying instead.
+              If they're not registered with a GP in the UK, that's OK. Enter the address and postcode where they're staying instead.
               {% else %}
-              If you're not registered with a doctor in the UK, that's OK. Enter the address and postcode where you're staying instead.
+              If you're not registered with a GP in the UK, that's OK. Enter the address and postcode where you're staying instead.
               {% endif %}
               
             </span>
@@ -58,17 +58,17 @@
               <label class="govuk-label govuk-!-margin-bottom-3 govuk-!-font-size-24" for="gp-postcode" style="line-height: 0.8;">
                 <strong>Postcode</strong>
               </label>
-              <input class="govuk-input govuk-input--width-10" id="gp-postcode" name="gp-postcode" type="text" autocomplete="postal-code" value="{{ data['gp-postcode'] }}" autofocus>
+              <input class="govuk-input govuk-input--width-10" id="gp-postcode" name="gp-postcode" type="text" autocomplete="postal-code" value="{{ data['gp-postcode'] }}">
             </div>
-            <!-- <p class="govuk-body">
+            <p class="govuk-body">
               <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">Enter address manually</a>
-            </p> -->
+            </p>
             <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
           </div>
 
           <div id="content-2" style="display: none;">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
                 What is the address registered with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s GP?
                 {% else %}
@@ -86,9 +86,9 @@
               <br><br>
               
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              If they're not registered with a doctor in the UK, that's OK. Enter the address and postcode where they're staying instead.
+              If they're not registered with a GP in the UK, that's OK. Enter the address and postcode where they're staying instead.
               {% else %}
-              If you're not registered with a doctor in the UK, that's OK. Enter the address and postcode where you're staying instead.
+              If you're not registered with a GP in the UK, that's OK. Enter the address and postcode where you're staying instead.
               {% endif %}
               
             </span>
@@ -115,7 +115,7 @@
             </div>
             {% if data['whos-taking-the-test'] == "someone-else" %}
             <p class="govuk-body">
-              <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find their address in the list</a>
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find my address in the list</a>
             </p>
             {% else %}
             <p class="govuk-body">
@@ -129,7 +129,7 @@
 
           <div id="content-3" style="display: none;">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
                 What is the address registered with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s GP?
                 {% else %}
@@ -147,9 +147,9 @@
               <br><br>
               
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              If they're not registered with a doctor in the UK, that's OK. Enter the address and postcode where they're staying instead.
+              If they're not registered with a GP in the UK, that's OK. Enter the address and postcode where they're staying instead.
               {% else %}
-              If you're not registered with a doctor in the UK, that's OK. Enter the address and postcode where you're staying instead.
+              If you're not registered with a GP in the UK, that's OK. Enter the address and postcode where you're staying instead.
               {% endif %}
               
             </span><br><br>
@@ -227,7 +227,7 @@
 
   function submitEvent() {
     var selects = document.getElementById('find-address')
-    // var selectedLink = document.getElementById('manual-address')
+    var selectedLink = document.getElementById('manual-address')
     var selectedLink2 = document.getElementById('manual-address-2')
     selects.addEventListener('click', function (event) {
       event.preventDefault()
@@ -237,14 +237,14 @@
         buttonClicked(selects)
       }
     })
-    // selectedLink.addEventListener('click', function (event) {
-    //   event.preventDefault()
-    //   if (selectedLink.getAttribute('disabled') === 'disabled') {
-    //   } else {
-    //     event.preventDefault()
-    //     buttonClicked2(selectedLink)
-    //   }
-    // })
+    selectedLink.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selectedLink.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked2(selectedLink)
+      }
+    })
     selectedLink2.addEventListener('click', function (event) {
       event.preventDefault()
       if (selectedLink2.getAttribute('disabled') === 'disabled') {
