@@ -1,0 +1,67 @@
+{% set version = "v1" %}
+{% set pageTitle = "Why has the person been asked to get follow-up test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/accessibility/{{version}}/refer-and-triage/follow-up-test">Back</a>
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/accessibility/{{version}}/refer-and-triage/government-pilot" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="symptoms-hint symptoms-2-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                            {{ pageTitle }}
+                        </h1>
+                    </legend>
+                    <div class="govuk-radios govuk-!-margin-top-5">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="follow-up-test-reason-1" name="follow-up-test-reason" type="radio" value="They got a positive result and were told to confirm this with another test" {{ checked("follow-up-test-reason", "They got a positive result and were told to confirm this with another test") }}>
+                            <label class="govuk-label govuk-radios__label" for="follow-up-test-reason-1">
+                                They got a positive result and were told to confirm this with another test
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="follow-up-test-reason-2" name="follow-up-test-reason" type="radio" value="Their previous test was unclear (void)" {{ checked("follow-up-test-reason", "Their previous test was unclear (void)") }}>
+                            <label class="govuk-label govuk-radios__label" for="follow-up-test-reason-2">
+                                Their previous test was unclear (void)
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="follow-up-test-reason-3" name="follow-up-test-reason" type="radio" value="Another reason" {{ checked("follow-up-test-reason", "Another reason") }}>
+                            <label class="govuk-label govuk-radios__label" for="follow-up-test-reason-3">
+                                Another reason
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
