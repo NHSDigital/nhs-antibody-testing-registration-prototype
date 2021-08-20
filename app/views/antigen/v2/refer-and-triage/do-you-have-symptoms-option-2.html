@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Does the person who needs a test have coronavirus symptoms?" %}
+{% set pageTitle = "Does the person who needs a test have any of these 3 symptoms?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -24,7 +24,7 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        <form action="/antigen/{{version}}/action3/do-you-have-symptoms" method="post">
+        <form action="/antigen/{{version}}/action3/do-you-have-symptoms-option-2" method="post">
 
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="symptoms-hint symptoms-2-hint">
@@ -33,66 +33,54 @@
                             {{ pageTitle }}
                         </h1>
                     </legend>
-                    <span id="symptoms-hint" class="govuk-body">
-                      This will help us track the spread of cornavirus.<br><br>
-                      The most important symptoms of coronavirus are:
-                    </span>
+                    <!-- <span id="symptoms-hint" class="govuk-body">
+                      This will help us track and trace the spread of coronavirus.<br><br>
+                      The symptoms of coronavirus are:
+                    </span> -->
                     <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
                       <li>a high temperature</li>
                       <li>a new, continuous cough</li>
                       <li>a loss or change to your sense of smell or taste</li>
-                  </ul>
-                  <div class="govuk-warning-text">
-                    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-                    <strong class="govuk-warning-text__text">
-                      <span class="govuk-warning-text__assistive">Warning</span>
-                      If they have any of these most important symptoms, they should stay at home until they get their result. They can leave home to get or post a test.
-                    </strong>
-                  </div>
-                  <span id="symptoms-hint" class="govuk-body">
-                    Additional symptoms include:
-                  </span>
-                  <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
-                      <li>a headache</li>
-                      <li>feeling tired and exhausted</li>
-                      <li>muscle aches</li>
-                      <li>a loss of appetite</li>
                     </ul>
-                    <span id="symptoms-2-hint" class="govuk-body">
-                        If they have only one or more of these additional symptoms, they do not need to stay at home while waiting for their result, unless they've been asked to.
+
+                    <span id="symptoms-hint-2" class="govuk-body">
+                      You can still get a test if you feel unwell with other symptoms.
                     </span>
-                    <div class="govuk-radios govuk-!-margin-top-5" data-module="govuk-radios">
+
+                    <div class="govuk-radios govuk-!-margin-top-7 govuk-!-margin-bottom-2" data-module="govuk-radios">
 
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="do-you-have-symptoms-1" name="do-you-have-symptoms" type="radio" value="Yes" {{ checked("do-you-have-symptoms", "Yes") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1">
-                                Yes, they currently have at least one of these symptoms
+                                Yes, at least one of these 3 symptoms
                             </label>
                         </div>
 
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="do-you-have-symptoms-2" name="do-you-have-symptoms" type="radio" value="No" {{ checked("do-you-have-symptoms", "No") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2">
-                                No, they do not currently have any of these symptoms
+                                No, none of these 3 symptoms
                             </label>
                         </div>
                     </div>
+
                 </fieldset>
             </div>
 
-
+            <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text govuk-!-font-size-19">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                If they have any of these symptoms, they should self-isolate straight away until they get their results. They should not leave home, except to post a test kit or for a PCR test appointment. <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" class="govuk-link">Check if people they live with need to self-isolate on NHS.UK.</a>
+              </strong>
+            </div>
 
             <button class="govuk-button" data-module="govuk-button">Continue</button>
+            
 
         </form>
 
     </div>
-</div>
-
-<div class="proto-action big">
-  <a href="/antigen/{{version}}/refer-and-triage/do-you-have-symptoms">
-    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
-  </a>
 </div>
 
 {% endblock %}

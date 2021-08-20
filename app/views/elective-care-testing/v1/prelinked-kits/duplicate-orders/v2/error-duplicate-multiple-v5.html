@@ -1,0 +1,302 @@
+{% extends "includes/layout.html" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% set pageTitle = "Orders already exist for these patients" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#error-1">Select an option for {firstname} {lastname}</a>
+            </li>
+            <li>
+              <a href="#error-2">Select an option for {firstname} {lastname}</a>
+            </li>
+            <li>
+              <a href="#error-3">Select an option for {firstname} {lastname}</a>
+            </li>
+            <li>
+              <a href="#error-4">Select an option for {firstname} {lastname}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+
+      <p class="govuk-body"><span class="govuk-!-font-weight-bold">75 orders</span> have been placed successfully. Orders already exist for <span class="govuk-!-font-weight-bold">25 patients.</span></p>
+      <p class="govuk-body">If you need to order more test kits for these patients, their previous orders will be cancelled. If they have already received test kits, they will need to be thrown away. We’ll send the patients a text explaining this.</p>
+
+      <form action="confirmation-manual" method="post">
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Procedure date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              00 MMM YY
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Patient
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Firstname Lastname
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              NHS number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              485 777 3456
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key" style="vertical-align: top;">
+              Reorder kit
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <div class="govuk-form-group govuk-form-group--error">
+                <div class="govuk-radios govuk-radios--small govuk-radios--conditional" data-module="govuk-radios">
+                  <span class="govuk-error-message" id="error-1">
+                    <span class="govuk-visually-hidden">Error:</span> Select an option for {firstname} {lastname}
+                  </span>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radio-1" name="rg-1" type="radio" value="Yes" data-aria-controls="conditional-1">
+                    <label class="govuk-label govuk-radios__label" for="">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-1">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="sort">
+                        Why are you reordering?
+                      </label>
+                      <textarea class="govuk-textarea" id="" name="" rows="5" aria-describedby="" maxlength="100"></textarea>
+                    </div>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radio-2" name="rg-1" type="radio" value="No">
+                    <label class="govuk-label govuk-radios__label" for="">
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </dd>
+          </div>
+        </dl>
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Procedure date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              00 MMM YY
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Patient
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Firstname Lastname
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              NHS number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              485 777 3456
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key" style="vertical-align: top;">
+              Reorder kit
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <div class="govuk-form-group govuk-form-group--error">
+                <div class="govuk-radios govuk-radios--small govuk-radios--conditional" data-module="govuk-radios">
+                  <span class="govuk-error-message" id="error-1">
+                    <span class="govuk-visually-hidden">Error:</span> Select an option for {firstname} {lastname}
+                  </span>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radio-3" name="rg-2" type="radio" value="Yes" data-aria-controls="conditional-2">
+                    <label class="govuk-label govuk-radios__label" for="">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-2">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="sort">
+                        Why are you reordering?
+                      </label>
+                      <textarea class="govuk-textarea" id="" name="" rows="5" aria-describedby="" maxlength="100"></textarea>
+                    </div>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radio-4" name="rg-2" type="radio" value="No">
+                    <label class="govuk-label govuk-radios__label" for="">
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </dd>
+          </div>
+        </dl>
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Procedure date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              00 MMM YY
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Patient
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Firstname Lastname
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              NHS number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              485 777 3456
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key" style="vertical-align: top;">
+              Reorder kit
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <div class="govuk-form-group govuk-form-group--error">
+                <div class="govuk-radios govuk-radios--small govuk-radios--conditional" data-module="govuk-radios">
+                  <span class="govuk-error-message" id="error-1">
+                    <span class="govuk-visually-hidden">Error:</span> Select an option for {firstname} {lastname}
+                  </span>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radio-5" name="rg-3" type="radio" value="Yes" data-aria-controls="conditional-3">
+                    <label class="govuk-label govuk-radios__label" for="">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-3">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="sort">
+                        Why are you reordering?
+                      </label>
+                      <textarea class="govuk-textarea" id="" name="" rows="5" aria-describedby="" maxlength="100"></textarea>
+                    </div>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radio-6" name="rg-3" type="radio" value="No">
+                    <label class="govuk-label govuk-radios__label" for="">
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </dd>
+          </div>
+        </dl>
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Procedure date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              00 MMM YY
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Patient
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Firstname Lastname
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              NHS number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              485 777 3456
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key" style="vertical-align: top;">
+              Reorder kit
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <div class="govuk-form-group govuk-form-group--error">
+                <div class="govuk-radios govuk-radios--small govuk-radios--conditional" data-module="govuk-radios">
+                  <span class="govuk-error-message" id="error-1">
+                    <span class="govuk-visually-hidden">Error:</span> Select an option for {firstname} {lastname}
+                  </span>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radio-7" name="rg-4" type="radio" value="Yes" data-aria-controls="conditional-4">
+                    <label class="govuk-label govuk-radios__label" for="">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-4">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="sort">
+                        Why are you reordering?
+                      </label>
+                      <textarea class="govuk-textarea" id="" name="" rows="5" aria-describedby="" maxlength="100"></textarea>
+                    </div>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="radio-8" name="rg-4" type="radio" value="No">
+                    <label class="govuk-label govuk-radios__label" for="">
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </dd>
+          </div>
+        </dl>
+      </form>
+      <div class="flex-container govuk-!-margin-bottom-8" style="display: flex; justify-content: space-between;">
+        <a href="#" class="govuk-link">Previous page in list</a>
+        <a href="#" class="govuk-link">Next page in list</a>
+      </div>
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Continue",
+          href: "confirmation-manual"
+        }) }}
+
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Cancel
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+{% endblock %}
