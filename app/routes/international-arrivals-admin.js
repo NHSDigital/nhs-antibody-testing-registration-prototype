@@ -15,7 +15,7 @@ router.post('/international-arrivals-admin/v1/order-tests/action/payment-exempti
   if (paymentExemption == "Yes, I need a replacement test kit") {
     res.redirect('/international-arrivals-admin/v1/order-tests/package-provider')
   } else if (paymentExemption == "Yes, I am in financial hardship") {
-    res.redirect('/international-arrivals-admin/v1/order-tests/tbc')
+    res.redirect('/international-arrivals-admin/v1/order-tests/travel-route')
   } else {
     res.redirect('/international-arrivals-admin/v1/order-tests/travel-route')
   }
