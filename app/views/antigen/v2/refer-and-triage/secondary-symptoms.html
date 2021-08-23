@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Does the person who needs a test feel unwell?" %}
+{% set pageTitle = "Does the person who needs a test have any of these other symptoms?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -27,33 +27,78 @@
         <form action="/antigen/{{version}}/action3/secondary-symptoms" method="post">
 
             <div class="govuk-form-group">
-              <fieldset class="govuk-fieldset" aria-describedby="symptoms-hint symptoms-2-hint">
+              <fieldset class="govuk-fieldset" aria-describedby="symptoms-hint symptoms-hint-2">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                     <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                         {{ pageTitle }}
                     </h1>
                 </legend>
                 <span id="symptoms-hint" class="govuk-body">
-                  If they feel unwell they should get a PCR test, even if their symptoms are mild.
+                  If they have any of these symptoms, they should get a PCR test.<br><br>
                 </span>
+
+                <div class="govuk-warning-text">
+                  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                  <strong class="govuk-warning-text__text govuk-!-font-size-19">
+                    <span class="govuk-warning-text__assistive">Warning</span>
+                    If they're worried about their symptoms or they're getting worse, call 111. In an emergency, call 999.
+                  </strong>
+                </div>
+
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-1">General symptoms</h3>
+                  <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
+                    <li>headache</li>
+                    <li>unusual tiredness</li>
+                    <li>changes in the mouth or tongue</li>
+                    <li>red and sore fingers or toes</li>
+                    <li>hoarse voice</li>
+                  </ul>
+
+                  <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Flu like symptoms</h3>
+                  <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
+                    <li>chills or shivers</li>
+                    <li>sore throat</li>
+                    <li>runny nose</li>
+                    <li>sneezing</li>
+                    <li>muscle pains</li>
+                  </ul>
+
+                  <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Respiratory/chest symptoms</h3>
+                  <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
+                    <li>shortness of breath</li>
+                    <li>chest pains</li>
+                  </ul>
+
+                  <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Digestive/abdominal symptoms</h3>
+                  <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
+                    <li>abdominal pains</li>
+                    <li>skipping meals</li>
+                    <li>diarrhoea</li>
+                  </ul>
+
+                  <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Other symptoms</h3>
+                  <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
+                    <li>sudden confusion</li>
+                    <li>skin rash</li>
+                  </ul>
 
                 <div class="govuk-radios govuk-!-margin-top-7 govuk-!-margin-bottom-6" data-module="govuk-radios">
                   <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="secondary-symptoms-1" name="secondary-symptoms" type="radio" value="Yes" {{ checked("secondary-symptoms", "Yes") }}>
                     <label class="govuk-label govuk-radios__label" for="secondary-symptoms-1">
-                        Yes, they feel unwell
+                        Yes, at least one of these symptoms
                     </label>
                   </div>
                   <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="secondary-symptoms-2" name="secondary-symptoms" type="radio" value="No" {{ checked("secondary-symptoms", "No") }}>
                     <label class="govuk-label govuk-radios__label" for="secondary-symptoms-2">
-                        No, they do not feel unwell
+                        No, none of these symptoms
                     </label>
                   </div>
                 </div>
 
                 <span id="symptoms-hint-2" class="govuk-body">
-                  They only need to self-isolate if they have a high temperature, a new continuous cough, or a loss or change to their sense of smell or taste.
+                  They may not need to self-isolate if they only have any of these symptoms. <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" class="govuk-link">Check the self-isolation rules on NHS.UK.</a><br><br>
                 </span>
               </fieldset>
             </div>

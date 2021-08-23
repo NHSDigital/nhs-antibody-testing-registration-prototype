@@ -62,7 +62,7 @@ router.post('/antigen/v2/action3/do-you-have-symptoms', function (req, res) {
 
 router.post('/antigen/v2/action/status-page', function (req, res) {
   let screenOption = req.session.data['screen-option']
-  if (screenOption == "option-2a" || screenOption == "option-2b" ){
+  if (screenOption == "option-2" || screenOption == "option-2" ){
     res.redirect('/antigen/v2/refer-and-triage/do-you-have-symptoms-option-2')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/do-you-have-symptoms')

@@ -1,0 +1,401 @@
+{% set version = "v1" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/accessibility/{{version}}/global-registration/access-needs-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/name-person-1">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-birth-person-1-day'] }} {{ data['date-of-birth-person-1-month'] }} {{ data['date-of-birth-person-1-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/date-of-birth-person-1">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Any symptoms?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['do-you-have-symptoms-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/symptoms-person-1">
+              Change
+              <span class="govuk-visually-hidden">any symptoms?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['do-you-have-symptoms-person-1'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of onset
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['symptoms-start-date-day-person-1'] }} {{ data['symptoms-start-date-month-person-1'] }} {{ data['symptoms-start-date-year-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/when-did-symptoms-start-person-1">
+              Change
+              <span class="govuk-visually-hidden">date of onset</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Mobile
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mobile-phone-number-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/mobile-number-person-1">
+              Change
+              <span class="govuk-visually-hidden">mobile</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['landline-number-person-1'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Landline number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['landline-telephone-number-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/landline-number-person-1">
+              Change
+              <span class="govuk-visually-hidden">landline number</span>
+            </a>
+          </dd>
+        </div>
+        {% elseif data['landline-number-person-1'] == "Yes, same as me" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Landline number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['landline-telephone-number'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/landline-number-person-1">
+              Change
+              <span class="govuk-visually-hidden">landline number</span>
+            </a>
+          </dd>
+        </div>
+        {% else %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Landline number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['landline-number-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/landline-number-person-1">
+              Change
+              <span class="govuk-visually-hidden">landline number</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['email-address-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/email-address-person-1">
+              Change
+              <span class="govuk-visually-hidden">email</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Gender
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['gender-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/gender-person-1">
+              Change
+              <span class="govuk-visually-hidden">gender</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnic group
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ethnic-group-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/ethnic-group-person-1">
+              Change
+              <span class="govuk-visually-hidden">ethnic group</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['ethnic-group-person-1'] !== "Prefer not to say" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnic background
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ethnic-background-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/ethnic-group-person-1">
+              Change
+              <span class="govuk-visually-hidden">ethnic background</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Currently in work?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['currently-in-work-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/currently-in-work-person-1">
+              Change
+              <span class="govuk-visually-hidden">currently in work?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['currently-in-work-person-1'] !== "No" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Area of work
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['industry-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/industry-person-1">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Occupation
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['occupation-person-1'] | default('Prefer not to say') }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/occupation-person-1">
+              Change
+              <span class="govuk-visually-hidden">occupation</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Employer
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['employer-person-1'] | default('Prefer not to say') }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/employer-person-1">
+              Change
+              <span class="govuk-visually-hidden">employer</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Country of residence
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['country-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/country-person-1">
+              Change
+              <span class="govuk-visually-hidden">country of residence</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['postcode-person-1'] == "Same as me" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Postcode
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['home-postcode'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/postcode-person-1">
+              Change
+              <span class="govuk-visually-hidden">postcode</span>
+            </a>
+          </dd>
+        </div>
+        {% else %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Postcode
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['home-postcode-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/postcode-person-1">
+              Change
+              <span class="govuk-visually-hidden">postcode</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            NHS number known
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['nhs-number-known-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/nhs-number-known-person-1">
+              Change
+              <span class="govuk-visually-hidden">NHS number known</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['nhs-number-known-person-1'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            NHS number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['nhs-number-person-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/nhs-number-person-1">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Additional support
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['access-needs-person-1-12'] %}
+            No
+            {% else %}
+              {% if data['access-needs-person-1-1'] %}
+              {{ data['assisted-testing'] }}<br>
+              {% endif %}
+              {% if data['access-needs-person-1-2'] %}
+              {{ data['access-needs-person-1-2'] }}<br>
+              {% endif %}
+              {% if data['access-needs-person-1-3'] %}
+              {{ data['access-needs-person-1-3'] }}<br>
+              {% endif %}
+              {% if data['access-needs-person-1-4'] %}
+              {{ data['access-needs-person-1-4'] }}<br>
+              {% endif %}
+              {% if data['access-needs-person-1-5'] %}
+              {{ data['access-needs-person-1-5'] }}<br>
+              {% endif %}
+              {% if data['access-needs-person-1-6'] %}
+              {{ data['access-needs-person-1-6'] }}<br>
+              {% endif %}
+              {% if data['access-needs-person-1-7'] %}
+              {{ data['access-needs-person-1-7'] }}<br>
+              {% endif %}
+              {% if data['access-needs-person-1-8'] %}
+              {{ data['access-needs-person-1-8'] }}<br>
+              {% endif %}
+              {% if data['access-needs-person-1-9'] %}
+              {{ data['access-needs-person-1-9'] }}<br>
+              {% endif %}
+              {% if data['access-needs-person-1-10'] %}
+              {{ data['access-needs-person-1-10'] }}<br>
+              {% endif %}
+              {% if data['access-needs-person-1-11'] %}
+              {{ data['access-needs-person-1-11'] }}<br>
+              {% endif %}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/accessibility/{{version}}/global-registration/access-needs">
+              Change
+              <span class="govuk-visually-hidden">additional support</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <form action="/accessibility/{{version}}/global-registration/people-confirmed-person-1" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

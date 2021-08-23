@@ -1,0 +1,129 @@
+{% set version = "v1" %}
+{% set pageTitle = "What are your access needs?" %}
+
+{% extends "includes/layout.html" %}
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['nhs-number-known'] == "Yes" %}
+  <a class="govuk-back-link" href="/accessibility/{{version}}/global-registration/nhs-number">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/accessibility/{{version}}/global-registration/nhs-number-known">Back</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <form action="/accessibility/{{version}}/global-registration/check-your-answers" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="access-needs-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+            <span id="access-needs-hint" class="govuk-body">
+              If you need a carer you can bring them with you on the day.<br><br>
+              Select all that apply.<br><br>
+            </span>
+
+            <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="access-needs-1" name="access-needs-1" type="checkbox" value="Assisted testing" {{ checked("access-needs-1", "Assisted testing") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="access-needs-1">
+                  Assisted testing
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="access-needs-2" name="access-needs-2" type="checkbox" value="Step free and wheelchair accessible" {{ checked("access-needs-2", "Step free and wheelchair accessible") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="access-needs-2">
+                  Step free and wheelchair accessible
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="access-needs-3" name="access-needs-3" type="checkbox" value="Large bays for wheelchairs and families" {{ checked("access-needs-3", "Large bays for wheelchairs and families") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="access-needs-3">
+                  Large bays for wheelchairs and families
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="access-needs-4" name="access-needs-4" type="checkbox" value="Public toilets" {{ checked("access-needs-4", "Public toilets") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="access-needs-4">
+                  Public toilets
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="access-needs-5" name="access-needs-5" type="checkbox" value="Accessible toilets" {{ checked("access-needs-5", "Accessible toilets") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="access-needs-5">
+                  Accessible toilets
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="access-needs-6" name="access-needs-6" type="checkbox" value="Easy read instructions" {{ checked("access-needs-6", "Easy read instructions") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="access-needs-6">
+                  Easy read instructions
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="access-needs-7" name="access-needs-7" type="checkbox" value="Large print instructions" {{ checked("access-needs-7", "Large print instructions") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="access-needs-7">
+                  Large print instructions
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="access-needs-8" name="access-needs-8" type="checkbox" value="British Sign Language video relay" {{ checked("access-needs-8", "British Sign Language video relay") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="access-needs-8">
+                  British Sign Language video relay
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="access-needs-9" name="access-needs-9" type="checkbox" value="Translated instructions" {{ checked("access-needs-9", "Translated instructions") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="access-needs-9">
+                  Translated instructions
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="access-needs-10" name="access-needs-10" type="checkbox" value="Language interpretation service" {{ checked("access-needs-10", "Language interpretation service") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="access-needs-10">
+                  Language interpretation service
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="access-needs-11" name="access-needs-11" type="checkbox" value="Braille" {{ checked("access-needs-11", "Braille") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="access-needs-11">
+                  Braille
+                </label>
+              </div>
+              <p class="govuk-body">or</p>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="access-needs-12" name="access-needs-12" type="checkbox" value="None of the above" {{ checked("access-needs-12", "None of the above") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="access-needs-11">
+                  None of the above
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
