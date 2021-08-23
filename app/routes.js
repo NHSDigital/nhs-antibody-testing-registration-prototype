@@ -478,10 +478,11 @@ router.post('/antigen/v1/action3/government-pilot', function (req, res) {
 // Version 1 - Antigen Refer and Triage - Reason for test route
 
 router.post('/antigen/v1/action3/reason-for-test', function (req, res) {
+  let whoAsked = req.session.data['who-asked-for-test']
   let reason = req.session.data['reason-for-test']
   if (reason == "None of the above"){
     res.redirect('/antigen/v1/refer-and-triage/cannot-have-test')
-  } else if (reason == "I've been told by contact tracers to get a test") {
+  } else if (whoAsked == "I've been told by contact tracers to get a test") {
     res.redirect('/antigen/v1/refer-and-triage/contact-tracing-code')
   }
   else {
