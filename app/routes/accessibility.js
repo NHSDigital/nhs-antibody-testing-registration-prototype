@@ -50,4 +50,15 @@ router.post('/accessibility/v1/action3/reason-for-test', function (req, res) {
 
 })
 
+// Version 1 - Accessibility Refer and Triage - Reason for test route
+router.post('/accessibility/v1/action4/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/accessibility/v1/global-registration/nhs-number')
+  } else {
+    res.redirect('/accessibility/v1/global-registration/access-needs')
+  }
+
+})
+
 module.exports = router
