@@ -290,4 +290,16 @@ router.post('/accessibility/v1/action3/find-test-site', function (req, res) {
 
 })
 
+// Version 1 - Antigen Site Appointment Booking - Choose time prev day route
+
+router.post('/accessibility/v1/action3/choose-time-drive', function (req, res) {
+  let chosenType = req.session.data['way-to-test']
+  if (chosenType == "drive-through"){
+    res.redirect('/accessibility/v1/site-appointment-booking/vehicle-registration-number')
+  } else {
+    res.redirect('/accessibility/v1/site-appointment-booking/confirm-appointment-drive')
+  }
+
+})
+
 module.exports = router
