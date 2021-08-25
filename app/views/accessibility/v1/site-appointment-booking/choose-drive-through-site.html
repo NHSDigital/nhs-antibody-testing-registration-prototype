@@ -24,126 +24,131 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/accessibility/{{version}}/site-appointment-booking/choose-time-prev-day-drive" method="post">
-
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="choose-site-1-hint choose-site-2-hint choose-site-3-hint choose-site-4-hint choose-site-13-hint choose-site-5-hint choose-site-6-hint choose-site-7-hint choose-site-8-hint postcode-not-recognised-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              {% if data['home-postcode'] !== "N1111" %}
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                Test sites near {{ data['home-postcode'] }}<br><br>
-                {{ pageTitle }}
-              </h1>
-              {% endif %}
-              {% if data['home-postcode'] == "N1111" %}
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                We did not recognise your postcode. Choose a test site
-              </h1>
-              {% endif %}
-            </legend>
-            <span id="choose-site-1-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-2">
-              Postcode
-            </span>
-            <span id="choose-site-2-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-right-4" style="display: inline-block;">
-              {{ data['home-postcode'] | default('LS1 3BE') }}
-            </span>
-            <span class="govuk-body" style="display: inline-block;"><a class="govuk-link" href="/accessibility/{{version}}/site-appointment-booking/find-test-site-drive">Change</a></span>
-            {% if data['home-postcode'] == "N1111" %}
-            <p class="govuk-body">
-              <span id="postcode-not-recognised-hint">
-                Sorry but we could not recognise your postcode. Choose a test site from the options below.
-              </span>
-            </p>
-            {% endif %}
-            <!-- <div class="govuk-warning-text">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                Some test sites are for over-18s only.
-              </strong>
-            </div> -->
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="choose-site-1-hint choose-site-2-hint choose-site-3-hint choose-site-4-hint choose-site-13-hint choose-site-5-hint choose-site-6-hint choose-site-7-hint choose-site-8-hint postcode-not-recognised-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             {% if data['home-postcode'] !== "N1111" %}
-            <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
-              <strong>Your nearest test sites (by road):</strong><br>
-            </span>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              Test sites near {{ data['home-postcode'] }}<br><br>
+              {{ pageTitle }}
+            </h1>
             {% endif %}
             {% if data['home-postcode'] == "N1111" %}
-            <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
-              <strong>Test sites:</strong><br>
-            </span>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              We did not recognise your postcode. Choose a test site
+            </h1>
             {% endif %}
-            <span id="choose-site-4-hint" class="govuk-heading-m govuk-!-margin-right-4" style="display: inline-block;">
-              <strong>Drive-through</strong>
+          </legend>
+          <span id="choose-site-1-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-2">
+            Postcode
+          </span>
+          <span id="choose-site-2-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-right-4" style="display: inline-block;">
+            {{ data['home-postcode'] | default('LS1 3BE') }}
+          </span>
+          <span class="govuk-body" style="display: inline-block;"><a class="govuk-link" href="/accessibility/{{version}}/site-appointment-booking/find-test-site-drive">Change</a></span>
+          {% if data['home-postcode'] == "N1111" %}
+          <p class="govuk-body">
+            <span id="postcode-not-recognised-hint">
+              Sorry but we could not recognise your postcode. Choose a test site from the options below.
             </span>
+          </p>
+          {% endif %}
+          <!-- <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text">
+              <span class="govuk-warning-text__assistive">Warning</span>
+              Some test sites are for over-18s only.
+            </strong>
+          </div> -->
+          {% if data['home-postcode'] !== "N1111" %}
+          <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
+            <strong>Your nearest test sites (by road):</strong><br>
+          </span>
+          {% endif %}
+          {% if data['home-postcode'] == "N1111" %}
+          <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
+            <strong>Test sites:</strong><br>
+          </span>
+          {% endif %}
+          <span id="choose-site-4-hint" class="govuk-heading-m govuk-!-margin-right-4" style="display: inline-block;">
+            <strong>Drive-through</strong>
+          </span>
 
-            <span id="choose-site-13-hint" class="govuk-body"><a class="govuk-link" href="/accessibility/{{version}}/site-appointment-booking/choose-walk-through-site">Change to walk-through</a></span>
+          <span id="choose-site-13-hint" class="govuk-body"><a class="govuk-link" href="/accessibility/{{version}}/site-appointment-booking/choose-walk-through-site">Change to walk-through</a></span>
 
-            <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
-              <li><span id="choose-site-5-hint" class="govuk-body govuk-!-margin-bottom-0">you'll need to provide the registration number for the vehicle you arrive in</span></li>
-              <li><span id="choose-site-6-hint" class="govuk-body govuk-!-margin-bottom-0">you need to book your test appointment as soon as possible</span></li>
-              <li><span id="choose-site-7-hint" class="govuk-body govuk-!-margin-bottom-0">you or someone you live with must drive to the test site by car, small van or motorbike (some sites do not accept motorbikes)</span></li>
-              <li><span id="choose-site-8-hint" class="govuk-body">site staff will tell you if an assistant does the swab test for you or if you do it yourself</span></li>
-            </ul>
-            <div class="govuk-radios govuk-!-margin-top-7">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-site-1" name="test-site" type="radio" value="Lee Valley Athletics Park" {{ checked("test-site", "Lee Valley Athletics Park") }} aria-describedby="choose-site-9-hint">
-                <label class="govuk-label govuk-radios__label" for="test-site-1">
-                  <span  class="govuk-body-m">
-                    <strong>
-                      Lee Valley Athletics Park (drive in only no bikes)
-                    </strong>
-                  </span>
-                </label>
-                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-9-hint" class="govuk-body-m">
-                  Lee Valley Athletics Centre<br>
-                  London<br>
-                  N9 0AR<br>
-                  <strong>3.5 miles</strong> by road<br><br>
-                  508 appointments available.
-              </span></p>
-              </div>
-              <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="test-site-3" name="test-site" type="radio" value="Greenwich" {{ checked("test-site", "Greenwich") }} aria-describedby="choose-site-10-hint">
-                <label class="govuk-label govuk-radios__label" for="test-site-3">
-                  <span  class="govuk-body-m">
-                    <strong>
-                      Greenwich (drive in only - no motorbikes)
-                    </strong>
-                  </span>
-                </label>
-                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-10-hint" class="govuk-body-m">
-                  TFL Car Park, Edmund Halley Way<br>
-                  London<br>
-                  SE10 0PH<br>
-                  <strong>5.9 miles</strong> by road<br><br>
-                  462 appointments available.
-              </span></p>
-              </div>
-              <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="test-site-3" name="test-site" type="radio" value="Twickenham" {{ checked("test-site", "Twickenham") }} aria-describedby="choose-site-11-hint">
-                <label class="govuk-label govuk-radios__label" for="test-site-3">
-                  <span  class="govuk-body-m">
-                    <strong>
-                      Twickenham (drive in only - no motorbikes)
-                    </strong>
-                  </span>
-                </label>
-                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-11-hint" class="govuk-body-m">
-                  Twickenham Stadium, 200 Whitton Road, Gate D<br>
-                  Twickenham<br>
-                  TW1 1DZ<br>
-                  <strong>15.4 miles</strong> by road<br><br>
-                  595 appointments available.
-              </span></p>
-              </div>
+          <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
+            <li><span id="choose-site-5-hint" class="govuk-body govuk-!-margin-bottom-0">you'll need to provide the registration number for the vehicle you arrive in</span></li>
+            <li><span id="choose-site-6-hint" class="govuk-body govuk-!-margin-bottom-0">you need to book your test appointment as soon as possible</span></li>
+            <li><span id="choose-site-7-hint" class="govuk-body govuk-!-margin-bottom-0">you or someone you live with must drive to the test site by car, small van or motorbike (some sites do not accept motorbikes)</span></li>
+            <li><span id="choose-site-8-hint" class="govuk-body">site staff will tell you if an assistant does the swab test for you or if you do it yourself</span></li>
+          </ul>
+          <div class="govuk-radios govuk-!-margin-top-7">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="test-site-1" name="test-site" type="radio" value="Lee Valley Athletics Park" {{ checked("test-site", "Lee Valley Athletics Park") }} aria-describedby="choose-site-9-hint">
+              <label class="govuk-label govuk-radios__label" for="test-site-1">
+                <span  class="govuk-body-m">
+                  <strong>
+                    Lee Valley Athletics Park (drive in only no bikes)
+                  </strong>
+                </span>
+              </label>
+              <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-9-hint" class="govuk-body-m">
+                Lee Valley Athletics Centre<br>
+                London<br>
+                N9 0AR<br>
+                <strong>3.5 miles</strong> by road<br><br>
+                508 appointments available.
+            </span></p>
             </div>
-            <p><a class="govuk-link" href="#">See drive-through test sites further away from you</a></p>
-          </fieldset>
-        </div>
+            <div class="govuk-radios__item govuk-!-margin-top-6">
+              <input class="govuk-radios__input" id="test-site-3" name="test-site" type="radio" value="Greenwich" {{ checked("test-site", "Greenwich") }} aria-describedby="choose-site-10-hint">
+              <label class="govuk-label govuk-radios__label" for="test-site-3">
+                <span  class="govuk-body-m">
+                  <strong>
+                    Greenwich (drive in only - no motorbikes)
+                  </strong>
+                </span>
+              </label>
+              <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-10-hint" class="govuk-body-m">
+                TFL Car Park, Edmund Halley Way<br>
+                London<br>
+                SE10 0PH<br>
+                <strong>5.9 miles</strong> by road<br><br>
+                462 appointments available.
+            </span></p>
+            </div>
+            <div class="govuk-radios__item govuk-!-margin-top-6">
+              <input class="govuk-radios__input" id="test-site-3" name="test-site" type="radio" value="Twickenham" {{ checked("test-site", "Twickenham") }} aria-describedby="choose-site-11-hint">
+              <label class="govuk-label govuk-radios__label" for="test-site-3">
+                <span  class="govuk-body-m">
+                  <strong>
+                    Twickenham (drive in only - no motorbikes)
+                  </strong>
+                </span>
+              </label>
+              <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-11-hint" class="govuk-body-m">
+                Twickenham Stadium, 200 Whitton Road, Gate D<br>
+                Twickenham<br>
+                TW1 1DZ<br>
+                <strong>15.4 miles</strong> by road<br><br>
+                595 appointments available.
+            </span></p>
+            </div>
+          </div>
+          <p><a class="govuk-link" href="#">See drive-through test sites further away from you</a></p>
+        </fieldset>
+      </div>
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      <div class="inline-buttons-wrapper">
+        <form class="form" action="/accessibility/{{version}}/site-appointment-booking/choose-time-prev-day-drive" method="post">
+          <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">Continue</button>
+        </form>
 
-      </form>
+        <form class="form" action="/accessibility/{{version}}/site-appointment-booking/choose-walk-through-site" method="post">
+          <input type="radio" value="walk-in" {{ checked("way-to-test", "walk-in") }} style="display: none;">
+          <button class="govuk-button govuk-button--secondary govuk-!-margin-right-1" data-module="govuk-button">Change to walk-through</button>
+        </form>
+      </div>
 
     </div>
   </div>

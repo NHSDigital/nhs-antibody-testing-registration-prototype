@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Choose a test site near you" %}
+{% set pageTitle = "Choose a walk through test site near you" %}
 
 {% extends "includes/layout.html" %}
 
@@ -24,124 +24,320 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/accessibility/{{version}}/site-appointment-booking/choose-time-prev-day-walk" method="post">
-
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="choose-site-1-hint choose-site-2-hint choose-site-3-hint choose-site-4-hint choose-site-12-hint choose-site-6-hint choose-site-7-hint choose-site-8-hint choose-site-9-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              {% if data['home-postcode'] !== "N1111" %}
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                {{ pageTitle }}
-              </h1>
-              {% endif %}
-              {% if data['home-postcode'] == "N1111" %}
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                We did not recognise your postcode. Choose a test site
-              </h1>
-              {% endif %}
-            </legend>
-            <span id="choose-site-1-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-2">
-              Postcode
-            </span>
-            <span id="choose-site-2-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-right-4" style="display: inline-block;">
-              {{ data['home-postcode'] | default('LS1 3BE') }}
-            </span>
-            <p style="display: inline-block;"><a class="govuk-link" href="/accessibility/{{version}}/site-appointment-booking/find-test-site-walk">Change</a></p>
-            {% if data['home-postcode'] == "N1111" %}
-            <p class="govuk-body">
-              <span id="postcode-not-recognised-hint">
-                Sorry but we could not recognise your postcode. Choose a test site from the options below.
-              </span>
-            </p>
-            {% endif %}
-            <!-- <div class="govuk-warning-text">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                Some test sites are for over-18s only.
-              </strong>
-            </div> -->
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="choose-site-1-hint choose-site-2-hint choose-site-3-hint choose-site-4-hint choose-site-12-hint choose-site-6-hint choose-site-7-hint choose-site-8-hint choose-site-9-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             {% if data['home-postcode'] !== "N1111" %}
-            <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
-              <strong>Your nearest test sites (by road):</strong><br>
-            </span>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
             {% endif %}
             {% if data['home-postcode'] == "N1111" %}
-            <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
-              <strong>Test sites:</strong><br>
-            </span>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              We did not recognise your postcode. Choose a test site
+            </h1>
             {% endif %}
-            <span id="choose-site-4-hint" class="govuk-heading-m govuk-!-margin-right-4" style="display: inline-block;">
-              <strong>Walk-through</strong>
+          </legend>
+          <span id="choose-site-1-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-2">
+            Postcode
+          </span>
+          <span id="choose-site-2-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-right-4" style="display: inline-block;">
+            {{ data['home-postcode'] | default('LS1 3BE') }}
+          </span>
+          <p style="display: inline-block;"><a class="govuk-link" href="/accessibility/{{version}}/site-appointment-booking/find-test-site-walk">Change</a></p>
+          {% if data['home-postcode'] == "N1111" %}
+          <p class="govuk-body">
+            <span id="postcode-not-recognised-hint">
+              Sorry but we could not recognise your postcode. Choose a test site from the options below.
             </span>
+          </p>
+          {% endif %}
 
-            <span id="choose-site-12-hint" class="govuk-body"><a class="govuk-link" href="/accessibility/{{version}}/site-appointment-booking/choose-drive-through-site">Change to drive-through</a></span>
+          <span id="choose-site-4-hint" class="govuk-heading-m govuk-!-margin-right-4" style="display: inline-block;">
+            <strong>Recommended test site based on your access needs:</strong>
+          </span>
 
-            <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
-              <li><span id="choose-site-6-hint" class="govuk-body govuk-!-margin-bottom-0">you need to book your test as soon as possible</span></li>
-              <li><span id="choose-site-7-hint" class="govuk-body govuk-!-margin-bottom-0">you can walk or cycle to the site (do not go by public transport or taxi)</span></li>
-              <li><span id="choose-site-9-hint" class="govuk-body">site staff will tell you if an assistant does the swab test for you, or if you do it yourself</span></li>
-            </ul>
-            <div class="govuk-radios govuk-!-margin-top-7">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-site-1" name="test-site" type="radio" value="Haringey Stamford Hill" {{ checked("test-site", "Haringey Stamford Hill") }} aria-describedby="choose-site-10-hint">
-                <label class="govuk-label govuk-radios__label" for="test-site-1">
-                  <span  class="govuk-body-m">
-                    <strong>
-                      Haringey Stamford Hill - Walk through site
-                    </strong>
-                  </span>
-                </label>
-                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-10-hint" class="govuk-body-m">
-                  Stamford Hill Primary School<br>
-                  Haringey<br>
-                  N15 6HD<br>
-                  <strong>1.2 miles</strong> by road<br><br>
-                  64 appointments available.
-              </span></p>
-              </div>
-              <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="test-site-2" name="test-site" type="radio" value="Hackney Sandford Court" {{ checked("test-site", "Hackney Sandford Court") }} aria-describedby="choose-site-11-hint">
-                <label class="govuk-label govuk-radios__label" for="test-site-2">
-                  <span  class="govuk-body-m">
-                    <strong>
-                      Hackney Sandford Court - Walk through site
-                    </strong>
-                  </span>
-                </label>
-                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-11-hint" class="govuk-body-m">
-                  Sandford Court, Bethune Rd<br>
-                  London<br>
-                  N16 5BB<br>
-                  <strong>2.6 miles</strong> by road<br><br>
-                  16 appointments available.
-              </span></p>
-              </div>
-              <div class="govuk-radios__item govuk-!-margin-top-6">
-                <input class="govuk-radios__input" id="test-site-3" name="test-site" type="radio" value="Camden Ramsay Hall" {{ checked("test-site", "Camden Ramsay Hall") }} aria-describedby="choose-site-12-hint">
-                <label class="govuk-label govuk-radios__label" for="test-site-3">
-                  <span  class="govuk-body-m">
-                    <strong>
-                      Camden Ramsay Hall - Walk through site
-                    </strong>
-                  </span>
-                </label>
-                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-12-hint" class="govuk-body-m">
-                  Ramsay Hall (No step free access)<br>
-                  Camden<br>
-                  W1T 5HB<br>
-                  <strong>3.8 miles</strong> by road<br><br>
-                  295 appointments available.
-              </span></p>
+          <span id="choose-site-12-hint" class="govuk-body"><a class="govuk-link" href="/accessibility/{{version}}/site-appointment-booking/access-needs-change">Change access needs</a></span>
+
+          <div class="govuk-radios govuk-!-margin-top-7">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="test-site-1" name="test-site" type="radio" value="Haringey Stamford Hill" {{ checked("test-site", "Haringey Stamford Hill") }} aria-describedby="choose-site-10-hint">
+              <label class="govuk-label govuk-radios__label" for="test-site-1">
+                <span  class="govuk-body-m">
+                  <strong>
+                    Haringey Stamford Hill - Walk through site
+                  </strong>
+                </span>
+              </label>
+              <p class="govuk-!-margin-left-3 govuk-!-margin-top-2 govuk-!-margin-bottom-0"><span id="choose-site-10-hint" class="govuk-body-m">
+                Stamford Hill Primary School<br>
+                Haringey<br>
+                N15 6HD<br>
+                <strong>1.2 miles</strong> by road<br><br>
+                64 appointments available.
+                </span>
+              </p>
+              <div style="margin-left: -30px;" class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+                <div class="govuk-accordion__section ">
+                  <div class="govuk-accordion__section-header">
+                    <h2 class="govuk-accordion__section-heading">
+                      <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                        What's available at this site?
+                      </span>
+                    </h2>
+                  </div>
+                  <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1" style="padding-bottom: 0;">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Step free and wheelchair accessible
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Large bays for wheelchairs and families
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Public toilets
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Accessible toilets
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Assisted testing - Drive-through only<br>
+                          This is when staff can do the test for you
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag govuk-tag--grey">NOT AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Guided testing<br>
+                          This is where staff guide you
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Easy read instructions
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag govuk-tag--grey">NOT AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Large print instructions
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          British sign language
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Language translation
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag govuk-tag--grey">NOT AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal; border-bottom: none">
+                          Braille
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag"  style="border-bottom: none">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
               </div>
             </div>
-            <p><a class="govuk-link" href="#">See walk-through test sites further away from you</a></p>
-          </fieldset>
-        </div>
+            <div class="govuk-radios__item govuk-!-margin-top-6">
+              <input class="govuk-radios__input" id="test-site-2" name="test-site" type="radio" value="Hackney Sandford Court" {{ checked("test-site", "Hackney Sandford Court") }} aria-describedby="choose-site-11-hint">
+              <label class="govuk-label govuk-radios__label" for="test-site-2">
+                <span  class="govuk-body-m">
+                  <strong>
+                    Hackney Sandford Court - Walk through site
+                  </strong>
+                </span>
+              </label>
+              <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-11-hint" class="govuk-body-m">
+                Sandford Court, Bethune Rd<br>
+                London<br>
+                N16 5BB<br>
+                <strong>2.6 miles</strong> by road<br><br>
+                16 appointments available.
+                </span>
+              </p>
+              <div style="margin-left: -30px;" class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+                <div class="govuk-accordion__section ">
+                  <div class="govuk-accordion__section-header">
+                    <h2 class="govuk-accordion__section-heading">
+                      <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                        What's available at this site?
+                      </span>
+                    </h2>
+                  </div>
+                  <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1" style="padding-bottom: 0;">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Step free and wheelchair accessible
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Large bays for wheelchairs and families
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Public toilets
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Accessible toilets
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Assisted testing - Drive-through only<br>
+                          This is when staff can do the test for you
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Guided testing<br>
+                          This is where staff guide you
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Easy read instructions
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Large print instructions
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          British sign language
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Language translation
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag govuk-tag--grey">NOT AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal; border-bottom: none">
+                          Braille
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag"  style="border-bottom: none">
+                          <strong class="govuk-tag govuk-tag--grey">NOT AVAILABLE</strong>
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="govuk-radios__item govuk-!-margin-top-6">
+              <input class="govuk-radios__input" id="test-site-3" name="test-site" type="radio" value="Camden Ramsay Hall" {{ checked("test-site", "Camden Ramsay Hall") }} aria-describedby="choose-site-12-hint">
+              <label class="govuk-label govuk-radios__label" for="test-site-3">
+                <span  class="govuk-body-m">
+                  <strong>
+                    Camden Ramsay Hall - Walk through site
+                  </strong>
+                </span>
+              </label>
+              <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-12-hint" class="govuk-body-m">
+                Ramsay Hall (No step free access)<br>
+                Camden<br>
+                W1T 5HB<br>
+                <strong>3.8 miles</strong> by road<br><br>
+                295 appointments available.
+            </span></p>
+            </div>
+          </div>
+          <p><a class="govuk-link" href="#">See walk-through test sites further away from you</a></p>
+        </fieldset>
+      </div>
+   
+      <div class="inline-buttons-wrapper">
+        <form class="form" action="/accessibility/{{version}}/site-appointment-booking/choose-time-prev-day-walk" method="post">
+          <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">Continue</button>
+        </form>
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
-
-      </form>
+        <form class="form" action="/accessibility/{{version}}/site-appointment-booking/choose-drive-through-site" method="post">
+          <input type="radio" value="drive-through" {{ checked("way-to-test", "drive-through") }} style="display: none;">
+          <button class="govuk-button govuk-button--secondary govuk-!-margin-right-1" data-module="govuk-button">Change to drive-through</button>
+        </form>
+      </div>
 
     </div>
   </div>
