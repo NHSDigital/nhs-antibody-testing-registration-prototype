@@ -106,9 +106,15 @@ router.post('/accessibility/v1/action3/reason-for-test', function (req, res) {
 
 })
 
+<<<<<<< HEAD
+// Version 1 - Accessibility Refer and Triage - How will you get test
+
+router.post('/accessibility/v1/action4/how-will-you-get-test', function (req, res) {
+=======
 // Version 2 - Accessibility Refer and Triage - How will you get test route
 
 router.post('/accessibility/v1/action3/how-will-you-get-test', function (req, res) {
+>>>>>>> 546cffa3fa145c5623f6b8bcee4c5d72c312c553
   let wayToTest = req.session.data['way-to-test']
   if (wayToTest == "drive-through"){
     res.redirect('/accessibility/v1/refer-and-triage/visiting-drive-through')
@@ -119,6 +125,9 @@ router.post('/accessibility/v1/action3/how-will-you-get-test', function (req, re
   }
 })
 
+<<<<<<< HEAD
+// Version 1 - Accessibility Global Registration - Reason for test route
+=======
 // Version 1 - Accessibility Global registration - Landline number route
 router.post('/accessibility/v1/action3/landline-number', function (req, res) {
   let wayToTest = req.session.data['way-to-test']
@@ -256,6 +265,7 @@ router.post('/accessibility/v1/action8/vaccine-person-1', function (req, res) {
 })
 
 // Version 1 - Accessibility Refer and Triage - Reason for test route
+>>>>>>> 546cffa3fa145c5623f6b8bcee4c5d72c312c553
 router.post('/accessibility/v1/action4/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
   if (nhsNumberKnown == "Yes"){
@@ -266,6 +276,9 @@ router.post('/accessibility/v1/action4/nhs-number-known', function (req, res) {
 
 })
 
+<<<<<<< HEAD
+
+=======
 // Version 1 - Accessibility Refer and Triage - Reason for test route
 router.post('/accessibility/v1/action3/nhs-number-known-person-1', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known-person-1']
@@ -289,5 +302,6 @@ router.post('/accessibility/v1/action3/find-test-site', function (req, res) {
   }
 
 })
+>>>>>>> 546cffa3fa145c5623f6b8bcee4c5d72c312c553
 
 module.exports = router
