@@ -30,7 +30,7 @@
             Name
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }}
+            {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/accessibility/{{version}}/global-registration/name-person-1">
@@ -44,7 +44,33 @@
             Date of birth
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['date-of-birth-person-1-day'] }} {{ data['date-of-birth-person-1-month'] }} {{ data['date-of-birth-person-1-year'] }}
+            {% if data['date-of-birth-person-1-month'] == "1" or data['date-of-birth-person-1-month'] == "01" %}
+            {{ data['date-of-birth-day'] }} January {{ data['date-of-birth-person-1-year'] }}
+            {% elseif data['date-of-birth-person-1-month'] == "2" or data['date-of-birth-person-1-month'] == "02" %}
+            {{ data['date-of-birth-day'] }} February {{ data['date-of-birth-person-1-year'] }}
+            {% elseif data['date-of-birth-person-1-month'] == "3" or data['date-of-birth-person-1-month'] == "03" %}
+            {{ data['date-of-birth-day'] }} March {{ data['date-of-birth-person-1-year'] }}
+            {% elseif data['date-of-birth-person-1-month'] == "4" or data['date-of-birth-person-1-month'] == "04" %}
+            {{ data['date-of-birth-day'] }} April {{ data['date-of-birth-person-1-year'] }}
+            {% elseif data['date-of-birth-person-1-month'] == "5" or data['date-of-birth-person-1-month'] == "05" %}
+            {{ data['date-of-birth-day'] }} May {{ data['date-of-birth-person-1-year'] }}
+            {% elseif data['date-of-birth-person-1-month'] == "6" or data['date-of-birth-person-1-month'] == "06" %}
+            {{ data['date-of-birth-day'] }} June {{ data['date-of-birth-person-1-year'] }}
+            {% elseif data['date-of-birth-person-1-month'] == "7" or data['date-of-birth-person-1-month'] == "07" %}
+            {{ data['date-of-birth-day'] }} July {{ data['date-of-birth-person-1-year'] }}
+            {% elseif data['date-of-birth-person-1-month'] == "8" or data['date-of-birth-person-1-month'] == "08" %}
+            {{ data['date-of-birth-day'] }} August {{ data['date-of-birth-person-1-year'] }}
+            {% elseif data['date-of-birth-person-1-month'] == "9" or data['date-of-birth-person-1-month'] == "09" %}
+            {{ data['date-of-birth-day'] }} September {{ data['date-of-birth-person-1-year'] }}
+            {% elseif data['date-of-birth-person-1-month'] == "10" %}
+            {{ data['date-of-birth-day'] }} October {{ data['date-of-birth-person-1-year'] }}
+            {% elseif data['date-of-birth-person-1-month'] == "11" %}
+            {{ data['date-of-birth-day'] }} November {{ data['date-of-birth-person-1-year'] }}
+            {% elseif data['date-of-birth-person-1-month'] == "12" %}
+            {{ data['date-of-birth-day'] }} December {{ data['date-of-birth-person-1-year'] }}
+            {% else %}
+            12 January 1979
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/accessibility/{{version}}/global-registration/date-of-birth-person-1">
@@ -58,7 +84,7 @@
             Any symptoms?
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['do-you-have-symptoms-person-1'] }}
+            {{ data['do-you-have-symptoms-person-1'] or 'No' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/accessibility/{{version}}/global-registration/symptoms-person-1">
@@ -73,7 +99,7 @@
             Date of onset
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['symptoms-start-date-day-person-1'] }} {{ data['symptoms-start-date-month-person-1'] }} {{ data['symptoms-start-date-year-person-1'] }}
+            {{ data['symptoms-start-date-day-person-1'] or '2 September 2021' }} {{ data['symptoms-start-date-month-person-1'] }} {{ data['symptoms-start-date-year-person-1'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/accessibility/{{version}}/global-registration/when-did-symptoms-start-person-1">
@@ -342,20 +368,20 @@
             {% if data['access-needs-person-1-12'] %}
             No
             {% else %}
-              {% if data['access-needs-person-1-1'] %}
-              {{ data['assisted-testing'] }}<br>
+              {% if data['access-needs-1-person-1'] %}
+              {{ data['access-needs-1-person-1'] }}<br>
               {% endif %}
-              {% if data['access-needs-person-1-2'] %}
-              {{ data['access-needs-person-1-2'] }}<br>
+              {% if data['access-needs-2-person-1'] %}
+              {{ data['access-needs-2-person-1'] }}<br>
               {% endif %}
-              {% if data['access-needs-person-1-3'] %}
-              {{ data['access-needs-person-1-3'] }}<br>
+              {% if data['access-needs-3-person-1'] %}
+              {{ data['access-needs-3-person-1'] }}<br>
               {% endif %}
-              {% if data['access-needs-person-1-4'] %}
-              {{ data['access-needs-person-1-4'] }}<br>
+              {% if data['access-needs-4-person-1'] %}
+              {{ data['access-needs-4-person-1'] }}<br>
               {% endif %}
-              {% if data['access-needs-person-1-5'] %}
-              {{ data['access-needs-person-1-5'] }}<br>
+              {% if data['access-needs-5-person-1'] %}
+              {{ data['access-needs-5-person-1'] }}<br>
               {% endif %}
               {% if data['access-needs-person-1-6'] %}
               {{ data['access-needs-person-1-6'] }}<br>
@@ -378,7 +404,7 @@
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/accessibility/{{version}}/global-registration/access-needs">
+            <a href="/accessibility/{{version}}/global-registration/access-needs-review-person-1">
               Change
               <span class="govuk-visually-hidden">additional support</span>
             </a>
