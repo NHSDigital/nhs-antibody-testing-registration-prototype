@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Choose a test site near you" %}
+{% set pageTitle = "Choose a drive through test site near you" %}
 
 {% extends "includes/layout.html" %}
 
@@ -27,17 +27,9 @@
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="choose-site-1-hint choose-site-2-hint choose-site-3-hint choose-site-4-hint choose-site-13-hint choose-site-5-hint choose-site-6-hint choose-site-7-hint choose-site-8-hint postcode-not-recognised-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            {% if data['home-postcode'] !== "N1111" %}
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-              Test sites near {{ data['home-postcode'] }}<br><br>
               {{ pageTitle }}
             </h1>
-            {% endif %}
-            {% if data['home-postcode'] == "N1111" %}
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-              We did not recognise your postcode. Choose a test site
-            </h1>
-            {% endif %}
           </legend>
           <span id="choose-site-1-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-2">
             Postcode
@@ -53,35 +45,13 @@
             </span>
           </p>
           {% endif %}
-          <!-- <div class="govuk-warning-text">
-            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-            <strong class="govuk-warning-text__text">
-              <span class="govuk-warning-text__assistive">Warning</span>
-              Some test sites are for over-18s only.
-            </strong>
-          </div> -->
-          {% if data['home-postcode'] !== "N1111" %}
-          <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
-            <strong>Your nearest test sites (by road):</strong><br>
-          </span>
-          {% endif %}
-          {% if data['home-postcode'] == "N1111" %}
-          <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
-            <strong>Test sites:</strong><br>
-          </span>
-          {% endif %}
+
           <span id="choose-site-4-hint" class="govuk-heading-m govuk-!-margin-right-4" style="display: inline-block;">
-            <strong>Drive-through</strong>
+            <strong>Recommended test site based on your access needs:</strong>
           </span>
 
-          <span id="choose-site-13-hint" class="govuk-body"><a class="govuk-link" href="/accessibility/{{version}}/site-appointment-booking/choose-walk-through-site">Change to walk-through</a></span>
+          <span id="choose-site-12-hint" class="govuk-body"><a class="govuk-link" href="/accessibility/{{version}}/site-appointment-booking/access-needs-change">Change access needs</a></span>
 
-          <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
-            <li><span id="choose-site-5-hint" class="govuk-body govuk-!-margin-bottom-0">you'll need to provide the registration number for the vehicle you arrive in</span></li>
-            <li><span id="choose-site-6-hint" class="govuk-body govuk-!-margin-bottom-0">you need to book your test appointment as soon as possible</span></li>
-            <li><span id="choose-site-7-hint" class="govuk-body govuk-!-margin-bottom-0">you or someone you live with must drive to the test site by car, small van or motorbike (some sites do not accept motorbikes)</span></li>
-            <li><span id="choose-site-8-hint" class="govuk-body">site staff will tell you if an assistant does the swab test for you or if you do it yourself</span></li>
-          </ul>
           <div class="govuk-radios govuk-!-margin-top-7">
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="test-site-1" name="test-site" type="radio" value="Lee Valley Athletics Park" {{ checked("test-site", "Lee Valley Athletics Park") }} aria-describedby="choose-site-9-hint">
@@ -92,13 +62,119 @@
                   </strong>
                 </span>
               </label>
-              <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-9-hint" class="govuk-body-m">
+              <p class="govuk-!-margin-left-3 govuk-!-margin-top-2 govuk-!-margin-bottom-0"><span id="choose-site-9-hint" class="govuk-body-m">
                 Lee Valley Athletics Centre<br>
                 London<br>
                 N9 0AR<br>
                 <strong>3.5 miles</strong> by road<br><br>
                 508 appointments available.
-            </span></p>
+                </span>
+              </p>
+              <div style="margin-left: -30px;" class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+                <div class="govuk-accordion__section ">
+                  <div class="govuk-accordion__section-header">
+                    <h2 class="govuk-accordion__section-heading">
+                      <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                        What's available at this site?
+                      </span>
+                    </h2>
+                  </div>
+                  <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1" style="padding-bottom: 0;">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Step free and wheelchair accessible
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Large bays for wheelchairs and families
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Public toilets
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Accessible toilets
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Assisted testing - Drive-through only<br>
+                          This is when staff can do the test for you
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Guided testing<br>
+                          This is where staff guide you
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Easy read instructions
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Large print instructions
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          British sign language
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Language translation
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag govuk-tag--grey">NOT AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal; border-bottom: none">
+                          Braille
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag"  style="border-bottom: none">
+                          <strong class="govuk-tag govuk-tag--grey">NOT AVAILABLE</strong>
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="govuk-radios__item govuk-!-margin-top-6">
               <input class="govuk-radios__input" id="test-site-3" name="test-site" type="radio" value="Greenwich" {{ checked("test-site", "Greenwich") }} aria-describedby="choose-site-10-hint">
@@ -109,13 +185,119 @@
                   </strong>
                 </span>
               </label>
-              <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-10-hint" class="govuk-body-m">
+              <p class="govuk-!-margin-left-3 govuk-!-margin-top-2 govuk-!-margin-bottom-0"><span id="choose-site-10-hint" class="govuk-body-m">
                 TFL Car Park, Edmund Halley Way<br>
                 London<br>
                 SE10 0PH<br>
                 <strong>5.9 miles</strong> by road<br><br>
                 462 appointments available.
-            </span></p>
+                </span>
+              </p>
+              <div style="margin-left: -30px;" class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+                <div class="govuk-accordion__section ">
+                  <div class="govuk-accordion__section-header">
+                    <h2 class="govuk-accordion__section-heading">
+                      <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                        What's available at this site?
+                      </span>
+                    </h2>
+                  </div>
+                  <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1" style="padding-bottom: 0;">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Step free and wheelchair accessible
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Large bays for wheelchairs and families
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Public toilets
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Accessible toilets
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Assisted testing - Drive-through only<br>
+                          This is when staff can do the test for you
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Guided testing<br>
+                          This is where staff guide you
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Easy read instructions
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Large print instructions
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          British sign language
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Language translation
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag govuk-tag--grey">NOT AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal; border-bottom: none">
+                          Braille
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag"  style="border-bottom: none">
+                          <strong class="govuk-tag govuk-tag--grey">NOT AVAILABLE</strong>
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="govuk-radios__item govuk-!-margin-top-6">
               <input class="govuk-radios__input" id="test-site-3" name="test-site" type="radio" value="Twickenham" {{ checked("test-site", "Twickenham") }} aria-describedby="choose-site-11-hint">
@@ -126,13 +308,119 @@
                   </strong>
                 </span>
               </label>
-              <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-11-hint" class="govuk-body-m">
+              <p class="govuk-!-margin-left-3 govuk-!-margin-top-2 govuk-!-margin-bottom-0"><span id="choose-site-11-hint" class="govuk-body-m">
                 Twickenham Stadium, 200 Whitton Road, Gate D<br>
                 Twickenham<br>
                 TW1 1DZ<br>
                 <strong>15.4 miles</strong> by road<br><br>
                 595 appointments available.
-            </span></p>
+                </span>
+              </p>
+              <div style="margin-left: -30px;" class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+                <div class="govuk-accordion__section ">
+                  <div class="govuk-accordion__section-header">
+                    <h2 class="govuk-accordion__section-heading">
+                      <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                        What's available at this site?
+                      </span>
+                    </h2>
+                  </div>
+                  <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1" style="padding-bottom: 0;">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Step free and wheelchair accessible
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Large bays for wheelchairs and families
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Public toilets
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Accessible toilets
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Assisted testing - Drive-through only<br>
+                          This is when staff can do the test for you
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Guided testing<br>
+                          This is where staff guide you
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Easy read instructions
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Large print instructions
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          British sign language
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag">AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal">
+                          Language translation
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag">
+                          <strong class="govuk-tag govuk-tag--grey">NOT AVAILABLE</strong>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="width: 100%; font-weight: normal; border-bottom: none">
+                          Braille
+                        </dt>
+                        <dd class="govuk-summary-list__value availability-tag"  style="border-bottom: none">
+                          <strong class="govuk-tag govuk-tag--grey">NOT AVAILABLE</strong>
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <p><a class="govuk-link" href="#">See drive-through test sites further away from you</a></p>
