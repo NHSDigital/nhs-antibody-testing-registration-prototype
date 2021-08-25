@@ -1,0 +1,69 @@
+{% set version = "v1" %}
+{% set pageTitle = "Did the person travel to any countries outside the UK and Ireland within the last 14 days?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/accessibility/{{version}}/action3/1-have-you-travelled-overseas-person-1" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                            Did {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} travel to any countries outside the UK and Ireland within the last 14 days?
+                        </h1>
+                    </legend>
+                    <span id="travelled-overseas-hint" class="govuk-body">
+                        This will help us test the vaccine against different forms of coronavirus from different countries.<br><br> 
+                      </span>
+
+                    <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="have-you-travelled-overseas-1-person-1" name="have-you-travelled-overseas-person-1" data-aria-controls="conditional-have-you-travelled-overseas-1" type="radio" value="Yes" {{ checked("have-you-travelled-overseas-person-1", "Yes") }}>
+                            <label class="govuk-label govuk-radios__label" for="have-you-travelled-overseas-1-person-1">
+                                Yes, they travelled overseas
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="have-you-travelled-overseas-2-person-1" name="have-you-travelled-overseas-person-1" type="radio" value="No" {{ checked("have-you-travelled-overseas-person-1", "No") }}>
+                            <label class="govuk-label govuk-radios__label" for="have-you-travelled-overseas-2-person-1">
+                                No, they did not travel overseas
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+
+ {% endblock %}
