@@ -50,7 +50,20 @@ router.post('/accessibility/v1/action3/reason-for-test', function (req, res) {
 
 })
 
-// Version 1 - Accessibility Refer and Triage - Reason for test route
+// Version 1 - Accessibility Refer and Triage - How will you get test
+
+router.post('/accessibility/v1/action4/how-will-you-get-test', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "drive-through"){
+    res.redirect('/accessibility/v1/refer-and-triage/visiting-drive-through')
+  } else if (wayToTest == "walk-in") {
+    res.redirect('/accessibility/v1/refer-and-triage/visiting-walk-through')
+  } else if (wayToTest == "home testing") {
+    res.redirect('/accessibility/v1/refer-and-triage/order-home-test-kit')
+  }
+})
+
+// Version 1 - Accessibility Global Registration - Reason for test route
 router.post('/accessibility/v1/action4/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
   if (nhsNumberKnown == "Yes"){
@@ -60,5 +73,7 @@ router.post('/accessibility/v1/action4/nhs-number-known', function (req, res) {
   }
 
 })
+
+
 
 module.exports = router
