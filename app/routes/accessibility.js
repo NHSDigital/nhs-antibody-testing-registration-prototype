@@ -290,9 +290,6 @@ router.post('/accessibility/v1/action3/find-test-site', function (req, res) {
 
 })
 
-<<<<<<< HEAD
-module.exports = router
-=======
 // Version 1 - Antigen Site Appointment Booking - Choose time prev day route
 
 router.post('/accessibility/v1/action3/choose-time-drive', function (req, res) {
@@ -306,4 +303,3 @@ router.post('/accessibility/v1/action3/choose-time-drive', function (req, res) {
 })
 
 module.exports = router
->>>>>>> 23487321a6f453fbb597f69a3dfb259d2109f621
