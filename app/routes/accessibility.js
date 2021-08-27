@@ -108,7 +108,7 @@ router.post('/accessibility/v1/action3/reason-for-test', function (req, res) {
 
 // Version 2 - Accessibility Refer and Triage - How will you get test route
 
-router.post('/accessibility/v1/action4/how-will-you-get-test', function (req, res) {
+router.post('/accessibility/v1/action3/how-will-you-get-test', function (req, res) {
   let wayToTest = req.session.data['way-to-test']
   if (wayToTest == "drive-through"){
     res.redirect('/accessibility/v1/refer-and-triage/visiting-drive-through')
