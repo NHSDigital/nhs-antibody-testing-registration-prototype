@@ -1,0 +1,51 @@
+{% set version = "v22" %}
+{% set pageTitle = "Sign in or create an account" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/whos-taking-the-test">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+
+      <p class="govuk-body">Creating an account takes 2 minutes.
+        It uses <a href="https://www.nhs.uk/nhs-services/online-services/nhs-log-in/" target="_blank" rel="noreferrer">NHS login</a>. You may already have NHS login, for example if you use the NHS App.</p>
+      <div class="govuk-inset-text">Using an account saves you time.</div>
+
+      <div style="margin-top: 30px" class="inline-buttons-wrapper">
+        <form class="form" method="post" action="/share-result-lateral-flow/{{version}}/user-account/login-email-create">
+          <button type="submit" class="govuk-button govuk-u-margin-bottom-8" tabindex="1" style="margin-right: 20px">
+            Create account
+          </button>
+        </form>
+        <form class="form" method="post" action="/share-result-lateral-flow/{{version}}/user-account/login-email-signin">
+          <button type="submit" draggable="false" class="govuk-button govuk-button--secondary" tabindex="2" data-module="govuk-button">
+            Sign in
+          </button>
+        </form>
+      </div>
+
+      <br>
+      <p class="govuk-body"><a href="/share-result-lateral-flow/{{version}}/whos-taking-the-test" tabindex="3">Continue without an account</p>
+
+    </div>
+  </div>
+
+{% endblock %}
