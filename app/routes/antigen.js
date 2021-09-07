@@ -50,12 +50,25 @@ router.post('/antigen/v2/action3/do-you-have-symptoms-option-2', function (req, 
 
 })
 
-router.post('/antigen/v2/action3/do-you-have-symptoms', function (req, res) {
-  let symptoms = req.session.data['do-you-have-symptoms']
-  if (symptoms == "Yes"){
-    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start')
-  } else {
+
+// Version 2 - Antigen Refer and Triage - Do you have symptoms route
+
+router.post('/antigen/v2/action4/do-you-have-symptoms-option-2', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms-option-2']
+  if (symptoms == "none of the above"){
     res.redirect('/antigen/v2/refer-and-triage/follow-up-test')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start')
+  }
+
+})
+
+router.post('/antigen/v2/action6/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "no symptoms"){
+    res.redirect('/antigen/v2/refer-and-triage/follow-up-test')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/secondary-symptoms')
   }
 
 })
@@ -72,10 +85,11 @@ router.post('/antigen/v2/action/status-page', function (req, res) {
 
 router.post('/antigen/v2/action3/secondary-symptoms', function (req, res) {
   let symptoms = req.session.data['secondary-symptoms']
-  if (symptoms == "Yes"){
-    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
-  } else {
+  let mainSymptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "none of the above" && mainSymptoms == "any other symptoms"){
     res.redirect('/antigen/v2/refer-and-triage/follow-up-test')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start')
   }
 
 })
@@ -156,13 +170,13 @@ router.post('/antigen/v2/action3/when-did-symptoms-start-person-1', function (re
 // router.post('/antigen/v2/action3/when-did-symptoms-start', function (req, res) {
 //   let dateOfOnset = req.session.data['date-of-onset']
 //   let country = req.session.data['country']
-//   if (dateOfOnset == "31 March 2021" || 
-//       dateOfOnset == "30 March 2021" || 
-//       dateOfOnset == "21 March 2021" || 
+//   if (dateOfOnset == "31 March 2021" ||
+//       dateOfOnset == "30 March 2021" ||
+//       dateOfOnset == "21 March 2021" ||
 //       dateOfOnset == "20 March 2021" ||
 //       dateOfOnset == "19 March 2021" ||
 //       dateOfOnset == "18 March 2021" && country == "England" ||
-//       dateOfOnset == "18 March 2021" && country == "Northern Ireland" || 
+//       dateOfOnset == "18 March 2021" && country == "Northern Ireland" ||
 //       dateOfOnset == "17 March 2021" && country == "England" ||
 //       dateOfOnset == "17 March 2021" && country == "Northern Ireland"){
 //     res.redirect('/antigen/v2/refer-and-triage/government-pilot')
