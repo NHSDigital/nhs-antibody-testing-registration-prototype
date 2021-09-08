@@ -65,10 +65,12 @@ router.post('/antigen/v2/action4/do-you-have-symptoms-option-2', function (req, 
 
 router.post('/antigen/v2/action6/do-you-have-symptoms', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
-  if (symptoms == "no symptoms"){
-    res.redirect('/antigen/v2/refer-and-triage/follow-up-test')
-  } else {
+  if (symptoms == "any other symptoms"){
     res.redirect('/antigen/v2/refer-and-triage/secondary-symptoms')
+  } else if (symptoms == "no symptoms") {
+    res.redirect('/antigen/v2/refer-and-triage/reason-for-test')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start')
   }
 
 })
@@ -87,7 +89,7 @@ router.post('/antigen/v2/action3/secondary-symptoms', function (req, res) {
   let symptoms = req.session.data['secondary-symptoms']
   let mainSymptoms = req.session.data['do-you-have-symptoms']
   if (symptoms == "none of the above" && mainSymptoms == "any other symptoms"){
-    res.redirect('/antigen/v2/refer-and-triage/follow-up-test')
+    res.redirect('/antigen/v2/refer-and-triage/reason-for-test')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/when-did-symptoms-start')
   }
