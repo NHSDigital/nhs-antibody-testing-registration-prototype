@@ -1,0 +1,84 @@
+{% set version = "v2" %}
+{% set pageTitle = "Which of the following is in your medical records?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['registered-with-GP'] %}
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/address">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/registered-with-GP">Back</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/international-arrivals/{{version}}/check-your-answers" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="gender-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">
+                {{pageTitle}}
+              </h1>
+            </legend>
+            <span id="gender-hint" class="govuk-body">
+              We're asking this question so we can find your medical records and save your results.
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-6" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-2" name="gender" type="radio" value="Male" {{ checked("gender", "Male") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-2">
+                  Male
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="Female" {{ checked("gender", "Female") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-1">
+                  Female
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-3" name="gender" type="radio" value="Other / Not specified / I do not know" {{ checked("gender", "Other / Not specified / I do not know") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-3">
+                  Other / Not specified / I do not know
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Why are there not more options?
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            We understand there may be other ways a person may answer this question. In this case, we just need to know what is on your medical record.
+          </div>
+        </details>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
