@@ -15,7 +15,7 @@
     </p>
   </div>
 
-<a class="govuk-back-link" href="/international-arrivals/{{version}}/travel-route">Back</a>
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/travel-route-same-person-1">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -26,11 +26,11 @@
      <div class="submitted submitted--hidden" style="display:none;">
         <p>You submitted:</p>
         <ul>
-          <li><code>"last-country-visited": <span class="submitted__last-country-visited"></span></code></li>
+          <li><code>"last-country-visited-person-1": <span class="submitted__last-country-visited-person-1"></span></code></li>
         </ul>
         <hr />
       </div>
-       <form action="/international-arrivals/{{version}}/arrival-date" method="post">
+       <form action="/international-arrivals/{{version}}/arrival-date-person-1" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
@@ -39,14 +39,14 @@
                 What country are you arriving in the UK from?
               </h1>
             </legend>
-            <!-- <span id="last-country-visited-hint" class="govuk-body">
+            <!-- <span id="last-country-visited-person-1-hint" class="govuk-body">
               Country you're coming from (this does not include transfers or stop-offs)<br><br>
             </span> -->
             <fieldset class="govuk-fieldset">
-              <label class="govuk-label" for="country-visited">
+              <label class="govuk-label" for="country-visited-person-1">
                 Do not include transfers or stop-offs.
               </label>
-              <div id="country-container" name="country-visited"></div>
+              <div id="country-container" name="country-visited-person-1"></div>
             </fieldset>
 
 					  </div>
@@ -473,7 +473,7 @@
   accessibleAutocomplete({
     autoselect: true,
     element: document.querySelector('#country-container'),
-    id: 'country-visited',
+    id: 'country-visited-person-1',
     name: 'country-autocomplete',
     source: countries,
     defaultValue: "{{ data['country-autocomplete'] }}",
