@@ -1,0 +1,49 @@
+{% set version = "v3" %}
+{% set pageTitle = "Order: 12345678" %}
+
+{% extends "includes/layout-intl-arrivals-admin.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/manage-orders/">Back</a>
+
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+​
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form action="/international-arrivals/{{version}}/people-confirmed" method="post" novalidate>
+
+
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+
+      <p class="govuk-body">
+        Refund for: {{ data['first-name'] or 'Jane' }} {{ data['last-name'] or 'Smith'}}<br>
+        Reference: 12345678<br>
+        Date of payment: 6th July 2021 - 10:55:15<br><br>
+        Your refund may take up to 6 working days to appear in your account. This email address is not monitored. If you have any questions about your refund, contact the service you made the original payment to directly.
+      </p>
+
+      </form>
+
+    </div>
+
+
+  </div>
+{% endblock %}
