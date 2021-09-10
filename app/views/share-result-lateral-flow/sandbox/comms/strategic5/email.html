@@ -1,0 +1,60 @@
+{% set version = "sandbox" %}
+{% set pageTitle = "What's your email address?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/comms/strategic3/contact-choice">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/share-result-lateral-flow/{{version}}/comms/strategic3/contact-prefs" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="email-hint" class="govuk-body">
+              <p>If you are a parent or guardian reporting for a child, you can use your own email address.</p>
+            </span>
+              <div class="govuk-form-group">
+                  <label class="govuk-label" for="email-address">
+                    Email address
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+              </div>
+              <div class="govuk-form-group">
+                  <label class="govuk-label" for="confirm-email-address">
+                    Confirm email address
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
+              </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
