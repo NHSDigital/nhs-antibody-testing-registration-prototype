@@ -1,0 +1,83 @@
+{% set version = "v1" %}
+{% set pageTitle = "What’s Pete Smith's phone number?" %}
+{% set group %}
+  {% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+    {% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="delivery-address-manual" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint mobile-number-hint-2 mobile-number-hint-3 mobile-number-hint-4 mobile-number-hint-5">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <span class="govuk-caption-xl"> {{ group }}</span>
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{pageTitle}}
+              </h1>
+            </legend>
+            <p class="govuk-body">We’ll send the test results to the number you enter.</p>
+            <p class="govuk-body">Check with the patient that:</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+              <li>the phone number you have for them is correct</li>
+              <li>they are comfortable reading and understanding text messages</li>
+              <li>they can receive and read/understand text messages</li>
+              <li>they are happy for test results to be sent to this number (for example, is it a work or shared number?)</li>
+            </ul>
+
+            <p id="mobile-number-hint-5" class="govuk-body">Children need to be aged 16 and over to receive their results. If the child is younger than 16, enter their parent's or guardian's number.</p>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mobile-phone-number">
+                Mobile phone number
+              </label>
+              <input class="govuk-input  govuk-input--width-20" id="mobile-phone-number" name="mobile-phone-number" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['mobile-phone-number'] }}">
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="telephone-number">
+                Landline number
+              </label>
+              <div class="govuk-hint">Enter a landline number if a mobile number is not a practical option for the patient.</div>
+              <input class="govuk-input govuk-input--width-20" id="telephone-number" name="telephone-number" type="tel" aria-describedby="telephone-number-hint" autocomplete="tel">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

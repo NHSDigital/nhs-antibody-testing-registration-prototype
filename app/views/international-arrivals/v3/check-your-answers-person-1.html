@@ -15,7 +15,8 @@
   </p>
 </div>
 
-<a class="govuk-back-link" href="/international-arrivals/{{version}}/point-of-entry-person-1">Back</a>
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/point-of-entry">Back</a>
+
 
 {% endblock %}
 
@@ -30,9 +31,115 @@
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
 
       <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Travel details</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Personal details</h2>
+      </div>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name'] or 'Sophie' }} {{ data['last-name'] or 'Appleseed' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/name-person-1">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-birth-day'] or '1 January 1990' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/date-of-birth-person-1">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Passport number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['passport-number'] or '50215771' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/passport-number-person-1">
+              Change
+              <span class="govuk-visually-hidden">passport number</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Mobile number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mobile-phone-number'] or '077719665424' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/mobile-number-person-1">
+              Change
+              <span class="govuk-visually-hidden">mobile number</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['email-address'] or 'sophieappleseed@example.co.uk' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/email-address-person-1">
+              Change
+              <span class="govuk-visually-hidden">email address</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnic group
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ethnic-group'] or 'White' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/ethnic-group-person-1">
+              Change
+              <span class="govuk-visually-hidden">ethnic group</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnic background
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ethnic-background'] or 'Irish' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/ethnic-group-person-1">
+              Change
+              <span class="govuk-visually-hidden">ethnic background</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Coronavirus details</h2>
         <!-- <p class="govuk-body">
-          <a href="/international-arrivals/{{version}}/travel-details-same-person-1">
+          <a href="/international-arrivals/{{version}}/contact-details">
             Change
             <span class="govuk-visually-hidden">name</span>
           </a>
@@ -42,13 +149,188 @@
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            Have an NHS number?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['nhs-number-known'] == "Yes" %}
+            {{ data['nhs-number'] }}
+            {% else %}
+            Not known
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/nhs-number-known-person-1">
+              Change
+              <span class="govuk-visually-hidden">have an nhs number</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Registered with a GP?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['registered-with-GP'] or 'No' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/registered-with-GP-person-1">
+              Change
+              <span class="govuk-visually-hidden">registered with a GP</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Home address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['address'] or '5 Souterhead Road' }}<br>
+            {{ data['home-postcode'] or 'LS1 3BE' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/address-person-1">
+              Change
+              <span class="govuk-visually-hidden">address</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Medical record (male, female, other…)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['gender'] or 'Female' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/gender-person-1">
+              Change
+              <span class="govuk-visually-hidden">medical record</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Had coronavirus vaccine
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['vaccine'] == "Yes, they've had 1 dose" and data['vaccine-date'] == "Less than 7 days ago" %}
+            1 dose, less than 7 days ago
+            {% elseif data['vaccine'] == "Yes, they've had 1 dose" and data['vaccine-date'] == "7 to 14 days ago" %}
+            1 dose, 7 to 14 days ago
+            {% elseif data['vaccine'] == "Yes, they've had 1 dose" and data['vaccine-date'] == "More than 14 days ago" %}
+              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
+              1 dose, January {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
+              1 dose, February {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
+              1 dose, March {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
+              1 dose, April {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
+              1 dose, May {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
+              1 dose, June {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
+              1 dose, July {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
+              1 dose, August {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
+              1 dose, September {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "10" %}
+              1 dose, October {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "11" %}
+              1 dose, November {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "12" %}
+              1 dose, December {{ data['vaccine-year'] }}
+              {% endif %}
+            {% elseif data['vaccine'] == "Yes, they've had 2 doses" and data['vaccine-date'] == "Less than 7 days ago" %}
+            2 doses, less than 7 days ago
+            {% elseif data['vaccine'] == "Yes, they've had 2 doses" and data['vaccine-date'] == "7 to 14 days ago" %}
+            2 doses, 7 to 14 days ago
+            {% elseif data['vaccine'] == "Yes, they've had 2 doses" and data['vaccine-date'] == "More than 14 days ago" %}
+              {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
+              2 doses, January {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
+              2 doses, February {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
+              2 doses, March {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
+              2 doses, April {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
+              2 doses, May {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
+              2 doses, June {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
+              2 doses, July {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
+              2 doses, August {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
+              2 doses, September {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "10" %}
+              2 doses, October {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "11" %}
+              2 doses, November {{ data['vaccine-year'] }}
+              {% elseif data['vaccine-month'] == "12" %}
+              2 doses, December {{ data['vaccine-year'] }}
+              {% endif %}
+            {% else %}
+            No
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/vaccine-person-1">
+              Change
+              <span class="govuk-visually-hidden">Coronavirus vaccine</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Positive coronavirus test
+          </dt>
+           <dd class="govuk-summary-list__value">
+            {{ data['previous-infection'] or 'No' }}
+           </dd>
+         <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/previous-infection-person-1">
+              Change
+              <span class="govuk-visually-hidden">positive coronavirus test</span>
+            </a>
+          </dd>
+        </div>
+
+
+
+      </dl>
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Travel details</h2>
+      </div>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Travel package
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['travel-route'] or 'Day 2 and Day 8 test' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/travel-route-person-1">
+              Change
+              <span class="govuk-visually-hidden">travel-package</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Flight, Eurostar or ferry number
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['flight-eurostar-ferry'] or '9W15' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/travel-details-same-person-1">
+            <a href="/international-arrivals/{{version}}/flight-eurostar-ferry-number-person-1">
               Change
               <span class="govuk-visually-hidden">flight, eurostar or ferry number</span>
             </a>
@@ -59,12 +341,26 @@
             Departure country
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['country-autocomplete'] or 'Hamburg' }}
+            {{ data['country-autocomplete'] or 'Munich' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/travel-details-same-person-1">
+            <a href="/international-arrivals/{{version}}/departure-country-person-1">
               Change
               <span class="govuk-visually-hidden">departure country</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Arrival Date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['arrival-date'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/arrival-date-person-1">
+              Change
+              <span class="govuk-visually-hidden">arrival date</span>
             </a>
           </dd>
         </div>
@@ -76,7 +372,7 @@
             {{ data['port-of-entry'] or 'Heathrow' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/travel-details-same-person-1">
+            <a href="/international-arrivals/{{version}}/point-of-entry-person-1">
               Change
               <span class="govuk-visually-hidden">point of entry</span>
             </a>
@@ -116,315 +412,16 @@
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/travel-details-same-person-1">
+            <a href="/international-arrivals/{{version}}/date-of-entry-person-1">
               Change
               <span class="govuk-visually-hidden">date of entry</span>
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Travel package
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['travel-route-same-person-1'] or 'Day 2 and Day 8 test' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/travel-route-same-person-1">
-              Change
-              <span class="govuk-visually-hidden">travel-package</span>
-            </a>
-          </dd>
-        </div>
+
       </dl>
 
-      <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Personal details</h2>
-        <!-- <p class="govuk-body">
-          <a href="/international-arrivals/{{version}}/personal-details-person-1">
-            Change
-            <span class="govuk-visually-hidden">name</span>
-          </a>
-        </p> -->
-      </div>
 
-      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Name
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Smith' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/name-person-1">
-              Change
-              <span class="govuk-visually-hidden">name</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Date of birth
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['date-of-birth-person-1-day'] or '2 June 1984' }} {{ data['date-of-birth-person-1-month'] }} {{ data['date-of-birth-person-1-year'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/date-of-birth-person-1">
-              Change
-              <span class="govuk-visually-hidden">date of birth</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Passport number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['passport-number-person-1'] or '50213876' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/passport-number-person-1">
-              Change
-              <span class="govuk-visually-hidden">passport number</span>
-            </a>
-          </dd>
-        </div>
-      </dl>
-
-      <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Contact details</h2>
-        <!-- <p class="govuk-body">
-          <a href="/international-arrivals/{{version}}/contact-details-person-1">
-            Change
-            <span class="govuk-visually-hidden">name</span>
-          </a>
-        </p> -->
-      </div>
-
-      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Email address
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['email-address-person-1'] or 'jsmith@example.co.uk' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/email-address-person-1">
-              Change
-              <span class="govuk-visually-hidden">email address</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Mobile number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['mobile-phone-number-person-1'] or '077719665478' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/mobile-number-person-1">
-              Change
-              <span class="govuk-visually-hidden">mobile number</span>
-            </a>
-          </dd>
-        </div>
-      </dl>
-
-      <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Medical details</h2>
-        <!-- <p class="govuk-body">
-          <a href="/international-arrivals/{{version}}/contact-details-person-1">
-            Change
-            <span class="govuk-visually-hidden">name</span>
-          </a>
-        </p> -->
-      </div>
-
-      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Had coronavirus vaccine
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['vaccine-person-1'] == "Yes, they've had 1 dose" and data['vaccine-date-person-1'] == "Less than 7 days ago" %}
-            1 dose, less than 7 days ago
-            {% elseif data['vaccine-person-1'] == "Yes, they've had 1 dose" and data['vaccine-date-person-1'] == "7 to 14 days ago" %}
-            1 dose, 7 to 14 days ago
-            {% elseif data['vaccine-person-1'] == "Yes, they've had 1 dose" and data['vaccine-date-person-1'] == "More than 14 days ago" %}
-              {% if data['vaccine-month-person-1'] == "1" or data['vaccine-month-person-1'] == "01" %}
-              1 dose, January {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "2" or data['vaccine-month-person-1'] == "02" %}
-              1 dose, February {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "3" or data['vaccine-month-person-1'] == "03" %}
-              1 dose, March {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "4" or data['vaccine-month-person-1'] == "04" %}
-              1 dose, April {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "5" or data['vaccine-month-person-1'] == "05" %}
-              1 dose, May {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "6" or data['vaccine-month-person-1'] == "06" %}
-              1 dose, June {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "7" or data['vaccine-month-person-1'] == "07" %}
-              1 dose, July {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "8" or data['vaccine-month-person-1'] == "08" %}
-              1 dose, August {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "9" or data['vaccine-month-person-1'] == "09" %}
-              1 dose, September {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "10" %}
-              1 dose, October {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "11" %}
-              1 dose, November {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "12" %}
-              1 dose, December {{ data['vaccine-year-person-1'] }}
-              {% endif %}
-            {% elseif data['vaccine-person-1'] == "Yes, they've had 2 doses" and data['vaccine-date-person-1'] == "Less than 7 days ago" %}
-            2 doses, less than 7 days ago
-            {% elseif data['vaccine-person-1'] == "Yes, they've had 2 doses" and data['vaccine-date-person-1'] == "7 to 14 days ago" %}
-            2 doses, 7 to 14 days ago
-            {% elseif data['vaccine-person-1'] == "Yes, they've had 2 doses" and data['vaccine-date-person-1'] == "More than 14 days ago" %}
-              {% if data['vaccine-month-person-1'] == "1" or data['vaccine-month-person-1'] == "01" %}
-              2 doses, January {{ data['vaccine-year'] }}
-              {% elseif data['vaccine-month-person-1'] == "2" or data['vaccine-month-person-1'] == "02" %}
-              2 doses, February {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "3" or data['vaccine-month-person-1'] == "03" %}
-              2 doses, March {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "4" or data['vaccine-month-person-1'] == "04" %}
-              2 doses, April {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "5" or data['vaccine-month-person-1'] == "05" %}
-              2 doses, May {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "6" or data['vaccine-month-person-1'] == "06" %}
-              2 doses, June {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "7" or data['vaccine-month-person-1'] == "07" %}
-              2 doses, July {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "8" or data['vaccine-month-person-1'] == "08" %}
-              2 doses, August {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "9" or data['vaccine-month-person-1'] == "09" %}
-              2 doses, September {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "10" %}
-              2 doses, October {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "11" %}
-              2 doses, November {{ data['vaccine-year-person-1'] }}
-              {% elseif data['vaccine-month-person-1'] == "12" %}
-              2 doses, December {{ data['vaccine-year-person-1'] }}
-              {% endif %}
-            {% else %}
-            No
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/vaccine-person-1">
-              Change
-              <span class="govuk-visually-hidden">Coronavirus vaccine</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Positive coronavirus test
-          </dt>
-           <dd class="govuk-summary-list__value">
-            {{ data['previous-infection-person-1'] or 'No' }}
-           </dd>
-         <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/previous-infection-person-1">
-              Change
-              <span class="govuk-visually-hidden">positive coronavirus test</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Ethnic group
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['ethnic-group-person-1'] or 'White' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/ethnic-group-person-1">
-              Change
-              <span class="govuk-visually-hidden">ethnic group</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Ethnic background
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['ethnic-background-person-1'] or 'Irish' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/ethnic-group-person-1">
-              Change
-              <span class="govuk-visually-hidden">ethnic background</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Have an NHS number?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['nhs-number-known-person-1'] == "Yes" %}
-            {{ data['nhs-number-person-1'] }}
-            {% else %}
-            Not known
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/nhs-number-known-person-1">
-              Change
-              <span class="govuk-visually-hidden">have an nhs number</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Registered with a GP?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['registered-with-GP-person-1'] or 'No' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/registered-with-GP-person-1">
-              Change
-              <span class="govuk-visually-hidden">registered with a GP</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            GP address
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['address-person-1'] or '5 Souterhead Road' }}<br>
-            {{ data['home-postcode-person-1'] or 'LS1 3BE' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/address-person-1">
-              Change
-              <span class="govuk-visually-hidden">address</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Medical record (male, female, other…)
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['gender-person-1'] or 'Female' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/international-arrivals/{{version}}/gender-person-1">
-              Change
-              <span class="govuk-visually-hidden">medical record</span>
-            </a>
-          </dd>
-        </div>
-      </dl>
 
         <input type="hidden" name="answers-checked" value="true">
 
