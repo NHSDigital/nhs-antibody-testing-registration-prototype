@@ -24,43 +24,110 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        <form action="/antigen/{{version}}/action3/do-you-have-symptoms-person-1" method="post">
+        <form action="/antigen/{{version}}/action4/do-you-have-symptoms-person-1" method="post">
 
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="symptoms-person-1-hint symptoms-2-person-1-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                         <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                            Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} currently have coronavirus symptoms?
+                            Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} have any of these coronavirus symptoms?
                         </h1>
                     </legend>
-                    <span id="symptoms-person-1-hint" class="govuk-body">
-                        This will help us track and trace the spread of coronavirus.<br><br>
-                        The main symptoms of coronavirus are:
+                    <span id="symptoms-hint-2" class="govuk-body">
+                        If they have any of these symptoms, they should get a PCR test. Select all that apply.
                     </span>
-                    <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
-                    <li>a high temperature</li>
-                        <li>a new, continuous cough</li>
-                        <li>a loss or change to your sense of smell or taste</li>
-                    </ul>
-                    <span id="symptoms-2-person-1-hint" class="govuk-body">
-                        Most people with coronavirus have at least one of these symptoms.
-                    </span>
-                    <div class="govuk-radios govuk-!-margin-top-5">
-                        <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="do-you-have-symptoms-1-person-1" name="do-you-have-symptoms-person-1" type="radio" value="Yes" {{ checked("do-you-have-symptoms-person-1", "Yes") }}>
-                            <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1-person-1">
-                                Yes, they currently have at least one of these symptoms
-                            </label>
+                    <div class="govuk-warning-text govuk-!-margin-top-6">
+                        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                        <strong class="govuk-warning-text__text">
+                            <span class="govuk-warning-text__assistive">Warning</span>
+                            If they're worried about their symptoms or they're getting worse, call 111. In an emergency, call 999.
+                        </strong>
+                    </div>
+                      <div class="govuk-checkboxes govuk-!-margin-top-6" data-module="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="do-you-have-symptoms-person-1" name="do-you-have-symptoms-person-1" type="checkbox" value="Yes" {{ checked("do-you-have-symptoms-person-1", "Yes") }}>
+                          <label class="govuk-label govuk-checkboxes__label" for="do-you-have-symptoms-person-1">
+                            high temperature
+                          </label>
                         </div>
-                        <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="do-you-have-symptoms-2-person-1" name="do-you-have-symptoms-person-1" type="radio" value="No" {{ checked("do-you-have-symptoms-person-1", "No") }}>
-                            <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2-person-1">
-                                No, they currently do not have any of these symptoms
-                            </label>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="do-you-have-symptoms-person-1-2" name="do-you-have-symptoms-person-1" type="checkbox" value="Yes" {{ checked("do-you-have-symptoms-person-1", "Yes") }}>
+                          <label class="govuk-label govuk-checkboxes__label" for="do-you-have-symptoms-person-1-2">
+                            new, continuous cough
+                          </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="do-you-have-symptoms-person-1-3" name="do-you-have-symptoms-person-1" type="checkbox" value="Yes" {{ checked("do-you-have-symptoms-person-1", "Yes") }}>
+                          <label class="govuk-label govuk-checkboxes__label" for="do-you-have-symptoms-person-1-3">
+                            loss or change to your sense of smell or taste
+                          </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="do-you-have-symptoms-person-1-4" name="do-you-have-symptoms-person-1" type="checkbox" value="new headache" {{ checked("do-you-have-symptoms-person-1", "new headache") }}>
+                          <label class="govuk-label govuk-checkboxes__label" for="do-you-have-symptoms-person-1-4">
+                            new headache
+                          </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="do-you-have-symptoms-person-1-5" name="do-you-have-symptoms-person-1" type="checkbox" value="feeling more tired or exhausted than usual" {{ checked("do-you-have-symptoms-person-1", "feeling more tired or exhausted than usual") }}>
+                          <label class="govuk-label govuk-checkboxes__label" for="do-you-have-symptoms-person-1-5">
+                            feeling more tired or exhausted than usual
+                          </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="do-you-have-symptoms-person-1-6" name="do-you-have-symptoms-person-1" type="checkbox" value="new muscle aches" {{ checked("do-you-have-symptoms-person-1", "new muscle aches") }}>
+                          <label class="govuk-label govuk-checkboxes__label" for="do-you-have-symptoms-person-1-6">
+                            new muscle aches
+                          </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="do-you-have-symptoms-person-1-7" name="do-you-have-symptoms-person-1" type="checkbox" value="loss of appetite" {{ checked("do-you-have-symptoms-person-1", "loss of appetite") }}>
+                          <label class="govuk-label govuk-checkboxes__label" for="do-you-have-symptoms-person-1-7">
+                            loss of appetite
+                          </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="do-you-have-symptoms-person-1-8" name="do-you-have-symptoms-person-1" type="checkbox" value="shortness of breath" {{ checked("do-you-have-symptoms-person-1", "shortness of breath") }}>
+                          <label class="govuk-label govuk-checkboxes__label" for="do-you-have-symptoms-person-1-8">
+                            shortness of breath
+                          </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="do-you-have-symptoms-person-1-9" name="do-you-have-symptoms-person-1" type="checkbox" value="sore throat" {{ checked("do-you-have-symptoms-person-1", "sore throat") }}>
+                          <label class="govuk-label govuk-checkboxes__label" for="do-you-have-symptoms-person-1-9">
+                            sore throat
+                          </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="do-you-have-symptoms-person-1-10" name="do-you-have-symptoms-person-1" type="checkbox" value="blocked nose (congestion)" {{ checked("do-you-have-symptoms-person-1", "blocked nose (congestion)") }}>
+                          <label class="govuk-label govuk-checkboxes__label" for="do-you-have-symptoms-person-1-10">
+                            blocked nose (congestion)
+                          </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="do-you-have-symptoms-person-1-11" name="do-you-have-symptoms-person-1" type="checkbox" value="feeling sick (nausea)" {{ checked("do-you-have-symptoms-person-1", "feeling sick (nausea)") }}>
+                          <label class="govuk-label govuk-checkboxes__label" for="do-you-have-symptoms-person-1-11">
+                            feeling sick (nausea)
+                          </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="do-you-have-symptoms-person-1-12" name="do-you-have-symptoms-person-1" type="checkbox" value="vomiting" {{ checked("do-you-have-symptoms-person-1", "vomiting") }}>
+                          <label class="govuk-label govuk-checkboxes__label" for="do-you-have-symptoms-person-1-12">
+                            vomiting
+                          </label>
+                        </div>
+                        <div class="govuk-checkboxes__divider govuk-body" style="margin-left: 5px; transform: translateY(5px)">OR</div>
+    
+                        <div class="govuk-checkboxes__item govuk-!-margin-bottom-4">
+                          <input class="govuk-checkboxes__input" id="do-you-have-symptoms-person-1-13" name="do-you-have-symptoms-person-1" type="checkbox" value="none of the above" {{ checked("do-you-have-symptoms-person-1", "none of the above") }}>
+                          <label class="govuk-label govuk-checkboxes__label" for="do-you-have-symptoms-person-1-13">
+                            no symptoms
+                          </label>
                         </div>
                     </div>
                 </fieldset>
             </div>
+            <p class="govuk-body">If they have a <strong>high temperature</strong>, a <strong>new continuous cough</strong> or <strong>loss or change to their sense of smell or taste</strong>, they should stay at home until they get their result. They can leave home to get or post a test.</p>
 
             <button class="govuk-button" data-module="govuk-button">Continue</button>
 
