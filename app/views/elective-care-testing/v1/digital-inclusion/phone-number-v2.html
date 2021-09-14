@@ -55,20 +55,34 @@
 
             <p id="mobile-number-hint-5" class="govuk-body">Children need to be aged 16 or over to receive their results. If the chlid is younger than 16, enter their parent or guardian's number.</p>
 
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="mobile-phone-number">
-                Mobile phone number
-              </label>
-              <div class="govuk-hint">Enter a mobile number so we can keep the patient informed.</div>
-              <input class="govuk-input  govuk-input--width-20" id="mobile-phone-number" name="mobile-phone-number" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['mobile-phone-number'] }}">
-            </div>
+            <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-2">
+                <label class="govuk-label govuk-radios__label" for="contact-2">
+                  Enter a mobile number so we can keep the patient informed
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="contact-by-phone">
+                    Mobile phone number
+                  </label>
+                  <input class="govuk-input govuk-input--width-20" id="contact-by-phone" name="contact-by-phone" type="tel" autocomplete="tel"></div>
 
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="telephone-number">
-                Landline number
-              </label>
-              <div class="govuk-hint">Enter a landline number if a mobile number is not an option.</div>
-              <input class="govuk-input govuk-input--width-20" id="telephone-number" name="telephone-number" type="tel" aria-describedby="telephone-number-hint" autocomplete="tel">
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contact-3" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-3">
+                <label class="govuk-label govuk-radios__label" for="contact-3">
+                  Enter a landline number if a mobile number is not an option
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-3">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="contact-by-text">
+                    Landline number
+                  </label>
+                  <input class="govuk-input govuk-input--width-20" id="contact-by-text" name="contact-by-text" type="tel" autocomplete="tel"></div>
+              </div>
             </div>
 
           </fieldset>
