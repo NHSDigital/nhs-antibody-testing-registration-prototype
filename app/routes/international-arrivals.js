@@ -182,10 +182,10 @@ router.post('/international-arrivals/v3/action3/travel-package-exempt', function
   let travelPackageExempt = req.session.data['travel-package-exempt']
   if (travelPackageExempt == "Yes, I need a replacement test kit"){
     res.redirect('/international-arrivals/v3/travel-package-provider')
-  } else if (travelPackageExempt == 'Yes, I am in finacial hardship') {
+  } else if (travelPackageExempt == 'Yes, I am in financial hardship') {
     res.redirect('/international-arrivals/v3/tbc')
   } else {
-    res.redirect('/international-arrivals/v3/travel-route')
+    res.redirect('/international-arrivals/v3/name')
   }
 })
 
