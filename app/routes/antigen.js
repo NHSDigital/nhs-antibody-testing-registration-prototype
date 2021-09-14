@@ -53,8 +53,8 @@ router.post('/antigen/v2/action3/do-you-have-symptoms-option-2', function (req, 
 
 // Version 2 - Antigen Refer and Triage - Do you have symptoms route
 
-router.post('/antigen/v2/action4/do-you-have-symptoms-option-2', function (req, res) {
-  let symptoms = req.session.data['do-you-have-symptoms-option-2']
+router.post('/antigen/v2/action4/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
   if (symptoms == "none of the above"){
     res.redirect('/antigen/v2/refer-and-triage/follow-up-test')
   } else {
