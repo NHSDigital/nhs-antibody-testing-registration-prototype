@@ -15,17 +15,41 @@
       <h3 class="govuk-heading-m">What happens next</h3>
       <p class="govuk-body">Your coronavirus home test kit should arrive in the next 2 days.</p>
       <p class="govuk-body">The test kit contains a swab, instructions on how to use it and return packaging.</p>
-
+      {% if data['first-name-person-1'} %}
       <p class="govuk-body"><strong>You'll also receive a confirmation email soon which includes your 10-digit order ID. Keep the order ID to hand, you'll need it later.</strong></p>
+      {% else %}
+      <p class="govuk-body">You'll recieve a confirmation email soon.</p>
+      {% endif %}
+      {% if data['first-name-person-1'} %}
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          You must register this test kit online in order to recieve your result. There will be instructions on how to do this with your kit, and you will need your 10-digit order number.
+        </strong>
+      </div>
+      {% endif %}
+
+
 
       <h3 class="govuk-heading-m">What to do when you receive your test kit</h3>
       <p class="govuk-body">Follow the instructions in your test kit. The instructions will tell you:</p>
 
       <ul class="govuk-list govuk-list--bullet">
         <li>how and when to do the swab test</li>
-        <li>how to register your test</li>
+        {% if data['first-name-person-1'} %}
+          <li>how to register your test</li>
+        {% endif %}
         <li>how to return your sample</li>
       </ul>
+
+      <h2 class="govuk-heading-m">How to take the swab test</h2>
+      <iframe class="govuk-!-margin-bottom-4" width="550" height="315"
+      src="https://www.youtube.com/embed/zCqo7MhQT6U">
+      </iframe>
+      <p class="govuk-body">      <a href="https://www.youtube.com/watch?v=zCqo7MhQT6U">Watch a short video: how to take a swab test</a>
+</p>
+
 
       <h2 class="govuk-heading-m">Antibody testing</h2>
       <p class="govuk-body govuk-!-margin-bottom-8">
@@ -61,11 +85,6 @@
     </div>
   </div>
 
-  <div class="proto-action big" style="transform: translateY(-150%)">
-    <a href="/antigen/{{version}}/order-home-test-kit/confirmation-option-2">
-      <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Option 2</div>
-    </a>
-  </div>
   <div class="proto-action big">
     <a href="/antigen/{{version}}/order-home-test-kit/confirmation-email">
       <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Confirmation email</div>
