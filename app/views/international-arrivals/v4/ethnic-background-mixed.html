@@ -1,0 +1,85 @@
+{% set version = "v2" %}
+{% set pageTitle = "Which one best describes your ethnic background?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/ethnic-group">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/international-arrivals/{{version}}/nhs-number-known" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="ethnic-background-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="ethnic-background-hint" class="govuk-body">
+              This will help us understand how coronavirus is affecting people of different ethnic backgrounds.
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-6">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-background-1" name="ethnic-background" type="radio" value="Asian and White" {{ checked("ethnic-background", "Asian and White") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-1">
+                  Asian and White
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-background-2" name="ethnic-background" type="radio" value="Black African and White" {{ checked("ethnic-background", "Black African and White") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-2">
+                  Black African and White
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-background-3" name="ethnic-background" type="radio" value="Black Caribbean and White" {{ checked("ethnic-background", "Black Caribbean and White") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-3">
+                  Black Caribbean and White
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-background-4" name="ethnic-background" type="radio" value="Another Mixed background" {{ checked("ethnic-background", "Another Mixed background") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-4">
+                  Another Mixed background
+                </label>
+              </div>
+
+              <div class="govuk-radios__divider">or</div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ethnic-background-5" name="ethnic-background" type="radio" value="Prefer not to say" {{ checked("ethnic-background", "Prefer not to say") }}>
+                <label class="govuk-label govuk-radios__label" for="ethnic-background-5">
+                  Prefer not to say
+                </label>
+              </div>
+
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
