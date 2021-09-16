@@ -59,18 +59,24 @@
               Scan my barcode
             </a>
 
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="kit-barcode-reference-1">
-                Test kit barcode reference or URN
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
+            <div id="content-1">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="kit-barcode-reference-1">
+                  Test kit barcode reference or URN
+                </label>
+                <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="kit-barcode-reference-2">
+                  Confirm test kit barcode reference or URN
+                </label>
+                <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }}>
+              </div>
             </div>
 
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="kit-barcode-reference-2">
-                Confirm test kit barcode reference or URN
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }}>
+            <div id="content-2">
+
             </div>
 
           </fieldset>
@@ -88,5 +94,35 @@
       <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 2</div>
     </a>
   </div>
+
+  <script>
+
+    setTimeout(function () {
+      const content2inner = `
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="kit-barcode-reference-1">
+          Test kit barcode reference
+        </label>
+        <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] or 'AA135562600' }}>
+      </div>
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="kit-barcode-reference-2">
+          Confirm test kit barcode reference
+        </label>
+        <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] or 'AA135562600' }}>
+      </div>
+      `
+      const content1 = document.getElementById('content-1');
+      const content2 = document.getElementById('content-2');
+      const URLorigin = document.referrer.replace("antigen/v2/home-testing/scan-barcode", "")
+      const replaced = document.referrer.replace(URLorigin , "")
+        if (replaced == 'antigen/v2/home-testing/scan-barcode') {
+          content1.parentNode.removeChild(content1)
+          content2.style.display = 'block';
+          content2.innerHTML = content2inner
+        }
+    }, 50)
+
+    </script>
 
 {% endblock %}
