@@ -15,8 +15,11 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/international-arrivals/{{version}}/previous-infection-person-1">Back</a>
-{% endblock %}
+  {% if data['vaccine'] == "Yes" %}
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/vaccine-date">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/vaccine">Back</a>
+  {% endif %}{% endblock %}
 
 {% block content %}
   {% include "includes/gtm-noscript.html" %}

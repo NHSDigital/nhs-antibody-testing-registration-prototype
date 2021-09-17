@@ -414,7 +414,7 @@ router.post('/international-arrivals/v4/action4/registered-with-GP-person-1', fu
 router.post('/international-arrivals/v4/action4/vaccine-person-1', function (req, res) {
   let vaccine = req.session.data['vaccine-person-1']
   if (vaccine == "No"){
-    res.redirect('/international-arrivals/v4/ethnich-group-person-1')
+    res.redirect('/international-arrivals/v4/ethnic-group-person-1')
   } else {
     res.redirect('/international-arrivals/v4/vaccine-date-person-1')
   }
