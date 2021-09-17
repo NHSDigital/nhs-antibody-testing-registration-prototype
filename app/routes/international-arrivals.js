@@ -297,4 +297,127 @@ router.post('/international-arrivals/v3/action3/vaccine-person-1', function (req
   }
 })
 
+
+// VERSION FOUR
+
+// International Arrivals Version Four - Travel Package Exempt
+router.post('/international-arrivals/v4/action4/travel-package-exempt', function (req, res) {
+  let travelPackageExempt = req.session.data['travel-package-exempt']
+  if (travelPackageExempt == "Yes, I need a replacement test kit"){
+    res.redirect('/international-arrivals/v4/travel-package-provider')
+  } else if (travelPackageExempt == 'Yes, I am in financial hardship') {
+    res.redirect('/international-arrivals/v4/tbc')
+  } else {
+    res.redirect('/international-arrivals/v4/name')
+  }
+})
+
+// International Arrivals Version Four - Ethnic group
+router.post('/international-arrivals/v4/action4/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/international-arrivals/v4/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/international-arrivals/v4/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/international-arrivals/v4/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/international-arrivals/v4/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/international-arrivals/v4/ethnic-background-another')
+  } else {
+    res.redirect('/international-arrivals/v4/nhs-number-known')
+  }
+
+})
+
+// International Arrivals Version Four - NHS Number Known
+router.post('/international-arrivals/v4/action4/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/international-arrivals/v4/nhs-number')
+  } else {
+    res.redirect('/international-arrivals/v4/registered-with-GP')
+  }
+})
+
+// International Arrivals Version Four - Regisered With GP
+router.post('/international-arrivals/v4/action4/registered-with-GP', function (req, res) {
+  let registeredWithGP = req.session.data['registered-with-GP']
+  if (registeredWithGP == "Yes"){
+    res.redirect('/international-arrivals/v4/address')
+  } else {
+    res.redirect('/international-arrivals/v4/gender')
+  }
+})
+
+// International Arrivals Version Four - Vaccine
+router.post('/international-arrivals/v4/action4/vaccine', function (req, res) {
+  let vaccine = req.session.data['vaccine']
+  if (vaccine == "No") {
+    res.redirect('/international-arrivals/v4/ethnic-group')
+  } else {
+    res.redirect('/international-arrivals/v4/vaccine-date')
+  }
+})
+
+// International Arrivals Version Four - Travel Details Same Person 1
+router.post('/international-arrivals/v4/action4/travel-details-same-person-1', function (req, res) {
+  let travelDetailsSame = req.session.data['travel-details-same-person-1']
+  if (travelDetailsSame == "No") {
+    res.redirect('/international-arrivals/v4/cannot-add-person')
+  } else {
+    res.redirect('/international-arrivals/v4/name-person-1')
+  }
+})
+
+// International Arrivals Version Four - Ethnic Group Person 1
+router.post('/international-arrivals/v4/action4/ethnic-group-person-1', function (req, res) {
+  let ethnicGroupPerson1 = req.session.data['ethnic-group-person-1']
+  if (ethnicGroupPerson1 == "Asian or Asian British"){
+    res.redirect('/international-arrivals/v4/ethnic-background-asian-person-1')
+  } else if (ethnicGroupPerson1 == "Black, African, Black British or Caribbean") {
+    res.redirect('/international-arrivals/v4/ethnic-background-black-person-1')
+  } else if (ethnicGroupPerson1 == "Mixed or multiple ethnic groups") {
+    res.redirect('/international-arrivals/v4/ethnic-background-mixed-person-1')
+  } else if (ethnicGroupPerson1 == "White") {
+    res.redirect('/international-arrivals/v4/ethnic-background-white-person-1')
+  } else if (ethnicGroupPerson1 == "Another ethnic group") {
+    res.redirect('/international-arrivals/v4/ethnic-background-another-person-1')
+  } else {
+    res.redirect('/international-arrivals/v4/nhs-number-known-person-1')
+  }
+})
+
+// International Arrivals Version Four - NHS Number Known Person 1
+router.post('/international-arrivals/v4/action4/nhs-number-known-person-1', function (req, res) {
+  let nhsNumberKnownPerson1 = req.session.data['nhs-number-known-person-1']
+  if (nhsNumberKnownPerson1 == "Yes"){
+    res.redirect('/international-arrivals/v4/nhs-number-person-1')
+  } else {
+    res.redirect('/international-arrivals/v4/registered-with-GP-person-1')
+  }
+})
+
+// International Arrivals Version Four - Registered With GP Person 1
+router.post('/international-arrivals/v4/action4/registered-with-GP-person-1', function (req, res) {
+  let registeredWithGP = req.session.data['registered-with-GP-person-1']
+  if (registeredWithGP == "Yes"){
+    res.redirect('/international-arrivals/v4/address-person-1')
+  } else {
+    res.redirect('/international-arrivals/v4/gender-person-1')
+  }
+})
+
+// International Arrivals Version Four - Vaccine Person 1
+router.post('/international-arrivals/v4/action4/vaccine-person-1', function (req, res) {
+  let vaccine = req.session.data['vaccine-person-1']
+  if (vaccine == "No"){
+    res.redirect('/international-arrivals/v4/ethnich-group-person-1')
+  } else {
+    res.redirect('/international-arrivals/v4/vaccine-date-person-1')
+  }
+})
+
 module.exports = router
