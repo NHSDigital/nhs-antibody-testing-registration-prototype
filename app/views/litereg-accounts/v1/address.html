@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What is the address registered with your GP?" %}
+{% set pageTitle = "What is your home address in the UK?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -38,25 +38,14 @@
                 {% endif %}
               </h1>
             </legend>
-    
+
             <span id="post-code-hint" class="govuk-body">
-              {% if data['whos-taking-the-test'] == "someone-else" %}
-              This will help us find and update their GP record with their test result.
-              {% else %}
-              This will help us find and update your GP record with your test result.
-              {% endif %}
-              <br><br>
-              
-              {% if data['whos-taking-the-test'] == "someone-else" %}
-              If they're not registered with a GP in the UK, that's OK. Enter the address and postcode where they're staying instead.
-              {% else %}
-              If you're not registered with a GP in the UK, that's OK. Enter the address and postcode where you're staying instead.
-              {% endif %}
-              
+              If you do not have a home address in the UK, use the address where you’re staying.
+
             </span>
             <div class="govuk-form-group govuk-!-margin-top-6">
-              <label class="govuk-label govuk-!-margin-bottom-3 govuk-!-font-size-24" for="gp-postcode" style="line-height: 0.8;">
-                <strong>Postcode</strong>
+              <label class="govuk-label govuk-!-margin-bottom-3" for="gp-postcode" style="line-height: 0.8;">
+                Postcode
               </label>
               <input class="govuk-input govuk-input--width-10" id="gp-postcode" name="gp-postcode" type="text" autocomplete="postal-code" value="{{ data['gp-postcode'] }}">
             </div>
@@ -76,7 +65,7 @@
                 {% endif %}
               </h1>
             </legend>
-    
+
             <span id="post-code-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
               This will help us find and update their GP record with their test result.
@@ -84,13 +73,13 @@
               This will help us find and update your GP record with your test result.
               {% endif %}
               <br><br>
-              
+
               {% if data['whos-taking-the-test'] == "someone-else" %}
               If they're not registered with a GP in the UK, that's OK. Enter the address and postcode where they're staying instead.
               {% else %}
               If you're not registered with a GP in the UK, that's OK. Enter the address and postcode where you're staying instead.
               {% endif %}
-              
+
             </span>
             <p class="govuk-!-margin-bottom-6 govuk-!-margin-top-6" style="line-height: 0.8;">
               <strong class="govuk-!-font-size-24">Postcode</strong><br><br>
@@ -137,7 +126,7 @@
                 {% endif %}
               </h1>
             </legend>
-    
+
             <span id="post-code-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
               This will help us find and update their GP record with their test result.
@@ -145,15 +134,15 @@
               This will help us find and update your GP record with your test result.
               {% endif %}
               <br><br>
-              
+
               {% if data['whos-taking-the-test'] == "someone-else" %}
               If they're not registered with a GP in the UK, that's OK. Enter the address and postcode where they're staying instead.
               {% else %}
               If you're not registered with a GP in the UK, that's OK. Enter the address and postcode where you're staying instead.
               {% endif %}
-              
+
             </span><br><br>
-    
+
             <!-- <p class="govuk-!-margin-bottom-6 govuk-!-margin-top-6" style="line-height: 0.8;">
               <strong>Postcode</strong><br><br>
               {{ data['gp-postcode'] | default('LS1 3BE') }}
@@ -169,14 +158,14 @@
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="address-line-1-gp" name="address-line-1-gp" type="text" autocomplete="address-line1-gp" value="{{ data['address-line-1-gp'] }}">
             </div>
-  
+
             <div class="govuk-form-group">
               <label class="govuk-label" for="address-line-2-gp">
                 <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
               </label>
               <input class="govuk-input govuk-!-width-two-thirds" id="address-line-2-gp" name="address-line-2-gp" type="text" autocomplete="address-line2-gp" value="{{ data['address-line-2-gp'] }}">
             </div>
-  
+
             <div class="govuk-form-group">
               <label class="govuk-label" for="address-town-gp">
                 Town or city
@@ -201,6 +190,17 @@
 
     </div>
   </div>
+  <details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      If you do not have a fixed address
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    You can use the postcode of a nearby reference address, such as your GP.
+    <br><br>
+    You can also call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.  </div>
+</details>
 
    <script type="text/javascript">
   submitEvent()
@@ -253,7 +253,7 @@
         buttonClicked2(selectedLink2)
       }
     })
-    
+
   }
 
 </script>
