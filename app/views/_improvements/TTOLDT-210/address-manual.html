@@ -46,24 +46,55 @@
 
        <form class="" action="/{{ version }}/single/occupation/index" method="get">
 
-         <div class="govuk-form-group">
-           <p><span class="govuk-body govuk-!-font-weight-bold">Postcode:</span> EC2 8YU <a href="/_improvements/TTOLDT-210/address" class="govuk-link">Change</a></p>
+         {{ govukInput({
+             label: {
+               text: "First line of address",
+               classes: "",
+               isPageHeading: false
+             },
+             classes: "govuk-input--width-20",
+             id: "cuFirstLine",
+             name: "cuFirstLine"
+           }) }}
 
-         </div>
+         {{ govukInput({
+             label: {
+               text: "Postcode",
+               classes: "",
+               isPageHeading: false
+             },
+             classes: "govuk-input--width-10",
+             id: "cuPostcode",
+             name: "cuPostcode"
+           }) }}
 
-         <div class="govuk-form-group">
-  <label class="govuk-label" for="sort">
-    <span class="govuk-body govuk-!-font-weight-bold">Select an address</span>
-  </label>
-  <select class="govuk-select" id="sort" name="sort">
-    <option value="updated" selected>3 addresses found</option>
-    <option value="published">5 Farringdon Lane, London, EC2 8YU</option>
-    <option value="published">7 Farringdon Lane, London, EC2 8YU</option>
-    <option value="views">12 Farringdon Lane, London, EC2 8YU</option>
-  </select>
-</div>
-
-<p><a href="/_improvements/TTOLDT-210/address-manual" class="govuk-link">I cannot find the address in the list </a></p>
+           {{ govukRadios({
+            idPrefix: "cuCountry",
+            name: "cuCountry",
+            fieldset: {
+              legend: {
+                text: "Country"
+              }
+            },
+            items: [
+              {
+                value: "england",
+                text: "England"
+              },
+              {
+                value: "scotland",
+                text: "Scotland"
+              },
+              {
+                value: "northern-ireland",
+                text: "Northern Ireland"
+              },
+              {
+                value: "wales",
+                text: "Wales"
+              }
+            ]
+          }) }}
 
          <input class="govuk-button" type="submit" value="Continue">
 
