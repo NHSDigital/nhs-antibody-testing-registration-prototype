@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What is your address?" %}
+{% set pageTitle = "What is your home address in the UK?" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -24,15 +24,15 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/litereg-accounts/{{version}}/email-address" method="post">
+    <form action="/litereg-accounts/{{version}}/gp-address-same" method="post">
 
       <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
 
           <div id="content-1">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s address?
+                What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address in the UK?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
@@ -41,32 +41,39 @@
 
             <span id="post-code-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              <strong>Use the address registered with their GP</strong><br><br>
-              This will help us find and update their GP record with their result.<br><br>
-              If they’re not registered with a GP in the UK, use the address where they’re staying.
+              If they do not have a home address in the UK, use the address where they're staying.
               {% else %}
-              <strong>Use the address registered with your GP</strong><br><br>
-              This will help us find and update your GP record with your result.<br><br>
-              If you’re not registered with a GP in the UK, use the address where you’re staying.
+              If you do not have a home address in the UK, use the address where you're staying.
               {% endif %}
             </span>
             <div class="govuk-form-group govuk-!-margin-top-6">
-              <label class="govuk-label govuk-!-margin-bottom-3" for="gp-postcode" style="line-height: 0.8;">
+              <label class="govuk-label govuk-!-margin-bottom-3" for="home-postcode" style="line-height: 0.8;">
                 Postcode
               </label>
-              <input class="govuk-input govuk-input--width-10" id="gp-postcode" name="gp-postcode" type="text" autocomplete="postal-code" value="{{ data['gp-postcode'] }}">
+              <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}" autofocus>
             </div>
             <p class="govuk-body">
               <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">Enter address manually</a>
             </p>
             <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  If you do not have a fixed address
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                You can use the postcode of a nearby reference address, such as your GP.<br><br>
+                You can also call 119 (free from mobiles and landlines) - lines are open 7am to 11pm.
+              </div>
+            </details>
           </div>
 
           <div id="content-2" style="display: none;">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                What is the address registered with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s GP?
+                What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address in the UK?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
@@ -75,39 +82,37 @@
 
             <span id="post-code-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              <strong>Use the address registered with their GP</strong><br><br>
-              This will help us find and update their GP record with their result.<br><br>
-              If they’re not registered with a GP in the UK, use the address where they’re staying.
+              If they do not have a home address in the UK, use the address where they're staying.
               {% else %}
-              <strong>Use the address registered with your GP</strong><br><br>
-              This will help us find and update your GP record with your result.<br><br>
-              If you’re not registered with a GP in the UK, use the address where you’re staying.
+              If you do not have a home address in the UK, use the address where you're staying.
               {% endif %}
             </span>
             <p class="govuk-!-margin-bottom-6 govuk-!-margin-top-6" style="line-height: 0.8;">
-              <!-- <strong class="govuk-!-font-size-24">Postcode</strong><br><br> -->
-              <strong>{{ data['gp-postcode'] | default('LS1 3BE') }}</strong>
+              <!-- <span>Postcode</span><br><br> -->
+              <strong>{{ data['home-postcode'] | default('LS1 3BE') }}</strong>
               <a href="/litereg-accounts/{{version}}/address" class="govuk-!-margin-left-5">
                 Change
                 <span class="govuk-visually-hidden">your postcode</span>
               </a>
             </p>
             <div class="govuk-form-group">
-              <label class="govuk-label" for="gp-address">
+              <label class="govuk-label" for="home-address">
                 Select an address
               </label>
-              <select class="govuk-select" id="gp-address" name="gp-address">
+              <select class="govuk-select" id="home-address" name="home-address">
                 <option>5 addresses found</option>
-                <option value="1 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">1 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}</option>
-                <option value="2 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">2 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}</option>
-                <option value="3 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">3 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}</option>
-                <option value="4 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">4 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}</option>
-                <option value="5 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}">5 Souterhead Road, London, {{ data['gp-postcode'] or 'LS1 3BE' }}</option>
+                <option value="1 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">1 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+                <option value="2 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">2 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+                <option value="3 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">3 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+                <option value="4 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">4 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+                <option value="5 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">5 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
               </select>
             </div>
+
             <p class="govuk-body">
               <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find the address in the list</a>
             </p>
+            
             <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
               Continue
             </button>
@@ -115,66 +120,48 @@
 
           <div id="content-3" style="display: none;">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                Enter the address registered with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s GP
+                Enter {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s home address in the UK
                 {% else %}
-                Enter the address registered with your GP
+                Enter your home address in the UK
                 {% endif %}
               </h1>
             </legend>
-
+    
             <span id="post-code-hint" class="govuk-body">
-              <!-- {% if data['whos-taking-the-test'] == "someone-else" %}
-              This will help us find and update their GP record with their test result.
-              {% else %}
-              This will help us find and update your GP record with your test result.
-              {% endif %}
-              <br><br> -->
-
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              This will help us find and update your GP record with your test result.
+              If they do not have a home address in the UK, enter the address and postcode where they're staying.
               {% else %}
-              This will help us find and update their GP record with their test result.
+              If you do not have a home address in the UK, enter the address and postcode where you're staying.
               {% endif %}
-
-            </span><br><br>
-
-            <!-- <p class="govuk-!-margin-bottom-6 govuk-!-margin-top-6" style="line-height: 0.8;">
-              <strong>Postcode</strong><br><br>
-              {{ data['gp-postcode'] | default('LS1 3BE') }}
-              <a href="/antigen/{{version}}/global-registration/address-option-2" class="govuk-!-margin-left-5">
-                <strong>Change</strong>
-                <span class="govuk-visually-hidden">your postcode</span>
-              </a>
-            </p> -->
-
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="address-line-1-gp">
+            </span>
+            <div class="govuk-form-group govuk-!-margin-top-5">
+              <label class="govuk-label" for="address-line-1">
                 Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
               </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="address-line-1-gp" name="address-line-1-gp" type="text" autocomplete="address-line1-gp" value="{{ data['address-line-1-gp'] }}">
+              <input class="govuk-input govuk-!-width-two-thirds" id="address-line-1" name="address-line-1" type="text" autocomplete="address-line1" value="{{ data['address-line-1'] }}">
             </div>
-
+  
             <div class="govuk-form-group">
-              <label class="govuk-label" for="address-line-2-gp">
+              <label class="govuk-label" for="address-line-2">
                 <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
               </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="address-line-2-gp" name="address-line-2-gp" type="text" autocomplete="address-line2-gp" value="{{ data['address-line-2-gp'] }}">
+              <input class="govuk-input govuk-!-width-two-thirds" id="address-line-2" name="address-line-2" type="text" autocomplete="address-line2" value="{{ data['address-line-2'] }}">
             </div>
-
+  
             <div class="govuk-form-group">
-              <label class="govuk-label" for="address-town-gp">
+              <label class="govuk-label" for="address-town">
                 Town or city
               </label>
-              <input class="govuk-input govuk-!-width-one-third" id="address-town-gp" name="address-town-gp" type="text" autocomplete="address-level2-gp" value="{{ data['address-town-gp'] }}">
+              <input class="govuk-input govuk-!-width-one-third" id="address-town" name="address-town" type="text" autocomplete="address-level2" value="{{ data['address-town'] }}">
             </div>
 
             <div class="govuk-form-group">
-              <label class="govuk-label" for="gp-postcode-manual">
+              <label class="govuk-label" for="postcode-manual">
                 Postcode
               </label>
-              <input class="govuk-input govuk-input--width-10" id="gp-postcode-manual" name="gp-postcode-manual" type="text" autocomplete="postal-code" value="{{ data['gp-postcode-manual'] }}">
+              <input class="govuk-input govuk-input--width-10" id="postcode-manual" name="postcode-manual" type="text" autocomplete="postal-code" value="{{ data['postcode-manual'] }}">
             </div>
             <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
               Continue
@@ -197,13 +184,13 @@
       // document.getElementById('find-address').style.display = 'none'
       // document.getElementById('button-hidden').style.display = 'block'
       document.getElementById('content-2').style.display = 'block'
-      document.getElementById('gp-address').focus()
+      document.getElementById('home-poostcode').focus()
     }, 100)
   }
 
   function buttonClicked2(target) {
     setTimeout(function () {
-      document.getElementById('gp-address').value = 'Select from 5 addresses'
+      document.getElementById('home-address').value = 'Select from 5 addresses'
       document.getElementById('content-1').style.display = 'none'
       document.getElementById('content-2').style.display = 'none'
       document.getElementById('content-3').style.display = 'block'
@@ -239,7 +226,7 @@
         buttonClicked2(selectedLink2)
       }
     })
-
+    
   }
 
 </script>

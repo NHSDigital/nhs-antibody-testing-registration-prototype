@@ -187,7 +187,7 @@ router.post('/litereg-accounts/v1/action9/nhs-number-known', function (req, res)
   if (nhsNumberKnown == "Yes"){
     res.redirect('/litereg-accounts/v1/nhs-number')
   } else {
-    res.redirect('/litereg-accounts/v1/check-your-answers')
+    res.redirect('/litereg-accounts/v1/fingerprick-test')
   }
 
 })
@@ -247,6 +247,16 @@ router.post('/litereg-accounts/v1/action5/test-place', function (req, res) {
     res.redirect('/litereg-accounts/v1/site-id')
   } else {
     res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+  }
+})
+
+// Version 1 - Lite Registration Accounts - GP address same route
+router.post('/litereg-accounts/v1/action/gp-address-same', function (req, res) {
+  let gpAdressSame = req.session.data['gp-address-same']
+  if (gpAdressSame == "No"){
+    res.redirect('/litereg-accounts/v1/address')
+  } else {
+    res.redirect('/litereg-accounts/v1/email-address')
   }
 })
 
