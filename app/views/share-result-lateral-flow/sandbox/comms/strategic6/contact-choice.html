@@ -1,0 +1,67 @@
+{% set version = "sandbox" %}
+{% set pageTitle = "Choose how to get confirmations" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/gp-address-same">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/share-result-lateral-flow/{{version}}/comms/strategic6/mobile" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+                <span id="choice-hint" class="govuk-body">
+                  <p>After reporting a result, you will get a confirmation message</p>
+                </span>
+                <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" value="email" onclick="setLocation(this);"{{ checked("contact-choice", "Email") }}>
+                    <label class="govuk-label govuk-radios__label" for="swab-test-date-1">
+                      Email
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" value="mobile" onclick="setLocation(this);" {{ checked("contact-choice", "Mobile") }}>
+                    <label class="govuk-label govuk-radios__label" for="swab-test-date-2">
+                      Text
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="swab-test-date-3" name="swab-test-date" type="radio" value="email-both" onclick="setLocation(this);" {{ checked("contact-choice", "Both") }}>
+                    <label class="govuk-label govuk-radios__label" for="swab-test-date-3">
+                      Both
+                    </label>
+                  </div>
+              </fieldset>
+            </div>
+
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
