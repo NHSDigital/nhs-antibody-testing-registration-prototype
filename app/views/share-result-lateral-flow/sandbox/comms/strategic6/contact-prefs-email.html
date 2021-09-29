@@ -1,5 +1,5 @@
 {% set version = "sandbox" %}
-{% set pageTitle = "Choose when to get confirmations" %}
+{% set pageTitle = "What's your email address?" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -14,8 +14,7 @@
     </span>
   </p>
 </div>
-
-  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/comms/strategic6/email">Back</a>
+<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/comms/strategic6/contact-choice">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -23,34 +22,31 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/share-result-lateral-flow/{{version}}/comms/strategic6/check-answers-email" method="post">
+      <form class="form" action="/share-result-lateral-flow/{{version}}/comms/strategic6/mobile-both" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-fieldset__heading">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
                 {{ pageTitle }}
               </h1>
             </legend>
-            <p>If you report a positive result, you always receive a confirmation message.
-              The NHS may also contact you for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing-and-tracing/nhs-test-and-trace-if-youre-contacted-after-testing-positive-for-coronavirus/" target="blank" rel="noreferrer">contact tracing</a>.</p>
-            <div id="contact-hint" class="govuk-hint">
-              This only applies to reporting a lateral flow test result
-            </div>
-            <div class="govuk-radios" data-module="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email">
-                <label class="govuk-label govuk-radios__label" for="contact">
-                  For positive results only
-                </label>
+            <span id="email-hint" class="govuk-body">
+              <p>If you are a parent or guardian reporting for a child, you can use your own email address.</p>
+            </span>
+              <div class="govuk-form-group">
+                  <label class="govuk-label" for="email-address">
+                    Email address
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
               </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone">
-                <label class="govuk-label govuk-radios__label" for="contact-2">
-                  For all results
-                </label>
+              <div class="govuk-form-group">
+                  <label class="govuk-label" for="confirm-email-address">
+                    Confirm email address
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
               </div>
-            </div>
+
           </fieldset>
         </div>
 
