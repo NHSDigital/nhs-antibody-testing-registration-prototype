@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Enter your Royal Mail barcode" %}
+{% set pageTitle = "Enter your Royal Mail barcode reference" %}
 
 {% extends "includes/layout.html" %}
 
@@ -34,19 +34,20 @@
               </h1>
             </legend>
             <span id="enter-barcode-number-hint" class="govuk-body">
-              Enter the 13 character reference below the barcode.<br><br>
-              It should look like this:
+              Enter the 13 character reference below the barcode.<br>
+              Enter numbers and letters only and not the # hashtag symbol.<br><br>
+              The Royal Mail barcode should look like this:
             </span>
 
             <div class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
-              <img src="/public/images/mail-barcode-number.png" alt="barcode number"/>
+              <img src="/public/images/royal-mail-barcode.png" class="responsive-image" alt="barcode number"/>
             </div>
 
             <div id="content-1">
               <div class="govuk-form-group">
                 <label class="govuk-label" for="mail-barcode-reference-1">
                   Royal Mail barcode reference<br>
-                  <span class="govuk-hint">For example, AA 1234 5678 9AA</span>
+                  <span class="govuk-hint">For example, ZD 6904 0038 5GB</span>
                 </label>
                 <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] }}>
               </div>
@@ -78,12 +79,6 @@
     </div>
   </div>
 
-  <div class="proto-action big">
-    <a href="/antigen/{{version}}/home-testing/royal-mail-barcode-manual-option-2">
-      <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 2</div>
-    </a>
-  </div>
-
   <script>
 
   setTimeout(function () {
@@ -104,9 +99,9 @@
     `
     const content1 = document.getElementById('content-1');
     const content2 = document.getElementById('content-2');
-    const URLorigin = document.referrer.replace("antigen/v2/home-testing/scan-mail-barcode", "")
+    const URLorigin = document.referrer.replace("antigen/v2/home-testing/scan-mail-barcode-option-2", "")
     const replaced = document.referrer.replace(URLorigin , "")
-      if (replaced == 'antigen/v2/home-testing/scan-mail-barcode') {
+      if (replaced == 'antigen/v2/home-testing/scan-mail-barcode-option-2') {
         content1.parentNode.removeChild(content1)
         content2.style.display = 'block';
         content2.innerHTML = content2inner
