@@ -181,7 +181,7 @@ router.post('/international-arrivals/v2/action/registered-with-GP', function (re
 router.post('/international-arrivals/v3/action3/travel-package-exempt', function (req, res) {
   let travelPackageExempt = req.session.data['travel-package-exempt']
   if (travelPackageExempt == "Yes, I need a replacement test kit"){
-    res.redirect('/international-arrivals/v3/travel-package-provider')
+    res.redirect('/international-arrivals/v3/booking-reference')
   } else if (travelPackageExempt == 'Yes, I am in financial hardship') {
     res.redirect('/international-arrivals/v3/tbc')
   } else {
