@@ -1,5 +1,5 @@
 {% set version = "v4" %}
-{% set pageTitle = "What is your flight, Eurostar or ferry number?" %}
+{% set pageTitle = "What is your flight or Eurostar number or ferry name?" %}
 
 {% extends "includes/layout-intl-arrivals.html" %}
 
@@ -25,15 +25,31 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
-
       <form action="/international-arrivals/{{version}}/final-destination" method="post">
 
-        <fieldset class="govuk-fieldset">
-
-          <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="travel-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+              {{pageTitle}}
+            </h1>
+          </legend>
+          <span id="travel-hint" class="govuk-body">
+            Check your travel details and documents to find this.
+          </span>
+          <div class="govuk-form-group govuk-!-margin-top-4">
             <label class="govuk-label" for="flight-eurostar-ferry">
-              Flight, Eurostar or ferry number
+              For example:<br><br>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  Plane's flight number: BA2490
+                </li>
+                <li>
+                  Ferry name: Dover Seaways
+                </li>
+                <li>
+                  Eurostar train number: 8245
+                </li>
+              </ul>
             </label>
             <input class="govuk-input govuk-!-width-two-thirds" id="flight-eurostar-ferry" name="flight-eurostar-ferry" type="text" value="{{ data['flight-eurostar-ferry'] }}">
           </div>
