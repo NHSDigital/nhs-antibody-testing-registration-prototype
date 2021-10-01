@@ -178,14 +178,12 @@ router.post('/international-arrivals/v2/action/registered-with-GP', function (re
 // VERSION THREE
 
 // International Arrivals Version Three - Travel Package Exempt
-router.post('/international-arrivals/v3/action3/travel-package-exempt', function (req, res) {
-  let travelPackageExempt = req.session.data['travel-package-exempt']
+router.post("/international-arrivals/v3/action3/travel-package-exempt", function (req, res) {
+  let travelPackageExempt = req.session.data["travel-package-exempt"]
   if (travelPackageExempt == "Yes, I need a replacement test kit"){
-    res.redirect('/international-arrivals/v3/booking-reference')
-  } else if (travelPackageExempt == 'Yes, I am in financial hardship') {
-    res.redirect('/international-arrivals/v3/tbc')
+    res.redirect("/international-arrivals/v3/search-results")
   } else {
-    res.redirect('/international-arrivals/v3/name')
+    res.redirect("/international-arrivals/v3/name")
   }
 })
 
@@ -233,7 +231,7 @@ router.post('/international-arrivals/v3/action3/registered-with-GP', function (r
 router.post('/international-arrivals/v3/action3/vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
   if (vaccine == "No") {
-    res.redirect('/international-arrivals/v3/travel-route')
+    res.redirect('/international-arrivals/v3/ethnic-group')
   } else {
     res.redirect('/international-arrivals/v3/vaccine-date')
   }
@@ -245,7 +243,7 @@ router.post('/international-arrivals/v3/action3/travel-details-same-person-1', f
   if (travelDetailsSame == "No") {
     res.redirect('/international-arrivals/v3/cannot-add-person')
   } else {
-    res.redirect('/international-arrivals/v3/ethnic-group-person-1')
+    res.redirect('/international-arrivals/v3/name-person-1')
   }
 })
 
@@ -291,7 +289,7 @@ router.post('/international-arrivals/v3/action3/registered-with-GP-person-1', fu
 router.post('/international-arrivals/v3/action3/vaccine-person-1', function (req, res) {
   let vaccine = req.session.data['vaccine-person-1']
   if (vaccine == "No"){
-    res.redirect('/international-arrivals/v3/travel-route-same-person-1')
+    res.redirect('/international-arrivals/v3/ethnic-group-person-1')
   } else {
     res.redirect('/international-arrivals/v3/vaccine-date-person-1')
   }
