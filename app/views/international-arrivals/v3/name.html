@@ -15,7 +15,14 @@
   </p>
 </div>
 
-<a class="govuk-back-link" href="/international-arrivals/{{version}}/point-of-entry">Back</a>
+{% if data['travel-package-exempt'] == "No" %}
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/travel-package-exempt">Back</a>
+{% else %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endif %}
 
 {% endblock %}
 
