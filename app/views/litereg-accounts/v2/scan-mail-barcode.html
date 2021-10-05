@@ -1,7 +1,7 @@
 {% set version = "v2" %}
 {% set pageTitle = "Scan your Royal Mail barcode" %}
 
-{% extends "includes/layout-lite-registration.html" %}
+{% extends "includes/layout.html" %}
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
@@ -19,22 +19,64 @@
 {% endblock %}
 
 {% block content %}
+  {% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-  
+
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
         <p class="govuk-body">Position the barcode so it fits inside the square on your mobile or computer's camera.</p>
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Tips to help you scan the barcode
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <ul class="govuk-list govuk-list--bullet">
+              <li>you need to "allow" permission to start the camera</li>
+              <li>if a camera icon appears inside a square, you need to click on it to start scanning</li>
+            </ul>
+          </div>
+        </details>
+        <script src="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x"></script>
 
-        <div>
-          <img src="/public/images/camera-view.png" alt="camera view"/>
-        </div>
-        
-        <a href="/litereg-accounts/{{version}}/royal-mail-barcode" role="button" draggable="false" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
+        <scandit-barcode-picker
+          id="barcodePicker"
+          configure.licenseKey="AS7wNy//D3EXLsecBRdeMQ8r/yC7ImssWTzOfUdIZtt7Ixo7ISzq7wVRf7qLYzVcFWhaaA9PCtOwbZ9873UpintCFXJTWONBKXThjY95yLJsL3R9yEkJFf9ljGRUUPfjHmORumJDaNu1XZ/8B23519ZLwHOrMXsg1h9G6OsJy8LLPzuLsBfcbiQMWbkK/BAsLvkvROfL5hjVpw4nET5PzkSi0hnyd0ugPmgGX9w557Kl08HYXk36Mf9TnGOkPJ874Lgl7LDdAM5QFuJYsbkRd0tFC9lsKugQ/AAcbupLe0iZgVPCF7VyJ2GGxjnHu85CfNBxMYa0+W5yUfh7E4nejcIjOojFC7z71cz/GxYpAik3i/O0inu6COKhgONTJSKr7EKksQuaxClknEubYryfmH/B0zmsGdyoUa1YNufgjjpsKSXPSH45dqdMU4cpsm4nnzuUATjBAOcEEVInkvw6OCp1d6sIpHabS3LlKJq4lcHr0qN7R5/X1326aJXVW225Dz0qs8llXaqHDJt3fw/SLJwON8jGhYhagkGYa8jxIeYzL4gG8UT1S7Jem5fsZpbn408lh+s30FJdxP55B87rKsdTq53ulPyzYwrnp0EW6DhVrSfZOu56FSTMO+6voGEp+NEUIC6XOAjKvU5kudE6RaGuEXuGHPt4eXBE5yX4wZbFpB43vkygeLP/cGsSAi7BP0Ja94SoYA/Q7qAzbqmMji0IdOA4R4u93c70IoS/TGcEhodWDa82hWeMt2QHHEke6slLxBFBO6BK5gUs0CAzyrJaKflOSwW78hJtp5kABQc+ewkpBFBzXD5Eyxb90t1IoMyI6Hm34szWm0RSa+hwPz2baA=="
+          configure.engineLocation="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x/build/"
+          playSoundOnScan="true"
+          scanSettings.searchArea='{"x":0.1,"y":0.2,"width":0.8,"height":0.6}'
+          guiStyle="viewfinder"
+          enableTorchToggle="true"
+          videoFit="cover"
+          scanSettings.enabledSymbologies='["data-matrix", "code128", "qr"]'
+        >
+        </scandit-barcode-picker>
+
+        <a href="/litereg-accounts/{{version}}/royal-mail-barcode" role="button" draggable="false" class="govuk-button govuk-!-margin-top-3 govuk-!-margin-bottom-3" data-module="govuk-button">
           Cancel
         </a>
-  
+
+        <p class="govuk-body">
+          <a href="/litereg-accounts/{{version}}/royal-mail-barcode-manual" role="button" draggable="false" class="govuk-link" data-module="govuk-button">
+            Enter barcode manually instead
+          </a>
+        </p>
+
     </div>
   </div>
+
+  <script type="text/javascript">
+
+    const barcodePicker = document.getElementById('barcodePicker')
+    barcodePicker.addEventListener('scan', function (event) {
+      event.preventDefault()
+      setTimeout(function () {
+        window.location.href = '/litereg-accounts/{{version}}/royal-mail-barcode-manual';
+      }, 100)
+    })
+
+  </script>
 
 {% endblock %}

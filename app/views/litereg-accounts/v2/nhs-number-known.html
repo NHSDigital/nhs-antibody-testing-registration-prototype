@@ -40,47 +40,33 @@
 
             {% if data['whos-taking-the-test'] == "someone-else" %}
             <span id="nhs-number-known-hint" class="govuk-body">
-              <strong>This number helps us quickly save their test result to their:</strong><br>
-              <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
-                <li><strong>GP record</strong></li>
-                <li><strong>NHS COVID Pass</strong> - In England, they may be asked to show this pass to get into some events, or to travel abroad</li>
+              This number helps us quickly save their test result to their:<br>
+              <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-3 govuk-!-margin-left-5">
+                <li>GP record</li>
+                <li>NHS COVID Pass - In England, they may be asked to show this pass to get into some events, or to travel abroad</li>
               </ul>
             </span>
-            <div class="govuk-warning-text">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                Not providing their NHS number could cause delays if they wish to attend certain events.
-              </strong>
-            </div>
             {% else %}
             <span id="nhs-number-known-hint-2" class="govuk-body">
-              <strong>This number helps us quickly save your test result to your:</strong><br>
-              <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
-                <li><strong>GP record</strong></li>
-                <li><strong>NHS COVID Pass</strong> - In England, you may be asked to show this pass to get into some events, or to travel abroad</li>
+              This number helps us quickly save your test result to your:<br>
+              <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-3 govuk-!-margin-left-5">
+                <li>GP record</li>
+                <li>NHS COVID Pass - In England, you may be asked to show this pass to get into some events, or to travel abroad</li>
               </ul>
             </span>
-            <div class="govuk-warning-text">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                Not providing your NHS number could cause delays if you wish to attend certain events.
-              </strong>
-            </div>
             {% endif %}
-
+            <br>
             <span id="nhs-number-known-hint-3" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              <a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/" target="blank">Look up their NHS number</a>.
+              If they do not live in the UK, select "No, I cannot provide my NHS number".
               {% else %}
-              <a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/" target="blank">Look up your NHS number</a>.
+              If you do not live in the UK, select "No, I cannot provide my NHS number".
               {% endif %}
               <br><br>
               It's OK if you do not have it, you can still continue.
             </span>
 
-            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5 govuk-!-margin-bottom-5" data-module="govuk-radios">
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-7 govuk-!-margin-bottom-7" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="nhs-number-known-1" name="nhs-number-known" type="radio" value="Yes" {{ checked("nhs-number-known", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="nhs-number-known-1">
@@ -109,7 +95,12 @@
 
             <span id="nhs-number-known-hint4" class="govuk-body">
               An NHS number is 10 digits. It will be on any prescriptions or letters from a GP or hospital.<br><br>
-              In Scotland, it’s known as a CHI number. In Northern Ireland, it’s known as an H&C number.
+              In Scotland, it’s known as a CHI number. In Northern Ireland, it’s known as an H&C number.<br><br>
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              <a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/" target="blank">Look up their NHS number</a>
+              {% else %}
+              <a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/" target="blank">Look up your NHS number</a>
+              {% endif %}
             </span>
 
           </fieldset>
