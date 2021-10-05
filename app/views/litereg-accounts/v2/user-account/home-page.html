@@ -1,4 +1,4 @@
-{% set version = "v1" %}
+{% set version = "v2" %}
 {% set pageTitle = "Test and Trace account" %}
 
 {% extends "includes/layout.html" %}
@@ -14,6 +14,12 @@
     </span>
   </p>
 </div>
+
+{% if data['coronavirus-account'] == "Yes" and data['first-name'] %}
+{% include "includes/account-menu-litereg.html" %}
+{% else %}
+{% include "includes/account-menu-email-litereg.html" %}
+{% endif %}
 
 {% endblock %}
 

@@ -1,13 +1,13 @@
-{% set version = "v1" %}
+{% set version = "v2" %}
 {% set pageTitle = "Registration confirmed" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-lite-registration.html" %}
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content">
     <strong class="govuk-tag govuk-phase-banner__content__tag">
-      alpha
+      beta
     </strong>
     <span class="govuk-phase-banner__text">
       This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -34,22 +34,22 @@
       </thead>
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">{{ data['first-name'] | default('Bob') }} {{ data['last-name'] | default('Smith') }}</th>
+          <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'Bob' }} {{ data['last-name'] or 'Smith' }}</th>
           {% if data['swab-test-date'] == "different" %}
           <td class="govuk-table__cell">
             {{ data['mobile-phone-number'] or '+4478353335' }}<br>
             {{ data['email-address'] or 'bsmith@testing.co.uk' }}<br>
-            Test kit barcode reference: {{ data['kit-barcode-reference-1'] | default('CHE00000501') }}<br>
-            Test date: {{ data['date-of-swab-test-day'] | default('4') }} {{ data['date-of-swab-test-month'] or 'April' }} {{ data['date-of-swab-test-year'] | default('2021') }}<br>
-            Test time: {{ data['swab-test-time'] | default('7') }}{{ data['swab-test-time-ampm'] | default('am') }}
+            Test kit barcode reference: {{ data['kit-barcode-reference-1'] or 'CHE00000501' }}<br>
+            Test date: {{ data['date-of-swab-test-day'] or '30' }} {{ data['date-of-swab-test-month'] or 'June' }} {{ data['date-of-swab-test-year'] or '2021' }}<br>
+            Test time: {{ data['swab-test-time'] or '7' }} {{ data['swab-test-time-ampm'] or 'am' }}
           </td>
           {% else %}
           <td class="govuk-table__cell">
             {{ data['mobile-phone-number'] or '+4478353335' }}<br>
             {{ data['email-address'] or 'bsmith@testing.co.uk' }}<br>
-            Test kit barcode reference: {{ data['kit-barcode-reference-1'] | default('CHE00000501') }}<br>
-            Test date: {{ data['date-of-swab-test-day'] | default('4') }} {{ data['date-of-swab-test-month'] or 'April' }} {{ data['date-of-swab-test-year'] | default('2021') }}<br>
-            Test time: {{ data['swab-test-time'] | default('7') }}{{ data['swab-test-time-ampm'] | default('am') }}
+            Test kit barcode reference: {{ data['kit-barcode-reference-1'] or 'CHE00000501' }}<br>
+            Test date: {{ data['swab-test-date'] or '30 June 2021' }}<br>
+            Test time: {{ data['swab-test-time'] or '7' }} {{ data['swab-test-time-ampm'] or 'am' }}
           </td>
           {% endif %}
         </tr>
@@ -77,9 +77,9 @@
     </ul>
     {% endif %} 
 
-    <h2 class="govuk-heading-m">We want to hear from you</h2>
+    <h2 class="govuk-heading-m">Help us improve our service</h2>
 
-    <p class="govuk-body govuk-!-margin-bottom-8"><a class="govuk-link govuk-!-margin-right-2" href="#">What did you think of our service?</a> (takes 3 minutes)</p>
+    <p class="govuk-body govuk-!-margin-bottom-8"><a class="govuk-link govuk-!-margin-right-2" href="#">Fill in our short survey</a> (takes 3 minutes)</p>
 
     <form action="/litereg-accounts/{{version}}/whos-taking-the-test" method="post" novalidate>
 

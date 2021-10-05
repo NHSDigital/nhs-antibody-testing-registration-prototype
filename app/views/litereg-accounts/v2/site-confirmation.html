@@ -1,13 +1,13 @@
-{% set version = "v1" %}
-{% set pageTitle = "Confirm your test site" %}
+{% set version = "v2" %}
+{% set pageTitle = "Confirm the test site or event site" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-lite-registration.html" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
+        beta
       </strong>
       <span class="govuk-phase-banner__text">
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -37,10 +37,10 @@
               </h1>
             </legend>
             <span id="confirm-site-1-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-2">
-              Test site ID
+              Test site ID or event ID
             </span>
             <span id="confirm-site-2-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-right-4" style="display: inline-block;">
-              {{ data['site-id'] | default('CHE') }}
+              {{ data['site-id'] or 'CONF' }}
             </span>
             <span class="govuk-body" style="display: inline-block;"><a class="govuk-link" href="/litereg-accounts/{{version}}/site-id">Change</a></span><br><br>
 
@@ -52,32 +52,22 @@
                 University Road, Leicester<br>
                 LE1 7RH
                 {% else %}
-                <strong>Chessington MTU</strong><br>
-                Chessington World of Adventures<br>
-                Leatherhead Rd<br>
-                Chessington<br>
-                KT9 2NE
+                <strong>Scottish Exhibition And Conference Centre</strong><br>
+                Exhibition Way,<br>
+                Glasgow G3 8YW
                 {% endif %}
               </span>
-              <div class="govuk-radios govuk-radios--conditional govuk-!-margin-bottom-5 govuk-!-margin-top-6" data-module="govuk-radios">
+              <div class="govuk-radios govuk-radios--conditional govuk-!-margin-bottom-5 govuk-!-margin-top-8" data-module="govuk-radios">
                   <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="confirm-site-1" name="confirm-site" type="radio" value="Yes" {{ checked("confirm-site", "Yes") }}>
                     <label class="govuk-label govuk-radios__label" for="confirm-site-1">
-                      {% if data['whos-taking-the-test'] == "someone-else" %}
-                      They used this test site
-                      {% else %}
-                      I used this test site
-                      {% endif %}
+                      This is correct
                     </label>
                   </div>
                   <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="confirm-site-2" name="confirm-site" type="radio" value="No" {{ checked("confirm-site", "No") }}>
                     <label class="govuk-label govuk-radios__label" for="confirm-site-2">
-                      {% if data['whos-taking-the-test'] == "someone-else" %}
-                      They did not use this test site
-                      {% else %}
-                      I did not use this test site
-                      {% endif %}
+                      This is not correct
                     </label>
                   </div>
                 </div>

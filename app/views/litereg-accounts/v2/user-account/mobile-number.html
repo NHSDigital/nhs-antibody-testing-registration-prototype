@@ -1,4 +1,4 @@
-{% set version = "v1" %}
+{% set version = "v2" %}
 {% set pageTitle = "Enter your mobile number" %}
 
 <!DOCTYPE html>
@@ -21,8 +21,9 @@
   </head>
 
   <body class="{{ bodyClasses }}">
-
+    
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    
     
     {% block beforeContent %}
     <header class="nhsuk-header" role="banner">
@@ -50,14 +51,37 @@
             {% block content %}
             <h1 class="nhsuk-heading-l nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-6">{{ pageTitle }}</h1>
 
+            <span class="nhsuk-hint govuk-body">
+              We will send you another 6 digit security code, this time to your phone, to confirm your mobile number.<br><br>
+              It will be quicker to set up your NHS login if the mobile number you enter is the number your GP surgery has for you.
+            </span>
             <div class="nhsuk-form-group">
-                <label class="nhsuk-label" for="mobile-number">
-                  Mobile number
+              <label class="nhsuk-label" for="mobile-number">
+                UK Mobile number
+              </label>
+              <input class="nhsuk-input nhsuk-u-width-one-third" id="mobile-phone-number" name="mobile-phone-number" type="tel" value="{{ data['mobile-phone-number'] }}">
+            </div>
+
+            <div class="nhsuk-checkboxes nhsuk-u-margin-bottom-5" data-module="checkboxes">
+
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="intl-mobile-number" name="intl-mobile-number" type="checkbox" value="intl-mobile-number" aria-controls="conditional-intl-mobile-number" onclick="checkBox()">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="intl-mobile-number">
+                  I have an international mobile number
                 </label>
-                <span class="nhsuk-hint" id="mobile-number-hint">
-                  You must enter a UK mobile phone number so we can send you a 6 digit security code.
-                </span>
-                <input class="nhsuk-input nhsuk-u-width-one-third" id="mobile-phone-number" name="mobile-phone-number" type="tel" value="{{ data['mobile-phone-number'] }}" aria-describedby="mobile-number-hint">
+              </div>
+              <div class="nhsuk-checkboxes__conditional nhsuk-checkboxes__conditional--hidden" id="conditional-intl-mobile-number">
+                <div class="nhsuk-form-group">
+                  <label class="nhsuk-label" for="intl-mobile-phone-number">
+                    International mobile number
+                  </label>
+                  <div class="nhsuk-hint" id="intl-mobile-number-hint">
+                    Please enter + and then your country code before your phone number. For example, +3537777666555
+                  </div>
+                  <input class="nhsuk-input nhsuk-input--width-10" id="intl-mobile-phone-number" name="intl-mobile-phone-number" type="text" aria-describedby="intl-mobile-number-hint" inputmode="numeric">
+                </div>
+              </div>
+      
             </div>
 
             <button class="nhsuk-button" data-module="govuk-button">Continue</button>
@@ -67,6 +91,26 @@
       </main>
     </div>
     {% endblock %}
+    
+    <script type="text/javascript">
+ 
+      resetAttributes()
+    
+      function checkBox(target) {
+        const checkbox = document.getElementById('intl-mobile-number')
+        const conditionalContent = document.getElementById('conditional-intl-mobile-number')
+        checkbox.toggleAttribute('checked')
+        conditionalContent.classList.toggle('nhsuk-checkboxes__conditional--hidden')
+      }
+    
+      function resetAttributes() {
+        const checkbox = document.getElementById('intl-mobile-number')
+        const conditionalContent = document.getElementById('conditional-intl-mobile-number')
+        checkbox.removeAttribute('checked')
+        conditionalContent.classList.add('nhsuk-checkboxes__conditional--hidden')
+      }
+    
+    </script>
 
   </body>
   
@@ -87,6 +131,7 @@
       </div>
     </div>
   </footer>
+
   {% endblock %}
 
 

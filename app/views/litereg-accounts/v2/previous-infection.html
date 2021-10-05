@@ -1,13 +1,13 @@
-{% set version = "v1" %}
+{% set version = "v2" %}
 {% set pageTitle = "Have you tested positive before?" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-lite-registration.html" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
+        beta
       </strong>
       <span class="govuk-phase-banner__text">
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -29,7 +29,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/litereg-accounts/v1/vaccine" method="post">
+      <form class="form" action="/litereg-accounts/{{version}}/vaccine" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="previous-infection-hint">
@@ -44,12 +44,10 @@
             </legend>
             <span id="previous-infection-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              We need to know if they received a positive result more than 3 months ago. This tells us they may have a second coronavirus infection caused by a different strain of the virus.
+              We need to know if the person received a positive result more than 3 months ago. This tells us they may have a second coronavirus infection caused by a different strain of the virus.
               {% else %}
               We need to know if you received a positive result more than 3 months ago. This tells us you may have a second coronavirus infection caused by a different strain of the virus.
               {% endif %}
-              <br><br>
-              If any positive result was less than 3 months ago, answer 'no'.
             </span>
             <div class="govuk-radios govuk-!-margin-top-6">
               <div class="govuk-radios__item">

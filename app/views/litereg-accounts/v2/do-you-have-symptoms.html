@@ -1,13 +1,13 @@
-{% set version = "v1" %}
+{% set version = "v2" %}
 {% set pageTitle = "Do you currently have coronavirus symptoms?" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-lite-registration.html" %}
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
+        beta
       </strong>
       <span class="govuk-phase-banner__text">
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -45,8 +45,8 @@
                     </span>
                     <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
                         <li>a high temperature</li>
-                        <li>new, continuous cough</li>
-                        <li>loss or change to your sense of smell or taste</li>
+                        <li>a new, continuous cough</li>
+                        <li>a loss or change to your sense of smell or taste</li>
                     </ul>
                     <span id="symptoms-2-hint" class="govuk-body">
                         Most people with coronavirus have at least one of these symptoms.
@@ -55,13 +55,21 @@
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="do-you-have-symptoms-1" name="do-you-have-symptoms" type="radio" value="Yes" {{ checked("do-you-have-symptoms", "Yes") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1">
+                                {% if data['whos-taking-the-test'] == "someone-else" %}
+                                Yes, they currently have at least one of these symptoms
+                                {% else %}
                                 Yes, I currently have at least one of these symptoms
+                                {% endif %}
                             </label>
                         </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="do-you-have-symptoms-2" name="do-you-have-symptoms" type="radio" value="No" {{ checked("do-you-have-symptoms", "No") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2">
+                                {% if data['whos-taking-the-test'] == "someone-else" %}
+                                No, they currently do not have any of these symptoms
+                                {% else %}
                                 No, I currently do not have any of these symptoms
+                                {% endif %}
                             </label>
                         </div>
                     </div>

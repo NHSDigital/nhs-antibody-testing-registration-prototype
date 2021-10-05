@@ -1,13 +1,13 @@
-{% set version = "v1" %}
-{% set pageTitle = "What's your NHS number?" %}
+{% set version = "v2" %}
+{% set pageTitle = "What is your NHS number?" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-lite-registration.html" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
+        beta
       </strong>
       <span class="govuk-phase-banner__text">
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -23,21 +23,20 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/litereg-accounts/{{version}}/check-your-answers" method="post">
+      <form action="/litereg-accounts/{{version}}/fingerprick-test" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="nhs-number-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              What's {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?
+              What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?
               {% else %}
               {{ pageTitle }}
               {% endif %}
             </h1>
           </legend>
           <span id="nhs-number-hint" class="govuk-body">
-            An NHS number is 10 digits, for example 867 406 5600.<br><br>
-            Enter the number with no spaces.
+            An NHS number is 10 digits, for example 867 406 5600.
           </span>
           <div class="govuk-form-group govuk-!-margin-top-5">
             <label class="govuk-label" for="nhs-number">
