@@ -134,7 +134,7 @@
             {% elseif data['travel-route'] == "Day 2 and day 8 tests" and data['travel-route-same-person-1'] == "undefined" %}
             £116.00
             {% elseif data['travel-route'] == "Day 2 test" and data['travel-route-same-person-1'] == "Day 2 test" %}
-            £116.00
+            £136.00
             {% elseif data['travel-route'] == "Day 2 and day 8 tests" and data['travel-route-same-person-1'] == "Day 2 test" %}
             £184.00
             {% elseif data['travel-route'] == "Day 2 test" and data['travel-route-same-person-1'] == "Day 2 and day 8 tests" %}
@@ -151,9 +151,23 @@
         </div>
       </dl>
 
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Confirmation</h2>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="confirm" name="confirm" type="checkbox" value="Yes" onclick="checkBox()">
+              <label class="govuk-label govuk-checkboxes__label" for="confirm">
+                I agree to the terms and conditions
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
       <form action="/international-arrivals/{{version}}/enter-card-details" method="post">
 
-        <button id="button" class="govuk-button govuk-!-margin-bottom-3" type="submit" data-module="govuk-button">
+        <button id="button" disabled class="govuk-button govuk-!-margin-bottom-3" type="submit" data-module="govuk-button">
           Continue to payment
         </button>
 
@@ -161,5 +175,25 @@
 
     </div>
   </div>
+
+  <script type="text/javascript">
+ 
+    resetAttributes()
+  
+    function checkBox(target) {
+      const checkbox = document.getElementById('confirm')
+      const button = document.getElementById('button')
+      checkbox.toggleAttribute('checked')
+      button.toggleAttribute('disabled')
+    }
+  
+    function resetAttributes() {
+      const checkbox = document.getElementById('confirm')
+      const button = document.getElementById('button')
+      checkbox.removeAttribute('checked')
+      button.setAttribute('disabled')
+    }
+  
+  </script>
 
 {% endblock %}

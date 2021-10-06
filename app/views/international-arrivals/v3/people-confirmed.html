@@ -33,94 +33,56 @@
         Once you've confirmed who needs testing, you can complete and pay for your order.
       </p>
 
-      <table class="govuk-table govuk-!-margin-bottom-0">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Name</th>
-            <th scope="col" class="govuk-table__header">Date of birth</th>
-            <th scope="col" class="govuk-table__header">Test</th>
-            <th scope="col" class="govuk-table__header">Amount</th>
-            <th scope="col" class="govuk-table__header"></th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header" style="border-bottom: none">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Appleseed' }}</th>
-            <td class="govuk-table__cell" style="border-bottom: none">
-              {% if data['date-of-birth-month'] == "1" or data['date-of-birth-month'] == "01" %}
-              {{ data['date-of-birth-day'] }} January {{ data['date-of-birth-year'] }}
-              {% elseif data['date-of-birth-month'] == "2" or data['date-of-birth-month'] == "02" %}
-              {{ data['date-of-birth-day'] }} February {{ data['date-of-birth-year'] }}
-              {% elseif data['date-of-birth-month'] == "3" or data['date-of-birth-month'] == "03" %}
-              {{ data['date-of-birth-day'] }} March {{ data['date-of-birth-year'] }}
-              {% elseif data['date-of-birth-month'] == "4" or data['date-of-birth-month'] == "04" %}
-              {{ data['date-of-birth-day'] }} April {{ data['date-of-birth-year'] }}
-              {% elseif data['date-of-birth-month'] == "5" or data['date-of-birth-month'] == "05" %}
-              {{ data['date-of-birth-day'] }} May {{ data['date-of-birth-year'] }}
-              {% elseif data['date-of-birth-month'] == "6" or data['date-of-birth-month'] == "06" %}
-              {{ data['date-of-birth-day'] }} June {{ data['date-of-birth-year'] }}
-              {% elseif data['date-of-birth-month'] == "7" or data['date-of-birth-month'] == "07" %}
-              {{ data['date-of-birth-day'] }} July {{ data['date-of-birth-year'] }}
-              {% elseif data['date-of-birth-month'] == "8" or data['date-of-birth-month'] == "08" %}
-              {{ data['date-of-birth-day'] }} August {{ data['date-of-birth-year'] }}
-              {% elseif data['date-of-birth-month'] == "9" or data['date-of-birth-month'] == "09" %}
-              {{ data['date-of-birth-day'] }} September {{ data['date-of-birth-year'] }}
-              {% elseif data['date-of-birth-month'] == "10" %}
-              {{ data['date-of-birth-day'] }} October {{ data['date-of-birth-year'] }}
-              {% elseif data['date-of-birth-month'] == "11" %}
-              {{ data['date-of-birth-day'] }} November {{ data['date-of-birth-year'] }}
-              {% elseif data['date-of-birth-month'] == "12" %}
-              {{ data['date-of-birth-day'] }} December {{ data['date-of-birth-year'] }}
-              {% else %}
-              6 December 1976
-              {% endif %}
-              <!-- {{ data['email-address'] or 'email@example.com' }}
-              <br>
-              {{ data['mobile-phone-number'] or '+447782808451' }} -->
-            </td>
-            <td class="govuk-table__cell" style="border-bottom: none">
-              {{ data['travel-route'] or 'Day 2 and day 8 tests' }}
-            </td>
-            <td class="govuk-table__cell" style="border-bottom: none">
-              {% if data['travel-route'] == 'Day 2 test' %}
-              <p class="govuk-body-m">£68</p>
-              {% else %}
-              <p class="govuk-body-m">£116</p>
-              {% endif %}
-            </td>
-            <td class="govuk-table__cell" style="border-bottom: none">
-              <p class="govuk-body-m" style="display: flex; justify-content: flex-end;">
-                <a href="/international-arrivals/{{version}}/check-your-answers">Edit details</a>
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <table class="govuk-table govuk-!-margin-bottom-8 govuk-!-margin-top-0">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header govuk-!-width-one-third govuk-!-padding-0"></th>
-            <th scope="col" class="govuk-table__header govuk-!-width-one-third govuk-!-padding-0"></th>
-            <th scope="col" class="govuk-table__header govuk-!-width-one-third govuk-!-padding-0"></th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header" style="border: none">
+      <div class="info-summary">
+        <div>
+          <p class="govuk-body">
+            <strong>{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Appleseed' }}</strong><br>
+            {% if data['date-of-birth-month'] == "1" or data['date-of-birth-month'] == "01" %}
+            {{ data['date-of-birth-day'] }} January {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "2" or data['date-of-birth-month'] == "02" %}
+            {{ data['date-of-birth-day'] }} February {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "3" or data['date-of-birth-month'] == "03" %}
+            {{ data['date-of-birth-day'] }} March {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "4" or data['date-of-birth-month'] == "04" %}
+            {{ data['date-of-birth-day'] }} April {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "5" or data['date-of-birth-month'] == "05" %}
+            {{ data['date-of-birth-day'] }} May {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "6" or data['date-of-birth-month'] == "06" %}
+            {{ data['date-of-birth-day'] }} June {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "7" or data['date-of-birth-month'] == "07" %}
+            {{ data['date-of-birth-day'] }} July {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "8" or data['date-of-birth-month'] == "08" %}
+            {{ data['date-of-birth-day'] }} August {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "9" or data['date-of-birth-month'] == "09" %}
+            {{ data['date-of-birth-day'] }} September {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "10" %}
+            {{ data['date-of-birth-day'] }} October {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "11" %}
+            {{ data['date-of-birth-day'] }} November {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "12" %}
+            {{ data['date-of-birth-day'] }} December {{ data['date-of-birth-year'] }}
+            {% else %}
+            6 December 1976
+            {% endif %}<br>
+            {{ data['travel-route'] or 'Day 2 and day 8 tests' }}<br>
+            {% if data['travel-route'] == 'Day 2 test' %}
+            £68
+            {% else %}
+            £116
+            {% endif %}<br>
+            <a href="/international-arrivals/{{version}}/check-your-answers">Edit details</a>
+          </p>
+        </div>
+        <p class="govuk-body-m"><strong class="govuk-!-padding-right-4">Amount to pay</strong> 
+          {% if data['travel-package-exempt'] == "Yes, I'm ordering on behalf of an asylum seeker" or data['travel-package-exempt'] == "Yes, I need a replacement test kit" %}
+          £0.00
+          {% else %}
+          {% if data['travel-route'] == 'Day 2 test' %}£68{% else %}£116{% endif %}
+          {% endif %}
+        </p>
+      </div>
 
-            </th>
-            <td class="govuk-table__cell" style="border: none">
-
-            </td>
-            <td class="govuk-table__cell">
-              <p class="govuk-body-m" style="display: flex; justify-content: flex-end;"><strong class="govuk-!-padding-right-4">Amount to pay</strong> {% if data['travel-route'] == 'Day 2 test' %}£68{% else %}£116{% endif %}</p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-
-      <div class="inline-buttons-wrapper">
+      <div class="inline-buttons-wrapper govuk-!-margin-top-8">
         <form class="form" action="/international-arrivals/{{version}}/delivery-address" method="post">
           <button class="govuk-button" data-module="govuk-button">
             Continue to payment
