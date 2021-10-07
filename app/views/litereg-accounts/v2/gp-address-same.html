@@ -1,0 +1,97 @@
+{% set version = "v2" %}
+{% set pageTitle = "Is this the address registered with your GP?" %}
+
+{% extends "includes/layout-lite-registration.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/home-address">Back</a>
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/litereg-accounts/{{version}}/action/gp-address-same" method="post">
+
+      <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            Is this the address registered with {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s GP?
+            {% else %}
+            {{ pageTitle }}
+            {% endif %}
+          </h1>
+        </legend>
+
+        <div id="content-1">
+          <span id="post-code-hint" class="govuk-body">
+            <strong class="govuk-!-font-size-27">
+              {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+                {{ data['home-address'] }}
+              {% else %}
+                {{ data['address-line-1'] or '5 Souterhead Road'}}, 
+                  {% if data['address-line-2'] %}
+                    {{ data['address-line-2'] }}, 
+                  {% endif %}
+                  {% if data['address-town'] %}
+                    {{ data['address-town'] }},
+                  {% endif %}
+                {{ data['home-postcode'] or 'LS1 3BE' }}
+              {% endif %}
+            </strong><br><br>
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            This will help us find and update their GP record with their test result.<br><br>
+            <strong>If they do not live in the UK, or they're not registered with a GP (family doctor) in the UK, select "I do not know".</strong>
+            {% else %}
+            This will help us find and update your GP record with your test result.<br><br>
+            <strong>If you do not live in the UK, or you're not registered with a GP (family doctor) in the UK, select "I do not know".</strong>
+            {% endif %}
+            
+          </span>
+          <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="gp-address-same-1" name="gp-address-same" type="radio" value="Yes" {{ checked("gp-address-same", "Yes") }}>
+              <label class="govuk-label govuk-radios__label" for="gp-address-same-1">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="gp-address-same-2" name="gp-address-same" type="radio" value="No" {{ checked("gp-address-same", "No") }}>
+              <label class="govuk-label govuk-radios__label" for="gp-address-same-2">
+                No
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="gp-address-same-3" name="gp-address-same" type="radio" value="I don't know" {{ checked("gp-address-same", "I don't know") }}>
+              <label class="govuk-label govuk-radios__label" for="gp-address-same-3">
+                I do not know
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <button class="govuk-button" type="submit" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

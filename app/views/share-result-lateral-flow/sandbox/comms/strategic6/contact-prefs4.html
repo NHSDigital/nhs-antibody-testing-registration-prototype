@@ -1,0 +1,79 @@
+{% set version = "sandbox" %}
+{% set pageTitle = "Choose your results confirmation preferences" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+  {% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/comms/strategic6/check-answers-both" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <p id="main" tabindex="-1">Choose whether to receive a confirmation message for a positive result only or for all results.</p>
+              <!-- The NHS may also contact you for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing-and-tracing/nhs-test-and-trace-if-youre-contacted-after-testing-positive-for-coronavirus/" target="blank" rel="noreferrer">contact tracing</a>.</p> -->
+              <div id="contact-hint" class="govuk-hint">
+              This only applies to reporting a lateral flow test result.
+            </div>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email">
+                <label class="govuk-label govuk-radios__label" for="contact">
+                   I prefer to get a confirmation for positive results only
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone">
+                <label class="govuk-label govuk-radios__label" for="contact-2">
+                   I prefer to get a confirmation for positive, negative and void results
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-form-group">
+          <div id="waste-hint" class="govuk-body">
+            Messages are in English unless you choose to receive them in Welsh as well.
+          </div>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+                <label class="govuk-label govuk-checkboxes__label" for="waste">
+                   I prefer to receive results messages in Welsh and English (optional)
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,13 +1,13 @@
-{% set version = "v1" %}
+{% set version = "v2" %}
 {% set pageTitle = "Enter the date and time of the coronavirus test" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-lite-registration.html" %}
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content">
     <strong class="govuk-tag govuk-phase-banner__content__tag">
-      alpha
+      beta
     </strong>
     <span class="govuk-phase-banner__text">
       This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -40,30 +40,41 @@
               {% if data['whos-taking-the-test'] == "someone-else" %}
               Select the date and time they'll take their coronavirus test. If they've already taken the coronavirus test, tell us the date and time they took it.<br><br>
               We need to know this so the lab can work out when the test is due to expire. Selecting the wrong date and time could mean them getting an incorrect result.<br><br>
-              If they’re posting your completed test kit at a Royal Mail priority postbox, they must do this no later than 1 hour before the last collection.
+              If they’re posting the completed test kit at a Royal Mail priority postbox, they must do this no later than 1 hour before the last collection.
               {% else %}
               Select the date and time you'll take your coronavirus test. If you've already taken the coronavirus test, tell us the date and time you took it.<br><br>
               We need to know this so the lab can work out when the test is due to expire. Selecting the wrong date and time could mean you getting an incorrect result.<br><br>
               If you’re posting your completed test kit at a Royal Mail priority postbox, do this no later than 1 hour before the last collection.
               {% endif %}
             </span>
+
+            {% if data['test-place'] == "At home or an accommodation of your choice" or data['test-place'] == "At home or an accommodation of their choice" %}
+            <div class="govuk-warning-text govuk-!-margin-top-5">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                If your home test swab sample is over 24 hours old and has not been returned yet, it’s probably out of date. You need to get a new test kit and send a new sample.
+              </strong>
+            </div>
+            {% endif %}
+
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="swab-test-date-4" name="swab-test-date" type="radio" value="13 April 2021" {{ checked("swab-test-date", "13 April 2021") }}>
+                <input class="govuk-radios__input" id="swab-test-date-4" name="swab-test-date" type="radio" value="5 October 2021" {{ checked("swab-test-date", "5 October 2021") }}>
                 <label class="govuk-label govuk-radios__label" for="swab-test-date-4">
-                  Yesterday, 13 April 2021
+                  Yesterday, 5 October 2021
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" value="14 April 2021" {{ checked("swab-test-date", "14 April 2021") }}>
+                <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" value="6 October 2021" {{ checked("swab-test-date", "6 October 2021") }}>
                 <label class="govuk-label govuk-radios__label" for="swab-test-date-1">
-                  Today, 14 April 2021
+                  Today, 6 October 2021
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" value="15 April 2021" {{ checked("swab-test-date", "15 April 2021") }}>
+                <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" value="7 October 2021" {{ checked("swab-test-date", "7 October 2021") }}>
                 <label class="govuk-label govuk-radios__label" for="swab-test-date-2">
-                  Tomorrow, 15 April 2021
+                  Tomorrow, 7 October 2021
                 </label>
               </div>
               <div class="govuk-radios__item">

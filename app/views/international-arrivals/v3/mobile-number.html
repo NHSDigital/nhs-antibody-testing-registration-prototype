@@ -1,13 +1,13 @@
 {% set version = "v3" %}
-{% set pageTitle = "What is your mobile number?" %}
+{% set pageTitle = "Do you have a mobile phone number?" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-intl-arrivals.html" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
+        beta
       </strong>
       <span class="govuk-phase-banner__text">
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -15,7 +15,7 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/international-arrivals/{{version}}/passport-number">Back</a>
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/travel-route">Back</a>
 
 {% endblock %}
 
@@ -35,20 +35,36 @@
               </h1>
             </legend>
             <span id="mobile-number-hint" class="govuk-body">
-              For international numbers include the country code.
+              For international numbers, include the country code (for example, +33).
             </span>
 
-            <div class="govuk-form-group govuk-!-margin-top-5">
-              <label class="govuk-label" for="mobile-phone-number">
-                Mobile number
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number" name="mobile-phone-number" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['mobile-phone-number'] }}">
-            </div>
-            <div class="govuk-form-group govuk-!-margin-top-2">
-              <label class="govuk-label" for="mobile-phone-number-confirm">
-                Confirm mobile number
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number-confirm" name="mobile-phone-number-confirm" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['mobile-phone-number-confirm'] }}">
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mobile-number-1" name="mobile-number" type="radio" value="Yes" data-aria-controls="conditional-mobile-number" {{ checked("mobile-number", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="mobile-number-1">
+                  Yes, I have a mobile number
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mobile-number">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="mobile-phone-number">
+                    Mobile number
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-half" id="mobile-phone-number" name="mobile-phone-number" type="tel" value="{{ data['mobile-phone-number'] }}">
+                </div>
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="mobile-phone-number">
+                    Confirm mobile number
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-half" id="confirm-mobile-phone-number" name="confirm-mobile-phone-number" type="tel" value="{{ data['confirm-mobile-phone-number'] }}">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mobile-number-2" name="mobile-number" type="radio" value="No" {{ checked("mobile-number", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="mobile-number-2">
+                  No, I don't have a mobile number
+                </label>
+              </div>
             </div>
 
           </fieldset>

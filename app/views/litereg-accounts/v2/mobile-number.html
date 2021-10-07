@@ -1,13 +1,13 @@
-{% set version = "v1" %}
+{% set version = "v2" %}
 {% set pageTitle = "What's your mobile number?" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-lite-registration.html" %}
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content">
     <strong class="govuk-tag govuk-phase-banner__content__tag">
-      alpha
+      beta
     </strong>
     <span class="govuk-phase-banner__text">
       This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -30,17 +30,18 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have a mobile number?
+                What's {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s mobile number?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
               </h1>
             </legend>
             <span id="mobile-number-hint" class="govuk-body">
-              We'll text the test results to this number.
+              We'll text the test results to this number.<br><br>
+              For international numbers, include the country code (for example, +33).
             </span>
-            <div class="govuk-form-group">
-              <label class="govuk-label govuk-!-margin-top-3" for="mobile-phone-number">
+            <div class="govuk-form-group govuk-!-margin-top-6">
+              <label class="govuk-label" for="mobile-phone-number">
                 Mobile phone number
               </label>
               <input class="govuk-input govuk-!-width-one-third" id="mobile-phone-number" name="mobile-phone-number" type="tel" value="{{ data['mobile-phone-number'] }}">

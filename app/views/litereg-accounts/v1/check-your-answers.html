@@ -1,7 +1,7 @@
 {% set version = "v1" %}
 {% set pageTitle = "Check your answers" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-lite-registration.html" %}
 
 {% block beforeContent %}
 
@@ -626,6 +626,20 @@
           </dd>
         </div>
         {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Agreed to do antibody tests
+          </dt>
+           <dd class="govuk-summary-list__value">
+            {{ data['fingerprick-test'] or 'No' }}
+           </dd>
+         <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/fingerprick-test">
+              Change
+              <span class="govuk-visually-hidden">fingerprick test</span>
+            </a>
+          </dd>
+        </div>
       </dl>
 
       <form action="/litereg-accounts/{{version}}/confirmation" method="post" novalidate>

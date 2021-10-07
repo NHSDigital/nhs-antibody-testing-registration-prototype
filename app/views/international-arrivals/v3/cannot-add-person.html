@@ -1,13 +1,13 @@
 {% set version = "v3" %}
-{% set pageTitle = "Sorry, everyone on this order needs to travel together" %}
+{% set pageTitle = "The next person cannot be added to this order" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-intl-arrivals.html" %}
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content">
     <strong class="govuk-tag govuk-phase-banner__content__tag">
-      alpha
+      beta
     </strong>
     <span class="govuk-phase-banner__text">
       This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -15,11 +15,7 @@
   </p>
 </div>
 
-{% if data['travel-route-same-person-1'] == "Yes" %}
 <a class="govuk-back-link" href="/international-arrivals/{{version}}/travel-details-same-person-1">Back</a>
-{% else %}
-<a class="govuk-back-link" href="/international-arrivals/{{version}}/travel-route-same-person-1">Back</a>
-{% endif %}
 
 {% endblock %}
 
@@ -29,10 +25,12 @@
     <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
-            {{ pageTitle }}
+            {{pageTitle}}
         </h1>
         <p class="govuk-body govuk-!-margin-bottom-6">
-          You can order this person their test kits in a separate order.
+          Everyone on this order needs to travel together.<br><br>
+          Once you have completed this order, you can order a test kit for the next person.
+
           <!-- If they've travelled to a country on the red list, they will need to order a package that includes hotel quarantine.<br><br>
           The red travel package contains 2 coronavirus tests and includes full board at a quarantine hotel for 10 days.<br><br>
           <a href="https://www.gov.uk/guidance/transport-measures-to-protect-the-uk-from-variant-strains-of-covid-19" target="blank" class="govuk-link">Book a red travel package</a>. -->
@@ -56,7 +54,7 @@
             <input id="travel-route-same-person-1" name="travel-route-same-person-1" type="text" value="">
           </div>
 
-          <button class="govuk-button" data-module="govuk-button" type="submit">Back to confirm tests</button>
+          <button class="govuk-button" data-module="govuk-button" type="submit">Continue</button>
         </form>
 
     </div>
