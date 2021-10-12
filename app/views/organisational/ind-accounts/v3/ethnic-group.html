@@ -5,13 +5,13 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "Is " + fullname + " currently in work?" %}
+{% set pageHeading = "What is your ethnic group?" %}
  {% set version = "organisational/lft/carehome-registration" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - {{ serviceName }}
+  {{ pageHeading }} - COVID-19
 {% endblock %}
 
 {% block beforeContent %}
@@ -39,34 +39,54 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
+
+      <p>This will help us understand how coronavirus is affecting people of different ethnic backgrounds.</p>
+
       <form class="" action="" method="post">
 
         {{ govukRadios({
-            idPrefix: "cuInWork",
-            name: "cuInWork",
-            fieldset: {
-              legend: {
-                text: pageHeading,
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--xl"
-              }
-            },
-            hint: {
-              html: "<p>This will help us understand more about the spread of the virus.</p>"
-            },
+            idPrefix: "covidUpload",
+            name: "cuEthnicGroup",
             items: [
               {
-                value: "Yes, and for the last 2 weeks they've worked from home",
-                text: "Yes, and for the last 2 weeks they've worked from home"
+                value: "Asian",
+                html: "<strong>Asian or Asian British</strong>",
+                hint: {
+                  text: "Includes any Asian background, for example, Bangladeshi, Chinese, Indian, Pakistani"
+                }
               },
               {
-                value: "Yes, and for the last 2 weeks they've travelled to work",
-                text: "Yes, and for the last 2 weeks they've travelled to work"
+                value: "Black",
+                html: "<strong>Black, African, Black British or Caribbean</strong>",
+                hint: {
+                  text: "Includes any Black background"
+                }
               },
               {
-                value: "no",
-                text: "No"
+                value: "Mixed",
+                html: "<strong>Mixed or multiple ethnic groups</strong>",
+                hint: {
+                  text: "Includes any Mixed background"
+                }
               },
+              {
+                value: "White",
+                html: "<strong>White</strong>",
+                hint: {
+                  text: "Includes any White background"
+                }
+              },
+              {
+                value: "Another",
+                html: "<strong>Another ethnic group</strong>",
+                hint: {
+                  text: "Includes any other ethnic group"
+                }
+              },
+
               {
                 divider: "or"
               },
@@ -76,6 +96,9 @@
               }
             ]
           }) }}
+
+
+
 
         <input class="govuk-button" type="submit" value="Continue">
 
