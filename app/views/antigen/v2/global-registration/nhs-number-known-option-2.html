@@ -1,0 +1,73 @@
+{% set version = "v2" %}
+{% set pageTitle = "What is your NHS number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['gp-address-same'] == "No" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/address">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/gp-address-same">Back</a>
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/global-registration/fingerprick-test" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint nhs-number-known-hint-2 nhs-number-known-hint-3 nhs-number-known-hint-4">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+            <span id="nhs-number-known-hint" class="govuk-body">
+              An NHS number is a 10-digit number, for example, 485 777 3456. You can find it on any letter the NHS has sent you, on a prescription, or by logging in to a GP practice online service.<br><br>
+              In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.<br><br>
+              It's OK if you do not have an NHS number or you do not live in the UK, you can still continue.
+            </span>
+
+            <div class="govuk-form-group govuk-!-margin-top-5 govuk-!-margin-bottom-3">
+              <label class="govuk-label" for="nhs-number">
+                NHS number
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="nhs-number" name="nhs-number" type="text" value="{{ data['nhs-number'] }}">
+            </div>
+
+            <p><a class="govuk-link" href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/">Look up your NHS number</a></p>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+
+    <div class="proto-action big">
+      <a href="/antigen/{{version}}/global-registration/nhs-number-known">
+        <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
+      </a>
+    </div>
+  </div>
+
+{% endblock %}
