@@ -1,0 +1,68 @@
+{% set version = "v27" %}
+{% set pageTitle = "Were you asked to take part in daily contact testing?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/home-org-use">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/study-uon-know" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="enter-barcode-number-hint" class="govuk-body">
+              This means taking a test every day for 7 days (usually because you’re a contact of someone who has tested positive for coronavirus).
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-5"">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-1" name="country" type="radio" {{ checked("home-org-use", "Care home") }}>
+                <label class="govuk-label govuk-radios__label" for="country-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-4" name="country" type="radio" {{ checked("home-org-use","NHS staff testing programme") }}>
+                <label class="govuk-label govuk-radios__label" for="country-4">
+                   No
+                </label>
+              </div>
+              <div class="govuk-radios__divider">or</div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-4" name="country" type="radio" {{ checked("home-org-use","NHS staff testing programme") }}>
+                <label class="govuk-label govuk-radios__label" for="country-4">
+                   I do not know
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+
+{% endblock %}
