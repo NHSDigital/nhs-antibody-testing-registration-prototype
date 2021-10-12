@@ -1,0 +1,67 @@
+{% set version = "v27" %}
+{% set pageTitle = "What’s your name?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/barcode">Back</a>
+
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        What's the name of the person you're reporting a result for?
+        {% else %}
+        {{ pageTitle }}
+        {% endif %}
+      </h1>
+
+      <form action="/share-result-lateral-flow/{{version}}/dob" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="name-hint">
+
+        <!--  <span id="name-hint" class="govuk-body">
+            If you’re reporting a result for someone else enter their name.
+          </span> -->
+
+          <div class="govuk-form-group govuk-!-margin-top-6">
+            <label class="govuk-label" for="first-name">
+              First name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="first-name" name="first-name" type="text" value="{{ data['first-name'] }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="last-name">
+              Last name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="last-name" name="last-name" type="text" value="{{ data['last-name'] }}">
+          </div>
+
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+{% endblock %}
