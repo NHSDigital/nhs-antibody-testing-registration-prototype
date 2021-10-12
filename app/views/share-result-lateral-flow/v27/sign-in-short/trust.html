@@ -1,0 +1,454 @@
+{% set version = "v27" %}
+{% set pageTitle = "What’s the name of the NHS trust?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/nhs-primary">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/share-result-lateral-flow/{{version}}/test-date" method="post">
+
+      <div class="govuk-form-group">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            {{ pageTitle }}
+          </h1>
+        </legend>
+      <!--  <br>
+        <span id="country-hint" class="govuk-body">
+          If you’re reporting a result for someone else, answer for them.
+        </span>
+        <br>-->
+        <br>
+        <span id="nhs-number-hint" class="govuk-body">
+          Start entering the name of the NHS trust, then choose from the options provided.
+        </span>
+        <br>
+        <div class="govuk-form-group govuk-!-margin-top-5">
+          <label id="occupation-hint" class="govuk-label" for="occupation">
+            NHS trust name
+          <!--  If you still cannot find yours, select ‘I cannot find the correct occupation’. -->
+          </label>
+          <div id="occupation-container" name="occupation"></div>
+        </div>
+      </div>
+
+      <button class="govuk-button" type="submit" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<style>
+  .autocomplete__wrapper {
+    position: relative;
+    max-width: 35em;
+    margin-bottom: 20px;
+    font-family: "GDS Transport",Arial,sans-serif;
+    text-transform: capitalize;
+  }
+
+  @media (min-width: 40.0625em) {
+    .autocomplete__wrapper {
+      margin-bottom: 30px;
+    }
+  }
+
+  .autocomplete__hint, .autocomplete__input {
+    -webkit-appearance: none;
+    border: 2px solid #0b0c0c;
+    border-radius: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin-bottom: 0;
+    width: 100%;
+    text-transform: capitalize;
+  }
+
+  .autocomplete__input {
+    background-color: transparent;
+    position: relative;
+    text-transform: capitalize;
+  }
+
+  .autocomplete__hint {
+    color: #b1b4b6;
+    position: absolute;
+  }
+
+  .autocomplete__input--default {
+    padding: 5px;
+  }
+
+  .autocomplete__input--focused {
+    outline: 3px solid #fd0;
+    outline-offset: 0;
+    box-shadow: inset 0 0 0 2px;
+  }
+
+  .autocomplete__input--show-all-values {
+    padding: 5px 34px 5px 5px;
+    cursor: pointer;
+  }
+
+  .autocomplete__dropdown-arrow-down {
+    z-index: -1;
+    display: inline-block;
+    position: absolute;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    top: 10px;
+  }
+
+  .autocomplete__menu {
+    background-color: #fff;
+    border: 2px solid #0b0c0c;
+    border-top: 0;
+    color: #0b0c0c;
+    margin: 0;
+    max-height: 342px;
+    overflow-x: hidden;
+    padding: 0;
+    width: 100%;
+    width: calc(100% - 4px);
+  }
+
+  .autocomplete__menu--visible {
+    display: block;
+  }
+
+  .autocomplete__menu--hidden {
+    display: none;
+  }
+
+  .autocomplete__menu--overlay {
+    box-shadow: rgba(0, 0, 0, 0.256863) 0 2px 6px;
+    left: 0;
+    position: absolute;
+    top: 100%;
+    z-index: 100;
+  }
+
+  .autocomplete__menu--inline {
+    position: relative;
+  }
+
+  .autocomplete__option {
+    border-bottom: solid #b1b4b6;
+    border-width: 1px 0;
+    cursor: pointer;
+    display: block;
+    position: relative;
+  }
+
+  .autocomplete__option > * {
+    pointer-events: none;
+  }
+
+  .autocomplete__option:first-of-type {
+    border-top-width: 0;
+  }
+
+  .autocomplete__option:last-of-type {
+    border-bottom-width: 0;
+  }
+
+  .autocomplete__option--odd {
+    background-color: #fafafa;
+  }
+
+  .autocomplete__option--focused, .autocomplete__option:hover {
+    background-color: #1d70b8;
+    border-color: #1d70b8;
+    color: #fff;
+    outline: 0;
+  }
+
+  .autocomplete__option--no-results {
+    background-color: #fafafa;
+    color: #646b6f;
+    cursor: not-allowed;
+  }
+
+  .autocomplete__hint, .autocomplete__input, .autocomplete__option {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  .autocomplete__hint, .autocomplete__option {
+    padding: 5px;
+  }
+
+  @media (min-width: 641px) {
+    .autocomplete__hint, .autocomplete__input, .autocomplete__option {
+      font-size: 19px;
+      line-height: 1.31579;
+    }
+  }
+</style>
+<script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script>
+  const occupations = [
+  "Airedale NHS Foundation Trust",
+"Alder Hey Children's NHS Foundation Trust",
+"Ashford And St Peter's Hospitals NHS Foundation Trust",
+"Avon And Wiltshire Mental Health Partnership NHS Trust",
+"Barking, Havering And Redbridge University Hospitals NHS Trust",
+"Barnet, Enfield And Haringey Mental Health NHS Trust",
+"Barnsley Hospital NHS Foundation Trust",
+"Barts Health NHS Trust",
+"Basildon And Thurrock University Hospitals NHS Foundation Trust",
+"Bedford Hospital NHS Trust",
+"Bedfordshire Hospitals NHS Foundation Trust",
+"Berkshire Healthcare NHS Foundation Trust",
+"Birmingham And Solihull Mental Health NHS Foundation Trust",
+"Birmingham Community Healthcare NHS Foundation Trust",
+"Birmingham Women's And Children's NHS Foundation Trust",
+"Blackpool Teaching Hospitals NHS Foundation Trust",
+"Bolton NHS Foundation Trust",
+"Bradford Teaching Hospitals NHS Foundation Trust",
+"Bridgewater Community Healthcare NHS Foundation Trust",
+"Brighton And Sussex University Hospitals NHS Trust",
+"Buckinghamshire Healthcare NHS Trust",
+"Calderdale And Huddersfield NHS Foundation Trust",
+"Cambridge University Hospitals NHS Foundation Trust",
+"Cambridgeshire And Peterborough NHS Foundation Trust",
+"Cambridgeshire Community Services NHS Trust",
+"Central And North West London NHS Foundation Trust",
+"Central London Community Healthcare NHS Trust",
+"Chelsea And Westminster Hospital NHS Foundation Trust",
+"Cheshire And Wirral Partnership NHS Foundation Trust",
+"Chesterfield Royal Hospital NHS Foundation Trust",
+"Cornwall Partnership NHS Foundation Trust",
+"Countess Of Chester Hospital NHS Foundation Trust",
+"County Durham And Darlington NHS Foundation Trust",
+"Coventry And Warwickshire Partnership NHS Trust",
+"Croydon Health Services NHS Trust",
+"Cumbria, Northumberland, Tyne And Wear NHS Foundation Trust",
+"Dartford And Gravesham NHS Trust",
+"Derbyshire Community Health Services NHS Foundation Trust",
+"Derbyshire Healthcare NHS Foundation Trust",
+"Devon Partnership NHS Trust",
+"Doncaster And Bassetlaw Teaching Hospitals NHS Foundation Trust",
+"Dorset County Hospital NHS Foundation Trust",
+"Dorset Healthcare University NHS Foundation Trust",
+"Dudley Integrated Health And Care NHS Trust",
+"East And North Hertfordshire NHS Trust",
+"East Cheshire NHS Trust",
+"East Kent Hospitals University NHS Foundation Trust",
+"East Lancashire Hospitals NHS Trust",
+"East London NHS Foundation Trust",
+"East Midlands Ambulance Service NHS Trust",
+"East Of England Ambulance Service NHS Trust",
+"East Suffolk And North Essex NHS Foundation Trust",
+"East Sussex Healthcare NHS Trust",
+"Epsom And St Helier University Hospitals NHS Trust",
+"Essex Partnership University NHS Foundation Trust",
+"Frimley Health NHS Foundation Trust",
+"Gateshead Health NHS Foundation Trust",
+"George Eliot Hospital NHS Trust",
+"Gloucestershire Care Services NHS Trust",
+"Gloucestershire Health And Care NHS Foundation Trust",
+"Gloucestershire Hospitals NHS Foundation Trust",
+"Great Ormond Street Hospital For Children NHS Foundation Trust",
+"Great Western Hospitals NHS Foundation Trust",
+"Greater Manchester Mental Health NHS Foundation Trust",
+"Guy's And St Thomas' NHS Foundation Trust",
+"Hampshire Hospitals NHS Foundation Trust",
+"Harrogate And District NHS Foundation Trust",
+"Hertfordshire Community NHS Trust",
+"Hertfordshire Partnership University NHS Foundation Trust",
+"Homerton University Hospital NHS Foundation Trust",
+"Hounslow And Richmond Community Healthcare NHS Trust",
+"Hull University Teaching Hospitals NHS Trust",
+"Humber Teaching NHS Foundation Trust",
+"Imperial College Healthcare NHS Trust",
+"Isle Of Wight NHS Trust",
+"James Paget University Hospitals NHS Foundation Trust",
+"Kent And Medway NHS And Social Care Partnership Trust",
+"Kent Community Health NHS Foundation Trust",
+"Kettering General Hospital NHS Foundation Trust",
+"King's College Hospital NHS Foundation Trust",
+"Kingston Hospital NHS Foundation Trust",
+"Lancashire & South Cumbria NHS Foundation Trust",
+"Lancashire Teaching Hospitals NHS Foundation Trust",
+"Leeds And York Partnership NHS Foundation Trust",
+"Leeds Community Healthcare NHS Trust",
+"Leeds Teaching Hospitals NHS Trust",
+"Leicestershire Partnership NHS Trust",
+"Lewisham And Greenwich NHS Trust",
+"Lincolnshire Community Health Services NHS Trust",
+"Lincolnshire Partnership NHS Foundation Trust",
+"Liverpool Heart And Chest Hospital NHS Foundation Trust",
+"Liverpool University Hospitals NHS Foundation Trust",
+"Liverpool Women's NHS Foundation Trust",
+"London Ambulance Service NHS Trust",
+"London North West University Healthcare NHS Trust",
+"Maidstone And Tunbridge Wells NHS Trust",
+"Manchester University NHS Foundation Trust",
+"Medway NHS Foundation Trust",
+"Mersey Care NHS Foundation Trust",
+"Mid And South Essex NHS Foundation Trust",
+"Mid Cheshire Hospitals NHS Foundation Trust",
+"Mid Essex Hospital Services NHS Trust",
+"Mid Staffordshire NHS Foundation Trust",
+"Mid Yorkshire Hospitals NHS Trust",
+"Midlands Partnership NHS Foundation Trust",
+"Milton Keynes University Hospital NHS Foundation Trust",
+"Moorfields Eye Hospital NHS Foundation Trust",
+"Norfolk And Norwich University Hospitals NHS Foundation Trust",
+"Norfolk And Suffolk NHS Foundation Trust",
+"Norfolk Community Health And Care NHS Trust",
+"North Bristol NHS Trust",
+"North Cumbria Integrated Care NHS Foundation Trust",
+"North Cumbria University Hospitals NHS Trust",
+"North East Ambulance Service NHS Foundation Trust",
+"North East London NHS Foundation Trust",
+"North Middlesex University Hospital NHS Trust",
+"North Staffordshire Combined Healthcare NHS Trust",
+"North Tees And Hartlepool NHS Foundation Trust",
+"North West Ambulance Service NHS Trust",
+"North West Anglia NHS Foundation Trust",
+"North West Boroughs Healthcare NHS Foundation Trust",
+"Northampton General Hospital NHS Trust",
+"Northamptonshire Healthcare NHS Foundation Trust",
+"Northern Devon Healthcare NHS Trust",
+"Northern Lincolnshire And Goole NHS Foundation Trust",
+"Northumbria Healthcare NHS Foundation Trust",
+"Nottingham University Hospitals NHS Trust",
+"Nottinghamshire Healthcare NHS Foundation Trust",
+"Oxford Health NHS Foundation Trust",
+"Oxford University Hospitals NHS Foundation Trust",
+"Oxleas NHS Foundation Trust",
+"Pennine Acute Hospitals NHS Trust",
+"Pennine Care NHS Foundation Trust",
+"Poole Hospital NHS Foundation Trust",
+"Portsmouth Hospitals University National Health Service Trust",
+"Project Nightingale NHS Trust",
+"Public Health Wales NHS Trust",
+"Queen Victoria Hospital NHS Foundation Trust",
+"Rotherham Doncaster And South Humber NHS Foundation Trust",
+"Royal Berkshire NHS Foundation Trust",
+"Royal Brompton And Harefield NHS Foundation Trust",
+"Royal Cornwall Hospitals NHS Trust",
+"Royal Devon And Exeter NHS Foundation Trust",
+"Royal Free London NHS Foundation Trust",
+"Royal Liverpool And Broadgreen University Hospitals NHS Trust",
+"Royal National Orthopaedic Hospital NHS Trust",
+"Royal Papworth Hospital NHS Foundation Trust",
+"Royal Surrey County Hospital NHS Foundation Trust",
+"Royal United Hospitals Bath NHS Foundation Trust",
+"Salford Royal NHS Foundation Trust",
+"Salisbury NHS Foundation Trust",
+"Sandwell And West Birmingham Hospitals NHS Trust",
+"Sheffield Children's NHS Foundation Trust",
+"Sheffield Teaching Hospitals NHS Foundation Trust",
+"Sherwood Forest Hospitals NHS Foundation Trust",
+"Shrewsbury And Telford Hospital NHS Trust",
+"Shropshire Community Health NHS Trust",
+"Solent NHS Trust",
+"Somerset NHS Foundation Trust",
+"South Central Ambulance Service NHS Foundation Trust",
+"South East Coast Ambulance Service NHS Foundation Trust",
+"South London And Maudsley NHS Foundation Trust",
+"South Tees Hospitals NHS Foundation Trust",
+"South Tyneside And Sunderland NHS Foundation Trust",
+"South Warwickshire NHS Foundation Trust",
+"South West London And St George's Mental Health NHS Trust",
+"South West Yorkshire Partnership NHS Foundation Trust",
+"South Western Ambulance Service NHS Foundation Trust",
+"Southern Health NHS Foundation Trust",
+"Southport And Ormskirk Hospital NHS Trust",
+"St George's University Hospitals NHS Foundation Trust",
+"St Helens And Knowsley Teaching Hospitals NHS Trust",
+"Stockport NHS Foundation Trust",
+"Surrey And Borders Partnership NHS Foundation Trust",
+"Surrey And Sussex Healthcare NHS Trust",
+"Sussex Community NHS Foundation Trust",
+"Sussex Partnership NHS Foundation Trust",
+"Tameside And Glossop Integrated Care NHS Foundation Trust",
+"Taunton And Somerset NHS Foundation Trust",
+"Tavistock And Portman NHS Foundation Trust",
+"Tees, Esk And Wear Valleys NHS Foundation Trust",
+"The Christie NHS Foundation Trust",
+"The Clatterbridge Cancer Centre NHS Foundation Trust",
+"The Dudley Group NHS Foundation Trust",
+"The Hillingdon Hospitals NHS Foundation Trust",
+"The Newcastle Upon Tyne Hospitals NHS Foundation Trust",
+"The Princess Alexandra Hospital NHS Trust",
+"The Queen Elizabeth Hospital, King's Lynn, NHS Foundation Trust",
+"The Robert Jones And Agnes Hunt Orthopaedic Hospital NHS Foundation Trust",
+"The Rotherham NHS Foundation Trust",
+"The Royal Bournemouth And Christchurch Hospitals NHS Foundation Trust",
+"The Royal Marsden NHS Foundation Trust",
+"The Royal Orthopaedic Hospital NHS Foundation Trust",
+"The Royal Wolverhampton NHS Trust",
+"The Walton Centre NHS Foundation Trust",
+"Torbay And South Devon NHS Foundation Trust",
+"United Lincolnshire Hospitals NHS Trust",
+"University College London Hospitals NHS Foundation Trust",
+"University Hospital Southampton NHS Foundation Trust",
+"University Hospitals Birmingham NHS Foundation Trust",
+"University Hospitals Bristol And Weston NHS Foundation Trust",
+"University Hospitals Coventry And Warwickshire NHS Trust",
+"University Hospitals Of Derby And Burton NHS Foundation Trust",
+"University Hospitals Of Leicester NHS Trust",
+"University Hospitals Of Morecambe Bay NHS Foundation Trust",
+"University Hospitals Of North Midlands NHS Trust",
+"University Hospitals Plymouth NHS Trust",
+"Velindre NHS Trust",
+"Walsall Healthcare NHS Trust",
+"Warrington And Halton Teaching Hospitals NHS Foundation Trust",
+"Welsh Ambulance Services NHS Trust",
+"West Hertfordshire Hospitals NHS Trust",
+"West London NHS Trust",
+"West Midlands Ambulance Service University NHS Foundation Trust",
+"West Suffolk NHS Foundation Trust",
+"Western Sussex Hospitals NHS Foundation Trust",
+"Weston Area Health NHS Trust",
+"Whittington Health NHS Trust",
+"Wirral Community Health And Care NHS Foundation Trust",
+"Wirral University Teaching Hospital NHS Foundation Trust",
+"Worcestershire Acute Hospitals NHS Trust",
+"Worcestershire Health And Care NHS Trust",
+"Wrightington, Wigan And Leigh NHS Foundation Trust",
+"Wye Valley NHS Trust",
+"Yeovil District Hospital NHS Foundation Trust",
+"York Teaching Hospital NHS Foundation Trust",
+"Yorkshire Ambulance Service NHS Trust",
+"Unknown"
+  ];
+
+  accessibleAutocomplete({
+    autoselect: true,
+    element: document.querySelector('#occupation-container'),
+    id: 'occupation',
+    name: 'occupation-autocomplete',
+    source: occupations,
+    defaultValue: '{{ data['occupation-autocomplete'] }}',
+    displayMenu: 'overlay',
+    minLength: 2,
+    tNoResults: function() {
+      return "Other"
+    }
+  });
+</script>
+
+<script>
+  $(function(){
+    $("#includedContent1").load("/includes/LFD-account-menu.html");
+  });
+</script>
+
+{% endblock %}
