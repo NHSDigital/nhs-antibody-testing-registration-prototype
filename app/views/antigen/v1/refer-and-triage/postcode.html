@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Enter a postcode to find test sites near you" %}
+{% set pageTitle = "Enter a postcode" %}
 
 {% extends "includes/layout.html" %}
 
@@ -26,12 +26,15 @@
 
       <form action="/antigen/{{version}}/refer-and-triage/do-you-have-a-car" method="post">
 
-        <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+        <fieldset class="govuk-fieldset" aria-describedby="postcode-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
               {{ pageTitle }}
             </h1>
           </legend>
+          <span id="postcode-hint" class="govuk-body">
+            This is so we can show test site options near you. You can still order a home test if you prefer.
+          </span>
           <div class="govuk-form-group govuk-!-margin-top-5">
             <label class="govuk-label" for="home-postcode">
               Postcode
@@ -39,6 +42,18 @@
             <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}">
           </div>
         </fieldset>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              If you do not have a fixed address
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            You can use the postcode of a nearby reference address, such as your GP.<br><br>
+            You can also call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.
+          </div>
+        </details>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
