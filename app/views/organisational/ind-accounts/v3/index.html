@@ -1,0 +1,97 @@
+{% set pageHeading = "Register tests provided by an organisation" %}
+{% set version = "organisational/ind-accounts/v3" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+
+
+      <p class="govuk-body">
+        If you have been given a coronavirus (COVID-19) test by an organisation, you can register and report your test results using this service.
+      </p>
+
+      <p>This service supports people who work in:   </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        <span class="govuk-body govuk-!-font-weight-bold">Health care</span> <br>Independent health providers such as dentists
+        </li>
+        <li>
+          <span class="govuk-body govuk-!-font-weight-bold">Care settings</span><br> Care homes, supported living and domiciliary workers
+          </li>
+          <li>
+            <span class="govuk-body govuk-!-font-weight-bold">Education</span><br> Nurseries, schools, colleges and universities
+            </li>
+            <li>
+              <span class="govuk-body govuk-!-font-weight-bold">Prison service</span><br> Prisons and Ministry of Justice
+              </li>
+      </ul>
+
+<p>We will link your test to your organisation. If your organisation did not give you a test, this is not the correct service to use. </p>
+
+      <h2 class="govuk-heading-m">
+        What you need
+      </h2>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+        Name and postcode of the organisation that gave you the test
+        </li>
+        <li>
+          Test kit barcode
+        </li>
+        <li>
+          Email address
+        </li>
+      </ul>
+
+      <p>If you are a domiciliary worker, you can use a NHS log in to register your test result. Sign in or create an account.
+</p>
+
+
+      {{ govukButton({
+        text: "Start now",
+        href: "/" + version + "/confirm-before?cuSingleCount=",
+        classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
+        isStartButton: true
+      }) }}
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+  </div>
+
+{% endblock %}

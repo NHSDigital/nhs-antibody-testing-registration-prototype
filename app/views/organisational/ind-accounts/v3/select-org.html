@@ -5,8 +5,8 @@
       John Smith
   {% endif %}
 {% endset %}
-{% set pageHeading = "What is your home address?" %}
- {% set version = "organisational/ind-account/v3" %}
+{% set pageHeading = "What organisation provids you with COVID-19 tests?" %}
+ {% set version = "organisational/lft/carehome-registration" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
@@ -42,6 +42,7 @@
       <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
 
+
        <form class="" action="/{{ version }}/single/occupation/index" method="get">
 
          <div class="govuk-form-group">
@@ -51,17 +52,29 @@
 
          <div class="govuk-form-group">
   <label class="govuk-label" for="sort">
-    <span class="govuk-body govuk-!-font-weight-bold">Select an address</span>
+    <span class="govuk-body govuk-!-font-weight-bold">Select an organisation</span>
   </label>
   <select class="govuk-select" id="sort" name="sort">
-    <option value="updated" selected>3 addresses found</option>
-    <option value="published">5 Farringdon Lane, London, EC2 8YU</option>
-    <option value="published">7 Farringdon Lane, London, EC2 8YU</option>
-    <option value="views">12 Farringdon Lane, London, EC2 8YU</option>
+    <option value="updated" selected>3 organisations found</option>
+    <option value="published">Domicilary Care, 5 Farringdon Lane, London, EC2 8YU</option>
+    <option value="published">School, 7 Farringdon Lane, London, EC2 8YU</option>
+    <option value="views">Sunny Care, 12 Farringdon Lane, London, EC2 8YU</option>
   </select>
 </div>
 
-<p><a href="/_improvements/TTOLDT-210/address-manual" class="govuk-link">I cannot find the address in the list </a></p>
+<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      I cannot find the organisation in the list
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+  <p><a href="/_improvements/TTOLDT-210/address-manual" class="govuk-link">Search by organisation name</a></p>
+  <p>Contact the call centre on 119 if you are unable to find the organisation.
+  </div>
+</details>
+
+
 
          <input class="govuk-button" type="submit" value="Continue">
 
