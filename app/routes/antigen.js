@@ -639,11 +639,11 @@ router.post('/antigen/v2/action3/address-person-1', function (req, res) {
 // })
 
 router.post('/antigen/v2/action3/nhs-number-known', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
-  if (nhsNumberKnown == "Yes"){
-    res.redirect('/antigen/v2/global-registration/nhs-number')
-  } else {
+  let nhsNumber = req.session.data['nhs-number-known']
+  if (nhsNumber){
     res.redirect('/antigen/v2/global-registration/fingerprick-test')
+  } else {
+    res.redirect('/antigen/v2/global-registration/nhs-number-known-error')
   }
 })
 
