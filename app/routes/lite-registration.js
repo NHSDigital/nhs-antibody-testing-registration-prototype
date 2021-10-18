@@ -761,7 +761,6 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
 
     })
 
-
     // Version 19.5 - LFD Results sharing - Ethnic group route
     router.post('/share-result-lateral-flow/v19-5/action6/ethnic-group', function (req, res) {
       let ethnicGroup = req.session.data['ethnic-group']
