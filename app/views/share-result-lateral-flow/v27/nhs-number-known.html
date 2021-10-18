@@ -1,5 +1,5 @@
 {% set version = "v27" %}
-{% set pageTitle = "Do you know your NHS number?" %}
+{% set pageTitle = "NHS number" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -20,11 +20,7 @@
           <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                Do you know {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?
-                {% else %}
-                {{ pageTitle }}
-                {% endif %}
+                NHS number
               </h1>
             </legend>
             <span id="nhs-number-known-hint" class="govuk-body">
@@ -34,27 +30,30 @@
                     <br><br>
                     It's OK if you do not have an NHS number or you do not live in the UK, you can still continue.</p>
             </span>
+
             <p class="govuk-!-margin-top-5"><a href="https://www.nhs.uk/nhs-services/online-services/find-nhs-number/">Look up your NHS number</a></p>
 
-                <span id="nhs-number-hint" class="govuk-body">
-                </span>
-                <div class="govuk-form-group govuk-!-margin-top-5">
-                  <label class="govuk-label" for="nhs-number">
-                    {% if data['whos-taking-the-test'] == "someone-else" %}
-                    What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?
-                    {% else %}
-                    What is your NHS number?
-                    {% endif %}
-                  </label>
-                  <input class="govuk-input govuk-input--width-10" id="nhs-number" name="nhs-number" type="text" value="{{ data['nhs-number'] }}">
-                </div>
-                <br>
+                      <div class="govuk-form-group govuk-!-margin-bottom-3">
+                            {% if data['whos-taking-the-test'] == "someone-else" %}
+                            <label class="govuk-label" for="nhs-number">
+                              <strong>What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?</strong>
+                            </label>
+                            {% else %}
+                            <label class="govuk-label" for="nhs-number">
+                              <strong>What is your NHS number?</strong>
+                            </label>
+                            {% endif %}
+                          <input class="govuk-input govuk-input--width-10" id="nhs-number" name="nhs-number" type="text" value="">
+                        </div>
+
+
                 <button class="govuk-button" data-module="govuk-button">Continue</button>
-                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-                    Continue without NHS number
-                </button>
-              </fieldset>
-            </div>
+                <button class="govuk-button govuk-button--secondary" data-module="govuk-button"> Continue without NHS number</button>
+
+          </fieldset>
+        </div>
+
+
 
       </form>
 

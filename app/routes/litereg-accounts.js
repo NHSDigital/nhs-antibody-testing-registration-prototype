@@ -470,13 +470,12 @@ router.post('/litereg-accounts/v2/action9/currently-in-work', function (req, res
 // Version 2 - Lite Registration Accounts - NHS number known route
 
 router.post('/litereg-accounts/v2/action9/nhs-number-known', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
-  if (nhsNumberKnown == "Yes"){
-    res.redirect('/litereg-accounts/v2/nhs-number')
-  } else {
+  let nhsNumber = req.session.data['nhs-number-known']
+  if (nhsNumber){
     res.redirect('/litereg-accounts/v2/fingerprick-test')
+  } else {
+    res.redirect('/litereg-accounts/v2/nhs-number-known-error')
   }
-
 })
 
 // Version 2 - Lite Registration Accounts - Login email route
