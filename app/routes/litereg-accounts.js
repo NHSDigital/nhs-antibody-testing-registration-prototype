@@ -526,10 +526,15 @@ router.post('/litereg-accounts/v2/action9/check-mobile', function (req, res) {
 // Version 2 - Lite Registration Accounts - test place route
 router.post('/litereg-accounts/v2/action5/test-place', function (req, res) {
   let testPlace = req.session.data['test-place']
-  if (testPlace == "I’ve been to a test site and need to register my test" || testPlace == "I'm in a government quarantine hotel and need to register my test" ) {
+  if (testPlace == "I’ve been to a test site and need to register my test") {
     res.redirect('/litereg-accounts/v2/site-id')
-  } else if  (testPlace == "I've taken a test as part of an event or conference" || testPlace == "I'm taking part in surge testing, for example, in a local area or a school, or university" )
+  } else if  (testPlace == "I'm in a government quarantine hotel and need to register my test" ) {
+    res.redirect('/litereg-accounts/v2/hotel-id')
+  }  else if  (testPlace == "I've taken a test as part of an event or conference" ) {
+    res.redirect('/litereg-accounts/v2/event-id')
+  } else if  (testPlace == "I'm taking part in surge testing, for example, in a local area or a school, or university" ) {
     res.redirect('/litereg-accounts/v2/unique-reference-number')
+  }
    else {
     res.redirect('/litereg-accounts/v2/royal-mail-barcode')
   }

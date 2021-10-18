@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "What's the test site ID?" %}
+{% set pageTitle = "What's your unique reference number?" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -25,7 +25,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form lass="form" action="/litereg-accounts/{{version}}/site-confirmation" method="post">
+    <form lass="form" action="/litereg-accounts/v2/test-date" method="post">
       <div class="govuk-form-group">
         <h1 class="govuk-label-wrapper govuk-!-margin-bottom-8">
           <label class="govuk-label govuk-label--xl" for="siteID">
@@ -33,25 +33,20 @@
           </label>
         </h1>
         <span id="siteID-hint" class="govuk-body">
-          The test site ID will be either 3 or 4 characters.<br><br>
+          The unique reference number will be either 3 or 4 characters.<br><br>
 
-          {% if data['whos-taking-the-test'] == "someone-else" %}
-          If they cannot find the ID, get them to ask a member of staff.<br><br>
-          {% else %}
-          If you cannot find the ID, ask a member of staff.
-          {% endif %}
         </span>
 
         <div class="govuk-form-group govuk-!-margin-top-5">
           <label class="govuk-label" for="site-id">
-            Test site ID<br>
+            Event ID<br>
             <span class="govuk-hint">For example, THGR or LMHL</span>
           </label>
           <input class="govuk-input" id="site-id" name="site-id" type="text" value="{{ data['site-id'] }}">
         </div>
       </div>
 
-      <p class="govuk-body"><a href="/litereg-accounts/{{version}}/site-postcode">I do not know the ID</a></p>
+      <p class="govuk-body"><a href="/litereg-accounts/v2/test-date">I do not know my unique reference number</a></p>
 
       <button class="govuk-button" type="submit" data-module="govuk-button">
         Continue
