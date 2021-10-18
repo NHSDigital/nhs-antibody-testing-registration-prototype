@@ -523,15 +523,7 @@ router.post('/litereg-accounts/v2/action9/check-mobile', function (req, res) {
   }
 })
 
-// Version 2 - Lite Registration Accounts - test place route
-router.post('/litereg-accounts/v2/action5/test-place', function (req, res) {
-  let testPlace = req.session.data['test-place']
-  if (testPlace == "At a test site, government quarantine hotel, or in accommodation as part of an event/conference" or testPlace == "At a test site, government quarantine hotel, or in accommodation as part of an event/conference" ) {
-    res.redirect('/litereg-accounts/v2/site-id')
-  } else {
-    res.redirect('/litereg-accounts/v2/royal-mail-barcode')
-  }
-})
+
 
 // Version 2 - Lite Registration Accounts - GP address same route
 router.post('/litereg-accounts/v2/action/gp-address-same', function (req, res) {
