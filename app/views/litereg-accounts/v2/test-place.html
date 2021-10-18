@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Where are you taking your test?" %}
+{% set pageTitle = "Why are you taking your?" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -35,7 +35,7 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                Where are they taking their test?
+                Why are they taking their test?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
@@ -44,23 +44,63 @@
 
             <div class="govuk-radios govuk-!-margin-top-5 govuk-!-bottom-top-5">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="test-place-1" name="test-place" type="radio" value="At a test site, government quarantine hotel, or in accommodation as part of an event/conference" {{ checked("test-place", "At a test site, government quarantine hotel, or in accommodation as part of an event/conference") }}>
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                <input class="govuk-radios__input" id="test-place-1" name="test-place" type="radio" value="They’ve been to a test site and need to register their test" {{ checked("test-place", "They’ve been to a test site and need to register their test") }}>
                 <label class="govuk-label govuk-radios__label" for="test-place-1">
-                  At a test site, government quarantine hotel, or in accommodation as part of an event/conference
+                  They’ve been to a test site and need to register their test
                 </label>
+                {% else %}
+                <input class="govuk-radios__input" id="test-place-1" name="test-place" type="radio" value="I’ve been to a test site and need to register my test" {{ checked("test-place", "I’ve been to a test site and need to register my test") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-1">
+                  I’ve been to a test site and need to register my test
+                </label>
+                {% endif %}
               </div>
               <div class="govuk-radios__item">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="At home or an accommodation of their choice" {{ checked("test-place", "At home or an accommodation of their choice") }}>
+                <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="They are in a government quarantine hotel and need to register their test" {{ checked("test-place", "They are in a government quarantine hotel and need to register their test") }}>
                 <label class="govuk-label govuk-radios__label" for="test-place-2">
-                  At home or an accommodation of their choice
+                  They are in a government quarantine hotel and need to register their test
                 </label>
                 {% else %}
-                <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="At home or an accommodation of your choice" {{ checked("test-place", "At home or an accommodation of your choice") }}>
+                <input class="govuk-radios__input" id="test-place-2" name="test-place" type="radio" value="I'm in a government quarantine hotel and need to register my test" {{ checked("test-place", "I'm in a government quarantine hotel and need to register my test") }}>
                 <label class="govuk-label govuk-radios__label" for="test-place-2">
-                  At home or an accommodation of your choice
+                  I'm in a government quarantine hotel and need to register my test
                 </label>
                 {% endif %}
+              </div>
+              <div class="govuk-radios__item">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                <input class="govuk-radios__input" id="test-place-3" name="test-place" type="radio" value="They've taken a test as part of an event or conference" {{ checked("test-place", "They've taken a test as part of an event or conference") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-3">
+                  They've taken a test as part of an event or conference
+                </label>
+                {% else %}
+                <input class="govuk-radios__input" id="test-place-3" name="test-place" type="radio" value="I've taken a test as part of an event or conference" {{ checked("test-place", "I've taken a test as part of an event or conference") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-3">
+                  I've taken a test as part of an event or conference
+                </label>
+                {% endif %}
+              </div>
+              <div class="govuk-radios__item">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                <input class="govuk-radios__input" id="test-place-4" name="test-place" type="radio" value="They are taking part in surge testing, for example, in a local area or a school, or university " {{ checked("test-place", "They are taking part in surge testing, for example, in a local area or a school, or university ") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-4">
+                  They are taking part in surge testing, for example, in a local area or a school, or university
+                </label>
+                {% else %}
+                <input class="govuk-radios__input" id="test-place-4" name="test-place" type="radio" value="I'm taking part in surge testing, for example, in a local area or a school, or university" {{ checked("test-place", "I'm taking part in surge testing, for example, in a local area or a school, or university ") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-4">
+                  I'm taking part in surge testing, for example, in a local area or a school, or university
+                </label>
+                {% endif %}
+              </div>
+              <div class="govuk-radios__divider">or</div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-place-5" name="test-place" type="radio" value="None of the above " {{ checked("test-place", "None of the above ") }}>
+                <label class="govuk-label govuk-radios__label" for="test-place-5">
+                  None of the above
+                </label>
               </div>
             </div>
           </fieldset>
