@@ -14,7 +14,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/share-result-lateral-flow/{{version}}/nhs-number" method="post">
+      <form action="/share-result-lateral-flow/{{version}}/want-confirmations" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint">
@@ -28,37 +28,35 @@
               </h1>
             </legend>
             <span id="nhs-number-known-hint" class="govuk-body">
-              <strong>It’s OK if you do not, you can still continue.</strong><br><br>
-              It’s 10 digits long, and usually on prescriptions or a hospital or GP letter.<br><br>
-              In Scotland, it’s known as a CHI number. In Northern Ireland, it’s known as an H&C number.
+                <p> An NHS number is a 10-digit number, for example, 485 777 3456. You can find it on any letter the NHS has sent you, on a prescription, or by logging in to a GP practice online service.
+                    <br><br>
+                    In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.
+                    <br><br>
+                    It's OK if you do not have an NHS number or you do not live in the UK, you can still continue.</p>
             </span>
-            <p class="govuk-!-margin-top-5"><a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/">How to find an NHS number</a></p>
+            <p class="govuk-!-margin-top-5"><a href="https://www.nhs.uk/nhs-services/online-services/find-nhs-number/">Look up your NHS number</a></p>
             <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="nhs-number-known-1" name="nhs-number-known" type="radio" onclick="setLocation(this);" value="nhs-number" {{ checked("nhs-number-known", "Yes") }}>
-                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-1">
-                    {% if data['whos-taking-the-test'] == "someone-else" %}
-                    Yes, I know their NHS number
-                    {% else %}
-                    Yes, I know my NHS number
-                    {% endif %}
-                  </label>
+
                 </div>
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="nhs-number-known-2" name="nhs-number-known" type="radio" onclick="setLocation(this);" value="want-confirmations" {{ checked("nhs-number-known", "No") }}>
-                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-2">
-                    {% if data['whos-taking-the-test'] == "someone-else" %}
-                    No, I do not know their NHS number
-                    {% else %}
-                    No, I do not know my NHS number
-                    {% endif %}
+
+                <span id="nhs-number-hint" class="govuk-body">
+                </span>
+                <div class="govuk-form-group govuk-!-margin-top-5">
+                  <label class="govuk-label" for="nhs-number">
+                    NHS number?
                   </label>
+                  <input class="govuk-input govuk-input--width-10" id="nhs-number" name="nhs-number" type="text" value="{{ data['nhs-number'] }}">
                 </div>
+                <br>
+                <button class="govuk-button" data-module="govuk-button">Continue</button>
+                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                    Continue without NHS number
+                    </button>
               </div>
           </fieldset>
         </div>
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
 
       </form>
 
