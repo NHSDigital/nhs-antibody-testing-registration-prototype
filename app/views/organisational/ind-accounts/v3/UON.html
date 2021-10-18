@@ -1,4 +1,4 @@
-{% set pageHeading = "What organisation provids you with COVID-19 tests?" %}
+{% set pageHeading = "Which organisation gave you the test kits?" %}
  {% set version = "organisational/ind-accounts/v3" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
@@ -40,10 +40,20 @@
       {{ pageHeading }}
     </h1>
 
-        <p>Search by entering the organisation's unique organisation number (UON), postcode or name.</p>
+        <p>Enter the UON, postcode <span class="govuk-body govuk-!-font-weight-bold">or</span>  name of the organisation that gave you the test kits.</p>
 
-    <form action="/{{ version }}/UON-check" method="get">
 
+
+
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="">
+          UON
+        </label>
+        <input class="govuk-input govuk-!-width-one-third" id="" name="" type="text">
+        <a href='/{{ version }}/UON-check'><button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Find organisation
+        </button></a>
       <details class="govuk-details" data-module="govuk-details">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
@@ -51,39 +61,20 @@
     </span>
   </summary>
   <div class="govuk-details__text">
-    <p>A UON is the 8 digit number given to you by the <span class="govuk-body govuk-!-font-weight-bold">Testing Programme</span>. For example, 12345678. It's a different number from your usual organisation ID.</p>
-    <p><a href='#'>Look up your organisation number here</a></p>
-    <p>If you're having any problems, contact:</p>
-    <ul class='govuk-list govuk-list--spaced'>
-      <li>
-        <strong>England, Wales or Northern Ireland</strong><br> call 119 (free from mobiles and landlines)
-      </li>
-      <li>
-        <strong>Scotland</strong><br> call 0300 303 2713 (charged at your standard network rate)
-      </li>
-    </ul>
+    <p>This is an 8-digit number for example, 12345678.
+    <br><a href='#'>Look up the organisation number here</a></p>
+
     </div>
-
 </details>
-
-      <div class="govuk-form-group">
-        <label class="govuk-label" for="">
-          UON
-        </label>
-        <input class="govuk-input govuk-!-width-one-third" id="" name="" type="text">
-        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-          Find organisation
-        </button>
-      </div>
 
         <div class="govuk-form-group">
           <label class="govuk-label" for="">
             Postcode
           </label>
           <input class="govuk-input govuk-!-width-one-quarter" id="" name="" type="text">
-          <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          <a href='/{{ version }}/UON-select-postcode'><button class="govuk-button govuk-button--secondary" data-module="govuk-button">
             Find organisation
-          </button>
+          </button></a>
         </div>
 
         <div class="govuk-form-group">
@@ -91,35 +82,26 @@
             Organisation name
           </label>
           <input class="govuk-input govuk-!-width-one-quarter" id="" name="" type="text">
-          <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          <a href='/{{ version }}/UON-select-name'><button class="govuk-button govuk-button--secondary" data-module="govuk-button">
             Find organisation
-          </button>
+          </button></a>
         </div>
 
 
         <details class="govuk-details" data-module="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
-              I do now know the organisation's details
+              I do not know the organisation details
             </span>
           </summary>
           <div class="govuk-details__text">
-            <p>If you do not know you organisation's details you can try the following:</p>
-            <ul class="govuk-list govuk-list--bullet">
-              <li>
-                Ask the organisation for the organisation details
-              </li>
-              <li>
-              Use google to search for the organisation's name and postcode
-              </li>
-            </ul>
-            <p>If you still cannot find your organisation's details, contact the helpline on 119.</p>
+            <p>If you do not know the organisation details you can ask the organisation or search the Internet for their name and postcode.</p>
+          
+            <p>If you're having any problems, call 119. Lines are open 7am to 11pm.</p>
 
           </div>
         </details>
 
-
-        <input class="govuk-button" type="submit" value="Continue">
 
       </form>
 

@@ -1809,4 +1809,22 @@ router.post('/organisational/test-pass/reg-with-pass/several/have-return-box', f
 });
 
 
+
+
+// // organisational/ind-accounts/v3
+
+
+
+router.post('/organisational/ind-accounts/v3/UON-check', function (req, res) {
+  let answer = req.body.changeUON;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/ind-accounts/v3/who')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/ind-accounts/v3/UON')
+    } else {
+    res.redirect('/organisational/ind-accounts/v3/UON-check?error=empty')
+    }
+});
+
 module.exports = router
