@@ -532,7 +532,7 @@ router.post('/litereg-accounts/v2/action5/test-place', function (req, res) {
     res.redirect('/litereg-accounts/v2/hotel-id')
   }  else if  (testPlace == "I've taken a test as part of an event or conference" ) {
     res.redirect('/litereg-accounts/v2/event-id')
-  } else if  (testPlace == "I'm taking part in surge testing, for example, in a local area or a school, or university" ) {
+  } else if  (testPlace == "I'm taking part in surge testing, for example, in a local area or a school, or university" || testPlace == "They are taking part in surge testing, for example, in a local area or a school, or university" || testPlace == "I’ve been told to take part in local testing to help stop the spread of COVID-19" || testPlace == "They’ve been told to take part in local testing to help stop the spread of COVID-19") {
     res.redirect('/litereg-accounts/v2/local-testing-code')
   }
    else {
