@@ -533,7 +533,7 @@ router.post('/litereg-accounts/v2/action5/test-place', function (req, res) {
   }  else if  (testPlace == "I've taken a test as part of an event or conference" ) {
     res.redirect('/litereg-accounts/v2/event-id')
   } else if  (testPlace == "I'm taking part in surge testing, for example, in a local area or a school, or university" ) {
-    res.redirect('/litereg-accounts/v2/unique-reference-number')
+    res.redirect('/litereg-accounts/v2/local-testing-code')
   }
    else {
     res.redirect('/litereg-accounts/v2/royal-mail-barcode')
