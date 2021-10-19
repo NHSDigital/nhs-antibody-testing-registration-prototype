@@ -1,0 +1,128 @@
+{% set version = "v28" %}
+{% set pageTitle = "When did you take the test?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/lite-registration-lateral-flow/{{version}}/country">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/barcode" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="swab-test-date-1-hint swab-test-date-2-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="swab-test-date-1-hint" class="govuk-body">
+              You must report your result as soon as possible after taking the test.<br><br>
+              If you took the test 2 days ago, or earlier, take another test and report that result straight away.<br><br>
+            </span>
+            <span id="swab-test-date-2-hint" class="govuk-body">
+              <strong>Select a date</strong>
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" value="20 October 2020" {{ checked("swab-test-date", "20 October 2020") }}>
+                <label class="govuk-label govuk-radios__label" for="swab-test-date-1">
+                  Today, 20 October 2020
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" value="21 October 2020" {{ checked("swab-test-date", "21 October 2020") }}>
+                <label class="govuk-label govuk-radios__label" for="swab-test-date-2">
+                  Yesterday, 19 October 2020
+                </label>
+              </div>
+            <!--  <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="swab-test-date-3" name="swab-test-date" type="radio" value="different" data-aria-controls="conditional-swab-test-date" {{ checked("swab-test-date", "different") }}>
+                <label class="govuk-label govuk-radios__label" for="swab-test-date-3">
+                    A different date
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-swab-test-date">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="different-date">
+                    <strong>When was your test taken?</strong><br>
+                    <span class="govuk-hint">For example, 18 10 2020</span>
+                  </label>
+                  <div class="govuk-date-input" id="date-of-swab-test">
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="date-of-swab-test-day">
+                          Day
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-swab-test-day" name="date-of-swab-test-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-swab-test-day'] }}">
+                      </div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="date-of-swab-test-month">
+                          Month
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-swab-test-month" name="date-of-swab-test-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-swab-test-month'] }}">
+                      </div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="date-of-swab-test-year">
+                          Year
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-of-swab-test-year" name="date-of-swab-test-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-swab-test-year'] }}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             <div class="govuk-form-group govuk-!-margin-top-6">
+                <label class="govuk-label govuk-date-input__label" for="swab-test-time">
+                  <strong>Enter a time</strong><br>
+                  <span class="govuk-hint govuk-!-margin-top-2">For example, 9pm</span>
+                  Hour
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="swab-test-time" name="swab-test-time" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['swab-test-time'] }}">
+              </div>
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="swab-test-time-am" name="swab-test-time-ampm" type="radio" value="am" {{ checked("swab-test-time-ampm", "am") }}>
+                  <label class="govuk-label govuk-radios__label" for="swab-test-time-am">
+                    am
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="swab-test-time-pm" name="swab-test-time-ampm" type="radio" value="pm" {{ checked("swab-test-time-ampm", "pm") }}>
+                  <label class="govuk-label govuk-radios__label" for="swab-test-time-pm">
+                    pm
+                  </label>
+                </div>
+             </div>
+            </div> -->
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
