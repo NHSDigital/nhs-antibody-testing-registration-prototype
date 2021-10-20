@@ -6,7 +6,7 @@
   {% endif %}
 {% endset %}
 {% set pageHeading = "Select your area of work" %}
- {% set version = "organisational/lft/carehome-registration" %}
+ {% set version = "organisational/ind-accounts/v3" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
@@ -25,6 +25,10 @@
       html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
       }) }}
 
+            <!-- div for include from content folder -->
+            <div id="includedContent1"></div>
+
+
       {{ govukBackLink({
         text: "Back",
         href: "javascript:window.history.go(-1);"
@@ -39,7 +43,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/{{ version }}/single/occupation/work-details" method="get">
+      <form action="/{{ version }}/personal-details/occupation/work-details" method="get">
 
         {{ govukRadios({
             idPrefix: "cuAreaWork",
@@ -119,5 +123,12 @@
 
     </div>
   </div>
+  
+  <!-- corresponding html file name included from content folder -->
+<script>
+  $(function(){
+    $("#includedContent1").load("/includes/LFD-account-menu.html");
+  });
+</script>
 
 {% endblock %}

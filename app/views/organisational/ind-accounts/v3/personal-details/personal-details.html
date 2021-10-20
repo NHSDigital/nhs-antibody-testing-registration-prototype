@@ -1,5 +1,5 @@
 {% set pageHeading = "Enter your personal details" %}
- {% set version = "organisational/ind-account/v3" %}
+ {% set version = "organisational/ind-accounts/v3" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
@@ -17,6 +17,9 @@
       },
       html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
       }) }}
+
+            <!-- div for include from content folder -->
+            <div id="includedContent1"></div>
 
       {{ govukBackLink({
         text: "Back",
@@ -37,7 +40,7 @@
       </h1>
 
 
-      <form class="" action="/{{ version }}/single/ethnic-group" method="get">
+      <form class="" action="/{{ version }}/personal-details/ethnic-group" method="get">
         {{ govukInput({
           label: {
             text: "First name"
@@ -147,5 +150,12 @@
 
     </div>
   </div>
+
+  <!-- corresponding html file name included from content folder -->
+<script>
+  $(function(){
+    $("#includedContent1").load("/includes/LFD-account-menu.html");
+  });
+</script>
 
 {% endblock %}
