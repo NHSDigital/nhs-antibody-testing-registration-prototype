@@ -1,0 +1,91 @@
+{% set version = "v28" %}
+{% set pageTitle = "Enter your Community Number" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/test-reason-2">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/share-result-lateral-flow/{{version}}/urg-number-check" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Enter their Community Number
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+            </legend>
+            <span id="enter-barcode-number-hint" class="govuk-body">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+                The Community Number is an 8 digit reference number for the organisation they got their test from.
+              <br>
+              <br>
+                They can find the Community Number at the test collection point or on the leaflet they were given with their test.
+              {% else %}
+                The Community Number is an 8 digit reference number for the organisation you got your test from.
+              <br>
+              <br>
+                You can find the Community Number at the test collection point or on the leaflet you were given with your test.
+              {% endif %}
+            </span>
+
+             <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+               <summary class="govuk-details__summary">
+                 <span class="govuk-details__summary-text">
+                   {% if data['whos-taking-the-test'] == "someone-else" %}
+                   What to do if they do not know their Community Number
+                   {% else %}
+                   What to do if you do not know the Community Number
+                   {% endif %}
+                 </span>
+               </summary>
+               <div class="govuk-details__text">
+                 {% if data['whos-taking-the-test'] == "someone-else" %}
+                 <p class="govuk-body">The organisation can be contacted to get the Community Number.</p>
+                 <p class="govuk-body">If they still need help, call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.</p>
+                 {% else %}
+                 <p class="govuk-body">You can contact your organisation to get the Community Number.</p>
+                 <p class="govuk-body">If you still need help, call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.</p>
+                 {% endif %}
+               </div>
+             </details>
+            <br>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="social-care-uon">
+                Community Number
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="social-care-uon" name="social-care-uon" type="text" value={{ data['social-care-uon'] }}>
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% set version = "v28" %}
+{% set pageTitle = "Take a photo of the test strip" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/photo-guidance" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+               <span id="enter-barcode-number-hint" class="govuk-body">
+                 <p>This will help the NHS develop new technology that makes it easier and quicker for everyone to read and understand their result. </p>
+                 <p>It takes less than 30 seconds. </p>
+                 <p>You need to be on a smartphone or tablet.</p>
+               </span>
+
+             <!--
+              <div class="govuk-radios govuk-radios--inline govuk-!-margin-top-5">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="changed-name" name="changed-name" type="radio" value="photo-guidance" onclick="setLocation(this);" >
+                  <label class="govuk-label govuk-radios__label" for="changed-name">
+                    Yes
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="changed-name-2" name="changed-name" type="radio" value="check-answers-positive-no-photo" onclick="setLocation(this);" >
+                  <label class="govuk-label govuk-radios__label" for="changed-name-2">
+                    No
+                  </label>
+                </div>
+              </div> -->
+            </fieldset>
+          </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+      <p><a class="govuk-link" href="/share-result-lateral-flow/{{version}}/positive-result">I am not able to take a photo right now</a></p>
+
+    </div>
+  </div>
+
+{% endblock %}

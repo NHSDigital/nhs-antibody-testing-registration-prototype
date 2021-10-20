@@ -1,0 +1,98 @@
+{% set version = "v28" %}
+{% set pageTitle = "Test and Trace account" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+    <!-- div for include from content folder -->
+    <div id="includedContent"></div>
+  <!--  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a> -->
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+          {% if data['email-address'] == "user@testing.co.uk" %}
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ data['first-name'] or "Bob" }} {{ data['last-name'] or "Smith" }}</h1>
+          <p class="govuk-hint govuk-!-margin-bottom-4">Date of birth: {{ data['date-of-birth-day'] | default('13') }} {{ data['date-of-birth-month'] | default('June') }} {{ data['date-of-birth-year'] | default('1990') }}</p>
+          {% else %}
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">Bob Smith</h1>
+          {% endif %}
+
+      <!--    <div class="govuk-grid-column-one-third" style="margin-left:-15px;">
+            <form action="/share-result-lateral-flow/{{version}}/user-account/family/manage-family-details" method="post">
+              <button class="govuk-!-margin-bottom-4 family-account-home-button">
+                <div>
+                  <p class="govuk-!-margin-bottom-2">
+                    <strong style="color: #005eb8">Register a test</strong>
+                  </p>
+                  <p class="govuk-!-margin-bottom-0">
+                    Register to make sure you get your test result sent to you
+                  </p>
+                </div>
+              </button>
+            </form>
+          </div> -->
+
+
+          <div class="govuk-grid-column-one-third" style="margin-left:-15px;">
+            <form action="/share-result-lateral-flow/{{version}}/whos-taking-the-test" method="post">
+              <button class="govuk-!-margin-bottom-4 family-account-home-button">
+                <div>
+                  <p class="govuk-!-margin-bottom-2">
+                    <strong style="color: #005eb8">Report a COVID-19 test result</strong>
+                  </p>
+                  <p class="govuk-!-margin-bottom-0">
+                    Use this service to report a result to the NHS
+                  </p>
+                </div>
+              </button>
+            </form>
+          </div>
+
+          <div class="govuk-grid-column-one-third" style="margin-left:-15px;">
+              <form action="/share-result-lateral-flow/{{version}}/user-account/family/manage-family-details" method="post">
+                <button class="govuk-!-margin-bottom-4 family-account-home-button">
+                  <div>
+                    <p class="govuk-!-margin-bottom-2">
+                      <strong style="color: #005eb8">Remove household members</strong>
+                    </p>
+                    <p class="govuk-!-margin-bottom-0">
+                      Remove people saved in your household account
+                    </p>
+                  </div>
+                </button>
+              </form>
+            </div>
+
+          <div class="govuk-grid-column-one-third" style="margin-left:-15px;">
+            <a href="https://settings.login.nhs.uk/" target="blank" rel="noreferrer" method="post" class="external-panel">
+              <button class="govuk-!-margin-bottom-4 family-account-home-button">
+                <div>
+                  <p class="govuk-!-margin-bottom-2">
+                    <strong style="color: #005eb8">Manage my login details</strong>
+                  </p>
+                  <p class="govuk-!-margin-bottom-0">
+                    Update the details you use to sign in (opens in a new window)
+                  </p>
+                </div>
+              </button>
+            </a>
+          </div>
+
+
+      </div>
+    </div>
+
+    <!-- corresponding html file name included from content folder -->
+    <script>
+      $(function(){
+        $("#includedContent").load("/includes/LFD-account-menu.html");
+      });
+    </script>
+
+
+
+{% endblock %}

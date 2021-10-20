@@ -1,0 +1,106 @@
+{% set version = "v28" %}
+{% set pageTitle = "Select the area you work in" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/about-work">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+           <div class="govuk-radios__item">
+             <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="trust" onclick="setLocation(this);" {{ checked("country", "Wales") }}>
+             <label class="govuk-label govuk-radios__label" for="country-2">
+               Acute hospital trust
+             </label>
+           </div>
+           <div class="govuk-radios__item">
+             <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="trust" onclick="setLocation(this);" {{ checked("country", "Northern Ireland") }}>
+             <label class="govuk-label govuk-radios__label" for="country-3">
+               Ambulance service trust (England only)
+             </label>
+           </div>
+           <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="country-8" name="country" type="radio" value="trust" onclick="setLocation(this);" {{ checked("country", "Wales") }}>
+            <label class="govuk-label govuk-radios__label" for="country-8">
+              Any Local Health Board in Wales or NHS Trust in Wales
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="trust" onclick="setLocation(this);" {{ checked("country", "England") }}>
+            <label class="govuk-label govuk-radios__label" for="country-1">
+              Community health trust
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="country-5" name="country" type="radio" value="postcode" onclick="setLocation(this);" {{ checked("country", "Northern Ireland") }}>
+            <label class="govuk-label govuk-radios__label" for="country-5">
+              Community pharmacy
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="postcode" onclick="setLocation(this);" {{ checked("country", "Scotland") }}>
+            <label class="govuk-label govuk-radios__label" for="country-4">
+              Dentistry
+            </label>
+          </div>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-6" name="country" type="radio" value="postcode" onclick="setLocation(this);" {{ checked("country", "England") }}>
+                <label class="govuk-label govuk-radios__label" for="country-6">
+                  General Practice
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-7" name="country" type="radio" value="trust" onclick="setLocation(this);" {{ checked("country", "Scotland") }}>
+                <label class="govuk-label govuk-radios__label" for="country-7">
+                  Mental health trust
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-8" name="country" type="radio" value="postcode" onclick="setLocation(this);" {{ checked("country", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-8">
+                  Optometry
+                </label>
+              </div>
+              <div class="govuk-radios__divider">or</div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-9" name="country" type="radio" value="postcode" onclick="setLocation(this);" {{ checked("country", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-9">
+                  Other NHS organisations and special health authorities
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+{% endblock %}
