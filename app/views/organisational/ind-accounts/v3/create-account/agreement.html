@@ -1,5 +1,5 @@
 {% set version = "organisational/ind-accounts/v3" %}
-{% set pageTitle = "Check your email" %}
+{% set pageTitle = "Agree to share your NHS login information" %}
 
 <!DOCTYPE html>
 <!-- [if lt IE 9]><html class="ie8" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if gt IE 9]><html lang="en" style="{{ html_style }}"> -->
@@ -45,17 +45,23 @@
     <div class="nhsuk-width-container {{ containerClasses }}">
         <main class="nhsuk-main-wrapper {{ mainClasses }}" id="maincontent" role="main" style="padding: 1em">
 
-        <form action="/{{version}}/create-account/mobile-number" method="get">
+        <form action="/{{version}}/personal-details/UON" method="post">
 
             {% block content %}
             <h1 class="nhsuk-heading-l nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-6">{{ pageTitle }}</h1>
 
-            <p class="nhsuk-body">We have sent an email to test@email.com. Select confirm in the email and come back to this screen.</p>
+            <p>To continue, you need to agree to share your NHS login information with GOV.UK</p>
+            <p class="nhsuk-u-margin-bottom-2">GOV.UK will use your:</p>
+            <ul class="nhsuk-u-margin-left-4">
+                <li>Email address</li>
+                <li>Mobile number</li>
+            </ul>
 
-            <button class="nhsuk-button" data-module="govuk-button">I have confirmed my email</button>
+            <p class="nhsuk-body nhsuk-u-margin-bottom-6">If you agree, read their terms and use of privacy policy to check how your information will be used</p>
 
-            <p class="nhsuk-body">You can <a href="/share-result-lateral-flow/{{version}}/user-account/login-email">enter your email address again</a> if you got it wrong.</p>
-            <p class="nhsuk-body">Your email might take a few minutes to arrive. If you do not get an email, check your spam folder.</p>
+            <button class="nhsuk-button" data-module="govuk-button">Continue</button>
+
+            <p><a href="/{{version}}/create-account/continue-without-account">I do not agree to share this information</a></p>
 
             {% endblock %}
         </form>
@@ -81,14 +87,6 @@
         <p class="nhsuk-footer__copyright">&copy; Crown copyright</p>
       </div>
     </div>
-  </footer>
-
-  <div style="background-color: #ffeb3b; height: 35px; width: 114px; position: absolute; right: 0; display: flex; align-items: center; box-shadow: -7px -7px 12px -7px rgba(0, 0, 0, 0.85)">
-    <a style="font-weight: bold; text-decoration: none; outline: none; background-color: none" href="/share-result-lateral-flow/{{version}}/user-account/email">
-      <div class="proto-action-text govuk-!-margin-left-3">Check email</div>
-    </a>
-  </div>
   {% endblock %}
-
 
 </html>

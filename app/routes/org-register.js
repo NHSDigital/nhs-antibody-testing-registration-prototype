@@ -1827,4 +1827,38 @@ router.post('/organisational/ind-accounts/v3/UON-check', function (req, res) {
     }
 });
 
+
+router.post('/organisational/ind-accounts/v3/personal-details/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say/I do not know') {
+    res.redirect('/organisational/ind-accounts/v3/personal-details/address')
+    } else if (answer) {
+      res.redirect('/organisational/ind-accounts/v3/personal-details/ethnic-desc')
+    } else {
+    res.redirect('/organisational/ind-accounts/v3/personal-details/ethnic-group?error=empty')
+    }
+});
+
+router.post('/organisational/ind-accounts/v3/personal-details/UON-check', function (req, res) {
+  let answer = req.body.changeUON;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/ind-accounts/v3/personal-details/personal-details')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/ind-accounts/v3/personal-details/UON')
+    } else {
+    res.redirect('/organisational/ind-accounts/v3/personal-details/UON-check?error=empty')
+    }
+});
+
+router.post('/organisational/ind-accounts/v3/test-details/symptoms', function (req, res) {
+  let answer = req.body.havesymptoms;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/ind-accounts/v3/test-details/when-symptoms')
+    } else {
+    res.redirect('/organisational/ind-accounts/v3/test-details/daily-contact-testing')
+    }
+});
 module.exports = router
