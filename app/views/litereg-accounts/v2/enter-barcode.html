@@ -39,8 +39,13 @@
             </legend>
 
             <span id="enter-barcode-number-hint" class="govuk-body">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              Use the camera on their phone, tablet or computer to scan the test kit barcode.<br><br>
+              The test kit barcode should look like this:
+              {% else %}
               Use the camera on your phone, tablet or computer to scan the test kit barcode.<br><br>
               The test kit barcode should look like this:
+              {% endif %}
             </span>
 
             <div class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
@@ -48,7 +53,12 @@
             </div>
 
             <span id="enter-barcode-number-hint" class="govuk-body">
-              You’ll find the same test kit barcode in 4 different places. You only have to scan one of them. Choose to scan one of the barcodes on the:<br><br>
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              They’ll find the same test kit barcode in 4 different places. They only have to scan one of them. Choose to scan one of the barcodes on the:
+              {% else %}
+              You’ll find the same test kit barcode in 4 different places. You only have to scan one of them. Choose to scan one of the barcodes on the:
+              {% endif %}
+              <br><br>
               <ul class="govuk-list govuk-list--bullet">
                 <li>plastic tube</li>
                 <li>leak proof bag</li>
