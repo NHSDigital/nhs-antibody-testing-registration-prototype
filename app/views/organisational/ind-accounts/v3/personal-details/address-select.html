@@ -6,7 +6,7 @@
   {% endif %}
 {% endset %}
 {% set pageHeading = "What is your home address?" %}
- {% set version = "organisational/ind-account/v3" %}
+ {% set version = "organisational/ind-accounts/v3" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
@@ -25,6 +25,9 @@
       html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
       }) }}
 
+            <!-- div for include from content folder -->
+            <div id="includedContent1"></div>
+
       {{ govukBackLink({
         text: "Back",
         href: "javascript:window.history.go(-1);"
@@ -42,10 +45,10 @@
       <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
 
-       <form class="" action="/{{ version }}/single/occupation/index" method="get">
+       <form class="" action="/{{ version }}/personal-details/occupation/area" method="get">
 
          <div class="govuk-form-group">
-           <p><span class="govuk-body govuk-!-font-weight-bold">Postcode<br></span>EC2 8YU  &nbsp;&nbsp;&nbsp;<a href="/_improvements/TTOLDT-210/address" class="govuk-link">Change</a></p>
+           <p><span class="govuk-body govuk-!-font-weight-bold">Postcode<br></span>EC2 8YU  &nbsp;&nbsp;&nbsp;<a href="/{{ version }}/personal-details/address" class="govuk-link">Change</a></p>
 
          </div>
 
@@ -61,7 +64,7 @@
   </select>
 </div>
 
-<p><a href="/_improvements/TTOLDT-210/address-manual" class="govuk-link">I cannot find the address in the list </a></p>
+<p><a href="/{{ version }}/personal-details/address-manual" class="govuk-link">I cannot find the address in the list </a></p>
 
          <input class="govuk-button" type="submit" value="Continue">
 
@@ -69,5 +72,12 @@
 
     </div>
   </div>
+
+  <!-- corresponding html file name included from content folder -->
+<script>
+  $(function(){
+    $("#includedContent1").load("/includes/LFD-account-menu.html");
+  });
+</script>
 
 {% endblock %}

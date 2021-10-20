@@ -6,7 +6,7 @@
   {% endif %}
 {% endset %}
 {% set pageHeading = "What is your ethnic group?" %}
- {% set version = "organisational/lft/carehome-registration" %}
+ {% set version = "organisational/ind-accounts/v3" %}
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
@@ -24,6 +24,10 @@
       },
       html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
       }) }}
+
+
+            <!-- div for include from content folder -->
+            <div id="includedContent1"></div>
 
       {{ govukBackLink({
         text: "Back",
@@ -43,7 +47,7 @@
         {{ pageHeading }}
       </h1>
 
-      <p>This will help us understand how coronavirus is affecting people of different ethnic backgrounds.</p>
+      <p>This will help us understand how COVID-19 is affecting people of different ethnic backgrounds.</p>
 
       <form class="" action="" method="post">
 
@@ -91,7 +95,7 @@
                 divider: "or"
               },
               {
-                value: "Prefer not to say",
+                value: "Prefer not to say/I do not know",
                 text: "Prefer not to say/I do not know"
               }
             ]
@@ -106,5 +110,12 @@
 
     </div>
   </div>
+
+  <!-- corresponding html file name included from content folder -->
+<script>
+  $(function(){
+    $("#includedContent1").load("/includes/LFD-account-menu.html");
+  });
+</script>
 
 {% endblock %}
