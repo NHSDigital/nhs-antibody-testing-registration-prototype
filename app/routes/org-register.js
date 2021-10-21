@@ -1861,4 +1861,20 @@ router.post('/organisational/ind-accounts/v3/test-details/symptoms', function (r
     res.redirect('/organisational/ind-accounts/v3/test-details/daily-contact-testing')
     }
 });
+
+router.post('/organisational/ind-accounts/v3/sign-in/UON-check', function (req, res) {
+  let answer = req.body.changeUON;
+
+  if (answer == 'yes') {
+    res.redirect('/organisational/ind-accounts/v3/sign-in/who')
+  } else if (answer == 'no') {
+      res.redirect('/organisational/ind-accounts/v3/sign-in/UON')
+    } else {
+    res.redirect('/organisational/ind-accounts/v3/sign-in/UON-check?error=empty')
+    }
+});
+
+
+
+
 module.exports = router
