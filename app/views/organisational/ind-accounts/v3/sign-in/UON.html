@@ -3,7 +3,6 @@
 {% set serviceName = "Get a coronavirus test" %}
 {% extends "includes/layout.html" %}
 
-
 {% block pageTitle %}
   {{ pageHeading }} - COVID-19
 {% endblock %}
@@ -12,27 +11,20 @@
 <div class="">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
 
-      <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
-
-      <!-- div for include from content folder -->
-      <div id="includedContent1"></div>
-
-      <a href="#" class="govuk-back-link">Back</a>
-
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
     </div>
   </div>
 </div>
-
 {% endblock %}
 
 {% block content %}
@@ -48,8 +40,8 @@
       {{ pageHeading }}
     </h1>
 
-        <p>Enter the UON, postcode <span class="govuk-body govuk-!-font-weight-bold">or</span>  name of the organisation that gave you the test kits.</p>
 
+        <p>Enter the UON, postcode <span class="govuk-body govuk-!-font-weight-bold">or</span>  name of the organisation that gave you the test kits.</p>
 
 
 
@@ -62,9 +54,10 @@
         For example, 12345678
           </div>
           <input class="govuk-input govuk-!-width-one-third" id="" name="" type="text">
-          <a href='/{{ version }}/personal-details/UON-check'><button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          <a href='/{{ version }}/sign-in/UON-check'><button class="govuk-button govuk-button--secondary" data-module="govuk-button">
             Find organisation
           </button></a>
+
 
 
         <div class="govuk-form-group">
@@ -72,7 +65,7 @@
             Postcode
           </label>
           <input class="govuk-input govuk-!-width-one-quarter" id="" name="" type="text">
-          <a href='/{{ version }}/personal-details/UON-select-postcode'><button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          <a href='/{{ version }}/sign-in/UON-select-postcode'><button class="govuk-button govuk-button--secondary" data-module="govuk-button">
             Find organisation
           </button></a>
         </div>
@@ -82,7 +75,7 @@
             Organisation name
           </label>
           <input class="govuk-input govuk-!-width-one-quarter" id="" name="" type="text">
-          <a href='/{{ version }}/personal-details/UON-select-name'><button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          <a href='/{{ version }}/sign-in/UON-select-name'><button class="govuk-button govuk-button--secondary" data-module="govuk-button">
             Find organisation
           </button></a>
         </div>
@@ -122,19 +115,7 @@
         </details>
 
 
-
-      </form>
-
-
-
     </div>
   </div>
-
-  <!-- corresponding html file name included from content folder -->
-<script>
-  $(function(){
-    $("#includedContent1").load("/includes/LFD-account-menu.html");
-  });
-</script>
 
 {% endblock %}

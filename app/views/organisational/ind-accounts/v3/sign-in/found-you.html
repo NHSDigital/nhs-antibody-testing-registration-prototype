@@ -1,5 +1,5 @@
 {% set version = "organisational/ind-accounts/v3" %}
-{% set pageTitle = "Enter your email address" %}
+{% set pageTitle = "We found your NHS login" %}
 
 <!DOCTYPE html>
 <!-- [if lt IE 9]><html class="ie8" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if gt IE 9]><html lang="en" style="{{ html_style }}"> -->
@@ -11,8 +11,8 @@
 
     <title>{% block pageTitle %}{{pageTitle}} - NHS.UK{% endblock %}</title>
 
-    <!-- <link href="https://www.nhs.uk/" rel="preconnect">
-    <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin> -->
+    <link href="https://www.nhs.uk/" rel="preconnect">
+    <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin>
 
     <link href="/public/stylesheets/nhs_application.css" media="all" rel="stylesheet" type="text/css" />
     <link href="/public/stylesheets/nhsuk-site.css" media="all" rel="stylesheet" type="text/css" />
@@ -20,7 +20,7 @@
     <!-- <script src="nhsuk.min.js" defer></script> -->
   </head>
 
-  <body>
+  <body class="{{ bodyClasses }}">
 
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
@@ -41,41 +41,56 @@
     </header>
     {% endblock %}
 
+    {% block bodyStart %}
+
+    {% endblock %}
+
     {% block main %}
+    <div class="nhsuk-width-container {{ containerClasses }}">
+        <main class="nhsuk-main-wrapper {{ mainClasses }}" id="maincontent" role="main" style="padding: 1em">
 
-      <form action="/{{version}}/sign-in/found-you" method="post">
+    <div class="nhsuk-back-link nhsuk-u-margin-top-3">
+        <a class="nhsuk-back-link__link" href="/share-result-lateral-flow/{{version}}/user-account/login-email">
+          <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+          </svg>
+        Back to: Enter your email</a>
+      </div>
 
-        <div class="nhsuk-width-container">
-          <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+      <form action="/{{version}}/sign-in/enter-password" method="post">
+
             {% block content %}
-            <h1 class="nhsuk-heading-l nhsuk-u-margin-bottom-6">{{ pageTitle }}</h1>
+            <h1 class="nhsuk-heading-l nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-6">{{ pageTitle }}</h1>
 
-            <div class="nhsuk-form-group">
-              <label class="nhsuk-label" for="email-address">
-                Email address
-              </label>
-              <input class="nhsuk-input nhsuk-u-width-one-third" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
-            </div>
+            <p class="nhsuk-body">We found an NHS login linked to <span class="nhsuk-u-font-weight-bold">example@email.com.</span> Continue to visit <span class="nhsuk-u-font-weight-bold">Covid 19 Digital testing service.</span></p>
 
-            <button class="nhsuk-button" data-module="govuk-button">Continue</button>
+            <details class="nhsuk-details">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+      Don't remember setting up an account?
+    </span>
+  </summary>
+  <div class="nhsuk-details__text">
+    <p>You may have set up an NHS login when using other health websites or apps, like a COVID-19 service.</p>
 
-            <div class="nhsuk-inset-text nhsuk-u-width-two-thirds">
-              <span class="nhsuk-u-visually-hidden">Information: </span>
-              <h2 class="nhsuk-heading-m">What is NHS login?</h2>
-              <p>You can use our NHS login to access health websites and apps that have the NHS login button. If you do not have an NHS login, enter your email address to set one up.</p>
-            </div>
+  </div>
+</details>
 
-            <div class="nhsuk-warning-callout nhsuk-u-margin-bottom-3 nhsuk-u-width-two-thirds">
-              <h3 class="nhsuk-warning-callout__label">Coronavirus (COVID-19)</h3>
-              <p>For health information and advice, read <a class="nhsuk-link" href="#">NHS guidance about coronavirus.</a></p>
-            </div>
+<button class="nhsuk-button" type="submit">
+  Continue
+</button>
+
+<div class="nhsuk-inset-text nhsuk-u-width-two-thirds">
+  <span class="nhsuk-u-visually-hidden">Information: </span>
+  <h2 class="nhsuk-heading-m">What is NHS login?</h2>
+  <p>You can use our NHS login to access health websites and apps that have the NHS login button. If you do not have an NHS login, enter your email address to set one up.</p>
+</div>
 
             {% endblock %}
-          </main>
-        </div>
-
         </form>
-      {% endblock %}
+      </main>
+    </div>
+    {% endblock %}
 
   </body>
 
@@ -85,11 +100,10 @@
       <div class="nhsuk-width-container">
         <h2 class="nhsuk-u-visually-hidden">Support links</h2>
         <ul class="nhsuk-footer__list">
-          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Accessibility statement</a></li>
-          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Contact us</a></li>
+          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Terms of use</a></li>
           <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Cookies</a></li>
-          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Privacy policy</a></li>
-          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Terms and conditions</a></li>
+          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Accessibility</a></li>
+          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Help Centre</a></li>
         </ul>
 
         <p class="nhsuk-footer__copyright">&copy; Crown copyright</p>
