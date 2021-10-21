@@ -187,6 +187,16 @@ router.post("/international-arrivals/v3/action3/travel-package-exempt", function
   }
 })
 
+// International Arrivals Version Three - Date of birth
+router.post("/international-arrivals/v3/action3/date-of-birth", function (req, res) {
+  let travelPackageExempt = req.session.data["travel-package-exempt"]
+  if (travelPackageExempt == "Yes, I'm eligible for a hardship arrangement"){
+    res.redirect("/international-arrivals/v3/hardship-arrangement")
+  } else {
+    res.redirect("/international-arrivals/v3/passport-number")
+  }
+})
+
 // International Arrivals Version Three - Ethnic group
 router.post('/international-arrivals/v3/action3/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
