@@ -17,6 +17,15 @@
       },
       html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
       }) }}
+
+      <!-- div for include from content folder -->
+       <div id="includedContent1"></div>
+
+       {{ govukBackLink({
+         text: "Back",
+         href: "javascript:window.history.go(-1);"
+       }) }}
+
     </div>
   </div>
 </div>
@@ -27,10 +36,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+
+             <form class="" action="/{{ version }}/test-details/symptoms" method="get">
+
+
         <h1 class="govuk-heading-l">Confirm your account details</h1>
-
-        <div class="govuk-inset-text">Your account details will not be shared with your organisation.</div>
-
 
         <h2 class="govuk-heading-m">Your organiation and work details</h2>
 
@@ -271,5 +281,12 @@
     </div>
   </main>
 </div>
+
+<!-- corresponding html file name included from content folder -->
+<script>
+$(function(){
+  $("#includedContent1").load("/includes/LFD-account-menu.html");
+});
+</script>
 
 {% endblock %}
