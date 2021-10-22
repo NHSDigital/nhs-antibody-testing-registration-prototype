@@ -925,6 +925,22 @@ router.post('/antigen/v2/action2/fingerprick-test', function (req, res) {
   }
 })
 
+// Antigen V2 - Royal mail barcode manual
+router.post('/antigen/v2/action2/royal-mail-barcode-manual', function (req, res) {
+  let barcodeReference = req.session.data['mail-barcode-reference-1']
+  let confirmBarcodeReference = req.session.data['mail-barcode-reference-2']
+
+  if (!barcodeReference && !confirmBarcodeReference){
+    res.redirect('/antigen/v2/home-testing/royal-mail-barcode-manual-error-1')
+  } else if (!barcodeReference && confirmBarcodeReference) {
+    res.redirect('/antigen/v2/home-testing/royal-mail-barcode-manual-error-2')
+  } else if (barcodeReference && !confirmBarcodeReference) {
+    res.redirect('/antigen/v2/home-testing/royal-mail-barcode-manual-error-3')
+  } else {
+    res.redirect('/antigen/v2/home-testing/enter-barcode-number')
+  }
+})
+
 // router.post('/antigen/v2/action2/fingerprick-test', function (req, res) {
 //   let fingerprickTest = req.session.data['fingerprick-test']
 //   let wayToTest = req.session.data['way-to-test']
