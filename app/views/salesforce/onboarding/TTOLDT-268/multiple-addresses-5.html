@@ -1,6 +1,6 @@
 {% extends "includes/layout.html" %}
 {% set serviceName = "COVID-19" %}
-{% set pageTitle = "Organisation details" %}
+{% set pageTitle = "What is your delivery address?" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
@@ -23,44 +23,24 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+      <div id="" class="govuk-hint">
+        This should be the primary delivery address for the organisation.
+      </div>
+
       <form action="" method="post">
 
         <div class="govuk-form-group">
-          <label class="govuk-label" for="">
-            Number of staff
-          </label>
-          <div id="" class="govuk-hint">
-            Include all permanent, temporary and agency staff.
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+              <label class="govuk-label govuk-checkboxes__label" for="waste">
+                Same as address on legal declaration
+              </label>
+            </div>
           </div>
-          <input class="govuk-input govuk-input--width-10" id="width-10" name="width-10" type="text">
         </div>
 
-        <div class="govuk-form-group">
-          <label class="govuk-label" for="">
-            Number of non-staff
-          </label>
-          <div id="" class="govuk-hint">
-            This could include school pupils or residents.
-          </div>
-          <input class="govuk-input govuk-input--width-10" id="width-10" name="width-10" type="text">
-        </div>
-
-        <div class="govuk-form-group">
-          <label class="govuk-label" for="">
-            Number of workplace addresses
-          </label>
-          <input class="govuk-input govuk-input--width-5" id="width-5" name="width-5" type="text">
-        </div>
-
-        <div class="govuk-form-group">
-          <h2 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--m" for="">
-              Additional delivery addresses
-            </label>
-          </h2>
-          <div id="" class="govuk-hint">
-            You can enter up to 10 additional delivery addresses:
-          </div>
+        <div class="govuk-form-group govuk-!-margin-bottom-8">
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dd class="govuk-summary-list__value">
@@ -72,25 +52,37 @@
                 </a>
               </dd>
             </div>
-            <!-- <div class="govuk-summary-list__row">
-              <dd class="govuk-summary-list__value">
-                102 Petty France, London SW1H 9AJ
-              </dd>
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">
-                  Delete<span class="govuk-visually-hidden">address</span>
-                </a>
-              </dd>
-            </div> -->
           </dl>
+        </div>
+
+        <div class="govuk-form-group">
+          <h2 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--m" for="">
+              Additional delivery addresses
+            </label>
+          </h2>
+          <div id="" class="govuk-hint">
+            You can enter up to 10 additional delivery addresses:
+          </div>
           <label class="govuk-label" for="">
             Postcode
           </label>
-          <input class="govuk-input govuk-!-width-one-quarter" id="" name="" type="text">
+          <p class="govuk-body" for="">SW1H 9AJ <a href="#" class="govuk-link">Change</a></p>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="sort">
+              Select an address
+            </label>
+            <select class="govuk-select govuk-!-margin-bottom-3" id="sort" name="sort">
+              <option value="">1 address found</option>
+              <option value="">102 New France, London SW1H 9AJ</option>
+            </select>
+          </div>
           <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-            Find address
+            Add this address
           </button>
+          <p class="govuk-body" for=""><a href="#" class="govuk-link">I cannot find the address on the list</a></p>
         </div>
+
 
         <!-- <div class="govuk-form-group">
           <label class="govuk-label" for="">
