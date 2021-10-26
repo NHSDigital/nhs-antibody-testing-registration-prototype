@@ -24,6 +24,22 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#error-1">Test kit barcode reference is incorrect or already registered</a>
+            </li>
+            <li>
+              <a href="#error-2">Test kit barcode references must match</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <form action="/antigen/{{version}}/action2/enter-barcode-manual" method="post">
 
         <div class="govuk-form-group">
@@ -47,18 +63,24 @@
             </span>
 
             <div id="content-1" class="govuk-!-margin-top-5">
-              <div class="govuk-form-group">
+              <div class="govuk-form-group govuk-form-group--error">
                 <label class="govuk-label" for="kit-barcode-reference-1">
                   Test kit barcode reference<br>
                   <span class="govuk-hint">For example, AA135562600</span>
                 </label>
-                <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
+                <span id="kit-barcode-reference-error-1" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> Test kit barcode reference is incorrect or already registered
+                </span>
+                <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
               </div>
-              <div class="govuk-form-group">
+              <div class="govuk-form-group govuk-form-group--error">
                 <label class="govuk-label" for="kit-barcode-reference-2">
                   Confirm test kit barcode reference
                 </label>
-                <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }}>
+                <span id="kit-barcode-reference-error-2" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> Test kit barcode references must match
+                </span>
+                <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }}>
               </div>
             </div>
 
