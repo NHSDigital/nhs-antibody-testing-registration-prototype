@@ -1,0 +1,51 @@
+{% set version = "v1" %}
+{% set pageTitle = "Sorry, you cannot register this patient using this service" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+      <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="delivery-address-manual" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint mobile-number-hint-2 mobile-number-hint-3 mobile-number-hint-4 mobile-number-hint-5">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{pageTitle}}
+              </h1>
+            </legend>
+            <p class="govuk-body">If the patient doesn't have any contact details, a test kit cannot be ordered for them using this service.</p>
+          </fieldset>
+          <div class="govuk-!-margin-top-7 govuk-button-group">
+            <button class="govuk-button" data-module="govuk-button">Go home</button>
+            <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Order a test</button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
