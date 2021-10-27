@@ -43,7 +43,7 @@
       <form action="/antigen/{{version}}/action2/royal-mail-barcode-manual" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint enter-barcode-number-hint-2">
+          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint enter-barcode-number-hint-2 enter-barcode-number-hint-3">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
                 {{ pageTitle }}
@@ -67,7 +67,7 @@
                 <label class="govuk-label" for="mail-barcode-reference-1">
                   Royal Mail barcode reference
                 </label>
-                <div id="national-insurance-number-hint" class="govuk-hint">
+                <div id="enter-barcode-number-hint-3" class="govuk-hint">
                   For example, ZD 6904 0038 5GB
                 </div>
                 <span id="mail-barcode-reference-error-1" class="govuk-error-message">
@@ -110,18 +110,26 @@
 
   setTimeout(function () {
     const content2inner = `
-    <div class="govuk-form-group">
+    <div class="govuk-form-group govuk-form-group--error">
       <label class="govuk-label" for="mail-barcode-reference-1">
-        Royal Mail barcode reference<br>
-        <span class="govuk-hint">For example, AA 1234 5678 9AA</span>
+        Royal Mail barcode reference
       </label>
-      <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] or 'AA22346789AA' }}>
+      <div id="enter-barcode-number-hint-3" class="govuk-hint">
+        For example, ZD 6904 0038 5GB
+      </div>
+      <span id="mail-barcode-reference-error-1" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Enter a Royal Mail barcode reference
+      </span>
+      <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] or 'AA22346789AA' }}>
     </div>
-    <div class="govuk-form-group">
+    <div class="govuk-form-group govuk-form-group--error">
       <label class="govuk-label" for="mail-barcode-reference-2">
         Confirm Royal Mail barcode reference
       </label>
-      <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-2" name="mail-barcode-reference-2" type="text" value={{ data['mail-barcode-reference-2'] or 'AA22346789AA' }}>
+      <span id="mail-barcode-reference-error-2" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Royal Mail barcode references must match
+      </span>
+      <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="mail-barcode-reference-2" name="mail-barcode-reference-2" type="text" value={{ data['mail-barcode-reference-2'] or 'AA22346789AA' }}>
     </div>
     `
     const content1 = document.getElementById('content-1');

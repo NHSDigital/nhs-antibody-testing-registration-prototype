@@ -7,7 +7,7 @@
   <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
+        beta
       </strong>
       <span class="govuk-phase-banner__text">
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -40,7 +40,7 @@
       <form action="/antigen/{{version}}/action2/enter-barcode-manual" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint enter-barcode-number-hint-2">
+          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint enter-barcode-number-hint-2 enter-barcode-number-hint-3">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
                 {{ pageTitle }}
@@ -52,7 +52,7 @@
             </span>
 
             <div class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
-              <img src="/public/images/barcode-number-2.png" alt="barcode number" />
+              <img src="/public/images/barcode-number-2.png" alt="Image of the test kit barcode" />
             </div>
 
             <span id="enter-barcode-number-hint-2" class="govuk-body">
@@ -62,13 +62,15 @@
             <div id="content-1" class="govuk-!-margin-top-5">
               <div class="govuk-form-group govuk-form-group--error">
                 <label class="govuk-label" for="kit-barcode-reference-1">
-                  Test kit barcode reference<br>
-                  <span class="govuk-hint">For example, AA135562600</span>
+                  Test kit barcode reference
                 </label>
+                <div id="enter-barcode-number-hint-3" class="govuk-hint">
+                  For example, AA135562600
+                </div>
                 <span id="kit-barcode-reference-error-1" class="govuk-error-message">
                   <span class="govuk-visually-hidden">Error:</span> The test kit barcode did not scan. Try again or enter the test kit barcode reference instead.
                 </span>
-                <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
+                <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
               </div>
               <div class="govuk-form-group">
                 <label class="govuk-label" for="kit-barcode-reference-2">
@@ -78,7 +80,7 @@
               </div>
             </div>
 
-            <div id="content-2">
+            <div id="content-2" style="display: none;" class="govuk-!-margin-top-5">
 
             </div>
 
@@ -102,12 +104,17 @@
 
     setTimeout(function () {
       const content2inner = `
-      <div class="govuk-form-group">
+      <div class="govuk-form-group govuk-form-group--error">
         <label class="govuk-label" for="kit-barcode-reference-1">
-          Test kit barcode reference<br>
-          <span class="govuk-hint">For example, AA135562600</span>
+          Test kit barcode reference
         </label>
-        <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] or 'AA135562600' }}>
+        <div id="enter-barcode-number-hint-3" class="govuk-hint">
+          For example, AA135562600
+        </div>
+        <span id="kit-barcode-reference-error-1" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> The test kit barcode did not scan. Try again or enter the test kit barcode reference instead.
+        </span>
+        <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] or 'AA135562600' }}>
       </div>
       <div class="govuk-form-group">
         <label class="govuk-label" for="kit-barcode-reference-2">

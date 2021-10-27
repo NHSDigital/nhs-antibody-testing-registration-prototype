@@ -523,6 +523,34 @@ router.post('/litereg-accounts/v2/action9/check-mobile', function (req, res) {
   }
 })
 
+// Version 2 - Royal mail barcode manual
+router.post('/litereg-accounts/v2/action5/royal-mail-barcode-manual', function (req, res) {
+  let barcodeReference = req.session.data['mail-barcode-reference-1']
+  let confirmBarcodeReference = req.session.data['mail-barcode-reference-2']
+
+  if (!barcodeReference && !confirmBarcodeReference || !barcodeReference && confirmBarcodeReference){
+    res.redirect('/litereg-accounts/v2/royal-mail-barcode-manual-error-1')
+  } else if (barcodeReference !== confirmBarcodeReference) {
+    res.redirect('/litereg-accounts/v2/royal-mail-barcode-manual-error-3')
+  } else {
+    res.redirect('/litereg-accounts/v2/test-date')
+  }
+})
+
+// Version 2 - Test kit barcode manual
+router.post('/litereg-accounts/v2/action5/enter-barcode-manual', function (req, res) {
+  let barcodeReference = req.session.data['kit-barcode-reference-1']
+  let confirmBarcodeReference = req.session.data['kit-barcode-reference-2']
+
+  if (!barcodeReference && !confirmBarcodeReference || !barcodeReference && confirmBarcodeReference){
+    res.redirect('/litereg-accounts/v2/enter-barcode-manual-error-1')
+  } else if (barcodeReference !== confirmBarcodeReference) {
+    res.redirect('/litereg-accounts/v2/enter-barcode-manual-error-3')
+  } else {
+    res.redirect('/litereg-accounts/v2/overseas-travel')
+  }
+})
+
 // Version 2 - Lite Registration Accounts - test place route
 router.post('/litereg-accounts/v2/action5/test-place', function (req, res) {
   let testPlace = req.session.data['test-place']
