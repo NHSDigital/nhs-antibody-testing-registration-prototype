@@ -1,0 +1,120 @@
+{% set version = "v1" %}
+{% set pageTitle = "What's Pete Smith's email address?" %}
+{% set group %}
+{% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+{% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+      <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#email">Enter a correct email address</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form action="delivery-address-manual" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint mobile-number-hint-2 mobile-number-hint-3 mobile-number-hint-4 mobile-number-hint-5">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <span class="govuk-caption-xl">
+                {{ group }}</span>
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{pageTitle}}
+              </h1>
+            </legend>
+            <p class="govuk-body">If the patient doesn't have a mobile, then you should provide an email address so they can receive their test result.</p>
+
+            <div class="govuk-radios govuk-radios--conditional govuk-form-group--error" data-module="govuk-radios">
+              <div id="contact-hint" class="govuk-hint">
+                Select one option.
+              </div>
+              <span id="where-do-you-live-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> 
+                Select the country where you live
+              </span>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contact-1" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-1">
+                <label class="govuk-label govuk-radios__label" for="contact-1">
+                  Email
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-1">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="email">
+                    Email address
+                  </label>
+                  <div id="email-hint" class="govuk-hint">
+                    Enter an email address in the correct format, like name@example.com
+                  </div>
+                  <input class="govuk-input govuk-input--width-20" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
+                </div>
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-2">
+                <label class="govuk-label govuk-radios__label" for="contact-2">
+                  Patient doesn't have an email address
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
+                <div class="govuk-form-group">
+                <p class="govuk-body">A landline telephone can be used to contact the patient, but it will then be the hospital's responsibility to deliver test results.</p>
+                
+                  <label class="govuk-label" for="contact-by-phone">
+                    Landline phone number
+                  </label>
+                  <input class="govuk-input govuk-input--width-20" id="contact-by-phone" name="contact-by-phone" type="tel" autocomplete="tel"></div>
+
+                  <p class="govuk-body govuk-!-margin-top-5">
+                    <a href="#" class="govuk-link">No contact details for patient</a>
+                  </p>
+              </div>
+            </div>
+
+          </fieldset>
+
+          <button class="govuk-button govuk-!-margin-top-7" data-module="govuk-button">Continue</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
