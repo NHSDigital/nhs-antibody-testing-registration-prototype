@@ -1,0 +1,275 @@
+{% set version = "v1" %}
+{% set pageTitle = "Upload patient details" %}
+
+{% set group %}
+  {% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+    {% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="request-method">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title" id="error-summary-title">
+        There is a problem
+      </h2>
+      <div class="govuk-error-summary__body">
+        <ul class="govuk-list govuk-error-summary__list">
+          <li>
+            <p><a href="#passport-issued-day">The uploaded spreadsheet contains missing or incorrect information</a></p>
+            <p class="govuk-body govuk-!-font-weight-bold">Correct the errors and upload a new version. </p>
+          </li>
+          <li>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Row</th>
+                  <th scope="col" class="govuk-table__header">Name</th>
+                  <th scope="col" class="govuk-table__header">Column</th>
+                  <th scope="col" class="govuk-table__header">Error message</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <!-- Date of procedure -->
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Date of Procedure (A)</td>
+                  <td class="govuk-table__cell">Cell in spreadsheet is empty. Enter the date of procedure in the format DD/MM/YYYY</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Date of Procedure (A)</td>
+                  <td class="govuk-table__cell">The date is too soon. You can only enter a date that is between 7 and 10 days from today</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Date of Procedure (A)</td>
+                  <td class="govuk-table__cell">The date is too far in the future. You cannot enter a date more than 10 days from today</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Date of Procedure (A)</td>
+                  <td class="govuk-table__cell">Enter the date of procedure in the format DD/MM/YYYY</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Date of Procedure (A)</td>
+                  <td class="govuk-table__cell">Enter the date of procedure in the format DD/MM/YYYY</td>
+                </tr>
+                <!-- Firstname -->
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">First name (B)</td>
+                  <td class="govuk-table__cell">Cell in spreadsheet is empty. Enter first name</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">First name (B)</td>
+                  <td class="govuk-table__cell">First name must only include letters a to z, hyphens, spaces and apostrophes</td>
+                </tr>
+                <!-- Lastname -->
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Last name (C)</td>
+                  <td class="govuk-table__cell">Cell in spreadsheet is empty. Enter last name</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Last name (C)</td>
+                  <td class="govuk-table__cell">Last name must only include letters a to z, hyphens, spaces and apostrophes</td>
+                </tr>
+                <!-- DOB -->
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">DOB (D)</td>
+                  <td class="govuk-table__cell">Cell in spreadsheet is empty. Enter date of birth</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">DOB (D)</td>
+                  <td class="govuk-table__cell">Enter a date of birth in the correct format, and after 1850</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">DOB (D)</td>
+                  <td class="govuk-table__cell">Enter a date in the past</td>
+                </tr>
+                <!-- Gender -->
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Gender (E)</td>
+                  <td class="govuk-table__cell">Select an option from the dropdown list</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Gender (E)</td>
+                  <td class="govuk-table__cell">Select an option from the dropdown list</td>
+                </tr>
+                <!-- NHS number -->
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">NHS number (F)</td>
+                  <td class="govuk-table__cell" style="color:orange">Cell in spreadsheet is empty. Enter a 10-digit NHS number</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">NHS number (F)</td>
+                  <td class="govuk-table__cell" style="color:orange">Enter a 10-digit NHS number</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">NHS number (F)</td>
+                  <td class="govuk-table__cell">The date is too soon. You can only enter a date that is between 7 and 10 days from today</td>
+                </tr>
+                <!-- First line of address -->
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">First line of address (G)</td>
+                  <td class="govuk-table__cell">Cell in spreadsheet is empty. Enter the first line of address</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">First line of address (G)</td>
+                  <td class="govuk-table__cell">First line of address cannot be more than 60 characters with spaces</td>
+                </tr>
+                <!-- First line of address -->
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Second line of address (H)</td>
+                  <td class="govuk-table__cell">Second line of address cannot be more than 60 characters with spaces</td>
+                </tr>
+                <!-- Town -->
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Town (I)</td>
+                  <td class="govuk-table__cell">Cell in spreadsheet is empty. Enter a town</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Town (I)</td>
+                  <td class="govuk-table__cell">Town cannot be more than 50 characters with spaces</td>
+                </tr>
+                <!-- Postcode -->
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Postcode (J)</td>
+                  <td class="govuk-table__cell">Cell in spreadsheet is empty. Enter a UK postcode</td>
+                </tr>
+                <!-- Country -->
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Country (K)</td>
+                  <td class="govuk-table__cell">Select an option from the dropdown list</td>
+                </tr>
+                <!-- Mobile number -->
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Mobile number (L)</td>
+                  <td class="govuk-table__cell">Cell in spreadsheet is empty. Enter a mobile number</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">#</td>
+                  <td class="govuk-table__cell">Firstname Lastname</td>
+                  <td class="govuk-table__cell">Mobile number (L)</td>
+                  <td class="govuk-table__cell">Enter a mobile number in the correct format</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="confirm-details" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="upload-patient-list-1-hint upload-patient-list-2-hint upload-patient-list-3-hint upload-patient-list-4-hint upload-patient-list-5-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <span class="govuk-caption-xl"> {{ group }}</span>
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="upload-patient-list-1-hint" class="govuk-body">
+                To enter and upload patient details using our spreadsheet
+            </span>
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5 govuk-!-margin-bottom-6">
+              <li><span id="upload-patient-list-2-hint"><a href="#" class="govuk-link">download our spreadsheet</a></span></li>
+              <li><span id="upload-patient-list-3-hint">do not add any sheets, rows or columns</span></li>
+              <li><span id="upload-patient-list-4-hint">enter details for up to 100 patients at a time</span></li>
+              <li><span id="upload-patient-list-5-hint">save the completed spreadsheet and then upload it</span></li>
+            </ul>
+
+            <div class="govuk-form-group govuk-form-group--error govuk-!-margin-top-8 govuk-!-margin-bottom-6">
+              <label class="govuk-label" for="file-upload-1">
+                Upload a file
+              </label>
+              <span id="file-upload-1-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span>The uploaded spreadsheet contains missing or incorrect information
+              </span>
+              <input class="govuk-file-upload govuk-input--error" id="file-upload-1" name="file-upload-1" type="file">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
