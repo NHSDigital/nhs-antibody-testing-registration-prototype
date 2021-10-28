@@ -1,0 +1,63 @@
+{% set version = "v2" %}
+{% set pageTitle = "What is your day 2 travel test package booking reference?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/follow-up-test-reason-option-2">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/refer-and-triage/government-pilot" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="test-package-booking-reference-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="test-package-booking-reference-hint" class="govuk-hint">
+            This is the same number that you used on your Passenger Locator Form (PLF). It will be in your PLF confirmation email.<br><br>
+            It is 12 digits long for example, DANTH0037300.
+          </span>
+          <div class="govuk-form-group govuk-!-margin-top-5">
+            <label class="govuk-label" for="test-package-booking-reference">
+              Test package booking reference
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="test-package-booking-reference" name="test-package-booking-reference" type="text" value="{{ data['test-package-booking-reference'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        <p class="govuk-body"><a href="/antigen/{{version}}/refer-and-triage/government-pilot" class="govuk-link">I cannot find my test package booking reference</a></p>
+
+      </form>
+
+    </div>
+
+    <div class="proto-action big">
+      <a href="/antigen/{{version}}/refer-and-triage/follow-up-test-reason">
+        <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
+      </a>
+    </div>
+
+  </div>
+
+{% endblock %}

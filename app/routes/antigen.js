@@ -188,6 +188,18 @@ router.post('/antigen/v2/action3/follow-up-test', function (req, res) {
 
 })
 
+// Version 2 - Antigen Refer and Triage - Follow up test reason option 2 route
+
+router.post('/antigen/v2/action3/follow-up-test-reason-option-2', function (req, res) {
+  let followUpTestReason = req.session.data['follow-up-test-reason']
+  if (followUpTestReason == "After entering the UK, they got a positive day 2 travel test result"){
+    res.redirect('/antigen/v2/refer-and-triage/test-package-booking-reference')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
+  }
+
+})
+
 
 // Version 2 - Antigen Refer and Triage - Government pilot route
 
