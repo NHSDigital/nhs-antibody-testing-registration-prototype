@@ -1,0 +1,142 @@
+{% set version = "v1" %}
+{% set pageTitle = "Confirm patients for testing" %}
+
+{% set group %}
+{% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+{% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+      <span class="govuk-phase-banner__text"> This is a new service – your 
+      <a target="_blank" href="#" class="govuk-link"> feedback (opens in new tab)</a> will help us to improve it. 
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-xl">
+        {{ group }}</span>
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <div class="govuk-!-margin-bottom-8" style="background: #f3f2f1; padding: 1.5rem 1.75rem; width: 66%">
+        <div class="govuk-warning-text  govuk-!-margin-bottom-0">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            3 patients will need to be manually contacted
+          </strong>
+        </div>
+        <p class="govuk-body govuk-!-margin-top-2 govuk-!-margin-bottom-0">If only a landline is provided to contact the patient, the hospital will have to call the patient with the result of their test.</p>
+      </div>
+
+      <p class="govuk-body">
+        <span class="govuk-!-margin-right-8">Patient_list.xlsl file added</span>
+        <a href="/elective-care-testing/{{version}}//trust-worker-request/upload-file" class="govuk-link">Change file</a>
+      </p>
+
+      <p class="govuk-body">We'll process your order when you continue.</p>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Patient</th>
+            <th scope="col" class="govuk-table__header">Procedure date</th>
+            <th scope="col" class="govuk-table__header">NHS number</th>
+            <th scope="col" class="govuk-table__header">Contact details</th>
+            <th scope="col" class="govuk-table__header">Delivery address</th>
+            <th scope="col" class="govuk-table__header"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Joe Bloggs<br>Male<br>15 June 1995</td>
+            <td class="govuk-table__cell">15 September 2021</td>
+            <td class="govuk-table__cell">ABC122334</td>
+            <td class="govuk-table__cell">joe.bloggs@gmail.com</td>
+            <td class="govuk-table__cell">1 Bobslane<br>addressLine2<br>Bobville<br>AA9A 9AA<br>England</td>
+            <td class="govuk-table__cell">
+              <a class="govuk-link" href="#">Change</a>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Joe Bloggs<br>Male<br>15 June 1995</td>
+            <td class="govuk-table__cell">15 September 2021</td>
+            <td class="govuk-table__cell">ABC122334</td>
+            <td class="govuk-table__cell">07860847754</td>
+            <td class="govuk-table__cell">22 Hackford road<br>Suffolk<br>SW90ED</td>
+            <td class="govuk-table__cell">
+              <a class="govuk-link" href="#">Change</a>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Joe Bloggs<br>Male<br>15 June 1995</td>
+            <td class="govuk-table__cell">15 September 2021</td>
+            <td class="govuk-table__cell">ABC122334</td>
+            <td class="govuk-table__cell">07860847754</td>
+            <td class="govuk-table__cell">22 Hackford road<br>Suffolk<br>SW90ED</td>
+            <td class="govuk-table__cell">
+              <a class="govuk-link" href="#">Change</a>
+            </td>
+          </tr>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Bob Smith<br>Male<br>15 June 1995</td>
+            <td class="govuk-table__cell">15 September 2021</td>
+            <td class="govuk-table__cell">ABC122334</td>
+            <td class="govuk-table__cell">01923 476120</td>
+            <td class="govuk-table__cell">22 Hackford road<br>Suffolk<br>SW90ED</td>
+            <td class="govuk-table__cell">
+              <a class="govuk-link" href="#">Change</a>
+            </td>
+          </tr>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Angela Braveheart<br>Male<br>15 June 1995</td>
+            <td class="govuk-table__cell">15 September 2021</td>
+            <td class="govuk-table__cell">ABC122334</td>
+            <td class="govuk-table__cell">01923 476120</td>
+            <td class="govuk-table__cell">22 Hackford road<br>Suffolk<br>SW90ED</td>
+            <td class="govuk-table__cell">
+              <a class="govuk-link" href="#">Change</a>
+            </td>
+          </tr>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Adam Fila<br>Male<br>15 June 1995</td>
+            <td class="govuk-table__cell">15 September 2021</td>
+            <td class="govuk-table__cell">ABC122334</td>
+            <td class="govuk-table__cell">01923 476120</td>
+            <td class="govuk-table__cell">22 Hackford road<br>Suffolk<br>SW90ED</td>
+            <td class="govuk-table__cell">
+              <a class="govuk-link" href="#">Change</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a href="confirmation" role="button" draggable="false" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+        Save and continue
+      </a>
+
+    </div>
+  </div>
+{% endblock %}
