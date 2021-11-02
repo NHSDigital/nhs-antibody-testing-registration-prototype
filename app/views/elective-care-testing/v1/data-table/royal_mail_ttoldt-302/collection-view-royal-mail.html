@@ -1,0 +1,209 @@
+{% set version = "v1" %}
+{% set serviceName = "Manage elective care patient COVID-19 testing" %}
+{% set pageTitle = "Check patient details and test results" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback (opens in new tab)</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">{{ pageTitle}}</h1>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <div class="govuk-form-group govuk-!-margin-bottom-6">
+      <label class="govuk-heading-m govuk-!-margin-bottom-1" for="sort">
+        Select a group
+      </label>
+      <div class="govuk-hint govuk-heading-m">
+        You can only search within 1 group at a time.
+      </div>
+      <select class="govuk-select" id="" name="">
+        <option value="" selected>Group 1</option>
+        <option value="">Group 2</option>
+        <option value="">Group 3</option>
+        <option value="">Group 4</option>
+      </select>
+    </div>
+
+    <form action="5" method="post">
+
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s govuk-!-margin-bottom-0">
+          <h1 class="govuk-heading-m govuk-!-margin-bottom-1">
+            Search within group
+          </h1>
+          <div class="govuk-hint govuk-heading-m">
+            You can search by first name and/or last name.
+          </div>
+        </legend>
+
+        <div class="flex-container" style="display: flex;">
+          <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-right-6">
+            <label class="govuk-label" for="width-10">
+              First name
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="width-10" name="width-10" type="text">
+          </div>
+          <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-right-6">
+            <label class="govuk-label" for="width-10">
+              Last name
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="width-10" name="width-10" type="text">
+          </div>
+          <div class="govuk-form-group govuk-!-margin-bottom-0">
+            <button class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+              Search
+            </button>
+          </div>
+
+        </div>
+
+      </fieldset>
+
+    </form>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <div class="flex-container" style="display: flex; justify-content: flex-start">
+      <div class="govuk-form-group govuk-!-margin-bottom-8 govuk-!-margin-right-4">
+        <label class="govuk-label" for="sort">
+          Sort results by
+        </label>
+        <select class="govuk-select" id="" name="">
+          <option value="updated" selected>Procedure date</option>
+          <option value="updated">Status</option>
+        </select>
+      </div>
+      <!-- <div>
+        <button class="govuk-button govuk-button--secondary govuk-!-margin-top-6" data-module="govuk-button">
+          Export .csv
+        </button>
+      </div>-->
+
+    </div>
+    <table class="govuk-table" style="font-size:16px;">
+      <p class="govuk-!-margin-bottom-2 govuk-heading-s">Displaying records 1 to 10 of 100 from Group 1</p>
+      <!-- <p class="govuk-body-s">Last updated 9 March 2021 at 13:42 <a class="govuk-link" href="#">Check for update</a></p> -->
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header" style="vertical-align:bottom">Patient</th>
+          <th scope="col" class="govuk-table__header" style="vertical-align:bottom">Procedure date</th>
+          <th scope="col" class="govuk-table__header" style="vertical-align:bottom;">Mobile number</th>
+          <th scope="col" class="govuk-table__header" style="vertical-align:bottom;">Status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Gender<br/>00 MMM YY</td>
+          <td class="govuk-table__cell">00 MMM YY<br /><!--<a href="#" class="govuk-!-margin-right-2">Change</a>--><a href="#" class="govuk-link">Cancel</a></td>    
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">Result ready<br />DD/MM/YYYY<br /><a href="#" class="govuk-link">View details</a></td>    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Gender<br/>00 MMM YY</td>
+          <td class="govuk-table__cell">00 MMM YY<br /><!--<a href="#" class="govuk-!-margin-right-2">Change</a>--><a href="#" class="govuk-link">Cancel</a></td>    
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">Result ready<br />DD/MM/YYYY<br /><a href="#" class="govuk-link">View details</a></td>    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Gender<br/>00 MMM YY</td>
+          <td class="govuk-table__cell">00 MMM YY<br /><!--<a href="#" class="govuk-!-margin-right-2">Change</a>--><a href="#" class="govuk-link">Cancel</a></td>    
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">Patient has sent test<br />DD/MM/YYYY<br /><a href="#" class="govuk-link">View details</a></td>    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Gender<br/>00 MMM YY</td>
+          <td class="govuk-table__cell">00 MMM YY<br /><!--<a href="#" class="govuk-!-margin-right-2">Change</a>--><a href="#" class="govuk-link">Cancel</a></td>    
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">Test sent to patient<br />DD/MM/YYYY<br /><a href="#" class="govuk-link">View details</a></td>    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Gender<br/>00 MMM YY</td>
+          <td class="govuk-table__cell">00 MMM YY<br /><!--<a href="#" class="govuk-!-margin-right-2">Change</a>--><a href="#" class="govuk-link">Cancel</a></td>    
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">Test sent to patient<br />DD/MM/YYYY<br /><a href="#" class="govuk-link">View details</a></td>    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Gender<br/>00 MMM YY</td>
+          <td class="govuk-table__cell">00 MMM YY<br />(cancelled)</td>    
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">Patient has sent test<br />DD/MM/YYYY<br /><a href="#" class="govuk-link">View details</a></td>    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Gender<br/>00 MMM YY</td>
+          <td class="govuk-table__cell">00 MMM YY<br /><!--<a href="#" class="govuk-!-margin-right-2">Change</a>--><a href="#" class="govuk-link">Cancel</a></td>    
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">Patient has sent test<br />DD/MM/YYYY<br /><a href="#" class="govuk-link">View details</a></td>    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Gender<br/>00 MMM YY</td>
+          <td class="govuk-table__cell">00 MMM YY<br /><!--<a href="#" class="govuk-!-margin-right-2">Change</a>--><a href="#" class="govuk-link">Cancel</a></td>    
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">Test sent to patient<br />DD/MM/YYYY<br /><a href="#" class="govuk-link">View details</a></td>    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Gender<br/>00 MMM YY</td>
+          <td class="govuk-table__cell">00 MMM YY<br /><!--<a href="#" class="govuk-!-margin-right-2">Change</a>--><a href="#" class="govuk-link">Cancel</a></td>    
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">Test sent to patient<br />DD/MM/YYYY<br /><a href="#" class="govuk-link">View details</a></td>    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Firstname Lastname<br/>Gender<br/>00 MMM YY</td>
+          <td class="govuk-table__cell">00 MMM YY<br />(cancelled)</td>    
+          <td class="govuk-table__cell">07000000000</td>
+          <td class="govuk-table__cell">Patient has sent test<br />DD/MM/YYYY<br /><a href="#" class="govuk-link">View details</a></td>    
+        </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </tbody>
+    </table>
+    <div class="flex-container" style="display: flex; justify-content: space-between;">
+      <a href="#" class="govuk-link">Previous page in list</a>
+      <a href="#" class="govuk-link">Next page in list</a>
+    </div>
+
+  </div>
+</div>
+
+
+
+{% endblock %}
