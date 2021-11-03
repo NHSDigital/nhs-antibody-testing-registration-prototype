@@ -20,6 +20,28 @@ router.post('/antigen/v1/action3/1-have-you-travelled-overseas-person-1', functi
 
 })
 
+// Version 1 - Antigen Global registration - GP address same route
+
+router.post('/antigen/v1/action3/gp-address-same', function (req, res) {
+  let gpAdressSame = req.session.data['gp-address-same']
+  if (gpAdressSame == "No"){
+    res.redirect('/antigen/v1/global-registration/address')
+  } else {
+    res.redirect('/antigen/v1/global-registration/nhs-number-known')
+  }
+})
+
+// Version 1 - Antigen Global Registration - Delivery address same route
+
+router.post('/antigen/v1/action3/delivery-address-same', function (req, res) {
+  let deliveryAdressSame = req.session.data['delivery-address-same']
+  if (deliveryAdressSame == "No"){
+    res.redirect('/antigen/v1/order-home-test-kit/delivery-postcode')
+  } else {
+    res.redirect('/antigen/v1/order-home-test-kit/confirm-email-address')
+  }
+})
+
 
 // Version 2 - Antigen Refer and Triage - Mobile number route
 
@@ -188,9 +210,9 @@ router.post('/antigen/v2/action3/follow-up-test', function (req, res) {
 
 })
 
-// Version 2 - Antigen Refer and Triage - Follow up test reason option 2 route
+// Version 2 - Antigen Refer and Triage - Follow up test reason route
 
-router.post('/antigen/v2/action3/follow-up-test-reason-option-2', function (req, res) {
+router.post('/antigen/v2/action3/follow-up-test-reason', function (req, res) {
   let followUpTestReason = req.session.data['follow-up-test-reason']
   if (followUpTestReason == "After entering the UK, they got a positive day 2 travel test result"){
     res.redirect('/antigen/v2/refer-and-triage/test-package-booking-reference')
@@ -596,15 +618,6 @@ router.post('/antigen/v2/action3/gp-address-same', function (req, res) {
   }
 })
 
-router.post('/antigen/v2/action3/gp-address-same-option-2', function (req, res) {
-  let gpAdressSame = req.session.data['gp-address-same']
-  if (gpAdressSame == "No"){
-    res.redirect('/antigen/v2/global-registration/address-option-2')
-  } else {
-    res.redirect('/antigen/v2/global-registration/nhs-number-known')
-  }
-})
-
 router.post('/antigen/v2/action3/gp-address-same-person-1', function (req, res) {
   let gpAdressSame = req.session.data['gp-address-same-person-1']
   if (gpAdressSame == "No"){
@@ -899,15 +912,6 @@ router.post('/antigen/v2/action3/delivery-address-same', function (req, res) {
   let deliveryAdressSame = req.session.data['delivery-address-same']
   if (deliveryAdressSame == "No"){
     res.redirect('/antigen/v2/order-home-test-kit/delivery-postcode')
-  } else {
-    res.redirect('/antigen/v2/order-home-test-kit/confirm-email-address')
-  }
-})
-
-router.post('/antigen/v2/action3/delivery-address-same-option-2', function (req, res) {
-  let deliveryAdressSame = req.session.data['delivery-address-same']
-  if (deliveryAdressSame == "No"){
-    res.redirect('/antigen/v2/order-home-test-kit/delivery-postcode-option-2')
   } else {
     res.redirect('/antigen/v2/order-home-test-kit/confirm-email-address')
   }

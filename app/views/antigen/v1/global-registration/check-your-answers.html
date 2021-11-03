@@ -420,16 +420,50 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              First line of address and postcode
+              Home address
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['address'] or 'Chancery Lane' }}<br>
-              {{ data['home-postcode'] or 'LS1 3BE' }}
+              {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+                {{ data['home-address'] }}
+              {% else %}
+                {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+                {{ data['home-postcode'] or 'LS1 3BE' }}
+              {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/antigen/{{version}}/global-registration/address">
+              <a href="/antigen/{{version}}/global-registration/edit-check-answers/postcode">
                 Change
                 <span class="govuk-visually-hidden">first line of address and postcode</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              GP registered address
+            </dt>
+            {% if data['gp-address-same'] !== "No" %}
+            <dd class="govuk-summary-list__value">
+              {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+                {{ data['home-address'] }}
+              {% else %}
+                {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+                {{ data['home-postcode'] or 'LS1 3BE' }}
+              {% endif %}
+            </dd>
+            {% else %}
+            <dd class="govuk-summary-list__value">
+              {% if data['gp-address'] and data['gp-address'] !== "Select from 5 addresses" %}
+                {{ data['gp-address'] }}
+              {% else %}
+                {{ data['address-line-1-gp'] or '5 Souterhead Road'}}<br>
+                {{ data['gp-postcode'] or 'LS1 3BE' }}
+              {% endif %}
+            </dd>
+            {% endif %}
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/edit-check-answers/address">
+                Change
+                <span class="govuk-visually-hidden">postcode</span>
               </a>
             </dd>
           </div>
@@ -463,6 +497,20 @@
             </dd>
           </div>
           {% endif %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Agreed to do antibody tests
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['fingerprick-test'] or 'Yes' }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/antigen/{{version}}/global-registration/fingerprick-test">
+                Change
+                <span class="govuk-visually-hidden">antibody tests</span>
+              </a>
+            </dd>
+          </div>
       </dl>
 
 

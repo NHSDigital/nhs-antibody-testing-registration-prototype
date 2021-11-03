@@ -598,7 +598,7 @@ router.post('/antigen/v1/action3/nhs-number-known', function (req, res) {
   if (nhsNumberKnown == "Yes"){
     res.redirect('/antigen/v1/global-registration/nhs-number')
   } else {
-    res.redirect('/antigen/v1/global-registration/check-your-answers')
+    res.redirect('/antigen/v1/global-registration/fingerprick-test')
   }
 
 })
