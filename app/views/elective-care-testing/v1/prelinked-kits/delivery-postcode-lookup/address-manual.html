@@ -1,0 +1,121 @@
+{% set version = "v1" %}
+{% set pageTitle = "Enter your delivery address" %}
+
+{% set group %}
+{% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+{% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback (opens in new tab)</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="check-your-answers" method="get">
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-xl">
+              {{ group }}</span>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              What’s {{ data['first-name'] | default('Pete') }}
+              {{ data['last-name'] | default('Smith') }}’s address?
+            </h1>
+          </legend>
+
+          <p class="govuk-body">This will be the address that their test kit will be sent to.</p>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="delivery-address-line-1">
+              Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
+            </label>
+            <input class="govuk-input govuk-!-width-three-quarters" id="delivery-address-line-1" name="delivery-address-line-1" type="text" autocomplete="address-line1" value="{{ data['delivery-address-line-1'] }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="delivery-address-line-2">
+              <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
+            </label>
+            <input class="govuk-input govuk-!-width-three-quarters" id="delivery-address-line-2" name="delivery-address-line-2" type="text" autocomplete="address-line2" value="{{ data['delivery-address-line-2'] }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="delivery-address-town">
+              Town or city
+            </label>
+            <input class="govuk-input govuk-!-width-one-half" id="delivery-address-town" name="delivery-address-town" type="text" autocomplete="address-level2" value="{{ data['delivery-address-town'] }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="delivery-address-postcode">
+              Postcode
+            </label>
+            <input class="govuk-input govuk-!-width-one-half" id="delivery-address-postcode" name="delivery-address-postcode" type="text" autocomplete="address-level4" value="{{ data['delivery-address-postcode']}}">
+            <p class="govuk-body govuk-!-margin-top-3"><a href="address-select" class="govuk-link">Lookup address using postcode</a></p>
+          </div>
+
+          <div class="govuk-form-group">
+            <p class="govuk-body">Country</p>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }}>
+                <label class="govuk-label govuk-radios__label" for="country-1">
+                England
+              </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="Wales" {{ checked("country", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-2">
+                Wales
+              </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="Northern Ireland" {{ checked("country", "Northern Ireland") }}>
+                <label class="govuk-label govuk-radios__label" for="country-3">
+                Northern Ireland
+              </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="Scotland" {{ checked("country", "Scotland") }}>
+                <label class="govuk-label govuk-radios__label" for="country-4">
+                Scotland
+              </label>
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+
+        <button class="govuk-button  govuk-!-margin-top-4" type="submit" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
