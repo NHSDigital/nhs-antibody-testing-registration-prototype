@@ -34,7 +34,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="check-your-answers" method="get">
+      <form action="address-select" method="post" class="form">
 
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -43,38 +43,28 @@
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
               What’s {{ data['first-name'] | default('Pete') }}
               {{ data['last-name'] | default('Smith') }}’s address?
-            </h1>
+            </h1> 
           </legend>
 
           <p class="govuk-body">This will be the address that their test kit will be sent to.</p>
+
           <div class="govuk-form-group">
-              <label class="govuk-label govuk-!-font-weight-bold" for="postcode">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-!-font-weight-bold" for="delivery-address-postcode">
                 Postcode
               </label>
-              <p class="govuk-body">{{ data['delivery-address-postcode'] | default('SW1A 1AA') }} 
-                <a href="postcode-lookup__happy" class="govuk-link govuk-!-margin-left-2">Change</a>
-              </p>
+              <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode" name="delivery-address-postcode" value="{{ data['delivery-address-postcode'] }}" type="text" autocomplete="postal-code">
             </div>
-            <div class="govuk-form-group">
-              <label class="govuk-label govuk-!-font-weight-bold" for="sort">
-                Select an address
-              </label>
-              <select class="govuk-select govuk-!-width-one-half" id="sort" name="sort">
-                <option value="address-summary" selected>1 address found</option>
-                <option value="address-1">Buckingham Palace, London, {{ data['delivery-address-postcode']}}</option>
-              </select>
-            </div>
-            <p class="govuk-body"><a href="address-manual" class="govuk-link">I can't find the address in the list</a></p>
+          </div>
+        </fieldset>
 
-          </fieldset>
-
-          <button class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
-          Continue
+        <button class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
+          Find address
         </button>
 
-        </form>
+      </form>
 
-      </div>
     </div>
+  </div>
 
-  {% endblock %}
+{% endblock %}
