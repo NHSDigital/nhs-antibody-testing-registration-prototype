@@ -28,12 +28,21 @@
           <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} want to get a confirmation message for this result?
+                {% else %}
                 {{ pageTitle }}
+                {% endif %}
               </h1>
             </legend>
                 <span id="choice-hint" class="govuk-body">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  <p>For a negative or void result, they can choose to receive a confirmation text and email (if they supplied it).</p>
+                  <p>If they report a positive result, they always receive a confirmation message.</p>
+                  {% else %}
                   <p>For a negative or void result, you can choose to receive a confirmation text and email (if you supplied it).</p>
                   <p>If you report a positive result, you always receive a confirmation message.</p>
+                  {% endif %}
                 </span>
                 <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
                   <div class="govuk-radios__item">
@@ -53,7 +62,11 @@
 
             <div class="govuk-form-group">
               <div id="waste-hint" class="govuk-body">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Messages are in English unless they choose to receive them in Welsh as well
+                {% else %}
                 Messages are in English unless you choose to receive them in Welsh as well
+                {% endif %}
               </div>
                 <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                   <div class="govuk-checkboxes__item">
