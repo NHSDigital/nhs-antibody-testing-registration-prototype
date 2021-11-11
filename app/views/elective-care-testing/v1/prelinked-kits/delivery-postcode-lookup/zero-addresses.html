@@ -1,0 +1,79 @@
+{% set version = "v1" %}
+{% set pageTitle = "Enter your delivery address" %}
+
+{% set group %}
+{% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+{% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback (opens in new tab)</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form>
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-xl">
+              {{ group }}</span>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              What’s {{ data['first-name'] | default('Pete') }}
+              {{ data['last-name'] | default('Smith') }}’s address?
+            </h1>
+          </legend>
+
+          <p class="govuk-body">This will be the address that their test kit will be sent to.</p>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-!-font-weight-bold" for="postcode">
+                Postcode
+              </label>
+            <p class="govuk-body">{{ data['delivery-address-postcode'] | default('BO2 1BO') }}
+                <a href="postcode-lookup__happy" class="govuk-link govuk-!-margin-left-2">Change</a>
+            </p>
+          </div>
+
+          <div class="govuk-form-group">
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">No addresses found for this postcode</p>
+            <p class="govuk-body">Please try a different postcode.</p>
+          </div>
+
+        </fieldset>
+
+        <div class="govuk-button-group govuk-!-margin-top-4">
+          <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Go home
+          </button>
+
+          <a class="govuk-link" href="#">Order a new test</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

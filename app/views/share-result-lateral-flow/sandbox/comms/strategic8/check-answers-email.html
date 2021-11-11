@@ -1,0 +1,353 @@
+{% set version = "sandbox" %}
+{% set pageTitle = "Check the answers" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-7">
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        Check the answers for {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}
+        {% else %}
+        {{ pageTitle }}
+        {% endif %}
+      </h1>
+
+  <!--    <p class="govuk-body">Photo successfully uploaded</p> -->
+
+    <h2 class="govuk-heading-m">Personal details</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['first-name'] }} {{ data['last-name'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/name">
+                Change
+                <span class="govuk-visually-hidden">name</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date of birth
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/date-of-birth">
+                Change
+                <span class="govuk-visually-hidden">date of birth</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Medical record (male, female, other…)
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Female
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/gender">
+                Change
+                <span class="govuk-visually-hidden"> medical record</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Ethnicity
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['ethnic-group'] }}<br>
+              {% if data['ethnic-group'] !== "Prefer not to say" %}
+              {{ data['ethnic-background'] }}
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/ethnic-group">
+                Change
+                <span class="govuk-visually-hidden"> ethnicity</span>
+              </a>
+            </dd>
+          </div>
+
+
+          <!-- {% if data['do-you-have-symptoms'] == "Yes" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date of onset
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/symptoms-start">
+                Change
+                <span class="govuk-visually-hidden">date of onset</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %} -->
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['address'] }}<br>
+              {{ data['home-postcode'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/address">
+                Change
+                <span class="govuk-visually-hidden">address</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Country
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Scotland
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/country">
+                Change
+                <span class="govuk-visually-hidden">country of residence</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              How to get results confirmation
+            </dt>
+            <dd class="govuk-summary-list__value">
+              By email
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/comms/strategic8/contact-choice">
+                Change
+                <span class="govuk-visually-hidden"> how to get results confirmation</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Mobile
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['mobile-phone-number'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/comms/strategic8/mobile-both">
+                Change
+                <span class="govuk-visually-hidden"> mobile</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['email-address'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/comms/strategic8/email-both">
+                Change
+                <span class="govuk-visually-hidden"> email address</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Results confirmation preferences
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Messages for positive results only<br>
+              Messages in English
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/comms/strategic8/contact-prefs4">
+                Change
+                <span class="govuk-visually-hidden"> results confirmation preferences</span>
+              </a>
+            </dd>
+          </div>
+
+        <!--  <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Mobile
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['mobile-phone-number'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/mobile-number">
+                Change
+                <span class="govuk-visually-hidden">mobile</span>
+              </a>
+            </dd>
+          </div> -->
+
+          <!-- <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              NHS number known
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Yes, I know my NHS number
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/nhs-number-known">
+                Change
+                <span class="govuk-visually-hidden">NHS number known</span>
+              </a>
+            </dd>
+          </div> -->
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              NHS number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['nhs-number'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/nhs-number">
+                Change
+                <span class="govuk-visually-hidden">NHS number</span>
+              </a>
+            </dd>
+          </div>
+
+      </dl>
+
+    <h2 class="govuk-heading-m">Test details</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date test taken
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['swab-test-date'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/test-date">
+              Change
+              <span class="govuk-visually-hidden"> date test taken</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test strip ID number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['kit-barcode-reference-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/share-result-lateral-flow/{{version}}/barcode">
+              Change
+              <span class="govuk-visually-hidden">test strip ID number</span>
+            </a>
+          </dd>
+        </div>
+
+        </dl>
+
+      <h2 class="govuk-heading-m">Reason for taking this test</h2>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Test for your job?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              No
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/test-for-work">
+                Change
+                <span class="govuk-visually-hidden"> did you take this test for your job?</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Why test taken
+            </dt>
+            <dd class="govuk-summary-list__value">
+               To go to school, college or university
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/share-result-lateral-flow/{{version}}/test-reason">
+                Change
+                <span class="govuk-visually-hidden"> why you took this test</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Name or postcode of education provider
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Park View School
+            </dd>
+            <dd class="govuk-summary-list__actions">
+             <a href="/share-result-lateral-flow/{{version}}/school-name">
+                Change
+                <span class="govuk-visually-hidden"> name or postcode of education provider</span>
+              </a>
+            </dd>
+          </div>
+
+      </dl>
+
+      <form action="/share-result-lateral-flow/{{version}}/using-mobile" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

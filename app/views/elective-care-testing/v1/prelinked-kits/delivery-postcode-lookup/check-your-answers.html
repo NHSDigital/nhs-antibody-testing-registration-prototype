@@ -1,0 +1,89 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% set pageTitle = "Check your answers" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag"> beta </strong>
+      <span class="govuk-phase-banner__text"> This is a new service – your <a target="_blank" href="https://feedback.digital.nhs.uk/jfe/form/SV_0Nxdm4p12JAngk6" class="govuk-link"> feedback (opens in new tab)</a> will help us to improve it. </span></p>
+  </div>
+  <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+      <h1 class="govuk-heading-xl"> Check your answers </h1>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key"> Group </dt>
+          <dd class="govuk-summary-list__value"> Test Group 1 </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#" class="govuk-visually-hidden govuk-link"> Change <span class="govuk-visually-hidden"> Group </span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key"> Procedure date </dt>
+          <dd class="govuk-summary-list__value"> 03 November 2021 </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#" class="govuk-link"> Change <span class="govuk-visually-hidden"> Procedure date </span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key"> Name </dt>
+          <dd class="govuk-summary-list__value"> Pete  Smith </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#" class="govuk-link"> Change <span class="govuk-visually-hidden"> Name </span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key"> Date of birth </dt>
+          <dd class="govuk-summary-list__value"> 01 January 1990 </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#" class="govuk-link"> Change <span class="govuk-visually-hidden"> Date of birth </span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key"> Medical record (female, male, other...) </dt>
+          <dd class="govuk-summary-list__value"> Male </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#" class="govuk-link"> Change <span class="govuk-visually-hidden"> Medical record (female, male, other...) </span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key"> NHS number </dt>
+          <dd class="govuk-summary-list__value"> 8888888888 </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#" class="govuk-link"> Change <span class="govuk-visually-hidden"> NHS number </span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key"> Contact </dt>
+          <dd class="govuk-summary-list__value"> +447777777777 </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#" class="govuk-link"> Change <span class="govuk-visually-hidden"> Mobile </span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key"> Shipping address </dt>
+          <dd class="govuk-summary-list__value"> 
+          {{ data['delivery-address-line-1'] | default('Buckingham Palace') }}
+          {{ data['delivery-address-line-2']}}
+          <br> {{ data['delivery-address-town'] | default('London') }} 
+          <br> {{ data['delivery-address-postcode'] | default('SW1A 1AA') }}
+          <br> {{ data['country'] | default('England') }}<br></dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="address-manual" class="govuk-link"> Change <span class="govuk-visually-hidden"> Shipping address </span></a>
+          </dd>
+        </div>
+      </dl>
+      <button data-v-9543c7be="" type="submit" class="govuk-!-margin-top-5 govuk-button"> Submit answers </button>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock %}

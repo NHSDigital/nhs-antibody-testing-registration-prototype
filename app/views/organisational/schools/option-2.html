@@ -1,0 +1,63 @@
+{% set pageHeading = "How were they tested?" %}
+{% set version = "organisational/lft/carehome-registration" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="" action="" method="post">
+        {{ govukRadios({
+            idPrefix: "cuUploadType",
+            name: "cuUploadType",
+            fieldset: {
+              legend: {
+                text: pageHeading,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            items: [
+              {
+                value: "ATS",
+                text: "Trained staff did the tests for them"
+              },
+              {
+                value: "SST",
+                text: "They did their own tests while being supervised"
+              }
+            ]
+          }) }}
+        <input class="govuk-button" type="submit" value="Continue">
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
