@@ -1,5 +1,5 @@
-{% set pageHeading = "Who are you registering test kits for?" %}
-{% set version = "organisational/schools" %}
+{% set pageHeading = "Who are you registering?" %}
+{% set version = "organisational/lft/carehome-registration" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -31,12 +31,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="/{{version}}/bulk/upload" method="get">
-
-      <p>
+      <form class="" action="/{{version}}/single/personal-details" method="get">
         {{ govukRadios({
-            idPrefix: "cuUploadType",
-            name: "cuUploadType",
+            idPrefix: "cuStaff",
+            name: "cuStaff",
             fieldset: {
               legend: {
                 text: pageHeading,
@@ -46,20 +44,19 @@
             },
             items: [
               {
-                  value: "staff",
-                  text: "Staff"
-                },
-              {
-                value: "ATS",
-                text: "School pupils who were tested by trained staff"
+                value: "Staff",
+                text: "Staff"
               },
               {
-                value: "SST",
-                text: "School pupils who did the test themselves"
+                value: "Residents",
+                text: "Residents"
+              },
+              {
+                value: "Care partners",
+                text: "Care partners and/or visitors (Northern Ireland only)"
               }
             ]
           }) }}
-
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>

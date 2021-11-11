@@ -1,4 +1,4 @@
-{% set pageHeading = "How were they tested?" %}
+{% set pageHeading = "Who are you registering?" %}
 {% set version = "organisational/lft/carehome-registration" %}
 {% extends "includes/layout.html" %}
 
@@ -31,10 +31,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="" method="post">
+      <form class="" action="/{{version}}/single/personal-details" method="get">
         {{ govukRadios({
-            idPrefix: "cuUploadType",
-            name: "cuUploadType",
+            idPrefix: "cuStaff",
+            name: "cuStaff",
             fieldset: {
               legend: {
                 text: pageHeading,
@@ -44,12 +44,16 @@
             },
             items: [
               {
-                value: "ATS",
-                text: "Trained staff did the tests for them"
+                value: "Staff",
+                text: "Staff"
               },
               {
-                value: "SST",
-                text: "They did their own tests while being supervised"
+                value: "Residents",
+                text: "Residents"
+              },
+              {
+                value: "Care partners",
+                text: "Care partners and/or visitors (Northern Ireland only)"
               }
             ]
           }) }}

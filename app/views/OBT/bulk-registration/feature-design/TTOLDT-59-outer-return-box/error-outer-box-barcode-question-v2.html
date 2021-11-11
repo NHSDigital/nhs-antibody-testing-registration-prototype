@@ -1,0 +1,95 @@
+{% set version = "v2" %}
+{% set pageTitle = "Are you a care home taking part in the return box tracking pilot?" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  <a class="govuk-back-link" href="#">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#field-1">This barcode is 16 digits long and starts with CH</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+          <div class="govuk-radios govuk-radios--inline">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="changed-name" name="changed-name" type="radio" value="yes" checked>
+              <label class="govuk-label govuk-radios__label" for="changed-name">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="changed-name-2" name="changed-name" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="changed-name-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <h2 class="govuk-heading-m">Enter the barcode that's on the purple label on the outer return box</h2>
+
+      <details class="govuk-details" data-module="govuk-details" style="margin-top:24px;">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            What does the barcode look like?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <img src="/public/images/outerboxbarcode.png" alt="outer box barcode" style="width:200px;">
+        </div>
+      </details>
+
+      <form action="outer-box-barcode-scan">
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Scan barcode
+        </button>
+      </form>
+
+      <div class="govuk-form-group govuk-form-group--error">
+        <form action="outer-box-barcode-scan">
+          <label class="govuk-label" for="width-20">
+            16-digit barcode
+          </label>
+          <span class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span>This barcode is 16 digits long and starts with CH
+          </span>
+          <input id="field-1" class="govuk-input govuk-input--width-20 govuk-input--error" id="width-20" name="width-20" type="text" value="">
+        </form>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </div>
+
+
+{% endblock %}
