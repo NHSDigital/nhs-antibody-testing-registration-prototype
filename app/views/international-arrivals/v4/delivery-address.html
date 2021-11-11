@@ -53,8 +53,8 @@
 
           <div id="content-2" style="display: none;">
             <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
-              Postcode<br><br>
-              <strong>{{ data['delivery-address-postcode'] | default('LS1 3BE') }}</strong>
+              <strong>Postcode</strong><br><br>
+              {{ data['delivery-address-postcode'] | default('LS1 3BE') }}
               <a href="/international-arrivals/{{version}}/delivery-address" class="govuk-!-margin-left-5">
                 Change
                 <span class="govuk-visually-hidden">your postcode</span>
@@ -62,7 +62,7 @@
             </p>
             <div class="govuk-form-group">
               <label class="govuk-label" for="delivery-address">
-                Address
+                <strong>Select an address</strong>
               </label>
               <select class="govuk-select" id="delivery-address" name="delivery-address">
                 <option>5 addresses found</option>
@@ -80,8 +80,8 @@
 
           <div id="content-3" style="display: none;">
             <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
-              Postcode<br><br>
-              <strong>{{ data['delivery-address-postcode'] | default('LS1 3BE') }}</strong>
+              <strong>Postcode</strong><br><br>
+              {{ data['delivery-address-postcode'] | default('LS1 3BE') }}
               <a href="/international-arrivals/{{version}}/delivery-address" class="govuk-!-margin-left-5">
                 Change
                 <span class="govuk-visually-hidden">your postcode</span>
@@ -117,9 +117,9 @@
           Continue
         </button>
 
-        <p class="govuk-body">
+        <!-- <p class="govuk-body">
           <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find my address in the list</a>
-        </p>
+        </p> -->
 
       </form>
 
@@ -132,7 +132,7 @@
   function buttonClicked(target) {
     setTimeout(function () {
       document.getElementById('content-1').style.display = 'none'
-      document.getElementById('manual-address-2').style.display = 'none'
+      // document.getElementById('manual-address-2').style.display = 'none'
       document.getElementById('find-address').style.display = 'none'
       document.getElementById('button-hidden').style.display = 'block'
       document.getElementById('content-2').style.display = 'block'
@@ -152,7 +152,7 @@
   function submitEvent() {
     var selects = document.getElementById('find-address')
     var selectedLink = document.getElementById('manual-address')
-    var selectedLink2 = document.getElementById('manual-address-2')
+    // var selectedLink2 = document.getElementById('manual-address-2')
     selects.addEventListener('click', function (event) {
       event.preventDefault()
       if (selects.getAttribute('disabled') === 'disabled') {
@@ -169,14 +169,14 @@
         buttonClicked2(selectedLink)
       }
     })
-    selectedLink2.addEventListener('click', function (event) {
-      event.preventDefault()
-      if (selectedLink2.getAttribute('disabled') === 'disabled') {
-      } else {
-        event.preventDefault()
-        buttonClicked(selectedLink2)
-      }
-    })
+    // selectedLink2.addEventListener('click', function (event) {
+    //   event.preventDefault()
+    //   if (selectedLink2.getAttribute('disabled') === 'disabled') {
+    //   } else {
+    //     event.preventDefault()
+    //     buttonClicked(selectedLink2)
+    //   }
+    // })
 
   }
 

@@ -5,31 +5,51 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row" style="position: relative;">
-    <div class="grey-box">
+  <div class="govuk-grid-row">
+    
+
+    <!-- <div class="grey-box">
       <p class="govuk-body govuk-!-font-size-24">Payment summary</p>
       <p class="govuk-body">An example payment description</p>
       <p class="govuk-body govuk-!-margin-bottom-1"><span>Total amount:</span></p>
       <p class="govuk-body govuk-!-font-size-36 govuk-!-margin-bottom-0">
         {% if data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "undefined" %}£68{% elseif data['travel-route'] == 'Day 2 and day 8 tests' and data['travel-route-same-person-1'] == "undefined" %}£116{% elseif data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "Day 2 test" %}£136{% elseif data['travel-route'] == 'Day 2 and day 8 tests' and data['travel-route-same-person-1'] == "Day 2 test" %}£184{% elseif data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "Day 2 and day 8 tests" %}£184{% else %}£232{% endif %}
       </p>
-    </div>
-    <div class="govuk-grid-column-two-thirds">
+    </div> -->
 
-      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+    <div class="govuk-grid-column-two-thirds">
 
       <form action="/international-arrivals/{{version}}/confirm-payment" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="name-hint">
 
+    
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+            <div class="payment-summary govuk-!-margin-bottom-5 govuk-!-padding-4">
+              <h2 class="govuk-heading-m govuk-!-font-size-24">Payment summary</h2>
+              <p class="govuk-body">
+                {% if data['travel-route'] and data['travel-route-same-person-1'] %}
+                2 travel packages
+                {% else %}
+                1 travel package
+                {% endif %}
+              </p>
+              <p class="govuk-body govuk-!-margin-bottom-1"><span>Total amount:</span></p>
+              <p class="govuk-body govuk-!-font-size-36 govuk-!-margin-bottom-0">
+                <strong>
+                {% if data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "undefined" %}£68{% elseif data['travel-route'] == 'Day 2 and day 8 tests' and data['travel-route-same-person-1'] == "undefined" %}£116{% elseif data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "Day 2 test" %}£136{% elseif data['travel-route'] == 'Day 2 and day 8 tests' and data['travel-route-same-person-1'] == "Day 2 test" %}£184{% elseif data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "Day 2 and day 8 tests" %}£184{% else %}£136.00{% endif %}
+                </strong>
+              </p>
+            </div>
+        
 
           <div class="govuk-form-group">
             <label class="govuk-label" for="card-number">
               <strong>Card number</strong>
             </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="card-number" name="card-number" type="text" value="{{ data['card-number'] }}">
-            <img src="/public/images/cards-accepted.png" class="govuk-!-width-one-half govuk-!-margin-top-2" alt="cards acceepted"/>
             <span class="govuk-hint govuk-!-font-size-16">Accepted credit and debit cards</span>
+            <img src="/public/images/cards-accepted.png" class="govuk-!-width-one-half govuk-!-margin-top-2" alt="cards acceepted"/>
+            <input class="govuk-input govuk-!-width-two-thirds" id="card-number" name="card-number" type="text" value="{{ data['card-number'] }}">
           </div>
 
           <p class="govuk-body govuk-!-margin-bottom-1">
@@ -80,6 +100,8 @@
             <img src="/public/images/card-security-code.png" alt="cards acceepted" style="width: 56px; height: 40px;" />
           </div>
 
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
           <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Billing address</h2>
           <span class="govuk-hint">
             This is the address associated with the card
@@ -117,6 +139,8 @@
             <input class="govuk-input govuk-!-width-one-third" id="billing-postcode" name="billing-postcode" type="text" autocomplete="postal-code" value="{{ data['billing-postcode'] or data['delivery-address-postcode'] or 'LS1 3BE' }}">
           </div>
 
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
           <div class="govuk-form-group">
             <label class="govuk-label" for="confirmation-email-address">
               <strong>Email</strong><br>
@@ -125,15 +149,17 @@
               </span>
             </label>
             <input class="govuk-input govuk-!-width-two-thirds" id="confirmation-email-address" name="confirmation-email-address" type="text" value="{{ data['confirmation-email-address'] or data['email-address'] or 'example@email.com' }}">
-            <div class="govuk-inset-text">
+            <!-- <div class="govuk-inset-text">
               <p class="govuk-hint govuk-!-margin-bottom-1">An email will be sent to:</p>
               <p class="govuk-body govuk-!-font-size-24">{{ data['confirmation-email-address'] or 'example@email.com' }}</p>
-            </div>
+            </div> -->
           </div>
 
         </fieldset>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        <p class="govuk-body"><a class="govuk-link" href="/international-arrivals/{{version}}/cannot-process-payment">Cancel payment</a></p>
 
       </form>
 
