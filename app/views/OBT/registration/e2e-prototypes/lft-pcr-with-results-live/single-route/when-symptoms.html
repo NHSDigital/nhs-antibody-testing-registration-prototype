@@ -1,0 +1,94 @@
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      John Smith
+  {% endif %}
+{% endset %}
+{% set serviceName = "Register test kits for your organisation" %}
+{% set pageHeading = "When did John Smith's symptoms start?" %}
+{% set version = "organisational/ind-accounts/v3" %}
+{% extends "includes/layout.html" %}
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="" action="/{{ version }}/test-details/daily-contact-testing" method="get">
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl">
+                {{ pageHeading }}
+              </h1>
+            </legend>
+          <p>Enter the date. If you cannot remember the exact date, enter the date they think it was, roughly.</p>
+            <div id="passport-issued-hint" class="govuk-hint">
+              Use the format DD MM YYYY, for example 15 4 2020
+            </div>
+            <div class="govuk-date-input" id="passport-issued">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+              </div>
+            </div>
+
+          </fieldset>
+        </div>
+
+
+        <input class="govuk-button" type="submit" value="Continue">
+
+
+      </form>
+
+    </div>
+  </div>
+
+
+</script>
+{% endblock %}
