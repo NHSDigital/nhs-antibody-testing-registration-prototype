@@ -1,0 +1,126 @@
+{% set version = "v1" %}
+{% set pageTitle = "Upload patient details" %}
+
+{% set group %}
+  {% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+    {% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="request-method">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title" id="error-summary-title">
+        There is a problem
+      </h2>
+      <div class="govuk-error-summary__body">
+        <ul class="govuk-list govuk-error-summary__list">
+          <li>
+            <p><a href="#passport-issued-day">The uploaded spreadsheet contains missing or incorrect information</a></p>
+            <p class="govuk-body govuk-!-font-weight-bold">Correct the errors and upload a new version. </p>
+          </li>
+          <li>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Row</th>
+                  <th scope="col" class="govuk-table__header">Name</th>
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Column</th>
+                  <th scope="col" class="govuk-table__header">Error message</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <!-- Date of procedure -->
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">12, 15, 22, 43</td>
+                  <td class="govuk-table__cell">Bob Ross, Eric Andre, Brett Mitcham, John Cena</td>
+                  <td class="govuk-table__cell">Date of procedure (A),<br/> Date of birth (D),<br/> NHS number (F)</td>
+                  <td class="govuk-table__cell">There are multiple people on your spreadsheet with the same details</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">12</td>
+                  <td class="govuk-table__cell">Bob Ross</td>
+                  <td class="govuk-table__cell">Postcode (J)</td>
+                  <td class="govuk-table__cell">Postcode does not exist. Enter a valid postcode</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">43</td>
+                  <td class="govuk-table__cell">John Cena</td>
+                  <td class="govuk-table__cell">Postcode (J)</td>
+                  <td class="govuk-table__cell">Postcode does not exist. Enter a valid postcode</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="confirm-details" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="upload-patient-list-1-hint upload-patient-list-2-hint upload-patient-list-3-hint upload-patient-list-4-hint upload-patient-list-5-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-xl"> {{ group }}</span>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="upload-patient-list-1-hint" class="govuk-body">
+              To enter and upload patient details using our spreadsheet
+          </span>
+
+          <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5 govuk-!-margin-bottom-6">
+            <li><span id="upload-patient-list-2-hint"><a href="#" class="govuk-link">download our spreadsheet</a></span></li>
+            <li><span id="upload-patient-list-3-hint">do not add any sheets, rows or columns</span></li>
+            <li><span id="upload-patient-list-4-hint">enter details for up to 100 patients at a time</span></li>
+            <li><span id="upload-patient-list-5-hint">save the completed spreadsheet and then upload it</span></li>
+          </ul>
+
+          <div class="govuk-form-group govuk-form-group--error govuk-!-margin-top-8 govuk-!-margin-bottom-6">
+            <label class="govuk-label" for="file-upload-1">
+              Upload a file
+            </label>
+            <span id="file-upload-1-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>The uploaded spreadsheet contains missing or incorrect information
+            </span>
+            <input class="govuk-file-upload govuk-input--error" id="file-upload-1" name="file-upload-1" type="file">
+          </div>
+
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
