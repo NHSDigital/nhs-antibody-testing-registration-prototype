@@ -1,0 +1,62 @@
+{% set version = "v1" %}
+{% set pageTitle = "Sorry, this person cannot be added to your order" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['travel-route-same-person-1'] == "Yes" %}
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/travel-details-same-person-1">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/travel-route-same-person-1">Back</a>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+            {{ pageTitle }}
+        </h1>
+        <p class="govuk-body govuk-!-margin-bottom-6">
+          If they've travelled to a country on the red list, they will need to order a package that includes hotel quarantine.<br><br>
+          The red travel package contains 2 coronavirus tests and includes full board at a quarantine hotel for 10 days.<br><br>
+          <a href="https://www.gov.uk/guidance/transport-measures-to-protect-the-uk-from-variant-strains-of-covid-19" target="blank" class="govuk-link">Book a red travel package</a>.
+        </p>
+
+        <!-- Reset values for person 1 -->
+        <form action="/international-arrivals/{{version}}/people-confirmed" method="post">
+          <div style="display: none;">
+            <input class="govuk-input govuk-!-width-two-thirds" id="first-name-person-1" name="first-name-person-1" type="text" value="">
+            <input class="govuk-input govuk-!-width-two-thirds" id="last-name-person-1" name="last-name-person-1" type="text" value="">
+            <input class="govuk-input govuk-!-width-two-thirds" id="passport-number-person-1" name="passport-number-person-1" type="text" value="">
+            <input class="govuk-input govuk-!-width-two-thirds" id="email-address-person-1" name="email-address-person-1" type="text" value="">
+            <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address-person-1" name="confirm-email-address-person-1" type="text" value="">
+            <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number-person-1" name="mobile-phone-number-person-1" type="text" value="">
+            <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number-confirm-person-1" name="mobile-phone-number-confirm-person-1" type="text" value="">
+            <input class="govuk-input govuk-!-width-two-thirds" id="travel-details-same-person-1" name="travel-details-same-person-1" type="text" value="">
+            <input class="govuk-input govuk-!-width-two-thirds" id="contact-details-same-person-1" name="contact-details-same-person-1" type="text" value="">
+            <input class="govuk-input govuk-!-width-two-thirds" id="travel-route-same-person-1" name="travel-route-same-person-1" type="text" value="">
+          </div>
+          
+          <button class="govuk-button" data-module="govuk-button" type="submit">Continue</button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,97 @@
+{% set version = "v3" %}
+{% set pageTitle = "When did they have the vaccine?" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/vaccine-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/international-arrivals/{{version}}/ethnic-group-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="vaccine-date-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                When did they have the vaccine?
+              </h1>
+            </legend>
+            <span id="vaccine-date-hint" class="govuk-body">
+                If they've only had 1 dose, tell us when they had this dose.<br><br>
+                If they've had 2 doses, tell us when they had the second dose.
+            </span>
+
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-date-1-person-1" name="vaccine-date-person-1" type="radio" value="Less than 7 days ago" {{ checked("vaccine-date-person-1", "Less than 7 days ago") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-date-1-person-1">
+                  Less than 7 days ago
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-date-2-person-1" name="vaccine-date-person-1" type="radio" value="7 to 14 days ago" {{ checked("vaccine-date-person-1", "7 to 14 days ago") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-date-2-person-1">
+                  7 to 14 days ago
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-date-3-person-1" name="vaccine-date-person-1" type="radio" value="More than 14 days ago" data-aria-controls="conditional-vaccine-date" {{ checked("vaccine-date-person-1", "More than 14 days ago") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-date-3-person-1">
+                  More than 14 days ago
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-vaccine-date">
+                <div class="govuk-form-group">
+                  <label class="govuk-hint" for="different-date">
+                    Enter the month and year when you think they had their last dose of the vaccine. Use the format MM YYYY, for example 09 2020.
+                  </label>
+                  <div class="govuk-date-input govuk-!-padding-top-2" id="date-of-vaccine">
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="vaccine-month-person-1">
+                          Month
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="vaccine-month-person-1" name="vaccine-month-person-1" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['vaccine-month-person-1'] }}">
+                      </div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="vaccine-year-person-1">
+                          Year
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="vaccine-year-person-1" name="vaccine-year-person-1" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['vaccine-year-person-1'] }}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

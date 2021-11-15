@@ -1,0 +1,31 @@
+{% set version = "v4" %}
+{% set pageTitle = "We're processing your payment" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/confirm-payment">Back</a>
+
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+            {{ pageTitle }}
+        </h1>
+        <p class="govuk-body">
+          Do not close your browser while your payment is being processed.<br>
+          We'll tell you when the transaction is complete.
+        </p>
+
+    </div>
+</div>
+
+<script>
+   setTimeout(function(){
+      window.location.href = '/international-arrivals/{{version}}/confirmation';
+   }, 1500);
+</script>
+
+{% endblock %}

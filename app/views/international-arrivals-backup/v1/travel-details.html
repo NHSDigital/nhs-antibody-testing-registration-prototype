@@ -1,0 +1,97 @@
+{% set version = "v1" %}
+{% set pageTitle = "Travel details" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/contact-details">Back</a>
+
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+
+      <form action="/international-arrivals/{{version}}/check-your-answers" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="date-of-entry-hint date-of-entry-hint-2">
+
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="flight-eurostar-ferry">
+              Flight, Eurostar or ferry number
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="flight-eurostar-ferry" name="flight-eurostar-ferry" type="text" value="{{ data['flight-eurostar-ferry'] }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="port-of-origin">
+              Country you're departing from (this does not include transfers or stop-offs)
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="port-of-origin" name="port-of-origin" type="text" value="{{ data['port-of-origin'] }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="last-name">
+              Airport, train station or ferry port you’re arriving at
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="port-of-entry" name="port-of-entry" type="text" value="{{ data['port-of-entry'] }}">
+          </div>
+
+          <span id="date-of-entry-hint" class="govuk-body">
+            Date of entry
+          </span>
+          <span id="date-of-entry-hint-2" class="govuk-hint">
+            For example, 31 3 1980
+          </span>
+          <div class="govuk-date-input" id="date-of-entry">
+            <div class="govuk-date-input__item">
+              <label class="govuk-label govuk-date-input__label" for="date-of-entry-day">
+                Day
+              </label>
+              <div class="govuk-form-group">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-entry-day" name="date-of-entry-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-entry-day'] }}">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="date-of-entry-month">
+                  Month
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-entry-month" name="date-of-entry-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-entry-month'] }}">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="date-of-entry-year">
+                  Year
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-of-entry-year" name="date-of-entry-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-entry-year'] }}">
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

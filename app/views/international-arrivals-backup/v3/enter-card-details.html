@@ -1,0 +1,143 @@
+{% set version = "v3" %}
+{% set pageTitle = "Enter card details" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row" style="position: relative;">
+    <div class="grey-box">
+      <p class="govuk-body govuk-!-font-size-24">Payment summary</p>
+      <p class="govuk-body">An example payment description</p>
+      <p class="govuk-body govuk-!-margin-bottom-1"><span>Total amount:</span></p>
+      <p class="govuk-body govuk-!-font-size-36 govuk-!-margin-bottom-0">
+        {% if data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "undefined" %}£105{% elseif data['travel-route'] == 'Day 2 and day 8 tests' and data['travel-route-same-person-1'] == "undefined" %}£210{% elseif data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "Day 2 test" %}£210{% elseif data['travel-route'] == 'Day 2 and day 8 tests' and data['travel-route-same-person-1'] == "Day 2 test" %}£315{% elseif data['travel-route'] == 'Day 2 test' and data['travel-route-same-person-1'] == "Day 2 and day 8 tests" %}£315{% else %}£420{% endif %}
+      </p>
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+
+      <form action="/international-arrivals/{{version}}/confirm-payment" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="name-hint">
+
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="card-number">
+              <strong>Card number</strong>
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="card-number" name="card-number" type="text" value="{{ data['card-number'] }}">
+            <img src="/public/images/cards-accepted.png" class="govuk-!-width-one-half govuk-!-margin-top-2" alt="cards acceepted"/>
+            <span class="govuk-hint govuk-!-font-size-16">Accepted credit and debit cards</span>
+          </div>
+
+          <p class="govuk-body govuk-!-margin-bottom-1">
+            <strong>Expiry date</strong>
+          </p>
+          <span class="govuk-hint">
+            For example, 10/20
+          </span>
+          <div class="govuk-date-input" id="date-of-entry">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="date-of-expiry-month">
+                  Month
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-expiry-month" name="date-of-expiry-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-expiry-month'] }}">
+              </div>
+            </div>
+            <div class="govuk-date-input__item"><p class="govuk-body govuk-!-font-size-27">/</p></div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="date-of-expiry-year">
+                  Year
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-of-expiry-year" name="date-of-expiry-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-expiry-year'] }}">
+              </div>
+            </div>
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="name-on-card">
+              <strong>Name on card</strong>
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="name-on-card" name="name-on-card" type="text" value="{{ data['name-on-card'] }}">
+          </div>
+
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+            Card security code
+          </h3>
+          <span class="govuk-hint">
+            The last three digits on the back of the card
+          </span>
+          <div class="govuk-date-input govuk-!-margin-bottom-8" id="date-of-entry" style="display: flex; align-items: center;">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group govuk-!-margin-bottom-0">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="card-security-code" name="card-security-code" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['card-security-code'] }}">
+              </div>
+            </div>
+            <img src="/public/images/card-security-code.png" alt="cards acceepted" style="width: 56px; height: 40px;" />
+          </div>
+
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Billing address</h2>
+          <span class="govuk-hint">
+            This is the address associated with the card
+          </span>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="billing-address">
+              <strong class="govuk-!-font-size-19">Country or territory</strong>
+            </label>
+            <select class="govuk-select" id="billing-address" name="billing-address">
+              <option value="United Kingdom">United Kingdom</option>
+            </select>
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="billing-address-line-1">
+              <strong>Building number or name and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>
+            </label>
+            {% if data['delivery-address'] !== "5 addresses found" %}
+            <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-2" id="billing-address-line-1" name="billing-address-line-1" type="text" autocomplete="address-line1-billing" value="{{ data['billing-address-line-1'] or '1 Souterhead road' }}"><br>
+            <input class="govuk-input govuk-!-width-two-thirds" id="billing-address-line-2" name="billing-address-line-2" type="text" autocomplete="address-line2-billing" value="{{ data['billing-address-line-2'] or data['delivery-address-line-2'] }}">
+            {% else %}
+            <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-2" id="billing-address-line-1" name="billing-address-line-1" type="text" autocomplete="address-line1-billing" value="{{ data['billing-address-line-1'] or data['delivery-address-line-1'] }}"><br>
+            <input class="govuk-input govuk-!-width-two-thirds" id="billing-address-line-2" name="billing-address-line-2" type="text" autocomplete="address-line2-billing" value="{{ data['billing-address-line-2'] or data['delivery-address-line-2'] }}">
+            {% endif %}
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="billing-address-town">
+              <strong>Town or city</strong>
+            </label>
+            <input class="govuk-input govuk-!-width-one-third" id="billing-address-town" name="billing-address-town" type="text" autocomplete="address-level2-billing" value="{{ data['billing-address-town'] or data['delivery-address-town'] or 'London' }} ">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="billing-postcode">
+              <strong>Postcode</strong>
+            </label>
+            <input class="govuk-input govuk-!-width-one-third" id="billing-postcode" name="billing-postcode" type="text" autocomplete="postal-code" value="{{ data['billing-postcode'] or data['delivery-address-postcode'] or 'LS1 3BE' }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="confirmation-email-address">
+              <strong>Email</strong><br>
+              <span class="govuk-hint">
+                We'll send your payment confirmation here
+              </span>
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="confirmation-email-address" name="confirmation-email-address" type="text" value="{{ data['confirmation-email-address'] or data['email-address'] or 'example@email.com' }}">
+            <div class="govuk-inset-text">
+              <p class="govuk-hint govuk-!-margin-bottom-1">An email will be sent to:</p>
+              <p class="govuk-body govuk-!-font-size-24">{{ data['confirmation-email-address'] or 'example@email.com' }}</p>
+            </div>
+          </div>
+
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
