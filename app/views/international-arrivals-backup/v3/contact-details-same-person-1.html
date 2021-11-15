@@ -1,0 +1,65 @@
+{% set version = "v3" %}
+{% set pageTitle = "Are their contact details the same as yours?" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/travel-details-same-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/international-arrivals/{{version}}/action2/contact-details-same-person-1" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+              Are {{ data['first-name-person-1'] or 'Sophie' }} {{ data['last-name-person-1'] or 'Appleseed' }}'s contact details the same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}'s?
+            </h1>
+          </legend>
+          <span id="last-country-visited-hint" class="govuk-body">
+            We’ll send confirmation of your order to this email address.
+          </span>
+
+          <div class="govuk-radios govuk-!-margin-top-6 govuk-!-margin-bottom-6" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact-details-same-person-1-1" name="contact-details-same-person-1" type="radio" value="Yes" {{ checked("contact-details-same-person-1", "Yes") }}>
+              <label class="govuk-label govuk-radios__label" for="contact-details-same-person-1-1">
+                Yes, they're the same<br>
+                {{ data['email-address'] or 'psmith@example.co.uk' }}<br>
+                {{ data['mobile-phone-number'] or '07771900900' }}
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact-details-same-person-1-2" name="contact-details-same-person-1" type="radio" value="No" {{ checked("contact-details-same-person-1", "No") }}>
+              <label class="govuk-label govuk-radios__label" for="contact-details-same-person-1-2">
+                No, they're different
+              </label>
+            </div>
+          </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% set version = "v4" %}
+{% set pageTitle = "Are you registered with a GP (family doctor) in the UK?" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['nhs-number-known'] == "Yes" %}
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/nhs-number">Back</a>
+
+  {% else %}
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/nhs-number-known">Back</a>
+
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/international-arrivals/{{version}}/action4/registered-with-GP" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="address-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="address-hint" class="govuk-body">
+              This will help us find and update your GP record with your test result. The test does not have to be sent to this address.<br><br>
+              If you're not registered with a GP in the UK, that's OK.
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-padding-top-6" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="registered-with-GP-1" name="registered-with-GP" type="radio" value="Yes" {{ checked("registered-with-GP", "Yes") }}>
+                  <label class="govuk-label govuk-radios__label" for="registered-with-GP-1">
+                    Yes
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="registered-with-GP-2" name="registered-with-GP" type="radio" value="No" {{ checked("registered-with-GP", "No") }}>
+                  <label class="govuk-label govuk-radios__label" for="registered-with-GP-2">
+                    No
+                  </label>
+                </div>
+              </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

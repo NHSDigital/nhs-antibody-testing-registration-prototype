@@ -1,0 +1,81 @@
+{% set version = "v1" %}
+{% set pageTitle = "Confirmation email" %}
+{% extends "includes/layout.html" %}
+
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-9">
+        Your order confirmation
+      </h1>
+
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        Dear {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}<br><br>
+        Thank you for ordering an <strong>amber travel package</strong>.<br><br>
+        We’ve received your payment of {% if data['first-name-person-1'] %}£420.00{% else %}£210.00{% endif %}.<br><br>
+        <strong>Keep this email as proof of your order – you’ll need to show it at UK customs.</strong>
+      </p>
+
+      <h2 class="govuk-heading-m"><strong>Important: your booking reference number is 12334445.</strong></h2>
+      <p class="govuk-body">Enter the booking reference number into your <a href="https://www.gov.uk/provide-journey-contact-details-before-travel-uk" class="govuk-link">Passenger Locator Form (PLF)</a> within 48 hours of your travel to England.</p>
+      
+      <h2 class="govuk-heading-m">What your travel package will contain</h2>
+      <p class="govuk-body">Your test package will contain:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>2 swab tests</li>
+        <li>written instructions on how to take the tests</li>
+      </ul>
+      <p class="govuk-body">You must take a test on day 2 and on day 8 of your quarantine (your day of arrival is day 0). Your travel package will arrive in time for you to take your day 2 test.</p>
+
+      <h2 class="govuk-heading-m">Steps to take when you receive your travel package</h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Follow the written instructions inside your travel package carefully</li>
+        <li>Take a test on day 2 and another one on day 8</li>
+        <li><a class="govuk-link" target="blank" href="../../litereg-accounts/v1/index.html">Register each test</a> on the day you take it so you get the results</li>
+        <li>Return each test by post straight after you take it</li>
+      </ul>
+
+      <h2 class="govuk-heading-m">How to take the test</h2>
+      <p class="govuk-body">
+        You’ll take the test yourself.<br><br>
+        The test involves taking a swab of the inside of your nose and the back of your throat using a long cotton bud that is provided.<br><br>
+        Read the written instructions about how to take the test carefully. There is also <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/957271/COVID-19-self-test-instructions.pdf" target="blank" class="govuk-link">guidance online</a>.<br><br>
+        There is also a helpful video about how to take the test at <a href="https://www.youtube.com/watch?v=zCqo7MHQT6U" target="blank" class="govuk-link">https://www.youtube.com/watch?v=zCqo7MHQT6U</a>.
+      </p>
+
+      <h2 class="govuk-heading-m">Returning the test</h2>
+      <p class="govuk-body">
+        You must return the test by post. Follow the instructions on how to do this.<br><br>
+        It’s safe for you to leave your place of quarantine to post the test.
+      </p>
+
+      <h2 class="govuk-heading-m">Getting the test result</h2>
+      <p class="govuk-body">You should receive your test result by text and email within 2 days of returning it. If both tests are negative, you can leave quarantine on day 10.</p>
+
+      <div class="govuk-warning-text govuk-!-margin-bottom-2 govuk-!-margin-top-7">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          If your travel plans change
+        </strong>
+      </div>
+      <p class="govuk-body govuk-!-margin-left-7 govuk-!-margin-bottom-2">Call our contact centre:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-7">
+        <li>From outside the UK: +44 (0)300 222 0000</li>
+        <li>Telephone: 0300 222 0000</li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div class="proto-action big">
+    <a href="/international-arrivals/{{version}}/wait-for-test-kit">
+      <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Continue</div>
+    </a>
+  </div>
+
+{% endblock %}
