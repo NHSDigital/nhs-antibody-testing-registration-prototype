@@ -1,0 +1,60 @@
+{% set serviceName = "Register test kits for your organisation" %}
+{% set version = "v1" %}
+{% set pageTitle = "Enter the barcode on the outer return box" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  <a class="govuk-back-link" href="#">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+      <div id="changed-name-hint" class="govuk-hint">
+        This is the box to use if you're sending more than 1 test kit at a time. It's OK if you cannot find this, you can still continue.
+      </div>
+      <details class="govuk-details" data-module="govuk-details" style="margin-top:24px;">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            What does the barcode look like?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <img src="/public/images/outerboxbarcode.png" alt="outer box barcode" style="width:200px;">
+        </div>
+      </details>
+
+      <form action="outer-box-barcode-scan">
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Scan barcode
+        </button>
+      </form>
+
+      <div class="govuk-form-group">
+        <form action="#">
+        <label class="govuk-label" for="width-20">
+          16-digit barcode
+        </label>
+        <input class="govuk-input govuk-input--width-20" id="width-20" name="width-20" type="text" value="">
+      </form>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </div>
+
+
+{% endblock %}
