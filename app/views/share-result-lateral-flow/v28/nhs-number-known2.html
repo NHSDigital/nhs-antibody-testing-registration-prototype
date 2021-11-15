@@ -14,32 +14,52 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/share-result-lateral-flow/{{version}}/want-confirmations" method="post">
+      <form action="/share-result-lateral-flow/{{version}}/got-email" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
-                NHS number
+                Can you provide your NHS number?
               </h1>
             </legend>
             <span id="nhs-number-known-hint" class="govuk-body">
-              {% if data['whos-taking-the-test'] == "someone-else" %}
-              <p>An NHS number is a 10-digit number, for example, 485 777 3456.
-                They can find it on any letter the NHS has sent them, on a prescription, or by logging in to a GP practice online service.
+              <p>This number helps us quickly save your test result to your NHS COVID pass.
                   <br><br>
-                  In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.
-                  <br><br>
-                  It's OK if they do not have an NHS number or they do not live in the UK, they can still continue.</p>
-              {% else %}
-              <p>An NHS number is a 10-digit number, for example, 485 777 3456.
-                You can find it on any letter the NHS has sent you, on a prescription, or by logging in to a GP practice online service.
-                  <br><br>
-                  In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.
-                  <br><br>
-                  It's OK if you do not have an NHS number or you do not live in the UK, you can still continue.</p>
-              {% endif %}
+                  In England, you may be asked to show this pass to get into events, or travel abroad.</p>
+                  <div class="govuk-warning-text">
+                    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                    <strong class="govuk-warning-text__text">
+                      <span class="govuk-warning-text__assistive">Warning</span>
+                      Not providing your NHS number could cause delays.
+                    </strong>
+                  </div>
             </span>
+          </div>
+
+                      <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset">
+                          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                            <h1 class="govuk-fieldset__heading">
+                              Where do you live?
+                            </h1>
+                          </legend>
+                          <div class="govuk-radios">
+                            <div class="govuk-radios__item">
+                              <input class="govuk-radios__input" id="where-do-you-live" name="where-do-you-live" type="radio" value="england">
+                              <label class="govuk-label govuk-radios__label" for="where-do-you-live">
+                                England
+                              </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                              <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
+                              <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+                                Scotland
+                              </label>
+                            </div>
+                        </fieldset>
+                      </div>
+
 
             {% if data['whos-taking-the-test'] == "someone-else" %}
             <p class="govuk-!-margin-top-5"><a href="https://www.nhs.uk/nhs-services/online-services/find-nhs-number/">Look up their NHS number</a></p>
@@ -61,18 +81,13 @@
                         </div>
 
 
-                <button class="govuk-button" data-module="govuk-button">Continue</button> 
+                <button class="govuk-button" data-module="govuk-button">Continue</button>
                 <button class="govuk-button govuk-button--secondary" data-module="govuk-button"> Continue without NHS number</button>
 
-          </fieldset>
+            </form>
+
         </div>
-
-
-
-      </form>
-
     </div>
-  </div>
 
   <!-- corresponding html file name included from content folder -->
   <script>
