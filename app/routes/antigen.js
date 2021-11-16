@@ -222,6 +222,18 @@ router.post('/antigen/v2/action3/follow-up-test-reason', function (req, res) {
 
 })
 
+// Version 2 - Antigen Refer and Triage -  day 2travel package booking reference route
+
+router.post('/antigen/v2/action3/test-package-booking-reference', function (req, res) {
+  let bookingReference = req.session.data['test-package-booking-reference']
+  if (!bookingReference){
+    res.redirect('/antigen/v2/refer-and-triage/test-package-booking-reference-error')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/government-pilot')
+  }
+
+})
+
 
 // Version 2 - Antigen Refer and Triage - Government pilot route
 
