@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Has the person who needs a test had a coronavirus vaccine?" %}
+{% set pageTitle = "Coronavirus vaccination" %}
 
 {% extends "includes/layout.html" %}
 
@@ -7,7 +7,7 @@
   <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
+        beta
       </strong>
       <span class="govuk-phase-banner__text">
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -16,6 +16,7 @@
   </div> 
 
   <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/check-your-answers">Back</a>
+
 {% endblock %}
 
 {% block content %}
@@ -24,44 +25,50 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/antigen/{{version}}/global-registration/edit-check-answers/action9/coronavirus-vaccine" method="post">
+      <h1 class="govuk-heading-l">
+        Coronavirus vaccination
+      </h1>
+
+      <p class="govuk-body">
+        They're fully vaccinated if it's at least 14 days after:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>their 2nd dose of an approved coronavirus vaccine</li>
+        <li>a single-dose vaccine like the Janssen vaccine</li>
+      </ul>
+
+      <p class="govuk-body">
+        They count as fully vaccinated even if they have not had a booster vaccine.
+      </p>
+
+      <form action="/antigen/{{version}}/global-registration/edit-check-answers/action9/coronavirus-vaccine" method="post" novalidate>
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset govuk-!-margin-bottom-7" aria-describedby="vaccine-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                {{ pageTitle }}
-              </h1>
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              Is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }} fully vaccinated against coronavirus?
             </legend>
-            <span id="vaccine-hint" class="govuk-body">
-              We are asking this question to better understand how effective the vaccine is.
-            </span>
-            <div class="govuk-radios govuk-!-margin-top-5">
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-2" name="vaccine" type="radio" value="Yes" {{ checked("vaccine", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-2">
+                  Yes, they're fully vaccinated
+                </label>
+              </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="vaccine-1" name="vaccine" type="radio" value="No" {{ checked("vaccine", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="vaccine-1">
-                  No
+                  No, they're not fully vaccinated
                 </label>
               </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="vaccine-2" name="vaccine" type="radio" value="Yes, they've had 1 dose" {{ checked("vaccine", "Yes, they've had 1 dose") }}>
-                <label class="govuk-label govuk-radios__label" for="vaccine-2">
-                  Yes, they've had 1 dose
-                </label>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="vaccine-3" name="vaccine" type="radio" value="Yes, they've had 2 doses" {{ checked("vaccine", "Yes, they've had 2 doses") }}>
-                <label class="govuk-label govuk-radios__label" for="vaccine-3">
-                  Yes, they've had 2 doses
-                </label>
-              </div>
-            </div>  
           </fieldset>
-          <button class="govuk-button" data-module="govuk-button">Continue</button>
         </div>
 
+        <button class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
       </form>
-
     </div>
   </div>
 {% endblock %}
+
