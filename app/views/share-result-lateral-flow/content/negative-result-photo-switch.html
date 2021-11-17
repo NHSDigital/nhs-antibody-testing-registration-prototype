@@ -1,6 +1,10 @@
     <div class="govuk-panel govuk-panel--confirmation govuk-panel-lft-result">
        <h1 class="govuk-panel__title">
-         The coronavirus test result is negative
+         {% if data['whos-taking-the-test'] == "someone-else" %}
+         {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s coronavirus test result is negative
+         {% else %}
+         Your coronavirus test result is negative
+         {% endif %}
        </h1>
        <div class="govuk-panel__body">
          {% if data['whos-taking-the-test'] == "someone-else" %}
@@ -24,7 +28,7 @@
     <ul class="govuk-list govuk-list--bullet">
       <li>get vaccinated</li>
       <li>handwash regularly</li>
-      <li>download the NHS COVID-19 app (in England and Wales), the Protect Scotland app (in Scotland), and the StopCovidNI app (in Northern Ireland)</li>
+      <li>download the NHS COVID-19 app (in England and Wales), the Protect Scotland app (in Scotland) and the StopCovidNI app (in Northern Ireland)</li>
       <li>open windows if meeting indoors</li>
       <li>wearing a face covering in crowded indoor settings</li>
       <li>stay home if unwell</li>
@@ -34,7 +38,7 @@
   <p><a href="https://www.gov.uk/find-coronavirus-support"> Find out if you need to self-isolate, despite this negative result. </p>
 
  <br>
- <button class="govuk-button" data-module="govuk-button">Report another test result</button>
+ <button class="govuk-button" data-module="govuk-button">Report another result</button>
  <br>
 
  <div class="govuk-inset-text">
