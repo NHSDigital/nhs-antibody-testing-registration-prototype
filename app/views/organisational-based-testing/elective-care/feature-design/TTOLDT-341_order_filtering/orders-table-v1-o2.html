@@ -28,52 +28,55 @@
 
       <form>
         <div class="govuk-grid-row">
-          <div class="govuk-grid-column-two-thirds govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-top-4">
-              <h3 class="govuk-heading-m">Search within group</h3>
-              <div style="display: flex;">
-                <div class="govuk-label-wrapper">
-                  <label class="govuk-hint" for="search">You can search by first name, last name or NHS number.</label>
-                  <input id="search" autocomplete="off" spellcheck="false" maxlength="60" class="govuk-input">
-                </div>
-                <button type="submit" class="govuk-!-margin-top-7 govuk-!-margin-left-2 govuk-button"> Search </button>
+          <div class="govuk-grid-column-full govuk-form-group govuk-!-margin-bottom-5 govuk-!-margin-top-4">
+            <h3 class="govuk-heading-m">Search within group</h3>
+            <div class="govuk-grid-row">
+              <div class="govuk-label-wrapper govuk-grid-column-one-half">
+                <label class="govuk-hint" for="search" style="white-space: nowrap">You can search by first name, last name or NHS number.</label>
+                <input id="search" autocomplete="off" spellcheck="false" maxlength="60" class="govuk-input">
               </div>
-              
-              <div style="display: flex;">
-                <div id="status" class="govuk-form-group">
-                  <label for="status" class="govuk-label"> Status </label>
-                  <select id="status" name="status" class="govuk-select">
-                    <option value="allStatuses"> All statuses </option>
-                    <option value="testKitOrdered"> Test kit ordered </option>
-                    <option value="testKitSentToPatient"> Test kit sent to patient </option>
-                    <option value="testKitSentToLab"> Test kit sent to lab </option>
-                    <option value="resultReady"> Result ready </option>
-                  </select>
-                </div>
+              <button type="submit" class="govuk-!-margin-top-7 govuk-grid-column-one-quarter govuk-button"> Search </button>
+            </div>
 
-                <div id="procedure-date" class="govuk-form-group govuk-!-margin-left-3">
-                  <label for="procedure-date" class="govuk-label"> Procedure date </label>
-                  <select id="procedure-date" name="status" class="govuk-select">
-                    <option value="all"> All procedure dates </option>
-                    <option value="today"> Today - Wed 17th Nov </option>
-                    <option value="1day"> Tomorrow - Thurs 18th Nov </option>
-                    <option value="2days"> 2 days - Fri 19th Nov </option>
-                    <option value="3days"> 3 days - Sat 20th Nov </option>
-                    <option value="4days"> 4 days - Sun 21st Nov </option>
-                    <option value="5days"> 5 days - Mon 22nd Nov </option>
-                    <option value="6days"> 6 days - Tues 23rd Nov </option>
-                    <option value="7days"> 7 days - Wed 24th Nov </option>
-                    <option value="8days"> 8 days - Thurs 25th Nov </option>
-                    <option value="9days"> 9 days - Fri 26th Nov </option>
-                    <option value="10days"> 10 days - Sat 27th Nov </option>
-                  </select>
-                </div>
+            <div class="govuk-grid-row">
+              <div id="status" class="govuk-form-group govuk-grid-column-one-quarter">
+                <label for="status" class="govuk-label"> Status </label>
+                <select id="status" name="status" class="govuk-select">
+                  <option value="allStatuses"> All statuses </option>
+                  <option value="testKitOrdered"> Test kit ordered </option>
+                  <option value="testKitSentToPatient"> Test kit sent to patient </option>
+                  <option value="testKitSentToLab"> Test kit sent to lab </option>
+                  <option value="resultReady"> Result ready </option>
+                </select>
+              </div>
+
+              <div id="procedure-date" class="govuk-form-group govuk-grid-column-one-quarter govuk-!-margin-right-3">
+                <label for="procedure-date" class="govuk-label"> Procedure date </label>
+                <select id="procedure-date" name="status" class="govuk-select">
+                  <option value="all"> All procedure dates </option>
+                  <option value="today"> Today - Wed 17th Nov </option>
+                  <option value="1day"> Tomorrow - Thurs 18th Nov </option>
+                  <option value="2days"> 2 days - Fri 19th Nov </option>
+                  <option value="3days"> 3 days - Sat 20th Nov </option>
+                  <option value="4days"> 4 days - Sun 21st Nov </option>
+                  <option value="5days"> 5 days - Mon 22nd Nov </option>
+                  <option value="6days"> 6 days - Tues 23rd Nov </option>
+                  <option value="7days"> 7 days - Wed 24th Nov </option>
+                  <option value="8days"> 8 days - Thurs 25th Nov </option>
+                  <option value="9days"> 9 days - Fri 26th Nov </option>
+                  <option value="10days"> 10 days - Sat 27th Nov </option>
+                </select>
+              </div>
+
+              <button class="govuk-button govuk-button--secondary govuk-!-margin-top-6 govuk-grid-column-one-quarter" data-module="govuk-button">
+                Export table (.csv)
+              </button>
             </div>
           </div>
         </div>
       </form>
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-7"> Displaying records 1 to 10 from Test Group 2 </h2>
-      <p class="govuk-body"> Last updated 17 November 2021 at 10:38 <button class="govuk-body govuk-link button-styled-link"> Check for update </button>
+      <p class="govuk-body"> Last updated 17 November 2021 at 10:38 <button class="govuk-body govuk-link button-styled-link govuk-!-margin-bottom-0"> Check for update </button>
       </p>
 
       <table class="govuk-table">
@@ -191,9 +194,27 @@
           </tr>
         </tbody>
       </table>
-      <div class="pagination" style="display: flex; justify-content: flex-end">
-        <a href="#" class="govuk-link govuk-!-font-size-19 pagination__see-next govuk-button--link"> Next page in list </a>
-      </div>
+
+      <nav class="moj-pagination" id="pagination-label">
+        <p class="govuk-visually-hidden" aria-labelledby="pagination-label">Pagination navigation</p>
+        <ul class="moj-pagination__list">
+          <li class="moj-pagination__item  moj-pagination__item--prev">
+            <a class="moj-pagination__link" href="">Previous<span class="govuk-visually-hidden"> set of pages</span></a>
+          </li>
+          <li class="moj-pagination__item">
+            <a class="moj-pagination__link" href="/page=1">1</a>
+          </li>
+          <li class="moj-pagination__item moj-pagination__item--active">2</li>
+          <li class="moj-pagination__item">
+            <a class="moj-pagination__link" href="/page=3">3</a>
+          </li>
+          <li class="moj-pagination__item  moj-pagination__item--next">
+            <a class="moj-pagination__link" href="">Next<span class="govuk-visually-hidden"> set of pages</span></a>
+          </li>
+        </ul>
+        <p class="moj-pagination__results">Showing <b>10</b> to <b>20</b> of <b>30</b> results</p>
+      </nav>
+
     </div>
   </div>
 
