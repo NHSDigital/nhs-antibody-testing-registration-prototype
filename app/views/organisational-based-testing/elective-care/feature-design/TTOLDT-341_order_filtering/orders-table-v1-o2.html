@@ -10,341 +10,191 @@
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-l"> Check patient details and confirm cancellations </h1>
+          <p class="govuk-body"> You can only find patients with a procedure coming up in the next 7 days. </p><hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible"></div>
+      </div>
+      <h3 class="govuk-heading-m">Select a group</h3>
+      <p class="govuk-hint">You can only search within one group at a time.</p>
+      <div id="" class="govuk-form-group">
+        <label for="search-group" class="govuk-label"></label>
+        <select id="search-group" aria-label="select a group" name="search-group" class="govuk-select">
+          <option> Test Group 2 </option>
+        </select>
+      </div>
 
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle}}</h1>
-    <p class="govuk-body">You can only view patients with a procedure coming up in the next 5 days</p>
-    <p class="govuk-body">Check each patients registration status. You may need to contact them to remind them to register or let them know what they need to do next.</p>
+      <form>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-top-4">
+              <h3 class="govuk-heading-m">Search within group</h3>
+              <div style="display: flex;">
+                <div class="govuk-label-wrapper">
+                  <label class="govuk-hint" for="search">You can search by first name, last name or NHS number.</label>
+                  <input id="search" autocomplete="off" spellcheck="false" maxlength="60" class="govuk-input">
+                </div>
+                <button type="submit" class="govuk-!-margin-top-7 govuk-!-margin-left-2 govuk-button"> Search </button>
+              </div>
+              
+              <div style="display: flex;">
+                <div id="status" class="govuk-form-group">
+                  <label for="status" class="govuk-label"> Status </label>
+                  <select id="status" name="status" class="govuk-select">
+                    <option value="allStatuses"> All statuses </option>
+                    <option value="testKitOrdered"> Test kit ordered </option>
+                    <option value="testKitSentToPatient"> Test kit sent to patient </option>
+                    <option value="testKitSentToLab"> Test kit sent to lab </option>
+                    <option value="resultReady"> Result ready </option>
+                  </select>
+                </div>
 
-    <form action="5" method="post">
-
-      <fieldset class="govuk-fieldset">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-          <h1 class="govuk-body">
-            Search by first name and/or last name
-          </h1>
-        </legend>
-
-        <div class="flex-container" style="display: flex;">
-          <div class="govuk-form-group govuk-!-margin-bottom-0">
-            <label class="govuk-label" for="width-10">
-              Firstname
-            </label>
-            <input class="govuk-input govuk-input--width-10 govuk-!-margin-right-6" id="width-10" name="width-10" type="text">
+                <div id="procedure-date" class="govuk-form-group govuk-!-margin-left-3">
+                  <label for="procedure-date" class="govuk-label"> Procedure date </label>
+                  <select id="procedure-date" name="status" class="govuk-select">
+                    <option value="all"> All procedure dates </option>
+                    <option value="today"> Today - Wed 17th Nov </option>
+                    <option value="1day"> Tomorrow - Thurs 18th Nov </option>
+                    <option value="2days"> 2 days - Fri 19th Nov </option>
+                    <option value="3days"> 3 days - Sat 20th Nov </option>
+                    <option value="4days"> 4 days - Sun 21st Nov </option>
+                    <option value="5days"> 5 days - Mon 22nd Nov </option>
+                    <option value="6days"> 6 days - Tues 23rd Nov </option>
+                    <option value="7days"> 7 days - Wed 24th Nov </option>
+                    <option value="8days"> 8 days - Thurs 25th Nov </option>
+                    <option value="9days"> 9 days - Fri 26th Nov </option>
+                    <option value="10days"> 10 days - Sat 27th Nov </option>
+                  </select>
+                </div>
+            </div>
           </div>
-          <div class="govuk-form-group govuk-!-margin-bottom-0">
-            <label class="govuk-label" for="width-10">
-              Lastname
-            </label>
-            <input class="govuk-input govuk-input--width-10 govuk-!-margin-right-6" id="width-10" name="width-10" type="text">
-          </div>
-          <div class="govuk-form-group govuk-!-margin-bottom-0">
-            <button class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
-              Search
-            </button>
-          </div>
-
         </div>
+      </form>
 
-      </fieldset>
+      <h2 class="govuk-heading-m govuk-!-margin-top-7"> Displaying records 1 to 10 from Test Group 2 </h2>
+      <p class="govuk-body"> Last updated 17 November 2021 at 10:38 <button class="govuk-body govuk-link button-styled-link"> Check for update </button>
+      </p>
 
-    </form>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header"> Patient </th>
+            <th scope="col" class="govuk-table__header"> Procedure date </th>
+            <th scope="col" class="govuk-table__header"> NHS number </th>
+            <th scope="col" class="govuk-table__header"> Mobile number </th>
+            <th scope="col" class="govuk-table__header"> Order ID </th>
+            <th scope="col" class="govuk-table__header"> Status </th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Lia Beatty<br> Male<br> 01 January 1999 </td>
+            <td class="govuk-table__cell">19 November 2021<br>
+              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a>
+            </td>
+            <td class="govuk-table__cell">1967269858 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">5376775122 </td>
+            <td class="govuk-table__cell">Pre-Linked </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Edison Kessler<br> Male<br> 01 January 1999 </td>
+            <td class="govuk-table__cell">19 November 2021<br>
+              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a>
+            </td>
+            <td class="govuk-table__cell">1161949755 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">3541735907 </td>
+            <td class="govuk-table__cell">Pre-Linked </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Narciso Hirthe<br> Male<br> 01 January 1999 </td>
+            <td class="govuk-table__cell">19 November 2021<br>
+              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a>
+            </td>
+            <td class="govuk-table__cell">1628772808 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">9249976767 </td>
+            <td class="govuk-table__cell">Pre-Linked </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Aileen Goldner<br> Male<br> 01 January 1999 </td>
+            <td class="govuk-table__cell">19 November 2021<br>
+              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a>
+            </td>
+            <td class="govuk-table__cell">1465815082 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">5911511050 </td>
+            <td class="govuk-table__cell">Pre-Linked </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Ernest Borer<br> Male<br> 01 January 1999 </td>
+            <td class="govuk-table__cell">19 November 2021<br>
+              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a>
+            </td>
+            <td class="govuk-table__cell">1053998724 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">0596229554 </td>
+            <td class="govuk-table__cell">Pre-Linked </td>
+          </tr>
+          <tr class="govuk-table__row">
 
-  </div>
-</div>
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-
-    <div class="flex-container" style="display: flex; justify-content: flex-start">
-      <div class="govuk-form-group govuk-!-margin-bottom-8 govuk-!-margin-right-4">
-        <label class="govuk-label" for="sort">
-          Sort by
-        </label>
-        <select class="govuk-select" id="" name="">
-          <option value="updated" selected>Registration status</option>
-          <option value="updated">Recently updated</option>
-          <option value="updated">Test result</option>
-        </select>
+            <td class="govuk-table__cell">Joesph Wilderman<br> Male<br> 01 January 1999 </td>
+            <td class="govuk-table__cell">19 November 2021<br>
+              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a>
+            </td>
+            <td class="govuk-table__cell">1901740285 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">0006708086 </td>
+            <td class="govuk-table__cell">Pre-Linked </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Deonte Welch<br> Male<br> 01 January 1999 </td>
+            <td class="govuk-table__cell">19 November 2021<br>
+              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a>
+            </td>
+            <td class="govuk-table__cell">1900821117 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">5820441121 </td>
+            <td class="govuk-table__cell">Pre-Linked </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Hulda Nikolaus<br> Male<br> 01 January 1999 </td>
+            <td class="govuk-table__cell">19 November 2021<br>
+              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a>
+            </td>
+            <td class="govuk-table__cell">1080920242 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">9702174086 </td>
+            <td class="govuk-table__cell">Pre-Linked </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Charlie King<br> Male<br> 01 January 1999 </td>
+            <td class="govuk-table__cell">19 November 2021<br>
+              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a>
+            </td>
+            <td class="govuk-table__cell">1890362263 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">6229618871 </td>
+            <td class="govuk-table__cell">Pre-Linked </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Dana McLaughlin<br> Male<br> 01 January 1999 </td>
+            <td class="govuk-table__cell">19 November 2021<br>
+              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a>
+            </td>
+            <td class="govuk-table__cell">1856809870 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">5848745855 </td>
+            <td class="govuk-table__cell">Pre-Linked </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination" style="display: flex; justify-content: flex-end">
+        <a href="#" class="govuk-link govuk-!-font-size-19 pagination__see-next govuk-button--link"> Next page in list </a>
       </div>
-      <div class="govuk-form-group govuk-!-margin-bottom-8 govuk-!-margin-right-4">
-        <label class="govuk-label" for="sort">
-          View by group
-        </label>
-        <select class="govuk-select" id="" name="">
-          <option value="" selected>Group 1</option>
-          <option value="">Group 2</option>
-          <option value="">Group 3</option>
-          <option value="">Group 4</option>
-        </select>
-      </div>
-      <div>
-        <button class="govuk-button govuk-button--secondary govuk-!-margin-top-6" data-module="govuk-button">
-          Export .csv
-        </button>
-      </div>
-
     </div>
-
-
-    <table class="govuk-table" style="font-size:16px;">
-      <caption class="govuk-table__caption govuk-!-margin-bottom-4 govuk-heading-s">Displaying records 1 to 25 of 100</caption>
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Patient</th>
-          <th scope="col" class="govuk-table__header">Procedure date</th>
-          <th scope="col" class="govuk-table__header">NHS number</th>
-          <th scope="col" class="govuk-table__header">Mobile number</th>
-          <th scope="col" class="govuk-table__header">Order ID</th>
-          <th scope="col" class="govuk-table__header">Registration status</th>
-          <th scope="col" class="govuk-table__header">Test result</th>
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue" style="font-size:12px;">Positive</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue" style="font-size:12px;">Positive</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue" style="font-size:12px;">Positive</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue" style="font-size:12px;">Positive</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue" style="font-size:12px;">Positive</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue" style="font-size:12px;">Positive</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue" style="font-size:12px;">Positive</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue" style="font-size:12px;">Positive</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered too late</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Void</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered too late</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Void</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered too late</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Void</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered too late</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Void</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Negative</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Negative</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Negative</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Negative</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Negative</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Negative</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Negative</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Negative</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Negative</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Negative</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Negative</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Negative</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Firstname Lastname<br/>Sex<br/>00 Month Year</td>
-          <td class="govuk-table__cell">00 Month Year</td>
-          <td class="govuk-table__cell">000 000 00000</td>
-          <td class="govuk-table__cell">07000000000</td>
-          <td class="govuk-table__cell">0000000000</td>
-          <td class="govuk-table__cell">Registered</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="font-size:12px;">Negative</strong></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="flex-container" style="display: flex; justify-content: space-between;">
-      <a href="#" class="govuk-link">Previous page in list</a>
-      <a href="#" class="govuk-link">Next page in list</a>
-    </div>
-
-
-
-
-
-
-
-
-
   </div>
-</div>
-
-
 
 {% endblock %}
