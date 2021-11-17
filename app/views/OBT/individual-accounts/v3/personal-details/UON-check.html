@@ -1,0 +1,94 @@
+{% set pageHeading = "Check the organisation details" %}
+{% set version = "organisational/ind-accounts/v3" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      <!-- div for include from content folder -->
+      <div id="includedContent1"></div>
+
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
+
+
+<table class="govuk-table">
+  <tbody class="govuk-table__body">
+  <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Name</th>
+      <td class="govuk-table__cell">Liverpool Domiciliary Care</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">First line of address</th>
+      <td class="govuk-table__cell">Lane 1</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Postcode</th>
+      <td class="govuk-table__cell">L1 0AG</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>  If the details are incorrect, call 119. Lines are open 7am to 11pm. </p>
+
+  <h2 class="govuk-heading-m">Is this the correct organisation?</h2>
+<form class="" action="" method="post">
+  <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+  <div class="govuk-radios govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="changeUON" name="changeUON" type="radio" value="yes">
+      <label class="govuk-label govuk-radios__label" for="changed-UON">
+        Yes
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="changeUON-2" name="changeUON" type="radio" value="no">
+      <label class="govuk-label govuk-radios__label" for="changeUON-2">
+        No
+      </label>
+    </div>
+      </fieldset>
+  </div>
+  </div>
+<br><br>
+
+
+        <input class="govuk-button" type="submit" value="Continue">
+
+
+        <!-- corresponding html file name included from content folder -->
+      <script>
+        $(function(){
+          $("#includedContent1").load("/includes/LFD-account-menu.html");
+        });
+      </script>
+
+{% endblock %}
