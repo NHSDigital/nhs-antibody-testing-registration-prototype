@@ -1,0 +1,65 @@
+{% set version = "organisational/ind-accounts/v3" %}
+{% extends "includes/layout.html" %}
+{% set serviceName = "Register test kits for your organisation" %}
+{% set pageTitle = "Are you sure you want to sign out?" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback (opens in a new tab)</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+     <!-- div for include from content folder -->
+      <div id="includedContent1"></div>
+
+
+  <a class="govuk-back-link" href="">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="post">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <p>If you sign out, your progress will be lost.
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="havesymptoms" name="havesymptoms" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="havesymptoms">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="havesymptoms-2" name="havesymptoms" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="havesymptoms-2">
+                  No
+                </label>
+              </div>
+            </div>
+
+        </div>
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+<script>
+  $(function(){
+    $("#includedContent1").load("/includes/LFD-account-menu.html");
+  });
+</script>
+{% endblock %}
