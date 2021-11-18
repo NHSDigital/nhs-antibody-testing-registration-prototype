@@ -1,0 +1,55 @@
+{% set version = "v28" %}
+{% set pageTitle = "What's your NHS number?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/nhs-number-known2">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/got-email" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="nhs-number-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+
+          <!-- div for include from content folder -->
+          <div id="includedContent"></div>
+
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+
+      <!-- corresponding html file name included from content folder -->
+      <script>
+        $(function(){
+          $("#includedContent").load("../content/nhs-number.html");
+        });
+      </script>
+
+{% endblock %}
