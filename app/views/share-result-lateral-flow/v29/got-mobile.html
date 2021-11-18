@@ -1,0 +1,61 @@
+{% set version = "v28" %}
+{% set pageTitle = "Do you have a mobile number?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+  <div id="includedContent1"></div>
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/got-email">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/mobile" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+          <!--  <span id="name-hint" class="govuk-body">
+              If you're registering a test for someone else, enter their number below. Do not enter your gender.
+            </span> -->
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="mobile" onclick="setLocation(this);" {{ checked("got-mobile", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-2" name="gender" type="radio" value="choose-result" onclick="setLocation(this);" {{ checked("got-mobile", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-2">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+
+{% endblock %}
