@@ -11,11 +11,8 @@
 
         <div id="content-1">
           <div style="position: relative; display: flex; justify-content: center; align-items: center;" class="camera-test-result wrapper govuk-!-margin-bottom-3">
-            <div style="border: dashed white 2px; width: 94px; height: 354px; position: absolute;"></div>
-            <div style="border: dashed white 2px; width: 40px; height: 100px; position: absolute; margin-top: -48px"></div>
-            <div style="border: dashed white 2px; border-radius: 20px; width: 44px; height: 80px; position: absolute; margin-top: 202px"></div>
-            <div style="width: 5px; height: 80px; position: absolute; margin-top: -20px; margin-left: 50px; text-align: left;"><p style="color: #fff;">C<p></div>
-            <div style="width: 5px; height: 80px; position: absolute; margin-top: 40px; margin-left: 52px; text-align: left;"><p style="color: #fff;">T<p></div>
+            <div style="width: 5px; height: 80px; position: absolute; margin-top: -20px; margin-left: 50px; text-align: left;"><p style="color: #fff;"><p></div>
+            <div style="width: 5px; height: 80px; position: absolute; margin-top: 40px; margin-left: 52px; text-align: left;"><p style="color: #fff;"><p></div>
             <div class="camera-overlay right"></div>
             <div class="camera-overlay left"></div>
             <div class="camera-overlay top"></div>
@@ -25,16 +22,21 @@
         </div>
 
         <div id="content-2" style="display: none;">
-          <h1 class="govuk-heading-l govuk-!-margin-bottom-5">Check and upload your photo</h1>
-          <p class="govuk-body"><strong>To take a good photo, make sure:</strong></p>
+          <h1 class="govuk-heading-l govuk-!-margin-bottom-5">Check the photo</h1>
+          <p class="govuk-body"><strong>Make sure:</strong></p>
           <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
-            <li>you hold your phone/tablet flat and steady, directly above the test strip</li>
-            <li>the C and T letters are the right way up and within the stencil</li>
-            <li>the specimen well (where you squeezed the fluid) is at the bottom and within the stencil</li>
-            <li>the photo is in focus with no shadows or bright lights on it</li>
-            <li>all 4 corners of the test strip fit into the rectangular outline</li>
-            <li>no personal information is in the photo, for example bank details</li>
+              <li>all 4 corners of the test strip are in the outline</li>
+              <li>the photo is in focus with no shadows or bright lights on it</li>
+              <li>the photo is taken directly from above (not at an angle)</li>
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              <li>no personal information is in the photo, for example paperwork showing a name, address, date of birth or bank details</li>
+              {% else %}
+              <li>no personal information is in the photo, for example paperwork showing your name, address, date of birth or bank details.</li>
+              {% endif %}
             </ul>
+
+
+
           <div style="position: relative; display: flex; justify-content: center; align-items: center;" class="camera-test-result wrapper govuk-!-margin-bottom-3">
             <div class="camera-overlay right"></div>
             <div class="camera-overlay left"></div>
@@ -49,14 +51,14 @@
         </a>
         <!-- <button id="snap" class="govuk-button" type="submit" data-module="govuk-button" style="display: inline-block;">Snap Photo</button> -->
         <a id="snap-2" href="photo-confirmed" role="button" draggable="false" class="govuk-button" data-module="govuk-button" style="display: none;">
-          Upload photo
+          Submit photo
         </a>
 
         <a id="cancel" href="/antigen/{{version}}/home-testing/enter-barcode-number" role="button" draggable="false" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button" style="display: inline-block;">
           Cancel
         </a>
         <a id="cancel-2" href="#" role="button" draggable="false" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button" style="display: none;">
-          Re-take your photo
+          Take photo again
         </a>
 
     </div>
