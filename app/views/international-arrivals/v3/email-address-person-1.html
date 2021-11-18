@@ -28,27 +28,15 @@
       <form action="/international-arrivals/{{version}}/vaccine-person-1" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
-                What is {{ data['first-name-person-1'] or 'Sophie' }} {{ data['last-name-person-1'] or 'Appleseed' }}'s email address?
-              </h1>
-            </legend>
-
-            <div class="govuk-form-group govuk-!-margin-top-5">
-              <label class="govuk-label" for="email-address-person-1">
-                Email address
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="email-address-person-1" name="email-address-person-1" type="text" spellcheck="false" value="{{ data['email-address-person-1'] }}">
-            </div>
-            <div class="govuk-form-group govuk-!-margin-top-2">
-              <label class="govuk-label" for="confirm-email-address-person-1">
-                Confirm email address
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address-person-1" name="confirm-email-address-person-1" type="text" spellcheck="false" value="{{ data['confirm-email-address-person-1'] }}">
-            </div>
-
-          </fieldset>
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--xl" for="email-address-person-1">
+              What is {{ data['first-name-person-1'] or 'Sophie' }} {{ data['last-name-person-1'] or 'Appleseed' }}'s email address?
+            </label>
+          </h1>
+          <div id="email-address-hint" class="govuk-body">
+            We'll send their booking reference number to this email address.
+          </div>
+          <input class="govuk-input govuk-!-width-two-thirds" id="email-address-person-1" name="email-address-person-1" type="text" spellcheck="false" aria-describedby="email-address-hint" value="{{ data['email-address-person-1'] }}">
         </div>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
