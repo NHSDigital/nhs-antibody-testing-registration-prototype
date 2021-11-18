@@ -28,27 +28,15 @@
       <form action="/international-arrivals/{{version}}/confirm-email-code" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
-                {{ pageTitle }}
-              </h1>
-            </legend>
-
-            <div class="govuk-form-group govuk-!-margin-top-5">
-              <label class="govuk-label" for="email-address">
-                Email address
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" spellcheck="false" value="{{ data['email-address'] }}">
-            </div>
-            <!-- <div class="govuk-form-group govuk-!-margin-top-2">
-              <label class="govuk-label" for="confirm-email-address">
-                Confirm email address
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="text" spellcheck="false" value="{{ data['confirm-email-address'] }}">
-            </div> -->
-
-          </fieldset>
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--xl" for="email-address">
+            {{ pageTitle }}
+            </label>
+          </h1>
+          <div id="email-address-hint" class="govuk-body">
+            We'll send an email confirmation code and your booking reference number to this email address.
+          </div>
+          <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" spellcheck="false" aria-describedby="email-address-hint" value="{{ data['email-address'] }}">
         </div>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
