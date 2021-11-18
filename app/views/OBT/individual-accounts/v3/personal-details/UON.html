@@ -1,0 +1,143 @@
+{% set pageHeading = "Which organisation gave you the test kits?" %}
+ {% set version = "organisational/ind-accounts/v3" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+
+{% block pageTitle %}
+  {{ pageHeading }} - COVID-19
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+      <!-- div for include from content folder -->
+      <div id="includedContent1"></div>
+
+      <a href="#" class="govuk-back-link">Back</a>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+    <h1 class="govuk-heading-xl">
+      {{ pageHeading }}
+    </h1>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="">
+          Unique organisation number (UON)
+        </label>
+        <div id="passport-issued-hint" class="govuk-hint">
+      For example, 12345678
+        </div>
+        <input class="govuk-input govuk-!-width-one-third" id="" name="" type="text">
+        <a href='UON-check'><button class="govuk-button govuk-button" data-module="govuk-button">
+          Find organisation
+        </button></a>
+
+    <br><br>
+    <p>If you don't know the UON, enter the organisation postcode.</p>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="">
+            Postcode
+          </label>
+          <div id="passport-issued-hint" class="govuk-hint">
+      Enter the postcode of the head office
+    </div>
+          <input class="govuk-input govuk-!-width-one-quarter" id="" name="" type="text">
+          <a href='UON-select-postcode'><button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Find organisation
+          </button></a>
+        </div>
+
+    <p>Or you can enter the organisation name.</p>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="">
+           Name
+          </label>
+          <div id="passport-issued-hint" class="govuk-hint">
+      Enter the name of the head office
+    </div>
+          <input class="govuk-input govuk-!-width-one-quarter" id="" name="" type="text">
+          <a href='UON-select-name'><button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Find organisation
+          </button></a>
+        </div>
+
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              I do not know the organisation details
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p>If you do not know these details you can:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li><a href='#'>look up the UON</a></li>
+                <li>ask the organisation</li>
+                <li>search the Internet for their name and postcode</li>
+              </ul>
+
+            <p>If you're unable to complete this form, call 119. Lines are open 7am to 11pm.</p>
+
+          </div>
+        </details>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              I was not given test kits by an organisation
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p>Select a different service to <a href='https://www.nhs.uk/conditions/coronavirus-covid-19/testing/register-a-test-kit/'>register a test you did at a test site</a></p>
+            <p>Registering a test kit is different to reporting a test result.  <a href=https://www.nhs.uk/conditions/coronavirus-covid-19/testing/test-results/report-a-rapid-lateral-flow-test-result/>Report a rapid lateral flow test result.</a></p>
+            <p>If you're unable to complete this form, call 119. Lines are open 7am to 11pm.</p>
+
+          </div>
+        </details>
+
+
+
+      </form>
+
+
+
+    </div>
+    </div>
+
+  <!-- corresponding html file name included from content folder -->
+<script>
+  $(function(){
+    $("#includedContent1").load("/includes/LFD-account-menu.html");
+  });
+</script>
+
+{% endblock %}
