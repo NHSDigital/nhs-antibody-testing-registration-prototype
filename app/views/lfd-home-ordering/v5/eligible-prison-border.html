@@ -1,0 +1,108 @@
+{% set version = "v5" %}
+{% set pageTitle = "Why do you want to get tested?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+<!-- <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/order-home-test">Back</a> -->
+{{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/lfd-home-ordering/{{version}}/eligible-prison-border" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="reasons-hint reasons-2-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                            {{ pageTitle }}
+                        </h1>
+                    </legend>
+                    <span id="reasons-hint" class="govuk-body">
+                      I want to order coronavirus tests because:
+                    </span>
+                    <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
+                        <li>I work at a probation contact centre</li>
+                        <li>I work at the border or in one of the following high risk settings</li>
+                        <details class="govuk-details" data-module="govuk-details">
+                          <summary class="govuk-details__summary">
+                            <span id="reasons-2-hint" class="govuk-details__summary-text">
+                              Examples
+                            </span>
+                          </summary>
+                          <div class="govuk-details__text">
+                            <ul>
+                              <li>UK officials with border security duties</li>
+                              <li>officials involved in essential defence activities</li>
+                              <li>road passenger transport workers</li>
+                              <li>seamen and masters other than seamen and masters of fishing vessels within the meaning of the Merchant Shipping Act 1995</li>
+                              <li>ferry service workers</li>
+                              <li>inspectors and surveyors of ships</li>
+                              <li>aircraft crew and pilots</li>
+                              <li>aerospace engineers and aerospace workers</li>
+                              <li>international rail crew, passenger and freight operators</li>
+                              <li>essential railway worker</li>
+                              <li>road haulage workers</li>
+                              <li>Channel Tunnel system workers</li>
+                              <li>repatriated prisoners</li>
+                              <li>international prison escorts</li>
+                              <li>foreign representative taking a person into custody</li>
+                              <li>persons transporting human blood etc.</li>
+                              <li>seasonal agricultural or poultry workers</li>
+                              <li>haulier outreach workers</li>
+                              <li>offshore installation workers</li>
+                            </ul>
+                          </div>
+                        </details>
+                        <li>I'm visiting somebody in a prison</li>
+                    </ul>
+
+                    <span id="reasons-2-hint" class="govuk-body">
+                        Do any of the above statements apply to you?
+                    </span>
+                    <div class="govuk-radios govuk-!-margin-top-5" data-module="govuk-radios">
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="eligible-prison-border-1" name="eligible-prison-border" type="radio" value="Yes" {{ checked("eligible-prison-border", "Yes") }}>
+                            <label class="govuk-label govuk-radios__label" for="eligible-prison-border-1">
+                                Yes
+                            </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="eligible-prison-border-2" name="eligible-prison-border" type="radio" value="No" {{ checked("eligible-prison-border", "No") }}>
+                            <label class="govuk-label govuk-radios__label" for="eligible-prison-border-2">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
