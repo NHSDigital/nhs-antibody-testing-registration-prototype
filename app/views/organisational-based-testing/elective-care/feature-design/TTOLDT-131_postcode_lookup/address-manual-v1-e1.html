@@ -12,27 +12,26 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        beta
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback (opens in new tab)</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
-
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link" href="#">Back</a>
 {% endblock %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#postcode-error">No address found. Enter a different postcode</a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
       <form action="check-your-answers" method="get">
 
@@ -69,12 +68,17 @@
             <input class="govuk-input govuk-!-width-one-half" id="delivery-address-town" name="delivery-address-town" type="text" autocomplete="address-level2" value="{{ data['delivery-address-town'] }}">
           </div>
 
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <label class="govuk-label" for="delivery-address-postcode">
               Postcode
             </label>
-            <input class="govuk-input govuk-!-width-one-half" id="delivery-address-postcode" name="delivery-address-postcode" type="text" autocomplete="address-level4" value="{{ data['delivery-address-postcode']}}">
-            <p class="govuk-body govuk-!-margin-top-3"><a href="address-select" class="govuk-link">Lookup address using postcode</a></p>
+            <span class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> No address found. Enter a different postcode </span>
+              <input class="govuk-input govuk-!-width-one-half govuk-input--error" id="postcode-error" name="postcode-error" type="text" autocomplete="address-level4" value="{{ data['delivery-address-postcode']}}">
+            </span>
+            <p class="govuk-body govuk-!-margin-top-3">
+              <a href="address-select" class="govuk-link">Lookup address using postcode</a>
+            </p>
           </div>
 
           <div class="govuk-form-group">
