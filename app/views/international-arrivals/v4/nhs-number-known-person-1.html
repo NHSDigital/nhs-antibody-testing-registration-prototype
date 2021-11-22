@@ -1,5 +1,5 @@
 {% set version = "v4" %}
-{% set pageTitle = "Do they have an NHS number?" %}
+{% set pageTitle = "NHS number" %}
 
 {% extends "includes/layout-intl-arrivals.html" %}
 
@@ -40,55 +40,38 @@
       <form action="/international-arrivals/{{version}}/action4/nhs-number-known-person-1" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint nhs-number-known-hint-2">
+          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint nhs-number-known-hint-2 nhs-number-known-hint-3 nhs-number-known-hint-4">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                If {{ data['first-name-person-1'] or 'Sophie' }} {{ data['last-name-person-1'] or 'Appleseed' }} lives in the UK, do they have an NHS number?
+                {{ pageTitle }}
               </h1>
             </legend>
+
             <span id="nhs-number-known-hint" class="govuk-body">
-              <strong>This will help us find and update their GP (family doctor) record with their test result.</strong><br><br>
-              If you do not have their NHS number, you can still continue.<br><br>
+              An NHS number is a 10-digit number, for example, 485 777 3456. You can find it on any letter the NHS has sent you, on a prescription, or by logging in to a GP practice online service.<br><br>
+              In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.<br><br>
+              It's OK if you do not have an NHS number or you do not live in the UK, you can still continue.
             </span>
-            <details class="govuk-details" data-module="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                  What an NHS number looks like and how to find it
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-                An NHS number is 10 digits. It will be on any prescriptions or letters from a GP or hospital.<br><br>
-                <a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/" target="blank">How to find an NHS number</a>
-              </div>
-            </details>
-            <details class="govuk-details" data-module="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                  What to do if you live in Scotland or Northern Ireland
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-                In Scotland, it’s known as a CHI number. In Northern Ireland, it’s known as an H&C number.
-              </div>
-            </details>
-            <div class="govuk-radios govuk-radios--conditional govuk-!-padding-top-2" data-module="govuk-radios">
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="nhs-number-known-1-person-1" name="nhs-number-known-person-1" type="radio" value="Yes" {{ checked("nhs-number-known-person-1", "Yes") }}>
-                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-1-person-1">
-                    Yes, I can provide their NHS number
-                  </label>
-                </div>
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="nhs-number-known-3-person-1" name="nhs-number-known-person-1" type="radio" value="No" {{ checked("nhs-number-known-person-1", "No") }}>
-                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-3-person-1">
-                    No, I cannot provide their NHS number
-                  </label>
-                </div>
-              </div>
+
+            <p class="govuk-!-margin-top-5"><a class="govuk-link" href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/">Look up your NHS number</a></p>
+
+            <div class="govuk-form-group govuk-!-margin-bottom-3">
+              <label class="govuk-label" for="nhs-number-person-1">
+                <strong>What is {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}'s NHS number?</strong>
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="nhs-number-person-1" name="nhs-number-person-1" type="text" value="{{ data['nhs-number-person-1'] }}">
+            </div>
+
           </fieldset>
         </div>
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        
+          <a class="govuk-button govuk-button--secondary" href="/international-arrivals/{{version}}/registered-with-GP">Continue without NHS number</a>
+        </div>
 
       </form>
 

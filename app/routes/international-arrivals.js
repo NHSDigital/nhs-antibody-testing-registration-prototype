@@ -290,10 +290,10 @@ router.post('/international-arrivals/v3/action3/ethnic-group', function (req, re
 })
 
 // International Arrivals Version Three - NHS Number Known
-router.post('/international-arrivals/v3/action3/nhs-number-known', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
-  if (nhsNumberKnown == "Yes"){
-    res.redirect('/international-arrivals/v3/nhs-number')
+router.post('/international-arrivals/v3/action4/nhs-number-known', function (req, res) {
+  let nhsNumber = req.session.data['nhs-number']
+  if (!nhsNumber){
+    res.redirect('/international-arrivals/v3/nhs-number-known-error')
   } else {
     res.redirect('/international-arrivals/v3/registered-with-GP')
   }
@@ -414,9 +414,9 @@ router.post('/international-arrivals/v4/action4/ethnic-group', function (req, re
 
 // International Arrivals Version Four - NHS Number Known
 router.post('/international-arrivals/v4/action4/nhs-number-known', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
-  if (nhsNumberKnown == "Yes"){
-    res.redirect('/international-arrivals/v4/nhs-number')
+  let nhsNumber = req.session.data['nhs-number']
+  if (!nhsNumber){
+    res.redirect('/international-arrivals/v4/nhs-number-known-error')
   } else {
     res.redirect('/international-arrivals/v4/registered-with-GP')
   }
