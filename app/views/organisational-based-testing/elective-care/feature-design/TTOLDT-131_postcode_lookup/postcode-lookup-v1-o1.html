@@ -12,21 +12,8 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        beta
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback (opens in new tab)</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
-
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link" href="#">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -34,7 +21,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="zero-addresses" method="post" class="form">
+      <form action="address-select-v1" method="post" class="form">
 
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -43,7 +30,7 @@
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
               What’s {{ data['first-name'] | default('Pete') }}
               {{ data['last-name'] | default('Smith') }}’s address?
-            </h1>
+            </h1> 
           </legend>
 
           <p class="govuk-body">This will be the address that their test kit will be sent to.</p>
@@ -53,10 +40,9 @@
               <label class="govuk-label govuk-!-font-weight-bold" for="delivery-address-postcode">
                 Postcode
               </label>
-              <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode" name="delivery-address-postcode" type="text" autocomplete="postal-code">
+              <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode" name="delivery-address-postcode" value="{{ data['delivery-address-postcode'] }}" type="text" autocomplete="postal-code">
             </div>
           </div>
-
         </fieldset>
 
         <button class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
