@@ -12,21 +12,8 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        beta
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback (opens in new tab)</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
-
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link" href="#">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -53,15 +40,13 @@
                 Postcode
               </label>
             <p class="govuk-body">{{ data['delivery-address-postcode'] | default('BO2 1BO') }}
-                <a href="postcode-lookup__happy" class="govuk-link govuk-!-margin-left-2">Change</a>
+                <a href="postcode-lookup-v1-o1" class="govuk-link govuk-!-margin-left-2">Change</a>
             </p>
           </div>
-
+          
           <div class="govuk-form-group">
-            <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">No addresses found for this postcode</p>
-            <p class="govuk-body">Please try a different postcode.</p>
+            <p class="govuk-body">No address found. Enter a different postcode.</p>
           </div>
-
         </fieldset>
 
         <div class="govuk-button-group govuk-!-margin-top-4">

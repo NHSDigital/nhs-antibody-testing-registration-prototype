@@ -12,21 +12,8 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        beta
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback (opens in new tab)</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
-
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link" href="#">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -34,7 +21,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="check-your-answers" method="get">
+      <form action="check-your-answers-v1" method="get">
 
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -52,7 +39,7 @@
                 Postcode
               </label>
               <p class="govuk-body">{{ data['delivery-address-postcode'] | default('SW1A 1AA') }} 
-                <a href="postcode-lookup__happy" class="govuk-link govuk-!-margin-left-2">Change</a>
+                <a href="postcode-lookup-v1-o1" class="govuk-link govuk-!-margin-left-2">Change</a>
               </p>
             </div>
             <div class="govuk-form-group">
@@ -64,7 +51,7 @@
                 <option value="address-1">Buckingham Palace, London, {{ data['delivery-address-postcode']}}</option>
               </select>
             </div>
-            <p class="govuk-body"><a href="address-manual" class="govuk-link">I can't find the address in the list</a></p>
+            <p class="govuk-body"><a href="address-manual-v1" class="govuk-link">I can’t find the correct address in the list</a></p>
 
           </fieldset>
 
