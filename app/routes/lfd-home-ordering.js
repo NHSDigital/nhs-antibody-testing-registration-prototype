@@ -656,28 +656,28 @@ router.post('/lfd-home-ordering/v5/do-you-have-symptoms', function (req, res) {
 
 router.post('/lfd-home-ordering/v5/eligible-nhs', function (req, res) {
     let symptoms = req.session.data['eligible-nhs']
-    if (symptoms == "No" ) {
-      res.redirect('/lfd-home-ordering/v5/eligible-care')
-    } else {
+    if (symptoms == "Yes" ) {
       res.redirect('/lfd-home-ordering/v5/coronavirus-account')
+    } else {
+      res.redirect('/lfd-home-ordering/v5/eligible-care')
     }
 
 })
 router.post('/lfd-home-ordering/v5/eligible-care', function (req, res) {
     let symptoms = req.session.data['eligible-care']
-    if (symptoms == "No" ) {
-      res.redirect('/lfd-home-ordering/v5/eligible-prison-border')
-    } else {
+    if (symptoms == "Yes" ) {
       res.redirect('/lfd-home-ordering/v5/coronavirus-account')
+    } else {
+      res.redirect('/lfd-home-ordering/v5/eligible-prison-border')
     }
 
 })
 router.post('/lfd-home-ordering/v5/eligible-prison-border', function (req, res) {
     let symptoms = req.session.data['eligible-prison-border']
-    if (symptoms == "No" ) {
-      res.redirect('/lfd-home-ordering/v5/lft-unavailable')
-    } else {
+    if (symptoms == "Yes" ) {
       res.redirect('/lfd-home-ordering/v5/coronavirus-account')
+    } else {
+      res.redirect('/lfd-home-ordering/v5/lft-unavailable')
     }
 
 })
