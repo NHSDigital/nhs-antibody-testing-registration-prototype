@@ -1,5 +1,5 @@
 {% set version = "v3" %}
-{% set pageTitle = "What's your passport number?" %}
+{% set pageTitle = "What is your passport number?" %}
 
 {% extends "includes/layout-intl-arrivals.html" %}
 
@@ -27,25 +27,16 @@
       <form action="/international-arrivals/{{version}}/travel-route-same-person-1" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" role="group" aria-describedby="date-of-birth-hint date-of-birth-hint-2">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                What is {{ data['first-name-person-1'] or 'Sophie' }} {{ data['last-name-person-1'] or 'Appleseed' }}'s passport number?
-              </h1>
-            </legend>
-            <p class="govuk-body">Check your passport and find the page with your passport number.</p>
-
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="passport-number">
-                Passport number<br>
-                <span class="govuk-hint"  style="line-height: 1.7em;">
-                  For example, in Britain, 502135326
-                </span>
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="passport-number-person-1" name="passport-number-person-1" type="text" value="{{ data['passport-number-person-1'] }}">
-            </div>
-
-          </fieldset>
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--xl" for="passport-number-person-1">
+              What is {{ data['first-name-person-1'] or 'Sophie' }} {{ data['last-name-person-1'] or 'Appleseed' }}'s passport number?
+            </label>
+          </h1>
+          <p class="govuk-body">Check their passport and find the page with your passport number.</p>
+          <div id="passport-number-hint" class="govuk-hint">
+            For example, 502135326 (in the UK)
+          </div>
+          <input class="govuk-input govuk-!-width-two-thirds" id="passport-number-person-1" name="passport-number-person-1" type="text" aria-describedby="passport-number-hint" value="{{ data['passport-number-person-1'] }}">
         </div>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
