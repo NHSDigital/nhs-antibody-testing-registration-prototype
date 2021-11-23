@@ -1,0 +1,108 @@
+{% set version = "v1" %}
+{% set serviceName = "Elective Care" %}
+{% set pageTitle = "Manage a team member" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link" href="#">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary" id="error-summary" class="govuk-error-summary" style="display: none;">
+        <h2 id="error-summary-title" class="govuk-error-summary__title"> There is a problem </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list pl-0"></ul>
+        </div>
+      </div>
+      <h1 class="govuk-heading-xl"> Manage a team member </h1>
+      <form>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="">First name</label>
+              <p class="govuk-body govuk-!-margin-bottom-6">Sara</p>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="">Last name</label>
+              <p class="govuk-body govuk-!-margin-bottom-6">Metz</p>
+            </div>
+
+            <div class="govuk-form-group govuk-!-margin-bottom-5">
+              <label class="govuk-label" for="">Email address</label>
+              <span class="govuk-hint">This should be their work email address</span>
+              <p class="govuk-body">sarametz@nhs.net</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <h4 class="govuk-heading-m govuk-!-margin-bottom-4 govuk-!-margin-top-5"> Signs in with </h4>
+            <div class="govuk-form-group govuk-!-margin-bottom-2">
+              <p class="govuk-body"> Smartcard</p>
+            </div>
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    Other ways members can log in
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <h3 class="govuk-heading-s">Email &#38; password</h3>
+                <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu tellus odio. Etiam risus justo, fringilla eu convallis a, tempus ac sapien. Ut eget mollis mi. 
+                  </p>
+                <h3 class="govuk-heading-s">Smartcard</h3>
+                <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu tellus odio. Etiam risus justo, fringilla eu convallis a, tempus ac sapien. Ut eget mollis mi. 
+                  </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <h4 class="govuk-heading-m govuk-!-margin-bottom-4 govuk-!-margin-top-3"> Permissions</h4>
+        <p class="govuk-body">User has <strong>enhanced permissions</strong>. To change this user's permissions, please contact the elective care support team.</p>
+        <a href="#" class="govuk-link govuk-!-font-size-19">ElectiveCareTesting@dhsc.gov.uk</a>
+
+        <div class="govuk-grid-row govuk-!-margin-top-8">
+          <div class="govuk-grid-column-full">
+            <p class="govuk-heading-m govuk-!-margin-bottom-2"> Account status </p>
+            <span class="govuk-hint govuk-!-margin-bottom-4">Remove sign in access by marking member as inactive.</span>
+            <fieldset role="group" class="govuk-fieldset govuk-form-group">
+              <div class="govuk-radios">
+                <div class="govuk-radios__item"><input type="radio" id="status" name="status" class="govuk-radios__input" value="true">
+                  <label for="status" class="govuk-label govuk-radios__label"> Active </label>
+                </div>
+                <div class="govuk-radios__item"><input type="radio" id="status-2" name="status" class="govuk-radios__input" value="false">
+                  <label for="status-2" class="govuk-label govuk-radios__label"> Inactive </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        <h4 class="govuk-heading-m govuk-!-margin-bottom-4 govuk-!-margin-top-8"> Which groups should this team member belong to? </h4>
+        <div class="govuk-form-group">
+          <fieldset role="group" class="govuk-fieldset">
+            <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids" name="groupIds" class="govuk-checkboxes__input" value="1465ca9a-5edc-4d97-b0a8-46f1baf32151">
+                <label for="group-ids" class="govuk-label govuk-checkboxes__label"> Test Group 2 </label>
+              </div>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-2" name="groupIds" class="govuk-checkboxes__input" value="06744cc4-6bbb-40fc-b4c4-509d40e4dad3">
+                <label for="group-ids-2" class="govuk-label govuk-checkboxes__label"> Test Group 2 </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="govuk-button-group govuk-!-margin-top-8">
+          <button type="submit" class="govuk-button"> Save and continue </button>
+          <button class="govuk-button--secondary govuk-button"> Cancel </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
