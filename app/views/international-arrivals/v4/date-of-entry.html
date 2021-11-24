@@ -1,4 +1,4 @@
-{% set version = "v3" %}
+{% set version = "v4" %}
 {% set pageTitle = "When are you arriving in the UK?" %}
 
 {% extends "includes/layout-intl-arrivals.html" %}
@@ -27,44 +27,39 @@
       <form action="/international-arrivals/{{version}}/departure-country" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" role="group" aria-describedby="arrival-date-hint arrival-date-hint-2">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="dob-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
                 {{ pageTitle }}
               </h1>
             </legend>
-            <span id="arrival-date-hint" class="govuk-body">
-              Date of entry
-            </span><br>
-            <span id="arrival-date-hint-2" class="govuk-hint"  style="line-height: 1.7em;">
+            <div id="dob-hint" class="govuk-hint">
               For example, 15 4 2021
-            </span>
-            <div class="govuk-date-input govuk-!-margin-bottom-6" id="arrival-date">
+            </div>
+            <div class="govuk-date-input" id="dob">
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
                   <label class="govuk-label govuk-date-input__label" for="date-of-entry-day">
                     Day
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-entry-day" name="date-of-entry-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-entry-day'] }}">
-                </div>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-entry-day" name="date-of-entry-day" type="text" autocomplete="bday-day" pattern="[0-9]*" inputmode="numeric" value="{{ data['date-of-entry-day'] }}"></div>
               </div>
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
                   <label class="govuk-label govuk-date-input__label" for="date-of-entry-month">
                     Month
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-entry-month" name="date-of-entry-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-entry-month'] }}">
-                </div>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-entry-month" name="date-of-entry-month" type="text" autocomplete="bday-month" pattern="[0-9]*" inputmode="numeric" value="{{ data['date-of-entry-month'] }}"></div>
               </div>
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
                   <label class="govuk-label govuk-date-input__label" for="date-of-entry-year">
                     Year
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-of-entry-year" name="date-of-entry-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-entry-year'] }}">
-                </div>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-of-entry-year" name="date-of-entry-year" type="text" autocomplete="bday-year" pattern="[0-9]*" inputmode="numeric" value="{{ data['date-of-entry-year'] }}"></div>
               </div>
             </div>
+        
           </fieldset>
         </div>
 
