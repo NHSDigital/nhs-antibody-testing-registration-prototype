@@ -10,209 +10,167 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
-          <h1 class="govuk-heading-l"> Check patient details and confirm cancellations </h1>
-          <p class="govuk-body"> You can only find patients with a procedure coming up in the next 10 days. </p><hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible"></div>
-      </div>
-      <h3 class="govuk-heading-m govuk-!-margin-bottom-3">Select a group</h3>
-      <p class="govuk-hint">You can only search within one group at a time.</p>
-      <div id="" class="govuk-form-group">
-        <label for="search-group" class="govuk-label"></label>
-        <select id="search-group" aria-label="select a group" name="search-group" class="govuk-select">
-          <option> Test Group 2 </option>
-        </select>
+  <div class="moj-filter">
+
+    <div class="moj-filter__header">
+
+      <div class="moj-filter__header-title">
+        <h2 class="govuk-heading-m">Filter</h2>
       </div>
 
-      <form>
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-full govuk-form-group govuk-!-margin-top-4 govuk-!-margin-bottom-4">
-            <h3 class="govuk-heading-m govuk-!-margin-bottom-3">Search within group</h3>
-            <div class="govuk-grid-row">
-              <div class="govuk-label-wrapper govuk-grid-column-one-half">
-                <label class="govuk-hint" for="search" style="white-space: nowrap">You can search by patient name, order ID or NHS number.</label>
-                <input id="search" autocomplete="off" spellcheck="false" maxlength="60" class="govuk-input">
-              </div>
-              <button type="submit" class="govuk-!-margin-top-7 govuk-grid-column-one-quarter govuk-button"> Search </button>
-            </div>
-
-            <div class="govuk-grid-row">
-              <div id="status" class="govuk-form-group govuk-grid-column-one-quarter">
-                <label for="status" class="govuk-label"> Status </label>
-                <select id="status" name="status" class="govuk-select">
-                  <option value="allStatuses"> All statuses </option>
-                  <option value="testKitOrdered"> Test kit ordered </option>
-                  <option value="testKitSentToPatient"> Test kit sent to patient </option>
-                  <option value="testKitSentToLab"> Received by Royal Mail </option>
-                  <option value="resultReady"> Result ready </option>
-                  <option value="cancelled"> Cancelled </option>
-                </select>
-              </div>
-
-              <div id="procedure-date" class="govuk-form-group govuk-grid-column-one-quarter govuk-!-margin-right-3">
-                <label for="procedure-date" class="govuk-label"> Procedure date </label>
-                <select id="procedure-date" name="status" class="govuk-select">
-                  <option value="all"> All procedure dates </option>
-                  <option value="today"> Today - Wed 17th Nov </option>
-                  <option value="1day"> Tomorrow - Thurs 18th Nov </option>
-                  <option value="2days"> 2 days - Fri 19th Nov </option>
-                  <option value="3days"> 3 days - Sat 20th Nov </option>
-                  <option value="4days"> 4 days - Sun 21st Nov </option>
-                  <option value="5days"> 5 days - Mon 22nd Nov </option>
-                  <option value="6days"> 6 days - Tues 23rd Nov </option>
-                  <option value="7days"> 7 days - Wed 24th Nov </option>
-                  <option value="8days"> 8 days - Thurs 25th Nov </option>
-                  <option value="9days"> 9 days - Fri 26th Nov </option>
-                  <option value="10days"> 10 days - Sat 27th Nov </option>
-                </select>
-              </div>
-
-              <button class="govuk-button govuk-button--secondary govuk-!-margin-top-6 govuk-grid-column-one-quarter" data-module="govuk-button">
-                Export table (.csv)
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
-
-      <p class="govuk-body-s govuk-!-margin-bottom-3"> Last updated 17 November 2021 at 10:38 <button class="govuk-body-s govuk-link button-styled-link govuk-!-margin-bottom-0"> Check for update </button>
-      </p>
-
-      <table class="govuk-table govuk-!-font-size-16" data-module="moj-sortable-table">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header" aria-sort="none"> Patient </th>
-            <th scope="col" class="govuk-table__header" aria-sort="descending"> Procedure date </th>
-            <th scope="col" class="govuk-table__header"> NHS number </th>
-            <th scope="col" class="govuk-table__header"> Mobile number </th>
-            <th scope="col" class="govuk-table__header"> Order ID </th>
-            <th scope="col" class="govuk-table__header" aria-sort="none"> Status </th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Lia Beatty<br> Male<br> 01 January 1999 </td>
-            <td class="govuk-table__cell">19 November 2021<br>
-              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a> / <a href="/register-elective-care/cancel-verify" class="govuk-link"> Reorder </a>
-            </td>
-            <td class="govuk-table__cell">1967269858 </td>
-            <td class="govuk-table__cell">+447860031259 </td>
-            <td class="govuk-table__cell">5376775122 </td>
-            <td class="govuk-table__cell">Result ready<br />18/11/2021<br /><a href="#" class="govuk-link">View details</a></td> 
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Edison Kessler<br> Male<br> 01 January 1999 </td>
-            <td class="govuk-table__cell">19 November 2021<br>
-              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a> / <a href="/register-elective-care/cancel-verify" class="govuk-link"> Reorder </a>
-            </td>
-            <td class="govuk-table__cell">1161949755 </td>
-            <td class="govuk-table__cell">+447860031259 </td>
-            <td class="govuk-table__cell">3541735907 </td>
-            <td class="govuk-table__cell">Test kit sent to patient<br />18/11/2021<br /><a href="#" class="govuk-link">View details</a></td> 
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Narciso Hirthe<br> Male<br> 01 January 1999 </td>
-            <td class="govuk-table__cell">19 November 2021<br>
-              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a> / <a href="/register-elective-care/cancel-verify" class="govuk-link"> Reorder </a>
-            </td>
-            <td class="govuk-table__cell">1628772808 </td>
-            <td class="govuk-table__cell">+447860031259 </td>
-            <td class="govuk-table__cell">9249976767 </td>
-            <td class="govuk-table__cell">Test kit sent to patient<br />18/11/2021<br /><a href="#" class="govuk-link">View details</a></td> 
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Aileen Goldner<br> Male<br> 01 January 1999 </td>
-            <td class="govuk-table__cell">19 November 2021<br>
-              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a> / <a href="/register-elective-care/cancel-verify" class="govuk-link"> Reorder </a>
-            </td>
-            <td class="govuk-table__cell">1465815082 </td>
-            <td class="govuk-table__cell">+447860031259 </td>
-            <td class="govuk-table__cell">5911511050 </td>
-            <td class="govuk-table__cell">Received by Royal Mail<br />18/11/2021<br /><a href="#" class="govuk-link">View details</a></td> 
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Ernest Borer<br> Male<br> 01 January 1999 </td>
-            <td class="govuk-table__cell">20 November 2021<br/>(cancelled)</td>
-            <td class="govuk-table__cell">1053998724 </td>
-            <td class="govuk-table__cell">+447860031259 </td>
-            <td class="govuk-table__cell">0596229554 </td>
-            <td class="govuk-table__cell">Received by Royal Mail<br/>(cancelled)<br/>18/11/2021<br /><a href="#" class="govuk-link">View details</a></td> 
-          </tr>
-          <tr class="govuk-table__row">
-
-            <td class="govuk-table__cell">Deonte Welch<br> Male<br> 01 January 1999 </td>
-            <td class="govuk-table__cell">21 November 2021<br>
-              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a> / <a href="/register-elective-care/cancel-verify" class="govuk-link"> Reorder </a>
-            </td>
-            <td class="govuk-table__cell">1900821117 </td>
-            <td class="govuk-table__cell">+447860031259 </td>
-            <td class="govuk-table__cell">0006708086 </td>
-            <td class="govuk-table__cell">Received by Royal Mail<br />18/11/2021<br /><a href="#" class="govuk-link">View details</a></td> 
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Deonte Welch<br> Male<br> 01 January 1999 </td>
-            <td class="govuk-table__cell">21 November 2021<br>(reordered)</td>
-            <td class="govuk-table__cell">1900821117 </td>
-            <td class="govuk-table__cell">+447860031259 </td>
-            <td class="govuk-table__cell">5820441121 </td>
-            <td class="govuk-table__cell">Result ready<br/> (reordered)<br />18/11/2021<br /><a href="#" class="govuk-link">View details</a></td> 
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Hulda Nikolaus<br> Male<br> 01 January 1999 </td>
-            <td class="govuk-table__cell">19 November 2021<br>
-              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a> / <a href="/register-elective-care/cancel-verify" class="govuk-link"> Reorder </a>
-            </td>
-            <td class="govuk-table__cell">1080920242 </td>
-            <td class="govuk-table__cell">+447860031259 </td>
-            <td class="govuk-table__cell">9702174086 </td>
-            <td class="govuk-table__cell">Test kit ordered<br />18/11/2021<br /><a href="#" class="govuk-link">View details</a></td> 
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Charlie King<br> Male<br> 01 January 1999 </td>
-            <td class="govuk-table__cell">19 November 2021<br>
-              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a> / <a href="/register-elective-care/cancel-verify" class="govuk-link"> Reorder </a>
-            </td>
-            <td class="govuk-table__cell">1890362263 </td>
-            <td class="govuk-table__cell">+447860031259 </td>
-            <td class="govuk-table__cell">6229618871 </td>
-            <td class="govuk-table__cell">Test kit ordered<br />18/11/2021<br /><a href="#" class="govuk-link">View details</a></td> 
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Dana McLaughlin<br> Male<br> 01 January 1999 </td>
-            <td class="govuk-table__cell">19 November 2021<br>
-              <a href="/register-elective-care/cancel-verify" class="govuk-link"> Cancel </a> / <a href="/register-elective-care/cancel-verify" class="govuk-link"> Reorder </a>
-            </td>
-            <td class="govuk-table__cell">1856809870 </td>
-            <td class="govuk-table__cell">+447860031259 </td>
-            <td class="govuk-table__cell">5848745855 </td>
-            <td class="govuk-table__cell">Test kit sent to patient<br />18/11/2021<br /><a href="#" class="govuk-link">View details</a></td> 
-          </tr>
-        </tbody>
-      </table>
-
-      <nav class="moj-pagination govuk-!-margin-top-7" id="pagination-label">
-        <p class="govuk-visually-hidden" aria-labelledby="pagination-label">Pagination navigation</p>
-        <ul class="moj-pagination__list">
-          <li class="moj-pagination__item  moj-pagination__item--prev">
-            <a class="moj-pagination__link" href="">Previous<span class="govuk-visually-hidden"> set of pages</span></a>
-          </li>
-          <li class="moj-pagination__item">
-            <a class="moj-pagination__link" href="/page=1">1</a>
-          </li>
-          <li class="moj-pagination__item moj-pagination__item--active">2</li>
-          <li class="moj-pagination__item">
-            <a class="moj-pagination__link" href="/page=3">3</a>
-          </li>
-          <li class="moj-pagination__item  moj-pagination__item--next">
-            <a class="moj-pagination__link" href="">Next<span class="govuk-visually-hidden"> set of pages</span></a>
-          </li>
-        </ul>
-        <p class="moj-pagination__results">Showing <b>10</b> to <b>20</b> of <b>30</b> results</p>
-      </nav>
+      <div class="moj-filter__header-action"></div>
 
     </div>
+
+    <div class="moj-filter__content">
+
+      <div class="moj-filter__selected">
+
+        <div class="moj-filter__selected-heading">
+
+          <div class="moj-filter__heading-title">
+            <h2 class="govuk-heading-m">Selected filters</h2>
+          </div>
+
+          <div class="moj-filter__heading-action">
+            <p>
+              <a class="govuk-link govuk-link--no-visited-state" href="">Clear filters</a>
+            </p>
+          </div>
+
+        </div>
+
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Type</h3>
+
+        <ul class="moj-filter-tags">
+
+          <li>
+            <a class="moj-filter__tag" href="/path/to/remove/this">
+              <span class="govuk-visually-hidden">Remove this filter</span> Blue</a>
+          </li>
+
+          <li>
+            <a class="moj-filter__tag" href="/path/to/remove/this">
+              <span class="govuk-visually-hidden">Remove this filter</span> Yellow</a>
+          </li>
+
+        </ul>
+
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Status</h3>
+
+        <ul class="moj-filter-tags">
+
+          <li>
+            <a class="moj-filter__tag" href="/path/to/remove/this">
+              <span class="govuk-visually-hidden">Remove this filter</span> Completed</a>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div class="moj-filter__options">
+
+        <button class="govuk-button" data-module="govuk-button">
+        Apply filters
+      </button>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--m" for="keywords">
+          Keywords
+        </label>
+
+          <input class="govuk-input" id="keywords" name="keywords" type="text">
+        </div>
+
+        <div class="govuk-form-group">
+
+          <fieldset class="govuk-fieldset">
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+
+            Type
+
+          </legend>
+
+            <div class="govuk-checkboxes govuk-checkboxes--small">
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="type" name="type" type="checkbox" value="1" checked>
+                <label class="govuk-label govuk-checkboxes__label" for="type">
+                Blue (18)
+              </label>
+
+              </div>
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="type-2" name="type" type="checkbox" value="2" checked>
+                <label class="govuk-label govuk-checkboxes__label" for="type-2">
+                Yellow (5)
+              </label>
+
+              </div>
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="type-3" name="type" type="checkbox" value="3">
+                <label class="govuk-label govuk-checkboxes__label" for="type-3">
+                Red (2)
+              </label>
+
+              </div>
+
+            </div>
+
+          </fieldset>
+
+        </div>
+
+        <div class="govuk-form-group">
+
+          <fieldset class="govuk-fieldset">
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+
+            Status
+
+          </legend>
+
+            <div class="govuk-checkboxes govuk-checkboxes--small">
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status" name="status" type="checkbox" value="complete" checked>
+                <label class="govuk-label govuk-checkboxes__label" for="status">
+                Completed (2)
+              </label>
+
+              </div>
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="incomplete">
+                <label class="govuk-label govuk-checkboxes__label" for="status-2">
+                Incomplete (5)
+              </label>
+
+              </div>
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="inprogress">
+                <label class="govuk-label govuk-checkboxes__label" for="status-3">
+                In progress (3)
+              </label>
+
+              </div>
+
+            </div>
+
+          </fieldset>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
 {% endblock %}
