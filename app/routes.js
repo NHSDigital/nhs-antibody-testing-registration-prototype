@@ -482,7 +482,7 @@ router.post('/antigen/v1/action3/reason-for-test', function (req, res) {
   let reason = req.session.data['reason-for-test']
   if (reason == "None of the above"){
     res.redirect('/antigen/v1/refer-and-triage/cannot-have-test')
-  } else if (whoAsked == "I've been told by contact tracers to get a test") {
+  } else if (whoAsked == "Contact tracers told me to get a test") {
     res.redirect('/antigen/v1/refer-and-triage/contact-tracing-code')
   }
   else {
@@ -1872,11 +1872,20 @@ router.post('/antigen/v1/action8/vaccine', function (req, res) {
 router.post('/antigen/v1/action8/vaccine-person-1', function (req, res) {
   let vaccinePerson1 = req.session.data['vaccine-person-1']
   if (vaccinePerson1 == "No"){
-    res.redirect('/antigen/v1/global-registration/check-your-answers')
+    res.redirect('/antigen/v1/global-registration/gp-address-same-person-1')
   } else {
     res.redirect('/antigen/v1/global-registration/vaccine-date-person-1')
   }
 
+})
+
+router.post('/antigen/v1/action3/gp-address-same-person-1', function (req, res) {
+  let gpAdressSame = req.session.data['gp-address-same-person-1']
+  if (gpAdressSame == "No"){
+    res.redirect('/antigen/v1/global-registration/address-person-1')
+  } else {
+    res.redirect('/antigen/v1/global-registration/nhs-number-known-person-1')
+  }
 })
 
 // Version 1 - Lite reg accounts - Confirm Site ID
