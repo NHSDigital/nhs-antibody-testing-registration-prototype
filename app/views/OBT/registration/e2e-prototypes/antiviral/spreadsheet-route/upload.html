@@ -1,0 +1,71 @@
+{% set serviceName = "Register test kits for your organisation" %}
+{% set pageHeading = "Upload test details?" %}
+{% set version = "organisational/lft/carehome-registration" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+{% block beforeContent %}
+
+
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+    </div>
+  </div>
+</div>
+
+<div class=“”>
+  <div class=“govuk-grid-row”>
+    <div class=“govuk-grid-column-full”>
+      <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Upload test details</h1>
+
+    <form class="form" action="uploading" method="get">
+
+      <p>The spreadsheet allows you to pre-register antiviral PCR tests.
+      <p>Antiviral PCR test kit barcodes start with AVA, followed by 5 numbers.</p>
+
+
+<p>To do this:</p>
+      <ul class="govuk-list govuk-list--bullet">
+  <li>enter details for up to 500 people at a time</li>
+<li>do not add any sheets, row or columns</li>
+<li>save the completed spreadsheet and then upload it</li>
+</ul>
+
+<p>For help, ask your team lead.</p>
+
+<div class="govuk-form-group">
+<label class="govuk-label" for="file-upload-1">
+  Upload a file
+</label>
+<input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file">
+</div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
