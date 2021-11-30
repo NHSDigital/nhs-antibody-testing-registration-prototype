@@ -5,7 +5,7 @@
 
 {% block beforeContent %}
   {% include "includes/ec-beta-banner-v1.html" %}
-  <a class="govuk-back-link" href="#">Back</a>
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -23,9 +23,9 @@
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-half">
             <div class="govuk-form-group">
-              <label for="first-name" class="govuk-label"> First name </label><input id="first-name" autocomplete="off" spellcheck="false" maxlength="60" class="govuk-input"></div>
+              <label for="first-name" class="govuk-label"> First name </label><input id="first-name" autocomplete="off" spellcheck="false" maxlength="60" class="govuk-input" value="Team"></div>
             <div class="govuk-form-group">
-              <label for="last-name" class="govuk-label"> Last name </label><input id="last-name" autocomplete="off" spellcheck="false" maxlength="60" class="govuk-input"></div>
+              <label for="last-name" class="govuk-label"> Last name </label><input id="last-name" autocomplete="off" spellcheck="false" maxlength="60" class="govuk-input" value="Member"></div>
           </div>
         </div>
 
@@ -33,7 +33,7 @@
           <div class="govuk-grid-column-two-thirds">
             <div class="govuk-form-group">
               <label for="email" class="govuk-label"> Email address </label>
-              <span id="email-hint" class="govuk-hint"> This should be their work email address </span><input id="email" autocomplete="off" aria-describedby="email-hint" spellcheck="false" maxlength="254" class="govuk-input"></div>
+              <span id="email-hint" class="govuk-hint"> This should be their work email address </span><input id="email" autocomplete="off" aria-describedby="email-hint" spellcheck="false" maxlength="254" class="govuk-input" value="team.member@mail.com"></div>
           </div>
         </div>
 
@@ -54,14 +54,14 @@
                 <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Email and password</h3>
                 <ul class="govuk-list govuk-list--bullet">
                   <li>you can create team members with an email and password</li>
-                  <li>team members cannot view test results</li>
+                  <li>team members cannot view test results on the portal</li>
                 </ul>
                 <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Smartcard</h3>
                 <ul class="govuk-list govuk-list--bullet">
                   <li>you cannot create team members who have a Smartcard</li>
                   <li>team members need to ask for access when they first use their Smartcard on the test kit ordering portal</li>
                   <li>a team member with enhanced access can go in and approve this request</li>
-                  <li>team members can view test results</li>
+                  <li>team members can view test results on the portal</li>
                 </ul>
               </div>
             </details>
@@ -96,7 +96,7 @@
             <span class="govuk-hint govuk-!-margin-bottom-4">Remove sign in access by marking team member as inactive.</span>
             <fieldset role="group" class="govuk-fieldset govuk-form-group">
               <div class="govuk-radios">
-                <div class="govuk-radios__item"><input type="radio" id="status" name="status" class="govuk-radios__input" value="true">
+                <div class="govuk-radios__item"><input type="radio" id="status" name="status" class="govuk-radios__input" value="true" checked>
                   <label for="status" class="govuk-label govuk-radios__label"> Active </label>
                 </div>
                 <div class="govuk-radios__item"><input type="radio" id="status-2" name="status" class="govuk-radios__input" value="false">
@@ -108,14 +108,23 @@
         </div>
 
         <h4 class="govuk-heading-m govuk-!-margin-bottom-4 govuk-!-margin-top-8"> Which groups should this team member belong to? </h4>
-        <div class="govuk-form-group">
+        <div class="govuk-form-group" id="member-groups">
           <fieldset role="group" class="govuk-fieldset">
             <div class="govuk-checkboxes">
-              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids" name="groupIds" class="govuk-checkboxes__input" value="1465ca9a-5edc-4d97-b0a8-46f1baf32151">
-                <label for="group-ids" class="govuk-label govuk-checkboxes__label"> Test Group 2 </label>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids" name="groupIds" class="govuk-checkboxes__input" checked>
+                <label for="group-ids" class="govuk-label govuk-checkboxes__label"> Cardiology </label>
               </div>
-              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-2" name="groupIds" class="govuk-checkboxes__input" value="06744cc4-6bbb-40fc-b4c4-509d40e4dad3">
-                <label for="group-ids-2" class="govuk-label govuk-checkboxes__label"> Test Group 2 </label>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-2" name="groupIds" class="govuk-checkboxes__input" checked>
+                <label for="group-ids-2" class="govuk-label govuk-checkboxes__label"> Gastroenterology </label>
+              </div>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-3" name="groupIds" class="govuk-checkboxes__input">
+                <label for="group-ids-3" class="govuk-label govuk-checkboxes__label"> Radiology </label>
+              </div>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-4" name="groupIds" class="govuk-checkboxes__input">
+                <label for="group-ids-4" class="govuk-label govuk-checkboxes__label"> Opthalmology </label>
+              </div>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-5" name="groupIds" class="govuk-checkboxes__input">
+                <label for="group-ids-5" class="govuk-label govuk-checkboxes__label"> Oncology </label>
               </div>
             </div>
           </fieldset>
