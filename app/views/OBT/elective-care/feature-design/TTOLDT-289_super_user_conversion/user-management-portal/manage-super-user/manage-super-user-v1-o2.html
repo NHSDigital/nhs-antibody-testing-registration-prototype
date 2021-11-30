@@ -1,19 +1,11 @@
 {% set version = "v1" %}
-{% set serviceName = "Manage hospital coronavirus test ordering" %}
-{% set pageTitle = "Manage a user" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "Manage super user" %}
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-    <div class="govuk-phase-banner">
-        <p class="govuk-phase-banner__content">
-            <strong class="govuk-tag govuk-phase-banner__content__tag"> beta </strong>
-            <span class="govuk-phase-banner__text"> 
-                This is a new service – your <a target="_blank" href="#" class="govuk-link"> feedback (opens in new tab)</a> will help us to improve it. 
-            </span>
-        </p>
-    </div>
-
-    <a class="govuk-back-link">Back</a>
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -25,44 +17,41 @@
                     <ul class="govuk-list govuk-error-summary__list pl-0"></ul>
                 </div>
             </div>
-            <h1 class="govuk-heading-xl"> Manage a user </h1>
+            <h1 class="govuk-heading-xl"> Manage user </h1>
             <div class="govuk-grid-row">
-                <div class="govuk-grid-column-one-half">
-                    <div class="govuk-form-group">
-                        <label for="first-name" class="govuk-label"> First name </label><input id="first-name" autocomplete="off" name="firstName" spellcheck="false" maxlength="60" class="govuk-input"></div>
-                    <div class="govuk-form-group">
-                        <label for="last-name" class="govuk-label"> Last name </label><input id="last-name" autocomplete="off" name="lastName" spellcheck="false" maxlength="60" class="govuk-input"></div>
-                </div>
                 <div class="govuk-grid-column-two-thirds">
                     <div class="govuk-form-group">
-                        <label for="email" class="govuk-label"> Email address </label>
-                        <span id="email-hint" class="govuk-hint"> This should be their work email address </span><input id="email" autocomplete="off" aria-describedby="email-hint" name="email" maxlength="254" class="govuk-input"></div>
+                        <label class="govuk-label" for="">First name</label>
+                        <p class="govuk-body govuk-!-margin-bottom-6">Sara</p>
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="">Last name</label>
+                        <p class="govuk-body govuk-!-margin-bottom-6">Metz</p>
+                    </div>
+
+                    <div class="govuk-form-group govuk-!-margin-bottom-5">
+                        <label class="govuk-label" for="">Email address</label>
+                        <span class="govuk-hint">This should be their work email address</span>
+                        <p class="govuk-body">sarametz@nhs.net</p>
+                    </div>
                 </div>
             </div>
 
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-full">
-                    <h4 class="govuk-heading-m govuk-!-margin-bottom-4 govuk-!-margin-top-4"> Sign in access </h4>
-                    <p class="govuk-body">Email and password</p>
-                    <a class="govuk-link govuk-body" href="#" style="display: block;">Send a new temporary password</a>
+                    <h4 class="govuk-heading-m govuk-!-margin-bottom-4 govuk-!-margin-top-5"> Signs in with </h4>
+                    <div class="govuk-form-group govuk-!-margin-bottom-2">
+                        <p class="govuk-body"> Smartcard</p>
+                    </div>
                     <details class="govuk-details" data-module="govuk-details">
                         <summary class="govuk-details__summary">
-                            <span class="govuk-details__summary-text">Learn about sign in options</span>
+                            <span class="govuk-details__summary-text">Other ways members can log in</span>
                         </summary>
                         <div class="govuk-details__text">
-                            <p class="govuk-body">There are two ways for users to sign in:</p>
-                            <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Email and password</h3>
-                            <ul class="govuk-list govuk-list--bullet">
-                                <li>you can create users with an email and password</li>
-                                <li>users cannot view test results</li>
-                            </ul>
-                            <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Smartcard</h3>
-                            <ul class="govuk-list govuk-list--bullet">
-                                <li>you cannot create users who have a Smartcard</li>
-                                <li>users need to ask for access when they first use their Smartcard on the test kit ordering portal</li>
-                                <li>a user with enhanced access can go in and approve this request</li>
-                                <li>users can view test results</li>
-                            </ul>
+                            <h3 class="govuk-heading-s">Email &#38; password</h3>
+                            <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu tellus odio. Etiam risus justo, fringilla eu convallis a, tempus ac sapien. Ut eget mollis mi. </p>
+                            <h3 class="govuk-heading-s">Smartcard</h3>
+                            <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu tellus odio. Etiam risus justo, fringilla eu convallis a, tempus ac sapien. Ut eget mollis mi. </p>
                         </div>
                     </details>
                 </div>
@@ -78,7 +67,7 @@
                             Standard
                             </label>
                             <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
-                            Order home tests, check patient details, view test results (when signed in with a Smartcard) and confirm procedure cancellations
+                            Order home tests, check patient details, view results and confirm procedure cancellations
                             </div>
                         </div>
                         <div class="govuk-radios__item">
@@ -97,7 +86,7 @@
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-full">
                     <p class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-7"> Account status </p>
-                    <span class="govuk-hint govuk-!-margin-bottom-4">Remove sign in access by marking user as inactive.</span>
+                    <span class="govuk-hint govuk-!-margin-bottom-4">Remove sign in access by marking member as inactive.</span>
                     <fieldset role="group" class="govuk-fieldset govuk-form-group">
                         <div class="govuk-radios">
                             <div class="govuk-radios__item"><input type="radio" id="status" name="status" class="govuk-radios__input" value="true">

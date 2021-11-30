@@ -1,29 +1,18 @@
 {% set version = "v3" %}
-{% set serviceName = "Manage elective care patient COVID-19 testing" %}
+{% set serviceName = electiveCareServiceName %}
 {% set pageTitle = "Manage groups and team members" %}
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
 {% endblock %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
-
-      <!-- groups -->
       <h2 class="govuk-heading-m">Groups</h2>
       <form action="" method="post">
         <button class="govuk-button" data-module="govuk-button">
@@ -43,7 +32,7 @@
         </div>
       </form>
 
-      <table class="govuk-table">
+      <table class="govuk-table govuk-!-width-two-thirds">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Group name</th>
@@ -52,70 +41,36 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{group_name}</td>
-            <td class="govuk-table__cell">{group_email_address}</td>
+            <td class="govuk-table__cell">Cardiology</td>
+            <td class="govuk-table__cell">cardiology@mail.com</td>
             <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{group_name}</td>
-            <td class="govuk-table__cell">{group_email_address}</td>
+            <td class="govuk-table__cell">Gastroenterology</td>
+            <td class="govuk-table__cell">gastroenterology@mail.com</td>
             <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{group_name}</td>
-            <td class="govuk-table__cell">{group_email_address}</td>
+            <td class="govuk-table__cell">Radiology</td>
+            <td class="govuk-table__cell">radiology@mail.com</td>
             <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{group_name}</td>
-            <td class="govuk-table__cell">{group_email_address}</td>
+            <td class="govuk-table__cell">Opthalmology</td>
+            <td class="govuk-table__cell">opthalmology@mail.com</td>
             <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{group_name}</td>
-            <td class="govuk-table__cell">{group_email_address}</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{group_name}</td>
-            <td class="govuk-table__cell">{group_email_address}</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{group_name}</td>
-            <td class="govuk-table__cell">{group_email_address}</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{group_name}</td>
-            <td class="govuk-table__cell">{group_email_address}</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{group_name}</td>
-            <td class="govuk-table__cell">{group_email_address}</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{group_name}</td>
-            <td class="govuk-table__cell">{group_email_address}</td>
+            <td class="govuk-table__cell">Oncology</td>
+            <td class="govuk-table__cell">oncology@mail.com</td>
             <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
           </tr>
         </tbody>
       </table>
-      <div class="flex-container" style="display: flex; justify-content: space-between;">
-        <div>
-          <a href="#" class="govuk-link govuk-!-margin-right-2">Previous</a>
-        </div>
-        <div>
-          <a href="#" class="govuk-link govuk-!-margin-right-2">Next</a>
-        </div>
-      </div>
-
-      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+      
       <!-- users -->
-      <h2 class="govuk-heading-m">Team members</h2>
-      <form action="" method="post">
+      <h2 class="govuk-heading-m govuk-!-margin-top-9">Team members</h2>
+      <form action="./add-team-member-v1" method="post">
         <button class="govuk-button" data-module="govuk-button">
           Add team member
         </button>
@@ -138,7 +93,7 @@
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header" aria-sort="ascending">Name</th>
             <th scope="col" class="govuk-table__header">Group(s)</th>
-            <th scope="col" class="govuk-table__header" aria-sort="none">Signs in with</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Signs in access</th>
             <th scope="col" class="govuk-table__header" aria-sort="none">Status</th>
             <th scope="col" class="govuk-table__header" aria-sort="none">Permissions</th>
             <th scope="col" class="govuk-table__header"></th>
@@ -148,70 +103,70 @@
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">John Smith<br />john.smith@nhs.net</td>
             <td class="govuk-table__cell">Cardiology</td>
-            <td class="govuk-table__cell">Email &amp; password</td>
+            <td class="govuk-table__cell">Email and password</td>
             <td class="govuk-table__cell" data-sort-value="active"><strong class="govuk-tag govuk-tag--green govuk-!-font-size-14">Active</strong></td>
-            <td class="govuk-table__cell">Enhanced</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Admin2<br />adminuser2@int.obt.test-and-trace.nhs.uk</td>
-            <td class="govuk-table__cell">Cardiology, Paediatrics, Opthalmology</td>
-            <td class="govuk-table__cell">Email &amp; password</td>
-            <td class="govuk-table__cell" data-sort-value="pending"><strong class="govuk-tag govuk-tag--green govuk-!-font-size-14">Active</strong></td>
             <td class="govuk-table__cell">Standard</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
+            <td class="govuk-table__cell"><a href="./manage-team-member-v2-o1" class="govuk-link">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">John Dingo<br />john.dingo@nhs.net</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Add group</a></td>
-            <td class="govuk-table__cell">Smartcard</td>
-            <td class="govuk-table__cell" data-sort-value="waiting for access"><strong class="govuk-tag govuk-tag--blue govuk-!-font-size-14">Waiting for access</strong></td>
+            <td class="govuk-table__cell">Admin2<br />adminuser2@nhs.net</td>
+            <td class="govuk-table__cell">All groups</td>
+            <td class="govuk-table__cell">Email and password</td>
+            <td class="govuk-table__cell" data-sort-value="pending"><strong class="govuk-tag govuk-tag--green govuk-!-font-size-14">Active</strong></td>
             <td class="govuk-table__cell">Enhanced</td>
-            <td class="govuk-table__cell"><a href="4-1.html" class="govuk-link">Approve</a> / <a href="#" class="govuk-link">Deny</a></td>
+            <td class="govuk-table__cell"><a href="./manage-team-member-v2-o1" class="govuk-link">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Eric Woo<br />eric.woo@nhs.net</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Add group</a></td>
+            <td class="govuk-table__cell">Opthalmology</td>
             <td class="govuk-table__cell">Smartcard</td>
             <td class="govuk-table__cell" data-sort-value="active"><strong class="govuk-tag govuk-tag--green govuk-!-font-size-14">Active</strong></td>
-            <td class="govuk-table__cell">Enhanced</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
+            <td class="govuk-table__cell">Standard</td>
+            <td class="govuk-table__cell"><a href="./manage-team-member-v2-o2" class="govuk-link">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Elias Madras<br />elias.madras@nhs.net</td>
-            <td class="govuk-table__cell">Cardiology</td>
+            <td class="govuk-table__cell">—</td>
             <td class="govuk-table__cell">Smartcard</td>
             <td class="govuk-table__cell" data-sort-value="waiting for access"><strong class="govuk-tag govuk-tag--blue govuk-!-font-size-14">Waiting for access</strong></td>
             <td class="govuk-table__cell">Standard</td>
             <td class="govuk-table__cell"><a href="4-1.html" class="govuk-link">Approve</a> / <a href="#" class="govuk-link">Deny</a></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Phillip Phil<br />phillip.phil@nhs.net</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Add group</a></td>
-            <td class="govuk-table__cell">Email &amp; password</td>
+            <td class="govuk-table__cell">Phillip Smith<br />phillip.smith@nhs.net</td>
+            <td class="govuk-table__cell"><a href="./manage-team-member-v2-o1#member-groups" class="govuk-link">Add group</a></td>
+            <td class="govuk-table__cell">Email and password</td>
             <td class="govuk-table__cell" data-sort-value="pending"><strong class="govuk-body govuk-tag govuk-tag--yellow">Pending</strong></td>
             <td class="govuk-table__cell">Standard</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
+            <td class="govuk-table__cell"><a href="./manage-team-member-v2-o1" class="govuk-link">Manage</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">John Dingo<br />john.dingo@nhs.net</td>
+            <td class="govuk-table__cell">Cardiology, Paediatrics</td>
+            <td class="govuk-table__cell">Email and password</td>
+            <td class="govuk-table__cell" data-sort-value="inactive"><strong class="govuk-tag govuk-tag--grey govuk-!-font-size-14">Inactive</strong></td>
+            <td class="govuk-table__cell">Standard</td>
+            <td class="govuk-table__cell"><a href="./manage-team-member-v2-o1" class="govuk-link">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">John Dingo<br />john.dingo@nhs.net</td>
             <td class="govuk-table__cell">Cardiology, Paediatrics</td>
             <td class="govuk-table__cell">Smartcard</td>
             <td class="govuk-table__cell" data-sort-value="active"><strong class="govuk-tag govuk-tag--green govuk-!-font-size-14">Active</strong></td>
-            <td class="govuk-table__cell">Enhanced</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
+            <td class="govuk-table__cell">Standard</td>
+            <td class="govuk-table__cell"><a href="./manage-team-member-v2-o2" class="govuk-link">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Howard Webb<br />howard.webb@nhs.net</td>
-            <td class="govuk-table__cell">Paediatrics</td>
+            <td class="govuk-table__cell">All groups</td>
             <td class="govuk-table__cell">Smartcard</td>
-            <td class="govuk-table__cell" data-sort-value="inactive"><strong class="govuk-tag govuk-tag--grey govuk-!-font-size-14">Inactive</strong></td>
+            <td class="govuk-table__cell" data-sort-value="active"><strong class="govuk-tag govuk-tag--green govuk-!-font-size-14">Active</strong></td>
             <td class="govuk-table__cell">Enhanced</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
+            <td class="govuk-table__cell"><a href="./manage-team-member-v2-o2" class="govuk-link">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Bob Charles<br />bob.charles@nhs.net</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Add group</a></td>
+            <td class="govuk-table__cell">—</td>
             <td class="govuk-table__cell">Smartcard</td>
             <td class="govuk-table__cell" data-sort-value="waiting for access"><strong class="govuk-tag govuk-tag--blue govuk-!-font-size-14">Waiting for access</strong></td>
             <td class="govuk-table__cell">Standard</td>
@@ -220,10 +175,10 @@
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Benjamin Baker<br />benjamin.baker@nhs.net</td>
             <td class="govuk-table__cell">Paediatrics</td>
-            <td class="govuk-table__cell">Email &amp; password</td>
+            <td class="govuk-table__cell">Email and password</td>
             <td class="govuk-table__cell" data-sort-value="inactive"><strong class="govuk-tag govuk-tag--grey govuk-!-font-size-14">Inactive</strong></td>
             <td class="govuk-table__cell">Standard</td>
-            <td class="govuk-table__cell"><a href="#" class="govuk-link">Manage</a></td>
+            <td class="govuk-table__cell"><a href="./manage-team-member-v2-o1" class="govuk-link">Manage</a></td>
           </tr>
         </tbody>
       </table>
