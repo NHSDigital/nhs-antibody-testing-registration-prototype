@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Symptomatic or asymptomatic" %}
+{% set pageTitle = "Do they currently have any coronavirus symptoms?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -30,37 +30,34 @@
                 <fieldset class="govuk-fieldset" aria-describedby="symptoms-person-1-hint symptoms-2-person-1-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                         <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                            Does {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }} currently have coronavirus symptoms?
+                            Does {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }} currently have any coronavirus symptoms?
                         </h1>
                     </legend>
-                    <span id="symptoms-person-1-hint" class="govuk-body">
-                        This will help us track and trace the spread of coronavirus.<br><br>
-                        The main symptoms of coronavirus are:
-                    </span>
-                    <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
-                    <li>a high temperature</li>
-                        <li>a new, continuous cough</li>
-                        <li>a loss or change to your sense of smell or taste</li>
-                    </ul>
-                    <span id="symptoms-2-person-1-hint" class="govuk-body">
-                        Most people with coronavirus have at least one of these symptoms.
-                    </span>
-                    <div class="govuk-radios govuk-!-margin-top-5">
+                    <div class="govuk-radios" data-module="govuk-radios">
+
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="do-you-have-symptoms-1-person-1" name="do-you-have-symptoms-person-1" type="radio" value="Yes" {{ checked("do-you-have-symptoms-person-1", "Yes") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1-person-1">
-                                Yes, they currently have at least one of these symptoms
+                                Yes, they currently have symptoms
                             </label>
                         </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="do-you-have-symptoms-2-person-1" name="do-you-have-symptoms-person-1" type="radio" value="No" {{ checked("do-you-have-symptoms-person-1", "No") }}>
                             <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2-person-1">
-                                No, they currently do not have any of these symptoms
+                                No, they do not currently have symptoms
                             </label>
                         </div>
                     </div>
                 </fieldset>
             </div>
+
+            <div class="govuk-warning-text govuk-!-margin-bottom-9">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  If they have a high temperature, a new continuous cough, or loss or change to their sense of smell or taste, they should stay at home until they get their result. They can leave home to get or post a test. <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" class="govuk-link">Check if people they live with need to self-isolate on NHS.UK.​</a>
+                </strong>
+              </div>
 
             <button class="govuk-button" data-module="govuk-button">Continue</button>
 

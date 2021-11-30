@@ -1,0 +1,142 @@
+{% set version = "v1" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "Manage a team member" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary" id="error-summary" class="govuk-error-summary" style="display: none;">
+        <h2 id="error-summary-title" class="govuk-error-summary__title"> There is a problem </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list pl-0"></ul>
+        </div>
+      </div>
+      <h1 class="govuk-heading-xl"> Manage a team member </h1>
+      <form>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="">First name</label>
+              <p class="govuk-body govuk-!-margin-bottom-6">Sara</p>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="">Last name</label>
+              <p class="govuk-body govuk-!-margin-bottom-6">Metz</p>
+            </div>
+
+            <div class="govuk-form-group govuk-!-margin-bottom-5">
+              <label class="govuk-label" for="">Email address</label>
+              <span class="govuk-hint">This should be their work email address</span>
+              <p class="govuk-body">sarametz@nhs.net</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <h4 class="govuk-heading-m govuk-!-margin-bottom-4 govuk-!-margin-top-5"> Sign in access </h4>
+            <div class="govuk-form-group govuk-!-margin-bottom-2">
+              <p class="govuk-body"> Smartcard</p>
+            </div>
+             <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    Learn about sign in options
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body">There are 2 ways for team members to sign in:</p>
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Email and password</h3>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>you can create team members with an email and password</li>
+                  <li>team members cannot view test results on the portal</li>
+                </ul>
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Smartcard</h3>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>you cannot create team members who have a Smartcard</li>
+                  <li>team members need to ask for access when they first use their Smartcard on the test kit ordering portal</li>
+                  <li>a team member with enhanced access can go in and approve this request</li>
+                  <li>team members can view test results on the portal</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <h4 class="govuk-heading-m govuk-!-margin-bottom-4 govuk-!-margin-top-3"> Permissions</h4>
+            <p class="govuk-body">Team member has <strong>enhanced permissions</strong>. To change their permissions, email the elective care support team at:</p>
+            <a href="#" class="govuk-link govuk-body" style="display: block">ElectiveCareTesting@dhsc.gov.uk</a>
+            <details class="govuk-details govuk-!-margin-bottom-0" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">Learn about team member permissions</span>
+              </summary>
+              <div class="govuk-details__text">
+                    Depending on a team member's role, they will be given certain permissions. The available permissions are:
+                    
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2 govuk-!-margin-top-6"> Standard </h3>
+                <p class="govuk-body">Order home tests, check patient details, view test results (when signed in with a Smartcard) and confirm procedure cancellations.</p>
+
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2 govuk-!-margin-top-6"> Enhanced </h3>
+                <p class="govuk-body">Standard permissions, plus add team members and manage groups.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <p class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-8"> Account status </p>
+            <span class="govuk-hint govuk-!-margin-bottom-4">Remove sign in access by marking team member as inactive.</span>
+            <fieldset role="group" class="govuk-fieldset govuk-form-group">
+              <div class="govuk-radios">
+                <div class="govuk-radios__item"><input type="radio" id="status" name="status" class="govuk-radios__input" value="true" checked>
+                  <label for="status" class="govuk-label govuk-radios__label"> Active </label>
+                </div>
+                <div class="govuk-radios__item"><input type="radio" id="status-2" name="status" class="govuk-radios__input" value="false">
+                  <label for="status-2" class="govuk-label govuk-radios__label"> Inactive </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        <h4 class="govuk-heading-m govuk-!-margin-bottom-4 govuk-!-margin-top-8"> Which groups should this team member belong to? </h4>
+        <div class="govuk-form-group">
+          <fieldset role="group" class="govuk-fieldset">
+            <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids" name="groupIds" class="govuk-checkboxes__input" checked>
+                <label for="group-ids" class="govuk-label govuk-checkboxes__label"> Cardiology </label>
+              </div>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-2" name="groupIds" class="govuk-checkboxes__input" checked>
+                <label for="group-ids-2" class="govuk-label govuk-checkboxes__label"> Gastroenterology </label>
+              </div>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-3" name="groupIds" class="govuk-checkboxes__input">
+                <label for="group-ids-3" class="govuk-label govuk-checkboxes__label"> Radiology </label>
+              </div>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-4" name="groupIds" class="govuk-checkboxes__input">
+                <label for="group-ids-4" class="govuk-label govuk-checkboxes__label"> Opthalmology </label>
+              </div>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-5" name="groupIds" class="govuk-checkboxes__input">
+                <label for="group-ids-5" class="govuk-label govuk-checkboxes__label"> Oncology </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="govuk-button-group govuk-!-margin-top-8">
+          <button type="submit" class="govuk-button"> Save and continue </button>
+          <button class="govuk-button--secondary govuk-button"> Cancel </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

@@ -260,7 +260,63 @@
           </dd>
         </div>
         {% endif %}
-        {% if data['vaccine'] != "No" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Travelled overseas
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['have-you-travelled-overseas-person-1'] or 'No' }}
+          </dd>
+         <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/1-have-you-travelled-overseas-person-1">
+              Change
+              <span class="govuk-visually-hidden">travelled overseas</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Country visited
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['country-autocomplete-person-1'] or 'Ireland' }}
+          </dd>
+         <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/1-which-countries-travelled-to-person-1">
+              Change
+              <span class="govuk-visually-hidden">country visited</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Positive coronavirus test
+          </dt>
+           <dd class="govuk-summary-list__value">
+            {{ data['previous-infection-person-1'] or 'No' }}
+           </dd>
+         <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/previous-infection-person-1">
+              Change
+              <span class="govuk-visually-hidden">positive coronavirus test</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Had coronavirus vaccine
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['vaccine-person-1'] or 'No' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/vaccine-person-1">
+              Change
+              <span class="govuk-visually-hidden">had coronavirus vaccine</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['vaccine-person-1'] != "No" %}
 
           {% if data['vaccine-date'] == "More than 14 days ago" %}
           <div class="govuk-summary-list__row">
@@ -271,7 +327,7 @@
               More than 14 days ago
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/antigen/{{version}}/global-registration/coronavirus-vaccine-date-person-1">
+              <a href="/antigen/{{version}}/global-registration/vaccine-date-person-1">
                 Change
                 <span class="govuk-visually-hidden">last dose</span>
               </a>
@@ -336,51 +392,34 @@
           {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Country of residence
+            GP registered address
           </dt>
+          {% if data['gp-address-same'] !== "No" %}
           <dd class="govuk-summary-list__value">
-            {{ data['country-person-1'] }}
+            {% if data['home-address-person-1'] and data['home-address-person-1'] !== "Select from 5 addresses" %}
+              {{ data['home-address-person-1'] }}
+            {% else %}
+              {{ data['address-line-1-person-1'] or '5 Souterhead Road'}}<br>
+              {{ data['home-postcode-person-1'] or 'LS1 3BE' }}
+            {% endif %}
           </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/country-person-1">
-              Change
-              <span class="govuk-visually-hidden">country of residence</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['postcode-person-1'] == "Same as me" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            First line of address and postcode
-          </dt>
+          {% else %}
           <dd class="govuk-summary-list__value">
-            {{ data['home-address'] }}<br>
-            {{ data['home-postcode'] }}
+            {% if data['gp-address-person-1'] and data['gp-address-person-1'] !== "Select from 5 addresses" %}
+              {{ data['gp-address-person-1'] }}
+            {% else %}
+              {{ data['address-line-1-gp-person-1'] or '5 Souterhead Road'}}<br>
+              {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}
+            {% endif %}
           </dd>
+          {% endif %}
           <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/postcode-person-1">
-              Change
-              <span class="govuk-visually-hidden">postcode</span>
-            </a>
-          </dd>
-        </div>
-        {% else %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            First line of address and postcode
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['home-address-person-1'] }}<br>
-            {{ data['home-postcode-person-1'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/postcode-person-1">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/address-person-1">
               Change
               <span class="govuk-visually-hidden">postcode</span>
             </a>
           </dd>
         </div>
-        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             NHS number known
