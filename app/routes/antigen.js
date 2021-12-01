@@ -685,15 +685,11 @@ router.post('/antigen/v2/action3/nhs-number-known', function (req, res) {
 })
 
 router.post('/antigen/v2/action3/nhs-number-known-person-1', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known-person-1']
-  let country = req.session.data['country']
-  let birthYear = req.session.data['date-of-birth-person-1-year']
-  if (nhsNumberKnown == "Yes"){
-    res.redirect('/antigen/v2/global-registration/nhs-number-person-1')
-  } else if (nhsNumberKnown == "No" && country == "England" && parseInt(birthYear) <= 2003 || nhsNumberKnown == "No" && country == "Scotland" && parseInt(birthYear) <= 2003) {
+  let nhsNumber = req.session.data['nhs-number-person-1']
+  if (nhsNumber){
     res.redirect('/antigen/v2/global-registration/fingerprick-test-person-1')
   } else {
-    res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
+    res.redirect('/antigen/v2/global-registration/nhs-number-known-error-person-1')
   }
 })
 
