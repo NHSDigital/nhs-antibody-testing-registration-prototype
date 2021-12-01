@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "If they test positive would you be willing to take an antibody test?" %}
+{% set pageTitle = "Antibody testing" %}
 
 {% extends "includes/layout.html" %}
 
@@ -33,26 +33,48 @@
               </h1>
             </legend>
             <span id="antibody-test-person-1-hint" class="govuk-body">
-              An antibody test is a fingerprick blood test to check if they've have coronavirus (COVID-19) before.<br><br>
-              The fingerprick test lets us see if their current symptoms are from a reinfection.<br><br>
-              Taking the test helps the NHS and research scientists learn more about who's had the virus more than once, and how it has spread.<br><br>
-              The kit will be sent to them automatically if they test positive.<br><br>
+              If they test positive for COVID-19, and they agree to antibody testing, we may send them antibody tests.<br><br>
+              Antibody tests help the NHS learn how likely people are to get COVID-19 a second time or after a vaccination, and the impact of variants.<br><br>
+              Not everyone who tests positive for COVID-19 will be sent antibody tests because there is a limited number. If they are sent antibody tests, they will:<br><br>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>get a text telling them an antibody test is on its way</li>
+                <li>be posted 2 antibody tests 3 weeks apart to their home address</li>
+                <li>do a fingerprick blood test on themselves at home each time</li>
+                <li>need to post back the completed antibody tests</li>
+                <li>get the test results sent to them</li>
+              </ul>
             </span>
 
-            <div class="govuk-radios govuk-!-margin-top-5">
-                <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="antibody-test-person-1-1" name="antibody-test-person-1" type="radio" value="Yes" {{ checked("antibody-test-person-1", "Yes") }}>
-                    <label class="govuk-label govuk-radios__label" for="antibody-test-person-1-1">
-                        Yes
-                    </label>
-                </div>
-                <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="antibody-test-person-1-2" name="antibody-test-person-1" type="radio" value="No" {{ checked("antibody-test-person-1", "No") }}>
-                    <label class="govuk-label govuk-radios__label" for="antibody-test-person-1-2">
-                        No
-                    </label>
-                </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--m" for="test-package-booking-reference">
+                  Would John Smith also be willing to do 2 separate antibody tests?
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="test-package-booking-reference" name="test-package-booking-reference" type="text" value="{{ data['test-package-booking-reference'] }}">
             </div>
+
+            <div class="govuk-warning-text govuk-!-margin-top-7">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                By selecting Yes you confirm that you are OK doing a fingerprick blood test, and do not take anticoagulants ('blood-thinning' medicines) or have a blood clotting disorder such as haemophilia.
+              </strong>
+            </div>
+
+            <div class="govuk-radios govuk-!-margin-top-7">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="fingerprick-test-1" name="fingerprick-test" type="radio" value="Yes" {{ checked("fingerprick-test", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="fingerprick-test-1">
+                  Yes, I am willing to do the antibody tests
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="fingerprick-test-2" name="fingerprick-test" type="radio" value="No" {{ checked("fingerprick-test", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="fingerprick-test-2">
+                  No, I am not willing to do the antibody tests
+                </label>
+              </div>
+            </div>
+
 
           </fieldset>
         </div>
