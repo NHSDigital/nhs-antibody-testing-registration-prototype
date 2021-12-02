@@ -26,7 +26,7 @@
 {% block content %}
   {% include "includes/gtm-noscript.html" %}
 
-  <div class="govuk-grid-row">
+<!--  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
@@ -89,6 +89,85 @@
 
     </div>
 
+  </div> -->
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#nhs-number-error">Enter a valid NHS number</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form action="/antigen/{{version}}/action3/nhs-number-known" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                NHS number
+              </h1>
+            </legend>
+            <span id="nhs-number-known-hint" class="govuk-body">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              <p>They can find it on any letter the NHS has sent them, on a prescription, or by logging in to a GP practice online service.
+                  <br><br>
+                  In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.
+                  <br><br>
+                  It's OK if they do not have an NHS number or they do not live in the UK, they can still continue.</p>
+              {% else %}
+              <p>You can find it on any letter the NHS has sent you, on a prescription, or by logging in to a GP practice online service.
+                  <br><br>
+                  In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.
+                  <br><br>
+                  It's OK if you do not have an NHS number or you do not live in the UK, you can still continue.</p>
+              {% endif %}
+            </span>
+
+            <p class="govuk-!-margin-top-5"><a href="https://www.nhs.uk/nhs-services/online-services/find-nhs-number/" target="_blank">Look up NHS number (opens in new tab)</a></p>
+            <br>
+
+                        <div class="govuk-form-group govuk-!-margin-bottom-3 govuk-form-group--error">
+                            {% if data['whos-taking-the-test'] == "someone-else" %}
+                            <label class="govuk-label" for="nhs-number">
+                              <strong>What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?</strong>
+                            </label>
+                            {% else %}
+                            <label class="govuk-label" for="nhs-number">
+                              <strong>What is your NHS number?</strong>
+                            </label>
+                            {% endif %}
+                            <div id="nhs-number-hint" class="govuk-hint">
+                                A 10-digit number, for example, 485 777 3456
+                            </div>
+                            <span id="nhs-number-error" class="govuk-error-message">
+                              <span class="govuk-visually-hidden">Error:</span> Enter a valid NHS number
+                            </span>
+                         <input class="govuk-input govuk-input--width-20 govuk-input--error" id="nhs-number" name="nhs-number" type="text" aria-describedby="nhs-number-hint">
+                      </div>
+                      <br>
+
+                        <button class="govuk-button" data-module="govuk-button">Continue</button>
+                        <p><a class="govuk-link" href="/antigen/{{version}}/global-registration/fingerprick-test">Continue without NHS number</a></p>
+
+
+          </fieldset>
+        </div>
+
+
+
+      </form>
+
+    </div>
   </div>
 
 {% endblock %}
