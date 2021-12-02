@@ -45,7 +45,7 @@
       <form action="/antigen/{{version}}/action3/nhs-number-known-person-1" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint nhs-number-known-hint-4 nhs-number-error">
+          <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
                 {{ pageTitle }}
@@ -58,19 +58,20 @@
               It's OK if they do not have an NHS number or they do not live in the UK, they can still continue.
             </span>
 
-            <p class="govuk-!-margin-top-5"><a class="govuk-link" target="blank" tabindex="1" href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/">Look up NHS number (opens in new tab)</a></p>
+            <p class="govuk-!-margin-top-5"><a href="https://www.nhs.uk/nhs-services/online-services/find-nhs-number/" target="_blank">Look up NHS number (opens in new tab)</a></p>
+            <br>
 
             <div class="govuk-form-group govuk-!-margin-bottom-3 govuk-form-group--error">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                What is {{ data['first-name-person-1'] or "Jane" }} {{ data['last-name-person-1'] or "Wilson" }}'s NHS number?
-              </legend>
+              <label class="govuk-label" for="nhs-number-person-1">
+                <strong>What is {{ data['first-name-person-1'] or "Jane" }} {{ data['last-name-person-1'] or "Wilson" }}'s NHS number?</strong>
+              </label>
               <div id="nhs-number-hint" class="govuk-hint">
               A 10-digit number, for example, 485 777 3456
               </div>
               <span id="nhs-number-error" class="govuk-error-message">
                 <span class="govuk-visually-hidden">Error:</span> Enter a valid NHS number
               </span>
-              <input class="govuk-input govuk-input--width-20 govuk-input--error" id="nhs-number-person-1" name="nhs-number-person-1" tabindex="2" type="text" value="{{ data['nhs-number-person-1'] }}">
+              <input class="govuk-input govuk-input--width-20 govuk-input--error" id="nhs-number-person-1" name="nhs-number-person-1" type="text" aria-describedby="nhs-number-hint" value="{{ data['nhs-number-person-1'] }}">
             </div>
 
           </fieldset>
@@ -78,12 +79,12 @@
 
 
         <div class="govuk-button-group">
-          <button class="govuk-button" data-module="govuk-button" tabindex="3">
+          <button class="govuk-button" data-module="govuk-button">
             Continue
           </button>
 
         </div>
-        <p><a class="govuk-link" href="/antigen/{{version}}/global-registration/fingerprick-test-person-1" tabindex="4">Continue without NHS number</a></p>
+        <p><a class="govuk-link" href="/antigen/{{version}}/global-registration/fingerprick-test-person-1">Continue without NHS number</a></p>
 
       </form>
 
