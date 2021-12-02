@@ -1,13 +1,13 @@
 {% set version = "v2" %}
 {% set pageTitle = "What is your name?" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-intl-arrivals.html" %}
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content">
     <strong class="govuk-tag govuk-phase-banner__content__tag">
-      alpha
+      beta
     </strong>
     <span class="govuk-phase-banner__text">
       This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -15,7 +15,14 @@
   </p>
 </div>
 
-<a class="govuk-back-link" href="/international-arrivals/{{version}}/point-of-entry">Back</a>
+{% if data['travel-package-exempt'] == "No" %}
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/travel-package-exempt">Back</a>
+{% else %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endif %}
 
 {% endblock %}
 
@@ -30,7 +37,7 @@
       <form action="/international-arrivals/{{version}}/date-of-birth" method="post">
 
         <fieldset class="govuk-fieldset">
-        
+
           <div class="govuk-form-group">
             <label class="govuk-label" for="first-name">
               First name
@@ -44,7 +51,7 @@
             </label>
             <input class="govuk-input govuk-!-width-two-thirds" id="last-name" name="last-name" type="text" value="{{ data['last-name'] }}">
           </div>
-        
+
         </fieldset>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>

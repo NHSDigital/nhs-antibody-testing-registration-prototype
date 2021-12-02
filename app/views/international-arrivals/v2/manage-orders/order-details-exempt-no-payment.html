@@ -1,0 +1,153 @@
+{% set version = "v3" %}
+{% set pageTitle = "Booking reference: 12345678" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/manage-orders/">Back</a>
+
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+​
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form action="/international-arrivals/{{version}}/people-confirmed" method="post" novalidate>
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+
+
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">People on order</h2>
+      </div>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Lead booker
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name'] or 'Jane' }} {{ data['last-name'] or 'Smith'}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Household member
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name-person-1'] or 'Pete' }} {{ data['last-name'] or 'Smith'}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Household member
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name-person-2'] or 'Maggie' }} {{ data['last-name'] or 'Smith'}}
+          </dd>
+        </div>
+      </dl>
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Delivery address</h2>
+      </div>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Building and street
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['address'] or '1 Chapel Hill'}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Town or city
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data[''] or 'Bournemouth' }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Postcode
+          </dt>
+           <dd class="govuk-summary-list__value">
+            {{ data['home-postcode'] or 'BH1 1AA' }}
+           </dd>
+        </div>
+      </dl>
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Order details</h2>
+      </div>
+
+      <table class="govuk-table" style="width: 130%">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header ">Name</th>
+            <th scope="col" class="govuk-table__header ">Travel package</th>
+            <th scope="col" class="govuk-table__header ">Dispatch date</th>
+            <th scope="col" class="govuk-table__header ">Delivery status</th>
+            <th scope="col" class="govuk-table__header ">Payment status</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Jane Smith</td>
+            <td class="govuk-table__cell">Day 2 and Day 8</td>
+            <td class="govuk-table__cell">30 June 2021</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Dispatched</strong></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Payment required</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Pete Smith</td>
+            <td class="govuk-table__cell">Day 2</td>
+            <td class="govuk-table__cell">30 June 2021</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Dispatched</strong></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Payment required</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Maggie Smith</td>
+            <td class="govuk-table__cell">Day 2</td>
+            <td class="govuk-table__cell">30 June 2021</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Dispatched</strong></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Payment required</strong></td>
+          </tr>
+
+        </tbody>
+      </table>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Search again
+        </button>
+        <button style="margin-left: 25px;" type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
+          Cancel and refund
+        </button>
+
+      </form>
+
+    </div>
+
+
+  </div>
+{% endblock %}

@@ -1,13 +1,13 @@
 {% set version = "v2" %}
-{% set pageTitle = "What is your delivery address?" %}
+{% set pageTitle = "What is your delivery address in the UK?" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-intl-arrivals.html" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
+        beta
       </strong>
       <span class="govuk-phase-banner__text">
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -62,7 +62,7 @@
             </p>
             <div class="govuk-form-group">
               <label class="govuk-label" for="delivery-address">
-                <strong class="govuk-!-font-size-19">Select an address</strong>
+                <strong>Select an address</strong>
               </label>
               <select class="govuk-select" id="delivery-address" name="delivery-address">
                 <option>5 addresses found</option>
@@ -117,9 +117,9 @@
           Continue
         </button>
 
-        <p class="govuk-body">
+        <!-- <p class="govuk-body">
           <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find my address in the list</a>
-        </p>
+        </p> -->
 
       </form>
 
@@ -132,7 +132,7 @@
   function buttonClicked(target) {
     setTimeout(function () {
       document.getElementById('content-1').style.display = 'none'
-      document.getElementById('manual-address-2').style.display = 'none'
+      // document.getElementById('manual-address-2').style.display = 'none'
       document.getElementById('find-address').style.display = 'none'
       document.getElementById('button-hidden').style.display = 'block'
       document.getElementById('content-2').style.display = 'block'
@@ -152,7 +152,7 @@
   function submitEvent() {
     var selects = document.getElementById('find-address')
     var selectedLink = document.getElementById('manual-address')
-    var selectedLink2 = document.getElementById('manual-address-2')
+    // var selectedLink2 = document.getElementById('manual-address-2')
     selects.addEventListener('click', function (event) {
       event.preventDefault()
       if (selects.getAttribute('disabled') === 'disabled') {
@@ -169,14 +169,14 @@
         buttonClicked2(selectedLink)
       }
     })
-    selectedLink2.addEventListener('click', function (event) {
-      event.preventDefault()
-      if (selectedLink2.getAttribute('disabled') === 'disabled') {
-      } else {
-        event.preventDefault()
-        buttonClicked(selectedLink2)
-      }
-    })
+    // selectedLink2.addEventListener('click', function (event) {
+    //   event.preventDefault()
+    //   if (selectedLink2.getAttribute('disabled') === 'disabled') {
+    //   } else {
+    //     event.preventDefault()
+    //     buttonClicked(selectedLink2)
+    //   }
+    // })
 
   }
 

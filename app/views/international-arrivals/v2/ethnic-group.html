@@ -1,13 +1,13 @@
 {% set version = "v2" %}
 {% set pageTitle = "What is your ethnic group?" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-intl-arrivals.html" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
+        beta
       </strong>
       <span class="govuk-phase-banner__text">
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -15,7 +15,12 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/international-arrivals/previous-infection">Back</a>
+  {% if data['vaccine'] !== "No" %}
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/vaccine-date">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/vaccine">Back</a>
+  {% endif %}
+  
 {% endblock %}
 
 {% block content %}
@@ -24,7 +29,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/international-arrivals/{{version}}/action5/ethnic-group" method="post">
+      <form action="/international-arrivals/{{version}}/action3/ethnic-group" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="ethnic-group-hint">
