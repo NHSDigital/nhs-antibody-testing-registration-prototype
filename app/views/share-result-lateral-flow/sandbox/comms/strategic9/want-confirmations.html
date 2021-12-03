@@ -1,5 +1,5 @@
 {% set version = "sandbox" %}
-{% set pageTitle = "Do you want to get a confirmation message for this result?" %}
+{% set pageTitle = "Text and email confirmation for this test result" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -37,11 +37,10 @@
             </legend>
                 <div id="want-confirmations-hint" class="govuk-body">
                   {% if data['whos-taking-the-test'] == "someone-else" %}
-                  <p>For a negative or void result, they can choose to receive a confirmation text and email (if they supplied it).</p>
-                  <p>If they report a positive result, they always receive a confirmation message.</p>
+                  <p>If the text is negative or void, you can choose whether you want a confirmation. If the test is positive, we will send you one even if you choose 'No'.</p>
                   {% else %}
-                  <p>For a negative or void result, you can choose to receive a confirmation text and email (if you supplied it).</p>
-                  <p>If you report a positive result, you always receive a confirmation message.</p>
+                  <p>If your text is negative or void, you can choose whether you want a confirmation. If the test is positive, we will send you one even if you choose 'No'.</p>
+                  <p>You may need a confirmation to show your COVID-19 status at events and venues. You may also need it for example to visit someone in a hospital or care home, or for work. </p>
                   {% endif %}
                 </div>
                 <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
@@ -63,16 +62,16 @@
             <div class="govuk-form-group">
               <div id="waste-hint" class="govuk-body">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                If they live in Wales they can choose to receive messages in Welsh and English
+                Would you like to recieve a confirmation of the test result?
                 {% else %}
-                If you live in Wales you can choose to receive messages in Welsh and English
+                Would you like to recieve a confirmation of your test result?
                 {% endif %}
               </div>
                 <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                   <div class="govuk-checkboxes__item">
                     <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
                     <label class="govuk-label govuk-checkboxes__label" for="waste">
-                       Get confirmation messages in Welsh and English (optional)
+                       Get a confirmation in Welsh and English
                     </label>
                   </div>
                 </div>
