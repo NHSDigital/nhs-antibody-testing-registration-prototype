@@ -1,13 +1,13 @@
 {% set version = "v2" %}
 {% set pageTitle = "Confirm people for testing" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-intl-arrivals.html" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
+        beta
       </strong>
       <span class="govuk-phase-banner__text">
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -28,7 +28,9 @@
       <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
 
       <p class="govuk-body">
-        You can order travel packages for other people that you're travelling with. They must have the same delivery address as you.<br><br>
+        You can order travel test packages for other people that you're travelling with. They must have the same delivery address as you.<br><br>
+        In England, Wales and Northern Ireland, children aged 4 and under do not need to take a day 2 or day 8 test.<br><br>
+        In Scotland, children aged 10 and under do not need to take a day 2 or day 8 test.<br><br>
         Once you've confirmed who needs testing, you can complete and pay for your order.
       </p>
 
@@ -46,19 +48,16 @@
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header" style="border-bottom: none">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</th>
             <td class="govuk-table__cell" style="border-bottom: none">
-              {{ data['date-of-birth-day'] or '2' }}/{{ data['date-of-birth-month'] or '03' }}/{{ data['date-of-birth-year'] or '1979' }}
-              <!-- {{ data['email-address'] or 'email@example.com' }}
-              <br>
-              {{ data['mobile-phone-number'] or '+447782808451' }} -->
+              {{ data['dob-day'] or '2' }}/{{ data['dob-month'] or '03' }}/{{ data['dob-year'] or '1979' }}
             </td>
             <td class="govuk-table__cell" style="border-bottom: none">
               {{ data['travel-route'] or 'Day 2 and day 8 tests' }}
             </td>
             <td class="govuk-table__cell" style="border-bottom: none">
               {% if data['travel-route'] == 'Day 2 test' %}
-              <p class="govuk-body-m">£105</p>
+              <p class="govuk-body-m">£68</p>
               {% else %}
-              <p class="govuk-body-m">£210</p>
+              <p class="govuk-body-m">£136</p>
               {% endif %}
             </td>
             <td class="govuk-table__cell" style="border-bottom: none">
@@ -86,20 +85,19 @@
           
             </td>
             <td class="govuk-table__cell">
-              <p class="govuk-body-m" style="display: flex; justify-content: flex-end;"><strong class="govuk-!-padding-right-4">Amount to pay</strong> {% if data['travel-route'] == 'Day 2 test' %}£105{% else %}£210{% endif %}</p>
+              <p class="govuk-body-m" style="display: flex; justify-content: flex-end;"><strong class="govuk-!-padding-right-4">Amount to pay</strong> {% if data['travel-route'] == 'Day 2 test' %}£68{% else %}£136{% endif %}</p>
             </td>
           </tr>
         </tbody>
       </table>
-      
 
-      <div class="inline-buttons-wrapper">
+      <div class="inline-buttons-wrapper govuk-!-margin-top-8">
         <form class="form" action="/international-arrivals/{{version}}/delivery-address" method="post">
           <button class="govuk-button" data-module="govuk-button">
-            Save and continue
+            Continue to payment
           </button>
         </form>
-        <form class="form" action="/international-arrivals/{{version}}/name-person-1" method="post">
+        <form class="form" action="/international-arrivals/{{version}}/travel-details-same-person-1" method="post">
           <button class="govuk-button govuk-button--secondary govuk-!-margin-right-1" data-module="govuk-button">
             Add another person
           </button>

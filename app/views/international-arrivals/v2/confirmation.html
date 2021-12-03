@@ -1,13 +1,13 @@
 {% set version = "v2" %}
-{% set pageTitle = "We've received your order for travel packages" %}
+{% set pageTitle = "We've received your order" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-intl-arrivals.html" %}
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content">
     <strong class="govuk-tag govuk-phase-banner__content__tag">
-      alpha
+      beta
     </strong>
     <span class="govuk-phase-banner__text">
       This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -29,22 +29,24 @@
 
     <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-8">
       <h1 class="govuk-panel__title">
-        {% if data['travel-route'] and data['travel-route-same-person-1'] %}
-        We've received your order for 2 travel packages
-        {% else %}
-        We've received your order for 1 travel package
-        {% endif %}
+        {{pageTitle}}<br>
+
       </h1>
+      <p class="govuk-heading-l" style="color: white; font-weight: 200;">Booking reference number<br><strong>NHSTT0720749</strong></p>
     </div>
 
     <p class="govuk-body">
-      Your booking reference number is <strong>12334445</strong>. We'll email this to you.
+      {% if data['travel-route'] and data['travel-route-same-person-1'] %}
+      We've received your order for 2 travel packages. We'll send you confirmation by email.
+      {% else %}
+      We've received your order for 1 travel package. We'll send you confirmation by email.
+      {% endif %}
     </p>
 
-    <h3 class="govuk-heading-s govuk-!-margin-top-6">What to do next</h3>
+    <h3 class="govuk-heading-s govuk-!-margin-top-6">What happens next</h3>
     <p class="govuk-body">
-      Enter your booking reference number in the <a class="govuk-body" href="https://www.gov.uk/provide-journey-contact-details-before-travel-uk">passenger locator form</a> (PLF). You can use the same booking reference number for each person in your order.<br><br>
-      You must fill in the PLF within 48 hours of your travel to the UK. You will not be able to travel if you do not complete the PLF.
+      Enter your booking reference number in the <a class="govuk-body" href="https://www.gov.uk/provide-journey-contact-details-before-travel-uk">passenger Locator Form</a> (PLF). You can use the same booking reference number for each person in your order.<br><br>
+      You can submit the PLF any time in the 48 hours before you arrive in the UK. You will not be able to travel if you do not complete the PLF.
     </p>
 
     <h3 class="govuk-heading-s govuk-!-margin-top-6">If your travel plans change</h3>
@@ -52,8 +54,8 @@
       Call our contact centre:
     </p>
     <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-3">
-      <li>From outside the UK: +44 (0)300 222 0000</li>
-      <li>Telephone: 0300 222 0000</li>
+      <li>Telephone from the UK: 0151 676 0491</li>
+      <li>Telephone from overseas: +44 (0)151 676 0491</li>
     </ul>
 
   </div>

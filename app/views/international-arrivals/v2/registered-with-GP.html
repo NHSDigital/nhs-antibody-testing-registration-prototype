@@ -1,13 +1,13 @@
 {% set version = "v2" %}
-{% set pageTitle = "Are you registered with a GP in the UK?" %}
+{% set pageTitle = "Are you registered with a GP (family doctor) in the UK?" %}
 
-{% extends "includes/layout.html" %}
+{% extends "includes/layout-intl-arrivals.html" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
+        beta
       </strong>
       <span class="govuk-phase-banner__text">
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -16,9 +16,11 @@
   </div>
 
   {% if data['nhs-number-known'] == "Yes" %}
-  <a class="govuk-back-link" href="/international-arrivals/{{version}}/nhs-number-known">Back</a>
-  {% else %}
   <a class="govuk-back-link" href="/international-arrivals/{{version}}/nhs-number">Back</a>
+
+  {% else %}
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/nhs-number-known">Back</a>
+
   {% endif %}
 
 {% endblock %}
@@ -29,7 +31,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/international-arrivals/{{version}}/action/registered-with-GP" method="post">
+      <form action="/international-arrivals/{{version}}/action3/registered-with-GP" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="address-hint">
@@ -39,7 +41,7 @@
               </h1>
             </legend>
             <span id="address-hint" class="govuk-body">
-              This helps us find and update your GP record with your test result. The test does not have to be sent to this address.<br><br>
+              This will help us find and update your GP record with your test result. The test does not have to be sent to this address.<br><br>
               If you're not registered with a GP in the UK, that's OK.
             </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-padding-top-6" data-module="govuk-radios">
