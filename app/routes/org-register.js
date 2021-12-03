@@ -1880,62 +1880,62 @@ router.post('/organisational/ind-accounts/v3/sign-in/UON-check', function (req, 
 
 
 
-router.post('/OBT/individual-accounts/v3/UON-check', function (req, res) {
+router.post('/OBT/individual-accounts/e2e-prototypes/v3/UON-check', function (req, res) {
   let answer = req.body.changeUON;
 
   if (answer == 'yes') {
-    res.redirect('/OBT/individual-accounts/v3/who')
+    res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/who')
   } else if (answer == 'no') {
-      res.redirect('/OBT/individual-accounts/v3/UON')
+      res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/UON')
     } else {
-    res.redirect('/OBT/individual-accounts/v3/UON-check?error=empty')
+    res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/UON-check?error=empty')
     }
 });
 
 
-router.post('/OBT/individual-accounts/v3/personal-details/ethnic-group', function (req, res) {
+router.post('/OBT/individual-accounts/e2e-prototypes/v3/personal-details/ethnic-group', function (req, res) {
   let answer = req.body.cuEthnicGroup;
 
   if (answer == 'Prefer not to say/I do not know') {
-    res.redirect('/OBT/individual-accounts/v3/personal-details/address')
+    res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/personal-details/address')
     } else if (answer) {
-      res.redirect('/OBT/individual-accounts/v3/personal-details/ethnic-desc')
+      res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/personal-details/ethnic-desc')
     } else {
-    res.redirect('/OBT/individual-accounts/v3/personal-details/ethnic-group?error=empty')
+    res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/personal-details/ethnic-group?error=empty')
     }
 });
 
-router.post('/OBT/individual-accounts/v3/personal-details/UON-check', function (req, res) {
+router.post('/OBT/individual-accounts/e2e-prototypes/v3/personal-details/UON-check', function (req, res) {
   let answer = req.body.changeUON;
 
   if (answer == 'yes') {
-    res.redirect('/OBT/individual-accounts/v3/personal-details/personal-details')
+    res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/personal-details/personal-details')
   } else if (answer == 'no') {
-      res.redirect('/OBT/individual-accounts/v3/personal-details/UON')
+      res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/personal-details/UON')
     } else {
-    res.redirect('/OBT/individual-accounts/v3/personal-details/UON-check?error=empty')
+    res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/personal-details/UON-check?error=empty')
     }
 });
 
-router.post('/OBT/individual-accounts/v3/test-details/symptoms', function (req, res) {
+router.post('/OBT/individual-accounts/e2e-prototypes/v3/test-details/symptoms', function (req, res) {
   let answer = req.body.havesymptoms;
 
   if (answer == 'yes') {
-    res.redirect('/OBT/individual-accounts/v3/test-details/when-symptoms')
+    res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/test-details/when-symptoms')
     } else {
-    res.redirect('/OBT/individual-accounts/v3/test-details/daily-contact-testing')
+    res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/test-details/daily-contact-testing')
     }
 });
 
-router.post('/OBT/individual-accounts/v3/sign-in/UON-check', function (req, res) {
+router.post('/OBT/individual-accounts/e2e-prototypes/v3/sign-in/UON-check', function (req, res) {
   let answer = req.body.changeUON;
 
   if (answer == 'yes') {
-    res.redirect('/OBT/individual-accounts/v3/sign-in/who')
+    res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/sign-in/who')
   } else if (answer == 'no') {
-      res.redirect('/OBT/individual-accounts/v3/sign-in/UON')
+      res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/sign-in/UON')
     } else {
-    res.redirect('/OBT/individual-accounts/v3/sign-in/UON-check?error=empty')
+    res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/sign-in/UON-check?error=empty')
     }
 });
 
