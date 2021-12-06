@@ -28,6 +28,22 @@
                 {{ pageTitle }}
               </h1>
 
+                <div id="want-confirmations-hint" class="govuk-body">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  <p> {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} may need a confirmation to show their COVID-19 status at events and venues. They may also need it for example to visit someone in a hospital or care home, or for work.</p>
+                  {% else %}
+                  <p>You may need a confirmation to show your COVID-19 status at events and venues. You may also need it for example to visit someone in a hospital or care home, or for work. </p>
+                  {% endif %}
+                </div>
+
+                <div id="want-confirmations-hint" class="govuk-body">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  <p>If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s test is negative or void, they can choose whether they want a confirmation. If their test is positive, we will send them one even if they choose 'No'.</p>
+                  {% else %}
+                  <p>If your test is negative or void, you can choose whether you want a confirmation. If your test is positive, we will send you one even if you choose 'No'.</p>
+                  {% endif %}
+                </div>
+
             <div id="want-confirmations-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
               <p class="body">{{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} may need a confirmation to show their COVID-19 status at events and venues. They may also need it for example to visit someone in a hospital or care home, or for work.</p>
