@@ -142,7 +142,7 @@
             </td>
             <td class="govuk-table__cell"><p class="govuk-body-m">
               <a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a><br>
-              <a href="/antigen/{{version}}/global-registration/people-confirmed" class="govuk-link"">Remove</a>
+              <a href="/antigen/{{version}}/global-registration/people-confirmed" class="govuk-link">Remove</a>
             </p></td>
           </tr>
         </tbody>
@@ -156,30 +156,20 @@
         </strong>
       </div>
 
-      <form class="form" action="#" method="post" style="display: inline-block;">
+      <div class="inline-buttons-wrapper govuk-!-margin-top-8">
+        <form class="form" action="/antigen/{{version}}/global-registration/name-person-1" method="post">
+          <button class="govuk-button govuk-button--secondary govuk-!-margin-right-1" data-module="govuk-button">
+            Save and add another person you live with
+          </button>
+        </form>
 
-        <button class="govuk-button govuk-button--secondary govuk-!-margin-right-1" data-module="govuk-button">Save and add another person you live with</button>
+        <form class="form" action="/antigen/{{version}}/site-appointment-booking/find-test-site" method="post">
+          <button class="govuk-button" data-module="govuk-button">
+            Save and continue
+          </button>
+        </form>
 
-      </form>
-
-      <!-- routing done with nunjucks here because of an issue with Safari -->
-      {% if data['way-to-test'] == "drive-through" or data['way-to-test'] == "walk-through" %}
-
-      <form class="form" action="/antigen/{{version}}/site-appointment-booking/find-test-site" method="post" style="display: inline-block;">
-
-        <button class="govuk-button" data-module="govuk-button">Save and continue</button>
-
-      </form>
-
-      {% else %}
-
-      <form class="form" action="/antigen/{{version}}/order-home-test-kit/" method="post" style="display: inline-block;">
-
-        <button class="govuk-button" data-module="govuk-button">Save and continue</button>
-
-      </form>
-
-      {% endif %}
+    </div>
 
     </div>
   </div>
