@@ -1,0 +1,116 @@
+{% set version = "v1" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "Manage a user" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <div aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary" id="error-summary" class="govuk-error-summary" style="display: none;">
+                <h2 id="error-summary-title" class="govuk-error-summary__title"> There is a problem </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list pl-0"></ul>
+                </div>
+            </div>
+            <h1 class="govuk-heading-xl"> Manage a user </h1>
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-half">
+                    <div class="govuk-form-group">
+                        <label for="first-name" class="govuk-label"> First name </label><input id="first-name" autocomplete="off" name="firstName" spellcheck="false" maxlength="60" class="govuk-input"></div>
+                    <div class="govuk-form-group">
+                        <label for="last-name" class="govuk-label"> Last name </label><input id="last-name" autocomplete="off" name="lastName" spellcheck="false" maxlength="60" class="govuk-input"></div>
+                </div>
+                <div class="govuk-grid-column-two-thirds">
+                    <div class="govuk-form-group">
+                        <label for="email" class="govuk-label"> Email address </label>
+                        <span id="email-hint" class="govuk-hint"> This should be their work email address </span><input id="email" autocomplete="off" aria-describedby="email-hint" name="email" maxlength="254" class="govuk-input"></div>
+                </div>
+            </div>
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <h4 class="govuk-heading-m govuk-!-margin-bottom-4 govuk-!-margin-top-4"> Sign in access </h4>
+                    <p class="govuk-body">Email and password</p>
+                    <a class="govuk-link govuk-body" href="#" style="display: block;">Send a new temporary password</a>
+                    <details class="govuk-details" data-module="govuk-details">
+                    <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                            Learn about sign in
+                        </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                        <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Smartcard</h3>
+                        <p class="govuk-body govuk-!-margin-bottom-2">Team members can securely view test results in the portal.</p>
+                        <ul class="govuk-list govuk-list--bullet">
+                        <li>you cannot create Smartcard team members</li>
+                        <li>team members request Smartcard access when signing in</li>
+                        <li>an enhanced team member needs to approve this request</li>
+                        </ul>
+
+                        <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Email and password</h3>
+                        <p class="govuk-body govuk-!-margin-bottom-2">This option does not let team members view test results in this portal.</p>
+                        <ul class="govuk-list govuk-list--bullet">
+                        <li>you can create team members who have email and password access</li>
+                        <li>team members can use the portal once they’ve accepted their email invitation</li>
+                        <li>if a team member starts using a Smartcard, mark their email and password account as inactive so they only have one way of signing in</li>
+                        </ul>
+                    </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <p class="govuk-heading-m govuk-!-margin-bottom-4 govuk-!-margin-top-3">  Permissions </p>
+                    <div class="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="sign-in" name="sign-in" type="radio" value="government-gateway" aria-describedby="sign-in-item-hint">
+                            <label class="govuk-label govuk-radios__label" for="sign-in">
+                            Standard
+                            </label>
+                            <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                            Order home tests, check patient details, view test results (when signed in with a Smartcard) and confirm procedure cancellations
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="sign-in-2" name="sign-in" type="radio" value="govuk-verify" aria-describedby="sign-in-2-item-hint">
+                            <label class="govuk-label govuk-radios__label" for="sign-in-2">
+                            Enhanced
+                            </label>
+                            <div id="sign-in-2-item-hint" class="govuk-hint govuk-radios__hint">
+                            Standard permissions, plus add team members and manage groups
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <p class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-7"> Account status </p>
+                    <span class="govuk-hint govuk-!-margin-bottom-4">Remove sign in access by marking user as inactive.</span>
+                    <fieldset role="group" class="govuk-fieldset govuk-form-group">
+                        <div class="govuk-radios">
+                            <div class="govuk-radios__item"><input type="radio" id="status" name="status" class="govuk-radios__input" value="true">
+                                <label for="status" class="govuk-label govuk-radios__label"> Active </label>
+                            </div>
+                            <div class="govuk-radios__item"><input type="radio" id="status-2" name="status" class="govuk-radios__input" value="false">
+                                <label for="status-2" class="govuk-label govuk-radios__label"> Inactive </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="govuk-button-group govuk-!-margin-top-5">
+                <button href="/elective-care-testing/v1/organisations-management/v1/manage-super-user/check-your-answers" class="govuk-button"> Save and continue </button>
+                <button class="govuk-!-margin-top-6 govuk-button--secondary govuk-button"> Cancel </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
