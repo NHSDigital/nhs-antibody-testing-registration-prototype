@@ -14,7 +14,7 @@ function loadJSONFromFile(fileName, path = "app/data/") {
 router.post('/international-arrivals/v1/action4/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
-  if (ethnicGroup == "Asian or Asian British"){
+  if (ethnicGroup == "Asian or Asian British") {
     res.redirect('/international-arrivals/v1/ethnic-background-asian')
   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
     res.redirect('/international-arrivals/v1/ethnic-background-black')
@@ -33,7 +33,7 @@ router.post('/international-arrivals/v1/action4/ethnic-group', function (req, re
 // International Arrivals Version One - NHS Number Known
 router.post('/international-arrivals/v1/action4/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
-  if (nhsNumberKnown == "Yes"){
+  if (nhsNumberKnown == "Yes") {
     res.redirect('/international-arrivals/v1/nhs-number')
   } else {
     res.redirect('/international-arrivals/v1/registered-with-GP')
@@ -43,7 +43,7 @@ router.post('/international-arrivals/v1/action4/nhs-number-known', function (req
 // International Arrivals Version One - Regisered With GP
 router.post('/international-arrivals/v1/action4/registered-with-GP', function (req, res) {
   let registeredWithGP = req.session.data['registered-with-GP']
-  if (registeredWithGP == "Yes"){
+  if (registeredWithGP == "Yes") {
     res.redirect('/international-arrivals/v1/address')
   } else {
     res.redirect('/international-arrivals/v1/gender')
@@ -73,7 +73,7 @@ router.post('/international-arrivals/v1/action4/travel-details-same-person-1', f
 // International Arrivals Version One - Ethnic Group Person 1
 router.post('/international-arrivals/v1/action4/ethnic-group-person-1', function (req, res) {
   let ethnicGroupPerson1 = req.session.data['ethnic-group-person-1']
-  if (ethnicGroupPerson1 == "Asian or Asian British"){
+  if (ethnicGroupPerson1 == "Asian or Asian British") {
     res.redirect('/international-arrivals/v1/ethnic-background-asian-person-1')
   } else if (ethnicGroupPerson1 == "Black, African, Black British or Caribbean") {
     res.redirect('/international-arrivals/v1/ethnic-background-black-person-1')
@@ -91,7 +91,7 @@ router.post('/international-arrivals/v1/action4/ethnic-group-person-1', function
 // International Arrivals Version One - NHS Number Known Person 1
 router.post('/international-arrivals/v1/action4/nhs-number-known-person-1', function (req, res) {
   let nhsNumberKnownPerson1 = req.session.data['nhs-number-known-person-1']
-  if (nhsNumberKnownPerson1 == "Yes"){
+  if (nhsNumberKnownPerson1 == "Yes") {
     res.redirect('/international-arrivals/v1/nhs-number-person-1')
   } else {
     res.redirect('/international-arrivals/v1/registered-with-GP-person-1')
@@ -101,7 +101,7 @@ router.post('/international-arrivals/v1/action4/nhs-number-known-person-1', func
 // International Arrivals Version One - Registered With GP Person 1
 router.post('/international-arrivals/v1/action4/registered-with-GP-person-1', function (req, res) {
   let registeredWithGP = req.session.data['registered-with-GP-person-1']
-  if (registeredWithGP == "Yes"){
+  if (registeredWithGP == "Yes") {
     res.redirect('/international-arrivals/v1/address-person-1')
   } else {
     res.redirect('/international-arrivals/v1/gender-person-1')
@@ -111,7 +111,7 @@ router.post('/international-arrivals/v1/action4/registered-with-GP-person-1', fu
 // International Arrivals Version One - Vaccine Person 1
 router.post('/international-arrivals/v1/action4/vaccine-person-1', function (req, res) {
   let vaccine = req.session.data['vaccine-person-1']
-  if (vaccine == "No"){
+  if (vaccine == "No") {
     res.redirect('/international-arrivals/v1/ethnic-group-person-1')
   } else {
     res.redirect('/international-arrivals/v1/vaccine-date-person-1')
@@ -124,7 +124,7 @@ router.post('/international-arrivals/v1/action4/vaccine-person-1', function (req
 // International Arrivals Version Two - Travel Package Exempt
 router.post("/international-arrivals/v2/action3/travel-package-exempt", function (req, res) {
   let travelPackageExempt = req.session.data["travel-package-exempt"]
-  if (travelPackageExempt == "Yes, I need a replacement test kit"){
+  if (travelPackageExempt == "Yes, I need a replacement test kit") {
     res.redirect("/international-arrivals/v2/search-results")
   } else {
     res.redirect("/international-arrivals/v2/name")
@@ -134,7 +134,7 @@ router.post("/international-arrivals/v2/action3/travel-package-exempt", function
 // International Arrivals Version Two - Date of birth
 router.post("/international-arrivals/v2/action3/date-of-birth", function (req, res) {
   let travelPackageExempt = req.session.data["travel-package-exempt"]
-  if (travelPackageExempt == "Yes, I'm eligible for a hardship arrangement"){
+  if (travelPackageExempt == "Yes, I'm eligible for a hardship arrangement") {
     res.redirect("/international-arrivals/v2/hardship-arrangement")
   } else {
     res.redirect("/international-arrivals/v2/passport-number")
@@ -145,7 +145,7 @@ router.post("/international-arrivals/v2/action3/date-of-birth", function (req, r
 router.post('/international-arrivals/v2/action3/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
-  if (ethnicGroup == "Asian or Asian British"){
+  if (ethnicGroup == "Asian or Asian British") {
     res.redirect('/international-arrivals/v2/ethnic-background-asian')
   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
     res.redirect('/international-arrivals/v2/ethnic-background-black')
@@ -164,7 +164,7 @@ router.post('/international-arrivals/v2/action3/ethnic-group', function (req, re
 // International Arrivals Version Two - NHS Number Known
 router.post('/international-arrivals/v2/action3/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
-  if (nhsNumberKnown == "Yes"){
+  if (nhsNumberKnown == "Yes") {
     res.redirect('/international-arrivals/v2/nhs-number')
   } else {
     res.redirect('/international-arrivals/v2/registered-with-GP')
@@ -174,7 +174,7 @@ router.post('/international-arrivals/v2/action3/nhs-number-known', function (req
 // International Arrivals Version Two - Regisered With GP
 router.post('/international-arrivals/v2/action3/registered-with-GP', function (req, res) {
   let registeredWithGP = req.session.data['registered-with-GP']
-  if (registeredWithGP == "Yes"){
+  if (registeredWithGP == "Yes") {
     res.redirect('/international-arrivals/v2/address')
   } else {
     res.redirect('/international-arrivals/v2/gender')
@@ -204,7 +204,7 @@ router.post('/international-arrivals/v2/action3/travel-details-same-person-1', f
 // International Arrivals Version Two - Ethnic Group Person 1
 router.post('/international-arrivals/v2/action3/ethnic-group-person-1', function (req, res) {
   let ethnicGroupPerson1 = req.session.data['ethnic-group-person-1']
-  if (ethnicGroupPerson1 == "Asian or Asian British"){
+  if (ethnicGroupPerson1 == "Asian or Asian British") {
     res.redirect('/international-arrivals/v2/ethnic-background-asian-person-1')
   } else if (ethnicGroupPerson1 == "Black, African, Black British or Caribbean") {
     res.redirect('/international-arrivals/v2/ethnic-background-black-person-1')
@@ -222,7 +222,7 @@ router.post('/international-arrivals/v2/action3/ethnic-group-person-1', function
 // International Arrivals Version Two - NHS Number Known Person 1
 router.post('/international-arrivals/v2/action3/nhs-number-known-person-1', function (req, res) {
   let nhsNumberKnownPerson1 = req.session.data['nhs-number-known-person-1']
-  if (nhsNumberKnownPerson1 == "Yes"){
+  if (nhsNumberKnownPerson1 == "Yes") {
     res.redirect('/international-arrivals/v2/nhs-number-person-1')
   } else {
     res.redirect('/international-arrivals/v2/registered-with-GP-person-1')
@@ -232,7 +232,7 @@ router.post('/international-arrivals/v2/action3/nhs-number-known-person-1', func
 // International Arrivals Version Two - Registered With GP Person 1
 router.post('/international-arrivals/v2/action3/registered-with-GP-person-1', function (req, res) {
   let registeredWithGP = req.session.data['registered-with-GP-person-1']
-  if (registeredWithGP == "Yes"){
+  if (registeredWithGP == "Yes") {
     res.redirect('/international-arrivals/v2/address-person-1')
   } else {
     res.redirect('/international-arrivals/v2/gender-person-1')
@@ -242,7 +242,7 @@ router.post('/international-arrivals/v2/action3/registered-with-GP-person-1', fu
 // International Arrivals Version Two - Vaccine Person 1
 router.post('/international-arrivals/v2/action3/vaccine-person-1', function (req, res) {
   let vaccine = req.session.data['vaccine-person-1']
-  if (vaccine == "No"){
+  if (vaccine == "No") {
     res.redirect('/international-arrivals/v2/ethnic-group-person-1')
   } else {
     res.redirect('/international-arrivals/v2/vaccine-date-person-1')
@@ -255,7 +255,7 @@ router.post('/international-arrivals/v2/action3/vaccine-person-1', function (req
 router.post("/international-arrivals/v3/action3/red-country-travel", function (req, res) {
   let redCountryTravel = req.session.data["red-country-travel"]
   let destinationCountry = req.session.data["final-destination"]
-  if (redCountryTravel == "Yes" && destinationCountry !== "England"){
+  if (redCountryTravel == "Yes" && destinationCountry !== "England") {
     res.redirect("/international-arrivals/v3/service-unavailable")
   } else {
     res.redirect("/international-arrivals/v3/travel-package-exempt")
@@ -265,7 +265,7 @@ router.post("/international-arrivals/v3/action3/red-country-travel", function (r
 // International Arrivals Version Three - Travel Package Exempt
 router.post("/international-arrivals/v3/action3/travel-package-exempt", function (req, res) {
   let travelPackageExempt = req.session.data["travel-package-exempt"]
-  if (travelPackageExempt == "Yes, I need a replacement test kit"){
+  if (travelPackageExempt == "Yes, I need a replacement test kit") {
     res.redirect("/international-arrivals/v3/search-results")
   } else {
     res.redirect("/international-arrivals/v3/name")
@@ -275,7 +275,7 @@ router.post("/international-arrivals/v3/action3/travel-package-exempt", function
 // International Arrivals Version Three - Point of entry
 router.post("/international-arrivals/v3/action3/point-of-entry", function (req, res) {
   let redCountryTravel = req.session.data["red-country-travel"]
-  if (redCountryTravel == "Yes"){
+  if (redCountryTravel == "Yes") {
     res.redirect("/international-arrivals/v3/mobile-phone-number")
   } else {
     res.redirect("/international-arrivals/v3/travel-route")
@@ -285,7 +285,7 @@ router.post("/international-arrivals/v3/action3/point-of-entry", function (req, 
 // International Arrivals Version Three - Date of birth
 router.post("/international-arrivals/v3/action3/date-of-birth", function (req, res) {
   let travelPackageExempt = req.session.data["travel-package-exempt"]
-  if (travelPackageExempt == "Yes, I'm eligible for a hardship arrangement"){
+  if (travelPackageExempt == "Yes, I'm eligible for a hardship arrangement") {
     res.redirect("/international-arrivals/v3/hardship-arrangement")
   } else {
     res.redirect("/international-arrivals/v3/passport-number")
@@ -296,7 +296,7 @@ router.post("/international-arrivals/v3/action3/date-of-birth", function (req, r
 router.post('/international-arrivals/v3/action3/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
-  if (ethnicGroup == "Asian or Asian British"){
+  if (ethnicGroup == "Asian or Asian British") {
     res.redirect('/international-arrivals/v3/ethnic-background-asian')
   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
     res.redirect('/international-arrivals/v3/ethnic-background-black')
@@ -315,7 +315,7 @@ router.post('/international-arrivals/v3/action3/ethnic-group', function (req, re
 // International Arrivals Version Three - NHS Number Known
 router.post('/international-arrivals/v3/action4/nhs-number-known', function (req, res) {
   let nhsNumber = req.session.data['nhs-number']
-  if (!nhsNumber){
+  if (!nhsNumber) {
     res.redirect('/international-arrivals/v3/nhs-number-known-error')
   } else {
     res.redirect('/international-arrivals/v3/registered-with-GP')
@@ -325,7 +325,7 @@ router.post('/international-arrivals/v3/action4/nhs-number-known', function (req
 // International Arrivals Version Three - Regisered With GP
 router.post('/international-arrivals/v3/action3/registered-with-GP', function (req, res) {
   let registeredWithGP = req.session.data['registered-with-GP']
-  if (registeredWithGP == "Yes"){
+  if (registeredWithGP == "Yes") {
     res.redirect('/international-arrivals/v3/address')
   } else {
     res.redirect('/international-arrivals/v3/gender')
@@ -356,7 +356,7 @@ router.post('/international-arrivals/v3/action3/travel-details-same-person-1', f
 router.post("/international-arrivals/v3/action3/red-country-travel-person-1", function (req, res) {
   let redCountryTravel = req.session.data["red-country-travel"]
   let redCountryTravelPerson = req.session.data["red-country-travel-person-1"]
-  if (redCountryTravel == "Yes" && redCountryTravelPerson !== "Yes" || redCountryTravel == "No" && redCountryTravelPerson !== "No"){
+  if (redCountryTravel == "Yes" && redCountryTravelPerson !== "Yes" || redCountryTravel == "No" && redCountryTravelPerson !== "No") {
     res.redirect("/international-arrivals/v3/cannot-add-person")
   } else {
     res.redirect("/international-arrivals/v3/name-person-1")
@@ -366,7 +366,7 @@ router.post("/international-arrivals/v3/action3/red-country-travel-person-1", fu
 // International Arrivals Version Three - Passport Number Person 1
 router.post("/international-arrivals/v3/action3/passport-number-person-1", function (req, res) {
   let redCountryTravelPerson = req.session.data["red-country-travel-person-1"]
-  if (redCountryTravelPerson == "Yes"){
+  if (redCountryTravelPerson == "Yes") {
     res.redirect("/international-arrivals/v3/mobile-number-person-1")
   } else {
     res.redirect("/international-arrivals/v3/travel-route-same-person-1")
@@ -376,7 +376,7 @@ router.post("/international-arrivals/v3/action3/passport-number-person-1", funct
 // International Arrivals Version Three - Ethnic Group Person 1
 router.post('/international-arrivals/v3/action3/ethnic-group-person-1', function (req, res) {
   let ethnicGroupPerson1 = req.session.data['ethnic-group-person-1']
-  if (ethnicGroupPerson1 == "Asian or Asian British"){
+  if (ethnicGroupPerson1 == "Asian or Asian British") {
     res.redirect('/international-arrivals/v3/ethnic-background-asian-person-1')
   } else if (ethnicGroupPerson1 == "Black, African, Black British or Caribbean") {
     res.redirect('/international-arrivals/v3/ethnic-background-black-person-1')
@@ -394,7 +394,7 @@ router.post('/international-arrivals/v3/action3/ethnic-group-person-1', function
 // International Arrivals Version Three - NHS Number Known Person 1
 router.post('/international-arrivals/v3/action3/nhs-number-known-person-1', function (req, res) {
   let nhsNumberKnownPerson1 = req.session.data['nhs-number-known-person-1']
-  if (nhsNumberKnownPerson1 == "Yes"){
+  if (nhsNumberKnownPerson1 == "Yes") {
     res.redirect('/international-arrivals/v3/nhs-number-person-1')
   } else {
     res.redirect('/international-arrivals/v3/registered-with-GP-person-1')
@@ -404,7 +404,7 @@ router.post('/international-arrivals/v3/action3/nhs-number-known-person-1', func
 // International Arrivals Version Three - Registered With GP Person 1
 router.post('/international-arrivals/v3/action3/registered-with-GP-person-1', function (req, res) {
   let registeredWithGP = req.session.data['registered-with-GP-person-1']
-  if (registeredWithGP == "Yes"){
+  if (registeredWithGP == "Yes") {
     res.redirect('/international-arrivals/v3/address-person-1')
   } else {
     res.redirect('/international-arrivals/v3/gender-person-1')
@@ -414,7 +414,7 @@ router.post('/international-arrivals/v3/action3/registered-with-GP-person-1', fu
 // International Arrivals Version Three - Vaccine Person 1
 router.post('/international-arrivals/v3/action3/vaccine-person-1', function (req, res) {
   let vaccine = req.session.data['vaccine-person-1']
-  if (vaccine == "No"){
+  if (vaccine == "No") {
     res.redirect('/international-arrivals/v3/ethnic-group-person-1')
   } else {
     res.redirect('/international-arrivals/v3/vaccine-date-person-1')
@@ -424,10 +424,36 @@ router.post('/international-arrivals/v3/action3/vaccine-person-1', function (req
 
 // VERSION FOUR
 
+
+// International Arrivals Version Four - Red route not England
+router.post('/international-arrivals/v4/action4/name', function (req, res) {
+  let finalDestination = req.session.data['final-destination']
+  let redCountryTravel = req.session.data['red-country-travel']
+
+  if (finalDestination == "England") {
+    res.redirect('/international-arrivals/v4/name')
+  } else if (redCountryTravel == "Yes") {
+    res.redirect('/international-arrivals/v4/service-unavailable')
+  } else {
+    res.redirect('/international-arrivals/v4/name')
+  }
+})
+
+// International Arrivals Version Four - Red route skip travel package
+router.post('/international-arrivals/v4/action4/travel-route', function (req, res) {
+  let redCountryTravel = req.session.data['red-country-travel']
+
+  if (redCountryTravel == "Yes") {
+    res.redirect('/international-arrivals/v4/mobile-number')
+  } else {
+    res.redirect('/international-arrivals/v4/travel-route')
+  }
+})
+
 // International Arrivals Version Four - Travel Package Exempt
 router.post('/international-arrivals/v4/action4/travel-package-exempt', function (req, res) {
   let travelPackageExempt = req.session.data['travel-package-exempt']
-  if (travelPackageExempt == "Yes, I need a replacement test kit"){
+  if (travelPackageExempt == "Yes, I need a replacement test kit") {
     res.redirect('/international-arrivals/v4/travel-package-provider')
   } else if (travelPackageExempt == 'Yes, I am in financial hardship') {
     res.redirect('/international-arrivals/v4/tbc')
@@ -440,7 +466,7 @@ router.post('/international-arrivals/v4/action4/travel-package-exempt', function
 router.post('/international-arrivals/v4/action4/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
-  if (ethnicGroup == "Asian or Asian British"){
+  if (ethnicGroup == "Asian or Asian British") {
     res.redirect('/international-arrivals/v4/ethnic-background-asian')
   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
     res.redirect('/international-arrivals/v4/ethnic-background-black')
@@ -459,7 +485,7 @@ router.post('/international-arrivals/v4/action4/ethnic-group', function (req, re
 // International Arrivals Version Four - NHS Number Known
 router.post('/international-arrivals/v4/action4/nhs-number-known', function (req, res) {
   let nhsNumber = req.session.data['nhs-number']
-  if (!nhsNumber){
+  if (!nhsNumber) {
     res.redirect('/international-arrivals/v4/nhs-number-known-error')
   } else {
     res.redirect('/international-arrivals/v4/registered-with-GP')
@@ -469,7 +495,7 @@ router.post('/international-arrivals/v4/action4/nhs-number-known', function (req
 // International Arrivals Version Four - Regisered With GP
 router.post('/international-arrivals/v4/action4/registered-with-GP', function (req, res) {
   let registeredWithGP = req.session.data['registered-with-GP']
-  if (registeredWithGP == "Yes"){
+  if (registeredWithGP == "Yes") {
     res.redirect('/international-arrivals/v4/address')
   } else {
     res.redirect('/international-arrivals/v4/gender')
@@ -499,7 +525,7 @@ router.post('/international-arrivals/v4/action4/travel-details-same-person-1', f
 // International Arrivals Version Four - Ethnic Group Person 1
 router.post('/international-arrivals/v4/action4/ethnic-group-person-1', function (req, res) {
   let ethnicGroupPerson1 = req.session.data['ethnic-group-person-1']
-  if (ethnicGroupPerson1 == "Asian or Asian British"){
+  if (ethnicGroupPerson1 == "Asian or Asian British") {
     res.redirect('/international-arrivals/v4/ethnic-background-asian-person-1')
   } else if (ethnicGroupPerson1 == "Black, African, Black British or Caribbean") {
     res.redirect('/international-arrivals/v4/ethnic-background-black-person-1')
@@ -517,7 +543,7 @@ router.post('/international-arrivals/v4/action4/ethnic-group-person-1', function
 // International Arrivals Version Four - NHS Number Known Person 1
 router.post('/international-arrivals/v4/action4/nhs-number-known-person-1', function (req, res) {
   let nhsNumberKnownPerson1 = req.session.data['nhs-number-known-person-1']
-  if (nhsNumberKnownPerson1 == "Yes"){
+  if (nhsNumberKnownPerson1 == "Yes") {
     res.redirect('/international-arrivals/v4/nhs-number-person-1')
   } else {
     res.redirect('/international-arrivals/v4/registered-with-GP-person-1')
@@ -527,7 +553,7 @@ router.post('/international-arrivals/v4/action4/nhs-number-known-person-1', func
 // International Arrivals Version Four - Registered With GP Person 1
 router.post('/international-arrivals/v4/action4/registered-with-GP-person-1', function (req, res) {
   let registeredWithGP = req.session.data['registered-with-GP-person-1']
-  if (registeredWithGP == "Yes"){
+  if (registeredWithGP == "Yes") {
     res.redirect('/international-arrivals/v4/address-person-1')
   } else {
     res.redirect('/international-arrivals/v4/gender-person-1')
@@ -537,7 +563,7 @@ router.post('/international-arrivals/v4/action4/registered-with-GP-person-1', fu
 // International Arrivals Version Four - Vaccine Person 1
 router.post('/international-arrivals/v4/action4/vaccine-person-1', function (req, res) {
   let vaccine = req.session.data['vaccine-person-1']
-  if (vaccine == "No"){
+  if (vaccine == "No") {
     res.redirect('/international-arrivals/v4/ethnic-group-person-1')
   } else {
     res.redirect('/international-arrivals/v4/vaccine-date-person-1')
