@@ -251,6 +251,17 @@ router.post('/international-arrivals/v2/action3/vaccine-person-1', function (req
 
 // VERSION THREE
 
+// International Arrivals Version Three - Red route travel
+router.post("/international-arrivals/v3/action3/red-country-travel", function (req, res) {
+  let redCountryTravel = req.session.data["red-country-travel"]
+  let destinationCountry = req.session.data["final-destination"]
+  if (redCountryTravel == "Yes" && destinationCountry !== "England"){
+    res.redirect("/international-arrivals/v3/service-unavailable")
+  } else {
+    res.redirect("/international-arrivals/v3/travel-package-exempt")
+  }
+})
+
 // International Arrivals Version Three - Travel Package Exempt
 router.post("/international-arrivals/v3/action3/travel-package-exempt", function (req, res) {
   let travelPackageExempt = req.session.data["travel-package-exempt"]
@@ -258,6 +269,16 @@ router.post("/international-arrivals/v3/action3/travel-package-exempt", function
     res.redirect("/international-arrivals/v3/search-results")
   } else {
     res.redirect("/international-arrivals/v3/name")
+  }
+})
+
+// International Arrivals Version Three - Point of entry
+router.post("/international-arrivals/v3/action3/point-of-entry", function (req, res) {
+  let redCountryTravel = req.session.data["red-country-travel"]
+  if (redCountryTravel == "Yes"){
+    res.redirect("/international-arrivals/v3/mobile-phone-number")
+  } else {
+    res.redirect("/international-arrivals/v3/travel-route")
   }
 })
 
@@ -327,7 +348,28 @@ router.post('/international-arrivals/v3/action3/travel-details-same-person-1', f
   if (travelDetailsSame == "No") {
     res.redirect('/international-arrivals/v3/cannot-add-person')
   } else {
-    res.redirect('/international-arrivals/v3/name-person-1')
+    res.redirect('/international-arrivals/v3/red-country-travel-person-1')
+  }
+})
+
+// International Arrivals Version Three - Red route travel
+router.post("/international-arrivals/v3/action3/red-country-travel-person-1", function (req, res) {
+  let redCountryTravel = req.session.data["red-country-travel"]
+  let redCountryTravelPerson = req.session.data["red-country-travel-person-1"]
+  if (redCountryTravel == "Yes" && redCountryTravelPerson !== "Yes" || redCountryTravel == "No" && redCountryTravelPerson !== "No"){
+    res.redirect("/international-arrivals/v3/cannot-add-person")
+  } else {
+    res.redirect("/international-arrivals/v3/name-person-1")
+  }
+})
+
+// International Arrivals Version Three - Passport Number Person 1
+router.post("/international-arrivals/v3/action3/passport-number-person-1", function (req, res) {
+  let redCountryTravelPerson = req.session.data["red-country-travel-person-1"]
+  if (redCountryTravelPerson == "Yes"){
+    res.redirect("/international-arrivals/v3/mobile-number-person-1")
+  } else {
+    res.redirect("/international-arrivals/v3/travel-route-same-person-1")
   }
 })
 
