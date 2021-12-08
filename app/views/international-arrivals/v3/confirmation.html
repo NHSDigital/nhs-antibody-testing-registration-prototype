@@ -15,10 +15,6 @@
   </p>
 </div>
 
-{% if data['coronavirus-account'] == "Yes" %}
-  {% include "includes/account-menu.html" %}
-{% endif %}
-
 {% endblock %}
 
 {% block content %}
@@ -42,19 +38,18 @@
 
     <p class="govuk-body">
       {% if data['red-country-travel'] == "Yes" %}
-        {% if data['travel-route'] and data['travel-route-same-person-1'] %}
+        {% if data['first-name-person-1'] %}
         We've received your order for 2 red self-quarantine packages. If you’re travelling with other people on this order, we’ve sent separate emails confirming the details of each person.
         {% else %}
         We've received your order for 1 red self-quarantine package. If you’re travelling with other people on this order, we’ve sent separate emails confirming the details of each person.
         {% endif %}
       {% else %}
-        {% if data['travel-route'] and data['travel-route-same-person-1'] %}
+        {% if data['first-name-person-1'] %}
         We've received your order for 2 travel test packages. If you’re travelling with other people on this order, we’ve sent separate emails confirming the details of each person.
         {% else %}
         We've received your order for 1 travel test package. If you’re travelling with other people on this order, we’ve sent separate emails confirming the details of each person.
         {% endif %}
       {% endif %}
-      
     </p>
     <p class="govuk-body">
       You may need to show these details when you're travelling, so keep this email with you.
