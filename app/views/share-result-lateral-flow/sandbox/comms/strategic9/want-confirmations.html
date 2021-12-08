@@ -1,5 +1,5 @@
 {% set version = "sandbox" %}
-{% set pageTitle = "Do you want to get a confirmation message for this result?" %}
+{% set pageTitle = "Text and email confirmation for this test result" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -22,38 +22,42 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/share-result-lateral-flow/{{version}}/comms/strategic8/check-answers-both" method="post">
+      <form class="form" action="/share-result-lateral-flow/{{version}}/comms/strategic9/check-answers-both" method="post">
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="want-confirmations-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} want to get a confirmation message for this result?
-                {% else %}
                 {{ pageTitle }}
-                {% endif %}
               </h1>
-            </legend>
-                <div id="want-confirmations-hint" class="govuk-body">
-                  {% if data['whos-taking-the-test'] == "someone-else" %}
-                  <p>For a negative or void result, they can choose to receive a confirmation text and email (if they supplied it).</p>
-                  <p>If they report a positive result, they always receive a confirmation message.</p>
-                  {% else %}
-                  <p>For a negative or void result, you can choose to receive a confirmation text and email (if you supplied it).</p>
-                  <p>If you report a positive result, you always receive a confirmation message.</p>
-                  {% endif %}
-                </div>
-                <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                <p class="body">{{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} may need a confirmation to show their COVID-19 status at events and venues. They may also need it for example to visit someone in a hospital or care home, or for work.</p>
+                {% else %}
+                <p class="body">You may need a confirmation to show your COVID-19 status at events and venues. You may also need it for example to visit someone in a hospital or care home, or for work. </p>
+                {% endif %}
+
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                <p class="body">If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} test is negative or void, they can choose whether they want a confirmation. If their test is positive, we will send them one even if they choose 'No'.</p>
+                {% else %}
+                <p class="body">If your test is negative or void, you can choose whether you want a confirmation. If your test is positive, we will send you one even if you choose 'No'.</p>
+                {% endif %}
+
+            <div class="govuk-form-group">
+               <fieldset class="govuk-fieldset">
+                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                   {% if data['whos-taking-the-test'] == "someone-else" %}
+                   Would {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} like to receive a confirmation of their test result?
+                   {% else %}
+                   Would you like to receive a confirmation of your test result?
+                   {% endif %}
+                 </legend>
                   <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" {{ checked("contact-choice", "Email") }}>
-                    <label class="govuk-label govuk-radios__label" for="swab-test-date-1">
+                    <input class="govuk-radios__input" id="receive-confirmations" name="receive-confirmations" type="radio" value="Yes" {{ checked("receive-confirmations", "Yes") }} >
+                    <label class="govuk-label govuk-radios__label" for="receive-confirmations">
                       Yes
                     </label>
                   </div>
                   <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" {{ checked("contact-choice", "Mobile") }}>
-                    <label class="govuk-label govuk-radios__label" for="swab-test-date-2">
+                    <input class="govuk-radios__input" id="receive-confirmations-2" name="receive-confirmations" type="radio" value="No" {{ checked("receive-confirmations", "No") }} >
+                    <label class="govuk-label govuk-radios__label" for="receive-confirmations-2">
                       No
                     </label>
                   </div>
@@ -61,23 +65,18 @@
             </div>
 
             <div class="govuk-form-group">
-              <div id="waste-hint" class="govuk-body">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                If they live in Wales they can choose to receive messages in Welsh and English
-                {% else %}
-                If you live in Wales you can choose to receive messages in Welsh and English
-                {% endif %}
+              <div id="welsh-hint" class="govuk-body">
+                Optional confirmation for people who live in Wales
               </div>
                 <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                   <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
-                    <label class="govuk-label govuk-checkboxes__label" for="waste">
-                       Get confirmation messages in Welsh and English (optional)
+                    <input class="govuk-checkboxes__input" id="welsh" name="welsh" type="checkbox" {{ checked("welsh", "Get a confirmation in Welsh and English") }}>
+                    <label class="govuk-label govuk-checkboxes__label" for="welsh">
+                        Get a confirmation in Welsh as well as in English
                     </label>
                   </div>
                 </div>
               </div>
-
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 

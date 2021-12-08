@@ -1,0 +1,106 @@
+{% set version = "v1" %}
+{% set pageTitle = "Royal Mail barcode reference" %}
+
+{% extends "includes/layout-lite-registration.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/test-place">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/litereg-accounts/{{version}}/test-date" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="enter-barcode-number-hint" class="govuk-body">
+                <p>The Royal Mail barcode reference is on the <span class="govuk-body govuk-!-font-weight-bold">right-hand side of the postage label</span> that goes on the return box. Do not enter or scan the QR code, which is on the left-hand side of the label.</p>
+
+                <div class="govuk-!-margin-top-5">
+                  <img src="/public/images/royal-mail-barcode.png" class="responsive-image" alt="Image of the Royal Mail barcode"/>
+                </div>
+
+                <p>You’ll need to enter this information if you have any questions about the status of your test kit.
+                <p>Entering the Royal Mail barcode reference also helps the labs process test kits quicker.
+
+                <p><button class="govuk-button govuk-button--secondary" data-module="govuk-button">I do not have the Royal Mail barcode</button></p>
+
+                <h3 class="govuk-heading-m">Choose one of these ways to enter the barcode reference:</h3>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>use the camera on your phone or computer</li>
+                  <li>use your handheld scanner</li>
+                  <li>enter it manually</li>
+                </ul>
+
+              <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  How to use the handheld barcode scanner
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <ol class="govuk-list govuk-list--number">
+              <li>Click in the ‘Royal Mail barcode reference’ box.</li>
+              <li>Scan the barcode using your handheld scanner. This automatically adds it to the box.</li>
+              <li>Click in the ‘Confirm Royal Mail barcode reference’ box.</li>
+              <li>Scan the barcode again using your handheld scanner. This automatically adds it to the box.</li>
+              <li>Continue.</li>
+              </ol>
+              </details>
+
+
+        <form class="" action="/organisational/lft/carehome-registration/single/scan-return-box" method="post">
+        <h3 class="govuk-heading-m">Use camera</h3>
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Use camera to scan barcode
+        </button>
+        </form>
+
+        <h3 class="govuk-heading-m">Use handheld scanner or enter manually</h3>
+        <p>If you’re using a handheld scanner, click in the box before you scan the barcode.</p>
+
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="mail-barcode-reference-1">
+              Royal Mail barcode reference<br>
+              <span class="govuk-hint">The 13-character reference below the barcode.<br> For example, ZD 6904 0038 5GB</span>
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="address-town" type="text"></div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="mail-barcode-reference-2">
+              Confirm Royal Mail barcode reference
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="address-county" name="address-county" type="text"></div>
+        </fieldset>
+
+              <form class="form" action="/organisational/lft/carehome-registration/single/check-pcr" method="post">
+
+          <br><button class="govuk-button" data-module="govuk-button">Continue</button>
+
+              </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}
