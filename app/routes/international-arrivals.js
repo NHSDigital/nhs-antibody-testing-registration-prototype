@@ -518,7 +518,18 @@ router.post('/international-arrivals/v4/action4/travel-details-same-person-1', f
   if (travelDetailsSame == "No") {
     res.redirect('/international-arrivals/v4/cannot-add-person')
   } else {
-    res.redirect('/international-arrivals/v4/name-person-1')
+    res.redirect('/international-arrivals/v4/red-country-travel-person-1')
+  }
+})
+
+// International Arrivals Version Four - Red route travel
+router.post("/international-arrivals/v4/action4/red-country-travel-person-1", function (req, res) {
+  let redCountryTravel = req.session.data["red-country-travel"]
+  let redCountryTravelPerson = req.session.data["red-country-travel-person-1"]
+  if (redCountryTravel == "Yes" && redCountryTravelPerson !== "Yes" || redCountryTravel == "No" && redCountryTravelPerson !== "No") {
+    res.redirect("/international-arrivals/v4/cannot-add-person")
+  } else {
+    res.redirect("/international-arrivals/v4/name-person-1")
   }
 })
 
