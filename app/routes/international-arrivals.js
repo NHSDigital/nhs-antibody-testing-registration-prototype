@@ -532,6 +532,8 @@ router.post("/international-arrivals/v4/action4/red-country-travel-person-1", fu
   let redCountryTravelPerson = req.session.data["red-country-travel-person-1"]
   if (redCountryTravel == "Yes" && redCountryTravelPerson !== "Yes" || redCountryTravel == "No" && redCountryTravelPerson !== "No") {
     res.redirect("/international-arrivals/v4/cannot-add-person")
+  } else if (!redCountryTravelPerson) {
+    res.redirect("/international-arrivals/v4/red-country-travel-person-1-error")
   } else {
     res.redirect("/international-arrivals/v4/name-person-1")
   }
