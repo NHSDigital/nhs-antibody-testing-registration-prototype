@@ -537,6 +537,16 @@ router.post("/international-arrivals/v4/action4/red-country-travel-person-1", fu
   }
 })
 
+// International Arrivals Version Three - Passport Number Person 1
+router.post("/international-arrivals/v4/action4/passport-number-person-1", function (req, res) {
+  let redCountryTravel = req.session.data["red-country-travel"]
+  if (redCountryTravel == "Yes") {
+    res.redirect("/international-arrivals/v4/mobile-number-person-1")
+  } else {
+    res.redirect("/international-arrivals/v4/travel-route-same-person-1")
+  }
+})
+
 // International Arrivals Version Four - Ethnic Group Person 1
 router.post('/international-arrivals/v4/action4/ethnic-group-person-1', function (req, res) {
   let ethnicGroupPerson1 = req.session.data['ethnic-group-person-1']
