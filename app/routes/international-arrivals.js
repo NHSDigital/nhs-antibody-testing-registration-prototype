@@ -344,6 +344,16 @@ router.post('/international-arrivals/v3/action3/vaccine', function (req, res) {
   }
 })
 
+// International Arrivals Version Three - Check your answers
+router.post('/international-arrivals/v3/action3/check-your-answers', function (req, res) {
+  let redCountryTravel = req.session.data["red-country-travel"]
+  if (redCountryTravel == "Yes") {
+    res.redirect('/international-arrivals/v3/people-confirmed-red')
+  } else {
+    res.redirect('/international-arrivals/v3/people-confirmed')
+  }
+})
+
 // International Arrivals Version Three - Travel Details Same Person 1
 router.post('/international-arrivals/v3/action3/travel-details-same-person-1', function (req, res) {
   let travelDetailsSame = req.session.data['travel-details-same-person-1']
@@ -422,6 +432,16 @@ router.post('/international-arrivals/v3/action3/vaccine-person-1', function (req
     res.redirect('/international-arrivals/v3/ethnic-group-person-1')
   } else {
     res.redirect('/international-arrivals/v3/vaccine-date-person-1')
+  }
+})
+
+// International Arrivals Version Three - Check your answers Person 1
+router.post('/international-arrivals/v3/action3/check-your-answers-person-1', function (req, res) {
+  let redCountryTravel = req.session.data["red-country-travel"]
+  if (redCountryTravel == "Yes") {
+    res.redirect('/international-arrivals/v3/people-confirmed-person-1-red')
+  } else {
+    res.redirect('/international-arrivals/v3/people-confirmed-person-1')
   }
 })
 
@@ -516,6 +536,16 @@ router.post('/international-arrivals/v4/action4/vaccine', function (req, res) {
   }
 })
 
+// International Arrivals Version Four - Check your answers
+router.post('/international-arrivals/v4/action4/check-your-answers', function (req, res) {
+  let redCountryTravel = req.session.data["red-country-travel"]
+  if (redCountryTravel == "Yes") {
+    res.redirect('/international-arrivals/v4/people-confirmed-red')
+  } else {
+    res.redirect('/international-arrivals/v4/people-confirmed')
+  }
+})
+
 // International Arrivals Version Four - Travel Details Same Person 1
 router.post('/international-arrivals/v4/action4/travel-details-same-person-1', function (req, res) {
   let travelDetailsSame = req.session.data['travel-details-same-person-1']
@@ -594,6 +624,16 @@ router.post('/international-arrivals/v4/action4/vaccine-person-1', function (req
     res.redirect('/international-arrivals/v4/ethnic-group-person-1')
   } else {
     res.redirect('/international-arrivals/v4/vaccine-date-person-1')
+  }
+})
+
+// International Arrivals Version Four - Check your answers Person 1
+router.post('/international-arrivals/v4/action4/check-your-answers-person-1', function (req, res) {
+  let redCountryTravel = req.session.data["red-country-travel"]
+  if (redCountryTravel == "Yes") {
+    res.redirect('/international-arrivals/v4/people-confirmed-person-1-red')
+  } else {
+    res.redirect('/international-arrivals/v4/people-confirmed-person-1')
   }
 })
 

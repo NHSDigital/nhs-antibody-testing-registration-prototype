@@ -15,11 +15,20 @@
     </p>
   </div>
 
-  {% if data['first-name-person-1'] %}
-  <a class="govuk-back-link" href="/international-arrivals/{{version}}/people-confirmed-person-1">Back</a>
+  {% if data['red-country-travel'] == "Yes" %}
+    {% if data['first-name-person-1'] %}
+    <a class="govuk-back-link" href="/international-arrivals/{{version}}/people-confirmed-person-1-red">Back</a>
+    {% else %}
+    <a class="govuk-back-link" href="/international-arrivals/{{version}}/people-confirmed-red">Back</a>
+    {% endif %}
   {% else %}
-  <a class="govuk-back-link" href="/international-arrivals/{{version}}/people-confirmed">Back</a>
+    {% if data['first-name-person-1'] %}
+    <a class="govuk-back-link" href="/international-arrivals/{{version}}/people-confirmed-person-1">Back</a>
+    {% else %}
+    <a class="govuk-back-link" href="/international-arrivals/{{version}}/people-confirmed">Back</a>
+    {% endif %}
   {% endif %}
+  
 
 {% endblock %}
 

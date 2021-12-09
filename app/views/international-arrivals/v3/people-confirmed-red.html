@@ -28,9 +28,9 @@
       <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
 
       <p class="govuk-body">
-        You can order travel test packages for yourself and up to 9 other people that you're travelling with. They must have the same delivery address as you.<br><br>
-        In England, Wales and Northern Ireland, children aged 4 and under do not need to take a day 2 or day 8 test.<br><br>
-        In Scotland, children aged 10 and under do not need to take a day 2 or day 8 test.<br><br>
+        You can order red self-quarantine packages for yourself and up to 9 other people that you're travelling with.<br><br>
+        They must have the same delivery address as you.<br><br>
+        In England, children aged 4 and under do not need a red self-quarantine package.<br><br>
         Once you've confirmed who needs testing, you can complete and pay for your order.
       </p>
       
@@ -65,12 +65,8 @@
             {% else %}
             6 December 1976
             {% endif %}<br>
-            {{ data['travel-route'] or 'Day 2 and day 8 test' }}<br>
-            {% if data['travel-route'] == 'Day 2 test' %}
-            £68
-            {% else %}
-            £116
-            {% endif %}<br>
+            Red self-quarantine package<br>
+            £300<br>
             <a href="/international-arrivals/{{version}}/check-your-answers">Edit details</a>
           </p>
         </div>
@@ -78,11 +74,7 @@
           {% if data['travel-package-exempt'] == "Yes, I'm ordering on behalf of an asylum seeker" or data['travel-package-exempt'] == "Yes, I need a replacement test kit" %}
           £0.00
           {% else %}
-            {% if data['travel-route'] == 'Day 2 test' %}
-            £68
-            {% else %}
-            £116
-            {% endif %}
+          £300
           {% endif %}
         </p>
       </div>
