@@ -257,6 +257,8 @@ router.post("/international-arrivals/v3/action3/red-country-travel", function (r
   let destinationCountry = req.session.data["final-destination"]
   if (redCountryTravel == "Yes" && destinationCountry !== "England") {
     res.redirect("/international-arrivals/v3/service-unavailable")
+  } else if (!redCountryTravel) {
+    res.redirect("/international-arrivals/v3/red-country-travel-error")
   } else {
     res.redirect("/international-arrivals/v3/travel-package-exempt")
   }
@@ -352,12 +354,14 @@ router.post('/international-arrivals/v3/action3/travel-details-same-person-1', f
   }
 })
 
-// International Arrivals Version Three - Red route travel
+// International Arrivals Version Three - Red route travel Person 1
 router.post("/international-arrivals/v3/action3/red-country-travel-person-1", function (req, res) {
   let redCountryTravel = req.session.data["red-country-travel"]
   let redCountryTravelPerson = req.session.data["red-country-travel-person-1"]
   if (redCountryTravel == "Yes" && redCountryTravelPerson !== "Yes" || redCountryTravel == "No" && redCountryTravelPerson !== "No") {
     res.redirect("/international-arrivals/v3/cannot-add-person")
+  } else if (!redCountryTravelPerson) {
+    res.redirect("/international-arrivals/v3/red-country-travel-person-1-error")
   } else {
     res.redirect("/international-arrivals/v3/name-person-1")
   }
@@ -528,6 +532,8 @@ router.post("/international-arrivals/v4/action4/red-country-travel-person-1", fu
   let redCountryTravelPerson = req.session.data["red-country-travel-person-1"]
   if (redCountryTravel == "Yes" && redCountryTravelPerson !== "Yes" || redCountryTravel == "No" && redCountryTravelPerson !== "No") {
     res.redirect("/international-arrivals/v4/cannot-add-person")
+  } else if (!redCountryTravelPerson) {
+    res.redirect("/international-arrivals/v4/red-country-travel-person-1-error")
   } else {
     res.redirect("/international-arrivals/v4/name-person-1")
   }
