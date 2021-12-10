@@ -1,0 +1,148 @@
+{% set version = "v1" %}
+{% set pageTitle = "Order summary" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/order-home-test-kit/confirm-email-code">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['email-address'] | default('example@example.co.uk')}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/lfd-home-ordering/{{version}}/order-home-test-kit/email-address">
+              Change<span class="govuk-visually-hidden">email address</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Home address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['address-line-1'] }}<br>
+              {% if data['address-line-2'] %}
+              {{ data['address-line-2'] }}<br>
+              {% endif %}
+              {{ data['address-town'] }}<br>
+              {% if data['address-county'] %}
+              {{ data['address-county'] }}<br>
+              {% endif %}
+              {{ data['address-postcode'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/lfd-home-ordering/{{version}}/order-home-test-kit/postcode">
+                Change<span class="govuk-visually-hidden">home address</span>
+              </a>
+            </dd>
+          </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Delivery address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['delivery-address-same'] === 'No' and data['delivery-address-line-1'] == undefined %}{{ data['delivery-address'] }}{% endif %}
+            {% if data['delivery-address-same'] === 'No' and data['delivery-address-line-1'] !== undefined %}
+            {{ data['delivery-address-line-1'] }}<br>
+            {% if data['delivery-address-line-2'] %}
+            {{ data['delivery-address-line-2'] }}<br>
+            {% endif %}
+            {{ data['delivery-address-town'] }}<br>
+            {{ data['delivery-address-postcode'] }}
+            {% endif %}
+            {% if data['delivery-address-same'] === 'Yes' %}Same as home address{% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/lfd-home-ordering/{{version}}/order-home-test-kit/delivery-address">
+              Change<span class="govuk-visually-hidden"> delivery address</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-l">Disclaimer</h2>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <span class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Important</span>
+          <h2 class="govuk-heading-s govuk-!-margin-bottom-0">By ordering a pack of 7 rapid lateral flow home test kits, I confirm that:</h2>
+        </span>
+      </div>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>The information I've provided is up to date and correct</li>
+        <li>I agree with the <a href="#">Terms and conditions</a> and <a href="#">Privacy policy</a> of this service</li>
+        <li>I am happy to be contacted about my order</li>
+        <li>I am 18 or over</li>
+      </ul>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="confirm" name="confirm" type="checkbox" value="Yes" onclick="checkBox()">
+              <label class="govuk-label govuk-checkboxes__label" for="confirm">
+                Yes, I confirm that all the above apply
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <form action="/lfd-home-ordering/{{version}}/order-home-test-kit/confirmation" method="post">
+
+        <button id="button" disabled class="govuk-button govuk-!-margin-bottom-3" type="submit" data-module="govuk-button">
+          Place order
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+<script type="text/javascript">
+ 
+  resetAttributes()
+
+  function checkBox(target) {
+    const checkbox = document.getElementById('confirm')
+    const button = document.getElementById('button')
+    checkbox.toggleAttribute('checked')
+    button.toggleAttribute('disabled')
+  }
+
+  function resetAttributes() {
+    const checkbox = document.getElementById('confirm')
+    const button = document.getElementById('button')
+    checkbox.removeAttribute('checked')
+    button.setAttribute('disabled')
+  }
+
+</script>
+
+{% endblock %}
