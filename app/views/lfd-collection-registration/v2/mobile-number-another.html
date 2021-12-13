@@ -1,0 +1,82 @@
+{% set version = "v2" %}
+{% set pageTitle = "Do they have a mobile number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['coronavirus-account'] == "Yes" %}
+  {% include "includes/account-menu.html" %}
+{% endif %}
+
+  <a class="govuk-back-link" href="/lfd-collection-registration/{{version}}/email-address-another">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/lfd-collection-registration/{{version}}/country-another" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="mobile-number-another-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="mobile-number-another-hint" class="govuk-body">
+              We may use this to contact them about their test kit. If you do not provide a mobile number, we may contact you instead.
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mobile-number-another-1" name="mobile-number-another" type="radio" value="Yes" data-aria-controls="conditional-mobile-number-another" {{ checked("mobile-number-another", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="mobile-number-another-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mobile-number-another">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="mobile-phone-number-another">
+                    Enter their mobile number
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-half" id="mobile-phone-number-another" name="mobile-phone-number-another" type="tel" value="{{ data['mobile-phone-number-another'] }}">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mobile-number-another-2" name="mobile-number-another" type="radio" value="No" {{ checked("mobile-number-another", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="mobile-number-another-2">
+                  No
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mobile-number-another-2" name="mobile-number-another" type="radio" value="I do not know" {{ checked("mobile-number-another", "I do not know") }}>
+                <label class="govuk-label govuk-radios__label" for="mobile-number-another-2">
+                  I do not know
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
