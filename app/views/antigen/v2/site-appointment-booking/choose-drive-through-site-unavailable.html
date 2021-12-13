@@ -1,0 +1,90 @@
+{% set version = "v2" %}
+{% set pageTitle = "Choose a test site near you" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/people-confirmed-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/site-appointment-booking/choose-time-prev-day-drive" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              {% if data['home-postcode'] !== "N1111" %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                Test sites near {{ data['home-postcode'] }}<br><br>
+                {{ pageTitle }}
+              </h1>
+              {% endif %}
+              {% if data['home-postcode'] == "N1111" %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                We did not recognise your postcode. Choose a test site
+              </h1>
+              {% endif %}
+            </legend>
+            <span class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-2">
+              Postcode
+            </span>
+            <span class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-right-4" style="display: inline-block;">
+              {{ data['home-postcode'] | default('LS1 3BE') }}
+            </span>
+            <span class="govuk-body" style="display: inline-block;"><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/find-test-site-drive">Change</a></span>
+            {% if data['home-postcode'] == "N1111" %}
+            <p class="govuk-body">
+                Sorry but we could not recognise your postcode. Choose a test site from the options below.
+            </p>
+            {% endif %}
+
+            {% if data['home-postcode'] !== "N1111" %}
+            <div class="govuk-heading-m govuk-!-margin-bottom-2">
+              <strong>Your nearest test sites (by road):</strong>
+            </div>
+            {% endif %}
+            {% if data['home-postcode'] == "N1111" %}
+            <div class="govuk-heading-m govuk-!-margin-bottom-2">
+              <strong>Test sites:</strong><br>
+            </div>
+            {% endif %}
+            <div class="govuk-heading-m govuk-!-margin-right-4" style="display: inline-block;">
+              <strong>Drive-through</strong>
+            </div>
+
+            <span class="govuk-body"><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/choose-walk-through-site">Change to walk-through</a></span>
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
+              <li class="govuk-body govuk-!-margin-bottom-0">you'll need to provide the registration number for the vehicle you arrive in</li>
+              <li class="govuk-body govuk-!-margin-bottom-0">you need to book your test appointment as soon as possible</li>
+              <li class="govuk-body govuk-!-margin-bottom-0">you or someone you live with must drive to the test site by car, small van or motorbike (some sites do not accept motorbikes)</li>
+              <li class="govuk-body">site staff will tell you if an assistant does the swab test for you or if you do it yourself</li>
+            </ul>
+
+            <div class="govuk-body">
+              <strong>Sorry, we’re having difficulty showing test sites near you</strong><br>
+              Check you postcode is correct, if it is, you’ll need to try again later. Alternatively, you can check if slots are available at a different type of test site.
+            </div>
+          </fieldset>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

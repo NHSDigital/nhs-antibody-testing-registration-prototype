@@ -53,9 +53,9 @@
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"><strong class="govuk-!-font-size-24">PCR test</strong></th>
-            <th scope="col" class="govuk-table__header govuk-!-width-one-half"></th>
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"><strong class="govuk-!-font-size-24">PCR test</strong><span class="govuk-visually-hidden">Name</span></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-half"><span class="govuk-visually-hidden">Personal details</span></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"><span class="govuk-visually-hidden">Options</span></th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -107,31 +107,20 @@
         </strong>
       </div>
 
-      {% if data['follow-up-test-reason'] !== "After entering the UK, they got a positive day 2 travel test result" %}
-      <form class="form" action="/antigen/{{version}}/global-registration/name-person-1" method="post" style="display: inline-block;">
+        <div class="inline-buttons-wrapper govuk-!-margin-top-8">
+          <form class="form" action="/antigen/{{version}}/global-registration/name-person-1" method="post">
+            <button class="govuk-button govuk-button--secondary govuk-!-margin-right-1" data-module="govuk-button">
+              Save and add another person you live with
+            </button>
+          </form>
 
-        <button class="govuk-button govuk-button--secondary govuk-!-margin-right-1" data-module="govuk-button">Save and add another person you live with</button>
+          <form class="form" action="/antigen/{{version}}/site-appointment-booking/find-test-site" method="post">
+            <button class="govuk-button" data-module="govuk-button">
+              Save and continue
+            </button>
+          </form>
+      </div>
 
-      </form>
-      {% endif %}
-
-      {% if data['way-to-test'] == "drive-through" or data['way-to-test'] == "walk-in" %}
-
-      <form class="form" action="/antigen/{{version}}/site-appointment-booking/find-test-site" method="post" style="display: inline-block;">
-
-        <button class="govuk-button" data-module="govuk-button">Save and continue</button>
-
-      </form>
-
-      {% else %}
-
-      <form class="form" action="/antigen/{{version}}/order-home-test-kit/" method="post" style="display: inline-block;">
-
-        <button class="govuk-button" data-module="govuk-button">Save and continue</button>
-
-      </form>
-
-      {% endif %}
 
     </div>
   </div>

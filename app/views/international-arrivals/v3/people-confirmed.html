@@ -28,12 +28,12 @@
       <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
 
       <p class="govuk-body">
-        You can order travel test packages for yourself and 9 other people that you're travelling with. They must have the same delivery address as you.<br><br>
+        You can order travel test packages for yourself and up to 9 other people that you're travelling with. They must have the same delivery address as you.<br><br>
         In England, Wales and Northern Ireland, children aged 4 and under do not need to take a day 2 or day 8 test.<br><br>
         In Scotland, children aged 10 and under do not need to take a day 2 or day 8 test.<br><br>
         Once you've confirmed who needs testing, you can complete and pay for your order.
       </p>
-
+      
       <div class="info-summary">
         <div>
           <p class="govuk-body">
@@ -78,7 +78,11 @@
           {% if data['travel-package-exempt'] == "Yes, I'm ordering on behalf of an asylum seeker" or data['travel-package-exempt'] == "Yes, I need a replacement test kit" %}
           £0.00
           {% else %}
-          {% if data['travel-route'] == 'Day 2 test' %}£68{% else %}£116{% endif %}
+            {% if data['travel-route'] == 'Day 2 test' %}
+            £68
+            {% else %}
+            £116
+            {% endif %}
           {% endif %}
         </p>
       </div>

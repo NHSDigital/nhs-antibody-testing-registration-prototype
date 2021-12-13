@@ -1909,7 +1909,7 @@ router.post('/OBT/individual-accounts/e2e-prototypes/v3/personal-details/UON-che
   let answer = req.body.changeUON;
 
   if (answer == 'yes') {
-    res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/personal-details/personal-details')
+    res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/personal-details/occupation/area')
   } else if (answer == 'no') {
       res.redirect('/OBT/individual-accounts/e2e-prototypes/v3/personal-details/UON')
     } else {

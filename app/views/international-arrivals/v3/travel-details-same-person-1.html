@@ -15,7 +15,11 @@
   </p>
 </div>
 
-<a class="govuk-back-link" href="/international-arrivals/{{version}}/passport-number-person-1">Back</a>
+{% if data['red-country-travel'] == "Yes" %}
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/people-confirmed-red">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/people-confirmed">Back</a>
+{% endif %}
 
 {% endblock %}
 
@@ -48,7 +52,7 @@
             <td class="govuk-table__cell govuk-!-padding-left-2" style="border-left: 1px solid #b1b4b6">{{ data['country-autocomplete'] or 'Italy' }}</td>
           </tr>
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Final country destination</th>
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Destination country</th>
             <td class="govuk-table__cell govuk-!-padding-left-2" style="border-left: 1px solid #b1b4b6">{{ data['final-destination'] or 'England' }}</td>
           </tr>
           <tr class="govuk-table__row">

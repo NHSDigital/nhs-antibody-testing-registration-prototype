@@ -1,0 +1,94 @@
+{% extends "includes/layout.html" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% set pageTitle = "Reorder a test kit" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link" href="#">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="confirm-reorder" method="post">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-5">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <p class="govuk-body">Order another test kit for the patient and cancel their previous order.</p>
+            <p class="govuk-body govuk-!-margin-bottom-5">If they have already received a test kit, it will need to be thrown away as it is linked to the cancelled procedure. We'll send the patient a text explaining this.</p>
+            <div class="govuk-inset-text">If you need to reschedule the procedure, you will have to cancel your order.</div>
+
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Procedure date
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  00 MMM YY
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Patient
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Firstname Lastname
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  NHS number
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  485 777 3456
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key" style="vertical-align: top">
+                  Reorder kit
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <div class="govuk-form-group">
+                    <div class="govuk-radios govuk-radios--small govuk-radios--conditional" data-module="govuk-radios">
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="radio-1" name="rg-1" type="radio" value="yes" data-aria-controls="conditional-contact">
+                        <label class="govuk-label govuk-radios__label" for="">Yes</label>
+                      </div>
+                      <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
+                        <div class="govuk-form-group">
+                          {# <label class="govuk-label govuk-hint" for="sort">Why are you reordering?</label> #}
+                          <div class="govuk-hint">Why are you reordering?</div>
+                          <textarea class="govuk-textarea" id="field-1" name="" rows="5" aria-describedby="" maxlength="100"></textarea>
+                        </div>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="radio-1" name="rg-1" type="radio" value="no">
+                        <label class="govuk-label govuk-radios__label" for="">No</label>
+                      </div>
+                    </div>
+                  </div>
+                </dd>
+              </div>
+            </dl>
+          </fieldset>
+        </div>
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+          <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Cancel
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
