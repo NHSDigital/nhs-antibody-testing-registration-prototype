@@ -1,0 +1,73 @@
+{% set version = "v2" %}
+{% set pageTitle = "How do you want to collect your test packs?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+<a class="govuk-back-link" href="/lfd-collection-registration/{{version}}/do-you-have-symptoms">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/lfd-collection-registration/{{version}}/action10/pharmacy-collection" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="pharmacy-collection-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                            {{ pageTitle }}
+                        </h1>
+                    </legend>
+                    <span id="pharmacy-collection-hint" class="govuk-body">
+                      You can collect your test packs from either a test site or a pharmacy.
+                      <br><br>
+                      If you go to a pharmacy, you’ll need to register your details there. You do not need to use a collect code.
+                      <br><br>
+                      <a href="https://find-covid-19-rapid-test-sites.maps.test-and-trace.nhs.uk/" class="govuk-link" target="blank">Find your nearest collection point</a>
+
+
+
+                    </span>
+                    <div class="govuk-radios govuk-!-margin-top-5" data-module="govuk-radios">
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="pharmacy-collection-2" name="pharmacy-collection" type="radio" value="No" {{ checked("pharmacy-collection", "No") }}>
+                            <label class="govuk-label govuk-radios__label" for="pharmacy-collection-2">
+                              I’m going to collect test packs from a test site
+                            </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="pharmacy-collection-1" name="pharmacy-collection" type="radio" value="Yes" {{ checked("pharmacy-collection", "Yes") }}>
+                          <label class="govuk-label govuk-radios__label" for="pharmacy-collection-1">
+                            I’m going to collect test packs from my local pharmacy
+                          </label>
+                      </div>
+
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
