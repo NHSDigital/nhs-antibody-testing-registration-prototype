@@ -12,41 +12,54 @@
        </div>
 
   <div>
-   <h3 class="govuk-heading-m">What you must do</h3>
-   {% if data['whos-taking-the-test'] == "someone-else" %}
-   <h3 class="govuk-heading-m">What {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} must do</h3>
-   {% else %}
-   {% endif %}
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <h3 class="govuk-heading-m">What {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} must do</h3>
+    {% else %}
+    <h3 class="govuk-heading-m">What you must do</h3>
+    {% endif %}
    <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+     {% if data['whos-taking-the-test'] == "someone-else" %}
+     <li>They must take a different follow-up test as soon as possible to confirm this result</li>
+     <li>They should self-isolate until you get the follow-up test result</li>
+     <li>Check if the people they live with need to self-isolate on NHS.UK</li>
+     <li>Care home residents must self-isolate for 14 days</li>
+    {% else %}
     <li>You must take a different follow-up test as soon as possible to confirm this result</li>
     <li>You should self-isolate until you get the follow-up test result</li>
     <li>Check if the people you live with need to self-isolate on NHS.UK</li>
     <li>Care home residents must self-isolate for 14 days</li>
+    {% endif %}
   </ul>
   </div>
 
   <div>
-    <h3 class="govuk-heading-m">If you live in Wales</h3>
     {% if data['whos-taking-the-test'] == "someone-else" %}
     <h3 class="govuk-heading-m">If they live in Wales</h3>
     {% else %}
+    <h3 class="govuk-heading-m">If you live in Wales</h3>
     {% endif %}
     <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <li>They must take a different follow-up test within 24 hours.</li>
+    <li>If they take their follow-up test after 24 hours, they will need to self-isolate for 10 days, even if the follow-up test is negative. This includes the day of their test and the next 10 full days.</li>
+    <li>They will be contacted following their positive lateral flow test result and this will enable them to apply for financial support if they are eligible.</li>
+    {% else %}
     <li>You must take a different follow-up test within 24 hours.</li>
     <li>If you take your follow-up test after 24 hours, you will need to self-isolate for 10 days, even if the follow-up test is negative. This includes the day of your test and the next 10 full days.</li>
     <li>You will be contacted following your positive lateral flow test result and this will enable you to apply for financial support if you are eligible.</li>
+    {% endif %}
   </div>
 
   <div>
-    <h3 class="govuk-heading-m">Book your follow up test</h3>
     {% if data['whos-taking-the-test'] == "someone-else" %}
     <h3 class="govuk-heading-m">Book a follow up test</h3>
     {% else %}
+    <h3 class="govuk-heading-m">Book your follow up test</h3>
     {% endif %}
-    <p class="govuk-body">Choose a test site if you can, it's faster than a home test. You can leave home for your follow-up test.</p>
     {% if data['whos-taking-the-test'] == "someone-else" %}
     <p class="govuk-body">Choose a test site if possible, as it's faster than a home test. They can leave home for their follow-up test.</p>
     {% else %}
+    <p class="govuk-body">Choose a test site if you can, it's faster than a home test. You can leave home for your follow-up test.</p>
     {% endif %}
   </div>
 
