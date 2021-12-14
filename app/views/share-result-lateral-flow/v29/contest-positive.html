@@ -1,21 +1,5 @@
 {% set version = "v29" %}
 {% set pageTitle = "If you think the service read the result incorrectly" %}
-<!-- {% if data['whos-taking-the-test'] == "someone-else" %}
-If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} thinks the service read the result incorrectly
-{% else %}
-{% endif %} -->
-
-<div class="govuk-form-group">
-  <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
-        {% if data['whos-taking-the-test'] == "someone-else" %}
-        If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} thinks the service read the result incorrectly
-        {% else %}
-        {{ pageTitle }}
-        {% endif %}
-      </h1>
-    </legend>
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -42,6 +26,18 @@ If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} thinks 
       <form action="https://www.gov.uk/get-coronavirus-test/" method="post">
 
           <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} thinks the service read the result incorrectly
+                  {% else %}
+                  {{ pageTitle }}
+                  {% endif %}
+                </h1>
+              </legend>
 
          <!-- div for include from content folder -->
          <div id="includedContent"></div>
