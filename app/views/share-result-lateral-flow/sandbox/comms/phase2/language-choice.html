@@ -1,5 +1,5 @@
 {% set version = "sandbox" %}
-{% set pageTitle = "Do you want to get a confirmation message for this result?" %}
+{% set pageTitle = "Choose which language to get confirmations in" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -22,56 +22,40 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/share-result-lateral-flow/{{version}}/comms/strategic9/check-answers-both" method="post">
+      <form class="form" action="/share-result-lateral-flow/{{version}}/comms/strategic8/check-answers" method="post">
 
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} want to get a confirmation message for this result?
-                {% else %}
                 {{ pageTitle }}
-                {% endif %}
               </h1>
-
-              <div id="want-confirmations-hint" class="govuk-body">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                <p>For a negative or void result, they can choose to receive a confirmation text and email (if they supplied it).</p>
-                <p>If they report a positive result, they always receive a confirmation message.</p>
-                {% else %}
-                <p>For a negative or void result, you can choose to receive a confirmation text and email (if you supplied it).</p>
-                <p>If you report a positive result, you always receive a confirmation message.</p>
-                {% endif %}
-              </div>
-
-            <div class="govuk-form-group">
-              <fieldset class="govuk-fieldset">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                  {% if data['whos-taking-the-test'] == "someone-else" %}
-                  Would {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} like to receive a confirmation of their test result?
-                  {% else %}
-                  Would you like to receive a confirmation of your test result?
-                  {% endif %}
-                </legend>
+            </legend>
+                <span id="choice-hint" class="govuk-body">
+                  <p>After reporting a result, you will get a confirmation message</p>
+                </span>
                 <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
                   <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" {{ checked("contact-choice", "Email") }}>
                     <label class="govuk-label govuk-radios__label" for="swab-test-date-1">
-                      Yes, in English
+                      English
                     </label>
                   </div>
                   <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" {{ checked("contact-choice", "Mobile") }}>
                     <label class="govuk-label govuk-radios__label" for="swab-test-date-2">
-                      Yes, in English and Welsh
+                      Welsh
                     </label>
                   </div>
                   <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="swab-test-date-3" name="swab-test-date" type="radio" {{ checked("contact-choice", "Both") }}>
                     <label class="govuk-label govuk-radios__label" for="swab-test-date-3">
-                      No
+                      Both
                     </label>
                   </div>
               </fieldset>
             </div>
+
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
