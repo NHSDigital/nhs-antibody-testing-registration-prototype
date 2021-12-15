@@ -1,0 +1,43 @@
+{% extends "includes/layout.html" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "Do you want this user to have standard permissions?" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="5" method="post">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-3">
+            {{ pageTitle }}
+          </h1>
+        </legend>
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            If you continue, you'll need to contact an enhanced user in their organisation.
+          </strong>
+        </div>
+
+        <p class="govuk-body govuk-!-margin-bottom-8">When you remove a user's enhanced permissions, they will need to be added again to the relevant groups within their organisation.</p>
+
+        <div class="govuk-button-group">
+          <button class="govuk-button">Continue</button>
+          <button class="govuk-button govuk-button--secondary">Cancel</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

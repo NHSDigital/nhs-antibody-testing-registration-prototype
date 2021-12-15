@@ -1,0 +1,42 @@
+{% set version = "v2" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "You cannot add this team member" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+    {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl"> {{ pageTitle }} </h1>
+            <p class="govuk-body">[First name] [Last name] is an existing team member and has enhanced permissions.</p>
+
+            <details class="govuk-details govuk-!-margin-bottom-6 govuk-!-margin-top-6" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">Learn about team member permissions</span>
+                </summary>
+                <div class="govuk-details__text">
+                    Depending on a team member's role, they will be given certain permissions. The available permissions are:
+                    
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2 govuk-!-margin-top-6"> Standard </h3>
+                    <p class="govuk-body">Order home tests, check patient details, view test results (when signed in with a Smartcard) and confirm procedure cancellations.</p>
+
+                    <h3 class="govuk-heading-s govuk-!-margin-bottom-2 govuk-!-margin-top-6"> Enhanced </h3>
+                    <p class="govuk-body">Standard permissions, plus manage team members and groups.</p>
+                </div>
+            </details>
+
+            <p class="govuk-body">To change this team member's permissions, email the elective care support team at:</p>
+            <p class="govuk-body govuk-!-margin-top-6">
+                <a href="#" class="govuk-link">ElectiveCareTesting@dhsc.gov.uk</a>
+            </p>
+            
+            <a class="govuk-!-margin-top-8 govuk-button" href="./manage-organisation-v1-o1"> Back to team management</a>
+            
+            <p class="govuk-body-s"> Error Reference: E999_CHG </p>
+        </div>
+    </div>
+{% endblock %}
