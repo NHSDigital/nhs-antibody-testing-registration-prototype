@@ -1,0 +1,86 @@
+{% set version = "v1" %}
+{% set pageTitle = "What's John Smith's mobile number?" %}
+{% set serviceName = electiveCareServiceName %}
+{% set group %}
+{% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+{% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="delivery-address-manual" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint mobile-number-hint-2 mobile-number-hint-3 mobile-number-hint-4 mobile-number-hint-5">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <span class="govuk-caption-xl">
+                {{ group }}</span>
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{pageTitle}}
+              </h1>
+            </legend>
+          </legend>
+          <p class="govuk-body">We’ll text their test results to a mobile number.</p>
+          <p class="govuk-body">You need to check:</p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>the patient is happy for their test results to go to the number they give us. For example, if it’s a work phone or belongs to someone else, there could be a chance other people will see their test results</li>
+            <li>they are aged [COPY TBD] and over. If the patient is under [COPY TBD] years old, enter the parent or guardian's mobile number.</li>
+          </ul>
+
+          <div class="govuk-form-group govuk-!-margin-top-6">
+            <label class="govuk-label" for="mobile">Mobile phone number</label>
+            <input class="govuk-input govuk-input--width-10" id="mobile" name="mobile" type="text">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="confirm-mobile">Confirm mobile phone number</label>
+            <input class="govuk-input govuk-input--width-10" id="confirm-mobile" name="confirm-mobile" type="text">
+          </div>
+
+          <div class="govuk-form-group  govuk-!-margin-top-7">
+            <fieldset class="govuk-fieldset">
+              <h3 class="govuk-heading-s">Who does the mobile belong to?</h3>
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="mobile-owner" name="mobile-owner" type="radio" value="patient">
+                  <label class="govuk-label govuk-radios__label" for="mobile-owner">The patient</label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="mobile-owner-2" name="mobile-owner" type="radio" value="trusted-contact">
+                  <label class="govuk-label govuk-radios__label" for="mobile-owner-2">A trusted contact</label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="mobile-owner-3" name="mobile-owner" type="radio" value="other">
+                  <label class="govuk-label govuk-radios__label" for="mobile-owner-3">Other</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <p class="govuk-body govuk-!-margin-top-7">
+            <a href="#" class="govuk-link">No mobile phone available</a>
+          </p>
+
+          <button class="govuk-button govuk-!-margin-top-5" data-module="govuk-button">Continue</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
