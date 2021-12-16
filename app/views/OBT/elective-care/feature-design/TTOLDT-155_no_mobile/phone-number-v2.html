@@ -1,5 +1,6 @@
 {% set version = "v1" %}
-{% set pageTitle = "What’s Pete Smith's mobile number?" %}
+{% set pageTitle = "Contacting John Smith using a mobile number" %}
+{% set serviceName = electiveCareServiceName %}
 {% set group %}
 {% if data.cuRequestGroup %}
     Group {{ data.cuRequestGroup }}
@@ -11,21 +12,8 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-      beta
-    </strong>
-      <span class="govuk-phase-banner__text">
-      This is a new service – your <a class="govuk-link" href="#">feedback (opens in a new tab)</a> will help us to improve it.
-    </span>
-    </p>
-  </div>
-
-  {{ govukBackLink({
-      text: "Back",
-      href: "javascript:window.history.go(-1);"
-    }) }}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -50,38 +38,42 @@
           <ul class="govuk-list govuk-list--bullet">
             <li>the mobile number you have for them is correct</li>
             <li>they are happy for you to enter it into this screen</li>
-            <li>they are happy for their test results to go by text to this number – especially if it’s a work or shared phone and there’s a risk of others seeing the results</li>
+            <li>they are happy for their test results to go by text to this number – especially if it’s a work phone or belongs to someone else and there’s a risk of others seeing the results</li>
             <li>they are aged [COPY TBD] or over. If the child is younger than [COPY TBD], enter their parent or guardian's number.</li>
           </ul>
-          <div id="contact-hint" class="govuk-hint">
-                Select one option.
-          </div>
+
+          <h3 class="govuk-heading-m govuk-!-margin-top-6">
+            Who does the mobile belong to?
+          </h3>
           <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
-              <label class="govuk-label govuk-radios__label" for="contact">Patient's mobile number</label>
+              <label class="govuk-label govuk-radios__label" for="contact">The patient</label>
             </div>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
               <div class="govuk-form-group">
                 <label class="govuk-label" for="contact-by-email">Mobile phone number</label>
-                <input class="govuk-input govuk-!-width-one-third" id="contact-by-email" name="contact-by-email" type="email" spellcheck="false" autocomplete="email"></div>
+                <input class="govuk-input govuk-!-width-one-half" id="contact-by-email" name="contact-by-email" type="email" spellcheck="false" autocomplete="email"></div>
 
             </div>
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-2">
-              <label class="govuk-label govuk-radios__label" for="contact-2">Alternative mobile number</label>
+              <label class="govuk-label govuk-radios__label" for="contact-2">A trusted contact</label>
             </div>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
               <div class="govuk-form-group">
-                <label class="govuk-label" for="contact-by-phone">Alternative mobile number</label>
-                <input class="govuk-input govuk-!-width-one-third" id="contact-by-phone" name="contact-by-phone" type="tel" autocomplete="tel"></div>
-
+                <label class="govuk-label" for="contact-by-phone">Mobile phone number</label>
+                <input class="govuk-input govuk-!-width-one-half" id="contact-by-phone" name="contact-by-phone" type="tel" autocomplete="tel"></div>
             </div>
           </div>
 
+          <p class="govuk-body govuk-!-margin-top-8">
+            <a href="#" class="govuk-link">No mobile phone available</a>
+          </p>
+
         </fieldset>
 
-        <button class="govuk-button govuk-!-margin-top-7" data-module="govuk-button">Continue</button>
+        <button class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">Continue</button>
       </div>
 
     </form>
