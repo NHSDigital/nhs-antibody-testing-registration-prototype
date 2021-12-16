@@ -1,0 +1,79 @@
+{% set version = "v1" %}
+{% set pageTitle = "Does John Smith have a mobile number?" %}
+{% set serviceName = electiveCareServiceName %}
+{% set group %}
+{% if data.cuRequestGroup %}
+    Group {{ data.cuRequestGroup }}
+{% else %}
+      Group 1
+  {% endif %}
+{% endset %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="delivery-address-manual" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint mobile-number-hint-2 mobile-number-hint-3 mobile-number-hint-4 mobile-number-hint-5">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <span class="govuk-caption-xl">
+                {{ group }}</span>
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{pageTitle}}
+              </h1>
+            </legend>
+          </legend>
+          <p class="govuk-body">We’ll text their test results to a mobile number.</p>
+          <p class="govuk-body">You need to check:</p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>the patient is happy for their test results to go to the number they give us. For example, if it’s a work phone or belongs to someone else, there could be a chance other people will see their test results</li>
+            <li>they are aged [COPY TBD] and over. If the patient is a child aged [COPY TBD] or younger, enter the parent or guardian’s mobile number. </li>
+          </ul>
+          
+          <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
+              <label class="govuk-label govuk-radios__label" for="contact">Yes</label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="contact-by-email">Mobile phone number</label>
+                <input class="govuk-input govuk-!-width-one-half" id="contact-by-email" name="contact-by-email" type="email" spellcheck="false" autocomplete="email"></div>
+
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-2">
+              <label class="govuk-label govuk-radios__label" for="contact-2">No, but they have a trusted contact</label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="contact-by-phone">Mobile phone number</label>
+                <input class="govuk-input govuk-!-width-one-half" id="contact-by-phone" name="contact-by-phone" type="tel" autocomplete="tel"></div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact-3" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-3">
+              <label class="govuk-label govuk-radios__label" for="contact-3">No</label>
+            </div>
+          </div>
+
+
+        <button class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">Continue</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
