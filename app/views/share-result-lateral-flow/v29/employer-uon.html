@@ -1,5 +1,5 @@
-{% set version = "v28" %}
-{% set pageTitle = "Enter the unique organisation number (UON)" %}
+{% set version = "v29" %}
+{% set pageTitle = "Unique Organisation Number (UON)" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -33,10 +33,23 @@
                 {{ pageTitle }}
               </h1>
             </legend>
+
             <span id="enter-barcode-number-hint" class="govuk-body">
-              This is a reference number for the employer or organisation.
-              It is 8 digits and sometimes called a “UON”.
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              The UON helps us to link {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} to their employer or organisation if they are testing for work purposes.
+              {% else %}
+              The UON helps us to link you to your employer or organisation if you're testing for work purposes.
+              {% endif %}
+            </span><br><br>
+
+            <span id="enter-barcode-number-hint" class="govuk-body">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s employer or organisation may have provided it with their test kit. {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/"> find the UON online (opens in a new tab)</a>.
+              {% else %}
+              Your employer or organisation may have provided it with your test kit. You can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/"> find the UON online (opens in a new tab)</a>.
+              {% endif %}
             </span>
+
 
              <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
                <summary class="govuk-details__summary">
@@ -51,34 +64,55 @@
                <div class="govuk-details__text">
                  <p class="govuk-body">
                    {% if data['whos-taking-the-test'] == "someone-else" %}
-                   Get the UON from the employer or organisation that gave them the test kit.
+                   <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">Find their UON online (opens in a new tab)</a>.
                    {% else %}
-                   Get the UON from the employer or organisation that gave you the test kit.
+                   <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">Find your UON online (opens in a new tab)</a>.
                    {% endif %}
                  </p>
                  <p class="govuk-body">
                    {% if data['whos-taking-the-test'] == "someone-else" %}
-                   They can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">find the UON online (opens in a new tab)</a>.
+                   If they still need help, call the contact center:
+                   <li> 119 if they're in England, Wales or Northern Ireland</li>
+                   <li> 0300 303 2713 if they're in Scotland</li>
+                   Lines are open 7am till 11pm.
                    {% else %}
-                   You can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">find the UON online (opens in a new tab)</a>.
-                   {% endif %}
-                 </p>
-                 <p class="govuk-body">
-                   {% if data['whos-taking-the-test'] == "someone-else" %}
-                   If they still need help, call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.
-                   {% else %}
-                   If you still need help, call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.
+                   If you still need help, call the contact center:
+                   <li> 119 if you're in England, Wales or Northern Ireland</li>
+                   <li> 0300 303 2713 if you're in Scotland</li>
+                   Lines are open 7am till 11pm.
                    {% endif %}
                  </p>
                </div>
              </details>
-            <br>
+            <!-- <h2 class="govuk-heading-m">
+              Can you provide your UON?
+            </h2>
 
             <div class="govuk-form-group">
-              <label class="govuk-label" for="social-care-uon">
-                Unique organisation number
-              </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="social-care-uon" name="social-care-uon" type="text" value={{ data['social-care-uon'] }}>
+              <p class="govuk-body"><label class="govuk-label" for="account-number">
+                  Unique Organisation Number (optional)
+                </label>
+              </p>
+
+              <div id="account-number-hint" class="govuk-hint">
+                An 8 digit number like 12345678
+              </div>
+              <input class="govuk-!" id="account-number" name="account-number" type="text" spellcheck="false" aria-describedby="account-number-hint" pattern="[0-9]*" inputmode="numeric">
+            </div> -->
+
+            <h2 class="govuk-heading-m">
+              Can you provide your UON?
+            </h2>
+
+            <div class="govuk-form-group">
+              <p class="govuk-label-wrapper"><label class="govuk-body" for="account-number">
+                  UON (optional)
+                </label>
+              </p>
+              <div id="account-number-hint" class="govuk-hint">
+                An 8 digit number like 12345678
+              </div>
+              <input class="govuk-input govuk-input--width-10" id="account-number" name="account-number" type="text" spellcheck="false" aria-describedby="account-number-hint" pattern="[0-9]*" inputmode="numeric">
             </div>
 
           </fieldset>
@@ -88,12 +122,8 @@
       </form>
 
       <p>
-          <a class="govuk-link" href="/share-result-lateral-flow/{{version}}/postcode2">
-            {% if data['whos-taking-the-test'] == "someone-else" %}
-            They don't know the UON
-            {% else %}
-            I don't know the UON
-            {% endif %}
+          <a class="govuk-link" href="/share-result-lateral-flow/{{version}}/employer-uon-check">
+            Continue without UON
           </a>
       </p>
 

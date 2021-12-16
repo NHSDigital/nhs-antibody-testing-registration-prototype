@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Would you like to sign in or create an account to save your details?" %}
+{% set pageTitle = "Sign in or create an account" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -23,34 +23,37 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form class="form" action="/litereg-accounts/{{version}}/action9/coronavirus-account" method="post">
 
+
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">{{ pageTitle }}</h1>
       <div class="govuk-form-group">
-  <fieldset class="govuk-fieldset" aria-describedby="sign-in-hint">
-    <div class="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="coronavirus-account-1" name="coronavirus-account" type="radio" value="Yes" {{ checked("coronavirus-account", "Yes") }}>
-        <label class="govuk-label govuk-radios__label" for="coronavirus-account-1">
-          <strong class="govuk-!-font-size-24">Sign in or create an account</strong>
-        </label>
-        <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
-          We'll save your details for each time you get tested. Creating an account only takes 2 minutes and you'll save 5 minutes with every test.
-        </div>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="coronavirus-account-2" name="coronavirus-account" type="radio" value="No" {{ checked("coronavirus-account", "No") }}>
-        <label class="govuk-label govuk-radios__label" for="coronavirus-account-2">
-          <strong class="govuk-!-font-size-24">Continue without an account</strong>
-        </label>
-        <div id="sign-in-2-item-hint" class="govuk-hint govuk-radios__hint">
-          Your details won't be saved for future tests and all information will have to be re-entered.
+        <span id="account-hint" class="govuk-body">
+            Creating an account takes 2 minutes. It uses <a href="https://www.nhs.uk/nhs-services/online-services/nhs-log-in/"> NHS login</a> . You may already have NHS login, for example if you use the NHS App.<br>
+        </span>
+
+        <div class="govuk-inset-text">
+  Using an account is quicker because your details are saved for next time.
+</div>
+
         </div>
       </div>
     </div>
 
+
+    <div class="govuk-button-group">
+    <button class="govuk-button" data-module="govuk-button" action="https://access.login.nhs.uk/enter-email">
+    Create account
+    </button>
+
+    <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+    Sign in
+    </button>
+    </div>
+
+    <a class="govuk-link" href="/litereg-accounts/v1/enter-barcode">Continue without an account</a>
+
   </fieldset>
 </div>
-    <button class="govuk-button" data-module="govuk-button">Continue</button>
-</form>
+
 
     </div>
   </div>
@@ -73,4 +76,3 @@
 
 
 {% endblock %}
-

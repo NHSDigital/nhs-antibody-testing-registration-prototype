@@ -24,9 +24,6 @@
 
       <form class="form" action="/share-result-lateral-flow/{{version}}/comms/strategic9/check-answers-both" method="post">
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="want-confirmations-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
                 Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} want to get a confirmation message for this result?
@@ -34,7 +31,7 @@
                 {{ pageTitle }}
                 {% endif %}
               </h1>
-            </legend>
+
               <div id="want-confirmations-hint" class="govuk-body">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
                 <p>For a negative or void result, they can choose to receive a confirmation text and email (if they supplied it).</p>
@@ -44,13 +41,16 @@
                 <p>If you report a positive result, you always receive a confirmation message.</p>
                 {% endif %}
               </div>
-            <!--  <div id="waste-hint" class="govuk-body">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                Messages are in English unless they choose to receive them in Welsh as well
-                {% else %}
-                Messages are in English unless you choose to receive them in Welsh as well
-                {% endif %}
-              </div> -->
+
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  Would {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} like to receive a confirmation of their test result?
+                  {% else %}
+                  Would you like to receive a confirmation of your test result?
+                  {% endif %}
+                </legend>
                 <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
                   <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" {{ checked("contact-choice", "Email") }}>
@@ -72,7 +72,6 @@
                   </div>
               </fieldset>
             </div>
-
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
