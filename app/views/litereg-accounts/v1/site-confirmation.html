@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Confirm the test site" %}
+{% set pageTitle = "Confirm the test site or event site" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -37,7 +37,7 @@
               </h1>
             </legend>
             <span id="confirm-site-1-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-2">
-              Test site ID
+              Test site ID or event ID
             </span>
             <span id="confirm-site-2-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-right-4" style="display: inline-block;">
               {{ data['site-id'] | default('CHE') }}
@@ -63,9 +63,9 @@
                     <input class="govuk-radios__input" id="confirm-site-1" name="confirm-site" type="radio" value="Yes" {{ checked("confirm-site", "Yes") }}>
                     <label class="govuk-label govuk-radios__label" for="confirm-site-1">
                       {% if data['whos-taking-the-test'] == "someone-else" %}
-                      They used this test site
+                      This is correct
                       {% else %}
-                      I used this test site
+                      This is correct
                       {% endif %}
                     </label>
                   </div>
@@ -73,9 +73,9 @@
                     <input class="govuk-radios__input" id="confirm-site-2" name="confirm-site" type="radio" value="No" {{ checked("confirm-site", "No") }}>
                     <label class="govuk-label govuk-radios__label" for="confirm-site-2">
                       {% if data['whos-taking-the-test'] == "someone-else" %}
-                      They did not use this test site
+                      This is not correct
                       {% else %}
-                      I did not use this test site
+                      This is not correct
                       {% endif %}
                     </label>
                   </div>
@@ -91,4 +91,3 @@
   </div>
 
 {% endblock %}
-
