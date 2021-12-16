@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "Did you visit a red, amber or green list country in the 10 days before arriving in the UK?" %}
+{% set pageTitle = "Did you visit a red list country in the 10 days before arriving in the UK?" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -31,14 +31,14 @@
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              Did they visit a red, amber or green list country in the 10 days before arriving in the UK?
+              Did they visit a red list country in the 10 days before arriving in the UK?
               {% else %}
               {{ pageTitle }}
               {% endif %}
             </h1>
           </legend>
           <span id="travel-route-hint" class="govuk-body">
-            Find out if countries are on the <a href="https://www.gov.uk/guidance/red-amber-and-green-list-rules-for-entering-england">red, amber or green list</a>.<br><br>
+            Find out if countries are on the <a href="https://www.gov.uk/guidance/red-list-of-countries-and-territories">red list</a>.<br><br>
           </span>
 
           <div class="govuk-radios govuk-!-margin-bottom-7" data-module="govuk-radios">
@@ -46,9 +46,9 @@
               <input class="govuk-radios__input" id="travel-route-1" name="travel-route" type="radio" value="red" {{ checked("travel-route", "red") }}>
               <label class="govuk-label govuk-radios__label" for="travel-route-1">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                They've been to a red country
+                Yes, they've been to a red country
                 {% else %}
-                I've been to a red country
+                Yes, I've been to a red country
                 {% endif %}
               </label>
             </div>
@@ -56,22 +56,13 @@
               <input class="govuk-radios__input" id="travel-route-2" name="travel-route" type="radio" value="amber" {{ checked("travel-route", "amber") }}>
               <label class="govuk-label govuk-radios__label" for="travel-route-2">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                They've been to an amber country, but not a red country
+                No, they have not been to a red country
                 {% else %}
-                I've been to an amber country, but not a red country
+                No, I have not been to a red country
                 {% endif %}
               </label>
             </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="travel-route-3" name="travel-route" type="radio" value="green" {{ checked("travel-route", "green") }}>
-              <label class="govuk-label govuk-radios__label" for="travel-route-3">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                They've only been to a green country
-                {% else %}
-                I've only been to a green country
-                {% endif %}
-              </label>
-            </div>
+
           </div>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>

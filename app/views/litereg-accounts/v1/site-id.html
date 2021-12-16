@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What’s the test site’s ID?" %}
+{% set pageTitle = "What’s the test site’s ID or event ID?" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -36,27 +36,27 @@
           The test site ID will be either 3 or 4 characters.<br><br>
 
           {% if data['whos-taking-the-test'] == "someone-else" %}
-          If they're isolating after international travel, the test site is their government isolation hotel.<br><br>
+          If they're isolating after international travel, the test site is their government quarantine hotel.<br><br>
           {% else %}
-          If you’re isolating after international travel, the test site is your government isolation hotel.<br><br>
+          If you’re isolating after international travel, the test site is your government quarantine hotel.<br><br>
           {% endif %}
 
           {% if data['whos-taking-the-test'] == "someone-else" %}
-          If they're still at the site and cannot find the test site ID, get them to ask a member of staff.<br><br>
+          If they’re taking your test as part of an event or conference, use the event ID.<br><br>
           {% else %}
-          If you’re still at the site and cannot find the test site ID, ask a member of staff.<br><br>
+          If you’re taking your test as part of an event or conference, use the event ID.<br><br>
           {% endif %}
 
           {% if data['whos-taking-the-test'] == "someone-else" %}
-          If the person taking the test has left the test site, staff should have told them to take a photo or write down the test site ID.<br><br>
+          If they cannot find the ID, ask a member of staff.<br><br>
           {% else %}
-          If you're registering after leaving the site, staff should have told you to take a photo or write down the test site ID.
+          If you cannot find the ID, ask a member of staff.
           {% endif %}
         </span>
 
         <div class="govuk-form-group govuk-!-margin-top-5">
           <label class="govuk-label" for="site-id">
-            Test site ID<br>
+            Test site or event ID<br>
             <span class="govuk-hint">For example, THGR or LMHL</span>
           </label>
           <input class="govuk-input" id="site-id" name="site-id" type="text" value="{{ data['site-id'] }}">

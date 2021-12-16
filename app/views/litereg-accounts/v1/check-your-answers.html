@@ -50,12 +50,11 @@
         {% if data['have-you-travelled-overseas'] == "Yes" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Red, amber or green list country?
+            Red list country?
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['travel-route'] == "red" %}Red{% endif %}
-            {% if data['travel-route'] == "amber" %}Amber{% endif %}
-            {% if data['travel-route'] == "green" %}Green{% endif %}
+            {% if data['travel-route'] == "Yes, I travelled overseas" %}Yes{% endif %}
+            {% if data['travel-route'] == "No, I did not travel overseas" %}No{% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/litereg-accounts/{{version}}/travel-route">
@@ -94,8 +93,8 @@
           </dd>
         </div>
         {% if data['kit-barcode-reference-1'] != 'LHE00000501' and data['kit-barcode-reference-1'] != 'COE00000501' %}
-        
-        {% if data['test-place'] == 'At a test site or government quarantine hotel' %}
+
+        {% if data['test-place'] == '	At a test site, government quarantine hotel, or in accommodation as part of an event/conference' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Test site
@@ -277,7 +276,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Medical record (male, female, other…)
+            Medical record
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['gender'] or 'Male' }}
@@ -425,7 +424,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Address
+            Home address
           </dt>
           <dd class="govuk-summary-list__value">
             {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
@@ -548,7 +547,7 @@
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['vaccine'] }}
- 
+
               {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
               1 dose, January {{ data['vaccine-year'] }}
               {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
