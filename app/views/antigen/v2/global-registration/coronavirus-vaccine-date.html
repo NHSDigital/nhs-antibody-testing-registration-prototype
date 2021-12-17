@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "When did they have their most recent vaccine?" %}
+{% set pageTitle = "Date of vaccine" %}
 
 {% extends "includes/layout.html" %}
 
@@ -13,7 +13,7 @@
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
       </span>
     </p>
-  </div> 
+  </div>
 
   <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/coronavirus-vaccine">Back</a>
 {% endblock %}
@@ -30,14 +30,37 @@
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-fieldset__heading">
-                When did {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }} have their most recent vaccine?
+                Date of vaccine
               </h1>
             </legend>
-            <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+
+            <p class="govuk-body">
+              We are asking this question to better understand how effective the vaccine is. <br></br>
+
+              If the person has only had 1 dose, tell us when they had this dose.<br></br>
+
+              If the person has had 2 or more doses, tell us when they had their most recent dose. This includes boosters. <br></br>
+            </p>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--m" for="test-package-booking-reference">
+
+                  When did {{ data['first-name-person-1'] or 'John' }} {{ data['last-name-person-1'] or 'Smith' }} have their most recent vaccine?
+
+              </label>
+            </div>
+
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="vaccine-date-1" name="vaccine-date" type="radio" value="Less than 14 days ago" {{ checked("vaccine-date", "Less than 14 days ago") }}>
+                <input class="govuk-radios__input" id="vaccine-date-1" name="vaccine-date" type="radio" value="Less than 7 days ago" {{ checked("vaccine-date", "Less than 7 days ago") }}>
                 <label class="govuk-label govuk-radios__label" for="vaccine-date-1">
-                  Less than 14 days ago
+                  Less than 7 days ago
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-date-2" name="vaccine-date" type="radio" value="7 to 14 days ago" {{ checked("vaccine-date", "7 to 14 days ago") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-date-2">
+                  7 to 14 days ago
                 </label>
               </div>
               <div class="govuk-radios__item">
@@ -48,6 +71,7 @@
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-vaccine-date">
                 <div class="govuk-form-group">
+                  <span class="govuk-hint">For example, 3 2021</span>
                   <div class="govuk-date-input govuk-!-padding-top-2" id="date-of-vaccine">
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
@@ -69,7 +93,10 @@
                 </div>
               </div>
             </div>
-        
+
+
+
+
           </fieldset>
         </div>
 

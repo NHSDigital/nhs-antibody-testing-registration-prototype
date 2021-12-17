@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Do you have an email address where you can get the test results?" %}
+{% set pageTitle = "Email address" %}
 
 {% extends "includes/layout.html" %}
 
@@ -32,15 +32,23 @@
                 {{ pageTitle }}
               </h1>
             </legend>
-            <span id="email-address-hint" class="govuk-body">
-                You need an email address to order a home test kit online. Email is also the quickest way to get your test results.<br><br>
-                If you’re getting a test for a child, you (their parent or guardian) should enter your email. If you’re getting a test for someone aged 16 or older, make sure they’re happy for their test results to go to this email.
-            </span>
+            <div id="email-address-hint">
+              <p class="govuk-body">We need an email address to send your test results. Use one you'll have access to later.</p>
+
+              <p class="govuk-body">If your mobile number is going to change soon, it's important you give us an email address, as it's the only way to get your test results.</p>
+
+              <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
+
+              <p class="govuk-body">If you're getting a test for a child, enter your email not theirs.</p>
+            </div>
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+               Do you have an email address?
+             </legend>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="email-1">
-                  Yes, I have an email address where I can get the results
+                  Yes
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
@@ -60,7 +68,7 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="I do not have an email address" data-aria-controls="conditional-email-address-2" {{ checked("email", "I do not have an email address") }}>
                 <label class="govuk-label govuk-radios__label" for="email-2">
-                  No, I don’t have an email address
+                  No
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address-2">
