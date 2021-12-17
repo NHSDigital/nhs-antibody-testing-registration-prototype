@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "When did you have the vaccine?" %}
+{% set pageTitle = "Date of vaccine" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -37,10 +37,26 @@
               </h1>
             </legend>
             <span id="vaccine-date-hint" class="govuk-body">
-                We are asking this question to better understand how effective the vaccine is.<br><br>
-                If the person has only had 1 dose, tell us when they had this dose.<br><br>
-                If the person has had 2 doses, tell us when they had the second dose.
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              We are asking this question to better understand how effective the vaccine is.<br><br>
+              If the person has only had 1 dose, tell us when they had this dose.<br><br>
+              If the person has had 2 or more doses, tell us when they had their most recent dose. This includes boosters.
+              {% else %}
+              We are asking this question to better understand how effective the vaccine is.<br><br>
+              If you have only had 1 dose, tell us when you had this dose.<br><br>
+              If you have had 2 or more doses, tell us when you had your most recent dose. This includes boosters.<br><br>
+              {% endif %}
             </span>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--m" for="test-package-booking-reference">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                  When did {{ data['first-name-person-1'] or 'John' }} {{ data['last-name-person-1'] or 'Smith' }} have their most recent vaccine?
+                  {% else %}
+                  When did you have your most recent vaccine?
+                  {% endif %}
+              </label>
+            </div>
 
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
@@ -63,6 +79,7 @@
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-vaccine-date">
                 <div class="govuk-form-group">
+                  <span class="govuk-hint">For example, 3 2021</span>
                   <div class="govuk-date-input govuk-!-padding-top-2" id="date-of-vaccine">
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
