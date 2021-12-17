@@ -27,6 +27,8 @@
 
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
 
+      <!-- <p>{{data | dump }}</p> -->
+
       <form action="/international-arrivals/{{version}}/manage-orders/index-option-2" method="post">
         <fieldset class="govuk-fieldset">
           <div class="govuk-form-group">
@@ -42,13 +44,19 @@
         </fieldset>
       </form>
 
+    </div>
+  </div>
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      
       {% if data['reference-number'] == "12345678" %}
       <h3 class="govuk-heading-m">3 results</h3>
       <table class="govuk-table" style="width: 130%">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header ">Name</th>
+            <th scope="col" class="govuk-table__header ">Booking reference</th>
             <th scope="col" class="govuk-table__header ">Booking reference</th>
             <th scope="col" class="govuk-table__header ">Package</th>
             <th scope="col" class="govuk-table__header ">Dispatch date</th>
@@ -132,13 +140,15 @@
         </tbody>
       </table>
       {% else %}
-      <table class="govuk-table" style="width: 130%">
+      <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Name</th>
+            <th scope="col" class="govuk-table__header">Email</th>
             <th scope="col" class="govuk-table__header">Booking reference</th>
-            <th scope="col" class="govuk-table__header">Package</th>
-            <th scope="col" class="govuk-table__header">Dispatch date</th>
+            <th scope="col" class="govuk-table__header">Order number</th>
+            <!-- <th scope="col" class="govuk-table__header">Package</th>
+            <th scope="col" class="govuk-table__header">Dispatch date</th> -->
             <th scope="col" class="govuk-table__header">Status</th>
             <th scope="col" class="govuk-table__header"></th>
           </tr>
@@ -146,9 +156,9 @@
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__cell">Jane Smith</td>
-            <td class="govuk-table__cell">12345678</td>
-            <td class="govuk-table__cell">Day 2 and day 8</td>
-            <td class="govuk-table__cell">30 June 2021</td>
+            <td class="govuk-table__cell">jsmith@gmail.com</td>
+            <td class="govuk-table__cell">NHSD1234567<br />Day 2</td>
+            <td class="govuk-table__cell">ABCDE1234567</td>
             {% if data['order-12345678-status'] == "Refunded" %}
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
             {% else %}
@@ -158,9 +168,9 @@
           </tr>
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__cell">Pete Smith</td>
-            <td class="govuk-table__cell">12345678</td>
-            <td class="govuk-table__cell">Day 2</td>
-            <td class="govuk-table__cell">30 June 2021</td>
+            <td class="govuk-table__cell">psmith@gmail.com</td>
+            <td class="govuk-table__cell">NHSD1234567<br />Day 2</td>
+            <td class="govuk-table__cell">ABCDE1234567</td>
             {% if data['order-12345678-status'] == "Refunded" %}
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
             {% else %}
@@ -170,9 +180,9 @@
           </tr>
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__cell">Maggie Smith</td>
-            <td class="govuk-table__cell">12345678</td>
-            <td class="govuk-table__cell">Day 2</td>
-            <td class="govuk-table__cell">30 June 2021</td>
+            <td class="govuk-table__cell">msmith@gmail.com</td>
+            <td class="govuk-table__cell">NHSD1234567<br />Day 2</td>
+            <td class="govuk-table__cell">ABCDE1234567</td>
             {% if data['order-12345678-status'] == "Refunded" %}
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
             {% else %}
@@ -182,17 +192,17 @@
           </tr>
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__cell">Rianne Jones</td>
-            <td class="govuk-table__cell">12345677</td>
-            <td class="govuk-table__cell">Day 2</td>
-            <td class="govuk-table__cell">31 June 2021</td>
+            <td class="govuk-table__cell">r.jones@gmail.com</td>
+            <td class="govuk-table__cell">NHSD1234567<br />Day 2</td>
+            <td class="govuk-table__cell">ABCDE1234567</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Dispatched</strong></td>
             <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals/{{version}}/manage-orders/confirm-identity-12345677">View order</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__cell">Zara Alime</td>
-            <td class="govuk-table__cell">12345676</td>
-            <td class="govuk-table__cell">Day 2</td>
-            <td class="govuk-table__cell">3 July 2021</td>
+            <td class="govuk-table__cell">zara.alime@hotmail.com</td>
+            <td class="govuk-table__cell">NHSD1234567<br />Day 2</td>
+            <td class="govuk-table__cell">ABCDE1234567</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Dispatched</strong></td>
             <td class="govuk-table__cell"><a style="float:right" href="/international-arrivals/{{version}}/manage-orders/confirm-identity-12345676">View order</a></td>
           </tr>
@@ -200,7 +210,7 @@
       </table>
       {% endif %}
 
-      <div class="flex-container" style="display: flex; justify-content: space-between; width: 130%">
+      <div class="flex-container" style="display: flex; justify-content: space-between;">
         <div>
           <a href="#" class="govuk-body-s govuk-!-margin-right-2">Previous</a>
           <span class="govuk-body-s govuk-!-margin-right-2">1</span>
@@ -219,6 +229,7 @@
         </a>
       </div>
 
+      
     </div>
   </div>
 
