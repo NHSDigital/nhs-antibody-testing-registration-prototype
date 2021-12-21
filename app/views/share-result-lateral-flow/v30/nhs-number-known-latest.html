@@ -1,0 +1,84 @@
+{% set version = "v30" %}
+{% set pageTitle = "NHS number" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/mobile">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/want-confirmations" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                NHS number
+              </h1>
+            </legend>
+            <span id="nhs-number-known-hint" class="govuk-body">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              <p>An NHS number is a 10-digit number, for example, 485 777 3456.
+                They can find it on any letter the NHS has sent them, on a prescription, or by logging in to a GP practice online service.
+                  <br><br>
+                  In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.
+                  <br><br>
+                  It's OK if they do not have an NHS number or they do not live in the UK, they can still continue.</p>
+              {% else %}
+              <p>An NHS number is a 10-digit number, for example, 485 777 3456.
+                You can find it on any letter the NHS has sent you, on a prescription, or by logging in to a GP practice online service.
+                  <br><br>
+                  In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.
+                  <br><br>
+                  It's OK if you do not have an NHS number or you do not live in the UK, you can still continue.</p>
+              {% endif %}
+            </span>
+
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            <p class="govuk-!-margin-top-5"><a href="https://www.nhs.uk/nhs-services/online-services/find-nhs-number/">Look up their NHS number (opens in a new tab)</a></p>
+            {% else %}
+            <p class="govuk-!-margin-top-5"><a href="https://www.nhs.uk/nhs-services/online-services/find-nhs-number/">Look up your NHS number (opens in a new tab)</a></p>
+            {% endif %}
+
+                      <div class="govuk-form-group govuk-!-margin-bottom-3">
+                            {% if data['whos-taking-the-test'] == "someone-else" %}
+                            <label class="govuk-label" for="nhs-number">
+                              <strong>What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?</strong>
+                            </label>
+                            {% else %}
+                            <label class="govuk-label" for="nhs-number">
+                              <strong>What is your NHS number?</strong>
+                            </label>
+                            {% endif %}
+                          <input class="govuk-input govuk-input--width-10" id="nhs-number" name="nhs-number" type="text" value="">
+                        </div>
+
+
+                <button class="govuk-button" data-module="govuk-button">Continue</button>
+                <button class="govuk-button govuk-button--secondary" data-module="govuk-button"> Continue without NHS number</button>
+
+          </fieldset>
+        </div>
+
+
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+{% endblock %}
