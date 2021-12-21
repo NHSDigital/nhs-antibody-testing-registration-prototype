@@ -44,21 +44,32 @@
          it’s faster than a home test).</p>
        {% endif %}
 
-        <div class="govuk-warning-text">
+      <!--  <div class="govuk-warning-text">
           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
           <strong class="govuk-warning-text__text">
             <span class="govuk-warning-text__assistive">Warning</span>
             {% if data['whos-taking-the-test'] == "someone-else" %}
-            Until they get further advice, {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} and everyone they live with must self-isolate immediately.
-            Follow <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS advice about staying at home (self-isolation)</a>
+            Until they get further advice, {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} and everyone they live with must self-isolate immediately for 10 days.
+            This includes the day of the test and the next 10 full days. They can leave home for their follow-up test.
+            Care home residents must self-isolate for 14 days.
             {% else %}
-            Until you get further advice, you and everyone you live with must self-isolate immediately.
-            Follow <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS advice about staying at home (self-isolation)</a>
+            Until you get further advice, you and everyone you live with must self-isolate immediately for 10 days.
+            This includes the day of your test and the next 10 full days. You can leave home for your follow-up test.
+            Care home residents must self-isolate for 14 days.
             {% endif %}
           </strong>
-        </div>
+        </div> -->
 
        <button class="govuk-button" data-module="govuk-button">Book the follow-up test now</button>
+
+       <div class="govuk-inset-text govuk-!-margin-top-2">
+         {% if data['whos-taking-the-test'] == "someone-else" %}
+         <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS about staying at home (self-isolation)</a>
+         {% else %}
+         <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS about staying at home (self-isolation)</a>
+         {% endif %}
+       </div>
+
 
      <p class="govuk-body"><a href="index" target="_blank" rel="noreferrer">Report another result</a>
 
