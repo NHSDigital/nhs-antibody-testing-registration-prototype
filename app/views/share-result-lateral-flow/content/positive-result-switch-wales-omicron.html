@@ -36,7 +36,7 @@
        <p class="govuk-body">Self-isolate until you receive the result of your follow-up test.</p>
        {% endif %}
 
-      <div class="govuk-warning-text">
+    <!--  <div class="govuk-warning-text">
          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
          <strong class="govuk-warning-text__text">
            <span class="govuk-warning-text__assistive">Warning</span>
@@ -50,7 +50,20 @@
            even if the follow-up test is negative. This includes the day of your test and the next 10 full days.
            {% endif %}
          </strong>
-       </div> 
+       </div>  -->
+
+       <div class="govuk-warning-text">
+         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+         <strong class="govuk-warning-text__text">
+           <span class="govuk-warning-text__assistive">Warning</span>
+           {% if data['whos-taking-the-test'] == "someone-else" %}
+           Until they get further advice, {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}
+           <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">self-isolate straight away (opens in a new tab)</a> until they get your follow-up test result.
+           {% else %}
+           Until you get further advice, <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">self-isolate straight away (opens in a new tab)</a> until you get your follow-up test result.
+           {% endif %}
+         </strong>
+       </div>       
 
        {% if data['whos-taking-the-test'] == "someone-else" %}
        <p class="govuk-body">They will be contacted by a contact tracing team following their positive lateral flow test result
