@@ -1,0 +1,49 @@
+{% set version = "v1" %}
+{% set pageTitle = "Are you sure you are eligible for a PCR test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+          {{ pageTitle }}
+      </h1>
+
+
+
+
+          <div class="govuk-button-group">
+            <form action="/antigen/{{version}}/refer-and-triage/status-page" method="post">
+              <button class="govuk-button" data-module="govuk-button">
+                Save and continue
+              </button>
+            </form>
+            <form action="/antigen/{{version}}/refer-and-triage/status-page" method="post">
+              <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Save as draft
+              </button>
+            </form>
+          </div>
+
+    </div>
+</div>
+
+{% endblock %}
