@@ -1,0 +1,74 @@
+{% set version = "v30" %}
+{% set pageTitle = "Do you want to save their details to your account?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent"></div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/check-answers" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Do you want to save {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s details to your account?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+            </legend>
+              <span id="nhs-number-hint" class="govuk-body">
+                If they’re part of your household, you can save their details to your account. This makes reporting future test results quicker and easier.
+              </span>
+              <br>
+              <br>
+            <div class="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="yes" name="save-person" type="radio" value="Yes" {{ checked("save-person", "Yes") }}>
+                  <label class="govuk-label govuk-radios__label" for="yes">
+                    <strong>Yes</strong>
+                    <span id="sign-in-item-hint" class="govuk-hint" style="color: #000000;">
+                      I want to save this person's details and have permission
+                    </span>
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="no" name="save-person" type="radio" value="No" {{ checked("save-person", "No") }}>
+                  <label class="govuk-label govuk-radios__label" for="no">
+                    <strong>No</strong>
+                    <span id="sign-in-item-hint" class="govuk-hint" style="color: #000000;">
+                      I do not want to save their details to my account
+                    </span>
+                  </label>
+                </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+{% endblock %}
