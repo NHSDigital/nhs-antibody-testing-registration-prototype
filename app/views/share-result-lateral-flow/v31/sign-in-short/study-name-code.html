@@ -1,0 +1,56 @@
+{% set version = "v30" %}
+{% set pageTitle = "Enter the name and postcode of the school, college or university" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/school-name">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/test-date" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <!-- <span id="post-code-hint" class="govuk-body">
+            Enter the full name and postcode of the place of study
+          </span> -->
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address">
+              School, college or university name
+            </label>
+            <input class="govuk-input govuk-input--width-20" id="address" name="address" type="text" value="{{ data['address'] }}">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="home-postcode">
+              School, college or university postcode
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+{% endblock %}

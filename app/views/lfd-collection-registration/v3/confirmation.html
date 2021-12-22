@@ -1,0 +1,91 @@
+{% set version = "v3" %}
+{% set pageTitle = "Here is your collect code" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['coronavirus-account'] == "Yes" %}
+  {% include "includes/account-menu.html" %}
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-8">
+      <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
+      <p class="govuk-body" style="color: #ffffff">
+        We’ll also send this collect code to the email address or mobile number you provided
+      </p>
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+      <img src="/public/images/QR_code.png" alt="randox number" style="height: 20%; width: 20%;" />
+    </div>
+
+    <p class="govuk-body govuk-!-margin-top-6 govuk-!-margin-bottom-8" style="text-align: center; line-height: 1em;">
+      Collect code reference:<br><br>
+
+      <strong>          <span class="govuk-!-margin-left-2 govuk-!-margin-right-2">NYX7</span>-<span class="govuk-!-margin-left-2 govuk-!-margin-right-2">CT5Z</span>-<span class="govuk-!-margin-left-2 govuk-!-margin-right-2">8VF7</span>-<span class="govuk-!-margin-left-2 govuk-!-margin-right-2">7FW4</span>
+</strong>
+
+      <!-- <strong><span class="govuk-!-margin-right-2">NYX7</span><span class="govuk-!-margin-right-2">CT5Z</span><span class="govuk-!-margin-right-2">8VF7</span><span>7FW4</span></strong> -->
+
+    </p>
+
+    <h3 class="govuk-heading-s govuk-!-margin-top-6">What happens next</h3>
+    <p class="govuk-body">
+      You'll need to show this collect code when you pick up your test packs from a pharmacy. Your collect code does not reserve test packs for you, and tests may not be available at your preferred pharmacy.
+    </p>
+    <p class="govuk-body">
+      You can use your collect code at any pharmacy that offers this service. We'll send it to the email address or mobile number you provided.
+    </p>
+    <p class="govuk-body">
+      If you do not have a smartphone or device, you can <a href="#" class="govuk-link">print it out here</a> or write it down and take it with you.
+    </p>
+    <p class="govuk-body">
+      <a class="govuk-body" href="https://find-covid-19-rapid-test-sites.maps.test-and-trace.nhs.uk/">Find your nearest pharmacy</a><br><br>
+    </p>
+
+    <h3 class="govuk-heading-s govuk-!-margin-top-4">
+      What's in the test pack
+    </h3>
+    <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
+      <li>7 rapid lateral flow tests</li>
+      <li>instructions on how to take the test and report results</li>
+    </ul>
+
+    <h3 class="govuk-heading-s govuk-!-margin-top-4">Taking the test</h3>
+
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="#">Watch a short video: how to take a rapid test</a><br><br>
+      <a class="govuk-link" href="#">Get test instructions in other languages and in easy read or large print format</a><br><br>
+      <a class="govuk-link" href="#">How to report your results</a>
+    </p>
+
+  </div>
+</div>
+
+<div class="proto-action big" style="bottom: 50px;">
+  <a href="/lfd-collection-registration/v1/confirmation-email">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Confirmation email</div>
+  </a>
+</div>
+
+{% endblock %}
