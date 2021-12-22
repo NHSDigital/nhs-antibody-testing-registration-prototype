@@ -1,0 +1,133 @@
+{% set version = "v30" %}
+{% set pageTitle = "Unique Organisation Number (UON)" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/share-result-lateral-flow/{{version}}/employer-uon-check" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+            <span id="enter-barcode-number-hint" class="govuk-body">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              The UON helps us to link {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} to their employer or organisation if they are testing for work purposes.
+              {% else %}
+              The UON helps us to link you to your employer or organisation if you're testing for work purposes.
+              {% endif %}
+            </span><br><br>
+
+            <span id="enter-barcode-number-hint" class="govuk-body">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s employer or organisation may have provided it with their test kit. {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/"> find the UON online (opens in a new tab)</a>.
+              {% else %}
+              Your employer or organisation may have provided it with your test kit. You can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/"> find the UON online (opens in a new tab)</a>.
+              {% endif %}
+            </span>
+
+
+             <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+               <summary class="govuk-details__summary">
+                 <span class="govuk-details__summary-text">
+                   {% if data['whos-taking-the-test'] == "someone-else" %}
+                   What to do if they cannot find this number
+                   {% else %}
+                   What to do if you cannot find this number
+                   {% endif %}
+                 </span>
+               </summary>
+               <div class="govuk-details__text">
+                 <p class="govuk-body">
+                   {% if data['whos-taking-the-test'] == "someone-else" %}
+                   <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">Find their UON online (opens in a new tab)</a>.
+                   {% else %}
+                   <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">Find your UON online (opens in a new tab)</a>.
+                   {% endif %}
+                 </p>
+                 <p class="govuk-body">
+                   {% if data['whos-taking-the-test'] == "someone-else" %}
+                   If they still need help, call the contact center:
+                   <li> 119 if they're in England, Wales or Northern Ireland</li>
+                   <li> 0300 303 2713 if they're in Scotland</li>
+                   Lines are open 7am till 11pm.
+                   {% else %}
+                   If you still need help, call the contact center:
+                   <li> 119 if you're in England, Wales or Northern Ireland</li>
+                   <li> 0300 303 2713 if you're in Scotland</li>
+                   Lines are open 7am till 11pm.
+                   {% endif %}
+                 </p>
+               </div>
+             </details>
+            <!-- <h2 class="govuk-heading-m">
+              Can you provide your UON?
+            </h2>
+
+            <div class="govuk-form-group">
+              <p class="govuk-body"><label class="govuk-label" for="account-number">
+                  Unique Organisation Number (optional)
+                </label>
+              </p>
+
+              <div id="account-number-hint" class="govuk-hint">
+                An 8 digit number like 12345678
+              </div>
+              <input class="govuk-!" id="account-number" name="account-number" type="text" spellcheck="false" aria-describedby="account-number-hint" pattern="[0-9]*" inputmode="numeric">
+            </div> -->
+
+            <h2 class="govuk-heading-m">
+              Can you provide your UON?
+            </h2>
+
+            <div class="govuk-form-group">
+              <p class="govuk-label-wrapper"><label class="govuk-body" for="account-number">
+                  UON (optional)
+                </label>
+              </p>
+              <div id="account-number-hint" class="govuk-hint">
+                An 8 digit number like 12345678
+              </div>
+              <input class="govuk-input govuk-input--width-10" id="account-number" name="account-number" type="text" spellcheck="false" aria-describedby="account-number-hint" pattern="[0-9]*" inputmode="numeric">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      </form>
+
+      <p>
+          <a class="govuk-link" href="/share-result-lateral-flow/{{version}}/employer-uon-check">
+            Continue without UON
+          </a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "What's their email address?" %}
+{% set pageTitle = "Email address" %}
 
 {% extends "includes/layout.html" %}
 
@@ -31,27 +31,30 @@
             {% if data['way-to-test'] == "home testing" %}
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                What's {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}'s email address?
+              {{ pageTitle }}
               </h1>
             </legend>
-            <span id="email-address-hint" class="govuk-body">
-              If they have one, we'll email their test site pass and test results to them. They can print this out or bring a copy of it on their mobile phone.<br><br>
-              Get their permission before you enter their email address.<br><br>
-              Make sure they're happy for their test results to go to this email address. Do not use a work or shared email address unless they're comfortable with others seeing their results.<br><br>
-              Children need to be aged 16 and over to receive their results. If the child is younger than 16, you (their parent or guardian) should enter your email address here.
-           </span>
+
+            <div id="email-address-hint">
+              <p class="govuk-body">We need an email address to send your test results. Use one you'll have access to later.</p>
+
+              <p class="govuk-body">If your mobile number is going to change soon, it's important you give us an email address, as it's the only way to get your test results.</p>
+
+              <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
+
+              <p class="govuk-body">If you're getting a test for a child, enter your email not theirs.</p>
+              <p class="govuk-body">If a test result is positive, the NHS may also use the details you supply for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/test-results/help-the-nhs-alert-your-close-contacts-if-you-test-positive/" target="_blank">contact tracing (opens in new tab)</a>.</p>
+            </div>
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+               Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} have an email address?
+             </legend>
 
            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
              <div class="govuk-radios__item">
-               <input class="govuk-radios__input" id="email-2-person-1" name="email-person-1" type="radio" value="same" {{ checked("email-person-1", "same") }}>
-               <label class="govuk-label govuk-radios__label" for="email-2-person-1">
-                 Use {{ data['email-address'] or 'psmith@example.co.uk'}} (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith'}})
-               </label>
-             </div>
-             <div class="govuk-radios__item">
                <input class="govuk-radios__input" id="email-1-person-1" name="email-person-1" type="radio" value="different" data-aria-controls="conditional-email-address" {{ checked("email-person-1", "different") }}>
                <label class="govuk-label govuk-radios__label" for="email-1-person-1">
-                 Use a different email address
+                 Yes
                </label>
              </div>
              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
@@ -69,29 +72,49 @@
                </div>
              </div>
             </div>
+            <div class="govuk-body">Or</div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="email-2-person-1" name="email-person-1" type="radio" value="same" {{ checked("email-person-1", "same") }}>
+              <label class="govuk-label govuk-radios__label" for="email-2-person-1">
+                Use (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith'}})
+              </label>
+            </div>
+
             {% else %}
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+
+            <!--legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
                 Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} have an email address?
               </h1>
-            </legend>
-            <span id="email-address-hint" class="govuk-body">
-              If they have one, we'll email their test site pass and test results to them. They can print this out or bring a copy of it on their mobile phone.<br><br>
-              Get their permission before you enter their email address.<br><br>
-              Make sure they're happy for their test results to go to this email address. Do not use a work or shared email address unless they're comfortable with others seeing their results.<br><br>
-              Children need to be aged 16 and over to receive their results. If the child is younger than 16, you (their parent or guardian) should enter your email address here.
-           </span>
+            </legend-->
+
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                  <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                    {{ pageTitle }}
+                  </h1>
+                </legend>
+
+                <div id="email-address-hint">
+                  <p class="govuk-body">We need an email address to send your test results. Use one you'll have access to later.</p>
+
+                  <p class="govuk-body">If your mobile number is going to change soon, it's important you give us an email address, as it's the only way to get your test results.</p>
+
+                  <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
+
+                  <p class="govuk-body">If you're getting a test for a child, enter your email not theirs.</p>
+                  <p class="govuk-body">If a test result is positive, the NHS may also use the details you supply for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/test-results/help-the-nhs-alert-your-close-contacts-if-you-test-positive/" target="_blank">contact tracing (opens in new tab)</a>.</p>
+                </div>
+
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                   Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} have an email address?
+                 </legend>
+
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-2-person-1" name="email-person-1" type="radio" value="same" {{ checked("email-person-1", "same") }}>
-                <label class="govuk-label govuk-radios__label" for="email-2-person-1">
-                  Use {{ data['email-address'] or 'psmith@example.co.uk'}} (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith'}})
-                </label>
-              </div>
+
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-1-person-1" name="email-person-1" type="radio" value="different" data-aria-controls="conditional-email-address" {{ checked("email-person-1", "different") }}>
                 <label class="govuk-label govuk-radios__label" for="email-1-person-1">
-                  Use a different email address
+                  Yes
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
@@ -108,10 +131,13 @@
                   <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address-person-1" name="confirm-email-address-person-1" type="tel" value="{{ data['confirm-email-address-person-1'] }}">
                 </div>
               </div>
+
+                <div class="govuk-body">Or</div>
+
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-2-person-1" name="email-person-1" type="radio" value="No" {{ checked("email-person-1", "No") }}>
+                <input class="govuk-radios__input" id="email-2-person-1" name="email-person-1" type="radio" value="same" {{ checked("email-person-1", "same") }}>
                 <label class="govuk-label govuk-radios__label" for="email-2-person-1">
-                  No, they do not have an email address
+                  Use (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith'}})
                 </label>
               </div>
             </div>
@@ -120,10 +146,15 @@
         </div>
 
         <button class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">Continue</button>
-
       </form>
-
     </div>
+
+    <div class="proto-action big">
+      <a href="/antigen/{{version}}/global-registration/email-address-person-1-option-2">
+        <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 2</div>
+      </a>
+    </div>
+
   </div>
 
 {% endblock %}

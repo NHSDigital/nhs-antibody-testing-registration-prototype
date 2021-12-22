@@ -1,0 +1,73 @@
+
+
+       <div>
+        <p class="govuk-body">The technology the service uses to check the result guarantees a high level of accuracy. It's authorised by the UK health regulator, the Medicines and Healthcare products Regulatory Agency (MHRA).</p>
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        <p class="govuk-body">If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} thinks the service read their result incorrectly, they can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report more details about this service to the MHRA (opens in a new tab)</a>.</p>
+        <p class="govuk-body">They must follow the advice below to help stop the spread of the virus.</p>
+        {% else %}
+        <p class="govuk-body">If you think the service read your result incorrectly, you can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report more details about this service to the MHRA (opens in a new tab)</a>.</p>
+        <p class="govuk-body">You must follow the advice below to help stop the spread of the virus.</p>
+        {% endif %}
+       </div>
+
+  <div>
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <h3 class="govuk-heading-m">What {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} must do</h3>
+    {% else %}
+    <h3 class="govuk-heading-m">What you must do</h3>
+    {% endif %}
+   <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+     {% if data['whos-taking-the-test'] == "someone-else" %}
+     <li>They must take a different follow-up test as soon as possible to confirm this result</li>
+     <li>They should self-isolate until they get the follow-up test result</li>
+     <li><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">Check if the people they live with need to self-isolate on NHS.UK (opens in a new tab)</a></li>
+     <li>Care home residents must self-isolate for 14 days</li>
+    {% else %}
+    <li>You must take a different follow-up test as soon as possible to confirm this result</li>
+    <li>You should self-isolate until you get the follow-up test result</li>
+    <li><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">Check if the people you live with need to self-isolate on NHS.UK (opens in a new tab)</a></li>
+    <li>Care home residents must self-isolate for 14 days</li>
+    {% endif %}
+  </ul>
+  </div>
+
+  <div>
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <h3 class="govuk-heading-m">If they live in Wales</h3>
+    {% else %}
+    <h3 class="govuk-heading-m">If you live in Wales</h3>
+    {% endif %}
+    <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <li>They must take a different follow-up test within 24 hours</li>
+    <li>If they take their follow-up test after 24 hours, they will need to self-isolate for 10 days, even if the follow-up test is negative. This includes the day of their test and the next 10 full days</li>
+    <li>They will be contacted following their positive lateral flow test result and this will enable them to apply for financial support if they are eligible</li>
+    {% else %}
+    <li>You must take a different follow-up test within 24 hours</li>
+    <li>If you take your follow-up test after 24 hours, you will need to self-isolate for 10 days, even if the follow-up test is negative. This includes the day of your test and the next 10 full days</li>
+    <li>You will be contacted following your positive lateral flow test result and this will enable you to apply for financial support if you are eligible</li>
+    {% endif %}
+  </div>
+
+  <div>
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <h3 class="govuk-heading-m">Book a follow up test</h3>
+    {% else %}
+    <h3 class="govuk-heading-m">Book your follow up test</h3>
+    {% endif %}
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <p class="govuk-body">Choose a test site if possible, as it's faster than a home test. They can leave home for their follow-up test.</p>
+    {% else %}
+    <p class="govuk-body">Choose a test site if you can, it's faster than a home test. You can leave home for your follow-up test.</p>
+    {% endif %}
+  </div>
+
+  <a href="https://www.gov.uk/get-coronavirus-test" class="govuk-button govuk-u-margin-bottom-8">
+    Book a follow up test now
+  </a>
+
+  <div>
+    <h3 class="govuk-heading-m">Help and advice</h3>
+    <p class="govuk-body"><a href=" https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/">Self isolation advice from the NHS (opens in a new tab)</a></p>
+</div>

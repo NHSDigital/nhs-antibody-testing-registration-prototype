@@ -1,0 +1,42 @@
+{% set version = "v31" %}
+{% set pageTitle = "Sorry, you cannot report the result right now" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="index" method="post">
+
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+
+        <p class="govuk-body">This request has been identified as unusual by our service. Please start again.</p>
+        <p class="govuk-body">If you still cannot report your result, call 119 for help (free from mobiles and landlines). Lines are open 7am to 11pm.</p>
+
+        <br>
+        <button class="govuk-button" data-module="govuk-button">Start again</button>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
