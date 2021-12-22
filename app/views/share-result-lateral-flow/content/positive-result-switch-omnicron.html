@@ -44,7 +44,7 @@
          it’s faster than a home test).</p>
        {% endif %}
 
-        <div class="govuk-warning-text">
+      <!--  <div class="govuk-warning-text">
           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
           <strong class="govuk-warning-text__text">
             <span class="govuk-warning-text__assistive">Warning</span>
@@ -55,7 +55,21 @@
             Until you get further advice, <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">self-isolate straight away (opens in a new tab)</a> until you get your follow-up test result.
             {% endif %}
           </strong>
-        </div>
+        </div> -->
+
+        <div class="govuk-warning-text">
+           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+           <strong class="govuk-warning-text__text">
+             <span class="govuk-warning-text__assistive">Warning</span>
+             {% if data['whos-taking-the-test'] == "someone-else" %}
+             Until they get further advice, {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}
+             <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">self-isolate straight away (opens in a new tab)</a> until they get your follow-up test result.
+             {% else %}
+             If you are in England, <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">self-isolate straight away (opens in a new tab)</a> until you get your follow-up test result.
+             Self-isolation guidance may differ if you are in <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland (opens in a new tab)</a> or <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts#toc-0" target="_blank" rel="noreferrer">Northern Ireland (opens in a new tab)</a>.
+             {% endif %}
+           </strong>
+         </div>
 
        <button class="govuk-button" data-module="govuk-button">Book the follow-up test now</button>
 
