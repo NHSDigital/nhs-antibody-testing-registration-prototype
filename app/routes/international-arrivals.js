@@ -278,7 +278,7 @@ router.post("/international-arrivals/v3/action3/travel-package-exempt", function
 router.post("/international-arrivals/v3/action3/point-of-entry", function (req, res) {
   let redCountryTravel = req.session.data["red-country-travel"]
   if (redCountryTravel == "Yes") {
-    res.redirect("/international-arrivals/v3/mobile-phone-number")
+    res.redirect("/international-arrivals/v3/mobile-number")
   } else {
     res.redirect("/international-arrivals/v3/travel-route")
   }

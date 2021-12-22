@@ -264,6 +264,64 @@ Appleseed{% set version = "v3" %}
             </a>
           </dd>
         </div>
+        {% if data['vaccine'] != "No" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            When did you have the vaccine?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['vaccine-date'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/vaccine-date">
+              Change
+              <span class="govuk-visually-hidden">Coronavirus vaccine</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        {% if data['vaccine-date'] == "More than 14 days ago" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of vaccine
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['vaccine-date-input-month'] == "1" or data['vaccine-date-input-month'] == "01" %}
+            January {{ data['vaccine-date-input-year'] }}
+            {% elseif data['vaccine-date-input-month'] == "2" or data['vaccine-date-input-month'] == "02" %}
+            February {{ data['vaccine-date-input-year'] }}
+            {% elseif data['vaccine-date-input-month'] == "3" or data['vaccine-date-input-month'] == "03" %}
+            March {{ data['vaccine-date-input-year'] }}
+            {% elseif data['vaccine-date-input-month'] == "4" or data['vaccine-date-input-month'] == "04" %}
+            April {{ data['vaccine-date-input-year'] }}
+            {% elseif data['vaccine-date-input-month'] == "5" or data['vaccine-date-input-month'] == "05" %}
+            May {{ data['vaccine-date-input-year'] }}
+            {% elseif data['vaccine-date-input-month'] == "6" or data['vaccine-date-input-month'] == "06" %}
+            June {{ data['vaccine-date-input-year'] }}
+            {% elseif data['vaccine-date-input-month'] == "7" or data['vaccine-date-input-month'] == "07" %}
+            July {{ data['vaccine-date-input-year'] }}
+            {% elseif data['vaccine-date-input-month'] == "8" or data['vaccine-date-input-month'] == "08" %}
+            August {{ data['vaccine-date-input-year'] }}
+            {% elseif data['vaccine-date-input-month'] == "9" or data['vaccine-date-input-month'] == "09" %}
+            September {{ data['vaccine-date-input-year'] }}
+            {% elseif data['vaccine-date-input-month'] == "10" %}
+            October {{ data['vaccine-date-input-year'] }}
+            {% elseif data['vaccine-date-input-month'] == "11" %}
+            November {{ data['vaccine-date-input-year'] }}
+            {% elseif data['vaccine-date-input-month'] == "12" %}
+            December {{ data['vaccine-date-input-year'] }}
+            {% else %}
+            May 2021
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/international-arrivals/{{version}}/vaccine-date">
+              Change
+              <span class="govuk-visually-hidden">Coronavirus vaccine</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Ethnic group
