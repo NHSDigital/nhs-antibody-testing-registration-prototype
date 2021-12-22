@@ -1,0 +1,97 @@
+{% set version = "v4" %}
+{% set pageTitle = "How do you want to get the coronavirus test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="#">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="how-will-you-get-test-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <p class="govuk-body">
+              <span id="how-will-you-get-test-hint" class="govuk-body">
+              Based on your answers, these testing services are available to you.
+            </span>
+            </p>
+
+            <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                If no tests are available, do not call 119 as they do not have access to more PCR tests right now. You cannot order tests from NHS 111 or 999.
+              </strong>
+            </div>
+
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input disabled class="govuk-radios__input" id="way-to-test-1-option-1" name="way-to-test-option-1" type="radio" value="drive-through" {{ checked("way-to-test-option-1", "drive-through") }} aria-describedby="drive-through-1-hint">
+                <label class="govuk-label govuk-radios__label" for="way-to-test-1-option-1">
+                  <span  class="govuk-body-l"><strong>At a drive-through test site</strong></span>
+                </label>
+                <div id="drive-through-1-hint" class="govuk-hint govuk-radios__hint">
+          There are no appointments available. Please try again later.
+        </div>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input disabled class="govuk-radios__input" id="way-to-test-2-option-1" name="way-to-test-option-1" type="radio" value="walk-in" {{ checked("way-to-test-option-1", "walk-in") }} aria-describedby="walk-in-1-hint">
+                <label class="govuk-label govuk-radios__label" for="way-to-test-2-option-1">
+                  <span class="govuk-body-l"><strong>At a walk-through test site</strong></span>
+                </label>
+                <div id="walk-in-1-hint" class="govuk-hint govuk-radios__hint">
+          There are no appointments available. Please try again later.
+        </div>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="way-to-test-3-option-1" name="way-to-test-option-1" type="radio" value="home testing" {{ checked("way-to-test-option-1", "home testing") }} aria-describedby="home-testing-1-hint home-testing-2-hint home-testing-3-hint">
+                <label class="govuk-label govuk-radios__label" for="way-to-test-3-option-1">
+                  <span  class="govuk-body-l"><strong>Home testing</strong></span>
+                </label>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li><span id="home-testing-1-hint">you can get a test kit for yourself and up to 3 other people you live with</span></li>
+                  <li><span id="home-testing-2-hint">it is posted to your home and should arrive the day after you order it</span></li>
+                  <li><span id="home-testing-3-hint">it’s important that you return your test as soon as possible after doing it</span></li>
+                </ul>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+{% block bodyEnd %}
+<div class="proto-action big">
+    <a href="/antigen/v4/alternative-screens/option-1-error">
+      <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Show only drive through available</div>
+    </a>
+</div>
+{% endblock %}

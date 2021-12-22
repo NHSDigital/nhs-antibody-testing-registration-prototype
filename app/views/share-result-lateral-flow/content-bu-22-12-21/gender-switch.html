@@ -1,0 +1,53 @@
+{% set pageTitle = "Which of the following is recorded on your medical record?" %}
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        Which of the following is recorded on {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s medical record?
+        {% else %}
+        {{ pageTitle }}
+        {% endif %}
+      </h1>
+    </legend>
+    <span id="name-hint" class="govuk-body">
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      We are asking this question so in future, {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s result can be saved to their GP record.
+      {% else %}
+      We are asking this question so in future, your result can be saved to your GP record.
+      {% endif %}
+    </span>
+    <div class="govuk-radios govuk-!-margin-top-5">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="Female" {{ checked("gender", "Female") }}>
+        <label class="govuk-label govuk-radios__label" for="gender-1">
+          Female
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="gender-2" name="gender" type="radio" value="Male" {{ checked("gender", "Male") }}>
+        <label class="govuk-label govuk-radios__label" for="gender-2">
+          Male
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="gender-3" name="gender" type="radio" value="Other / Not specified / I do not know" {{ checked("gender", "Other / Not specified / I do not know") }}>
+        <label class="govuk-label govuk-radios__label" for="gender-3">
+          Other / Not specified / I do not know
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<!--<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Why are there not more options?
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    We understand there are other ways you may answer this question. In this case we just need to know what's on your GP record.
+  </div>
+</details>-->
