@@ -1,15 +1,11 @@
 
       <div class="govuk-panel govuk-panel--confirmation govuk-panel-lft-result">
          <h1 class="govuk-panel__title">
-           {% if data['whos-taking-the-test'] == "someone-else" %}
-           You reported {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s coronavirus test result as positive
-           {% else %}
-           You reported a positive coronavirus test result
-           {% endif %}
+           The coronavirus test result is positive
          </h1>
          <div class="govuk-panel__body">
            {% if data['whos-taking-the-test'] == "someone-else" %}
-           It’s likely they were infectious when the test was done
+           It’s likely {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} was infectious when the test was done
            {% else %}
            It’s likely you were infectious when the test was done
            {% endif %}
@@ -19,7 +15,7 @@
        <p class="govuk-body">This result has been reported to the NHS.</p>
 
        {% if data['whos-taking-the-test'] == "someone-else" %}
-       <h2 class="govuk-heading-m">What {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} needs to do</h2>
+       <h2 class="govuk-heading-m">What they need to do</h2>
        {% else %}
        <h2 class="govuk-heading-m">What you need to do</h2>
        {% endif %}
@@ -36,7 +32,7 @@
        <p class="govuk-body">Self-isolate until you receive the result of your follow-up test.</p>
        {% endif %}
 
-    <!--  <div class="govuk-warning-text">
+    <!--   <div class="govuk-warning-text">
          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
          <strong class="govuk-warning-text__text">
            <span class="govuk-warning-text__assistive">Warning</span>
@@ -50,7 +46,7 @@
            even if the follow-up test is negative. This includes the day of your test and the next 10 full days.
            {% endif %}
          </strong>
-       </div>  -->
+       </div> -->
 
        <div class="govuk-warning-text">
          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
@@ -89,8 +85,9 @@
 
      <p class="govuk-body"><a href="index" target="_blank" rel="noreferrer">Report another result</a>
 
-     <br>
-     <br>
+       <div class="govuk-inset-text">
+        <a href="contest-positive">I think the service incorrectly read the result</a>
+       </div>
 
      <h5 class="govuk-heading-s">Help and advice</h5>
      <p><a href="https://www.gov.uk/find-coronavirus-support" target="_blank" rel="noreferrer">
