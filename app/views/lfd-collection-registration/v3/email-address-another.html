@@ -1,0 +1,82 @@
+{% set version = "v3" %}
+{% set pageTitle = "Does the person you’re collecting for have an email address?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['coronavirus-account'] == "Yes" %}
+  {% include "includes/account-menu.html" %}
+{% endif %}
+
+  <a class="govuk-back-link" href="/lfd-collection-registration/{{version}}/collecting-for">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/lfd-collection-registration/{{version}}/mobile-number-another" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="email-another-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="email-another-hint" class="govuk-body">
+              We may use this to contact them about their test kit. If you do not provide an email address, we may contact you instead.
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-another-1" name="email-another" type="radio" value="Yes" data-aria-controls="conditional-email-another" {{ checked("email-another", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="email-another-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-another">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="email-address-another">
+                    Enter their email address
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-half" id="email-address-another" name="email-address-another" type="tel" value="{{ data['email-address-another'] }}">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-another-2" name="email-another" type="radio" value="No" {{ checked("email-another", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="email-another-2">
+                  No
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-another-3" name="email-another" type="radio" value="I do not know" {{ checked("email-another", "I do not know") }}>
+                <label class="govuk-label govuk-radios__label" for="email-another-3">
+                  I do not know
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
