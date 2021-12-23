@@ -1,0 +1,46 @@
+{% extends "includes/layout.html" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "Have you cancelled the previous order?" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link" href="#">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="5" method="post">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-2">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+
+          <p class="govuk-body">If they have already received a test kit, it will need to be thrown away. We’ll send them a text explaining this.</p>
+
+        </fieldset>
+
+        <div class="govuk-button-group govuk-!-margin-top-4">
+          {{ govukButton({
+            text: "Confirm",
+            href: "confirmation-manual"
+          }) }}
+
+          {{ govukButton({
+            text: "Cancel",
+            href: "duplicate-single-no",
+            classes: "govuk-button--secondary"
+          }) }}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}
