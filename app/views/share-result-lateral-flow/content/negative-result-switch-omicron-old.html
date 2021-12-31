@@ -53,50 +53,54 @@ and-treatment/when-to-self-isolate-and-what-to-do/"> Find out if you need to sel
      <h4 class="govuk-heading-m">The test result was positive</h4>
 
      {% if data['whos-taking-the-test'] == "someone-else" %}
-     <p class="govuk-body">If the lateral flow test was actually positive, but you reported it as negative, follow the guidance below.</p>
+     <p class="govuk-body">If the lateral flow test was actually positive, but you reported it as negative,
+       the person who took the test must take a different follow-up test (normally a PCR test) within 24 hours.</p>
      {% else %}
-     <p class="govuk-body">If your lateral flow test was actually positive, but you reported it as negative, follow the guidance below.</p>
+     <p class="govuk-body">If your lateral flow test was actually positive, but you reported it as negative,
+       you must take a different follow-up test (normally a PCR test) within 24 hours.</p>
      {% endif %}
 
      {% if data['whos-taking-the-test'] == "someone-else" %}
-     <h3 class="govuk-heading-s">If they live in England</h3>
+     <p class="govuk-body">Choose a test site if you can, as it’s faster than a home test.</p>
+     <p class="govuk-body">This follow-up test will confirm if they are infectious to others, start contact tracing and enable them to claim financial support if they are eligible.</p>
      {% else %}
-     <h3 class="govuk-heading-s">If you live in England</h3>
-     {% endif %}
-     <p class="govuk-body">Self-isolate straight away. There is no need to take a follow-up test.</p>
-     <p class="govuk-body">Find further <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/"  target="_blank" rel="noreferrer">self-isolation guidance (opens in new tab)</a> if you're in England.</p>
-
-     {% if data['whos-taking-the-test'] == "someone-else" %}
-     <h3 class="govuk-heading-s">If they live in Scotland or Northern Ireland</h3>
-     {% else %}
-     <h3 class="govuk-heading-s">If you live in Scotland or Northern Ireland</h3>
+     <p class="govuk-body">Choose a test site if you can, as it’s faster than a home test.</p>
+     <p class="govuk-body">This follow-up test will confirm if you are infectious to others, start contact tracing and enable you to claim financial support if you are eligible.</p>
      {% endif %}
 
-     {% if data['whos-taking-the-test'] == "someone-else" %}
-     <p class="govuk-body">They must take a different follow-up test today, or as soon as possible.</p>
-     <p class="govuk-body">This will confirm if they are infectious to others, start contact tracing and enable them to claim financial support if they are eligible.</p>
-     <p class="govuk-body">Follow the instructions they were given to take their follow-up test. If they were not given instructions, book their test below (choose a test site if you can, it’s faster than a home test).</p>
-       {% else %}
-     <p class="govuk-body">You must take a different follow-up test today, or as soon as possible.</p>
-     <p class="govuk-body">This will confirm if you are infectious to others, start contact tracing and enable you to claim financial support if you are eligible.</p>
-     <p class="govuk-body">Follow the instructions you were given to take your follow-up test. If you were not given instructions, book your test below (choose a test site if you can, it’s faster than a home test).</p>
-     {% endif %}
 
-            <div class="govuk-warning-text">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                   They must <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">
-                     self-isolate straight away (opens in a new tab)</a> until they get their follow-up test result.
-                     Find further self-isolation guidance if they're in <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland (opens in a new tab)</a> or <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts#toc-0" target="_blank" rel="noreferrer">Northern Ireland (opens in a new tab)</a>.
-                 {% else %}
-                   Self-isolate immediately until you get the results of your follow-up test.
-                   You can leave home for your follow-up test.
-                   Find further self-isolation guidance if you're in <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland</a> or <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Northern Ireland</a> (open in new tabs).
-                {% endif %}
-              </strong>
-            </div>
+  <!--       {% if data['whos-taking-the-test'] == "someone-else" %}
+         <div class="govuk-warning-text">
+           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+           <strong class="govuk-warning-text__text">
+             <span class="govuk-warning-text__assistive">Warning</span>
+         Until they get further advice, they should self-isolate immediately for 10 days.
+         This includes the day of their test and the next 10 full days. They can leave home for their follow-up test.
+             </strong>
+           </div>
+         {% else %}
+         <div class="govuk-warning-text">
+           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+           <strong class="govuk-warning-text__text">
+             <span class="govuk-warning-text__assistive">Warning</span>
+         Until you get further advice, you should self-isolate immediately for 10 days.
+         This includes the day of your test and the next 10 full days. You can leave home for your follow-up test.
+           </strong>
+         </div>
+         {% endif %} -->
+
+         <div class="govuk-warning-text">
+           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+           <strong class="govuk-warning-text__text">
+             <span class="govuk-warning-text__assistive">Warning</span>
+             {% if data['whos-taking-the-test'] == "someone-else" %}
+             Until they get further advice, {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}
+             <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">self-isolate straight away (opens in a new tab)</a> until they get your follow-up test result.
+             {% else %}
+             Until you get further advice, <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">self-isolate straight away (opens in a new tab)</a> until you get your follow-up test result.
+             {% endif %}
+           </strong>
+         </div>
 
      {% if data['whos-taking-the-test'] == "someone-else" %}
      <h4 class="govuk-heading-s">If they live in Wales</h4>
