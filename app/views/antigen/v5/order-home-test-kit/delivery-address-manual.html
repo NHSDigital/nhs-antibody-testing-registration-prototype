@@ -1,0 +1,65 @@
+{% set version = "v5" %}
+{% set pageTitle = "Enter your delivery address" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/order-home-test-kit/delivery-address">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/order-home-test-kit/confirm-email-address" method="post">
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-5">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <p>
+            <strong class="govuk-!-margin-bottom-4 govuk-!-display-block" style="font-weight: normal;">Postcode</strong>
+            <strong>{{ data['delivery-address-postcode'] | default('LS1 3BE') }}</strong>
+            <a href="/antibody/{{version}}/home-testing/delivery-address" class="govuk-!-margin-left-5">
+              Change
+              <span class="govuk-visually-hidden">your postcode</span>
+            </a>
+          </p>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address-line-1">
+              Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
+            </label>
+            <input class="govuk-input" id="delivery-address-line-1" name="delivery-address-line-1" type="text" autocomplete="delivery-address-line1">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address-line-2">
+              <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
+            </label>
+            <input class="govuk-input" id="delivery-address-line-2" name="delivery-address-line-2" type="text" autocomplete="delivery-address-line2">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="delivery-address-town">
+              Town or city
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="delivery-address-town" name="delivery-address-town" type="text" autocomplete="address-level2">
+          </div>
+
+        </fieldset>
+
+        <button class="govuk-button" type="submit" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

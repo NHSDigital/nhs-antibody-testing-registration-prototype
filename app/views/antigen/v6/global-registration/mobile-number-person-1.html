@@ -1,0 +1,71 @@
+{% set version = "v6" %}
+{% set pageTitle = "What's your mobile number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div> 
+
+  {% if data['do-you-have-symptoms-person-1'] == "Yes" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/when-did-symptoms-start-person-1">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/do-you-have-symptoms-person-1">Back</a>
+  {% endif %}
+  
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/global-registration/landline-number-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="mobile-number-person-1-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                What's {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}'s mobile number?
+              </h1>
+            </legend>
+            <span id="mobile-number-person-1-hint" class="govuk-body">
+                We'll text their test results to this number.<br><br>
+                Get their permission before you enter their mobile number.<br><br>
+                Make sure they’re happy for their test results to go to this mobile phone number. Do not use a work or shared mobile phone number unless they’re comfortable with others seeing their results.<br><br>
+                Children need to be aged 16 and over to receive their results. If the child is younger than 16, you (their parent or guardian) should enter your mobile number here.
+            </span>
+
+            <div class="govuk-form-group govuk-!-margin-top-5">
+              <label class="govuk-label" for="mobile-phone-number-person-1">
+                Mobile phone number
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number-person-1" name="mobile-phone-number-person-1" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['mobile-phone-number-person-1'] }}">
+            </div>
+            <div class="govuk-form-group govuk-!-margin-top-2">
+              <label class="govuk-label" for="mobile-phone-number-confirm-person-1">
+                Confirm mobile phone number
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number-confirm-person-1" name="mobile-phone-number-confirm-person-1" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['mobile-phone-number-confirm-person-1'] }}">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

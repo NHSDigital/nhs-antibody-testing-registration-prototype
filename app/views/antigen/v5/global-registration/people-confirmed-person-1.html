@@ -1,0 +1,172 @@
+{% set version = "v5" %}
+{% set pageTitle = "Confirm people for testing" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <!-- <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/check-your-answers-person-1">Back</a> -->
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <p class="govuk-body">
+        You can <strong>add up to 3 people</strong> you live with for testing, unless you're getting a test after a positive day 2 travel test. You can only order one day 2 travel test at a time. <br><br>
+        If you need tests for <strong>more than yourself and 3 other people</strong>, you'll need to complete this journey again and place a separate order.<br><br>
+        <strong>For test sites:</strong><br>
+        If you're arriving by motorbike, you can only take one other person you live with. They must wear full helmet and visor.<br><br>
+        If you’re arriving by car or small van, everyone must be in the same vehicle and sit next to a window that opens. You'll stay in your vehicle during your visit.<br><br>
+        <strong>For home testing:</strong><br>
+        You cannot order more than 4 home test kits at a time.
+      </p>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"><strong class="govuk-!-font-size-24">PCR test</strong></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-half"></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</th>
+            <td class="govuk-table__cell">
+              {% if data['date-of-birth-month'] == "1" or data['date-of-birth-month'] == "01" %}
+              {{ data['date-of-birth-day'] }} January {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "2" or data['date-of-birth-month'] == "02" %}
+              {{ data['date-of-birth-day'] }} February {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "3" or data['date-of-birth-month'] == "03" %}
+              {{ data['date-of-birth-day'] }} March {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "4" or data['date-of-birth-month'] == "04" %}
+              {{ data['date-of-birth-day'] }} April {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "5" or data['date-of-birth-month'] == "05" %}
+              {{ data['date-of-birth-day'] }} May {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "6" or data['date-of-birth-month'] == "06" %}
+              {{ data['date-of-birth-day'] }} June {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "7" or data['date-of-birth-month'] == "07" %}
+              {{ data['date-of-birth-day'] }} July {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "8" or data['date-of-birth-month'] == "08" %}
+              {{ data['date-of-birth-day'] }} August {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "9" or data['date-of-birth-month'] == "09" %}
+              {{ data['date-of-birth-day'] }} September {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "10" %}
+              {{ data['date-of-birth-day'] }} October {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "11" %}
+              {{ data['date-of-birth-day'] }} November {{ data['date-of-birth-year'] }}
+              {% elseif data['date-of-birth-month'] == "12" %}
+              {{ data['date-of-birth-day'] }} December {{ data['date-of-birth-year'] }}
+              {% else %}
+              6 December 1976
+              {% endif %}
+              <br>
+              {{ data['email-address'] or 'email@example.com' }}
+              <br>
+              {{ data['mobile-phone-number'] or '+447782808451' }}
+            </td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a></p></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}</th>
+            <td class="govuk-table__cell">
+              {% if data['date-of-birth-person-1-month'] == "1" or data['date-of-birth-person-1-month'] == "01" %}
+              {{ data['date-of-birth-person-1-day'] }} January {{ data['date-of-birth-person-1-year'] }}
+              {% elseif data['date-of-birth-person-1-month'] == "2" or data['date-of-birth-person-1-month'] == "02" %}
+              {{ data['date-of-birth-person-1-day'] }} February {{ data['date-of-birth-person-1-year'] }}
+              {% elseif data['date-of-birth-person-1-month'] == "3" or data['date-of-birth-person-1-month'] == "03" %}
+              {{ data['date-of-birth-person-1-day'] }} March {{ data['date-of-birth-person-1-year'] }}
+              {% elseif data['date-of-birth-person-1-month'] == "4" or data['date-of-birth-person-1-month'] == "04" %}
+              {{ data['date-of-birth-person-1-day'] }} April {{ data['date-of-birth-person-1-year'] }}
+              {% elseif data['date-of-birth-person-1-month'] == "5" or data['date-of-birth-person-1-month'] == "05" %}
+              {{ data['date-of-birth-person-1-day'] }} May {{ data['date-of-birth-person-1-year'] }}
+              {% elseif data['date-of-birth-person-1-month'] == "6" or data['date-of-birth-person-1-month'] == "06" %}
+              {{ data['date-of-birth-person-1-day'] }} June {{ data['date-of-birth-person-1-year'] }}
+              {% elseif data['date-of-birth-person-1-month'] == "7" or data['date-of-birth-person-1-month'] == "07" %}
+              {{ data['date-of-birth-person-1-day'] }} July {{ data['date-of-birth-person-1-year'] }}
+              {% elseif data['date-of-birth-person-1-month'] == "8" or data['date-of-birth-person-1-month'] == "08" %}
+              {{ data['date-of-birth-person-1-day'] }} August {{ data['date-of-birth-person-1-year'] }}
+              {% elseif data['date-of-birth-person-1-month'] == "9" or data['date-of-birth-person-1-month'] == "09" %}
+              {{ data['date-of-birth-person-1-day'] }} September {{ data['date-of-birth-person-1-year'] }}
+              {% elseif data['date-of-birth-person-1-month'] == "10" %}
+              {{ data['date-of-birth-person-1-day'] }} October {{ data['date-of-birth-person-1-year'] }}
+              {% elseif data['date-of-birth-person-1-month'] == "11" %}
+              {{ data['date-of-birth-person-1-day'] }} November {{ data['date-of-birth-person-1-year'] }}
+              {% elseif data['date-of-birth-person-1-month'] == "12" %}
+              {{ data['date-of-birth-person-1-day'] }} December {{ data['date-of-birth-person-1-year'] }}
+              {% else %}
+              15 March 2002
+              {% endif %}
+              <br>
+              {% if data['email-person-1'] == "same" %}
+              {{ data['email-address'] or 'email@example.com' }}
+              {% else %}
+              {{ data['email-address-person-1'] or 'janewilson@email.com' }}
+              {% endif %}
+              <br>
+              {% if data['mobile-number-person-1'] == "same" %}
+              {{ data['mobile-phone-number'] or '+447782808451' }}
+              {% else %}
+              {{ data['mobile-phone-number-person-1'] or '+44663271472' }}
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell"><p class="govuk-body-m">
+              <a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a><br>
+              <!-- <a href="/antigen/{{version}}/global-registration/antibody-test-confirmation" class="govuk-link"">Remove</a> -->
+            </p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="govuk-warning-text govuk-!-margin-bottom-6 govuk-!-margin-top-5">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text govuk-!-font-size-19">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          People you live with who do not have symptoms can only get a PCR test if they’ve been in contact with someone who’s tested positive for COVID-19, or they have been asked to get a PCR test. Ordering unnecessary tests is wasting NHS resources.
+        </strong>
+      </div>
+
+      <form class="form" action="#" method="post" style="display: inline-block;">
+
+        <button class="govuk-button govuk-button--secondary govuk-!-margin-right-1" data-module="govuk-button">Save and add another person you live with</button>
+
+      </form>
+
+      <!-- routing done with nunjucks here because of an issue with Safari -->
+      {% if data['way-to-test'] == "drive-through" or data['way-to-test'] == "walk-through" %}
+
+      <form class="form" action="/antigen/{{version}}/site-appointment-booking/find-test-site" method="post" style="display: inline-block;">
+
+        <button class="govuk-button" data-module="govuk-button">Save and continue</button>
+
+      </form>
+
+      {% else %}
+
+      <form class="form" action="/antigen/{{version}}/order-home-test-kit/" method="post" style="display: inline-block;">
+
+        <button class="govuk-button" data-module="govuk-button">Save and continue</button>
+
+      </form>
+
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% set version = "v6" %}
+{% set pageTitle = "Do you have an email address where you can get the test results?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/mobile-number">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antigen/{{version}}/refer-and-triage/postcode" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="email-address-hint" class="govuk-body">
+              You need an email address to order a home test kit online. Email is also the quickest way to get your test results.<br><br>
+              If you’re getting a test for a child, you (their parent or guardian) should enter your email. If you’re getting a test for someone aged 16 or older, make sure they’re happy for their test results to go to this email.
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="email-1">
+                  Yes, I have an email address where I can get the results
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="email-address">
+                    Email address
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+                </div>
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="confirm-email-address">
+                    Confirm email address
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="I do not have an email address" data-aria-controls="conditional-no-email-address" {{ checked("email", "I do not have an email address") }}>
+                <label class="govuk-label govuk-radios__label" for="email-2">
+                  No, I don’t have an email address
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-no-email-address">
+                <!-- <div class="govuk-form-group">
+                  <label class="govuk-label" for="email-address">
+                    If you do not provide an email address, you can book a test for a test site or call the contact centre to order a home test kit. Call 119 if you're in England, Wales or Northern Ireland. Call 0300 303 2713 if you're in Scotland. Lines are open from 7am to 11pm.
+                  </label>
+                </div> -->
+                <p>If you do not provide an email address, you can book a test for a test site or call the contact centre to order a home test kit. Call 119 if you're in England, Wales or Northern Ireland. Call 0300 303 2713 if you're in Scotland. Lines are open from 7am to 11pm.</p>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

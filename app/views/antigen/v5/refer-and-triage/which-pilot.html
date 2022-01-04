@@ -1,0 +1,73 @@
+{% set version = "v5" %}
+{% set pageTitle = "Tell us which pilot or trial it is" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/government-pilot">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antigen/{{version}}/refer-and-triage" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="professional-pilot-address-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-3" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="professional-pilot-1" name="professional-pilot" type="radio" value="COVID Symptom Study" {{ checked("professional-pilot", "COVID Symptom Study") }}>
+                <label class="govuk-label govuk-radios__label" for="professional-pilot-1">
+                  The person was told to get a test by the COVID Symptom Study app (by ZOE)
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-5">
+                <input class="govuk-radios__input" id="professional-pilot-2" name="professional-pilot" type="radio" value="contact testing study" {{ checked("professional-pilot", "contact testing study") }}>
+                <label class="govuk-label govuk-radios__label" for="professional-pilot-2">
+                  The person has been invited to take part in the Contact Testing Study
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-5">
+                <input class="govuk-radios__input" id="professional-pilot-3" name="professional-pilot" type="radio" value="dental patient testing" {{ checked("professional-pilot", "dental patient testing") }}>
+                <label class="govuk-label govuk-radios__label" for="professional-pilot-3">
+                  The person is taking a test before a dental procedure (Dental Patient Testing)
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-5">
+                <input class="govuk-radios__input" id="professional-pilot-4" name="professional-pilot" type="radio" value="The person is attending an event that is part of the Events Research Programme" {{ checked("professional-pilot", "The person is attending an event that is part of the Events Research Programme") }}>
+                <label class="govuk-label govuk-radios__label" for="professional-pilot-4">
+                  The person is attending an event that is part of the Events Research Programme
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

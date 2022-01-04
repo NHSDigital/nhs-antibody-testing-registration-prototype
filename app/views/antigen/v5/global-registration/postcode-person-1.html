@@ -1,0 +1,60 @@
+{% set version = "v5" %}
+{% set pageTitle = "What's your postcode?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/country-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antigen/{{version}}/global-registration/nhs-number-known-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="postcode-person-1-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                What's {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }}'s home postcode?
+              </h1>
+            </legend>
+            <span id="postcode-person-1-hint" class="govuk-body">
+                Enter their home postcode (ideally the one they used to register with their GP)
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="postcode-2-person-1" name="postcode-person-1" type="radio" value="Same as me" {{ checked("postcode-person-1", "Same as me") }}>
+                <label class="govuk-label govuk-radios__label" for="postcode-2-person-1">
+                    {{ data['home-postcode'] }} (the same as {{ data['first-name'] }} {{ data['last-name'] }})
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="postcode-1-person-1" name="postcode-person-1" type="radio" value="Different" data-aria-controls="conditional-postcode-person-1" {{ checked("postcode-person-1", "Different") }}>
+                <label class="govuk-label govuk-radios__label" for="postcode-1-person-1">
+                  Somewhere else
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-postcode-person-1">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="home-postcode-person-1">
+                    Postcode
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-third" id="home-postcode-person-1" name="home-postcode-person-1" type="text" value="{{ data['home-postcode-person-1'] }}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
