@@ -15,11 +15,14 @@
   </p>
 </div>
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/home-testing/enter-barcode-number">Back</a>
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
 {% endblock %}
 
 {% block content %}
-{% include "includes/gtm-noscript.html" %}
+  {% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -45,8 +48,8 @@
               </strong>
             </div>
             <span id="swab-test-date-2-hint" class="govuk-body">
-              If you're returning it by courier, do the test at least 1 hour before 8am on the morning of your collection.<br><br>
-              <strong>Select a date</strong>
+              If you're posting your completed test kit at a Royal Mail priority postbox, do this no later than 1 hour before the last collection.
+              <!-- <strong>Select a date</strong> -->
             </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
@@ -102,11 +105,11 @@
               </div>
               <div class="govuk-form-group govuk-!-margin-top-6">
                 <label class="govuk-label govuk-date-input__label" for="swab-test-time">
-                  <strong>Enter a time</strong><br>
-                  <span class="govuk-hint govuk-!-margin-top-2">For example, enter 9 then select am or pm</span>
+                  <!-- <strong>Enter a time</strong><br>
+                  <span class="govuk-hint govuk-!-margin-top-2">For example, enter 9 then select am or pm</span> -->
                   Hour
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="swab-test-time" name="swab-test-time" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['swab-test-time'] }}">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="swab-test-time" name="swab-test-time" type="text" inputmode="numeric" spellcheck="false" value="{{ data['swab-test-time'] }}">
               </div>
               <div class="govuk-radios" data-module="govuk-radios">
                 <div class="govuk-radios__item">
