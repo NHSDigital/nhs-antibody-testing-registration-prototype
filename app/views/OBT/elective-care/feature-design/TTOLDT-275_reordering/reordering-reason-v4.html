@@ -4,7 +4,10 @@
 
 {% block beforeContent %}
   {% include "includes/ec-beta-banner-v1.html" %}
-  <a class="govuk-back-link" href="#">Back</a>
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
 {% endblock %}
 
 {% block content %}
@@ -41,7 +44,7 @@
                   Patient
                 </dt>
               <dd class="govuk-summary-list__value">
-                  Deonte Welch
+                  John Smith
                 </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -80,9 +83,9 @@
           </dl>
         </div>
         <div class="govuk-button-group govuk-!-margin-top-8">
-          <button class="govuk-button" data-module="govuk-button">
+          <a class="govuk-button" data-module="govuk-button" href="reorder-confirm-v1">
             Continue
-          </button>
+          </a>
           <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
             Cancel
           </button>
