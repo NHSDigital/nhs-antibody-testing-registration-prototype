@@ -4,40 +4,34 @@
 
 {% block beforeContent %}
   {% include "includes/ec-beta-banner-v1.html" %}
-  <a class="govuk-back-link" href="#">Back</a>
+  <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
 {% endblock %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      <form action="5" method="post">
-        <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">
-          {{ pageTitle }}
-        </h1>
-        <div class="govuk-warning-text govuk-!-margin-bottom-8">
-          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-          <strong class="govuk-warning-text__text">
-            <span class="govuk-warning-text__assistive">Warning</span>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">
+        {{ pageTitle }}
+      </h1>
+      <div class="govuk-warning-text govuk-!-margin-bottom-8">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
              If a procedure has been rescheduled from another date, make sure the original test kit has been cancelled.
           </strong>
-        </div>
+      </div>
 
-          <div class="govuk-button-group">
-            {{ govukButton({
-            text: "Continue"
-          }) }}
+      <div class="govuk-button-group">
+        <a class="govuk-button" data-module="govuk-button" href="cancel-complete-v1">
+          Continue
+        </a>
 
-            {{ govukButton({
-            text: "Cancel",
-            classes: "govuk-button--secondary"
-          }) }}
-          </div>
-
-        </form>
-
+        <a class="govuk-button govuk-button--secondary" data-module="govuk-button" href="javascript:window.history.go(-1);">
+          Cancel
+        </a>
       </div>
     </div>
+  </div>
 
-  {% endblock %}
+{% endblock %}
