@@ -7,7 +7,7 @@
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content">
     <strong class="govuk-tag govuk-phase-banner__content__tag">
-      alpha
+      beta
     </strong>
     <span class="govuk-phase-banner__text">
       This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -15,11 +15,14 @@
   </p>
 </div>
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/home-testing/enter-barcode-number">Back</a>
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
 {% endblock %}
 
 {% block content %}
-{% include "includes/gtm-noscript.html" %}
+  {% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -37,17 +40,20 @@
               Select the date and time you'll take your coronavirus test. If you've already taken the coronavirus test, tell us the date and time you did it.<br><br>
               We need to know this so the lab can work out when the test is due to expire. If you select the wrong date and time, it could mean you receive an incorrect result.
             </span>
+
+            <span id="swab-test-date-2-hint" class="govuk-body">
+              If you're posting your completed test kit at a Royal Mail priority postbox, do this no later than 1 hour before the last collection.
+              <!-- <strong>Select a date</strong> -->
+            </span>
+
             <div class="govuk-warning-text govuk-!-margin-top-6">
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text">
                 <span class="govuk-warning-text__assistive">Warning</span>
-                Do not take or post your test on a bank holiday
+                If your home test swab samoke us iver 24 hours old and has not been returned yet, it's probably out of date. You need to get a new test kit and send a new sample.
               </strong>
             </div>
-            <span id="swab-test-date-2-hint" class="govuk-body">
-              If you're returning it by courier, do the test at least 1 hour before 8am on the morning of your collection.<br><br>
-              <strong>Select a date</strong>
-            </span>
+
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" value="21 October 2020" {{ checked("swab-test-date", "21 October 2020") }}>
@@ -106,7 +112,7 @@
                   <span class="govuk-hint govuk-!-margin-top-2">For example, enter 9 then select am or pm</span>
                   Hour
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="swab-test-time" name="swab-test-time" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['swab-test-time'] }}">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="swab-test-time" name="swab-test-time" type="text" inputmode="numeric" spellcheck="false" value="{{ data['swab-test-time'] }}">
               </div>
               <div class="govuk-radios" data-module="govuk-radios">
                 <div class="govuk-radios__item">
@@ -134,4 +140,3 @@
   </div>
 
 {% endblock %}
-
