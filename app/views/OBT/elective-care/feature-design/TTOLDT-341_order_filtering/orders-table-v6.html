@@ -1,0 +1,220 @@
+{% set version = "v2" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "Check test kit orders" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-5"> {{ pageTitle }} </h1>
+          <p class="govuk-body"> You can only find patients with a procedure coming up in the next 10 days. </p><hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible"></div>
+      </div>
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-3">Select a group</h3>
+      <p class="govuk-hint">This will show test kits ordered by each group.</p>
+      <div id="" class="govuk-form-group">
+        <label for="search-group" class="govuk-label"></label>
+        <select id="search-group" aria-label="select a group" name="search-group" class="govuk-select">
+          <option> All groups </option>
+          <option> Oncology </option>
+          <option> Cardiology </option>
+        </select>
+      </div>
+
+      <form>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full govuk-form-group govuk-!-margin-top-4 govuk-!-margin-bottom-2">
+            <h3 class="govuk-heading-m govuk-!-margin-bottom-3">Search within group</h3>
+            <div class="govuk-grid-row">
+              <div class="govuk-label-wrapper govuk-grid-column-one-half">
+                <label class="govuk-hint" for="search" style="white-space: nowrap">You can search by patient name, order ID or NHS number.</label>
+                <div style="display: flex; flex-direction: row">
+                  <select id="procedure-date" name="status" class="govuk-select" style="border-right: none">
+                    <option value="patient-name"> Patient name </option>
+                    <option value="order-id"> Order ID </option>
+                    <option value="nhs-number"> NHS number </option>
+                  </select>
+                  <input id="search" autocomplete="off" spellcheck="false" maxlength="60" class="govuk-input">
+                </div>
+              </div>
+              <button type="submit" class="govuk-!-margin-top-7 govuk-grid-column-one-quarter govuk-button"> Search </button>
+            </div>
+
+            <div class="govuk-grid-row">
+              <div id="status" class="govuk-form-group govuk-grid-column-one-quarter">
+                <label for="status" class="govuk-label"> Status </label>
+                <select id="status" name="status" class="govuk-select">
+                  <option value="allStatuses"> All statuses </option>
+                  <option value="testKitOrdered"> Test kit ordered </option>
+                  <option value="testKitSentToPatient"> Test kit sent to patient </option>
+                  <option value="testKitSentToLab"> Test kit on its way to lab </option>
+                  <option value="resultReady"> Result ready </option>
+                  <option value="cancelled"> Cancelled </option>
+                  <option value="cancelled"> Reordered </option>
+                </select>
+              </div>
+
+              <div id="procedure-date" class="govuk-form-group govuk-grid-column-one-quarter govuk-!-margin-right-3">
+                <label for="procedure-date" class="govuk-label"> Procedure date </label>
+                <select id="procedure-date" name="status" class="govuk-select">
+                  <option value="all"> All procedure dates </option>
+                  <option value="today"> Today - 17 Nov 2021 (4) </option>
+                  <option value="1day"> Tomorrow - 18 Nov 2021 (2) </option>
+                  <option value="2days"> 2 days - 19 Nov 2021 (6) </option>
+                  <option value="3days"> 3 days - 20 Nov 2021 (4) </option>
+                  <option value="4days"> 4 days - 21 Nov 2021 (10) </option>
+                  <option value="5days"> 5 days - 22 Nov 2021 (2) </option>
+                  <option value="6days"> 6 days - 23 Nov 2021 (5) </option>
+                  <option value="7days"> 7 days - 24 Nov 2021 (2) </option>
+                  <option value="8days"> 8 days - 25 Nov 2021 (5) </option>
+                  <option value="9days"> 9 days - 26 Nov 2021 (7) </option>
+                  <option value="10days"> 10 days - 27 Nov 2021 (1) </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <p class="govuk-body-s govuk-!-margin-bottom-3"> Last updated 17 Nov 2021 at 10:38 <button class="govuk-body-s govuk-link button-styled-link govuk-!-margin-bottom-0"> Check for update </button>
+      </p>
+
+      <table class="govuk-table govuk-!-font-size-16" data-module="moj-sortable-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" aria-sort="none"> Patient </th>
+            <th scope="col" class="govuk-table__header" aria-sort="descending"> Procedure date </th>
+            <th scope="col" class="govuk-table__header"> NHS number </th>
+            <th scope="col" class="govuk-table__header"> Mobile number </th>
+            <th scope="col" class="govuk-table__header"> Order ID </th>
+            <th scope="col" class="govuk-table__header" aria-sort="none"> Status </th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Lia Beatty<br> Male<br> 1 Jan 1999 </td>
+            <td class="govuk-table__cell">19 Nov 2021</td>
+            <td class="govuk-table__cell">1967269858 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">5376775122 </td>
+            <td class="govuk-table__cell">Result ready<br/>18 Nov 2021<br/><a class="govuk-link" href="#">View details</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+            Edison Kessler
+            <br> Male
+            <br> 1 Jan 1999 </td>
+            <td class="govuk-table__cell">19 Nov 2021 <br>
+            <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-1" style="font-size: 14px;">Cancelled</strong>
+            </td>
+            <td class="govuk-table__cell">1161949755 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">3541735907 </td>
+            <td class="govuk-table__cell">Test kit sent to patient<br/>18 Nov 2021<br/><a class="govuk-link" href="#">View details</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Narciso Hirthe<br> Male<br> 1 Jan 1999 </td>
+            <td class="govuk-table__cell">19 Nov 2021<br>
+            <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-1" style="font-size: 14px;">Cancelled</strong>
+            </td>
+            <td class="govuk-table__cell">1628772808 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">9249976767 </td>
+            <td class="govuk-table__cell">Test kit sent to patient<br/>18 Nov 2021<br/><a class="govuk-link" href="#">View details</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Aileen Goldner<br> Male<br> 1 Jan 1999 </td>
+            <td class="govuk-table__cell">19 Nov 2021</td>
+            <td class="govuk-table__cell">1465815082 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">5911511050 </td>
+            <td class="govuk-table__cell">Test kit on its way to lab<br/>18 Nov 2021<br/><a class="govuk-link" href="#">View details</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Samantha Jones<br> Female<br> 1 Jan 1999 </td>
+            <td class="govuk-table__cell">20 Nov 2021<br/>
+            <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-1" style="font-size: 14px;">Cancelled</strong>
+            </td>
+            <td class="govuk-table__cell">1053998724 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">0596229554 </td>
+            <td class="govuk-table__cell">Test kit on its way to lab<br/>18 Nov 2021<br/><a class="govuk-link" href="#">View details</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+
+            <td class="govuk-table__cell">John Smith<br> Male<br> 1 Jan 1999 </td>
+            <td class="govuk-table__cell">21 Nov 2021</td>
+            <td class="govuk-table__cell">1900821117 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">0006708086 </td>
+            <td class="govuk-table__cell">Test kit on its way to lab<br/>18 Nov 2021<br/><a class="govuk-link" href="#">View details</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">John Smith<br> Male<br> 1 Jan 1999 </td>
+            <td class="govuk-table__cell">21 Nov 2021<br/>
+            <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-1" style="font-size: 14px;">Cancelled</strong>
+            </td>
+            <td class="govuk-table__cell">1900821117 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">5820441121 </td>
+            <td class="govuk-table__cell">Test kit sent to patient<br/>18 Nov 2021<br/><a class="govuk-link" href="#">View details</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Hulda Nikolaus<br> Male<br> 1 Jan 1999 </td>
+            <td class="govuk-table__cell">19 Nov 2021</td>
+            <td class="govuk-table__cell">1080920242 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">9702174086 </td>
+            <td class="govuk-table__cell">Test kit ordered<br/>18 Nov 2021<br/><a class="govuk-link" href="#">View details</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Charlie King<br> Male<br> 1 Jan 1999 </td>
+            <td class="govuk-table__cell">19 Nov 2021</td>
+            <td class="govuk-table__cell">1890362263 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">6229618871 </td>
+            <td class="govuk-table__cell">Test kit ordered<br/>18 Nov 2021<br/><a class="govuk-link" href="#">View details</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Dana McLaughlin<br> Male<br> 1 Jan 1999 </td>
+            <td class="govuk-table__cell">19 Nov 2021</td>
+            <td class="govuk-table__cell">1856809870 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">5848745855 </td>
+            <td class="govuk-table__cell">Test kit on its way to lab<br/>18 Nov 2021<br/><a class="govuk-link" href="#">View details</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pagination" style="display: flex; justify-content: space-between;">
+        <a href="#" class="govuk-link govuk-!-font-size-19 pagination__see-previous govuk-button--link"> Previous page in list </a>
+        <a href="#" class="govuk-link govuk-!-font-size-19 pagination__see-next govuk-button--link"> Next page in list </a>
+      </div>
+      
+      <div class="govuk-!-margin-top-5" style="display: flex; justify-content: space-between; align-items: center">
+        <p class="govuk-body govuk-!-margin-bottom-0">Showing <b>10</b> to <b>20</b> of <b>30</b> results</p>
+
+        <div style="display: flex; justify-content: flex-end; align-items: center; flex-direction: row-reverse">
+          <select class="govuk-select" id="sort" name="sort">
+            <option value="10" selected>10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+          <span class="govuk-body govuk-!-margin-bottom-0 govuk-!-margin-right-1">Results per page:</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
