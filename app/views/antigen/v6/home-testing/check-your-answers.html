@@ -1,5 +1,5 @@
 {% set version = "v6" %}
-{% set pageTitle = "Check your answers before registering your test kit" %}
+{% set pageTitle = "Check your answers" %}
 
 {% extends "includes/layout.html" %}
 
@@ -7,7 +7,7 @@
   <div class="govuk-phase-banner">
     <p class="govuk-phase-banner__content">
       <strong class="govuk-tag govuk-phase-banner__content__tag">
-        alpha
+        beta
       </strong>
       <span class="govuk-phase-banner__text">
         This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
@@ -28,10 +28,10 @@
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Royal Mail barcode
+            Royal Mail barcode reference
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['mail-barcode-reference-1'] or 'AA22346789AA' }}
+            {{ data['mail-barcode-reference-1'] or 'Not known' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/home-testing/royal-mail-barcode">
@@ -41,8 +41,22 @@
           </dd>
         </div>
         <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test kit barcode reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['kit-barcode-reference-1'] or 'AA135562600' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/home-testing/enter-barcode">
+              Change
+              <span class="govuk-visually-hidden">test kit barcode reference</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-                Date/time test taken
+                Test date and time
             </dt>
             {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "1" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "01" %}
             <dd class="govuk-summary-list__value">
@@ -114,20 +128,6 @@
                 Change
                 <span class="govuk-visually-hidden">test date and time</span>
                 </a>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Test kit barcode / reference
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['kit-barcode-reference-1'] or 'AA135562600' }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a href="/antigen/{{version}}/home-testing/enter-barcode">
-                Change
-                <span class="govuk-visually-hidden">test kit barcode reference</span>
-              </a>
             </dd>
           </div>
       </dl>
