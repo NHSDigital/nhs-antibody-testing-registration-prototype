@@ -6,7 +6,7 @@
         <p class="govuk-body">If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} thinks the service read their result incorrectly, they can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report more details about this service to the MHRA (opens in a new tab)</a>.</p>
         <p class="govuk-body">They must follow the advice below to help stop the spread of the virus.</p>
         {% else %}
-        <p class="govuk-body">If you think the service read your result incorrectly, you can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report more details about this service to the MHRA (opens in a new tab)</a>.</p>
+        <p class="govuk-body">If you think the service read your result incorrectly, you can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report more details about this service to the MHRA (opens in a new tab)</a>. On the homepage, enter ‘Lateral flow antigen test – uploaded photograph result’ in the search box and select the ‘Start report’ button.</p>
         <p class="govuk-body">You must follow the advice below to help stop the spread of the virus.</p>
         {% endif %}
        </div>
@@ -17,62 +17,76 @@
     {% else %}
     <h3 class="govuk-heading-m">What you must do</h3>
     {% endif %}
-
-    {% if data['whos-taking-the-test'] == "someone-else" %}
-    <h3 class="govuk-heading-s">If they live in England</h3>
+    <!-- {% if data['whos-taking-the-test'] == "someone-else" %}
+    <h3 class="govuk-heading-s">If they live in Scotland or Northern Ireland or Wales</h3>
     {% else %}
-    <h3 class="govuk-heading-s">If you live in England</h3>
-    {% endif %}
-      <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
-        <li>Self-isolate straight away. There is no need to take a follow-up test.</li>
-        <li>Find further <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/"  target="_blank" rel="noreferrer">self-isolation guidance (opens in new tab)</a> if you're in England.</li>
-      </ul>
-    {% if data['whos-taking-the-test'] == "someone-else" %}
-    <h3 class="govuk-heading-s">If they live in Scotland or Northern Ireland</h3>
-    {% else %}
-    <h3 class="govuk-heading-s">If you live in Scotland or Northern Ireland</h3>
+    <h3 class="govuk-heading-s">If you live in Scotland or Northern Ireland or Wales</h3>
     {% endif %}
     {% if data['whos-taking-the-test'] == "someone-else" %}
       <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
-        <li>They must take a different follow-up test today, or as soon as possible.</li>
+        <li>You must take another rapid lateral flow test today, or as soon as possible, and report the result.</li>
         <li>They should self-isolate until they get their follow-up test result. They can leave home for their follow-up test.</li>
         <li>Find self-isolation guidance (opens in new tab) if they're in <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland</a> or <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Northern Ireland</a>.</li>
-        <li>Care home residents must self-isolate for 14 days.</li>
+        <li>You will be contacted following your positive rapid lateral flow test result and this will enable you to apply for financial support if you are eligible </li>
       </ul>
-      {% else %}
-      <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+      {% else %} -->
+      <!-- <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
         <li>You must take a different follow-up test today, or as soon as possible.</li>
         <li>You should self-isolate until you get the follow-up test result. You can leave home for your follow-up test.</li>
         <li>Find self-isolation guidance (opens in new tab) if you're in <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland</a> or <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Northern Ireland</a>.</li>
         <li>Care home residents must self-isolate for 14 days.</li>
       {% endif %}
       </ul>
+
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      <h3 class="govuk-heading-s">If they live in England</h3>
+      {% else %}
+      <h3 class="govuk-heading-s">If you live in England</h3>
+      {% endif %}
+        <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+          <li>Self-isolate straight away. There is no need to take a follow-up test.</li>
+          <li>Find further <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/"  target="_blank" rel="noreferrer">self-isolation guidance (opens in new tab)</a> if you're in England.</li>
+        </ul> -->
+
   </div>
+
+    <div>
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      <h3 class="govuk-heading-m">If they live in Scotland or Northern Ireland or Wales</h3>
+      {% else %}
+      <h3 class="govuk-heading-m">If you live in Scotland or Northern Ireland or Wales</h3>
+      {% endif %}
+      <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      <li>They must take another rapid lateral flow test today, or as soon as possible, and report the result</li>
+      <li>Find self-isolation guidance if they're in <a href="https://www.nhsinform.scot/isolation">Scotland</a>, <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts"> Northern Ireland </a> or <a href="https://gov.wales/self-isolation"> Wales</a></li>
+      <li>They will be contacted following their positive rapid lateral flow test result and this will enable them to apply for financial support if they are eligible</li>
+      {% else %}
+      <li>You must take another rapid lateral flow test today, or as soon as possible, and report the result</li>
+      <li>Find self-isolation guidance if you're <a href="https://www.nhsinform.scot/isolation">Scotland</a>, <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts"> Northern Ireland </a> or <a href="https://gov.wales/self-isolation"> Wales</a></li>
+      <li>You will be contacted following your positive lateral flow test result and this will enable you to apply for financial support if you are eligible</li>
+      {% endif %}
+    </div>
 
   <div>
     {% if data['whos-taking-the-test'] == "someone-else" %}
-    <h3 class="govuk-heading-m">If they live in Wales</h3>
+    <h3 class="govuk-heading-m">If they live in England</h3>
     {% else %}
-    <h3 class="govuk-heading-m">If you live in Wales</h3>
+    <h3 class="govuk-heading-m">If you live in England</h3>
     {% endif %}
     <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
     {% if data['whos-taking-the-test'] == "someone-else" %}
-    <li>They must take a different follow-up test within 24 hours to confirm this result.</li>
-    <li>If they take their follow-up test after 24 hours, they need to continue to self-isolate, even if the follow-up test is negative. Find further <a href="https://gov.wales/self-isolation" target="_blank" rel="noreferrer">self-isolation guidance if you're in Wales (opens in new tab)</a></li>
-    <li>They will be contacted following their positive lateral flow test result and this will enable them to apply for financial support if they are eligible</li>
+    <li>They must take a different follow-up test today, or as soon as possible.</li>
+    <li>They should self-isolate until they get your follow-up test result. They can leave home for your follow-up test</li>
+    <li>Find further <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/"> self-isolation guidance for England</a></li>
     {% else %}
-    <li>You must take a different follow-up test within 24 hours to confirm this result.</li>
-    <li>If you take your follow-up test after 24 hours, you need to continue to self-isolate, even if the follow-up test is negative. Find further <a href="https://gov.wales/self-isolation" target="_blank" rel="noreferrer">self-isolation guidance if you're in Wales (opens in new tab)</a></li>
+    <li>You must take a different follow-up test today, or as soon as possible</li>
+    <li>You should self-isolate until you get your follow-up test result. You can leave home for your follow-up test</li>
     <li>You will be contacted following your positive lateral flow test result and this will enable you to apply for financial support if you are eligible</li>
     {% endif %}
   </div>
 
   <div>
-    {% if data['whos-taking-the-test'] == "someone-else" %}
-    <h3 class="govuk-heading-m">Book a follow up test</h3>
-    {% else %}
-    <h3 class="govuk-heading-m">Book your follow up test</h3>
-    {% endif %}
     {% if data['whos-taking-the-test'] == "someone-else" %}
     <p class="govuk-body">Choose a test site if possible, as it's faster than a home test. They can leave home for their follow-up test.</p>
     {% else %}
@@ -81,7 +95,7 @@
   </div>
 
   <a href="https://www.gov.uk/get-coronavirus-test" class="govuk-button govuk-u-margin-bottom-8">
-    Book a follow up test now
+    Book the follow up test now
   </a>
 
   <div>
