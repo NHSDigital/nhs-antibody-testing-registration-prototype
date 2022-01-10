@@ -1,0 +1,84 @@
+{% set pageHeading = "Your NHS account has been created" %}
+ {% set version = "organisational/ind-accounts/v3" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+            <!-- div for include from content folder -->
+            <div id="includedContent1"></div>
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title 	#1d70b8">Your NHS account has been created</h1>
+
+    </div>
+
+        <p class="govuk-body">We have sent you a confirmation email.</p>
+
+        <h3 class="govuk-heading-s">Next steps</h3>
+         <ul class="govuk-list govuk-list--bullet">
+           <li>
+           add your personal details to your account
+           </li>
+           <li>
+           register or report your test kits
+           </li>
+         </ul>
+
+
+         <h3 class="govuk-heading-s">How we share account information</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+            your test kit registration will be shared with your organisation but not your test results or personal details
+            </li>
+            <li>
+            if other people are linked to your NHS account such as children, their details will not appear or be shared when you sign in
+            </li>
+          </ul>
+
+      <form class="" action="../personal-details/personal-details" method="get">
+
+
+        <input class="govuk-button" type="submit" value="Add your personal details">
+
+
+      </div>
+    </div>
+  </main>
+</div>
+
+  <!-- corresponding html file name included from content folder -->
+<script>
+  $(function(){
+    $("#includedContent1").load("/includes/LFD-account-menu.html");
+  });
+</script>
+
+{% endblock %}
