@@ -55,6 +55,16 @@ router.post('/antigen/v2/action3/mobile-number', function (req, res) {
 
 })
 
+router.post('/antigen/v2/action3/mobile-number-option-2', function (req, res) {
+  let mobilePhoneNumber = req.session.data['mobile-phone-number']
+  if (!mobilePhoneNumber){
+    res.redirect('/antigen/v2/refer-and-triage/call-us')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/email-address')
+  }
+
+})
+
 // Version 2 - Antigen Refer and Triage - Do you have symptoms route
 
 router.post('/antigen/v2/action3/do-you-have-symptoms-option-2', function (req, res) {
@@ -1231,6 +1241,18 @@ router.post('/antigen/v2/action3/reason-for-test', function (req, res) {
     res.redirect('/antigen/v2/refer-and-triage/contact-tracing-code')
   } else {
     res.redirect('/antigen/v2/refer-and-triage/')
+  }
+
+})
+
+
+
+router.post('/antigen/v2/action3/mobile-number', function (req, res) {
+  let mobilePhoneNumber = req.session.data['mobile-number']
+  if (mobilePhoneNumber == "No"){
+    res.redirect('/antigen/v2/refer-and-triage/call-us')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/email-address')
   }
 
 })
