@@ -16,11 +16,14 @@
     <form action="/share-result-lateral-flow/{{version}}/test-date" method="post">
 
       <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading">
             {{ pageTitle }}
           </h1>
         </legend>
+        </fieldset>
+
         <br>
         <span id="nhs-number-hint" class="govuk-body">
         {% if data['whos-taking-the-test'] == "someone-else" %}
@@ -38,11 +41,11 @@
       </div>
 
       <div>
-      <p class="govuk-body">
+      <p id=trust-name-hint class="govuk-body">
         {% if data['whos-taking-the-test'] == "someone-else" %}
         If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} cannot find it in the list <a href="enter-trust" role="button" draggable="false" class="govuk-link" data-module="govuk-button">enter the name of the NHS trust or Health Board manually instead</a>
         {% else %}
-        If you cannot find it in the list <a href="enter-trust" input="aria-describedby:" role="button" draggable="false" class="govuk-link" data-module="govuk-button">enter the name of the NHS trust or Health Board manually instead</a>
+        If you cannot find it in the list <a href="enter-trust" role="button" draggable="false" class="govuk-link" data-module="govuk-button">enter the name of the NHS trust or Health Board manually instead</a>
         {% endif %}
       </p>
     </div>
