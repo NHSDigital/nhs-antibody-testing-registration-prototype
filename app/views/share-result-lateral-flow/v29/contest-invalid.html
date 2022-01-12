@@ -1,9 +1,5 @@
 {% set version = "v29" %}
-{% if data['whos-taking-the-test'] == "someone-else" %}
-{% set pageTitle = "If they think the service incorrectly read their result" %}
-{% else %}
-{% set pageTitle = "If you think the service incorrectly read the result" %}
-{% endif %}
+{% set pageTitle = "If you think the service incorrectly read their result" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -30,6 +26,11 @@
 
 
           <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} thinks the service read the result incorrectly
+          {% else %}
+          {{ pageTitle }}
+          {% endif %}
 
          <!-- div for include from content folder -->
          <div id="includedContent"></div>
