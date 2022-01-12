@@ -5,7 +5,7 @@
          {% if data['whos-taking-the-test'] == "someone-else" %}
          <p class="govuk-body">If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} thinks the service read their result incorrectly, they can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report this to the MHRA on the Coronavirus Yellow Card website</a>. On the homepage, enter ‘Lateral flow test - uploaded photograph result’ in the search box and select the ‘Start report’ button.</p>
          {% else %}
-         <p class="govuk-body">If you think the service read your result incorrectly, you can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report more details about this service to the MHRA (opens in a new tab)</a>. On the homepage, enter ‘Lateral flow antigen test – uploaded photograph result’ in the search box and select the ‘Start report’ button.
+         <p class="govuk-body">If you think the service read your result incorrectly, you can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report more details about this service to the MHRA (opens in a new tab)</a>. On the homepage, enter ‘Lateral flow antigen test – uploaded photograph result’ in the search box and select the ‘Start report’ button.</p>
          {% endif %}
        </div>
 
@@ -23,7 +23,11 @@
        <li>open windows if meeting indoors</li>
        <li>wearing a face covering in crowded indoor settings</li>
        <li>stay home if unwell</li>
+       {% if data['whos-taking-the-test'] == "someone-else" %}
+       <li>get tested and self-isolate if they need to</li>
+       {% else %}
        <li>get tested and self-isolate if you need to</li>
+       {% endif %}
      </ul>
 
   <!--   {% if data['whos-taking-the-test'] == "someone-else" %}
@@ -50,11 +54,11 @@
       </ul> -->
 
       {% if data['whos-taking-the-test'] == "someone-else" %}
-      <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">Find out if they need to self-isolate on NHS.UK.</a></p>
+      <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">Find out if they need to self-isolate on NHS.UK</a></p>
       {% else %}
-      <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">Find out if you need to self-isolate on NHS.UK.</a></p>
+      <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">Find out if you need to self-isolate on NHS.UK</a></p>
       {% endif %}
   </div>
   <div>
-      <p class="govuk-body"><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/">Get the latest NHS information and advice about coronavirus</a></p>
+      <p class="govuk-body"><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/">Get the latest NHS information and advice about coronavirus (COVID-19)</a></p>
   </div>

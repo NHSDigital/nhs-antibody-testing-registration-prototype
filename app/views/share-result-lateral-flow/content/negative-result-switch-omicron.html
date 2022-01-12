@@ -24,24 +24,43 @@
   <h2 class="govuk-heading-m">What you need to know</h2>
   {% endif %}
 
-  <p class="govuk-body">To stay safe:</p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>get vaccinated</li>
-      <li>handwash regularly</li>
-      <li>download the NHS COVID-19 app (in England and Wales), the Protect Scotland app (in Scotland) and the StopCovidNI app (in Northern Ireland)</li>
-      <li>open windows if meeting indoors</li>
-      <li>wearing a face covering in crowded indoor settings</li>
-      <li>stay home if unwell</li>
-      <li>get tested and self-isolate if you need to</li>
-    </ul>
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <p class="govuk-body">To stay safe:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>get vaccinated</li>
+        <li>handwash regularly</li>
+        <li>download the NHS COVID-19 app (in England and Wales), the Protect Scotland app (in Scotland) and the StopCovidNI app (in Northern Ireland)</li>
+        <li>open windows if meeting indoors</li>
+        <li>wearing a face covering in crowded indoor settings</li>
+        <li>stay home if unwell</li>
+        <li>get tested and self-isolate if you need to</li>
+      </ul>
+    {% else %}
+      <p class="govuk-body">To stay safe:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>get vaccinated</li>
+          <li>handwash regularly</li>
+          <li>download the NHS COVID-19 app (in England and Wales), the Protect Scotland app (in Scotland) and the StopCovidNI app (in Northern Ireland)</li>
+          <li>open windows if meeting indoors</li>
+          <li>wearing a face covering in crowded indoor settings</li>
+          <li>stay home if unwell</li>
+          <li>get tested and self-isolate if they need to</li>
+        </ul>
+    {% endif %}
 
-<p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-
-and-treatment/when-to-self-isolate-and-what-to-do/"> Find out if you need to self-isolate, despite this negative result.</a></p>
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+      <p class="govuk-body">If they're worried about any symptoms, including a cough that does not go away, contact 111
+        (England and Scotland only) or speak to their GP. In an emergency dial 999.</p>
+    {% else %}
+      <p class="govuk-body">If you're worried about any symptoms, including a cough that does not go away, they should contact 111
+        (England and Scotland only) or speak to your GP. In an emergency dial 999.</p>
+    {% endif %}
 
+    <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">
+      Find out if you need to self-isolate, despite this negative result.</a></p>
 
- <br>
- <button class="govuk-button" data-module="govuk-button">Report another result</button>
-
+   <br>
+   <button class="govuk-button" data-module="govuk-button">Report another result</button>
 
  <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
    <summary class="govuk-details__summary">
@@ -52,76 +71,47 @@ and-treatment/when-to-self-isolate-and-what-to-do/"> Find out if you need to sel
    <div class="govuk-details__text">
      <h4 class="govuk-heading-m">The test result was positive</h4>
 
+     <div class="govuk-warning-text">
+       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+       <strong class="govuk-warning-text__text">
+         <span class="govuk-warning-text__assistive">Warning</span>
+         {% if data['whos-taking-the-test'] == "someone-else" %}
+            They should self-isolate immediately.
+            Find further self-isolation guidance for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">England</a>, <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland</a> or <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts#toc-0" target="_blank" rel="noreferrer">Northern Ireland (open in new tabs)<a>
+          {% else %}
+            Self-isolate immediately.
+            Find further self-isolation guidance for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">England</a>, <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland</a> or <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts#toc-0" target="_blank" rel="noreferrer">Northern Ireland (open in new tabs)<a>
+         {% endif %}
+       </strong>
+     </div>
+
      {% if data['whos-taking-the-test'] == "someone-else" %}
-     <p class="govuk-body">If the lateral flow test was actually positive, but you reported it as negative, follow the guidance below.</p>
+     <p>If the test result was actually positive, the person who took the test should take another rapid lateral flow test as soon as possible and report the result, so contact tracing can begin.</p>
+     <p>They should use a new test kit, and not reuse anything from the first test kit.</p>
      {% else %}
-     <p class="govuk-body">If your lateral flow test was actually positive, but you reported it as negative, follow the guidance below.</p>
+     <p>If the test result was actually positive, you should take another rapid lateral flow test as soon as possible and report the result, so contact tracing can begin.</p>
+     <p>You should use a new test kit, and not reuse anything from the first test kit.</p>
      {% endif %}
-
-     {% if data['whos-taking-the-test'] == "someone-else" %}
-     <h3 class="govuk-heading-s">If they live in England</h3>
-     {% else %}
-     <h3 class="govuk-heading-s">If you live in England</h3>
-     {% endif %}
-     <p class="govuk-body">Self-isolate straight away. There is no need to take a follow-up test.</p>
-     <p class="govuk-body">Find further <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/"  target="_blank" rel="noreferrer">self-isolation guidance (opens in new tab)</a> if you're in England.</p>
-
-     {% if data['whos-taking-the-test'] == "someone-else" %}
-     <h3 class="govuk-heading-s">If they live in Scotland or Northern Ireland</h3>
-     {% else %}
-     <h3 class="govuk-heading-s">If you live in Scotland or Northern Ireland</h3>
-     {% endif %}
-
-     {% if data['whos-taking-the-test'] == "someone-else" %}
-     <p class="govuk-body">They must take a different follow-up test today, or as soon as possible.</p>
-     <p class="govuk-body">This will confirm if they are infectious to others, start contact tracing and enable them to claim financial support if they are eligible.</p>
-     <p class="govuk-body">Follow the instructions they were given to take their follow-up test. If they were not given instructions, book their test below (choose a test site if you can, it’s faster than a home test).</p>
-       {% else %}
-     <p class="govuk-body">You must take a different follow-up test today, or as soon as possible.</p>
-     <p class="govuk-body">This will confirm if you are infectious to others, start contact tracing and enable you to claim financial support if you are eligible.</p>
-     <p class="govuk-body">Follow the instructions you were given to take your follow-up test. If you were not given instructions, book your test below (choose a test site if you can, it’s faster than a home test).</p>
-     {% endif %}
-
-            <div class="govuk-warning-text">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                   They must <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">
-                     self-isolate straight away (opens in a new tab)</a> until they get their follow-up test result.
-                     Find further self-isolation guidance if they're in <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland (opens in a new tab)</a> or <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts#toc-0" target="_blank" rel="noreferrer">Northern Ireland (opens in a new tab)</a>.
-                 {% else %}
-                   Self-isolate immediately until you get the results of your follow-up test.
-                   You can leave home for your follow-up test.
-                   Find further self-isolation guidance if you're in <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland</a> or <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Northern Ireland</a> (open in new tabs).
-                {% endif %}
-              </strong>
-            </div>
-
-            {% if data['whos-taking-the-test'] == "someone-else" %}
-            <h4 class="govuk-heading-s">If they live in Wales</h4>
-            <p>They must self-isolate and take a PCR test within 24 hours.</p>
-            <p>If the PCR test result is negative, and it was taken within 24 hours of the lateral flow test, they no longer need to self-isolate.</p>
-            <p>If they take their PCR test too late (after 24 hours in Wales), they’ll need to continue to self-isolate immediately in line with <a href="https://gov.wales/self-isolation" target="_blank" rel="noreferrer">guidance (opens in new tab)</a> if the PCR test is negative.</p>
-            {% else %}
-            <h4 class="govuk-heading-s">If you live in Wales</h4>
-            <p>You must self-isolate and take a PCR test within 24 hours.</p>
-            <p>If your PCR test result is negative, and you took it within 24 hours of the lateral flow test, you no longer need to self-isolate.</p>
-            <p>If you take your PCR test too late (after 24 hours in Wales), you'll need to continue to self-isolate immediately in line with <a href="https://gov.wales/self-isolation" target="_blank" rel="noreferrer">guidance (opens in new tab)</a> if the PCR test is negative.</p>
-            {% endif %}
-
-      <button class="govuk-button" data-module="govuk-button">Book the follow-up test now</button>
 
       <h4 class="govuk-heading-m">The test result was void</h4>
 
       {% if data['whos-taking-the-test'] == "someone-else" %}
-      <p class="govuk-body">If the lateral flow test result was actually void, the person who took the test should take another lateral flow test as soon as possible. They should use a new test kit, and not reuse anything from the first test kit.</p>
-      <p class="govuk-body">If they do not have another lateral flow test available, <a target="_blank" rel="noreferrer" href="https://www.gov.uk/order-coronavirus-rapid-lateral-flow-tests">order a new test kit online</a> for home delivery.</p>
+      <p class="govuk-body">If the test result was actually void, you should take another rapid lateral flow test as soon as possible and report the result.</p>
+      <p>You should use a new test kit, and not reuse anything from the first test kit.</p>
       {% else %}
-      <p class="govuk-body">If the lateral flow test result was actually void, you should take another lateral flow test as soon as possible. Use a new test kit, and not reuse anything from the first test kit.</p>
-      <p class="govuk-body">If you do not have another lateral flow test available, <a target="_blank" rel="noreferrer" href="https://www.gov.uk/order-coronavirus-rapid-lateral-flow-tests">order a new test kit online</a> for home delivery.</p>
+      <p class="govuk-body">If the test result was actually void, the person who took the test should take another rapid lateral flow test as soon as possible and report the result.</p>
+      <p>They should use a new test kit, and not reuse anything from the first test kit.</p>
       {% endif %}
-      <p class="govuk-body">Or, <a target="_blank" rel="noreferrer" href="https://maps.test-and-trace.nhs.uk/">find out where to get lateral flow test kits</a> that can be collected locally.</p>
+
+      <h4 class="govuk-heading-m">Get a new rapid lateral flow test kit</h4>
+
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      <p class="govuk-body">If they do not have another rapid lateral flow test available, they can <a href="https://www.gov.uk/order-coronavirus-rapid-lateral-flow-tests">order a new test pack online</a> for home delivery.</p>
+      <p class="govuk-body">Or, <a href="https://maps.test-and-trace.nhs.uk/">find out where to collect rapid lateral flow test kits locally</a>.</p>
+      {% else %}
+      <p class="govuk-body">If you do not have another rapid lateral flow test available, you can <a href="https://www.gov.uk/order-coronavirus-rapid-lateral-flow-tests">order a new test pack online</a> for home delivery.</p>
+      <p class="govuk-body">Or, <a href="https://maps.test-and-trace.nhs.uk/">find out where to collect rapid lateral flow test kits locally</a>.</p>
+      {% endif %}
 
    </div>
  </details>
