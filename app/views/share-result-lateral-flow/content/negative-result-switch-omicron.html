@@ -71,22 +71,6 @@
    <div class="govuk-details__text">
      <h4 class="govuk-heading-m">The test result was positive</h4>
 
-     {% if data['whos-taking-the-test'] == "someone-else" %}
-     <p class="govuk-body">If the lateral flow test was actually positive, but you reported it as negative,
-       the person who took the test must take a different follow-up test (normally a PCR test) within 24 hours.</p>
-     {% else %}
-     <p class="govuk-body">If your lateral flow test was actually positive, but you reported it as negative,
-       you must take a different follow-up test (normally a PCR test) within 24 hours.</p>
-     {% endif %}
-
-     {% if data['whos-taking-the-test'] == "someone-else" %}
-     <p class="govuk-body">Choose a test site if you can, as it’s faster than a home test.</p>
-     <p class="govuk-body">This follow-up test will confirm if they are infectious to others, start contact tracing and enable them to claim financial support if they are eligible.</p>
-     {% else %}
-     <p class="govuk-body">Choose a test site if you can, as it’s faster than a home test.</p>
-     <p class="govuk-body">This follow-up test will confirm if you are infectious to others, start contact tracing and enable you to claim financial support if you are eligible.</p>
-     {% endif %}
-
      <div class="govuk-warning-text">
        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
        <strong class="govuk-warning-text__text">
@@ -109,8 +93,6 @@
      <p>You should use a new test kit, and not reuse anything from the first test kit.</p>
      {% endif %}
 
-      <button class="govuk-button" data-module="govuk-button">Book the follow-up test now</button>
-
       <h4 class="govuk-heading-m">The test result was void</h4>
 
       {% if data['whos-taking-the-test'] == "someone-else" %}
@@ -119,6 +101,16 @@
       {% else %}
       <p class="govuk-body">If the test result was actually void, the person who took the test should take another rapid lateral flow test as soon as possible and report the result.</p>
       <p>They should use a new test kit, and not reuse anything from the first test kit.</p>
+      {% endif %}
+
+      <h4 class="govuk-heading-m">Get a new rapid lateral flow test kit</h4>
+
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      <p class="govuk-body">If they do not have another rapid lateral flow test available, they can order a new test pack online for home delivery.</p>
+      <p class="govuk-body">Or, find out where to collect rapid lateral flow test kits locally.</p>
+      {% else %}
+      <p class="govuk-body">If you do not have another rapid lateral flow test available, you can order a new test pack online for home delivery.</p>
+      <p class="govuk-body">Or, find out where to collect rapid lateral flow test kits locally.</p>
       {% endif %}
 
    </div>
