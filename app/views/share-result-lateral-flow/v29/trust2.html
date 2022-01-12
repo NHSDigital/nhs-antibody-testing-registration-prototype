@@ -1,5 +1,5 @@
 {% set version = "v29" %}
-{% set pageTitle = "What's the name of the NHS Trust or Health Board?" %}
+{% set pageTitle = "What's the name of the NHS trust or Health Board?" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -16,37 +16,44 @@
     <form action="/share-result-lateral-flow/{{version}}/test-date" method="post">
 
       <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading">
             {{ pageTitle }}
           </h1>
         </legend>
+        </fieldset>
+
         <br>
         <span id="nhs-number-hint" class="govuk-body">
-        Start entering the name of the NHS trust or Health Board, then choose from the options provided.</span>
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        Start entering the name of the NHS trust or Health Board, then choose from the options provided. Make sure ['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} uses the full name.</span>
+        {% else %}
+        Start entering the name of the NHS trust or Health Board, then choose from the options provided. Make sure you use the full name.</span>
+        {% endif %}
         <div class="govuk-form-group govuk-!-margin-top-5">
           <label id="occupation-hint" class="govuk-label" for="occupation">
-            NHS Trust or Health Board
+            NHS trust or Health Board
           <!--  If you still cannot find yours, select ‘I cannot find the correct occupation’. -->
           </label>
           <div id="occupation-container" name="occupation"></div>
         </div>
       </div>
 
+      <div>
+      <p id=trust-name-hint class="govuk-body">
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} cannot find it in the list <a href="enter-trust" role="button" draggable="false" class="govuk-link" data-module="govuk-button">enter the name of the NHS trust or Health Board manually instead</a>
+        {% else %}
+        If you cannot find it in the list <a href="enter-trust" role="button" draggable="false" class="govuk-link" data-module="govuk-button">enter the name of the NHS trust or Health Board manually instead</a>
+        {% endif %}
+      </p>
+    </div>
+
       <button class="govuk-button" type="submit" data-module="govuk-button">
         Continue
       </button>
 
-      <div>
-      <p class="govuk-body">
-        {% if data['whos-taking-the-test'] == "someone-else" %}
-        If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} cannot find the name of the NHS trust or Health Board<a href="enter-trust" role="button" draggable="false" class="govuk-link" data-module="govuk-button"> they should enter it manually instead</a>
-        {% else %}
-        If you cannot find the name of the NHS trust or Health Board <a href="enter-trust" role="button" draggable="false" class="govuk-link" data-module="govuk-button">enter it manually instead</a>
-        {% endif %}
-
-      </p>
-    </div>
 
     </form>
 
