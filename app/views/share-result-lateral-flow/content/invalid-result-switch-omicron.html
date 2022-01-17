@@ -7,9 +7,15 @@
      You reported a void coronavirus test result
      {% endif %}
    </h1>
+   {% if data['whos-taking-the-test'] == "someone-else" %}
+   <div class="govuk-panel__body">
+     It’s not possible to say if they had coronavirus or were infectious when the test was done
+   </div>
+   {% else %}
    <div class="govuk-panel__body">
      It’s not possible to say if you had coronavirus or were infectious when the test was done
    </div>
+    {% endif %}
  </div>
 
    <p class="govuk-body">This result has been reported to the NHS.</p>
@@ -36,7 +42,7 @@
        <li>open windows if meeting indoors</li>
        <li>wearing a face covering in crowded indoor settings</li>
        <li>stay home if unwell</li>
-       <li>get tested and self-isolate if you need to</li>
+       <li>get tested and self-isolate if they need to</li>
      </ul>
    {% else %}
      <p class="govuk-body">To stay safe:</p>
@@ -47,15 +53,15 @@
          <li>open windows if meeting indoors</li>
          <li>wearing a face covering in crowded indoor settings</li>
          <li>stay home if unwell</li>
-         <li>get tested and self-isolate if they need to</li>
+         <li>get tested and self-isolate if you need to</li>
        </ul>
    {% endif %}
 
    {% if data['whos-taking-the-test'] == "someone-else" %}
-     <p class="govuk-body">If they're worried about any symptoms, including a cough that does not go away, contact 111
+     <p class="govuk-body">If they're worried about any symptoms, including a cough that does not go away, they should contact 111
        (England and Scotland only) or speak to their GP. In an emergency dial 999.</p>
    {% else %}
-     <p class="govuk-body">If you're worried about any symptoms, including a cough that does not go away, they should contact 111
+     <p class="govuk-body">If you're worried about any symptoms, including a cough that does not go away, you should contact 111
        (England and Scotland only) or speak to your GP. In an emergency dial 999.</p>
    {% endif %}
 
@@ -86,11 +92,17 @@
         {% if data['whos-taking-the-test'] == "someone-else" %}
            They should self-isolate immediately.
            Find further self-isolation guidance for
-           <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">England</a>, <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland</a> or <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts#toc-0" target="_blank" rel="noreferrer">Northern Ireland (open in new tabs)</a>
+           <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">England</a>,
+           <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland</a>,
+           <a href="https://gov.wales/self-isolation" target="_blank" rel="noreferrer">Wales</a>
+           or <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts#toc-0" target="_blank" rel="noreferrer">Northern Ireland (open in new tabs)</a>
          {% else %}
            Self-isolate immediately.
            Find further self-isolation guidance for
-           <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">England</a>, <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland</a> or <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts#toc-0" target="_blank" rel="noreferrer">Northern Ireland (open in new tabs)</a>
+           <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">England</a>,
+           <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland</a>,
+           <a href="https://gov.wales/self-isolation" target="_blank" rel="noreferrer">Wales</a>
+           or <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts#toc-0" target="_blank" rel="noreferrer">Northern Ireland (open in new tabs)</a>
         {% endif %}
       </strong>
     </div>

@@ -8,7 +8,7 @@
        </h1>
        <div class="govuk-panel__body">
          {% if data['whos-taking-the-test'] == "someone-else" %}
-         It’s likely they were not infectious when the test was done
+         It’s likely {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} was not infectious when the test was done
          {% else %}
          It’s likely you were not infectious when the test was done
          {% endif %}
@@ -35,19 +35,7 @@
       <li>get tested and self-isolate if you need to</li>
     </ul>
 
-    {% if data['whos-taking-the-test'] == "someone-else" %}
-      <p>If they're worried about any symptoms, including a cough that does not go away, they should
-        contact 111 (England and Scotland only) or speak to their GP. In an emergency dial 999.</p>
-    {% else %}
-      <p>If you're worried about any symptoms, including a cough that does not go away,
-      contact 111 (England and Scotland only) or speak to your GP. In an emergency dial 999.</p>
-    {% endif %}
-
-  {% if data['whos-taking-the-test'] == "someone-else" %}
-    <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/t">Find out if they need to self-isolate, despite this negative result.</p>
-  {% else %}
-    <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">Find out if you need to self-isolate, despite this negative result.</p>
-  {% endif %}
+  <p><a href="https://www.gov.uk/find-coronavirus-support"> Find out if you need to self-isolate, despite this negative result. </p>
 
  <br>
  <button class="govuk-button" data-module="govuk-button">Report another result</button>
