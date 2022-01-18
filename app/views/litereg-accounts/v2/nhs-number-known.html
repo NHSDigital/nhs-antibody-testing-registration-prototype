@@ -27,30 +27,44 @@
       <form action="/litereg-accounts/{{version}}/action9/nhs-number-known" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint nhs-number-known-hint-2 nhs-number-known-hint-3 nhs-number-known-hint-4">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                {{ pageTitle }}
-              </h1>
-            </legend>
 
-            <span id="nhs-number-known-hint" class="govuk-body">
+          <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+            {{ pageTitle }}
+          </h1>
+
+
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              An NHS number is a 10-digit number, for example, 485 777 3456. They can find it on any letter the NHS has sent them, on a prescription, or by logging in to a GP practice online service.<br><br>
-              In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.<br><br>
-              It's OK if they do not have an NHS number or they do not live in the UK, they can still continue.
-              {% else %}
-              An NHS number is a 10-digit number, for example, 485 777 3456. You can find it on any letter the NHS has sent you, on a prescription, or by logging in to a GP practice online service.<br><br>
-              In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.<br><br>
-              It's OK if you do not have an NHS number or you do not live in the UK, you can still continue.
-              {% endif %}
-            </span>
+              <p class="govuk-body">
+                They can find it on any letter the NHS has sent them, on a prescription, or by logging in to a GP practice online service.
+              </p>
 
-            {% if data['whos-taking-the-test'] == "someone-else" %}
-            <p class="govuk-!-margin-top-5"><a class="govuk-link" href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/">Look up their NHS number</a></p>
-            {% else %}
-            <p class="govuk-!-margin-top-5"><a class="govuk-link" href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/">Look up your NHS number</a></p>
-            {% endif %}
+              <p class="govuk-body">
+                In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.
+              </p>
+
+              <p class="govuk-body">
+                It's OK if they do not have an NHS number or they do not live in the UK, they can still continue.
+              </p>
+              {% else %}
+              <p class="govuk-body">
+                You can find it on any letter the NHS has sent you, on a prescription, or by logging in to a GP practice online service.
+              </p>
+
+                <p class="govuk-body">
+                  In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.
+                </p>
+
+                <p class="govuk-body">
+                  It's OK if you do not have an NHS number or you do not live in the UK, you can still continue.
+                </p>
+              {% endif %}
+
+
+
+            <p>
+              <a class="govuk-link" href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/" target="blank">Look up NHS number (opens in new tab)</a>
+            </p>
+
 
             <div class="govuk-form-group govuk-!-margin-bottom-3">
               <label class="govuk-label" for="nhs-number">
@@ -62,19 +76,18 @@
                   {% endif %}
                 </strong>
               </label>
-              <input class="govuk-input govuk-input--width-10" id="nhs-number" name="nhs-number" type="text" value="{{ data['nhs-number'] }}">
+              <div id="nhs-number-hint" class="govuk-hint">
+                  A 10-digit number, for example, 485 777 3456
+              </div>
+              <input class="govuk-input govuk-input--width-20" id="nhs-number" name="nhs-number" type="text" aria-describedby="nhs-number-hint" value="{{ data['nhs-number'] }}">
+
             </div>
 
-          </fieldset>
         </div>
 
-        <div class="govuk-button-group">
-          <button class="govuk-button" data-module="govuk-button">
-            Continue
-          </button>
-        
-          <a class="govuk-button govuk-button--secondary" href="/litereg-accounts/{{version}}/fingerprick-test">Continue without NHS number</a>
-        </div>
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <p><a class="govuk-link" href="/antigen/{{version}}/global-registration/fingerprick-test">Continue without NHS number</a></p>
+
 
       </form>
 
