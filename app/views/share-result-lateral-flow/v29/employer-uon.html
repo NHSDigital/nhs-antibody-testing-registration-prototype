@@ -36,11 +36,19 @@
 
             <span id="enter-barcode-number-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              The UON helps us to link {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} to their employer or organisation if they are testing for work purposes.<br><br> It's OK if they do not have one, they can still continue.
+              The UON helps us to link {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} to their employer or organisation if they are testing for work purposes.
               {% else %}
-              The UON helps us to link you to your employer or organisation if you're testing for work purposes.<br><br> It's OK if you do not have one, you can still continue.
+              The UON helps us to link you to your employer or organisation if you're testing for work purposes.
               {% endif %}
             </span>
+
+            <div class="govuk-inset-text">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+                It's OK if they do not have one, you can still continue.
+                {% else %}
+                It's OK if you do not have one, you can still continue.
+                {% endif %}
+            </div>
 
              <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
                <summary class="govuk-details__summary">
@@ -108,10 +116,6 @@
             </h2>
 
             <div class="govuk-form-group">
-              <p class="govuk-label-wrapper"><label class="govuk-body" for="account-number">
-                  UON
-                </label>
-              </p>
               <div id="account-number-hint" class="govuk-hint">
                 An 8 digit number like 12345678
               </div>
@@ -122,13 +126,9 @@
         </div>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button"> Continue without UON</button>
       </form>
 
-      <p>
-          <a class="govuk-link" href="/share-result-lateral-flow/{{version}}/employer-uon-check">
-            Continue without UON
-          </a>
-      </p>
 
     </div>
   </div>
