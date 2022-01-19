@@ -26,13 +26,11 @@
 
       <form class="form" action="/share-result-lateral-flow/{{version}}/employer-uon-check" method="post">
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <div class="govuk-form-group" aria-describedby="enter-barcode-number-hint">
+
               <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
                 {{ pageTitle }}
               </h1>
-            </legend>
 
             <span id="enter-barcode-number-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
@@ -107,7 +105,7 @@
               <input class="govuk-!" id="account-number" name="account-number" type="text" spellcheck="false" aria-describedby="account-number-hint" pattern="[0-9]*" inputmode="numeric">
             </div> -->
 
-            <h2 class="govuk-heading-m">
+            <!--   <h2 class="govuk-heading-m">
               {% if data['whos-taking-the-test'] == "someone-else" %}
               What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s UON?
               {% else %}
@@ -115,14 +113,30 @@
               {% endif %}
             </h2>
 
-            <div class="govuk-form-group">
+          <div class="govuk-form-group">
               <div id="account-number-hint" class="govuk-hint">
                 An 8 digit number like 12345678
               </div>
               <input class="govuk-input govuk-input--width-10" id="account-number" name="account-number" type="text" spellcheck="false" aria-describedby="account-number-hint" pattern="[0-9]*" inputmode="numeric">
+            </div> -->
+
+            <div class="govuk-form-group">
+              <h2 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--m" for="uon-number">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s UON?
+                  {% else %}
+                  What is your UON?
+                  {% endif %}
+                </label>
+              </h2>
+              <div id="account-number-hint" class="govuk-hint">
+                An 8 digit number like 12345678
+              </div>
+              <input class="govuk-input govuk-input--width-10" id="uon-number" name="uon-number" type="text">
             </div>
 
-          </fieldset>
+
         </div>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
