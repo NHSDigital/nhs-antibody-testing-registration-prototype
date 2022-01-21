@@ -806,6 +806,9 @@ router.post('/antigen/v2/action3/order-home-test-kit', function (req, res) {
 
 })
 
+
+
+
 // Version 2 - Antigen Site Appointment Booking - find a test site route
 
 router.post('/antigen/v2/action3/please-wait', function (req, res) {
@@ -4209,19 +4212,6 @@ router.post('/antigen/v7/action3/security-check', function (req, res) {
 
 })
 
-// Version 7- Antigen Refer and Triage - Do you have a car route
-
-router.post('/antigen/v7/action3/landline-number', function (req, res) {
-
-  let emailAddress = req.session.data['email']
-  if (emailAddress == "Yes" ){
-    res.redirect('/antigen/v7/global-registration/gender')
-  } else {
-    res.redirect('/antigen/v7/global-registration/email-address')
-  }
-
-})
-
 
 // Version 7- Antigen Refer and Triage - How will you get test route
 
@@ -4234,6 +4224,18 @@ router.post('/antigen/v7/action3/how-will-you-get-test', function (req, res) {
   } else if (wayToTest == "home testing") {
     res.redirect('/antigen/v7/refer-and-triage/order-home-test-kit')
   }
+})
+
+// Version 7- Antigen Global Registration - home order email verification
+
+router.post('/antigen/v7/action3/landline-number', function (req, res) {
+  let car = req.session.data['do-you-have-a-car']
+  if (car == "No") {
+    res.redirect('/antigen/v7/global-registration/email-address-home')
+  } else {
+    res.redirect('/antigen/v7/global-registration/email-address')
+  }
+
 })
 
 // Version 7- Antigen Global Registration - Ethnic group route
