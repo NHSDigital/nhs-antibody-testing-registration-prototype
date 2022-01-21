@@ -4519,8 +4519,11 @@ router.post('/antigen/v7/global-registration/edit-check-answers-person-1/action9
 
 router.post('/antigen/v7/action3/gp-address-same', function (req, res) {
   let gpAdressSame = req.session.data['gp-address-same']
-  if (gpAdressSame == "No"){
+  let car = req.session.data['do-you-have-a-car']
+  if (gpAdressSame == "No") {
     res.redirect('/antigen/v7/global-registration/address')
+  } else if (car == "No") {
+    res.redirect('/antigen/v7/order-home-test-kit/delivery-address-same')
   } else {
     res.redirect('/antigen/v7/global-registration/nhs-number-known')
   }
@@ -4787,7 +4790,7 @@ router.post('/antigen/v7/action3/delivery-address-same', function (req, res) {
   if (deliveryAdressSame == "No"){
     res.redirect('/antigen/v7/order-home-test-kit/delivery-postcode')
   } else {
-    res.redirect('/antigen/v7/order-home-test-kit/confirm-email-address')
+    res.redirect('/antigen/v7/global-registration/nhs-number-known')
   }
 })
 
@@ -5194,6 +5197,7 @@ router.post('/antigen/v7/action3/landline-number', function (req, res) {
 })
 
 
+
 // Version 7- Antigen Refer and Triage - How will you get test route
 
 router.post('/antigen/v7/action3/how-will-you-get-test', function (req, res) {
@@ -5482,17 +5486,6 @@ router.post('/antigen/v7/global-registration/edit-check-answers-person-1/action9
     res.redirect('/antigen/v7/global-registration/edit-check-answers-person-1/which-countries-travelled-to-person-1')
   }
 
-})
-
-// Version 7- Antigen Global Registration - GP address same route
-
-router.post('/antigen/v7/action3/gp-address-same', function (req, res) {
-  let gpAdressSame = req.session.data['gp-address-same']
-  if (gpAdressSame == "No"){
-    res.redirect('/antigen/v7/global-registration/address')
-  } else {
-    res.redirect('/antigen/v7/global-registration/nhs-number-known')
-  }
 })
 
 router.post('/antigen/v7/action3/gp-address-same-person-1', function (req, res) {
