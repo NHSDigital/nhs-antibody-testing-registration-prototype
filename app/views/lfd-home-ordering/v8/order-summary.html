@@ -47,7 +47,8 @@
               Home address
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['address-line-1'] }}<br>
+              {{ data['home-address'] }}
+              <!-- {{ data['address-line-1'] }}<br>
               {% if data['address-line-2'] %}
               {{ data['address-line-2'] }}<br>
               {% endif %}
@@ -55,7 +56,7 @@
               {% if data['address-county'] %}
               {{ data['address-county'] }}<br>
               {% endif %}
-              {{ data['address-postcode'] }}
+              {{ data['address-postcode'] }} -->
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/lfd-home-ordering/{{version}}/postcode">
@@ -68,7 +69,12 @@
             Delivery address
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['delivery-address-same'] === 'No' and data['delivery-address-line-1'] == undefined %}{{ data['delivery-address'] }}{% endif %}
+            {% if data['delivery-address-same'] == "No" and data['home-address'] != data['delivery-address'] and data['delivery-address'] != undefined %}
+            {{ data['delivery-address'] }}
+            {% else %}
+            Same as home address
+            {% endif %}
+            <!-- {% if data['delivery-address-same'] === 'No' and data['delivery-address-line-1'] == undefined %}{{ data['delivery-address'] }}{% endif %}
             {% if data['delivery-address-same'] === 'No' and data['delivery-address-line-1'] !== undefined %}
             {{ data['delivery-address-line-1'] }}<br>
             {% if data['delivery-address-line-2'] %}
@@ -77,7 +83,7 @@
             {{ data['delivery-address-town'] }}<br>
             {{ data['delivery-address-postcode'] }}
             {% endif %}
-            {% if data['delivery-address-same'] === 'Yes' %}Same as home address{% endif %}
+            {% if data['delivery-address-same'] === 'Yes' %}Same as home address{% endif %} -->
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/lfd-home-ordering/{{version}}/delivery-address">
