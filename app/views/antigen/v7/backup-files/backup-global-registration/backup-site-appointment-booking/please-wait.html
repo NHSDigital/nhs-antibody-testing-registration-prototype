@@ -1,0 +1,62 @@
+{% set version = "v7" %}
+{% set pageTitle = "Finding available appointments" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<!--  <a class="govuk-back-link" href="/antibody/{{version}}/home-testing/order-summary">Back</a>-->
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .ccms-loader {
+    border: 12px solid #DEE0E2;
+    border-radius: 50%;
+    border-top-color: #005EA5;
+    width: 80px;
+    height: 80px;
+    -webkit-animation: spin 0.7s linear infinite;
+    animation: spin 0.7s linear infinite;
+    text-align: center;
+    margin: 20px auto 10px;
+  }
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+      
+      <div style="text-align: center; margin: 20px auto">
+        <div class="ccms-loader"></div>
+        <p>Please wait</p>
+      </div>
+
+      <form action="/antigen/{{version}}/action3/please-wait" method="post">
+
+      <button id="button" style="display: none"></button>
+
+      </form>
+
+    </div>
+  </div>
+
+<script type="text/javascript">
+  loadingSpinner()
+  function loadingSpinner(target) {
+    setTimeout(function () {
+      document.getElementById('button').click();
+    }, 1000)
+  }
+</script>
+
+{% endblock %}

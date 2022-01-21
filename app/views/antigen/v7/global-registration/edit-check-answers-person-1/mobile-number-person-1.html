@@ -1,0 +1,97 @@
+{% set version = "v7" %}
+{% set pageTitle = "Mobile number" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/email-address-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/global-registration/edit-check-answers-person-1/landline-number-person-1" method="post">
+
+        <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" aria-describedby="mobile-number-person-1-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                    {{ pageTitle }}
+                  </h1>
+                </legend>
+
+            <div id="mobile-number-person-1-hint">
+              <p class="govuk-body">We need a mobile number to send your test results.</p>
+
+              <p class="govuk-body">If your mobile number is going to change soon, it's important you give us an email address, to make sure you get your test results.</p>
+
+              <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this number.</p>
+
+              <p class="govuk-body">If you're getting a test for a child, enter your number not theirs.</p>
+
+              <p class="govuk-body">If a test result is positive, the NHS may also use the details you supply for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/test-results/help-the-nhs-alert-your-close-contacts-if-you-test-positive/" target="_blank">contact tracing (opens in new tab)</a>.</p>
+            </div>
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+               Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} have a mobile number?
+             </legend>
+
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mobile-number-2-person-1" name="mobile-number-person-1" type="radio" value="different" data-aria-controls="conditional-mobile-number" {{ checked("mobile-number-person-1", "different") }}>
+                <label class="govuk-label govuk-radios__label" for="mobile-number-2-person-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mobile-number">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="mobile-phone-number-person-1">
+                    Mobile number
+                  </label>
+                  <div id="telephone-number-hint" class="govuk-hint">
+                    For international numbers include the country code (Eg,+33)
+                  </div>
+                  <input class="govuk-input govuk-!-width-one-half" id="mobile-phone-number-person-1" name="mobile-phone-number-person-1" type="tel" value="{{ data['mobile-phone-number-person-1'] }}">
+                </div>
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="confirm-mobile-phone-number-person-1">
+                    Confirm mobile number
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-half" id="confirm-mobile-phone-number-person-1-option-2" name="confirm-mobile-phone-number-person-1-option-2" type="tel" value="{{ data['confirm-mobile-phone-number-person-1-option-2'] }}">
+                </div>
+              </div>
+              <div class="govuk-body">Or</div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mobile-number-1-person-1" name="mobile-number-person-1" type="radio" value="same" {{ checked("mobile-number-person-1", "same") }}>
+                <label class="govuk-label govuk-radios__label" for="mobile-number-1-person-1">
+                  Use {{ data['mobile-phone-number'] }} (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith'}})
+                </label>
+              </div>
+
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      </form>
+    </div>
+
+  </div>
+
+{% endblock %}

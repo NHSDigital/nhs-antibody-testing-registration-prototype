@@ -1,0 +1,69 @@
+{% set version = "v7" %}
+{% set pageTitle = "Stay at home" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+
+        <p class="govuk-body">
+          Based on your answers, you should be self-isolating. Self-isolation begins on the day symptoms start and continues for the next 10 full days.<br><br>
+          Self-isolation is when you don't leave your home because you have or might have coronavirus.<br><br>
+          This helps stop the virus speading to other people.<br><br>
+          Self-isolation is different to:
+        </p>
+
+        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-4">
+            <li><a class="govuk-link" href="https://www.nhs.uk/conditions/coronavirus-covid-19/social-distancing/what-you-need-to-do/">social distancing</a> — advice for everyone to avoid close contact with other people</li>
+            <li><a class="govuk-link" href="https://www.nhs.uk/conditions/coronavirus-covid-19/people-at-higher-risk/advice-for-people-at-high-risk/">shielding</a> — advice for people at high risk from coronavirus</li>
+        </ul>
+
+        <h2 class="govuk-heading-m">How to self-isolate</h2>
+        <p class="govuk-body">
+          You must not leave your home if you are self-isolating.<br><br>
+          Don't:
+        </p>
+
+        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+            <li>go to work, school or any public places - work from home if you can</li>
+            <li>go out to get food and medicine – order it online or by phone, or ask someone to bring it to your home</li>
+            <li>have visitors in your home, including friends and family – except for people providing essential care</li>
+            <li>go on public transport or use taxis</li>
+            <li>go out to exercise – exercise at home or in your garden, if you have one</li>
+        </ul>
+
+        <p class="govuk-body govuk-!-padding-bottom-6">There's <a lass="govuk-link" href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/help-and-financial-support-while-youre-self-isolating/">support available to help you self-isolate</a>.</p>
+    
+        <form action="/antigen/{{version}}/refer-and-triage/government-pilot" method="post">
+
+          <button class="govuk-button" data-module="govuk-button">Continue booking a test</button>
+
+        </form>
+
+    </div>
+  </div>
+
+{% endblock %}

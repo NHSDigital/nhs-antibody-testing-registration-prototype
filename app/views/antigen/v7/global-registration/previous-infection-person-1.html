@@ -1,0 +1,79 @@
+{% set version = "v7" %}
+{% set pageTitle = "Has the person had a positive PCR test result before?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['have-you-travelled-overseas-person-1'] == "Yes" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/1-which-countries-travelled-to-person-1">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/1-have-you-travelled-overseas-person-1">Back</a>
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        PCR test result
+      </h1>
+
+      <p class="govuk-body">
+        We need to know if the person received a positive PCR test result more than 3 months ago. If so, they may have a new coronavirus infection caused by a different variant.
+      </p>
+
+      <form action="/antigen/{{version}}/global-registration/coronavirus-vaccine-person-1" method="post" novalidate>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              Has {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} had a positive PCR test result before?
+            </legend>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="previous-infection-1" name="previous-infection" type="radio" value="Yes, over 3 months ago" {{ checked("previous-infection", "Yes, over 3 months ago") }}>
+              <label class="govuk-label govuk-radios__label" for="previous-infection-1-person-1">
+                Yes, over 3 months ago
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="previous-infection-2" name="previous-infection" type="radio" value="Yes, less than 3 months ago" {{ checked("previous-infection", "Yes, less than 3 months ago") }}>
+              <label class="govuk-label govuk-radios__label" for="previous-infection-2-person-1">
+                Yes, less than 3 months ago
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="previous-infection-3" name="previous-infection" type="radio" value="No" {{ checked("previous-infection", "No") }}>
+              <label class="govuk-label govuk-radios__label" for="previous-infection-3-person-1">
+                No
+              </label>
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+      </form>
+    </div>
+  </div>
+
+
+
+
+{% endblock %}

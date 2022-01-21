@@ -1,0 +1,98 @@
+{% set version = "v7" %}
+{% set pageTitle = "Text message" %}
+
+{% extends "includes/layout.html" %}
+
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    body {
+      background-color: #f3f2f1 !important;
+      -webkit-text-size-adjust: 100%;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: normal;
+      margin: 50px auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-text-message {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 340px;
+      min-height: 420px;
+    }
+
+    .app-text-message__text {
+      max-width: 255px;
+      word-wrap: break-word;
+      margin-bottom: 12px;
+      line-height: 24px;
+      position:relative;
+      padding:10px 20px;
+      border-radius:25px;
+      background:#E5E5EA;
+      color:black;
+      
+      &:before, &:after {
+        content:"";
+        position:absolute;
+        bottom:-2px;
+        height:20px;
+      }
+
+       &:before {
+        left:-7px;
+        border-left:20px solid #E5E5EA;
+        border-bottom-right-radius: 16px 14px;
+        transform:translate(0, -2px);
+      }
+
+      &:after {
+        left:4px;
+        width:26px;
+        background:white;
+        border-bottom-right-radius: 10px;
+        transform:translate(-30px, -2px);
+      }
+    }
+    </style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h1 class="govuk-heading-l">Text message</h1>
+
+      <div class="app-text-message">
+        <h2 class="govuk-heading-s">UK_Gov</h2>
+        <p class="app-text-message__text">
+          Dear {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}<br><br>
+          Your antibody test kit arrives in 2-3 days.<br><br>
+          Read the instructions in your test kit as soon as it arrives. They explain how to do the test. Then take the test as soon as you can.<br><br>
+          You will find it easier to do the blood test if you watch this video: <a href="https://www.youtube.com/watch?v=okTozcGMDlU&ab_channel=DepartmentofHealthandSocialCare">https://www.youtube.com/watch?v=okTozcGMDlU&ab_channel=DepartmentofHealthandSocialCare</a>. The video shows you how to prepare for the test, for example by drinking plenty of water the day before, and on the day itself. It also shows you how to collect your blood sample.<br><br>
+          For more information about antibody testing, go to <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/antibody-testing-to-check-if-youve-had-coronavirus/">https://www.nhs.uk/conditions/coronavirus-covid-19/testing/antibody-testing-to-check-if-youve-had-coronavirus/</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action big">
+  <a href="/antigen/{{version}}/sms-messages/07-antibody-5">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Text message 7</div>
+  </a>
+</div>
+{% endblock %}

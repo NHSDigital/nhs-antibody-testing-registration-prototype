@@ -1,0 +1,102 @@
+{% set version = "v7" %}
+{% set pageTitle = "Text message" %}
+
+{% extends "includes/layout.html" %}
+
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    body {
+      background-color: #f3f2f1 !important;
+      -webkit-text-size-adjust: 100%;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: normal;
+      margin: 50px auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-text-message {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 340px;
+      min-height: 420px;
+    }
+
+    .app-text-message__text {
+      max-width: 255px;
+      word-wrap: break-word;
+      margin-bottom: 12px;
+      line-height: 24px;
+      position:relative;
+      padding:10px 20px;
+      border-radius:25px;
+      background:#E5E5EA;
+      color:black;
+
+      &:before, &:after {
+        content:"";
+        position:absolute;
+        bottom:-2px;
+        height:20px;
+      }
+
+       &:before {
+        left:-7px;
+        border-left:20px solid #E5E5EA;
+        border-bottom-right-radius: 16px 14px;
+        transform:translate(0, -2px);
+      }
+
+      &:after {
+        left:4px;
+        width:26px;
+        background:white;
+        border-bottom-right-radius: 10px;
+        transform:translate(-30px, -2px);
+      }
+    }
+    </style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h1 class="govuk-heading-l">Text message</h1>
+
+      <div class="app-text-message">
+        <h2 class="govuk-heading-s">UK_Gov</h2>
+        <p class="app-text-message__text">
+          Dear {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}<br><br>
+          
+          You should have received your first antibody test kit in the post.<br><br>
+          Take the test as soon as possible. The instrutions in the kit explain how to take the test.<br><br>
+          After you've completed the test, post it back as soon as possible in your nearest Royal Mail priority postbox.<br><br>
+          Find a local postbox on Royal Mail's website at: <a class="govuk-link" href="https://www.royalmail.com/services-near-you#/">https://www.royalmail.com/services-near-you#/</a> <br><br>
+          You can leave home to post a test kit while self-isolating.<br><br>
+          Your second antibody test kit will be sent in the next 4 weeks.<br><br>
+          To help us improve the antibody testing service, please complete this short survey [insert link here]
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action big">
+  <a href="/antigen/{{version}}/sms-messages/02-antibody-1">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Text message 2</div>
+  </a>
+</div>
+{% endblock %}
