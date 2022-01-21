@@ -1091,7 +1091,7 @@ router.post('/lfd-home-ordering/v8/action10/home-address-question', function (re
 router.post('/lfd-home-ordering/v8/action10/delivery-address', function (req, res) {
     let country = req.session.data['country']
     if (country == "England" ) {
-      res.redirect('/lfd-home-ordering/v7/nhs-testing-programme')
+      res.redirect('/lfd-home-ordering/v8/nhs-testing-programme')
      } else {
          res.redirect('/lfd-home-ordering/v8/check-your-answers')
      }
