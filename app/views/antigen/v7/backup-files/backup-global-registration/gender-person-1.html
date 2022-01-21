@@ -1,0 +1,74 @@
+{% set version = "v7" %}
+{% set pageTitle = "Is their gender the same as the sex they were registered with at birth?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div> 
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/sex-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/global-registration/ethnic-group-person-1" method="post">
+      
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                Is {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }}'s gender the same as the sex they were registered with at birth?
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-1-person-1" name="gender-person-1" type="radio" value="Yes" {{ checked("gender-person-1", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-1-person-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-2-person-1" name="gender-person-1" type="radio" value="No" data-aria-controls="conditional-gender" {{ checked("gender-person-1", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-2-person-1">
+                  No
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-gender">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="gender-other-person-1">
+                    Please write in gender
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-third" id="gender-other-person-1" name="gender-other-person-1" type="tel" value="{{ data['gender-other-person-1'] }}">
+                </div>
+              </div>
+              <p class="govuk-body">or</p>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="gender-3-person-1" name="gender-person-1" type="radio" value="Prefer not to say" {{ checked("gender-person-1", "Prefer not to say") }}>
+                <label class="govuk-label govuk-radios__label" for="gender-3-person-1">
+                  Prefer not to say
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

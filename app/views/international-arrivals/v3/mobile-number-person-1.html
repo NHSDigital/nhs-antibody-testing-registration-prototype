@@ -1,5 +1,5 @@
 {% set version = "v3" %}
-{% set pageTitle = "What's their mobile number?" %}
+{% set pageTitle = "What's their mobile phone number?" %}
 
 {% extends "includes/layout-intl-arrivals.html" %}
 
@@ -35,12 +35,14 @@
           <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
-                Does {{ data['first-name-person-1'] or 'Sophie' }} {{ data['last-name-person-1'] or 'Appleseed' }} have a mobile number?
+                Does {{ data['first-name-person-1'] or 'Sophie' }} {{ data['last-name-person-1'] or 'Appleseed' }} have a mobile phone number?
               </h1>
             </legend>
-            <div id="mobile-number-hint" class="govuk-hint">
-              For international numbers, include the country code (for example, +33).
-            </div>
+            <p>If they have one, we'll send their test results to this mobile number.</p>
+
+            
+
+
 
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
               <div class="govuk-radios__item">
@@ -50,10 +52,24 @@
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mobile-number">
+
+                <p>Get their permission before you enter their mobile number.</p>
+
+            <p>Make sure they're happy for their test results to go to this mobile number. Do not
+              use a work or shared mobile number unless they're comfortable with others 
+              seeing their results.</p>
+
+            <p>Children need to be aged 16 and over to receive their results. If the child is 
+              younger than 16, you (their parent or guardian) should enter your mobile 
+              number here.</p>
+
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="mobile-phone-number-person-1">
                     Mobile number
                   </label>
+                  <div id="mobile-number-hint" class="govuk-hint">
+                    For international numbers, include the country code (for example, +33).
+                  </div>
                   <input class="govuk-input govuk-!-width-one-half" id="mobile-phone-number-person-1" name="mobile-phone-number-person-1" type="tel" value="{{ data['mobile-phone-number-person-1'] }}">
                 </div>
                 <div class="govuk-form-group">
@@ -66,7 +82,7 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="mobile-number-2-person-1" name="mobile-number-person-1" type="radio" value="No" {{ checked("mobile-number-person-1-person-1", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="mobile-number-2-person-1">
-                  No, they don't have a mobile number
+                  No, they do not have a mobile number
                 </label>
               </div>
             </div>

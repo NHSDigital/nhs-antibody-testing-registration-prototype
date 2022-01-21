@@ -1,0 +1,78 @@
+{% set version = "v7" %}
+{% set pageTitle = "Do you know your contact tracing code?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/reason-for-test">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antigen/{{version}}/refer-and-triage/eligible" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="email-address-hint" class="govuk-body">
+              It should have been sent to you by text.<br><br>
+              <strong>England</strong><br>
+              Your code is 8 characters - for example, ZBCD1E23. It’s called a ‘Trace Account ID’.<br><br>
+              <strong>Northern Ireland</strong><br>
+              Your code is 8 characters - for example, ABCD1E23. It's called a 'Close Contact ID'.<br><br>
+              <strong>Scotland</strong><br>
+              Your code is 7 numbers. It’s called a ‘CMS Contact Reference ID’.<br><br>
+              <strong>Wales</strong><br>
+              Your code is 15 characters and starts with CAS - for example, CAS-123456-789123.
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contact-tracing-code-1" name="contact-tracing-code" type="radio" value="Yes" data-aria-controls="conditional-contact-tracing-code" {{ checked("contact-tracing-code", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="contact-tracing-code-1">
+                  Yes, I know my contact tracing code
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-tracing-code">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="contact-tracing-code-id">
+                    Contact tracing code
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="contact-tracing-code-id" name="contact-tracing-code-id" type="text" value="{{ data['contact-tracing-code-id'] }}">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contact-tracing-code-2" name="contact-tracing-code" type="radio" value="No" {{ checked("contact-tracing-code", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="contact-tracing-code-2">
+                  No, I do not know my contact tracing code
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

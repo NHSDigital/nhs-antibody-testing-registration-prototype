@@ -1,0 +1,101 @@
+{% set version = "v7" %}
+{% set pageTitle = "Text message" %}
+
+{% extends "includes/layout.html" %}
+
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    body {
+      background-color: #f3f2f1 !important;
+      -webkit-text-size-adjust: 100%;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: normal;
+      margin: 50px auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-text-message {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 340px;
+      min-height: 420px;
+    }
+
+    .app-text-message__text {
+      max-width: 255px;
+      word-wrap: break-word;
+      margin-bottom: 12px;
+      line-height: 24px;
+      position:relative;
+      padding:10px 20px;
+      border-radius:25px;
+      background:#E5E5EA;
+      color:black;
+      
+      &:before, &:after {
+        content:"";
+        position:absolute;
+        bottom:-2px;
+        height:20px;
+      }
+
+       &:before {
+        left:-7px;
+        border-left:20px solid #E5E5EA;
+        border-bottom-right-radius: 16px 14px;
+        transform:translate(0, -2px);
+      }
+
+      &:after {
+        left:4px;
+        width:26px;
+        background:white;
+        border-bottom-right-radius: 10px;
+        transform:translate(-30px, -2px);
+      }
+    }
+    </style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h1 class="govuk-heading-l">Text message</h1>
+
+      <div class="app-text-message">
+        <h2 class="govuk-heading-s">UK_Gov</h2>
+        <p class="app-text-message__text">
+          Dear {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}<br><br>
+          It's been a few days since your positive coronavirus test result.<br><br>
+          Make sure you and the people you live with continue to self-isolate for 10 days. This includes the day your symptoms started (or the test date if you’ve no symptoms) and the next 10 full days.<br><br>
+          If you’re already self-isolating from a previous lateral flow test, this includes the day you had that test and the next 10 full days.<br><br>
+          If the people you live with get symptoms, they must self-isolate from the day their symptoms  started and for the next 10 full days.<br><br>
+          You can return to work the day after you finish self-isolating if you've not had a high temperature in 48 hours, even if you still have a cough. Contact your employer first.<br><br>
+          Care home residents who test positive must self-isolate for 14 days.<br><br>
+          For medical help, contact 111. In an emergency dial 999.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action big">
+  <a href="/antigen/{{version}}/sms-messages/04-antibody-2">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Text message 4</div>
+  </a>
+</div>
+{% endblock %}

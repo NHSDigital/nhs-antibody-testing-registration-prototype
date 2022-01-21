@@ -1,0 +1,69 @@
+{% set version = "v7" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/date-of-birth-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/global-registration/symptoms-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="reason-for-test-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                What is {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }}'s reason for getting a test?
+              </h1>
+            </legend>
+            <span id="reason-for-test-hint" class="govuk-hint">
+              If you have more than one reason for getting tested, select the first one that applies to you.
+            </span>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-for-test-1-person-1" name="reason-for-test-person-1" type="radio" value="They have coronavirus symptoms" {{ checked("reason-for-test-person-1", "They have coronavirus symptoms") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-1-person-1">
+                  They have coronavirus symptoms
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-for-test-2-person-1" name="reason-for-test-person-1" type="radio" value="They are an essential worker" {{ checked("reason-for-test-person-1", "They are an essential worker") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-2-person-1">
+                  They are an essential worker
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-for-test-3-person-1" name="reason-for-test-person-1" type="radio" value="They've been in contact with someone who has tested positive for coronavirus" {{ checked("reason-for-test-person-1", "They've been in contact with someone who has tested positive for coronavirus") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-3-person-1">
+                  They've been in contact with someone who has tested positive for coronavirus
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-for-test-4-person-1" name="reason-for-test-person-1" type="radio" value="They're in an area with a coronavirus outbreak" {{ checked("reason-for-test-person-1", "They're in an area with a coronavirus outbreak") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-4-person-1">
+                  They're in an area with a coronavirus outbreak
+                </label>
+              </div>  
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-for-test-5-person-1" name="reason-for-test-person-1" type="radio" value="Other" {{ checked("reason-for-test-person-1", "Other") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-5-person-1">
+                  Other
+                </label>
+              </div>  
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

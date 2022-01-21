@@ -1,0 +1,50 @@
+{% set version = "v7" %}
+{% set pageTitle = "We cannot process your order" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+
+    <p class="govuk-body">You have recently placed an order for a home test kit. We are not able to process another request at this time.</p>
+
+
+    {% if data['do-you-have-a-car'] == "Yes" %}
+    <h2 class="govuk-heading-m">Other ways to get a test</h2>
+
+    <p class="govuk-body">If you prefer, you can book a test site appointment.</p>
+
+    <a href="/antigen/{{version}}/site-appointment-booking/choose-drive-through-site" role="button" draggable="false" class="govuk-button" data-module="govuk-button">Start again</a>
+    {% endif %}
+
+    {% if data['do-you-have-a-car'] == "No" and data['home-postcode'] !== "N0000" %}
+    <h2 class="govuk-heading-m">Other ways to get a test</h2>
+
+    <p class="govuk-body">If you prefer, you can book a test site appointment.</p>
+
+    <a href="/antigen/{{version}}/site-appointment-booking/choose-walk-through-site" role="button" draggable="false" class="govuk-button" data-module="govuk-button">Let me choose a test site appointment</a>
+    {% endif %}
+
+    <h2 class="govuk-heading-m">Still need help?</h2>
+
+    <p class="govuk-body">Call the customer contact centre if you still need help receiving a test kit:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>England, Wales and Northern Ireland: call 119 (free from mobiles and landlines)</li>
+      <li>Scotland: call 0300 303 2713 (charged at your standard network rate)</li>
+    </ul>
+
+    <p class="govuk-body">This helpline is open from 7am to 11pm.</p>
+
+  </div>
+</div>
+
+{% endblock %}

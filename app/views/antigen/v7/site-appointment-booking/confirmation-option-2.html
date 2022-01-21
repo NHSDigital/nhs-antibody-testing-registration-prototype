@@ -1,0 +1,200 @@
+ set version = "v2" %}
+{% set pageTitle = "Appointment booked" %}
+
+{% extends "includes/layout.html" %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
+      <p class="govuk-body" style="color: #ffffff">
+        <strong>
+          {% if data['test-site'] == "Lee Valley Athletics Park" %}
+              Lee Valley Athletics Park (drive in only no bikes)<br>
+              Lee Valley Athletics Centre<br>
+              London<br>
+              N9 0AR
+            {% elseif data['test-site'] == "Greenwich" %}
+              Greenwich (drive in only - no motorbikes)<br>
+              TFL Car Park, Edmund Halley Way<br>
+              London<br>
+              SE10 0PH
+            {% elseif data['test-site'] == "Twickenham" %}
+              Twickenham (drive in only - no motorbikes)<br>
+              Twickenham Stadium, 200 Whitton Road, Gate D<br>
+              Twickenham<br>
+              TW1 1DZ
+            {% elseif data['test-site'] == "Haringey Stamford Hill" %}
+              Haringey Stamford Hill - Walk through site<br>
+              Stamford Hill Primary School<br>
+              Haringey<br>
+              N15 6HD
+            {% elseif data['test-site'] == "Hackney Sandford Court" %}
+              Hackney Sandford Court - Walk through site<br>
+              Sandford Court, Bethune Rd<br>
+              London<br>
+              N16 5BB
+            {% elseif data['test-site'] == "Camden Ramsay Hall" %}
+              Camden Ramsay Hall - Walk through site<br>
+              Ramsay Hall (No step free access)<br>
+              Camden<br>
+              W1T 5HB
+            {% else %}
+              Heathrow airport test site,
+              125 testing lane,
+              London,
+              RM4 3RS
+            {% endif %}
+        </strong>
+      </p>
+      <p class="govuk-body" style="color: #ffffff">
+        {% if data['vehicle-registration-number'] !== undefined %}
+        <span class="govuk-!-margin-right-3">Vehicle: {{ data['vehicle-registration-number'] or 'CU57ABC' }}</span>
+        {% endif %}
+        <span class="govuk-!-margin-right-3">Date: {{ data['appointment-date'] or '18 July' }} 2021</span>
+        <span>Time: {{ data['time'] or '9:30am to 10:00am' }}</span>
+      </p>
+
+    </div>
+
+    <h2 class="govuk-heading-m">Your test site pass</h2>
+
+    <p class="govuk-body">You can view and print your pass (and any passes for people you live with) using the link shown below. Each pass contains a QR code and an ID number.</p>
+
+    <hr>
+
+    <p class="govuk-body govuk-!-margin-top-4"><strong>{{ data['first-name'] or 'Firstname' }} {{ data['last-name'] or 'Lastname' }}</strong></p>
+    <p class="govuk-body">{{ data['email-address'] or 'name@email.com' }}<br>
+      {{ data['mobile-phone-number'] or '07472398473' }}</p>
+
+    <p class="govuk-body"><a href="#">View or print pass</a></p>
+
+    <hr>
+
+    {% if data['first-name-person-1'] !== undefined %}
+    <p class="govuk-body govuk-!-margin-top-4"><strong>{{ data['first-name-person-1'] or 'Firstname' }} {{ data['last-name-person-1'] or 'Lastname' }}</strong></p>
+    <p class="govuk-body">{{ data['email-address-person-1'] or 'name@email.com' }}<br>
+      {{ data['mobile-phone-number-person-1'] or '07472398473' }}</p>
+
+    <p class="govuk-body"><a href="#">View or print pass</a></p>
+
+    <hr>
+    {% endif %}
+
+    <p class="govuk-body govuk-!-margin-top-4">If you provided an email address, the pass has also been emailed to you.</p>
+
+    <div class="govuk-warning-text govuk-!-margin-top-4">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text govuk-!-font-size-19">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        If you have a high temperature, a new continuous cough, or loss or change to your sense of smell or taste, you need to self-isolate immediately. If you have any other symptoms, you do not have to self-isolate until you get a positive result.<br>
+        <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">Check if people you live with need to self-isolate on NHS.UK</a>
+      </strong>
+    </div>
+
+    <!-- <p class="govuk-body">If your only symptoms are a headache, tiredness, muscle aches or loss or appetite, you do not need to stay home while waiting for your result.</p> -->
+
+    <h2 class="govuk-heading-m">Showing your QR code</h2>
+
+    <p class="govuk-body">When you arrive at the test site, show the security guard your QR code to be let through. You can show them your email pass, or a screenshot or printout of the QR code.</p>
+
+    <p class="govuk-body">If you cannot show your QR code, you can instead:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>show the text message we will send you confirming your appointment booking</li>
+      <li>give your date of birth</li>
+      <li>give your vehicle registration number</li>
+    </ul>
+
+    <p class="govuk-body">But if you can, show your QR code as this makes entry easier and quicker.</p>
+
+    <p class="govuk-body">You must turn up to your appointment on time, as this will help other people to be tested on time too.</p>
+
+    <h2 class="govuk-heading-m">What you'll need to bring to the test site</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>a copy of your test site pass (and passes for any children getting a test) - have the QR code in the pass ready to display (on the email, printed off or as a screenshot) or it could delay your entry to the test site</li>
+      <li>photo ID - a driving licence or passport for each person getting a test</li>
+      <li>hand sanitiser or antiseptic wipes - because we may ask you to do the test yourself, so you'll need clean hands</li>
+      <li>face coverings for each person aged 3 years and over, if you are visiting a walk-through site</li>
+    </ul>
+
+    <p class="govuk-body">You may also want to bring a bottle of water, as we cannot provide water at the test site.</p>
+
+    <h2 class="govuk-heading-m">What happens at the test site</h2>
+
+    <p class="govuk-body">
+      You'll stay in your vehicle or testing bay during your visit.<br><br>
+      You'll be asked if you need any assistance, (for example, a wheelchair ramp or large-print instructions).
+    </p>
+    <iframe class="govuk-!-margin-bottom-4" width="550" height="315"
+    src="https://www.youtube.com/embed/eYETUcSFXmw">
+    </iframe>
+    <p class="govuk-body"><a href="https://www.youtube.com/watch?v=eYETUcSFXmw">Watch a short video: what happens at a test site</a></p>
+
+    <h2 class="govuk-heading-m">How to take the swab test</h2>
+    <p class="govuk-body">
+      It usually takes no more than 10 minutes to do the test. You'll recieve your test results by text message a day or two later.
+    </p>
+    <p class="govuk-body">Watch a short video: how to take a swab test</p>
+    <iframe class="govuk-!-margin-bottom-4" width="550" height="315"
+    src="https://www.youtube.com/embed/zCqo7MhQT6U">
+    </iframe>
+
+    <h3 class="govuk-heading-m">At walk-through sites:</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>you can choose to go by foot, bike or car (parking may not be available on site)</li>
+      <li>you can ask for a staff member to guide you as you do the test yourself</li>
+    </ul>
+
+    <h3 class="govuk-heading-m">At drive-through sites:</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>at some test sites, you may be able to ask a staff member to do the test for you</li>
+    </ul>
+
+    <details class="govuk-details govuk-!-margin-bottom-6 govuk-!-margin-top-6" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          If you're bringing a baby or a child
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">If you're bringing a child aged 11 or under to be tested, you (their parent or guardian) will be asked to swab test your child. You'll be given paper instructions.</p>
+
+        <p class="govuk-body">You'll swab test your child either in a testing bay (walk-through) or from the back seat of your vehicle (drive-through). If you're going to a drive-through site, you may want to bring another adult, so one of you can already be seated in the back when you arrive. Otherwise, you'll need to climb onto the back seat.</p>
+
+        <p class="govuk-body">You'll not be able to leave the vehicle or the testing bay during the test.</p>
+
+        <p class="govuk-body">Before you swab test your child, you'll need to read the paper instructions. It can take about 20 minutes to read the instructions and then do the test.</p>
+
+        <p class="govuk-body">You may want to bring something to keep your child entertained while you read and then swab yourself.</p>
+      </div>
+    </details>
+
+    <h2 class="govuk-heading-m">Antibody testing</h2>
+    <p class="govuk-body govuk-!-margin-bottom-8">
+      If you agreed to do antibody testing, you may receive an antibody test kit in the post, 2-3 days after you get a positive PCR test result. Your 2nd antibody test kit will arrive 3 weeks after the first one.<br><br>
+      The kit contains clear instructions on how to do the test. It's important you do the test and post it back <strong>as soon as possible.</strong> You can leave home to post a test kit while self isolating. <a href="#">Find more info on how to prepare for, take and return the antibody test.</a>
+    </p>
+
+    <h2 class="govuk-heading-m">Help us improve our service</h2>
+
+    <p class="govuk-body"><a class="govuk-link govuk-!-margin-right-2" href="#">Fill in our short survey</a> (takes 3 minutes)</p>
+
+  </div>
+</div>
+<div class="proto-action big" style="transform: translateY(-150%)">
+  <a href="/antigen/v2/site-appointment-booking/confirmation">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
+  </a>
+</div>
+<div class="proto-action big">
+  <a href="/antigen/v2/site-appointment-booking/confirmation-email">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Confirmation email</div>
+  </a>
+</div>
+{% endblock %}
