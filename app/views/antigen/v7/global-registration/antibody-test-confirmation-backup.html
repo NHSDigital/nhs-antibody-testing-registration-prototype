@@ -1,0 +1,156 @@
+{% set version = "v7" %}
+{% set pageTitle = "Confirm people for testing" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{% if data['delivery-address-person-1'] == "No" %}
+<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/delivery-postcode-person-1">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/delivery-address-person-1">Back</a>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antigen/{{version}}/action3/people-confirmed" method="post">
+
+        <div class="govuk-form-group">
+            <h1 class="govuk-heading-xl">{{ pageTitle }}</h1> 
+            <p class="govuk-body">
+              You can <strong>add up to 3 people</strong> you live with for testing.<br><br>
+              If you need tests for <strong>more than 4 people</strong>, you'll need to complete this journey again and place a separate order.<br><br>
+              <strong>For test sites:</strong><br>
+              If you're arriving by motorbike, you can only take one other person you live with. They must wear full helmet and visor.<br><br>
+              If you’re arriving by car or small van, everyone must be in the same vehicle and sit next to a window that opens. You'll stay in your vehicle during your visit.<br><br>
+              <strong>For home testing:</strong><br>
+              You cannot order more than 4 home test kits at a time.
+            </p>
+
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-half"></th>
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                {% if data['fingerprick-test-person-1'] == "1,2" %}
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</th>
+                  <td class="govuk-table__cell">
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/antibody-test-confirmation-only-person-1" class="govuk-link">Remove</a></p></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}</th>
+                  <td class="govuk-table__cell">
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/antibody-test-confirmation" class="govuk-link"">Remove</a></p></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">Delivery address</th>
+                  <td class="govuk-table__cell">
+                    {% if data['delivery-address-person-1'] !== "No" %}
+                      {% if data['gp-address'] and data['gp-address'] !== "Select from 5 addresses" %}
+                        {{ data['gp-address'] }}
+                      {% else %}
+                        {{ data['address-line-1-gp'] or '5 Souterhead Road'}}<br>
+                        {{ data['gp-postcode'] or 'LS1 3BE' }}
+                      {% endif %}
+                    {% else %}
+                      {% if data['delivery-address-antibody'] and data['delivery-address-antibody'] !== "Select from 5 addresses" %}
+                        {{ data['delivery-address-antibody'] }}
+                      {% else %}
+                        {{ data['delivery-address-line-1-antibody'] or '5 Souterhead Road'}}<br>
+                        {{ data['delivery-address-postcode-manual-antibody'] or 'LS1 3BE' }}
+                      {% endif %}
+                    {% endif %}
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/delivery-postcode-person-1">Edit details</a></p></td>
+                </tr>
+                {% elseif data['fingerprick-test-person-1'] == "1" %}
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}</th>
+                  <td class="govuk-table__cell">
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/antibody-all-removed" class="govuk-link">Remove</a></p></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">Delivery address</th>
+                  <td class="govuk-table__cell">
+                    {% if data['delivery-address-person-1'] !== "No" %}
+                      {% if data['gp-address'] and data['gp-address'] !== "Select from 5 addresses" %}
+                        {{ data['gp-address'] }}
+                      {% else %}
+                        {{ data['address-line-1-gp'] or '5 Souterhead Road'}}<br>
+                        {{ data['gp-postcode'] or 'LS1 3BE' }}
+                      {% endif %}
+                    {% else %}
+                      {% if data['delivery-address-antibody'] and data['delivery-address-antibody'] !== "Select from 5 addresses" %}
+                        {{ data['delivery-address-antibody'] }}
+                      {% else %}
+                        {{ data['delivery-address-line-1-antibody'] or '5 Souterhead Road'}}<br>
+                        {{ data['delivery-address-postcode-antibody'] or 'LS1 3BE' }}
+                      {% endif %}
+                    {% endif %}
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/delivery-postcode-person-1">Edit details</a></p></td>
+                </tr>
+                {% elseif data['fingerprick-test-person-1'] == "2" %}
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}</th>
+                  <td class="govuk-table__cell">
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/antibody-all-removed" class="govuk-link"">Remove</a></p></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">Delivery address</th>
+                  <td class="govuk-table__cell">
+                    {% if data['delivery-address-person-1'] !== "No" %}
+                      {% if data['gp-address'] and data['gp-address'] !== "Select from 5 addresses" %}
+                        {{ data['gp-address'] }}
+                      {% else %}
+                        {{ data['address-line-1-gp'] or '5 Souterhead Road'}}<br>
+                        {{ data['gp-postcode'] or 'LS1 3BE' }}
+                      {% endif %}
+                    {% else %}
+                      {% if data['delivery-address-antibody'] and data['delivery-address-antibody'] !== "Select from 5 addresses" %}
+                        {{ data['delivery-address-antibody'] }}
+                      {% else %}
+                        {{ data['delivery-address-line-1-antibody'] or '5 Souterhead Road'}}<br>
+                        {{ data['delivery-address-postcode-antibody'] or 'LS1 3BE' }}
+                      {% endif %}
+                    {% endif %}
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/delivery-postcode-person-1">Edit details</a></p></td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

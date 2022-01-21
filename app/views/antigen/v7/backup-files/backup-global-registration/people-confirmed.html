@@ -1,0 +1,68 @@
+{% set version = "v7" %}
+{% set pageTitle = "Confirm people for testing" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/check-your-answers">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <p>You can add up to 3 people you live with for testing.</p>
+
+      <p>Once you’ve confirmed who needs testing, you can continue.</p>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-half"></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}</th>
+            <td class="govuk-table__cell">
+              {{ data['email-address'] or 'email@example.com' }}
+              <br>
+              {{ data['mobile-phone-number'] or '+447782808451' }}
+            </td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a></p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <form class="form" action="/antigen/{{version}}/site-appointment-booking/please-wait" method="post" style="display: inline-block;">
+
+        <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">Save and continue</button>
+
+      </form>
+
+      <form class="form" action="/antigen/{{version}}/global-registration/name-person-1" method="post" style="display: inline-block;">
+
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Add person you live with</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
