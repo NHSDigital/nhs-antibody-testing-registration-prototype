@@ -41,8 +41,10 @@
                 If no tests are available online, do not call the contact centre to get a test. You will not be able to get a test through the contact centre.
               </strong>
             </div>
+
             <div class="govuk-radios govuk-!-margin-top-5">
-              {% if data['do-you-have-a-car'] == "Yes" %}
+              {% if data['do-you-have-a-car'] == "Yes" and data['follow-up-test-reason'] !== "After entering the UK, they got a positive day 2 travel test result"%}
+
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="way-to-test-1" name="way-to-test" type="radio" value="drive-through" {{ checked("way-to-test", "drive-through") }} aria-describedby="drive-through-1-hint drive-through-2-hint drive-through-3-hint drive-through-4-hint">
                 <label class="govuk-label govuk-radios__label" for="way-to-test-1">
@@ -65,7 +67,7 @@
                 </div>
               </div>
               {% endif %}
-              {% if data['home-postcode'] !== "N000" %}
+              {% if data['follow-up-test-reason'] !== "After entering the UK, they got a positive day 2 travel test result" %}
               <div class="govuk-radios__item govuk-!-margin-top-6">
                 <input class="govuk-radios__input" id="way-to-test-2" name="way-to-test" type="radio" value="walk-in" {{ checked("way-to-test", "walk-in") }} aria-describedby="walk-in-1-hint walk-in-2-hint walk-in-3-hint walk-in-4-hint walk-in-5-hint">
                 <label class="govuk-label govuk-radios__label" for="way-to-test-2">

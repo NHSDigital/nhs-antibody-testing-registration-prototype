@@ -1,0 +1,83 @@
+{% set version = "v2" %}
+{% set pageTitle = "Travel test reference number" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/follow-up-test-reason">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+          <h2 class="govuk-error-summary__title" id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+              <li>
+                <a href="#booking-reference-error">Enter a valid travel test reference number</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <h1 class="govuk-heading-l">
+          Travel test reference number
+        </h1>
+
+        <p class="govuk-body">
+          Look for this in the order confirmation email sent by your travel test provider.
+        </p>
+
+        <p class="govuk-body">
+          It's the same number you used on your Passenger Locator Form (PLF). It will also be in your PLF confirmation email.
+
+        </p>
+
+        <p class="govuk-body">
+          It is 12 digits long for example, DANTH0037300.
+        </p>
+
+        <p class="govuk-body">
+          If you cannot find the test reference number, contact the travel test provider. If the provider cannot give the reference number, call 119.
+        </p>
+
+
+        <form action="/antigen/{{version}}/refer-and-triage/government-pilot" method="post" novalidate>
+
+          <div class="govuk-form-group govuk-form-group--error">
+            <label class="govuk-label govuk-label--m" for="test-package-booking-reference">
+                What is your travel test reference number?
+            </label>
+            <span id="booking-reference-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter a valid travel test reference number
+            </span>
+            <input class="govuk-input govuk-input--width-10" id="test-package-booking-reference" name="test-package-booking-reference" type="text" value="{{ data['test-package-booking-reference'] }}">
+          </div>
+
+
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+{% endblock %}
