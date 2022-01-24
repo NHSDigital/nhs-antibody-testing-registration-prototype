@@ -4238,6 +4238,18 @@ router.post('/antigen/v7/action3/landline-number', function (req, res) {
 
 })
 
+// Version 7- Antigen Global Registration - home order email verification - person 1
+
+router.post('/antigen/v7/action3/landline-number-person-1', function (req, res) {
+  let car = req.session.data['do-you-have-a-car']
+  if (car == "No") {
+    res.redirect('/antigen/v7/global-registration/email-address-home-person-1')
+  } else {
+    res.redirect('/antigen/v7/global-registration/email-address-person-1')
+  }
+
+})
+
 // Version 7- Antigen Global Registration - Ethnic group route
 
 router.post('/antigen/v7/action3/ethnic-group', function (req, res) {
