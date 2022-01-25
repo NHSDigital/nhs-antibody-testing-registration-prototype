@@ -1,0 +1,90 @@
+{% extends "includes/layout.html" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "Reorder a test kit" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="confirm-reorder" method="post">
+        <div class="govuk-form-group">
+          <h1 class="govuk-heading-xl">
+            {{ pageTitle }}
+          </h1>
+          <p class="govuk-body">If a test kit is incomplete, you can order a replacement test kit and the previous order will be cancelled.</p>
+          <p class="govuk-body">The patient will need to throw away the incomplete test kit. We'll send the patient a text explaining this.</p>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                  Procedure date
+                </dt>
+              <dd class="govuk-summary-list__value">
+                  21 Nov 2021
+                </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                  Patient
+                </dt>
+              <dd class="govuk-summary-list__value">
+                  John Smith
+                </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                  NHS number
+                </dt>
+              <dd class="govuk-summary-list__value">
+                  1900821117
+                </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key" style="vertical-align: top">
+                  Reorder kit
+                </dt>
+              <dd class="govuk-summary-list__value">
+                <div class="govuk-form-group">
+                  <div class="govuk-radios govuk-radios--small govuk-radios--conditional" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="radio-1" name="rg-1" type="radio" value="yes" data-aria-controls="conditional-contact">
+                      <label class="govuk-label govuk-radios__label" for="">Yes</label>
+                    </div>
+                    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
+                      <div class="govuk-form-group">
+                        <div class="govuk-hint">Why are you reordering?</div>
+                        <textarea class="govuk-textarea" id="field-1" name="" rows="5" aria-describedby="" maxlength="100"></textarea>
+                      </div>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="radio-1" name="rg-1" type="radio" value="no">
+                      <label class="govuk-label govuk-radios__label" for="">No</label>
+                    </div>
+                  </div>
+                </div>
+              </dd>
+            </div>
+          </dl>
+        </div>
+        <div class="govuk-button-group govuk-!-margin-top-8">
+          <a class="govuk-button" data-module="govuk-button" href="4_reorder-confirm-v1">
+            Continue
+          </a>
+          <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Cancel
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
