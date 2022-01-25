@@ -4535,7 +4535,7 @@ router.post('/antigen/v7/action3/gp-address-same', function (req, res) {
   if (gpAdressSame == "No") {
     res.redirect('/antigen/v7/global-registration/address')
   } else if (car == "No") {
-    res.redirect('/antigen/v7/order-home-test-kit/nhs-number-known')
+    res.redirect('/antigen/v7/global-registration/nhs-number-known')
   } else {
     res.redirect('/antigen/v7/global-registration/nhs-number-known')
   }
