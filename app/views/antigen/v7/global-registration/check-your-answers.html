@@ -68,10 +68,29 @@
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/edit-check-answers/postcode">
               Change
-              <span class="govuk-visually-hidden">first line of address and postcode</span>
+              <span class="govuk-visually-hidden"> home address</span>
             </a>
           </dd>
         </div>
+      <!--  <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Delivery address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['delivery-address-same'] !== "No" %}
+              {{ data['home-address'] }}
+            {% else %}
+              {{ data['delivery-address-line-1'] or '5 Souterhead Road'}}<br>
+              {{ data['delivery-postcode'] or 'LS1 3BE' }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/delivery-address-same">
+              Change
+              <span class="govuk-visually-hidden"> delivery address</span>
+            </a>
+          </dd>
+        </div> -->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             GP registered address
@@ -133,6 +152,23 @@
             <a href="/antigen/{{version}}/global-registration/edit-check-answers/email-address">
               Change
               <span class="govuk-visually-hidden">contact details</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['email'] == "Yes" %}
+            {{ data['email-address'] }}<br>
+            {% endif %}
+            {{ data['email-address'] or 'email@example.com' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/email-address">
+              Change
+              <span class="govuk-visually-hidden">email address</span>
             </a>
           </dd>
         </div>
@@ -370,7 +406,7 @@
         </div>
         {% endif %}
         </dl>
-       
+
         <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Antibody test details</h2>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
@@ -388,7 +424,7 @@
             </dd>
           </div>
         </dl>
- 
+
 
       <form action="/antigen/{{version}}/global-registration/people-confirmed" method="post" novalidate>
 

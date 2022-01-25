@@ -1,5 +1,5 @@
 {% set version = "v8" %}
-{% set pageTitle = "Where in the UK do you live?" %}
+{% set pageTitle = "Where in the UK do are you?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -30,13 +30,14 @@
       <form action="/lfd-home-ordering/{{version}}/action10/country" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
+          <fieldset class="govuk-fieldset aria-describedby="country-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
                 {{ pageTitle }}
               </h1>
             </legend>
-            <div class="govuk-radios">
+            <span id="country-hint" class="govuk-hint">If you're away from home, select the country where you're staying.</span>
+            <div class="govuk-radios govuk-!-margin-top-8">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }} aria-required="true">
                 <label class="govuk-label govuk-radios__label" for="country-1">
@@ -44,21 +45,21 @@
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="Scotland" {{ checked("country", "Scotland") }} aria-required="true">
-                <label class="govuk-label govuk-radios__label" for="country-4">
+                <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="Scotland" {{ checked("country", "Scotland") }} aria-required="true">
+                <label class="govuk-label govuk-radios__label" for="country-2">
                   Scotland
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="Northern Ireland" {{ checked("country", "Northern Ireland") }} aria-required="true">
+                <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="Wales" {{ checked("country", "Wales") }} aria-required="true">
                 <label class="govuk-label govuk-radios__label" for="country-3">
-                  Northern Ireland
+                  Wales
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="Wales" {{ checked("country", "Wales") }} aria-required="true">
-                <label class="govuk-label govuk-radios__label" for="country-2">
-                  Wales
+                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="Northern Ireland" {{ checked("country", "Northern Ireland") }} aria-required="true">
+                <label class="govuk-label govuk-radios__label" for="country-4">
+                  Northern Ireland
                 </label>
               </div>
             </div>

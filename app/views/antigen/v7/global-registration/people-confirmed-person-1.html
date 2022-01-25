@@ -140,6 +140,18 @@
               <a href="/antigen/{{version}}/global-registration/people-confirmed" class="govuk-link">Remove</a>
             </p></td>
           </tr>
+        <!--  <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Delivery address</th>
+            <td class="govuk-table__cell">
+              {% if data['delivery-address-same'] !== "No" %}
+                {{ data['home-address'] }}
+              {% else %}
+                {{ data['delivery-address-line-1'] or '5 Souterhead Road'}}<br>
+                {{ data['delivery-postcode'] or 'LS1 3BE' }}
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell"><p class="govuk-body-m"><a href="/antigen/{{version}}/global-registration/check-your-answers">Edit details</a></p></td>
+          </tr> -->
         </tbody>
       </table>
 
@@ -159,7 +171,7 @@
         </form>
 
         {% if data['way-to-test']== "home testing" %}
-          <form class="form" action="/antigen/{{version}}/order-home-test-kit" method="post">
+          <form class="form" action="/antigen/{{version}}/order-home-test-kit/order-summary" method="post">
             <button class="govuk-button" data-module="govuk-button">
               Save and continue
             </button>
