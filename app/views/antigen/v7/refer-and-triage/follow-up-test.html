@@ -1,0 +1,64 @@
+{% set version = "v7" %}
+{% set pageTitle = "Has the person been asked to get a follow-up PCR test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/do-you-have-symptoms">Back</a>
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/antigen/{{version}}/action3/follow-up-test" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="symptoms-hint symptoms-2-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                            {{ pageTitle }}
+                        </h1>
+                    </legend>
+                    <span id="follow-up-test-hint" class="govuk-body">
+                        For example, their first PCR test could not be read (void), they need to confirm a positive lateral flow test or they’ve been advised by a clinician.
+                    </span>
+                    <div class="govuk-radios govuk-!-margin-top-5">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="follow-up-test-1" name="follow-up-test" type="radio" value="Yes" {{ checked("follow-up-test", "Yes") }}>
+                            <label class="govuk-label govuk-radios__label" for="follow-up-test-1">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="follow-up-test-2" name="follow-up-test" type="radio" value="No" {{ checked("follow-up-test", "No") }}>
+                            <label class="govuk-label govuk-radios__label" for="follow-up-test-2">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

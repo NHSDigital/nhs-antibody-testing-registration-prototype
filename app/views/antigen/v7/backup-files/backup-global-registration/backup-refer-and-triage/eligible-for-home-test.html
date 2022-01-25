@@ -1,0 +1,40 @@
+{% set version = "v7" %}
+{% set pageTitle = "You can have a home test" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/check-your-answers">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+
+        <p class="govuk-body">You are not eligible for a drive-through test as you told us you do not have access to a car. If you do, you should <a class="govuk-link" href="/antigen/{{version}}/refer-and-triage/do-you-have-a-car">change your answer.</a></p>
+        <p class="govuk-body">You cannot visit a walk-through test site as there isn't one within 10 miles of the postcode you gave us.</p>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+        <h2 class="govuk-heading-m">Home testing</h2>
+
+        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
+          <li>you can get a test kit for yourself and up to 3 other people you live with</li>
+          <li>it is posted to your home and should arrive the day after you order it</li>
+          <li>you'll need to return your test within 48 hours of doing it</li>
+        </ul>
+
+      <form action="/antigen/{{version}}/refer-and-triage/order-home-test-kit" method="post">
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+

@@ -1,0 +1,171 @@
+{% set version = "v7" %}
+{% set pageTitle = "Text message" %}
+
+{% extends "includes/layout.html" %}
+
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    body {
+      background-color: #f3f2f1 !important;
+      -webkit-text-size-adjust: 100%;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: normal;
+      margin: 50px auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-text-message {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 340px;
+      min-height: 420px;
+    }
+
+    .app-text-message__text {
+      max-width: 255px;
+      word-wrap: break-word;
+      margin-bottom: 12px;
+      line-height: 24px;
+      position:relative;
+      padding:10px 20px;
+      border-radius:25px;
+      background:#E5E5EA;
+      color:black;
+      
+      &:before, &:after {
+        content:"";
+        position:absolute;
+        bottom:-2px;
+        height:20px;
+      }
+
+       &:before {
+        left:-7px;
+        border-left:20px solid #E5E5EA;
+        border-bottom-right-radius: 16px 14px;
+        transform:translate(0, -2px);
+      }
+
+      &:after {
+        left:4px;
+        width:26px;
+        background:white;
+        border-bottom-right-radius: 10px;
+        transform:translate(-30px, -2px);
+      }
+    }
+    </style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h1 class="govuk-heading-l">Text message</h1>
+
+      <div class="app-text-message">
+        <h2 class="govuk-heading-s">UK_Gov</h2>
+        <p class="app-text-message__text">
+          Dear {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}<br><br>
+          Birth date:
+          {% if data['date-of-birth-month'] == "1" or data['date-of-birth-month'] == "01" %}
+          {{ data['date-of-birth-day'] }} January {{ data['date-of-birth-year'] }}
+          {% elseif data['date-of-birth-month'] == "2" or data['date-of-birth-month'] == "02" %}
+          {{ data['date-of-birth-day'] }} February {{ data['date-of-birth-year'] }}
+          {% elseif data['date-of-birth-month'] == "3" or data['date-of-birth-month'] == "03" %}
+          {{ data['date-of-birth-day'] }} March {{ data['date-of-birth-year'] }}
+          {% elseif data['date-of-birth-month'] == "4" or data['date-of-birth-month'] == "04" %}
+          {{ data['date-of-birth-day'] }} April {{ data['date-of-birth-year'] }}
+          {% elseif data['date-of-birth-month'] == "5" or data['date-of-birth-month'] == "05" %}
+          {{ data['date-of-birth-day'] }} May {{ data['date-of-birth-year'] }}
+          {% elseif data['date-of-birth-month'] == "6" or data['date-of-birth-month'] == "06" %}
+          {{ data['date-of-birth-day'] }} June {{ data['date-of-birth-year'] }}
+          {% elseif data['date-of-birth-month'] == "7" or data['date-of-birth-month'] == "07" %}
+          {{ data['date-of-birth-day'] }} July {{ data['date-of-birth-year'] }}
+          {% elseif data['date-of-birth-month'] == "8" or data['date-of-birth-month'] == "08" %}
+          {{ data['date-of-birth-day'] }} August {{ data['date-of-birth-year'] }}
+          {% elseif data['date-of-birth-month'] == "9" or data['date-of-birth-month'] == "09" %}
+          {{ data['date-of-birth-day'] }} September {{ data['date-of-birth-year'] }}
+          {% elseif data['date-of-birth-month'] == "10" %}
+          {{ data['date-of-birth-day'] }} October {{ data['date-of-birth-year'] }}
+          {% elseif data['date-of-birth-month'] == "11" %}
+          {{ data['date-of-birth-day'] }} November {{ data['date-of-birth-year'] }}
+          {% elseif data['date-of-birth-month'] == "12" %}
+          {{ data['date-of-birth-day'] }} December {{ data['date-of-birth-year'] }}
+          {% else %}
+          6 December 1976
+          {% endif %}<br>
+          Test date:
+          {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "1" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "01" %}
+              {{ data['date-of-swab-test-day'] }} January {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "2" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "02" %}
+              {{ data['date-of-swab-test-day'] }} February {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "3" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "03" %}
+              {{ data['date-of-swab-test-day'] }} March {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "4" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "04" %}
+              {{ data['date-of-swab-test-day'] }} April {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "5" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "05" %}
+              {{ data['date-of-swab-test-day'] }} May {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "6" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "06" %}
+              {{ data['date-of-swab-test-day'] }} June {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "7" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "07" %}
+              {{ data['date-of-swab-test-day'] }} July {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "8" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "08" %}
+              {{ data['date-of-swab-test-day'] }} August {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "9" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "09" %}
+              {{ data['date-of-swab-test-day'] }} September {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "10" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "10" %}
+              {{ data['date-of-swab-test-day'] }} October {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "11" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "11" %}
+              {{ data['date-of-swab-test-day'] }} November {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "12" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "12" %}
+              {{ data['date-of-swab-test-day'] }} December {{ data['date-of-swab-test-year'] }} : {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" %}
+              {{ data['swab-test-date'] or '24 March 2021' }} : {{ data['swab-test-time'] or '7:00' }}{{ data['swab-test-time-ampm'] or 'am' }}
+            {% endif %}<br><br>
+          Your coronavirus test result is positive. It means it’s likely you had the virus when the test was done.<br><br>
+          You must self-isolate immediately for 10 days.<br><br>
+          This includes the day your symptoms started (or the test date if you’ve no symptoms) and the next 10 full days.<br><br>
+          If this is a follow-up test result, self-isolate for 10 days from the date of your first test.<br><br>
+          People you live with should also self-isolate for 10 days at the same time as you. If the people you live with get symptoms, they should self-isolate from the day their symptoms started and for the next 10 full days.<br><br>
+          Care home residents should self-isolate for 14 days.<br><br>
+          For a child or staff at school or nursery, tell the school/nursery.<br><br>
+          For medical help, contact 111. In an emergency dial 999.<br><br>
+          More advice: <a class="govuk-link" href="https://www.gov.uk/coronavirus">www.gov.uk/coronavirus</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action big">
+  <a href="/antigen/{{version}}/sms-messages/02-antibody-1">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Text message 2</div>
+  </a>
+</div>
+{% endblock %}

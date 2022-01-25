@@ -1,0 +1,88 @@
+{% set version = "v7" %}
+{% set pageTitle = "Choose a test site" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/people-confirmed">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/site-appointment-booking/choose-time-drive" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="choose-site-1-hint choose-site-2-hint choose-site-3-hint choose-site-4-hint choose-site-13-hint choose-site-5-hint choose-site-6-hint choose-site-7-hint choose-site-8-hint postcode-not-recognised-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="choose-site-1-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-2">
+              Postcode
+            </span>
+            <span id="choose-site-2-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-right-4" style="display: inline-block;">
+              {{ data['home-postcode'] or 'LS1 3BE' }}
+            </span>
+            <span class="govuk-body" style="display: inline-block;"><a class="govuk-link" href="/antigen/{{version}}/site-appointment-booking/find-test-site">Change</a></span>
+
+            <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
+              <strong>Appointments are available at these test sites:</strong><br>
+            </span>
+
+            <div class="govuk-radios govuk-!-margin-top-7">
+
+              {% for i in range(0, data.prototype.total) -%}
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-site-{{ data.centres[i].index }}" name="test-site" type="radio" value="site-{{ data.centres[i].index }}" {{ checked("test-site", "site-" + data.centres[i].index) }} aria-describedby="choose-site-{{ data.centres[i].index }}-hint">
+                <label class="govuk-label govuk-radios__label" for="test-site-{{ data.centres[i].index }}">
+                  <span  class="govuk-body-m">
+                    <strong>
+                      {{ data.centres[i].name }}
+                    </strong>
+                  </span>
+                </label>
+                <span id="choose-site-{{ data.centres[i].index }}-hint" class="govuk-body-m">
+                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2">
+
+                    {{ data.centres[i].address_1 }}, {{ data.centres[i].address_2 }}, {{ data.centres[i].postcode }}<br>
+                    <strong>{{ data.centres[i].type }}</strong> center<br>
+                    <strong>{{ data.centres[i].distance }} miles</strong> away (by car)
+                  </span>
+                <p>
+                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2">
+                    <strong>{{ data.centres[i].available }}</strong> appointments available from <strong>{{ data.centres[i].first_slot }}</strong>
+                  </span>
+                </p>
+              </div>
+
+              {%- endfor %}
+
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+

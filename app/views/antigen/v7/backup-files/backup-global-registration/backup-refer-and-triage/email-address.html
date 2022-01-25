@@ -1,0 +1,69 @@
+{% set version = "v7" %}
+{% set pageTitle = "Do you have an email address where you can get your test results?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/mobile-number">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/antigen/{{version}}/refer-and-triage/reason-for-test" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="email-address-hint" class="govuk-body">
+                You need an email address to order a home test kit. If you do not have an email address, you can still get a test at a test site.
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="email-1">
+                  Yes, I have an email address where I can get my results
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="email-address">
+                    Email address
+                  </label>
+                  <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}" aria-describedby="conditional-email-address-hint">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="I do not have an email address" {{ checked("email", "I do not have an email address") }}>
+                <label class="govuk-label govuk-radios__label" for="email-2">
+                  No, I don’t have an email address
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

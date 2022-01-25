@@ -1,0 +1,80 @@
+{% set version = "v7" %}
+{% set pageTitle = "Does the person who needs a test have a landline phone number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div> 
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/mobile-number-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/global-registration/check-your-answers-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="landline-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} have a landline phone number?
+              </h1>
+            </legend>
+            <span id="landline-number-hint" class="govuk-body">
+              If they have one, we may use this number to call them if they have had contact with someone who has tested positive with coronavirus.
+           </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+              {% if data['landline-number'] == "Yes" %}
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="landline-number-1-person-1" name="landline-number-person-1" type="radio" value="same" {{ checked("landline-number-person-1", "same") }}>
+                <label class="govuk-label govuk-radios__label" for="landline-number-1-person-1">
+                  Yes, it's {{ data['landline-telephone-number'] }} (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }})
+                </label>
+              </div>
+              {% endif %}
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="landline-number-2-person-1" name="landline-number-person-1" type="radio" value="different" data-aria-controls="conditional-landline-number" {{ checked("landline-number-person-1", "different") }}>
+                <label class="govuk-label govuk-radios__label" for="landline-number-2-person-1">
+                  Yes, they have their own landline phone number
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-landline-number">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="landline-telephone-number-person-1">
+                    Landline phone number
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-third" id="landline-telephone-number-person-1" name="landline-telephone-number-person-1" type="tel" value="{{ data['landline-telephone-number-person-1'] }}">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="landline-number-3-person-1" name="landline-number-person-1" type="radio" value="They do not have a landline" {{ checked("landline-number-person-1", "They do not have a landline") }}>
+                <label class="govuk-label govuk-radios__label" for="landline-number-3-person-1">
+                  No, they do not have a landline phone number
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+

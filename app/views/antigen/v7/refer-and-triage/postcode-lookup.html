@@ -1,0 +1,183 @@
+{% set version = "v7" %}
+{% set pageTitle = "Enter a postcode to find test sites near you" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/email-address">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/refer-and-triage/do-you-have-a-car" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+
+          <div id="content-1">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-!-margin-bottom-3" for="home-postcode" style="line-height: 0.8;">
+                <strong>Postcode</strong>
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}" autofocus>
+            </div>
+          </div>
+
+          <div id="content-2" style="display: none;">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                Select the address to find test sites near you
+              </h1>
+            </legend>
+            <span id="post-code-hint" class="govuk-body">
+              If you cannot find the address in the list, select "I cannot find the address" and enter it manually.<br><br>
+            </span>
+
+            <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
+              <strong>Postcode</strong><br><br>
+              {{ data['home-postcode'] | default('LS1 3BE') }}
+              <a href="/antigen/{{version}}/refer-and-triage/postcode-option-2" class="govuk-!-margin-left-5">
+                <strong>Change</strong>
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="home-address">
+                <strong>Select an address</strong>
+              </label>
+              <select class="govuk-select" id="home-address" name="home-address">
+                <option>5 addresses found</option>
+                <option value="1 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">1 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+                <option value="2 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">2 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+                <option value="3 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">3 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+                <option value="4 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">4 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+                <option value="5 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">5 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+              </select>
+            </div>
+            <p class="govuk-body">
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">I cannot find my address in the list</a>
+            </p>
+          </div>
+
+          <div id="content-3" style="display: none;">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                Enter the address to find test sites near you
+              </h1>
+            </legend>
+            <!-- <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
+              <strong>Postcode</strong><br><br>
+              {{ data['home-postcode'] | default('LS1 3BE') }}
+              <a href="/antigen/{{version}}/refer-and-triage/postcode-option-2" class="govuk-!-margin-left-5">
+                <strong>Change</strong>
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p> -->
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-line-1">
+                <strong>Building and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="address-line-1" name="address-line-1" type="text" autocomplete="address-line1" value="{{ data['address-line-1'] }}">
+            </div>
+  
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-line-2">
+                <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="address-line-2" name="address-line-2" type="text" autocomplete="address-line2" value="{{ data['address-line-2'] }}">
+            </div>
+  
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-town">
+                <strong>Town or city</strong>
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="address-town" name="address-town" type="text" autocomplete="address-level2" value="{{ data['address-town'] }}">
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="home-postcode-manual">
+                <strong>Postcode</strong>
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="home-postcode-manual" name="home-postcode-manual" type="text" autocomplete="postal-code" value="{{ data['home-postcode-manual'] }}">
+            </div>
+          </div>
+
+        </fieldset>
+
+        <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
+
+        <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" style="display:none" type="submit" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+   <script type="text/javascript">
+  submitEvent()
+
+  function buttonClicked(target) {
+    setTimeout(function () {
+      document.getElementById('content-1').style.display = 'none'
+      document.getElementById('find-address').style.display = 'none'
+      document.getElementById('button-hidden').style.display = 'block'
+      document.getElementById('content-2').style.display = 'block'
+      document.getElementById('home-address').focus()
+    }, 100)
+  }
+
+  function buttonClicked2(target) {
+    setTimeout(function () {
+      document.getElementById('home-address').value = '5 addresses found'
+      document.getElementById('content-2').style.display = 'none'
+      document.getElementById('content-3').style.display = 'block'
+      document.getElementById('home-postcode').focus()
+    }, 100)
+  }
+
+  function submitEvent() {
+    var selects = document.getElementById('find-address')
+    var selectedLink = document.getElementById('manual-address')
+    selects.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selects.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked(selects)
+      }
+    })
+    selectedLink.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selectedLink.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked2(selectedLink)
+      }
+    })
+    
+  }
+
+</script>
+
+{% endblock %}

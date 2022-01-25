@@ -190,9 +190,9 @@ router.post('/lfd-home-ordering/v1/action10/work-area', function (req, res) {
 router.post('/lfd-home-ordering/v1/action10/home-address-question', function (req, res) {
     let deliveryAddressSame = req.session.data['delivery-address-same']
     if (deliveryAddressSame == "No" ) {
-        res.redirect('/lfd-home-ordering/v1/order-home-test-kit/delivery-postcode')
+        res.redirect('/lfd-home-ordering/v1/delivery-postcode')
     } else {
-        res.redirect('/lfd-home-ordering/v1/order-home-test-kit/confirm-email-address')
+        res.redirect('/lfd-home-ordering/v1/confirm-email-address')
     }
 
 })
@@ -282,9 +282,9 @@ router.post('/lfd-home-ordering/v2/action10/dct-opt-in', function (req, res) {
 router.post('/lfd-home-ordering/v2/action10/home-address-question', function (req, res) {
   let deliveryAddressSame = req.session.data['delivery-address-same']
   if (deliveryAddressSame == "No" ) {
-      res.redirect('/lfd-home-ordering/v2/order-home-test-kit/delivery-postcode')
+      res.redirect('/lfd-home-ordering/v2/delivery-postcode')
   } else {
-      res.redirect('/lfd-home-ordering/v2/order-home-test-kit/confirm-email-address')
+      res.redirect('/lfd-home-ordering/v2/confirm-email-address')
   }
 
 })
@@ -335,9 +335,9 @@ router.post('/lfd-home-ordering/v3/action10/work-from-home', function (req, res)
 router.post('/lfd-home-ordering/v3/action10/test-choice', function (req, res) {
   let testChoice = req.session.data['test-choice']
   if (testChoice == "Get a one off test at a community test site" ) {
-    res.redirect('/pre-registration/v1/')
+    res.redirect('/pre-registration/v3/')
   } else if (testChoice == "Collect tests to take home" ) {
-    res.redirect('/lfd-collection-registration/v1/nhs-account')
+    res.redirect('/lfd-collection-registration/v3/nhs-account')
   } else {
     res.redirect('/lfd-home-ordering/v3/coronavirus-account')
   }
@@ -392,7 +392,7 @@ router.post('/lfd-home-ordering/v3/action/check-your-answers', function (req, re
   if (testChoice == "I want to collect tests") {
     res.redirect('/lfd-home-ordering/v3/confirmation')
   } else {
-    res.redirect('/lfd-home-ordering/v3/order-home-test-kit/')
+    res.redirect('/lfd-home-ordering/v3/')
   }
   })
 
@@ -449,9 +449,9 @@ router.post('/lfd-home-ordering/v3/action10/dct-opt-in', function (req, res) {
 router.post('/lfd-home-ordering/v3/action10/home-address-question', function (req, res) {
   let deliveryAddressSame = req.session.data['delivery-address-same']
   if (deliveryAddressSame == "No" ) {
-      res.redirect('/lfd-home-ordering/v3/order-home-test-kit/delivery-postcode')
+      res.redirect('/lfd-home-ordering/v3/delivery-postcode')
   } else {
-      res.redirect('/lfd-home-ordering/v3/order-home-test-kit/confirm-email-address')
+      res.redirect('/lfd-home-ordering/v3/confirm-email-address')
   }
 
 })
@@ -635,9 +635,9 @@ router.post('/lfd-home-ordering/v4/work-area', function (req, res) {
 router.post('/lfd-home-ordering/v4/home-address-question', function (req, res) {
     let deliveryAddressSame = req.session.data['delivery-address-same']
     if (deliveryAddressSame == "No" ) {
-        res.redirect('/lfd-home-ordering/v4/order-home-test-kit/delivery-postcode')
+        res.redirect('/lfd-home-ordering/v4/delivery-postcode')
     } else {
-        res.redirect('/lfd-home-ordering/v4/order-home-test-kit/confirm-email-address')
+        res.redirect('/lfd-home-ordering/v4/confirm-email-address')
     }
 
 })
@@ -838,9 +838,9 @@ router.post('/lfd-home-ordering/v5/work-area', function (req, res) {
 router.post('/lfd-home-ordering/v5/home-address-question', function (req, res) {
     let deliveryAddressSame = req.session.data['delivery-address-same']
     if (deliveryAddressSame == "No" ) {
-        res.redirect('/lfd-home-ordering/v5/order-home-test-kit/delivery-postcode')
+        res.redirect('/lfd-home-ordering/v5/delivery-postcode')
     } else {
-        res.redirect('/lfd-home-ordering/v5/order-home-test-kit/confirm-email-address')
+        res.redirect('/lfd-home-ordering/v5/confirm-email-address')
     }
 
 })
@@ -1025,12 +1025,216 @@ router.post('/lfd-home-ordering/v7/action10/work-area', function (req, res) {
 router.post('/lfd-home-ordering/v7/action10/home-address-question', function (req, res) {
     let deliveryAddressSame = req.session.data['delivery-address-same']
     if (deliveryAddressSame == "No" ) {
-        res.redirect('/lfd-home-ordering/v7/order-home-test-kit/delivery-postcode')
+        res.redirect('/lfd-home-ordering/v7/delivery-postcode')
     } else {
-        res.redirect('/lfd-home-ordering/v7/order-home-test-kit/confirm-email-address')
+        res.redirect('/lfd-home-ordering/v7/confirm-email-address')
     }
 
 })
+
+// VERSION 8
+
+router.post('/lfd-home-ordering/v8/action10/country', function (req, res) {
+    let country = req.session.data['country']
+    if (country == "England" || country == "Scotland" || country == "Northern Ireland" || country == "Wales" ) {
+      res.redirect('/lfd-home-ordering/v8/do-you-have-symptoms')
+    } else {
+      res.redirect('/lfd-home-ordering/v8/error-screens/country')
+    }
+
+})
+
+router.post('/lfd-home-ordering/v8/action10/do-you-have-symptoms', function (req, res) {
+    let symptoms = req.session.data['do-you-have-symptoms']
+    if (symptoms == "No" ) {
+      res.redirect('/lfd-home-ordering/v8/coronavirus-account')
+    } else {
+      res.redirect('/lfd-home-ordering/v8/different-test')
+    }
+
+})
+
+router.post('/lfd-home-ordering/v8/action10/email-address', function (req, res) {
+    let emailAddress = req.session.data['email']
+    if (emailAddress == "No" ) {
+        res.redirect('/lfd-home-ordering/v8/call-us')
+    } else {
+        res.redirect('/lfd-home-ordering/v8/confirm-email-address')
+    }
+
+})
+
+router.post('/lfd-home-ordering/v8/action11/contact-with-positive', function (req, res) {
+  let contactWithPositive = req.session.data['contact-with-positive']
+  if (contactWithPositive == "No" ) {
+    res.redirect('/lfd-home-ordering/v8/work-from-home')
+  } else {
+    res.redirect('/lfd-home-ordering/v8/daily-contact-testing')
+  }
+
+})
+
+router.post('/lfd-home-ordering/v8/action10/home-address-question', function (req, res) {
+    let deliveryAddressSame = req.session.data['delivery-address-same']
+    let country = req.session.data['country']
+    if (deliveryAddressSame == "No" ) {
+        res.redirect('/lfd-home-ordering/v8/delivery-postcode')
+    } else {
+      if (country == "England" ) {
+        res.redirect('/lfd-home-ordering/v8/nhs-testing-programme')
+       } else {
+           res.redirect('/lfd-home-ordering/v8/check-your-answers')
+       }
+    }
+
+})
+router.post('/lfd-home-ordering/v8/action10/delivery-address', function (req, res) {
+    let country = req.session.data['country']
+    if (country == "England" ) {
+      res.redirect('/lfd-home-ordering/v8/nhs-testing-programme')
+     } else {
+         res.redirect('/lfd-home-ordering/v8/check-your-answers')
+     }
+})
+
+router.post('/lfd-home-ordering/v8/action10/nhs-testing-programme', function (req, res) {
+    let programme = req.session.data['nhs-testing-programme']
+    if (programme == "Yes" ) {
+        res.redirect('/lfd-home-ordering/v8/work-area')
+    } else {
+        res.redirect('/lfd-home-ordering/v8/check-your-answers')
+    }
+
+})
+
+// router.post('/lfd-home-ordering/v7action10/country', function (req, res) {
+//     let country = req.session.data['country']
+//     if (country == "England" ) {
+//       res.redirect('/lfd-home-ordering/v7coronavirus-account')
+//     } else if (country == "Scotland" ) {
+//       res.redirect('/lfd-home-ordering/v7scottish-isles')
+//     } else {
+//       res.redirect('/lfd-home-ordering/v7country-test-unavailable')
+//     }
+
+// })
+
+// router.post('/lfd-home-ordering/v8/action10/work-from-home', function (req, res) {
+//   let workFromHome = req.session.data['work-from-home']
+//   if (workFromHome == "Yes" ) {
+//     res.redirect('/lfd-home-ordering/v8/workplace-testing')
+//   } else {
+//     res.redirect('/lfd-home-ordering/v8/lft-unavailable')
+//   }
+//
+// })
+
+// router.post('/lfd-home-ordering/v8/action10/scottish-isles', function (req, res) {
+//     let scottishIsles = req.session.data['scottish-isles']
+//     if (!scottishIsles ) {
+//       res.redirect('/lfd-home-ordering/v8/scottish-isles-error')
+//     } else if (scottishIsles == "Yes" ) {
+//       res.redirect('/lfd-home-ordering/v8/coronavirus-account')
+//     } else {
+//       res.redirect('/lfd-home-ordering/v8/lft-unavailable')
+//     }
+//
+// })
+
+// router.post('/lfd-home-ordering/v8/action10/workplace-testing', function (req, res) {
+//     let workplaceTesting = req.session.data['workplace-testing']
+//     if (workplaceTesting == "No" ) {
+//       res.redirect('/lfd-home-ordering/v8/coronavirus-account')
+//     } else {
+//       res.redirect('/lfd-home-ordering/v8/collect-your-tests')
+//     }
+//
+// })
+
+router.post('/lfd-home-ordering/v8/action10/coronavirus-account', function (req, res) {
+  let signin = req.session.data['coronavirus-account']
+  if (signin == "Yes") {
+    res.redirect('/lfd-home-ordering/v8/user-account/login-email')
+  } else {
+    res.redirect('/lfd-home-ordering/v8/name')
+  }
+
+})
+
+router.post('/lfd-home-ordering/v8/user-account/action10/login-email', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/lfd-home-ordering/v8/user-account/enter-password')
+  } else {
+    res.redirect('/lfd-home-ordering/v8/user-account/create-password')
+  }
+
+})
+
+router.post('/lfd-home-ordering/v8/action10/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/lfd-home-ordering/v8/user-account/create-password-error')
+  } else {
+    res.redirect('/lfd-home-ordering/v8/user-account/check-email')
+  }
+})
+
+router.post('/lfd-home-ordering/v8/action10/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/lfd-home-ordering/v8/user-account/check-mobile-error')
+  } else {
+    res.redirect('/lfd-home-ordering/v8/user-account/agreement')
+  }
+})
+
+router.post('/lfd-home-ordering/v8/user-account/action10/home-page', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/lfd-home-ordering/v8/check-your-answers')
+  } else {
+    res.redirect('/lfd-home-ordering/v8/name')
+  }
+
+})
+
+
+
+router.post('/lfd-home-ordering/v8/action10/contact-with-positive', function (req, res) {
+    let contactWithPositive = req.session.data['contact-with-positive']
+    if (contactWithPositive == "No" ) {
+        res.redirect('/lfd-home-ordering/v8/dct-unavailable')
+    } else {
+        res.redirect('/lfd-home-ordering/v8/notified-how')
+    }
+
+})
+
+router.post('/lfd-home-ordering/v8/action10/dct-opt-in', function (req, res) {
+    let dctOptIn = req.session.data['dct-opt-in']
+    if (dctOptIn == "No" ) {
+        res.redirect('/lfd-home-ordering/v8/self-isolate')
+    } else {
+        res.redirect('/lfd-home-ordering/v8/name')
+    }
+
+})
+
+router.post('/lfd-home-ordering/v8/action10/work-area', function (req, res) {
+    let workArea = req.session.data['work-area']
+    if (workArea == "Community pharmacy" || workArea == "Dentistry" || workArea == "General practice" || workArea == "Optometry" || workArea == "Other" ) {
+        res.redirect('/lfd-home-ordering/v8/work-postcode')
+    } else {
+        res.redirect('/lfd-home-ordering/v8/trust')
+    }
+
+})
+
+
 
 
 module.exports = router

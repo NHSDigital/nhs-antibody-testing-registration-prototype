@@ -1,0 +1,58 @@
+{% set version = "v7" %}
+{% set pageTitle = "Enter your postcode" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['nhs-number-known-person-1'] %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/people-confirmed-person-1">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/people-confirmed">Back</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/site-appointment-booking/please-wait" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="find-test-site-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="find-test-site-hint" class="govuk-body">
+            We will search for available appointments within 70 miles driving distance of this postcode.
+          </span>
+          <div class="govuk-form-group govuk-!-margin-top-6">
+            <label class="govuk-label" for="home-postcode">
+              Postcode
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] or 'LS1 3BE' }}">
+          </div>
+        </fieldset>
+
+        <button id="button" class="govuk-button govuk-!-margin-bottom-6 govuk-!-margin-top-4" type="submit" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
