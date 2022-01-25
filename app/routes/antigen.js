@@ -3930,7 +3930,7 @@ router.post('/antigen/v6/action2/edit/fingerprick-test-person-1', function (req,
 
 // ******************* VERSION 7 - MIGRATION TO IBT MVS ***************** //
 
-// Version 2 - Antigen Refer and Triage - Mobile number route
+// Version 7 - Antigen Refer and Triage - Mobile number route
 
 router.post('/antigen/v7/action3/mobile-number', function (req, res) {
   let mobilePhoneNumber = req.session.data['mobile-number']
@@ -4535,7 +4535,7 @@ router.post('/antigen/v7/action3/gp-address-same', function (req, res) {
   if (gpAdressSame == "No") {
     res.redirect('/antigen/v7/global-registration/address')
   } else if (car == "No") {
-    res.redirect('/antigen/v7/order-home-test-kit/delivery-address-same')
+    res.redirect('/antigen/v7/order-home-test-kit/nhs-number-known')
   } else {
     res.redirect('/antigen/v7/global-registration/nhs-number-known')
   }
@@ -4802,7 +4802,7 @@ router.post('/antigen/v7/action3/delivery-address-same', function (req, res) {
   if (deliveryAdressSame == "No"){
     res.redirect('/antigen/v7/order-home-test-kit/delivery-postcode')
   } else {
-    res.redirect('/antigen/v7/global-registration/nhs-number-known')
+    res.redirect('/antigen/v7/order-home-test-kit/order-summary')
   }
 })
 
