@@ -3,25 +3,42 @@
          <p class="govuk-body">The technology the service uses to check the result guarantees a high level of accuracy. It’s authorised by the UK health regulator, the Medicines and Healthcare products Regulatory Agency (MHRA).</p>
          {% if data['whos-taking-the-test'] == "someone-else" %}
          <p class="govuk-body">If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} thinks the service read their result incorrectly, they can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report more details about this service to the MHRA (opens in a new tab)</a>. On the homepage, they should enter ‘Lateral flow test - uploaded photograph result’ in the search box and select the ‘Start report’ button.</p>
-         <p class="govuk-body">They must follow the advice below to help stop the spread of the virus.</p>
+         <p class="govuk-body">They should follow the advice below to help stop the spread of the virus.</p>
          {% else %}
          <p class="govuk-body">If you think the service read your result incorrectly, you can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report more details about this service to the MHRA (opens in a new tab)</a>. On the homepage, enter ‘Lateral flow test - uploaded photograph result’ in the search box and select the ‘Start report’ button.</p>
-         <p class="govuk-body">You must follow the advice below to help stop the spread of the virus.</p>
+         <p class="govuk-body">You should follow the advice below to help stop the spread of the virus.</p>
          {% endif %}
        </div>
 
   <div>
     {% if data['whos-taking-the-test'] == "someone-else" %}
-    <h2 class="govuk-heading-m">What they must do</h2>
+    <h2 class="govuk-heading-m">What they should do</h2>
     {% else %}
-   <h2 class="govuk-heading-m">What you must do</h2>
+   <h2 class="govuk-heading-m">What you should do</h2>
    {% endif %}
+
    <p class="govuk-body"><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/regular-rapid-coronavirus-tests-if-you-do-not-have-symptoms/">Take another rapid lateral flow test</a> as soon as possible.</p>
-   {% if data['whos-taking-the-test'] == "someone-else" %}
-   <p class="govuk-body"><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">Find out if they need to self-isolate on NHS.UK</a></p>
-   {% else %}
-   <p class="govuk-body"><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">Find out if you need to self-isolate on NHS.UK</a></p>
-   {% endif %}
-  <div>
+
+   <p class="govuk-body">To stay safe:</p>
+     <ul class="govuk-list govuk-list--bullet">
+       <li>get vaccinated</li>
+       <li>handwash regularly</li>
+       <li>download the NHS COVID-19 app (in England and Wales), the Protect Scotland app (in Scotland), and the StopCovidNI app (in Northern Ireland)</li>
+       <li>open windows if meeting indoors</li>
+       <li>wearing a face covering in crowded indoor settings</li>
+       <li>stay home if unwell</li>
+       {% if data['whos-taking-the-test'] == "someone-else" %}
+       <li>get tested and self-isolate if they need to</li>
+       {% else %}
+       <li>get tested and self-isolate if you need to</li>
+       {% endif %}
+     </ul>
+
+     {% if data['whos-taking-the-test'] == "someone-else" %}
+     <p>Check the self-isolation guidance if they're in <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">England</a>, <a href="https://www.nhsinform.scot/isolation">Scotland</a>, <a href="https://gov.wales/self-isolation">Wales</a> or <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts">Northern Ireland</a></p>
+     {% else %}
+     <p>Check the self-isolation guidance if you're in <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">England</a>, <a href="https://www.nhsinform.scot/isolation">Scotland</a>, <a href="https://gov.wales/self-isolation">Wales</a> or <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts">Northern Ireland</a></p>
+     {% endif %}
+
     <p class="govuk-body"><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/">Get the latest NHS information and advice about coronavirus (COVID-19)</a></p>
 </div>
