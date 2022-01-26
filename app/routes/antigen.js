@@ -4458,7 +4458,7 @@ router.post('/antigen/v7/global-registration/edit-check-answers/action9/study-gr
 router.post('/antigen/v7/action9/coronavirus-vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
   if (vaccine == "No"){
-    res.redirect('/antigen/v7/global-registration/country')
+    res.redirect('/antigen/v7/global-registration/home-address')
   } else {
     res.redirect('/antigen/v7/global-registration/coronavirus-vaccine-date')
   }
@@ -4467,7 +4467,7 @@ router.post('/antigen/v7/action9/coronavirus-vaccine', function (req, res) {
 router.post('/antigen/v7/action9/coronavirus-vaccine-person-1', function (req, res) {
   let vaccine = req.session.data['vaccine-person-1']
   if (vaccine == "No"){
-    res.redirect('/antigen/v7/global-registration/gp-address-same-person-1')
+    res.redirect('/antigen/v7/global-registration/home-address-same-person-1')
   } else {
     res.redirect('/antigen/v7/global-registration/coronavirus-vaccine-date-person-1')
   }
@@ -5752,6 +5752,17 @@ router.post('/antigen/v7/action3/kit-return-way-known', function (req, res) {
     res.redirect('/antigen/v7/home-testing/check-instructions')
   }
 
+})
+
+// Version 7- Antigen Global Registration - Delivery address same route
+
+router.post('/antigen/v7/action3/delivery-address', function (req, res) {
+  let deliveryAdressSame = req.session.data['delivery-address']
+  if (deliveryAdressSame == "No"){
+    res.redirect('/antigen/v7/order-home-test-kit/delivery-postcode')
+  } else {
+    res.redirect('/antigen/v7/order-home-test-kit/order-summary')
+  }
 })
 
 // Version 7- Antigen Global Registration - Delivery address same route
