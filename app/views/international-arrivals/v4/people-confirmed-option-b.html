@@ -1,0 +1,120 @@
+{% set version = "v4" %}
+{% set pageTitle = "Confirm people for testing" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/international-arrivals/{{version}}/check-your-answers">Back</a>
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <p class="govuk-body">
+        You can order travel test packages for yourself and up to 9 other people that you're travelling with. They must have the same delivery address as you.
+      </p>
+
+      <div class="govuk-inset-text govuk-!-font-weight-bold">
+        Travel rules are changing for people arriving in the UK from 4am on 11 February 2022.
+      </div>
+      
+      <p>Check the latest travel rules for each country to see which travel test 
+        package is right for each person:</p>
+      
+        <p class="govuk-body">
+          <a href="https://www.gov.uk/guidance/travel-to-england-from-another-country-during-coronavirus-covid-19" class="govuk-link">Travel test package rules for international arrival into England</a><br>
+          <a href="https://gov.wales/rules-international-travel-and-wales-coronavirus" class="govuk-link">Travel test package rules for international arrival into Wales</a><br>
+          <a href="https://www.gov.scot/publications/coronavirus-covid-19-international-travel-quarantine/" class="govuk-link">Travel test package rules for international arrival into Scotland</a><br>
+          <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-travel-advice" class="govuk-link">Travel test package rules for international arrival into Northern Ireland</a>
+      </p>
+
+      <p>Once you've confirmed who needs testing, you can complete and pay for 
+        your order.</p>
+      
+      <div class="info-summary">
+        <div>
+          <p class="govuk-body">
+            <strong>{{ data['first-name'] or 'Jon' }} {{ data['last-name'] or 'Appleseed' }}</strong><br>
+            {% if data['dob-month'] == "1" or data['dob-month'] == "01" %}
+            {{ data['dob-day'] }} January {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "2" or data['dob-month'] == "02" %}
+            {{ data['dob-day'] }} February {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "3" or data['dob-month'] == "03" %}
+            {{ data['dob-day'] }} March {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "4" or data['dob-month'] == "04" %}
+            {{ data['dob-day'] }} April {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "5" or data['dob-month'] == "05" %}
+            {{ data['dob-day'] }} May {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "6" or data['dob-month'] == "06" %}
+            {{ data['dob-day'] }} June {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "7" or data['dob-month'] == "07" %}
+            {{ data['dob-day'] }} July {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "8" or data['dob-month'] == "08" %}
+            {{ data['dob-day'] }} August {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "9" or data['dob-month'] == "09" %}
+            {{ data['dob-day'] }} September {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "10" %}
+            {{ data['dob-day'] }} October {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "11" %}
+            {{ data['dob-day'] }} November {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "12" %}
+            {{ data['dob-day'] }} December {{ data['dob-year'] }}
+            {% else %}
+            1 January 1990
+            {% endif %}<br>
+            {{ data['travel-route'] or 'Day 2 and day 8 test' }}<br>
+            {% if data['travel-route'] == 'Day 2 test' %}
+            £68
+            {% else %}
+            £116
+            {% endif %}<br>
+            <a href="/international-arrivals/{{version}}/check-your-answers">Edit details</a>
+          </p>
+        </div>
+        <p class="govuk-body-m"><strong class="govuk-!-padding-right-4">Amount to pay</strong> 
+          {% if data['travel-package-exempt'] == "Yes, I'm ordering on behalf of an asylum seeker" or data['travel-package-exempt'] == "Yes, I need a replacement test kit" %}
+          £0.00
+          {% else %}
+            {% if data['travel-route'] == 'Day 2 test' %}
+            £68
+            {% else %}
+            £116
+            {% endif %}
+          {% endif %}
+        </p>
+      </div>
+
+      <div class="inline-buttons-wrapper govuk-!-margin-top-8">
+        <form class="form" action="/international-arrivals/{{version}}/delivery-address" method="post">
+          <button class="govuk-button" data-module="govuk-button">
+            Continue to payment
+          </button>
+        </form>
+        <form class="form" action="/international-arrivals/{{version}}/travel-details-same-person-1" method="post">
+          <button class="govuk-button govuk-button--secondary govuk-!-margin-right-1" data-module="govuk-button">
+            Add another person
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
