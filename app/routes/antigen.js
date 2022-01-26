@@ -43,7 +43,7 @@ router.post('/antigen/v1/action3/delivery-address-same', function (req, res) {
 })
 
 
-// Version 7- Antigen Refer and Triage - Mobile number route
+// Version 1- Antigen Refer and Triage - Mobile number route
 
 router.post('/antigen/v2/action3/mobile-number', function (req, res) {
   let mobilePhoneNumber = req.session.data['mobile-number']
@@ -5197,16 +5197,16 @@ router.post('/antigen/v7/action3/security-check', function (req, res) {
 
 // Version 7- Antigen Refer and Triage - Do you have a car route
 
-router.post('/antigen/v7/action3/landline-number', function (req, res) {
+// router.post('/antigen/v7/action3/landline-number', function (req, res) {
 
-  let emailAddress = req.session.data['email']
-  if (emailAddress == "Yes" ){
-    res.redirect('/antigen/v7/global-registration/gender')
-  } else {
-    res.redirect('/antigen/v7/global-registration/email-address')
-  }
+//  let emailAddress = req.session.data['email']
+//  if (emailAddress == "Yes" ){
+//    res.redirect('/antigen/v7/global-registration/gender')
+//  } else {
+//    res.redirect('/antigen/v7/global-registration/email-address')
+//  }
 
-})
+// })
 
 
 
