@@ -2004,34 +2004,4 @@ router.post('/OBT/individual-reg/e2e-prototypes/v1/test-details/pcr/return-metho
     }
 });
 
-
-
-//lft-pcr-with-results-live
-
-router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/start-pages/UON-check-radio', function (req, res) {
-  let answer = req.body.changeUON;
-
-  if (answer == 'yes') {
-    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/start-pages/how')
-  } else if (answer == 'no') {
-      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/start-pages/UON')
-    } else {
-    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/start-pages/UON-check-radio?error=empty')
-    }
-});
-
-
-router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/start-pages/how', function (req, res) {
-  let answer = req.body.cuUploadType;
-
-  if (answer == 'bulk') {
-    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/who-other-orgs')
-    } else if (answer == 'single') {
-      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/who-other-orgs')
-    } else {
-    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/start-pages/how?error=empty')
-    }
-});
-
-
 module.exports = router
