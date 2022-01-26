@@ -1,13 +1,6 @@
-{% set fullname %}
-  {% if data.cuFirstName and data.cuLastName %}
-    {{ data.cuFirstName }} {{ data.cuLastName }}
-    {% else %}
-      John Smith
-  {% endif %}
-{% endset %}
-{% set pageHeading = "Are you currently in work?" %}
- {% set version = "organisational/lft/carehome-registration" %}
-{% set serviceName = "Get a coronavirus test" %}
+{% set serviceName = "Register test kits for your organisation" %}
+{% set pageHeading = "Who are you registering?" %}
+{% set version = "organisational/lft/carehome-registration" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
@@ -39,11 +32,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="" action="" method="post">
-
+      <form class="" action="personal-details" method="get">
         {{ govukRadios({
-            idPrefix: "cuInWork",
-            name: "cuInWork",
+            idPrefix: "cuStaff",
+            name: "cuStaff",
             fieldset: {
               legend: {
                 text: pageHeading,
@@ -51,32 +43,17 @@
                 classes: "govuk-fieldset__legend--xl"
               }
             },
-            hint: {
-              html: "<p>This will help us understand more about the spread of the virus.</p>"
-            },
             items: [
               {
-                value: "yes home",
-                text: "Yes, and for the last 2 weeks I have worked from home"
+                value: "Staff",
+                text: "Staff"
               },
               {
-                value: "Yes travel",
-                text: "Yes, and for the last 2 weeks I have travelled to work"
-              },
-              {
-                value: "no",
-                text: "No"
-              },
-              {
-                divider: "or"
-              },
-              {
-                value: "Prefer not to say",
-                text: "Prefer not to say/I do not know"
+                value: "Non-staff",
+                text: "Non-staff (for example, school, pupils, residents or patients)"
               }
             ]
           }) }}
-
         <input class="govuk-button" type="submit" value="Continue">
 
       </form>

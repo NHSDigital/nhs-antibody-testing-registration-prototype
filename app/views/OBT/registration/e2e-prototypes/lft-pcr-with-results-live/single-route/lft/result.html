@@ -1,5 +1,5 @@
 {% set serviceName = "Register test kits for your organisation" %}
-{% set pageHeading = "Is John Smith taking part in daily contact testing (DCT)?" %}
+{% set pageHeading = "Select John Smith's test result" %}
 {% set version = "organisational/lft/carehome-registration" %}
 {% extends "includes/layout.html" %}
 
@@ -32,33 +32,32 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        {{ pageHeading }}
-      </h1>
-
-      <form class="" action="enter-test-kit" method="get">
+      <form class="" action="check-lft" method="get">
 
         <div class="govuk-form-group">
     <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
-
-      <p>This usually means they are a contact of someone who has tested positive for COVID-19, so they are taking a test every day for 7 days to keep working. A number of organisations are inviting their employees to take part in DCT.</p>
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+        <h1 class="govuk-fieldset__heading-xl">
+          Select John Smith's test result
+        </h1>
+      </legend>
       <div class="govuk-radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="daily-contact-testing" name="daily-contact-testing" type="radio" value="yes">
+        <input class="govuk-radios__input" id="where-do-you-live" name="where-do-you-live" type="radio" value="england">
         <label class="govuk-label govuk-radios__label" for="where-do-you-live">
-          Yes
+          Negative
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="daily-contact-testing-2" name="daily-contact-testing" type="radio" value="no">
+        <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
         <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
-          No
+          Void
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="daily-contact-testing-3" name="daily-contact-testing" type="radio" value="dont-know">
-        <label class="govuk-label govuk-radios__label" for="where-do-you-live-3">
-          I do not know
+        <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
+        <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+          Positive
         </label>
       </div>
         </div>
@@ -66,9 +65,19 @@
 </div>
   </div>
 
+  <div class="govuk-warning-text">
+    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+    <strong class="govuk-warning-text__text">
+      <span class="govuk-warning-text__assistive">Warning</span>
+      Check that you have selected the correct result before you continue.
+    </strong>
+  </div>
 
         <input class="govuk-button" type="submit" value="Continue">
 
+      </form>
 
+    </div>
+  </div>
 
 {% endblock %}
