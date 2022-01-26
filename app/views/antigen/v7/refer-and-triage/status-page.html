@@ -31,7 +31,7 @@
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
         <strong class="govuk-warning-text__text">
           <span class="govuk-warning-text__assistive">Warning</span>
-          Tests need to go to essential workers first, including NHS and social care staff.<br><br>
+          Tests need to go to essential workers first, including NHS and social care staff.<br>
           If you cannot get a test now, try again later. You will not be able to get a test through the helplines.
         </strong>
       </div>
@@ -47,9 +47,9 @@
       <p class="govuk-body">
         You can visit a walk-through or a drive-through test site.<br><br>
         If you'd prefer to get tested this way, check this list to see if test slots are available where you live.<br><br>
-        Then click continue. You'll need to answer some questions and enter some personal details.<br><br>
+      <!--  Then click continue. You'll need to answer some questions and enter some personal details.<br><br>
         You'll then be able to choose your preferred way to get tested.<br><br>
-        Some counties do not have test sites and are not listed here. If your county is not here, check the listed areas near you.
+        Some counties do not have test sites and are not listed here. If your county is not here, check the listed areas near you. -->
       </p>
 
       {% if data['country'] == "England" %}
@@ -209,12 +209,14 @@
                 <p class='govuk-body'>West Yorkshire <strong class="govuk-tag govuk-tag--green">AVAILABLE</strong></p>
             </div>
           </div>
+        </div>
 
           {% endif %}
 
           {% if data['country'] == "Northern Ireland" %}
 
-          <h2 class="govuk-heading-m govuk-!-padding-top-7 govuk-!-margin-bottom-1">Northern Ireland</h2>
+        <h2 class="govuk-heading-m govuk-!-padding-top-7 govuk-!-margin-bottom-1">Northern Ireland</h2>
+        <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
           <div class="govuk-accordion__section ">
             <div class="govuk-accordion__section-header">
               <h2 class="govuk-accordion__section-heading">
@@ -232,6 +234,7 @@
               <p class='govuk-body'>Tyrone <strong class="govuk-tag govuk-tag--green">AVAILABLE</strong></p>
             </div>
           </div>
+        </div>
 
         {% endif %}
 
@@ -243,7 +246,8 @@
 
         {% if data['country'] == "Wales" %}
 
-        <h2 class="govuk-heading-m govuk-!-padding-top-7 govuk-!-margin-bottom-5">Wales</h2>
+    <h2 class="govuk-heading-m govuk-!-padding-top-7 govuk-!-margin-bottom-5">Wales</h2>
+      <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
         <div class="govuk-accordion__section ">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -263,11 +267,13 @@
             <p class='govuk-body'>West Glamorgan <strong class="govuk-tag govuk-tag--green">AVAILABLE</strong></p>
           </div>
         </div>
+      </div>
 
       {% endif %}
 
-      </div>
 
+
+      <br>
       <form action="/antigen/{{version}}/action/status-page" method="post">
         <button class="govuk-button" data-module="govuk-button">
           Continue

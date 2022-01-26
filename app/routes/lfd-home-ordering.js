@@ -1104,7 +1104,15 @@ router.post('/lfd-home-ordering/v8/action10/nhs-testing-programme', function (re
     } else {
         res.redirect('/lfd-home-ordering/v8/check-your-answers')
     }
+})
 
+router.post('/lfd-home-ordering/v8/action10/enter-password', function (req, res) {
+    let country = req.session.data['country']
+    if (country == "England" ) {
+      res.redirect('/lfd-home-ordering/v8/nhs-testing-programme')
+     } else {
+         res.redirect('/lfd-home-ordering/v8/check-your-answers')
+     }
 })
 
 // router.post('/lfd-home-ordering/v7action10/country', function (req, res) {
