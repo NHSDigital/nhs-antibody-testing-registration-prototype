@@ -2004,4 +2004,180 @@ router.post('/OBT/individual-reg/e2e-prototypes/v1/test-details/pcr/return-metho
     }
 });
 
+
+//lft-pcr-with-results-live
+
+
+router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/start-pages/UON-check', function (req, res) {
+  let answer = req.body.changeUON;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/start-pages/how')
+  } else if (answer == 'no') {
+      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/start-pages/UON')
+    } else {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/start-pages/UON-check?error=empty')
+    }
+});
+
+
+router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/start-pages/how', function (req, res) {
+  let answer = req.body.cuUploadType;
+
+  if (answer == 'bulk') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/who-other-orgs')
+  } else if (answer == 'single') {
+      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/who-other-orgs')
+    } else {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/start-pages/how?error=empty')
+    }
+});
+
+
+router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/contact')
+    } else if (answer) {
+      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/ethnic-desc')
+    } else {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/ethnic-group?error=empty')
+    }
+});
+
+
+router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/occupation/index', function (req, res) {
+  let answer = req.body.cuInWork;
+
+  if (answer == 'yes home') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/occupation/area')
+  } else if (answer == 'Yes travel') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/occupation/area')
+  } else if (answer == 'no') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/symptoms')
+  } else if (answer == 'Prefer not to say') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/occupation/area')
+  } else {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/occupation/index?error=empty')
+    }
+});
+
+
+
+router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/symptoms', function (req, res) {
+  let answer = req.body.havesymptoms;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/when-symptoms')
+    } else {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/daily-contact-testing')
+    }
+});
+
+
+
+router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/pcr/have-return-box', function (req, res) {
+  let answer = req.body.outerreturnbox;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/pcr/return-box')
+  } else if (answer == 'no') {
+      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/pcr/check-pcr')
+    } else {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/pcr/have-return-box?error=empty')
+    }
+});
+
+
+router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/pcr/add-another', function (req, res) {
+  let answer = req.body.addanotherperson;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/personal-details')
+  } else if (answer == 'no') {
+      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/pcr/confirmation')
+    } else {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/pcr/add-another?error=empty')
+    }
+});
+
+
+router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/lft/add-another', function (req, res) {
+  let answer = req.body.addanotherperson;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/personal-details')
+  } else if (answer == 'no') {
+      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/lft/confirmation')
+    } else {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/lft/add-another?error=empty')
+    }
+});
+
+
+
+
+router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/lft-bulk-p1', function (req, res) {
+  let answer = req.body.lftp1;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/lft-bulk-p2')
+  } else if (answer == 'no') {
+      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/upload')
+    } else {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/?error=empty')
+    }
+});
+
+router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/lft-bulk-p2', function (req, res) {
+  let answer = req.body.lftp1;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/pcr-bulk-p1')
+  } else if (answer == 'no') {
+      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/upload')
+    } else {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/?error=empty')
+    }
+});
+
+router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/pcr-bulk-p1', function (req, res) {
+  let answer = req.body.reuploadpcr;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/pcr-bulk-p2')
+  } else if (answer == 'no') {
+      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/upload')
+    } else {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/pcr-bulk-p1?error=empty')
+    }
+});
+
+router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/pcr-bulk-p2', function (req, res) {
+  let answer = req.body.reuploadpcr;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/pcr-bulk-p3')
+  } else if (answer == 'no') {
+      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/upload')
+    } else {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/pcr-bulk-p2?error=empty')
+    }
+});
+
+router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/pcr-bulk-p3', function (req, res) {
+  let answer = req.body.reuploadpcr;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/check')
+  } else if (answer == 'no') {
+      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/upload')
+    } else {
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-route/pcr-bulk-p3?error=empty')
+    }
+});
+
+
+
 module.exports = router
