@@ -65,7 +65,7 @@ router.post('/antigen/v2/action3/mobile-number-option-2', function (req, res) {
 
 })
 
-// Version 7- Antigen Refer and Triage - Do you have symptoms route
+// Version 2- Antigen Refer and Triage - Do you have symptoms route
 
 router.post('/antigen/v2/action3/do-you-have-symptoms-option-2', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
@@ -83,7 +83,7 @@ router.post('/antigen/v2/action3/do-you-have-symptoms-option-2', function (req, 
 })
 
 
-// Version 7- Antigen Refer and Triage - Do you have symptoms route
+// Version 2 - Antigen Refer and Triage - Do you have symptoms route
 
 router.post('/antigen/v2/action4/do-you-have-symptoms', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
