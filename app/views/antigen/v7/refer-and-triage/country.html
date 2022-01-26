@@ -1,5 +1,5 @@
 {% set version = "v7" %}
-{% set pageTitle = "Where in the UK does the person needing a test live?" %}
+{% set pageTitle = "Where in the UK are you?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,11 +15,7 @@
     </p>
   </div>
 
-  {% if data['coronavirus-vaccine'] == "Yes" %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/coronavirus-vaccine-date">Back</a>
-  {% else %}
-  <a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/coronavirus-vaccine">Back</a>
-  {% endif %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/govuk/get-coronavirus-test">Back</a>
 
 {% endblock %}
 
@@ -38,6 +34,9 @@
                 {{ pageTitle }}
               </h1>
             </legend>
+
+            <p>If you're away from home, select the country where you're staying.</p>
+
             <div class="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }}>
