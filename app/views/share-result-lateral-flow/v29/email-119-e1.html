@@ -30,7 +30,7 @@
         </div>
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+          <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
@@ -49,7 +49,7 @@
               {% endif %}
             </span>
 
-            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios" aria-describedby="email-results-hint">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-1" checked="checked" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="email-1">
@@ -62,7 +62,7 @@
               </div>
 
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
-                <div id="national-insurance-number-hint" class="govuk-hint">
+                <div id="email-results-hint" class="govuk-hint">
                   Make sure you're happy for your test results to go to this person. Do not use a work or shared email address unless you're comfortable with others seeing your results.
                 </div>
                 <div class="govuk-form-group govuk-form-group--error">
@@ -72,12 +72,12 @@
                   <label class="govuk-label" for="email-address">
                     Email address
                   </label>
-                  <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}" aria-describedby="conditional-email-address-hint">
+                  <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
                 </div><br>
-                <label class="govuk-label" for="email-address">
+                <label class="govuk-label" for="email-address-1">
                     Confirm email address
                   </label>
-                  <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}" aria-describedby="conditional-email-address-hint">
+                  <input class="govuk-input" id="email-address-1" name="email-address" type="text" value="{{ data['email-address'] }}">
                 </div>
               </div>
               <div class="govuk-radios__item">
