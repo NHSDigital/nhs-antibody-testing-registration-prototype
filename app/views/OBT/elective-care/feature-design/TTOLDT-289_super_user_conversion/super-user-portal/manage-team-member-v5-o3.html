@@ -1,0 +1,115 @@
+{% set version = "v1" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "Manage a team member" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary" id="error-summary" class="govuk-error-summary" style="display: none;">
+        <h2 id="error-summary-title" class="govuk-error-summary__title"> There is a problem </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list pl-0"></ul>
+        </div>
+      </div>
+      <h1 class="govuk-heading-xl"> Manage a team member </h1>
+      <div class="govuk-inset-text">
+        <p>To change information for this enhanced team member, contact the elective care support team at:</p>
+        <a href="#" class="govuk-link govuk-body" style="display: inline-block">ElectiveCareTesting@dhsc.gov.uk</a>
+      </div>
+      <form>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="">First name</label>
+              <p class="govuk-body govuk-!-margin-bottom-6">John</p>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="">Last name</label>
+              <p class="govuk-body govuk-!-margin-bottom-6">Smith</p>
+            </div>
+
+            <div class="govuk-form-group govuk-!-margin-bottom-5">
+              <label class="govuk-label" for="">Email address</label>
+              <span class="govuk-hint">This should be their work email address</span>
+              <p class="govuk-body">john.smith@mail.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <h4 class="govuk-heading-m govuk-!-margin-top-6"> Sign in </h4>
+            <p class="govuk-body"> This team member can sign in with an <strong>email and password</strong>.</p>
+            <a class="govuk-link govuk-body" href="#" style="display: block;">Send a new temporary password</a>
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    Learn about sign in
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Smartcard</h3>
+                <p class="govuk-body govuk-!-margin-bottom-2">Team members can securely view test results in the portal.</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>you cannot create Smartcard team members</li>
+                  <li>team members request Smartcard access when signing in</li>
+                  <li>an enhanced team member needs to approve this request</li>
+                </ul>
+
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Email and password</h3>
+                <p class="govuk-body govuk-!-margin-bottom-2">This option does not let team members view test results in this portal.</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>you can create team members who have email and password access</li>
+                  <li>team members can use the portal once they’ve accepted their email invitation</li>
+                  <li>if a team member starts using a Smartcard, mark their email and password account as inactive so they only have one way of signing in</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <h4 class="govuk-heading-m govuk-!-margin-top-3"> Permissions</h4>
+            <p class="govuk-body">This team member has <strong>enhanced permissions</strong>.</p>
+            <p class="govuk-body">To change this, email the elective care support team at:</p></p>
+            <a href="#" class="govuk-link govuk-body" style="display: block">ElectiveCareTesting@dhsc.gov.uk</a>
+            <details class="govuk-details govuk-!-margin-bottom-0" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">Learn about team member permissions</span>
+              </summary>
+              <div class="govuk-details__text">
+                    Depending on a team member's role, they will be given certain permissions. The available permissions are:
+                    
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2 govuk-!-margin-top-6"> Standard </h3>
+                <p class="govuk-body">Order home tests, check patient details, view test results (when signed in with a Smartcard) and confirm procedure cancellations.</p>
+
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2 govuk-!-margin-top-6"> Enhanced </h3>
+                <p class="govuk-body">Standard permissions, plus manage team members and groups.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <h4 class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-8"> Account status </h4>
+        <span class="govuk-hint govuk-!-margin-bottom-4">Remove sign in access by marking team member as inactive.</span>
+        <p class="govuk-body">Active</p>
+
+        <h4 class="govuk-heading-m govuk-!-margin-top-7"> Which groups should this team member belong to? </h4>
+        <p class="govuk-body">All groups</p>
+
+        <div class="govuk-button-group govuk-!-margin-top-8">
+          <button type="submit" class="govuk-button"> Back to team management </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
