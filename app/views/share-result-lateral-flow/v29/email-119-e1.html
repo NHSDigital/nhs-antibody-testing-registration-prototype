@@ -47,11 +47,11 @@
             {% else %}
               <p class="govuk-body">If you have one, we'll send your test results to this email address.</p>
               {% endif %}
-
             </span>
+
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
+                <input class="govuk-radios__input" id="email-1" checked="checked" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="email-1">
                   {% if data['whos-taking-the-test'] == "someone-else" %}
                   Yes, they have an email address
@@ -59,26 +59,17 @@
                   Yes, I have an email address
                   {% endif %}
                 </label>
-
-
-                <div class="govuk-form-group govuk-form-group--error">
-                  <!-- <label class="govuk-label" for="national-insurance-number">
-                    National Insurance number
-                  </label> -->
-                  <div id="national-insurance-number-hint" class="govuk-hint">
-                    Make sure you're happy for your test results to go to this person. Do not use a work or shared email address unless you're comfortable with others seeing your results.
-                  </div>
-                  <p id="national-insurance-number-error" class="govuk-error-message">
-                    <span class="govuk-visually-hidden">Error:</span> Enter the email address of the person who took the test. If you do not have it, choose 'No, I do not have an email address.'
-                  </p>
-                  <input class="govuk-input govuk-input--error" id="national-insurance-number" name="national-insurance-number" type="text" aria-describedby="national-insurance-number-hint national-insurance-number-error">
-                </div>
               </div>
 
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
-                <div class="govuk-form-group">
+                <div id="national-insurance-number-hint" class="govuk-hint">
+                  Make sure you're happy for your test results to go to this person. Do not use a work or shared email address unless you're comfortable with others seeing your results.
+                </div>
+                <div class="govuk-form-group govuk-form-group--error">
+                    <p id="email-error" class="govuk-error-message">
+                      <span class="govuk-visually-hidden">Error:</span> Enter the email address of the person who took the test. If you do not have it, choose 'No, I do not have an email address.'
+                    </p>
                   <label class="govuk-label" for="email-address">
-                  <!--  Make sure you’re happy for your test results to go to this email address. Do not use a work or shared email address unless you’re comfortable with others seeing your results.<br><br> -->
                     Email address
                   </label>
                   <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}" aria-describedby="conditional-email-address-hint">
