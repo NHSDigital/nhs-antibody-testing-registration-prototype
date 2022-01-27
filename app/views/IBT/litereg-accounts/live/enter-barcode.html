@@ -1,0 +1,83 @@
+{% set version = "live" %}
+{% set pageTitle = "Enter the unique test kit barcode" %}
+
+{% extends "includes/layout-lite-registration.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/litereg-accounts/{{version}}/action9/enter-barcode" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="enter-barcode-number-hint" class="govuk-body">
+              Use the camera on your phone or computer to scan the test kit barcode. You’ll find these barcodes attached to the plastic tube, plastic bag and return box in the test kit.<br><br>
+              These are different from the pre-paid Royal Mail return package barcode on your box.<br><br>
+              Or you can manually enter the 11 character reference below it.
+            </span>
+
+            <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  What does the barcode look like?
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <img src="/public/images/barcode-number.png" alt="barcode number"/>
+              </div>
+            </details>
+
+            <a href="/IBT/litereg-accounts/{{version}}/scan-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+              Scan barcode
+            </a>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="kit-barcode-reference-1">
+                Test kit barcode reference
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="kit-barcode-reference-2">
+                Confirm test kit barcode reference
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }}>
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

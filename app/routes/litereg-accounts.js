@@ -14,275 +14,260 @@ function loadJSONFromFile(fileName, path = "app/data/") {
 
 // Version 1 - Lite Registration Accounts- Mobile number route
 
-router.post('/litereg-accounts/v1/action9/landline-number', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action9/landline-number', function (req, res) {
   let mobileNumber = req.session.data['mobile-number']
   let emailAddress = req.session.data['email']
   if (mobileNumber == "No" && emailAddress == "No" ) {
-    res.redirect('/litereg-accounts/v1/call-us')
+    res.redirect('/IBT/litereg-accounts/live/call-us')
   } else {
-    res.redirect('/litereg-accounts/v1/nhs-number-known')
+    res.redirect('/IBT/litereg-accounts/live/nhs-number-known')
   }
 
 })
 
 // Version 1 - Lite Registration Accounts - Who's taking the test route
 
-router.post('/litereg-accounts/v1/action9/whos-taking-the-test', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action9/whos-taking-the-test', function (req, res) {
   let person = req.session.data['whos-taking-the-test']
   if (person == "myself") {
-    res.redirect('/litereg-accounts/v1/coronavirus-account')
+    res.redirect('/IBT/litereg-accounts/live/coronavirus-account')
   } else {
-    res.redirect('/litereg-accounts/v1/enter-barcode')
+    res.redirect('/IBT/litereg-accounts/live/enter-barcode')
   }
 
 })
 
 // Version 1 - Lite Registration Accounts - enter barcode route
 
-router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action9/enter-barcode', function (req, res) {
   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
   if (uniqueBarcode == "LAMP") {
-    res.redirect('/litereg-accounts/v1/which-university')
+    res.redirect('/IBT/litereg-accounts/live/which-university')
   } else {
-    res.redirect('/litereg-accounts/v1/overseas-travel')
+    res.redirect('/IBT/litereg-accounts/live/overseas-travel')
   }
 })
 
-// router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
+// router.post('/IBT/litereg-accounts/live/action9/enter-barcode', function (req, res) {
 //   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
 //   if (uniqueBarcode == "LHE00000501") {
-//     res.redirect('/litereg-accounts/v1/site-id')
+//     res.redirect('/IBT/litereg-accounts/live/site-id')
 //   } else if (uniqueBarcode == "COE00000501") {
-//     res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+//     res.redirect('/IBT/litereg-accounts/live/royal-mail-barcode')
 //   } else {
-//     res.redirect('/litereg-accounts/v1/quarantine-question')
+//     res.redirect('/IBT/litereg-accounts/live/quarantine-question')
 //   }
 // })
 
 // Version 1 - Lite Registration Accounts - Test date route
 
-router.post('/litereg-accounts/v1/action9/test-date', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action9/test-date', function (req, res) {
   let emailAddress = req.session.data['email-address']
   if (emailAddress == "user@testing.co.uk") {
-    res.redirect('/litereg-accounts/v1/do-you-have-symptoms')
+    res.redirect('/IBT/litereg-accounts/live/do-you-have-symptoms')
   } else {
-    res.redirect('/litereg-accounts/v1/name')
+    res.redirect('/IBT/litereg-accounts/live/name')
   }
 
 })
 
 // Version 1 - Lite Registration Accounts - Do you have symptoms route
 
-router.post('/litereg-accounts/v1/action9/do-you-have-symptoms', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action3/do-you-have-symptoms', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
   if (symptoms == "Yes") {
-    res.redirect('/litereg-accounts/v1/when-did-symptoms-start')
+    res.redirect('/IBT/litereg-accounts/live/when-did-symptoms-start')
   } else {
-    res.redirect('/litereg-accounts/v1/previous-infection')
+    res.redirect('/IBT/litereg-accounts/live/previous-infection')
   }
 
 })
 
   // Version 2 - Lite Registration Accounts - Overseas travel route
 
-  // router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {
+  // router.post('/IBT/litereg-accounts/live/action9/enter-barcode', function (req, res) {
   //   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
   //   if (uniqueBarcode == "LHE00000501") {
-  //     res.redirect('/litereg-accounts/v1/site-id')
+  //     res.redirect('/IBT/litereg-accounts/live/site-id')
   //   } else if (uniqueBarcode == "COE00000501") {
-  //     res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+  //     res.redirect('/IBT/litereg-accounts/live/royal-mail-barcode')
   //   } else {
-  //     res.redirect('/litereg-accounts/v1/test-place')
+  //     res.redirect('/IBT/litereg-accounts/live/test-place')
   //   }
   // })
 
-  router.post('/litereg-accounts/v1/action9/overseas-travel', function (req, res) {
+  router.post('/IBT/litereg-accounts/live/action9/overseas-travel', function (req, res) {
     let overseasTravel = req.session.data['have-you-travelled-overseas']
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
     if (overseasTravel == "Yes") {
-      res.redirect('/litereg-accounts/v1/travel-route')
+      res.redirect('/IBT/litereg-accounts/live/travel-route')
     } else if (uniqueBarcode == "LHE00000501") {
-      res.redirect('/litereg-accounts/v1/site-id')
+      res.redirect('/IBT/litereg-accounts/live/site-id')
     } else if (uniqueBarcode == "COE00000501") {
-      res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+      res.redirect('/IBT/litereg-accounts/live/royal-mail-barcode')
     } else {
-      res.redirect('/litereg-accounts/v1/test-place')
+      res.redirect('/IBT/litereg-accounts/live/test-place')
     }
 
   })
 
-  router.post('/litereg-accounts/v1/action9/travelled-to', function (req, res) {
+  router.post('/IBT/litereg-accounts/live/action9/travelled-to', function (req, res) {
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
     if (uniqueBarcode == "LHE00000501") {
-      res.redirect('/litereg-accounts/v1/site-id')
+      res.redirect('/IBT/litereg-accounts/live/site-id')
     } else if (uniqueBarcode == "COE00000501") {
-      res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+      res.redirect('/IBT/litereg-accounts/live/royal-mail-barcode')
     } else {
-      res.redirect('/litereg-accounts/v1/test-place')
+      res.redirect('/IBT/litereg-accounts/live/test-place')
     }
 
   })
 
 // Version 2 - Lite Registration Accounts - First line of address and postcode route
 
-  router.post('/litereg-accounts/v1/action9/address', function (req, res) {
+  router.post('/IBT/litereg-accounts/live/action9/address', function (req, res) {
   let emailAddress = req.session.data['email-address']
   let password = req.session.data['password']
   if (emailAddress != "user@testing.co.uk" && password == " " || emailAddress != "user@testing.co.uk" && password == undefined) {
-    res.redirect('/litereg-accounts/v1/email-address')
+    res.redirect('/IBT/litereg-accounts/live/email-address')
   } else {
-    res.redirect('/litereg-accounts/v1/email-address-account')
+    res.redirect('/IBT/litereg-accounts/live/email-address-account')
   }
 
 })
 
 // Version 1 - Lite Registration Accounts - Ethnic group route
-router.post('/litereg-accounts/v1/action9/ethnic-group', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action9/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/litereg-accounts/v1/ethnic-background-asian')
+    res.redirect('/IBT/litereg-accounts/live/ethnic-background-asian')
   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-    res.redirect('/litereg-accounts/v1/ethnic-background-black')
+    res.redirect('/IBT/litereg-accounts/live/ethnic-background-black')
   } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-    res.redirect('/litereg-accounts/v1/ethnic-background-mixed')
+    res.redirect('/IBT/litereg-accounts/live/ethnic-background-mixed')
   } else if (ethnicGroup == "White") {
-    res.redirect('/litereg-accounts/v1/ethnic-background-white')
+    res.redirect('/IBT/litereg-accounts/live/ethnic-background-white')
   } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('/litereg-accounts/v1/ethnic-background-another')
+    res.redirect('/IBT/litereg-accounts/live/ethnic-background-another')
   } else {
-    res.redirect('/litereg-accounts/v1/currently-in-work')
+    res.redirect('/IBT/litereg-accounts/live/currently-in-work')
   }
 
 })
 
 // Version 1 - Lite Registration Accounts - Currently in work route
 
-router.post('/litereg-accounts/v1/action9/currently-in-work', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action9/currently-in-work', function (req, res) {
   let inWork = req.session.data['currently-in-work']
   if (inWork == "Yes - they travel to a workplace" || inWork == "Yes - I travel to a workplace"){
-    res.redirect('/litereg-accounts/v1/industry')
+    res.redirect('/IBT/litereg-accounts/live/industry')
   } else if (inWork == "Yes - they go to nursery, school, college or university" || inWork == "Yes - I go to nursery, school, college or university"){
-    res.redirect('/litereg-accounts/v1/study-grade')
+    res.redirect('/IBT/litereg-accounts/live/study-grade')
   } else {
-    res.redirect('/litereg-accounts/v1/do-you-have-symptoms')
-  }
-
-})
-
-// Version 1 - Lite Registration Accounts - NHS number known route
-
-router.post('/litereg-accounts/v1/action9/nhs-number-known', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
-  if (nhsNumberKnown == "Yes"){
-    res.redirect('/litereg-accounts/v1/nhs-number')
-  } else {
-    res.redirect('/litereg-accounts/v1/fingerprick-test')
+    res.redirect('/IBT/litereg-accounts/live/do-you-have-symptoms')
   }
 
 })
 
 // Version 1 - Lite Registration Accounts - Login email route
-router.post('/litereg-accounts/v1/user-account/action9/login-email', function (req, res) {
+router.post('/IBT/litereg-accounts/live/user-account/action9/login-email', function (req, res) {
   let loginEmail = req.session.data['email-address']
 
   if (loginEmail == "user@testing.co.uk"){
-    res.redirect('/litereg-accounts/v1/user-account/enter-password')
+    res.redirect('/IBT/litereg-accounts/live/user-account/enter-password')
   } else {
-    res.redirect('/litereg-accounts/v1/user-account/create-password')
+    res.redirect('/IBT/litereg-accounts/live/user-account/create-password')
   }
 
 })
 
 // Version 1 - Lite Registration Accounts - Home page testing route
-router.post('/litereg-accounts/v1/action9/home-page', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action9/home-page', function (req, res) {
   let loginEmail = req.session.data['email-address']
 
   if (loginEmail == 'user@testing.co.uk'){
-    res.redirect('/litereg-accounts/v1/test-place')
+    res.redirect('/IBT/litereg-accounts/live/test-place')
   } else {
-    res.redirect('/litereg-accounts/v1/email-address-account')
+    res.redirect('/IBT/litereg-accounts/live/email-address-account')
   }
 
 })
 
 // Version 1 - Lite Registration Accounts - Create password route
-router.post('/litereg-accounts/v1/action9/create-password', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action9/create-password', function (req, res) {
   let password = req.session.data['password']
   let confirmPassword = req.session.data['confirm-password']
   if (password == "" || confirmPassword == "") {
-    res.redirect('/litereg-accounts/v1/user-account/create-password-error')
+    res.redirect('/IBT/litereg-accounts/live/user-account/create-password-error')
   } else {
-    res.redirect('/litereg-accounts/v1/user-account/check-email')
+    res.redirect('/IBT/litereg-accounts/live/user-account/check-email')
   }
 })
 
 // Version 1 - Lite Registration Accounts - check mobile route
-router.post('/litereg-accounts/v1/action9/check-mobile', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action9/check-mobile', function (req, res) {
   let securityCode = req.session.data['security-code']
   if (securityCode == "") {
-    res.redirect('/litereg-accounts/v1/user-account/check-mobile-error')
+    res.redirect('/IBT/litereg-accounts/live/user-account/check-mobile-error')
   } else {
-    res.redirect('/litereg-accounts/v1/user-account/agreement')
+    res.redirect('/IBT/litereg-accounts/live/user-account/agreement')
   }
 })
 
 // Version 1 - Lite Registration Accounts - test place route
-router.post('/litereg-accounts/v1/action5/test-place', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action4/test-place', function (req, res) {
   let testPlace = req.session.data['test-place']
-  let quarantine = req.session.data['quarantine']
-  if (testPlace == "At a test site or government quarantine hotel" && quarantine == "Yes") {
-    res.redirect('/litereg-accounts/v1/trace-id')
-  } else if (testPlace == "At a test site or government quarantine hotel" && quarantine == "No") {
-    res.redirect('/litereg-accounts/v1/site-id')
+  if (testPlace == "At a test site, government quarantine hotel, or in accommodation as part of an event/conference") {
+    res.redirect('/IBT/litereg-accounts/live/site-id')
   } else {
-    res.redirect('/litereg-accounts/v1/royal-mail-barcode')
+    res.redirect('/IBT/litereg-accounts/live/royal-mail-barcode')
   }
 })
 
 // Version 1 - Lite Registration Accounts - GP address same route
-router.post('/litereg-accounts/v1/action/gp-address-same', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action/gp-address-same', function (req, res) {
   let gpAdressSame = req.session.data['gp-address-same']
   if (gpAdressSame == "No"){
-    res.redirect('/litereg-accounts/v1/address')
+    res.redirect('/IBT/litereg-accounts/live/address')
   } else {
-    res.redirect('/litereg-accounts/v1/email-address')
+    res.redirect('/IBT/litereg-accounts/live/email-address')
   }
 })
 
 // Version 1 - Lite Registration Accounts - site confirmation route
-router.post('/litereg-accounts/v1/action9/site-confirmation', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action9/site-confirmation', function (req, res) {
   let confirmSite = req.session.data['confirm-site']
   let barcode = req.session.data['kit-barcode-reference-1']
   if (confirmSite == "Yes" && barcode == "LHE00000501") {
-    res.redirect('/litereg-accounts/v1/daily-contact-testing')
+    res.redirect('/IBT/litereg-accounts/live/daily-contact-testing')
   } else if (confirmSite == "Yes" && barcode !== "LHE00000501") {
-    res.redirect('/litereg-accounts/v1/test-date')
+    res.redirect('/IBT/litereg-accounts/live/test-date')
   } else {
-    res.redirect('/litereg-accounts/v1/site-id')
+    res.redirect('/IBT/litereg-accounts/live/site-id')
   }
 })
 
 // Version 1 - Lite Registration Accounts - vaccine route
-router.post('/litereg-accounts/v1/action7/vaccine', function (req, res) {
+router.post('/IBT/litereg-accounts/live/action7/vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
   let loginEmail = req.session.data['email-address']
   if (vaccine == "No" && loginEmail == "user@testing.co.uk") {
-    res.redirect('/litereg-accounts/v1/check-your-answers')
+    res.redirect('/IBT/litereg-accounts/live/check-your-answers')
   } else if (vaccine == "No" && loginEmail != "user@testing.co.uk") {
-    res.redirect('/litereg-accounts/v1/country')
+    res.redirect('/IBT/litereg-accounts/live/country')
   } else {
-    res.redirect('/litereg-accounts/v1/vaccine-date')
+    res.redirect('/IBT/litereg-accounts/live/vaccine-date')
   }
 })
 
  // Version 1 - Lite Registration Accounts - vaccine date route
- router.post('/litereg-accounts/v1/action7/vaccine-date', function (req, res) {
+ router.post('/IBT/litereg-accounts/live/action7/vaccine-date', function (req, res) {
   let loginEmail = req.session.data['email-address']
   if (loginEmail == "user@testing.co.uk") {
-    res.redirect('/litereg-accounts/v1/check-your-answers')
+    res.redirect('/IBT/litereg-accounts/live/check-your-answers')
   } else {
-    res.redirect('/litereg-accounts/v1/country')
+    res.redirect('/IBT/litereg-accounts/live/country')
   }
 })
 
@@ -291,316 +276,316 @@ router.post('/litereg-accounts/v1/action7/vaccine', function (req, res) {
 
 // Version 2 - Lite Registration Accounts- Landline number route
 
-router.post('/litereg-accounts/v2/action9/landline-number', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action9/landline-number', function (req, res) {
   let mobileNumber = req.session.data['mobile-number']
   let emailAddress = req.session.data['email']
   if (mobileNumber == "No" && emailAddress == "No" ) {
-    res.redirect('/litereg-accounts/v2/call-us')
+    res.redirect('/IBT/litereg-accounts/v2/call-us')
   } else {
-    res.redirect('/litereg-accounts/v2/nhs-number-known')
+    res.redirect('/IBT/litereg-accounts/v2/nhs-number-known')
   }
 
 })
 
 // Version 2 - Lite Registration Accounts - Who's taking the test route
 
-router.post('/litereg-accounts/v2/action9/whos-taking-the-test', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action9/whos-taking-the-test', function (req, res) {
   let person = req.session.data['whos-taking-the-test']
   if (person == "myself") {
-    res.redirect('/litereg-accounts/v2/coronavirus-account')
+    res.redirect('/IBT/litereg-accounts/v2/coronavirus-account')
   } else {
-    res.redirect('/litereg-accounts/v2/enter-barcode')
+    res.redirect('/IBT/litereg-accounts/v2/enter-barcode')
   }
 
 })
 
-router.post('/litereg-accounts/v2/action9/coronavirus-account', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action9/coronavirus-account', function (req, res) {
   let signin = req.session.data['coronavirus-account']
   if (signin == "Yes") {
-    res.redirect('/litereg-accounts/v2/user-account/login-email')
+    res.redirect('/IBT/litereg-accounts/v2/user-account/login-email')
   } else {
-    res.redirect('/litereg-accounts/v2/enter-barcode')
+    res.redirect('/IBT/litereg-accounts/v2/enter-barcode')
   }
 
 })
 
 // Version 2 - Lite Registration Accounts - enter barcode route
 
-router.post('/litereg-accounts/v2/action9/enter-barcode', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action9/enter-barcode', function (req, res) {
   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
   if (uniqueBarcode == "LAMP") {
-    res.redirect('/litereg-accounts/v2/which-university')
+    res.redirect('/IBT/litereg-accounts/v2/which-university')
   } else {
-    res.redirect('/litereg-accounts/v2/overseas-travel')
+    res.redirect('/IBT/litereg-accounts/v2/overseas-travel')
   }
 })
 
-// router.post('/litereg-accounts/v2/action9/enter-barcode', function (req, res) {
+// router.post('/IBT/litereg-accounts/v2/action9/enter-barcode', function (req, res) {
 //   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
 //   if (uniqueBarcode == "LHE00000501") {
-//     res.redirect('/litereg-accounts/v2/site-id')
+//     res.redirect('/IBT/litereg-accounts/v2/site-id')
 //   } else if (uniqueBarcode == "COE00000501") {
-//     res.redirect('/litereg-accounts/v2/royal-mail-barcode')
+//     res.redirect('/IBT/litereg-accounts/v2/royal-mail-barcode')
 //   } else {
-//     res.redirect('/litereg-accounts/v2/quarantine-question')
+//     res.redirect('/IBT/litereg-accounts/v2/quarantine-question')
 //   }
 // })
 
 // Version 2 - Lite Registration Accounts - Test date route
 
-router.post('/litereg-accounts/v2/action9/test-date', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action9/test-date', function (req, res) {
   let emailAddress = req.session.data['email-address']
   if (emailAddress == "user@testing.co.uk") {
-    res.redirect('/litereg-accounts/v2/do-you-have-symptoms')
+    res.redirect('/IBT/litereg-accounts/v2/do-you-have-symptoms')
   } else {
-    res.redirect('/litereg-accounts/v2/name')
+    res.redirect('/IBT/litereg-accounts/v2/name')
   }
 
 })
 
 // Version 2 - Lite Registration Accounts - Do you have symptoms route
 
-router.post('/litereg-accounts/v2/action9/do-you-have-symptoms', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action9/do-you-have-symptoms', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
   if (symptoms == "Yes") {
-    res.redirect('/litereg-accounts/v2/when-did-symptoms-start')
+    res.redirect('/IBT/litereg-accounts/v2/when-did-symptoms-start')
   } else {
-    res.redirect('/litereg-accounts/v2/previous-infection')
+    res.redirect('/IBT/litereg-accounts/v2/previous-infection')
   }
 
 })
 
   // Version 2 - Lite Registration Accounts - Overseas travel route
 
-  // router.post('/litereg-accounts/v2/action9/enter-barcode', function (req, res) {
+  // router.post('/IBT/litereg-accounts/v2/action9/enter-barcode', function (req, res) {
   //   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
   //   if (uniqueBarcode == "LHE00000501") {
-  //     res.redirect('/litereg-accounts/v2/site-id')
+  //     res.redirect('/IBT/litereg-accounts/v2/site-id')
   //   } else if (uniqueBarcode == "COE00000501") {
-  //     res.redirect('/litereg-accounts/v2/royal-mail-barcode')
+  //     res.redirect('/IBT/litereg-accounts/v2/royal-mail-barcode')
   //   } else {
-  //     res.redirect('/litereg-accounts/v2/test-place')
+  //     res.redirect('/IBT/litereg-accounts/v2/test-place')
   //   }
   // })
 
-  router.post('/litereg-accounts/v2/action9/overseas-travel', function (req, res) {
+  router.post('/IBT/litereg-accounts/v2/action9/overseas-travel', function (req, res) {
     let overseasTravel = req.session.data['have-you-travelled-overseas']
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
     if (overseasTravel == "Yes") {
-      res.redirect('/litereg-accounts/v2/travel-route')
+      res.redirect('/IBT/litereg-accounts/v2/travel-route')
     } else if (uniqueBarcode == "LHE00000501") {
-      res.redirect('/litereg-accounts/v2/site-id')
+      res.redirect('/IBT/litereg-accounts/v2/site-id')
     } else if (uniqueBarcode == "COE00000501") {
-      res.redirect('/litereg-accounts/v2/royal-mail-barcode')
+      res.redirect('/IBT/litereg-accounts/v2/royal-mail-barcode')
     } else {
-      res.redirect('/litereg-accounts/v2/test-place')
+      res.redirect('/IBT/litereg-accounts/v2/test-place')
     }
 
   })
 
-  router.post('/litereg-accounts/v2/action9/travelled-to', function (req, res) {
+  router.post('/IBT/litereg-accounts/v2/action9/travelled-to', function (req, res) {
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
     if (uniqueBarcode == "LHE00000501") {
-      res.redirect('/litereg-accounts/v2/site-id')
+      res.redirect('/IBT/litereg-accounts/v2/site-id')
     } else if (uniqueBarcode == "COE00000501") {
-      res.redirect('/litereg-accounts/v2/royal-mail-barcode')
+      res.redirect('/IBT/litereg-accounts/v2/royal-mail-barcode')
     } else {
-      res.redirect('/litereg-accounts/v2/test-place')
+      res.redirect('/IBT/litereg-accounts/v2/test-place')
     }
 
   })
 
 // Version 2 - Lite Registration Accounts - First line of address and postcode route
 
-  router.post('/litereg-accounts/v2/action9/address', function (req, res) {
+  router.post('/IBT/litereg-accounts/v2/action9/address', function (req, res) {
   let emailAddress = req.session.data['email-address']
   let password = req.session.data['password']
   if (emailAddress != "user@testing.co.uk" && password == " " || emailAddress != "user@testing.co.uk" && password == undefined) {
-    res.redirect('/litereg-accounts/v2/email-address')
+    res.redirect('/IBT/litereg-accounts/v2/email-address')
   } else {
-    res.redirect('/litereg-accounts/v2/email-address-account')
+    res.redirect('/IBT/litereg-accounts/v2/email-address-account')
   }
 
 })
 
 // Version 2 - Lite Registration Accounts - Ethnic group route
-router.post('/litereg-accounts/v2/action9/ethnic-group', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action9/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/litereg-accounts/v2/ethnic-background-asian')
+    res.redirect('/IBT/litereg-accounts/v2/ethnic-background-asian')
   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-    res.redirect('/litereg-accounts/v2/ethnic-background-black')
+    res.redirect('/IBT/litereg-accounts/v2/ethnic-background-black')
   } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-    res.redirect('/litereg-accounts/v2/ethnic-background-mixed')
+    res.redirect('/IBT/litereg-accounts/v2/ethnic-background-mixed')
   } else if (ethnicGroup == "White") {
-    res.redirect('/litereg-accounts/v2/ethnic-background-white')
+    res.redirect('/IBT/litereg-accounts/v2/ethnic-background-white')
   } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('/litereg-accounts/v2/ethnic-background-another')
+    res.redirect('/IBT/litereg-accounts/v2/ethnic-background-another')
   } else {
-    res.redirect('/litereg-accounts/v2/currently-in-work')
+    res.redirect('/IBT/litereg-accounts/v2/currently-in-work')
   }
 
 })
 
 // Version 2 - Lite Registration Accounts - Currently in work route
 
-router.post('/litereg-accounts/v2/action9/currently-in-work', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action9/currently-in-work', function (req, res) {
   let inWork = req.session.data['currently-in-work']
   if (inWork == "Yes - they travel to a workplace" || inWork == "Yes - I travel to a workplace"){
-    res.redirect('/litereg-accounts/v2/industry')
+    res.redirect('/IBT/litereg-accounts/v2/industry')
   } else if (inWork == "Yes - they go to nursery, school, college or university" || inWork == "Yes - I go to nursery, school, college or university"){
-    res.redirect('/litereg-accounts/v2/study-grade')
+    res.redirect('/IBT/litereg-accounts/v2/study-grade')
   } else {
-    res.redirect('/litereg-accounts/v2/do-you-have-symptoms')
+    res.redirect('/IBT/litereg-accounts/v2/do-you-have-symptoms')
   }
 
 })
 
 // Version 2 - Lite Registration Accounts - NHS number known route
 
-router.post('/litereg-accounts/v2/action9/nhs-number-known', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action9/nhs-number-known', function (req, res) {
   let nhsNumber = req.session.data['nhs-number-known']
   if (nhsNumber){
-    res.redirect('/litereg-accounts/v2/fingerprick-test')
+    res.redirect('/IBT/litereg-accounts/v2/fingerprick-test')
   } else {
-    res.redirect('/litereg-accounts/v2/nhs-number-known-error')
+    res.redirect('/IBT/litereg-accounts/v2/nhs-number-known-error')
   }
 })
 
 // Version 2 - Lite Registration Accounts - Login email route
-router.post('/litereg-accounts/v2/user-account/action9/login-email', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/user-account/action9/login-email', function (req, res) {
   let loginEmail = req.session.data['email-address']
 
   if (loginEmail == "user@testing.co.uk"){
-    res.redirect('/litereg-accounts/v2/user-account/enter-password')
+    res.redirect('/IBT/litereg-accounts/v2/user-account/enter-password')
   } else {
-    res.redirect('/litereg-accounts/v2/user-account/create-password')
+    res.redirect('/IBT/litereg-accounts/v2/user-account/create-password')
   }
 
 })
 
 // Version 2 - Lite Registration Accounts - Home page testing route
-router.post('/litereg-accounts/v2/action9/home-page', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action9/home-page', function (req, res) {
   let loginEmail = req.session.data['email-address']
 
   if (loginEmail == 'user@testing.co.uk'){
-    res.redirect('/litereg-accounts/v2/test-place')
+    res.redirect('/IBT/litereg-accounts/v2/test-place')
   } else {
-    res.redirect('/litereg-accounts/v2/email-address-account')
+    res.redirect('/IBT/litereg-accounts/v2/email-address-account')
   }
 
 })
 
 // Version 2 - Lite Registration Accounts - Create password route
-router.post('/litereg-accounts/v2/action9/create-password', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action9/create-password', function (req, res) {
   let password = req.session.data['password']
   let confirmPassword = req.session.data['confirm-password']
   if (password == "" || confirmPassword == "") {
-    res.redirect('/litereg-accounts/v2/user-account/create-password-error')
+    res.redirect('/IBT/litereg-accounts/v2/user-account/create-password-error')
   } else {
-    res.redirect('/litereg-accounts/v2/user-account/check-email')
+    res.redirect('/IBT/litereg-accounts/v2/user-account/check-email')
   }
 })
 
 // Version 2 - Lite Registration Accounts - check mobile route
-router.post('/litereg-accounts/v2/action9/check-mobile', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action9/check-mobile', function (req, res) {
   let securityCode = req.session.data['security-code']
   if (securityCode == "") {
-    res.redirect('/litereg-accounts/v2/user-account/check-mobile-error')
+    res.redirect('/IBT/litereg-accounts/v2/user-account/check-mobile-error')
   } else {
-    res.redirect('/litereg-accounts/v2/user-account/agreement')
+    res.redirect('/IBT/litereg-accounts/v2/user-account/agreement')
   }
 })
 
 // Version 2 - Royal mail barcode manual
-router.post('/litereg-accounts/v2/action5/royal-mail-barcode-manual', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action5/royal-mail-barcode-manual', function (req, res) {
   let barcodeReference = req.session.data['mail-barcode-reference-1']
   let confirmBarcodeReference = req.session.data['mail-barcode-reference-2']
 
   if (!barcodeReference && !confirmBarcodeReference || !barcodeReference && confirmBarcodeReference){
-    res.redirect('/litereg-accounts/v2/royal-mail-barcode-manual-error-1')
+    res.redirect('/IBT/litereg-accounts/v2/royal-mail-barcode-manual-error-1')
   } else if (barcodeReference !== confirmBarcodeReference) {
-    res.redirect('/litereg-accounts/v2/royal-mail-barcode-manual-error-3')
+    res.redirect('/IBT/litereg-accounts/v2/royal-mail-barcode-manual-error-3')
   } else {
-    res.redirect('/litereg-accounts/v2/test-date')
+    res.redirect('/IBT/litereg-accounts/v2/test-date')
   }
 })
 
 // Version 2 - Test kit barcode manual
-router.post('/litereg-accounts/v2/action5/enter-barcode-manual', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action5/enter-barcode-manual', function (req, res) {
   let barcodeReference = req.session.data['kit-barcode-reference-1']
   let confirmBarcodeReference = req.session.data['kit-barcode-reference-2']
 
   if (!barcodeReference && !confirmBarcodeReference || !barcodeReference && confirmBarcodeReference){
-    res.redirect('/litereg-accounts/v2/enter-barcode-manual-error-1')
+    res.redirect('/IBT/litereg-accounts/v2/enter-barcode-manual-error-1')
   } else if (barcodeReference !== confirmBarcodeReference) {
-    res.redirect('/litereg-accounts/v2/enter-barcode-manual-error-3')
+    res.redirect('/IBT/litereg-accounts/v2/enter-barcode-manual-error-3')
   } else {
-    res.redirect('/litereg-accounts/v2/overseas-travel')
+    res.redirect('/IBT/litereg-accounts/v2/overseas-travel')
   }
 })
 
 // Version 2 - Lite Registration Accounts - test place route
-router.post('/litereg-accounts/v2/action5/test-place', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action5/test-place', function (req, res) {
   let testPlace = req.session.data['test-place']
   if (testPlace == "I’ve been to a test site and need to register my test") {
-    res.redirect('/litereg-accounts/v2/site-id')
+    res.redirect('/IBT/litereg-accounts/v2/site-id')
   } else if  (testPlace == "I'm in a government quarantine hotel and need to register my test" ) {
-    res.redirect('/litereg-accounts/v2/hotel-id')
+    res.redirect('/IBT/litereg-accounts/v2/hotel-id')
   }  else if  (testPlace == "I've taken a test as part of an event or conference" ) {
-    res.redirect('/litereg-accounts/v2/event-id')
+    res.redirect('/IBT/litereg-accounts/v2/event-id')
   } else if  (testPlace == "I'm taking part in surge testing, for example, in a local area or a school, or university" || testPlace == "They are taking part in surge testing, for example, in a local area or a school, or university" || testPlace == "I’ve been told to take part in local testing to help stop the spread of COVID-19" || testPlace == "They’ve been told to take part in local testing to help stop the spread of COVID-19") {
-    res.redirect('/litereg-accounts/v2/local-testing-code')
+    res.redirect('/IBT/litereg-accounts/v2/local-testing-code')
   }
    else {
-    res.redirect('/litereg-accounts/v2/royal-mail-barcode')
+    res.redirect('/IBT/litereg-accounts/v2/royal-mail-barcode')
   }
 })
 
 // Version 2 - Lite Registration Accounts - GP address same route
-router.post('/litereg-accounts/v2/action/gp-address-same', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action/gp-address-same', function (req, res) {
   let gpAdressSame = req.session.data['gp-address-same']
   if (gpAdressSame == "No"){
-    res.redirect('/litereg-accounts/v2/address')
+    res.redirect('/IBT/litereg-accounts/v2/address')
   } else {
-    res.redirect('/litereg-accounts/v2/email-address')
+    res.redirect('/IBT/litereg-accounts/v2/email-address')
   }
 })
 
 // Version 2 - Lite Registration Accounts - site confirmation route
-router.post('/litereg-accounts/v2/action9/site-confirmation', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action9/site-confirmation', function (req, res) {
   let confirmSite = req.session.data['confirm-site']
   let barcode = req.session.data['kit-barcode-reference-1']
   if (confirmSite == "Yes" && barcode == "LHE00000501") {
-    res.redirect('/litereg-accounts/v2/daily-contact-testing')
+    res.redirect('/IBT/litereg-accounts/v2/daily-contact-testing')
   } else if (confirmSite == "Yes" && barcode !== "LHE00000501") {
-    res.redirect('/litereg-accounts/v2/test-date')
+    res.redirect('/IBT/litereg-accounts/v2/test-date')
   } else {
-    res.redirect('/litereg-accounts/v2/site-id')
+    res.redirect('/IBT/litereg-accounts/v2/site-id')
   }
 })
 
 // Version 2 - Lite Registration Accounts - vaccine route
-router.post('/litereg-accounts/v2/action7/vaccine', function (req, res) {
+router.post('/IBT/litereg-accounts/v2/action7/vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
   let loginEmail = req.session.data['email-address']
   if (vaccine == "No" && loginEmail == "user@testing.co.uk") {
-    res.redirect('/litereg-accounts/v2/check-your-answers')
+    res.redirect('/IBT/litereg-accounts/v2/check-your-answers')
   } else if (vaccine == "No" && loginEmail != "user@testing.co.uk") {
-    res.redirect('/litereg-accounts/v2/country')
+    res.redirect('/IBT/litereg-accounts/v2/country')
   } else {
-    res.redirect('/litereg-accounts/v2/vaccine-date')
+    res.redirect('/IBT/litereg-accounts/v2/vaccine-date')
   }
 })
 
  // Version 1 - Lite Registration Accounts - vaccine date route
- router.post('/litereg-accounts/v2/action7/vaccine-date', function (req, res) {
+ router.post('/IBT/litereg-accounts/v2/action7/vaccine-date', function (req, res) {
   let loginEmail = req.session.data['email-address']
   if (loginEmail == "user@testing.co.uk") {
-    res.redirect('/litereg-accounts/v2/check-your-answers')
+    res.redirect('/IBT/litereg-accounts/v2/check-your-answers')
   } else {
-    res.redirect('/litereg-accounts/v2/country')
+    res.redirect('/IBT/litereg-accounts/v2/country')
   }
 })
 
@@ -610,286 +595,286 @@ router.post('/litereg-accounts/v2/action7/vaccine', function (req, res) {
 
 // Version 3 - Lite Registration Accounts- Mobile number route
 
-router.post('/litereg-accounts/v3/action9/landline-number', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action9/landline-number', function (req, res) {
   let mobileNumber = req.session.data['mobile-number']
   let emailAddress = req.session.data['email']
   if (mobileNumber == "No" && emailAddress == "No" ) {
-    res.redirect('/litereg-accounts/v3/call-us')
+    res.redirect('/IBT/litereg-accounts/v3/call-us')
   } else {
-    res.redirect('/litereg-accounts/v3/nhs-number-known')
+    res.redirect('/IBT/litereg-accounts/v3/nhs-number-known')
   }
 
 })
 
 // Version 3 - Lite Registration Accounts - Who's taking the test route
 
-router.post('/litereg-accounts/v3/action9/whos-taking-the-test', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action9/whos-taking-the-test', function (req, res) {
   let person = req.session.data['whos-taking-the-test']
   if (person == "myself") {
-    res.redirect('/litereg-accounts/v3/coronavirus-account')
+    res.redirect('/IBT/litereg-accounts/v3/coronavirus-account')
   } else {
-    res.redirect('/litereg-accounts/v3/enter-barcode')
+    res.redirect('/IBT/litereg-accounts/v3/enter-barcode')
   }
 
 })
 
-router.post('/litereg-accounts/v3/action9/coronavirus-account', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action9/coronavirus-account', function (req, res) {
   let signin = req.session.data['coronavirus-account']
   if (signin == "Yes") {
-    res.redirect('/litereg-accounts/v3/user-account/login-email')
+    res.redirect('/IBT/litereg-accounts/v3/user-account/login-email')
   } else {
-    res.redirect('/litereg-accounts/v3/enter-barcode')
+    res.redirect('/IBT/litereg-accounts/v3/enter-barcode')
   }
 
 })
 
 // Version 1 - Lite Registration Accounts - enter barcode route
 
-router.post('/litereg-accounts/v3/action9/enter-barcode', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action9/enter-barcode', function (req, res) {
   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
   if (uniqueBarcode == "LAMP") {
-    res.redirect('/litereg-accounts/v3/which-university')
+    res.redirect('/IBT/litereg-accounts/v3/which-university')
   } else {
-    res.redirect('/litereg-accounts/v3/overseas-travel')
+    res.redirect('/IBT/litereg-accounts/v3/overseas-travel')
   }
 })
 
-// router.post('/litereg-accounts/v3/action9/enter-barcode', function (req, res) {
+// router.post('/IBT/litereg-accounts/v3/action9/enter-barcode', function (req, res) {
 //   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
 //   if (uniqueBarcode == "LHE00000501") {
-//     res.redirect('/litereg-accounts/v3/site-id')
+//     res.redirect('/IBT/litereg-accounts/v3/site-id')
 //   } else if (uniqueBarcode == "COE00000501") {
-//     res.redirect('/litereg-accounts/v3/royal-mail-barcode')
+//     res.redirect('/IBT/litereg-accounts/v3/royal-mail-barcode')
 //   } else {
-//     res.redirect('/litereg-accounts/v3/quarantine-question')
+//     res.redirect('/IBT/litereg-accounts/v3/quarantine-question')
 //   }
 // })
 
 // Version 3 - Lite Registration Accounts - Test date route
 
-router.post('/litereg-accounts/v3/action9/test-date', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action9/test-date', function (req, res) {
   let emailAddress = req.session.data['email-address']
   if (emailAddress == "user@testing.co.uk") {
-    res.redirect('/litereg-accounts/v3/do-you-have-symptoms')
+    res.redirect('/IBT/litereg-accounts/v3/do-you-have-symptoms')
   } else {
-    res.redirect('/litereg-accounts/v3/name')
+    res.redirect('/IBT/litereg-accounts/v3/name')
   }
 
 })
 
 // Version 3 - Lite Registration Accounts - Do you have symptoms route
 
-router.post('/litereg-accounts/v3/action9/do-you-have-symptoms', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action9/do-you-have-symptoms', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
   if (symptoms == "Yes") {
-    res.redirect('/litereg-accounts/v3/when-did-symptoms-start')
+    res.redirect('/IBT/litereg-accounts/v3/when-did-symptoms-start')
   } else {
-    res.redirect('/litereg-accounts/v3/previous-infection')
+    res.redirect('/IBT/litereg-accounts/v3/previous-infection')
   }
 
 })
 
   // Version 2 - Lite Registration Accounts - Overseas travel route
 
-  // router.post('/litereg-accounts/v3/action9/enter-barcode', function (req, res) {
+  // router.post('/IBT/litereg-accounts/v3/action9/enter-barcode', function (req, res) {
   //   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
   //   if (uniqueBarcode == "LHE00000501") {
-  //     res.redirect('/litereg-accounts/v3/site-id')
+  //     res.redirect('/IBT/litereg-accounts/v3/site-id')
   //   } else if (uniqueBarcode == "COE00000501") {
-  //     res.redirect('/litereg-accounts/v3/royal-mail-barcode')
+  //     res.redirect('/IBT/litereg-accounts/v3/royal-mail-barcode')
   //   } else {
-  //     res.redirect('/litereg-accounts/v3/test-place')
+  //     res.redirect('/IBT/litereg-accounts/v3/test-place')
   //   }
   // })
 
-  router.post('/litereg-accounts/v3/action9/overseas-travel', function (req, res) {
+  router.post('/IBT/litereg-accounts/v3/action9/overseas-travel', function (req, res) {
     let overseasTravel = req.session.data['have-you-travelled-overseas']
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
     if (overseasTravel == "Yes") {
-      res.redirect('/litereg-accounts/v3/travel-route')
+      res.redirect('/IBT/litereg-accounts/v3/travel-route')
     } else if (uniqueBarcode == "LHE00000501") {
-      res.redirect('/litereg-accounts/v3/site-id')
+      res.redirect('/IBT/litereg-accounts/v3/site-id')
     } else if (uniqueBarcode == "COE00000501") {
-      res.redirect('/litereg-accounts/v3/royal-mail-barcode')
+      res.redirect('/IBT/litereg-accounts/v3/royal-mail-barcode')
     } else {
-      res.redirect('/litereg-accounts/v3/test-place')
+      res.redirect('/IBT/litereg-accounts/v3/test-place')
     }
 
   })
 
-  router.post('/litereg-accounts/v3/action9/travelled-to', function (req, res) {
+  router.post('/IBT/litereg-accounts/v3/action9/travelled-to', function (req, res) {
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
     if (uniqueBarcode == "LHE00000501") {
-      res.redirect('/litereg-accounts/v3/site-id')
+      res.redirect('/IBT/litereg-accounts/v3/site-id')
     } else if (uniqueBarcode == "COE00000501") {
-      res.redirect('/litereg-accounts/v3/royal-mail-barcode')
+      res.redirect('/IBT/litereg-accounts/v3/royal-mail-barcode')
     } else {
-      res.redirect('/litereg-accounts/v3/test-place')
+      res.redirect('/IBT/litereg-accounts/v3/test-place')
     }
 
   })
 
 // Version 3 - Lite Registration Accounts - First line of address and postcode route
 
-  router.post('/litereg-accounts/v3/action9/address', function (req, res) {
+  router.post('/IBT/litereg-accounts/v3/action9/address', function (req, res) {
   let emailAddress = req.session.data['email-address']
   let password = req.session.data['password']
   if (emailAddress != "user@testing.co.uk" && password == " " || emailAddress != "user@testing.co.uk" && password == undefined) {
-    res.redirect('/litereg-accounts/v3/email-address')
+    res.redirect('/IBT/litereg-accounts/v3/email-address')
   } else {
-    res.redirect('/litereg-accounts/v3/email-address-account')
+    res.redirect('/IBT/litereg-accounts/v3/email-address-account')
   }
 
 })
 
 // Version 3 - Lite Registration Accounts - Ethnic group route
-router.post('/litereg-accounts/v3/action9/ethnic-group', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action9/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
   if (ethnicGroup == "Asian or Asian British"){
-    res.redirect('/litereg-accounts/v3/ethnic-background-asian')
+    res.redirect('/IBT/litereg-accounts/v3/ethnic-background-asian')
   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-    res.redirect('/litereg-accounts/v3/ethnic-background-black')
+    res.redirect('/IBT/litereg-accounts/v3/ethnic-background-black')
   } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-    res.redirect('/litereg-accounts/v3/ethnic-background-mixed')
+    res.redirect('/IBT/litereg-accounts/v3/ethnic-background-mixed')
   } else if (ethnicGroup == "White") {
-    res.redirect('/litereg-accounts/v3/ethnic-background-white')
+    res.redirect('/IBT/litereg-accounts/v3/ethnic-background-white')
   } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('/litereg-accounts/v3/ethnic-background-another')
+    res.redirect('/IBT/litereg-accounts/v3/ethnic-background-another')
   } else {
-    res.redirect('/litereg-accounts/v3/currently-in-work')
+    res.redirect('/IBT/litereg-accounts/v3/currently-in-work')
   }
 
 })
 
 // Version 3 - Lite Registration Accounts - Currently in work route
 
-router.post('/litereg-accounts/v3/action9/currently-in-work', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action9/currently-in-work', function (req, res) {
   let inWork = req.session.data['currently-in-work']
   if (inWork == "Yes - they travel to a workplace" || inWork == "Yes - I travel to a workplace"){
-    res.redirect('/litereg-accounts/v3/industry')
+    res.redirect('/IBT/litereg-accounts/v3/industry')
   } else if (inWork == "Yes - they go to nursery, school, college or university" || inWork == "Yes - I go to nursery, school, college or university"){
-    res.redirect('/litereg-accounts/v3/study-grade')
+    res.redirect('/IBT/litereg-accounts/v3/study-grade')
   } else {
-    res.redirect('/litereg-accounts/v3/do-you-have-symptoms')
+    res.redirect('/IBT/litereg-accounts/v3/do-you-have-symptoms')
   }
 
 })
 
 // Version 3 - Lite Registration Accounts - GP address same route
 
-router.post('/litereg-accounts/v3/action/gp-address-same', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action/gp-address-same', function (req, res) {
   let gpAdressSame = req.session.data['gp-address-same']
   if (gpAdressSame == "No"){
-    res.redirect('/litereg-accounts/v3/address')
+    res.redirect('/IBT/litereg-accounts/v3/address')
   } else {
-    res.redirect('/litereg-accounts/v3/email-address')
+    res.redirect('/IBT/litereg-accounts/v3/email-address')
   }
 })
 
 // Version 3 - Lite Registration Accounts - NHS number known route
 
-router.post('/litereg-accounts/v3/action9/nhs-number-known', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action9/nhs-number-known', function (req, res) {
   let nhsNumberKnown = req.session.data['nhs-number-known']
   if (nhsNumberKnown == "Yes"){
-    res.redirect('/litereg-accounts/v3/nhs-number')
+    res.redirect('/IBT/litereg-accounts/v3/nhs-number')
   } else {
-    res.redirect('/litereg-accounts/v3/fingerprick-test')
+    res.redirect('/IBT/litereg-accounts/v3/fingerprick-test')
   }
 
 })
 
 // Version 3 - Lite Registration Accounts - Login email route
-router.post('/litereg-accounts/v3/user-account/action9/login-email', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/user-account/action9/login-email', function (req, res) {
   let loginEmail = req.session.data['email-address']
 
   if (loginEmail == "user@testing.co.uk"){
-    res.redirect('/litereg-accounts/v3/user-account/enter-password')
+    res.redirect('/IBT/litereg-accounts/v3/user-account/enter-password')
   } else {
-    res.redirect('/litereg-accounts/v3/user-account/create-password')
+    res.redirect('/IBT/litereg-accounts/v3/user-account/create-password')
   }
 
 })
 
 // Version 3 - Lite Registration Accounts - Home page testing route
-router.post('/litereg-accounts/v3/action9/home-page', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action9/home-page', function (req, res) {
   let loginEmail = req.session.data['email-address']
 
   if (loginEmail == 'user@testing.co.uk'){
-    res.redirect('/litereg-accounts/v3/test-place')
+    res.redirect('/IBT/litereg-accounts/v3/test-place')
   } else {
-    res.redirect('/litereg-accounts/v3/email-address-account')
+    res.redirect('/IBT/litereg-accounts/v3/email-address-account')
   }
 
 })
 
 // Version 3 - Lite Registration Accounts - Create password route
-router.post('/litereg-accounts/v3/action9/create-password', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action9/create-password', function (req, res) {
   let password = req.session.data['password']
   let confirmPassword = req.session.data['confirm-password']
   if (password == "" || confirmPassword == "") {
-    res.redirect('/litereg-accounts/v3/user-account/create-password-error')
+    res.redirect('/IBT/litereg-accounts/v3/user-account/create-password-error')
   } else {
-    res.redirect('/litereg-accounts/v3/user-account/check-email')
+    res.redirect('/IBT/litereg-accounts/v3/user-account/check-email')
   }
 })
 
 // Version 3 - Lite Registration Accounts - check mobile route
-router.post('/litereg-accounts/v3/action9/check-mobile', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action9/check-mobile', function (req, res) {
   let securityCode = req.session.data['security-code']
   if (securityCode == "") {
-    res.redirect('/litereg-accounts/v3/user-account/check-mobile-error')
+    res.redirect('/IBT/litereg-accounts/v3/user-account/check-mobile-error')
   } else {
-    res.redirect('/litereg-accounts/v3/user-account/agreement')
+    res.redirect('/IBT/litereg-accounts/v3/user-account/agreement')
   }
 })
 
 // Version 3 - Lite Registration Accounts - test place route
-router.post('/litereg-accounts/v3/action5/test-place', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action5/test-place', function (req, res) {
   let testPlace = req.session.data['test-place']
   let quarantine = req.session.data['quarantine']
   if (testPlace == "At a test site or government quarantine hotel" && quarantine == "Yes") {
-    res.redirect('/litereg-accounts/v3/trace-id')
+    res.redirect('/IBT/litereg-accounts/v3/trace-id')
   } else if (testPlace == "At a test site or government quarantine hotel" && quarantine == "No") {
-    res.redirect('/litereg-accounts/v3/site-id')
+    res.redirect('/IBT/litereg-accounts/v3/site-id')
   } else {
-    res.redirect('/litereg-accounts/v3/royal-mail-barcode')
+    res.redirect('/IBT/litereg-accounts/v3/royal-mail-barcode')
   }
 })
 
 // Version 3 - Lite Registration Accounts - site confirmation route
-router.post('/litereg-accounts/v3/action9/site-confirmation', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action9/site-confirmation', function (req, res) {
   let confirmSite = req.session.data['confirm-site']
   let barcode = req.session.data['kit-barcode-reference-1']
   if (confirmSite == "Yes" && barcode == "LHE00000501") {
-    res.redirect('/litereg-accounts/v3/daily-contact-testing')
+    res.redirect('/IBT/litereg-accounts/v3/daily-contact-testing')
   } else if (confirmSite == "Yes" && barcode !== "LHE00000501") {
-    res.redirect('/litereg-accounts/v3/test-date')
+    res.redirect('/IBT/litereg-accounts/v3/test-date')
   } else {
-    res.redirect('/litereg-accounts/v3/site-id')
+    res.redirect('/IBT/litereg-accounts/v3/site-id')
   }
 })
 
 // Version 3 - Lite Registration Accounts - vaccine route
-router.post('/litereg-accounts/v3/action7/vaccine', function (req, res) {
+router.post('/IBT/litereg-accounts/v3/action7/vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
   let loginEmail = req.session.data['email-address']
   if (vaccine == "No" && loginEmail == "user@testing.co.uk") {
-    res.redirect('/litereg-accounts/v3/fingerprick-test')
+    res.redirect('/IBT/litereg-accounts/v3/fingerprick-test')
   } else if (vaccine == "No" && loginEmail != "user@testing.co.uk") {
-    res.redirect('/litereg-accounts/v3/country')
+    res.redirect('/IBT/litereg-accounts/v3/country')
   } else {
-    res.redirect('/litereg-accounts/v3/vaccine-date')
+    res.redirect('/IBT/litereg-accounts/v3/vaccine-date')
   }
 })
 
  // Version 3 - Lite Registration Accounts - vaccine date route
- router.post('/litereg-accounts/v3/action7/vaccine-date', function (req, res) {
+ router.post('/IBT/litereg-accounts/v3/action7/vaccine-date', function (req, res) {
   let loginEmail = req.session.data['email-address']
   if (loginEmail == "user@testing.co.uk") {
-    res.redirect('/litereg-accounts/v3/check-your-answers')
+    res.redirect('/IBT/litereg-accounts/v3/check-your-answers')
   } else {
-    res.redirect('/litereg-accounts/v3/country')
+    res.redirect('/IBT/litereg-accounts/v3/country')
   }
 })
 
