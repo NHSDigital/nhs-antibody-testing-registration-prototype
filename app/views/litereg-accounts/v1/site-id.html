@@ -1,5 +1,5 @@
 {% set version = "v1" %}
-{% set pageTitle = "What’s the test site’s ID or event ID?" %}
+{% set pageTitle = "What’s the test site ID or event ID?" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -15,10 +15,7 @@
     </p>
   </div>
 
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/test-place">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -36,19 +33,19 @@
           The test site ID will be either 3 or 4 characters.<br><br>
 
           {% if data['whos-taking-the-test'] == "someone-else" %}
-          If they're isolating after international travel, the test site is their government quarantine hotel.<br><br>
+          If they’re isolating after international travel, the test site is their government quarantine hotel.<br><br>
           {% else %}
           If you’re isolating after international travel, the test site is your government quarantine hotel.<br><br>
           {% endif %}
 
           {% if data['whos-taking-the-test'] == "someone-else" %}
-          If they’re taking your test as part of an event or conference, use the event ID.<br><br>
+          If they’re taking their test while they're at an event or conference, use the event ID.<br><br>
           {% else %}
           If you’re taking your test as part of an event or conference, use the event ID.<br><br>
           {% endif %}
 
           {% if data['whos-taking-the-test'] == "someone-else" %}
-          If they cannot find the ID, ask a member of staff.<br><br>
+          If they cannot find the ID, get them to ask a member of staff.<br><br>
           {% else %}
           If you cannot find the ID, ask a member of staff.
           {% endif %}

@@ -26,9 +26,9 @@
       <form action="/litereg-accounts/{{version}}/home-address" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+          <fieldset class="govuk-fieldset" aria-describedby="counttry-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-heading-xl govuk-heading-l">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
                 Where in the UK does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} live?
                 {% else %}
@@ -37,17 +37,16 @@
               </h1>
             </legend>
 
-            <span id="country-hint" class="govuk-body">
-              If you do not normally live in the UK, select the country where you're staying while you're in the UK.
-            </span>
-          </br></br>
+            <div id="country-hint">
+              <p class="govuk-body">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                If they do not normally live in the UK, select the country where they're staying while they're in the UK.
+                {% else %}
+                If you do not normally live in the UK, select the country where you're staying while you're in the UK.
+                {% endif %}
+              </p>
+            </div>
 
-
-            <span id="country-hint" class="govuk-body">
-              {% if data['whos-taking-the-test'] == "someone-else" %}
-              If they do not live in the UK, select the country where they're staying while you're in the UK.<br><br>
-              {% endif %}
-            </span>
             <div class="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }}>

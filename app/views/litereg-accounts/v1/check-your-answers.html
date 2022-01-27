@@ -5,6 +5,17 @@
 
 {% block beforeContent %}
 
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.go(-1);"
@@ -16,7 +27,7 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
@@ -92,8 +103,6 @@
             </a>
           </dd>
         </div>
-        {% if data['kit-barcode-reference-1'] != 'LHE00000501' and data['kit-barcode-reference-1'] != 'COE00000501' %}
-
         {% if data['test-place'] == '	At a test site, government quarantine hotel, or in accommodation as part of an event/conference' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -113,7 +122,8 @@
             </a>
           </dd>
         </div>
-        {% else %}
+        {% endif %}
+        {% if data['test-place'] !== "At a test site, government quarantine hotel, or in accommodation as part of an event/conference" and data['mail-barcode-reference-1'] %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Royal Mail barcode reference
@@ -128,7 +138,6 @@
             </a>
           </dd>
         </div>
-        {% endif %}
         {% endif %}
         {% if data['kit-barcode-reference-1'] == 'LHE00000501' or data['kit-barcode-reference-1'] == 'COE00000501' %}
         <div class="govuk-summary-list__row">
@@ -345,6 +354,7 @@
             </a>
           </dd>
         </div>
+        {% if data['occupation-autocomplete'] %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Occupation
@@ -359,6 +369,7 @@
             </a>
           </dd>
         </div>
+        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Employer
@@ -398,131 +409,12 @@
             Date symptoms started
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['when-did-symptoms-start'] or '15th July 2021' }}
+            {{ data['when-did-symptoms-start'] or '27 January 2022' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/litereg-accounts/{{version}}/country">
               Change
               <span class="govuk-visually-hidden">when did symptoms start</span>
-            </a>
-          </dd>
-        </div>
-        {% endif %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Country of residence
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['country'] or 'England' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/country">
-              Change
-              <span class="govuk-visually-hidden">country of residence</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Home address
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
-              {{ data['home-address'] }}
-            {% else %}
-              {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
-              {{ data['home-postcode'] or 'LS1 3BE' }}
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/address">
-              Change
-              <span class="govuk-visually-hidden">address</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Email
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['email'] == "No" %}
-              {% if data['whos-taking-the-test'] == "someone-else" %}
-              I do not have an email address
-              {% else %}
-              I do not have an email address
-              {% endif %}
-            {% elseif data['email-address'] !== undefined and data['email'] == "No" or data['password'] !== undefined %}
-              {{ data['email-address'] or 'example@testing.co.uk' }}
-            {% elseif data['email-address'] !== undefined %}
-              {{ data['email-address'] or 'bsmith@testing.co.uk' }}
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/email-address">
-              Change
-              <span class="govuk-visually-hidden">email address</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Mobile
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['mobile-phone-number'] or 0845252323 }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/mobile-number">
-              Change
-              <span class="govuk-visually-hidden">mobile number</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Landline number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['landline-telephone-number'] %}
-            {{ data['landline-telephone-number'] or 0845252323 }}
-            {% else %}
-            I do not have a landline number
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/landline-number">
-              Change
-              <span class="govuk-visually-hidden">landline number</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            NHS number known
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['nhs-number-known'] or 'No' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/nhs-number-known">
-              Change
-              <span class="govuk-visually-hidden">NHS number known</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['nhs-number-known'] == "Yes" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            NHS number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['nhs-number'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/nhs-number">
-              Change
-              <span class="govuk-visually-hidden">NHS number</span>
             </a>
           </dd>
         </div>
@@ -627,15 +519,134 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Agreed to do antibody tests
+            Country of residence
           </dt>
-           <dd class="govuk-summary-list__value">
-            {{ data['fingerprick-test'] or 'No' }}
-           </dd>
-         <dd class="govuk-summary-list__actions">
-            <a href="/litereg-accounts/{{version}}/fingerprick-test">
+          <dd class="govuk-summary-list__value">
+            {{ data['country'] or 'England' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/country">
               Change
-              <span class="govuk-visually-hidden">fingerprick test</span>
+              <span class="govuk-visually-hidden">country of residence</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Home address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['home-address'] and data['home-address'] !== "5 addresses found" %}
+              {{ data['home-address'] }}
+            {% else %}
+              {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+              {{ data['home-postcode'] or 'LS1 3BE' }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/address">
+              Change
+              <span class="govuk-visually-hidden">address</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            GP registered address
+          </dt>
+          {% if data['gp-address-same'] !== "No" %}
+          <dd class="govuk-summary-list__value">
+            {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+              {{ data['home-address'] }}
+            {% else %}
+              {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+              {{ data['home-postcode'] or 'LS1 3BE' }}
+            {% endif %}
+          </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            {% if data['gp-address'] and data['gp-address'] !== "Select from 5 addresses" %}
+              {{ data['gp-address'] }}
+            {% else %}
+              {{ data['address-line-1-gp'] or '5 Souterhead Road'}}<br>
+              {{ data['gp-postcode'] or 'LS1 3BE' }}
+            {% endif %}
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/address">
+              Change
+              <span class="govuk-visually-hidden">address</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['email'] == "No" %}
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              I do not have an email address
+              {% else %}
+              I do not have an email address
+              {% endif %}
+            {% elseif data['email-address'] !== undefined and data['email'] == "No" or data['password'] !== undefined %}
+              {{ data['email-address'] or 'example@testing.co.uk' }}
+            {% elseif data['email-address'] !== undefined %}
+              {{ data['email-address'] or 'bsmith@testing.co.uk' }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/email-address">
+              Change
+              <span class="govuk-visually-hidden">email address</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Mobile
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mobile-phone-number'] or 0845252323 }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/mobile-number">
+              Change
+              <span class="govuk-visually-hidden">mobile number</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Landline number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['landline-telephone-number'] %}
+            {{ data['landline-telephone-number'] or 0845252323 }}
+            {% else %}
+            I do not have a landline number
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/landline-number">
+              Change
+              <span class="govuk-visually-hidden">landline number</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            NHS number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['nhs-number'] or 'Not known' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/litereg-accounts/{{version}}/nhs-number-known">
+              Change
+              <span class="govuk-visually-hidden">NHS number known</span>
             </a>
           </dd>
         </div>

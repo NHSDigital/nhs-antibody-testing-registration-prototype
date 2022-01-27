@@ -37,16 +37,6 @@ router.post('/litereg-accounts/v1/action9/whos-taking-the-test', function (req, 
 
 })
 
-router.post('/litereg-accounts/v1/action9/coronavirus-account', function (req, res) {
-  let signin = req.session.data['coronavirus-account']
-  if (signin == "Yes") {
-    res.redirect('/litereg-accounts/v1/user-account/login-email')
-  } else {
-    res.redirect('/litereg-accounts/v1/enter-barcode')
-  }
-
-})
-
 // Version 1 - Lite Registration Accounts - enter barcode route
 
 router.post('/litereg-accounts/v1/action9/enter-barcode', function (req, res) {

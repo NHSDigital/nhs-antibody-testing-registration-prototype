@@ -15,10 +15,11 @@
   </p>
 </div>
 
-{{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.go(-1);"
-}) }}
+{% if data['test-place'] == "At a test site, government quarantine hotel, or in accommodation as part of an event/conference" %}
+<a class="govuk-back-link" href="/litereg-accounts/{{version}}/site-confirmation">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/litereg-accounts/{{version}}/royal-mail-barcode">Back</a>
+{% endif %}
 
 {% endblock %}
 
@@ -48,33 +49,23 @@
               {% endif %}
             </span>
 
-            {% if data['test-place'] == "At home or an accommodation of your choice" or data['test-place'] == "At home or an accommodation of their choice" %}
-            <div class="govuk-warning-text govuk-!-margin-top-5">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                If your home test swab sample is over 24 hours old and has not been returned yet, it’s probably out of date. You need to get a new test kit and send a new sample.
-              </strong>
-            </div>
-            {% endif %}
-
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="swab-test-date-4" name="swab-test-date" type="radio" value="26 September 2021" {{ checked("swab-test-date", "26 September 2021") }}>
+                <input class="govuk-radios__input" id="swab-test-date-4" name="swab-test-date" type="radio" value="25 January 2022" {{ checked("swab-test-date", "25 January 2022") }}>
                 <label class="govuk-label govuk-radios__label" for="swab-test-date-4">
-                  Yesterday, 26 September 2021
+                  Yesterday, 25 January 2022
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" value="27 September 2021" {{ checked("swab-test-date", "27 September 2021") }}>
+                <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" value="26 January 2022" {{ checked("swab-test-date", "26 January 2022") }}>
                 <label class="govuk-label govuk-radios__label" for="swab-test-date-1">
-                  Today, 27 September 2021
+                  Today, 26 January 2022
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" value="28 September 2021" {{ checked("swab-test-date", "28 September 2021") }}>
+                <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" value="27 January 2022" {{ checked("swab-test-date", "27 January 2022") }}>
                 <label class="govuk-label govuk-radios__label" for="swab-test-date-2">
-                  Tomorrow, 28 September 2021
+                  Tomorrow, 27 January 2022
                 </label>
               </div>
               <div class="govuk-radios__item">
