@@ -1,0 +1,86 @@
+{% set version = "live" %}
+{% set pageTitle = "NHS number" %}
+
+{% extends "includes/layout-lite-registration.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/litereg-accounts/{{version}}/landline-number">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/litereg-accounts/{{version}}/check-your-answers" method="post">
+      
+        <div class="govuk-form-group">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+          </legend>
+
+          <p class="govuk-body">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            They can find it on any letter the NHS has sent them, on a prescription, or by logging in to a GP practice online service.
+            {% else %}
+            You can find it on any letter the NHS has sent you, on a prescription, or by logging in to a GP practice online service.
+            {% endif %}
+          </p>
+
+          <p class="govuk-body">
+            In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.
+          </p>
+
+          <p class="govuk-body">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            It's OK if they do not have an NHS number or they do not live in the UK, they can still continue.
+            {% else %}
+            It's OK if you do not have an NHS number or you do not live in the UK, you can still continue.
+            {% endif %}
+          </p>
+
+          <p class="govuk-!-margin-top-5"><a href="https://www.nhs.uk/nhs-services/online-services/find-nhs-number/" target="_blank">Look up NHS number (opens in new tab)</a></p>
+          <br>
+
+          <div class="govuk-form-group govuk-!-margin-bottom-3">
+            <label class="govuk-label" for="nhs-number">
+              <strong>
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?
+                {% else %}
+                What is your NHS number?
+                {% endif %}
+              </strong>
+            </label>
+            <div id="nhs-number-hint" class="govuk-hint">
+                A 10-digit number, for example, 485 777 3456
+            </div>
+            <input class="govuk-input govuk-input--width-20" id="nhs-number" name="nhs-number" type="text" aria-describedby="nhs-number-hint" value="{{ data['nhs-number'] }}">
+          </div>
+          <br>
+
+          <button class="govuk-button" data-module="govuk-button">Continue</button>
+          <p>
+            <a class="govuk-link" href="/IBT/litereg-accounts/{{version}}/check-your-answers">Continue without NHS number</a>
+          </p>
+          
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
