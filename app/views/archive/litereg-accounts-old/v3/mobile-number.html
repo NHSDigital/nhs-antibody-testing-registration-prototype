@@ -1,0 +1,65 @@
+{% set version = "v3" %}
+{% set pageTitle = "What's your mobile number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/email-address">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/litereg-accounts/{{version}}/landline-number" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                What's {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s mobile number?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+            </legend>
+            <span id="mobile-number-hint" class="govuk-body">
+              We'll text the test results to this number.
+            </span>
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-!-margin-top-3" for="mobile-phone-number">
+                Mobile phone number
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="mobile-phone-number" name="mobile-phone-number" type="tel" value="{{ data['mobile-phone-number'] }}">
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mobile-phone-number-confirm">
+                Confirm mobile phone number
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="mobile-phone-number-confirm" name="mobile-phone-number-confirm" type="tel" value="{{ data['mobile-phone-number-confirm'] }}">
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+

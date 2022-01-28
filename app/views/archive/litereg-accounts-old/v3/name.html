@@ -1,0 +1,75 @@
+{% set version = "v3" %}
+{% set pageTitle = "What's your name?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      What's the name of the person taking the test?
+      {% else %}
+      {{ pageTitle }}
+      {% endif %}
+      </h1>
+
+      <form action="/litereg-accounts/{{version}}/date-of-birth" method="post">
+
+        <fieldset class="govuk-fieldset">
+
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          <p class="govuk-body">
+            Enter the name registered with their GP. For example, if they call themself 'Mike' but they registered 'Michael' with their GP, enter 'Michael'.
+          </p>
+          {% else %}
+          <p class="govuk-body">
+            Enter the name registered with your GP. For example, if you call yourself 'Mike' but you registered 'Michael' with your GP, enter 'Michael'.
+          </p>
+          {% endif %}
+          
+          <div class="govuk-form-group govuk-!-margin-top-6">
+            <label class="govuk-label" for="first-name">
+              First name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="first-name" name="first-name" type="text" value="{{ data['first-name'] }}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="last-name">
+              Last name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="last-name" name="last-name" type="text" value="{{ data['last-name'] }}">
+          </div>
+
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

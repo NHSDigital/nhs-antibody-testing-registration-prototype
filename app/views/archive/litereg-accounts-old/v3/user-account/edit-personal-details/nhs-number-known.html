@@ -1,0 +1,64 @@
+{% set version = "v3" %}
+{% set pageTitle = "Do you know your NHS number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/litereg-accounts/{{version}}/user-account/edit-personal-details/home-page">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/litereg-accounts/{{version}}/user-account/edit-personal-details/home-page" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="nhs-number-known-hint" class="govuk-body">
+              <strong>It's OK if you do not, you can still continue.</strong><br><br>
+              Your NHS number is a 10 digit number, like 867 406 5600. You can find it on any letter the NHS has sent you, on a prescription, or by logging in to some GP online services.
+            </span>
+            <p class="govuk-!-margin-top-5"><a href="#">How to find your NHS number</a></p>
+            <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="nhs-number-known-1" name="nhs-number-known" type="radio" value="Yes" {{ checked("nhs-number-known", "Yes") }}>
+                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-1">
+                    Yes, I know my NHS number
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="nhs-number-known-2" name="nhs-number-known" type="radio" value="No" {{ checked("nhs-number-known", "No") }}>
+                  <label class="govuk-label govuk-radios__label" for="nhs-number-known-2">
+                    No, I do not know my NHS number
+                  </label>
+                </div>
+              </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
