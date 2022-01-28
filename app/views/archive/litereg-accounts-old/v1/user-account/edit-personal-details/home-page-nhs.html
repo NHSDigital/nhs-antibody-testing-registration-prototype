@@ -1,0 +1,144 @@
+{% set version = "v1" %}
+{% set pageTitle = "Welcome to your coronavirus testing account" %}
+
+<!DOCTYPE html>
+<!-- [if lt IE 9]><html class="ie8" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if gt IE 9]><html lang="en" style="{{ html_style }}"> -->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+
+    <title>{% block pageTitle %}{{pageTitle}} - NHS.UK{% endblock %}</title>
+
+    <link href="https://www.nhs.uk/" rel="preconnect">
+    <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin>
+
+    <link href="/public/stylesheets/nhs_application.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="/public/stylesheets/nhsuk-site.css" media="all" rel="stylesheet" type="text/css" />
+
+    <!-- <script src="nhsuk.min.js" defer></script> -->
+  </head>
+
+  <body>
+
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    {% block beforeContent %}
+    <header class="nhsuk-header" role="banner">
+      <div class="nhsuk-width-container nhsuk-header__container" style="display: flex; align-items: center; width: 100%">
+        <div class="nhsuk-header__logo"><a class="nhsuk-header__link" href="/" aria-label="NHS homepage">
+            <svg class="nhsuk-logo" xmlns="http://www.w3.org/2000/svg" role="presentation" focusable="false" viewBox="0 0 40 16">
+              <path class="nhsuk-logo__background" d="M0 0h40v16H0z"></path>
+              <path class="nhsuk-logo__text" d="M3.9 1.5h4.4l2.6 9h.1l1.8-9h3.3l-2.8 13H9l-2.7-9h-.1l-1.8 9H1.1M17.3 1.5h3.6l-1 4.9h4L25 1.5h3.5l-2.7 13h-3.5l1.1-5.6h-4.1l-1.2 5.6h-3.4M37.7 4.4c-.7-.3-1.6-.6-2.9-.6-1.4 0-2.5.2-2.5 1.3 0 1.8 5.1 1.2 5.1 5.1 0 3.6-3.3 4.5-6.4 4.5-1.3 0-2.9-.3-4-.7l.8-2.7c.7.4 2.1.7 3.2.7s2.8-.2 2.8-1.5c0-2.1-5.1-1.3-5.1-5 0-3.4 2.9-4.4 5.8-4.4 1.6 0 3.1.2 4 .6"></path>
+              <image src="https://assets.nhs.uk/images/nhs-logo.png" xlink:href=""></image>
+            </svg>
+          </a>
+        </div>
+        <p class="nhsuk-body-s nhsuk-u-margin-bottom-0 nhsuk-u-margin-left-4" style="color: #ffffff;">Coronavirus account</p>
+        <p class="nhsuk-body-s nhsuk-u-margin-bottom-0" style="margin-left: auto; text-align: right;"><a style="color: #ffffff; text-decoration: none;" class="govuk-link" href="/litereg-accounts/{{version}}/user-account/login-email">Sign out</a></p>
+      </div>
+    </header>
+    {% endblock %}
+
+    {% block main %}
+    <div class="nhsuk-width-container">
+        <main class="nhsuk-main-wrapper" id="maincontent" role="main" style="padding: 1em 0; overflow: auto">
+
+          {% block content %}
+            <div class="nhsuk-grid-column-two-thirds" style="padding: 0">
+              {% if data['email-address'] == 'user@testing.co.uk' %}
+              <h1 class="nhsuk-heading-l nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-4">{{ data['first-name'] | default('Bob') }} {{ data['last-name'] | default('Smith') }}</h1>
+              <p class="nhsuk-body-m nhsuk-u-margin-top-2 nhsuk-u-margin-bottom-4">Date of birth: {{ data['date-of-birth-day'] | default('13') }} {{ data['date-of-birth-month'] | default('June') }} {{ data['date-of-birth-year'] | default('1990') }}</p>
+              {% else %}
+              <h2 class="nhsuk-heading-xl nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-4">{{ pageTitle }}</h2>
+              {% endif %}
+            </div>
+
+            <div class="nhsuk-grid-column-two-thirds" style="padding: 0">
+              <form action="/litereg-accounts/{{version}}/action9/home-page" method="post">
+                <button class="nhsuk-u-margin-bottom-4 account-home-button">
+                  <div>
+                    <p class="nhsuk-u-margin-bottom-2">
+                      <strong style="color: #005eb8">Register a test</strong>
+                    </p>
+                    <p class="nhsuk-u-margin-bottom-0">
+                      Register to make sure you get your test result sent to you
+                    </p>
+                  </div>
+                  <p style="line-height: .7em; transform: rotate(180deg); margin: 0">
+                    <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+                    </svg>
+                  </p>
+                </button>
+              </form>
+            </div>
+
+            <div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-bottom-4" style="padding: 0">
+              <form action="/litereg-accounts/{{version}}/user-account/edit-personal-details/home-page" method="post">
+                <button class="nhsuk-u-margin-bottom-4 account-home-button">
+                  <div>
+                    <p class="nhsuk-u-margin-bottom-2">
+                      <strong style="color: #005eb8">Edit personal details</strong>
+                    </p>
+                    <p class="nhsuk-u-margin-bottom-0">
+                      View and edit your personal details
+                    </p>
+                  </div>
+                  <p style="line-height: .7em; transform: rotate(180deg); margin: 0">
+                    <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+                    </svg>
+                  </p>
+                </button>
+              </form>
+            </div>
+
+            <!-- <div class="nhsuk-grid-column-two-thirds" style="padding: 0">
+              <form action="/moonshot/{{version}}/household-members/household-members-list" method="post">
+                <button class="nhsuk-u-margin-bottom-4 account-home-button">
+                  <div>
+                    <p class="nhsuk-u-margin-bottom-2">
+                      <strong style="color: #005eb8">My household members</strong>
+                    </p>
+                    <p class="nhsuk-u-margin-bottom-0">
+                      View household members details you have saved
+                    </p>
+                  </div>
+                  <p style="line-height: .7em; transform: rotate(180deg); margin: 0">
+                    <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+                    </svg>
+                  </p>
+                </button>
+              </form>
+            </div> -->
+
+            {% endblock %}
+
+      </main>
+    </div>
+    {% endblock %}
+
+  </body>
+
+  {% block bodyEnd %}
+  <footer role="contentinfo">
+    <div class="nhsuk-footer" id="nhsuk-footer">
+      <div class="nhsuk-width-container">
+        <h2 class="nhsuk-u-visually-hidden">Support links</h2>
+        <ul class="nhsuk-footer__list">
+          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Accessibility statement</a></li>
+          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Contact us</a></li>
+          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Cookies</a></li>
+          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Privacy policy</a></li>
+          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Terms and conditions</a></li>
+        </ul>
+        <p class="nhsuk-footer__copyright">&copy; Crown copyright</p>
+      </div>
+    </div>
+  </footer>
+  {% endblock %}
+
+</html>

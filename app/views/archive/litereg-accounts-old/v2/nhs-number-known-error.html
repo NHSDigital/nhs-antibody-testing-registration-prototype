@@ -1,0 +1,101 @@
+{% set version = "v2" %}
+{% set pageTitle = "NHS number" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['gp-address-same'] == "No" %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/address">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/gp-address-same">Back</a>
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#error-1">Enter a valid NHS number</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form action="/litereg-accounts/{{version}}/action9/nhs-number-known" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint nhs-number-known-hint-4 nhs-number-error">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+            <span id="nhs-number-known-hint" class="govuk-body">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              An NHS number is a 10-digit number, for example, 485 777 3456. They can find it on any letter the NHS has sent them, on a prescription, or by logging in to a GP practice online service.<br><br>
+              In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.<br><br>
+              It's OK if they do not have an NHS number or they do not live in the UK, they can still continue.
+              {% else %}
+              An NHS number is a 10-digit number, for example, 485 777 3456. You can find it on any letter the NHS has sent you, on a prescription, or by logging in to a GP practice online service.<br><br>
+              In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.<br><br>
+              It's OK if you do not have an NHS number or you do not live in the UK, you can still continue.
+              {% endif %}
+            </span>
+
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            <p class="govuk-!-margin-top-5"><a class="govuk-link" href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/">Look up their NHS number</a></p>
+            {% else %}
+            <p class="govuk-!-margin-top-5"><a class="govuk-link" href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/">Look up your NHS number</a></p>
+            {% endif %}
+
+            <div class="govuk-form-group govuk-!-margin-bottom-3 govuk-form-group--error">
+              <label class="govuk-label" for="nhs-number">
+                <strong>
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?
+                {% else %}
+                What is your NHS number?
+                {% endif %}
+                </strong>
+              </label>
+              <span id="nhs-number-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Enter a valid NHS number
+              </span>
+              <input class="govuk-input govuk-input--width-10 govuk-input--error" id="nhs-number" name="nhs-number" type="text" value="{{ data['nhs-number'] }}">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">Continue</button>
+        <a class="govuk-button govuk-button--secondary" href="/litereg-accounts/{{version}}/fingerprick-test">Continue without NHS number</a>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
