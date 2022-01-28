@@ -274,16 +274,6 @@ router.post("/international-arrivals/v3/action3/travel-package-exempt", function
   }
 })
 
-// International Arrivals Version Three - Point of entry
-router.post("/international-arrivals/v3/action3/point-of-entry", function (req, res) {
-  let redCountryTravel = req.session.data["red-country-travel"]
-  if (redCountryTravel == "Yes") {
-    res.redirect("/international-arrivals/v3/mobile-number")
-  } else {
-    res.redirect("/international-arrivals/v3/travel-route")
-  }
-})
-
 // International Arrivals Version Three - Date of birth
 router.post("/international-arrivals/v3/action3/date-of-birth", function (req, res) {
   let travelPackageExempt = req.session.data["travel-package-exempt"]
@@ -374,16 +364,6 @@ router.post("/international-arrivals/v3/action3/red-country-travel-person-1", fu
     res.redirect("/international-arrivals/v3/red-country-travel-person-1-error")
   } else {
     res.redirect("/international-arrivals/v3/name-person-1")
-  }
-})
-
-// International Arrivals Version Three - Passport Number Person 1
-router.post("/international-arrivals/v3/action3/passport-number-person-1", function (req, res) {
-  let redCountryTravelPerson = req.session.data["red-country-travel-person-1"]
-  if (redCountryTravelPerson == "Yes") {
-    res.redirect("/international-arrivals/v3/mobile-number-person-1")
-  } else {
-    res.redirect("/international-arrivals/v3/travel-route-same-person-1")
   }
 })
 
@@ -566,16 +546,6 @@ router.post("/international-arrivals/v4/action4/red-country-travel-person-1", fu
     res.redirect("/international-arrivals/v4/red-country-travel-person-1-error")
   } else {
     res.redirect("/international-arrivals/v4/name-person-1")
-  }
-})
-
-// International Arrivals Version Three - Passport Number Person 1
-router.post("/international-arrivals/v4/action4/passport-number-person-1", function (req, res) {
-  let redCountryTravel = req.session.data["red-country-travel"]
-  if (redCountryTravel == "Yes") {
-    res.redirect("/international-arrivals/v4/mobile-number-person-1")
-  } else {
-    res.redirect("/international-arrivals/v4/travel-route-same-person-1")
   }
 })
 
