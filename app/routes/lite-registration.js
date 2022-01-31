@@ -997,7 +997,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
           } else if (ethnicGroup == "Another ethnic group") {
             res.redirect('/share-result-lateral-flow/v28/ethnic-background-another')
           } else {
-            res.redirect('/share-result-lateral-flow/v28/postcode-lookup')
+            res.redirect('/share-result-lateral-flow/v28/occupation')
           }
 
         })
