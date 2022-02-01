@@ -23,6 +23,19 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#nhs-number-error">Enter a correct contact tracing code</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <form class="form" action="/antigen/{{version}}/action3/contact-tracing-code" method="post">
 
               <h1 class="govuk-heading-l">
@@ -47,10 +60,10 @@
 
             <div class="govuk-form-group">
               <fieldset class="govuk-fieldset">
-
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                Do you know your contact tracing code?
              </legend>
+
 
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
               <div class="govuk-radios__item">
@@ -62,10 +75,16 @@
 
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-tracing-code">
                 <div class="govuk-form-group">
+                  <div class="govuk-form-group govuk-form-group--error">
                   <label class="govuk-label" for="contact-tracing-code-id">
                     Contact tracing code
                   </label>
-                  <input class="govuk-input govuk-input--width-20" id="contact-tracing-code-id" name="contact-tracing-code-id" type="text" value="{{ data['contact-tracing-code-id'] }}">
+
+                  <span id="nhs-number-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> Enter a correct contact tracing code
+                  </span>
+                  <input class="govuk-input govuk-input--width-20 govuk-input govuk-input--error" id="contact-tracing-code-id" name="contact-tracing-code-id" type="text" value="{{ data['contact-tracing-code-id'] }}">
+                    </div>
                 </div>
               </div>
 
@@ -76,7 +95,10 @@
                 </label>
               </div>
 
-            </div>
+              </div>
+
+
+
           </fieldset>
         </div>
 

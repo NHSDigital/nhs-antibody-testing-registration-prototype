@@ -42,6 +42,18 @@ router.post('/antigen/v1/action3/delivery-address-same', function (req, res) {
   }
 })
 
+router.post('/antigen/v1/action3/contact-tracing-code', function (req, res) {
+  let traceCode = req.session.data['contact-tracing-code']
+  let traceID = req.session.data['contact-tracing-code-id']
+  if (!traceCode){
+    res.redirect('/antigen/v1/refer-and-triage/contact-tracing-code-error-2')
+  } else if (traceCode == "Yes" && !traceID ){
+    res.redirect('/antigen/v1/refer-and-triage/contact-tracing-code-error')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/')
+  }
+})
+
 
 // Version 1- Antigen Refer and Triage - Mobile number route
 
@@ -685,14 +697,6 @@ router.post('/antigen/v2/action3/address-person-1', function (req, res) {
 //   }
 // })
 
-router.post('/antigen/v2/action3/nhs-number-known', function (req, res) {
-  let nhsNumber = req.session.data['nhs-number']
-  if (nhsNumber){
-    res.redirect('/antigen/v2/global-registration/fingerprick-test')
-  } else {
-    res.redirect('/antigen/v2/global-registration/nhs-number-known-error')
-  }
-})
 
 router.post('/antigen/v2/action3/nhs-number-known-person-1', function (req, res) {
   let nhsNumber = req.session.data['nhs-number-person-1']
@@ -1235,6 +1239,20 @@ router.post('/antigen/v2/action3/reason-for-test', function (req, res) {
   }
 
 })
+
+
+router.post('/antigen/v2/action3/contact-tracing-code', function (req, res) {
+  let traceCode = req.session.data['contact-tracing-code']
+  let traceID = req.session.data['contact-tracing-code-id']
+  if (!traceCode){
+    res.redirect('/antigen/v2/refer-and-triage/contact-tracing-code-error-2')
+  } else if (traceCode == "Yes" && !traceID ){
+    res.redirect('/antigen/v2/refer-and-triage/contact-tracing-code-error')
+  } else {
+    res.redirect('/antigen/v2/refer-and-triage/')
+  }
+})
+
 
 router.post('/antigen/v2/action3/mobile-number', function (req, res) {
   let mobilePhoneNumber = req.session.data['mobile-number']
