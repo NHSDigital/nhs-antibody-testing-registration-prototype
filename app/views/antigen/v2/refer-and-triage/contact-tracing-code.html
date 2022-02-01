@@ -1,5 +1,5 @@
 {% set version = "v2" %}
-{% set pageTitle = "Do you know your contact tracing code?" %}
+{% set pageTitle = "Contact tracing code" %}
 
 {% extends "includes/layout.html" %}
 
@@ -25,24 +25,33 @@
 
       <form class="form" action="/antigen/{{version}}/refer-and-triage/eligible" method="post">
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">
+              <h1 class="govuk-heading-l">
                 {{ pageTitle }}
               </h1>
-            </legend>
-            <span id="email-address-hint" class="govuk-body">
-              It should have been sent to you by text.<br><br>
-              <strong>England</strong><br>
-              Your code is 8 characters - for example, ZBCD1E23. It’s called a ‘Trace Account ID’.<br><br>
-              <strong>Northern Ireland</strong><br>
-              Your code is 8 characters - for example, ABCD1E23. It's called a 'Close Contact ID'.<br><br>
-              <strong>Scotland</strong><br>
-              Your code is 7 numbers. It’s called a ‘CMS Contact Reference ID’.<br><br>
-              <strong>Wales</strong><br>
-              Your code is 15 characters and starts with CAS - for example, CAS-123456-789123.
-            </span>
+
+            <div>
+              <p class="govuk-body">It should have been sent to you by text.</p>
+              <p class="govuk-body">  <strong>England</strong><br>
+                Your code is 8 characters - for example, ZBCD1E23. It’s called a ‘Trace Account ID’.
+              </p>
+              <p class="govuk-body"> <strong>Northern Ireland</strong><br>
+                Your code is 8 characters - for example, ABCD1E23. It's called a 'Close Contact ID'.
+              </p>
+              <p class="govuk-body"><strong>Scotland</strong><br>
+              Your code is 7 numbers. It’s called a ‘CMS Contact Reference ID’.
+              </p>
+              <p class="govuk-body"><strong>Wales</strong><br>
+              Your code starts with CAS, for example CAS-123456-789123.
+              </p>
+            </div>
+
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset">
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+               Do you know your contact tracing code?
+             </legend>
+
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="contact-tracing-code-1" name="contact-tracing-code" type="radio" value="Yes" data-aria-controls="conditional-contact-tracing-code" {{ checked("contact-tracing-code", "Yes") }}>
