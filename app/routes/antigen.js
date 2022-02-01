@@ -42,6 +42,18 @@ router.post('/antigen/v1/action3/delivery-address-same', function (req, res) {
   }
 })
 
+router.post('/antigen/v1/action3/contact-tracing-code', function (req, res) {
+  let traceCode = req.session.data['contact-tracing-code']
+  let traceID = req.session.data['contact-tracing-code-id']
+  if (!traceCode){
+    res.redirect('/antigen/v1/refer-and-triage/contact-tracing-code-error-2')
+  } else if (traceCode == "Yes" && !traceID ){
+    res.redirect('/antigen/v1/refer-and-triage/contact-tracing-code-error')
+  } else {
+    res.redirect('/antigen/v1/refer-and-triage/')
+  }
+})
+
 
 // Version 1- Antigen Refer and Triage - Mobile number route
 
