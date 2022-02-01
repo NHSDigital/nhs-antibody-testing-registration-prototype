@@ -42,8 +42,24 @@
         </ul>
 
         <ul class="govuk-list">
+          {% if data['final-destination'] == "England" %}
           <li>
-            <a class="govuk-link" href=""></a>
+            <a href="https://www.gov.uk/guidance/countries-with-approved-covid-19-vaccination-programmes-and-proof-of-vaccination" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in England (opens in new tab)</a>
+          </li>
+          {% elseif data['final-destination'] == "Scotland" %}
+          <li>
+            <a href="https://www.gov.scot/publications/coronavirus-covid-19-international-travel-quarantine/" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in Scotland (opens in new tab)</a>
+          </li>
+          {% elseif data['final-destination'] == "Wales" %}
+          <li>
+            <a href="https://gov.wales/check-if-your-proof-covid-19-vaccination-valid-travel-wales" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in Wales (opens in new tab)</a>
+          </li>
+          {% elseif data['final-destination'] == "Northern Ireland" %}
+          <li>
+            <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-vaccination-status-travel" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in Northern Ireland (opens in new tab)</a>
+          </li>
+          {% else %}
+          <li>
             <a href="https://www.gov.uk/guidance/countries-with-approved-covid-19-vaccination-programmes-and-proof-of-vaccination" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in England (opens in new tab)</a>
           </li>
           <li>
@@ -55,6 +71,7 @@
           <li>
             <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-vaccination-status-travel" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in Northern Ireland (opens in new tab)</a>
           </li>
+          {% endif %}
         </ul>
 
       <p>Once you've confirmed who needs testing, you can complete and pay for your order.</p>
