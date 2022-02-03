@@ -1,5 +1,5 @@
 {% set version = "sandbox" %}
-{% set pageTitle = "Text and email confirmation for this test result" %}
+{% set pageTitle = "Email and text confirmation for this test result" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -14,7 +14,7 @@
     </span>
   </p>
 </div>
-<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/gp-address-same">Back</a>
+<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/mobile">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -22,7 +22,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/share-result-lateral-flow/{{version}}/comms/phase2/check-answers-both" method="post">
+      <form class="form" action="/share-result-lateral-flow/{{version}}/comms/phase2/welsh-confirmation" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="want-confirmations-hint">
@@ -34,15 +34,15 @@
               <div id="want-confirmations-hint" class="govuk-body">
 
                                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                                <p class="body">We will always send an email confirmation of {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s test result. {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} can choose to also receive a text message. </p>
+                                <p class="body">We will always send an email confirmation of the test result.</p>
                                 {% else %}
-                                <p class="body">We will always send an email confirmation of your test result. You can choose to also receive a text message. </p>
+                                <p class="body">We will always send an email confirmation of your test result. </p>
                                 {% endif %}
 
                                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                                <p class="body">By choosing to only receive an email confirmation, {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} will help the NHS save money.</p>
+                                <p class="body">They can also get a text confirmation if they need one. However, they can help the NHS save money if they only get an email.</p>
                                 {% else %}
-                                <p class="body">By choosing to only receive an email confirmation, you help the NHS save money.</p>
+                                <p class="body">You can also get a text confirmation if you need one. However, you can help the NHS save money if you only get an email.</p>
                                 {% endif %}
               </div>
             <!--  <div id="waste-hint" class="govuk-body">
@@ -64,19 +64,18 @@
                    <div class="govuk-radios__item">
                      <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" {{ checked("contact-choice", "Email") }}>
                      <label class="govuk-label govuk-radios__label" for="swab-test-date-1">
-                       Send  me an email confirmation
+                       Email confirmation
                      </label>
                    </div>
                    <div class="govuk-radios__item">
                      <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" {{ checked("contact-choice", "Mobile") }}>
                      <label class="govuk-label govuk-radios__label" for="swab-test-date-2">
-                       Send  me a text and email confirmation
+                       Email and text confirmation
                      </label>
                    </div>
               </fieldset>
             </div>
 
-        <br><br>
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
       </form>
