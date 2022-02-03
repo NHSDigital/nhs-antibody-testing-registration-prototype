@@ -1,5 +1,5 @@
 {% set version = "sandbox" %}
-{% set pageTitle = "Confirmation in Welsh for this test result" %}
+{% set pageTitle = "Do you want confirmation in Welsh as well as English for this test result?" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -14,7 +14,7 @@
     </span>
   </p>
 </div>
-<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/gp-address-same">Back</a>
+<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/comms/phase2/want-confirmationw3">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -33,11 +33,11 @@
             </legend>
               <div id="want-confirmations-hint" class="govuk-body">
 
-                                {% if data['whos-taking-the-test'] == "someone-else" %}
+                                <!-- {% if data['whos-taking-the-test'] == "someone-else" %}
                                 <p class="body">If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} lives in Wales, they can choose to receive their confirmation messages in Welsh.</p>
                                 {% else %}
                                 <p class="body">If you live in Wales, you can choose to receive your confirmation messages in Welsh </p>
-                                {% endif %}
+                                {% endif %} -->
 
                                 <!-- {% if data['whos-taking-the-test'] == "someone-else" %}
                                 <p class="body">By choosing to only receive an email confirmation, {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} will help the NHS save money.</p>
@@ -64,19 +64,17 @@
                    <div class="govuk-radios__item">
                      <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" {{ checked("contact-choice", "Email") }}>
                      <label class="govuk-label govuk-radios__label" for="swab-test-date-1">
-                       Send  me an email confirmation in English
+                       Yes
                      </label>
                    </div>
                    <div class="govuk-radios__item">
                      <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" {{ checked("contact-choice", "Mobile") }}>
                      <label class="govuk-label govuk-radios__label" for="swab-test-date-2">
-                       Send  me a text and email confirmation in English and Welsh
+                       No
                      </label>
                    </div>
               </fieldset>
             </div>
-
-        <br><br>
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
       </form>
