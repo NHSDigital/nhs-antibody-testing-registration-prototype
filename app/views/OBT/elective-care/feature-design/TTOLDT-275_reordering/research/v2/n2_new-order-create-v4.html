@@ -1,0 +1,55 @@
+{% extends "includes/layout.html" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "Are you rescheduling a procedure?" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="sign-in-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+             <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-5">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <div class="govuk-body">If you need to reschedule, you must cancel the original procedure. To do this, select 'Yes' and 'Continue'.</p>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="sign-in" name="sign-in" type="radio" value="government-gateway" aria-describedby="sign-in-item-hint">
+              <label class="govuk-label govuk-radios__label" for="sign-in">
+                Yes
+              </label>
+               {# <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                You can cancel the original procedure in the next screen.
+              </div> #}
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="sign-in-2" name="sign-in" type="radio" value="govuk-verify" aria-describedby="sign-in-2-item-hint">
+              <label class="govuk-label govuk-radios__label" for="sign-in-2">
+                No
+              </label>
+            </div>
+          </div>
+
+        </fieldset>
+      </div>
+
+      <div class="govuk-button-group govuk-!-margin-top-7">
+        <a class="govuk-button" data-module="govuk-button" href="n3_cancel-confirm-v1">
+          Continue
+        </a>
+
+        <a class="govuk-button govuk-button--secondary" data-module="govuk-button" href="orders-table-v4">
+          Cancel
+        </a>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
