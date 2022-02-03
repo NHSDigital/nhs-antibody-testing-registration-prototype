@@ -1,0 +1,57 @@
+{% set version = "v2" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "Check test kit orders" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <table class="govuk-table govuk-!-font-size-16" data-module="moj-sortable-table">
+      <caption class="govuk-table__caption govuk-table__caption--l">Patient test kit orders</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" aria-sort="none"> Patient </th>
+            <th scope="col" class="govuk-table__header" aria-sort="descending"> Procedure date </th>
+            <th scope="col" class="govuk-table__header"> NHS number </th>
+            <th scope="col" class="govuk-table__header"> Mobile number </th>
+            <th scope="col" class="govuk-table__header"> Order ID </th>
+            <th scope="col" class="govuk-table__header" aria-sort="none"> Test result </th>
+            <th scope="col" class="govuk-table__header"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Lia Beatty<br> Male<br> 1 Jan 1999 </td>
+            <td class="govuk-table__cell">19 Nov 2021<br/><a class="govuk-link" href="#">Cancel</a></td>
+            <td class="govuk-table__cell">1967269858 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">5376775122 </td>
+            <td class="govuk-table__cell">Result ready<br/>18 Nov 2021</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+            Edison Kessler
+            <br> Male
+            <br> 1 Jan 1999 </td>
+            <td class="govuk-table__cell">19 Nov 2021 <br>
+            <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-1" style="font-size: 14px;">Cancelled</strong></td>
+            <td class="govuk-table__cell">1161949755 </td>
+            <td class="govuk-table__cell">+447860031259 </td>
+            <td class="govuk-table__cell">3541735907 </td>
+            <td class="govuk-table__cell">Test kit sent to patient<br/>18 Nov 2021</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}
