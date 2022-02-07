@@ -23,7 +23,7 @@
           <div class="govuk-error-summary__body">
             <ul class="govuk-list govuk-error-summary__list">
               <li>
-                <a href="#passport-issued-day">Enter the email address of the person who took the test. If you do not have it, choose 'No, I do not have an email address.'</a>
+                <a href="#email-1">Enter the email address of the person who took the test.</a>
               </li>
             </ul>
           </div>
@@ -43,15 +43,15 @@
             <span id="email-hint" class="govuk-body">
             <!--  <p>If you’re reporting a result for someone else use their email.</p> -->
             {% if data['whos-taking-the-test'] == "someone-else" %}
-            <p class="govuk-body">If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} has one, we'll send your test results to this email address.</p>
+            <p class="govuk-body">If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} has one, we'll send your test results to this email address. If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} do not have it, choose 'No, I do not have an email address.'</p>
             {% else %}
-              <p class="govuk-body">If you have one, we'll send your test results to this email address.</p>
+              <p class="govuk-body">If you have one, we'll send your test results to this email address. If you do not have it, choose 'No, I do not have an email address.'</p>
               {% endif %}
             </span>
 
-            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios" aria-describedby="email-results-hint">
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-1" checked="checked" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
+                <input class="govuk-radios__input" id="email-1" checked="checked" name="email" type="radio" value="Yes" aria-describedby="email-results-hint email-error" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="email-1">
                   {% if data['whos-taking-the-test'] == "someone-else" %}
                   Yes, they have an email address
@@ -67,7 +67,7 @@
                 </div>
                 <div class="govuk-form-group govuk-form-group--error">
                     <p id="email-error" class="govuk-error-message">
-                      <span class="govuk-visually-hidden">Error:</span> Enter the email address of the person who took the test. If you do not have it, choose 'No, I do not have an email address.'
+                      <span class="govuk-visually-hidden">Error:</span> Enter the email address of the person who took the test.
                     </p>
                   <label class="govuk-label" for="email-address">
                     Email address
