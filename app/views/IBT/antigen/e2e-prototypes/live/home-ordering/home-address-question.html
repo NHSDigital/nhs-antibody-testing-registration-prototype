@@ -1,0 +1,54 @@
+{% set version = "v1" %}
+{% set pageTitle = "Is your delivery address the same as your home address?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/antigen/{{version}}/order-home-test-kit/home-address">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/action5/home-address-question" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="delivery-address-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-5">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="delivery-address-hint" class="govuk-body">
+              Your delivery address is where your home test kit should be sent.
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="delivery-address-yes" name="delivery-address-same" type="radio" value="Yes" {{ checked("delivery-address-same", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="delivery-address-yes">
+                  Yes, my delivery address is the same as my home address
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="delivery-address-no" name="delivery-address-same" type="radio" value="No" {{ checked("delivery-address-same", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="delivery-address-no">
+                  No, my delivery address is different to my home address
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button govuk-!-margin-top-6" type="submit" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
