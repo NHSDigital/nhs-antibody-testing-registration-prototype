@@ -1,0 +1,83 @@
+{% set version = "v1" %}
+{% set pageTitle = "Enter the Royal Mail barcode" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/home-testing/date-of-birth">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/home-testing/enter-barcode-number" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="enter-barcode-number-hint" class="govuk-body">
+                Use your phone or computer's camera to scan the unique Royal Mail barcode in your home test kit.<br><br>
+                This appears on the right-hand side of your label. Do not scan the QR code, which is on the left.<br><br>
+                The Royal Mail barcode is also different from your home test kit barcode.<br><br>
+                You can also manually enter the 13 character reference below the barcode.
+            </span>
+
+            <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  What does the barcode look like?
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <img src="/public/images/mail-barcode-number.png" alt="barcode number"/>
+              </div>
+            </details>
+
+            <a href="/antigen/{{version}}/home-testing/scan-mail-barcode" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+              Scan my barcode
+            </a>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mail-barcode-reference-1">
+                Royal Mail barcode reference<br>
+                <span class="govuk-hint">For example, AA 1234 5678 9AA</span>
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] }}>
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mail-barcode-reference-2">
+                Confirm Royal Mail barcode reference
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-2" name="mail-barcode-reference-2" type="text" value={{ data['mail-barcode-reference-2'] }}>
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

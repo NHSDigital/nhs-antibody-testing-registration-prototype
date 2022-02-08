@@ -1,0 +1,94 @@
+{% set version = "live" %}
+{% set pageTitle = "Which place do you attend?" %}
+
+{% extends "includes/layout-lite-registration.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/currently-in-work">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/institution" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="study-grade-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Which place does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} attend?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-1" name="study-grade" type="radio" value="Nursery" {{ checked("study-grade", "Nursery") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-1">
+                  Nursery
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-2" name="study-grade" type="radio" value="Primary school" {{ checked("study-grade", "Primary school") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-2">
+                  Primary school
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-3" name="study-grade" type="radio" value="Secondary school" {{ checked("study-grade", "Secondary school") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-3">
+                  Secondary school
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-3" name="study-grade" type="radio" value="College" {{ checked("study-grade", "College") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-3">
+                  College
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-3" name="study-grade" type="radio" value="University" {{ checked("study-grade", "University") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-3">
+                  University
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-3" name="study-grade" type="radio" value="Other" {{ checked("study-grade", "Other") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-3">
+                  Other
+                </label>
+              </div>
+              <p class="govuk-body">or</p>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-3" name="study-grade" type="radio" value="Prefer not to say" {{ checked("study-grade", "Prefer not to say") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-3">
+                  Prefer not to say
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% set version = "v1" %}
+{% set pageTitle = "Confirm the person is eligible for a test" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+<a class="govuk-back-link" href="/antigen/{{version}}/refer-and-triage/do-you-have-a-car">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/antigen/{{version}}/refer-and-triage/check-your-answers" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="symptoms-hint symptoms-2-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                            {{ pageTitle }}
+                        </h1>
+                    </legend>
+                    <span id="symptoms-hint" class="govuk-body">
+                        You've told us you're getting a test for one of these reasons:
+                    </span>
+                    <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
+                      <li>you've been told to get another coronavirus test</li>
+                      <li>you (someone you live with) have coronavirus symptoms</li>
+                      <li>your local council has asked you (or someone you live with) to get a test</li>
+                      <li>you (or someone you live with) are taking part in a government pilot project</li>
+                      <li>you (or someone you live with) are part of the National Tactical Response Group (NTRG)</li>
+                    </ul>
+                    <span id="symptoms-2-hint" class="govuk-body">
+                        Please confirm this is correct. It means you (or the person you're ordering for) are eligible for a test.
+                    </span>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+            <div class="govuk-form-group">
+              <p class="govuk-body">
+                <a href="/antigen/{{version}}/refer-and-triage/cannot-have-test">
+                  I cannot confirm this person is eligible for a test
+                  <span class="govuk-visually-hidden">I'm not eligible for a test</span>
+                </a>
+              </p>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
