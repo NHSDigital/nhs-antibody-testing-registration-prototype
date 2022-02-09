@@ -20,6 +20,16 @@
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="about-work">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="test-reason-4" name="test-reason" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("test-reason", "As a foster carer") }}>
+            <label class="govuk-label govuk-radios__label" for="test-reason-4">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              To check if their test result is still positive, as they are self-isolating
+              {% else %}
+              To check if my test result is still positive, as I am self-isolating
+              {% endif %}
+            </label>
+          </div>
           <div class="govuk-radios">
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="test-reason-2-1" name="test-reason-2" type="radio" value="/share-result-lateral-flow/{{version}}/urg-number" onclick="setLocation(this);"  {{ checked("test-reason-2-1", "care home or hospice") }}>
