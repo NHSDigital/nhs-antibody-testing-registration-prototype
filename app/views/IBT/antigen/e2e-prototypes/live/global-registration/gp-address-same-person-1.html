@@ -1,0 +1,106 @@
+{% set version = "live" %}
+{% set pageTitle = "Is this the address registered with the person's GP?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['vaccine-person-1'] == "No" %}
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/coronavirus-vaccine-person-1">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/coronavirus-vaccine-date-person-1">Back</a>
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/IBT/antigen/e2e-prototypes/{{version}}/action3/gp-address-same-person-1" method="post">
+
+      <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+            Is this the address registered with {{ data['first-name-person-1'] | default('Jane') }} {{ data['last-name-person-1'] | default('Wilson') }}'s GP?
+          </h1>
+        </legend>
+
+        <div id="content-1">
+          <p class="govuk-body">
+            <strong class="govuk-!-font-size-27">
+              {% if data['gp-address-same'] !== "No" %}
+                {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+                  {{ data['home-address'] }}
+                {% else %}
+                  {{ data['address-line-1'] or '5 Souterhead Road'}}, 
+                    {% if data['address-line-2'] %}
+                      {{ data['address-line-2'] }}, 
+                    {% endif %}
+                    {% if data['address-town'] %}
+                      {{ data['address-town'] }},
+                    {% endif %}
+                  {{ data['home-postcode-manual'] or 'LS1 3BE' }}
+                {% endif %}
+              {% else %}
+                {% if data['gp-address'] and data['gp-address'] !== "Select from 5 addresses" %}
+                  {{ data['gp-address'] }}
+                {% else %}
+                  {{ data['address-line-1-gp'] or '5 Souterhead Road'}}, 
+                    {% if data['address-line-2-gp'] %}
+                      {{ data['address-line-2-gp'] }}, 
+                    {% endif %}
+                    {% if data['address-town-gp'] %}
+                      {{ data['address-town-gp'] }},
+                    {% endif %}
+                  {{ data['gp-postcode-manual'] or 'LS1 3BE' }}
+                {% endif %}
+            {% endif %}
+            </strong><br><br>
+            This will help us find and update the GP record with their test result.<br><br>
+            <strong>If they’re not registered with a GP in the UK, select “I do not know”</strong>
+          </p>
+          <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="gp-address-same-person-1-1" name="gp-address-same-person-1" type="radio" value="Yes" {{ checked("gp-address-same-person-1", "Yes") }}>
+              <label class="govuk-label govuk-radios__label" for="gp-address-same-person-1-1">
+                Yes (Same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }} )
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="gp-address-same-person-1-2" name="gp-address-same-person-1" type="radio" value="No" {{ checked("gp-address-same-person-1", "No") }}>
+              <label class="govuk-label govuk-radios__label" for="gp-address-same-person-1-2">
+                No
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="gp-address-same-person-1-3" name="gp-address-same-person-1" type="radio" value="I don't know" {{ checked("gp-address-same-person-1", "I don't know") }}>
+              <label class="govuk-label govuk-radios__label" for="gp-address-same-person-1-3">
+                I do not know
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <button class="govuk-button" type="submit" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
