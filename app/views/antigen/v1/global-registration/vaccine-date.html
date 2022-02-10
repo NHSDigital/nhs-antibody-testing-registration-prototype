@@ -15,7 +15,7 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/coronavirus-vaccine">Back</a>
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/vaccine">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -26,31 +26,31 @@
 
       <form class="form" action="/antigen/{{version}}/global-registration/country" method="post">
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-              <h1 class="govuk-fieldset__heading">
-                Date of vaccine
-              </h1>
-            </legend>
+        <fieldset class="govuk-fieldset" aria-describedby="vaccination-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-heading-xl">
+              Date of vaccine
+            </h1>
+          </legend>
 
-            <p class="govuk-body govuk-!-margin-top-6">
-              We are asking this question to better understand how effective the vaccine is. <br></br>
-
-              If the person has only had 1 dose, tell us when they had this dose.<br></br>
-
+          <div id="vaccination-hint">
+            <p class="govuk-body">
+              We are asking this question to better understand how effective the vaccine is.
+            </p>
+            <p class="govuk-body">
+              If the person has only had 1 dose, tell us when they had this dose.
+            </p>
+            <p class="govuk-body">
               If the person has had 2 or more doses, tell us when they had their most recent dose. This includes boosters.
             </p>
+          </div>
 
-            <div class="govuk-form-group">
-              <label class="govuk-label govuk-label--m" for="test-package-booking-reference">
+          <h2 class="govuk-heading-m">
+            When did {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Smith' }} have their most recent vaccine?
+          </h2>
 
-                  When did {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Smith' }} have their most recent vaccine?
-
-              </label>
-            </div>
-
-            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+          <div class="govuk-form-group">
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-4" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="vaccine-date-1" name="vaccine-date" type="radio" value="Less than 7 days ago" {{ checked("vaccine-date", "Less than 7 days ago") }}>
                 <label class="govuk-label govuk-radios__label" for="vaccine-date-1">
@@ -93,14 +93,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
+        </fieldset>
 
-
-
-          </fieldset>
-        </div>
-
-        <button class="govuk-button" data-module="govuk-button">
+        <button type="submit" class="govuk-!-margin-top-4 govuk-button" data-module="govuk-button">
           Continue
         </button>
 

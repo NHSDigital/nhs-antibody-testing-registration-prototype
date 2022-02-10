@@ -1,0 +1,101 @@
+{% set pageHeading = "Which organisation did you get the test kits from?" %}
+ {% set version = "OBT/individual-accounts/v3" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - COVID-19
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+
+    <h1 class="govuk-heading-xl">
+      {{ pageHeading }}
+    </h1>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="">
+          Enter the unique organisation number (UON)
+        </label>
+        <div id="passport-issued-hint" class="govuk-hint">
+      For example, 12345678
+        </div>
+        <input class="govuk-input govuk-!-width-one-third" id="" name="" type="text">
+        <a href='UON-check'><button class="govuk-button govuk-button" data-module="govuk-button">
+          Find organisation
+        </button></a>
+
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+
+        <h2 class="govuk-heading-m">Other ways to search for your organisation</h2>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="">
+                    Enter the name of the head office
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-quarter" id="" name="" type="text">
+                  <a href='UON-select-name'><button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                    Find organisation
+                  </button></a>
+                </div>
+
+        <h2 class="govuk-heading-m">Or search by organisation postcode</h2>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="">
+                   Postcode of the head office
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-quarter" id="" name="" type="text">
+                  <a href='UON-select-postcode'><button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                    Find organisation
+                  </button></a>
+                </div>
+
+        <p>If you do not know these details you can:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>ask the organisation</li>
+                <li>search the Internet for their name and postcode</li>
+              </ul>
+
+            <p>If you're unable to complete this form, call 119. Lines are open 7am to 11pm.</p>
+
+
+
+
+
+      </form>
+
+
+
+    </div>
+  </div>
+
+{% endblock %}
