@@ -2083,7 +2083,7 @@ router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-r
   if (answer == 'yes') {
     res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/pcr/return-box')
   } else if (answer == 'no') {
-      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/pcr/check-pcr')
+      res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/pcr/royal-mail-barcode')
     } else {
     res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/pcr/have-return-box?error=empty')
     }
@@ -2094,7 +2094,7 @@ router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-r
   let answer = req.body.addanotherperson;
 
   if (answer == 'yes') {
-    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/personal-details')
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/who-other-orgs')
   } else if (answer == 'no') {
       res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/pcr/confirmation')
     } else {
