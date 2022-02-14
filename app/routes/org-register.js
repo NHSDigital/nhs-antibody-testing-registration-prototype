@@ -2005,6 +2005,70 @@ router.post('/OBT/individual-reg/e2e-prototypes/v1/test-details/pcr/return-metho
 });
 
 
+//individual-reg/v2
+
+router.post('/OBT/individual-reg/e2e-prototypes/v2/UON-check', function (req, res) {
+  let answer = req.body.changeUON;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/individual-reg/e2e-prototypes/v2/who-for')
+  } else if (answer == 'no') {
+      res.redirect('/OBT/individual-reg/e2e-prototypes/v2/UON')
+    } else {
+    res.redirect('/OBT/individual-reg/e2e-prototypes/v2/UON-check?error=empty')
+    }
+});
+
+router.post('/OBT/individual-reg/e2e-prototypes/v2/personal-details/ethnic-group', function (req, res) {
+  let answer = req.body.cuEthnicGroup;
+
+  if (answer == 'Prefer not to say/I do not know') {
+    res.redirect('/OBT/individual-reg/e2e-prototypes/v2/personal-details/address')
+    } else if (answer) {
+      res.redirect('/OBT/individual-reg/e2e-prototypes/v2/personal-details/ethnic-desc')
+    } else {
+    res.redirect('/OBT/individual-reg/e2e-prototypes/v2/personal-details/ethnic-group?error=empty')
+    }
+});
+
+router.post('/OBT/individual-reg/e2e-prototypes/v2/personal-details/occupation/index', function (req, res) {
+  let answer = req.body.cuInWork;
+
+  if (answer == 'yes home') {
+    res.redirect('/OBT/individual-reg/e2e-prototypes/v2/personal-details/occupation/area')
+  } else if (answer == 'Yes travel') {
+    res.redirect('/OBT/individual-reg/e2e-prototypes/v2/personal-details/occupation/area')
+  } else if (answer == 'no') {
+    res.redirect('/OBT/individual-reg/e2e-prototypes/v2/test-details/symptoms')
+  } else if (answer == 'Prefer not to say') {
+    res.redirect('/OBT/individual-reg/e2e-prototypes/v2/personal-details/occupation/area')
+  } else {
+    res.redirect('/OBT/individual-reg/e2e-prototypes/v2/personal-details/occupation/index?error=empty')
+    }
+});
+
+router.post('/OBT/individual-reg/e2e-prototypes/v2/test-details/symptoms', function (req, res) {
+  let answer = req.body.havesymptoms;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/individual-reg/e2e-prototypes/v2/test-details/when-symptoms')
+    } else {
+    res.redirect('/OBT/individual-reg/e2e-prototypes/v2/test-details/daily-contact-testing')
+    }
+});
+
+router.post('/OBT/individual-reg/e2e-prototypes/v2/test-details/pcr/return-method', function (req, res) {
+  let answer = req.body.returnMethod;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/individual-reg/e2e-prototypes/v2/test-details/pcr/enter-return-box')
+  } else if (answer == 'no') {
+      res.redirect('/OBT/individual-reg/e2e-prototypes/v2/test-details/pcr/royal-mail-barcode-v1')
+    } else {
+    res.redirect('/OBT/individual-reg/e2e-prototypes/v2/test-details/pcr/return-method?error=empty')
+    }
+});
+
 //lft-pcr-with-results-live
 
 
