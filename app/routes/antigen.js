@@ -1118,12 +1118,30 @@ router.post('/antigen/v2/action9/coronavirus-vaccine', function (req, res) {
   }
 })
 
+router.post('/antigen/v2/action9/edit-check-answers/coronavirus-vaccine', function (req, res) {
+  let vaccine = req.session.data['vaccine']
+  if (vaccine == "No"){
+    res.redirect('/antigen/v2/global-registration/check-your-answers')
+  } else {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers/coronavirus-vaccine-date')
+  }
+})
+
 router.post('/antigen/v2/action9/coronavirus-vaccine-person-1', function (req, res) {
   let vaccine = req.session.data['vaccine-person-1']
   if (vaccine == "No"){
     res.redirect('/antigen/v2/global-registration/gp-address-same-person-1')
   } else {
     res.redirect('/antigen/v2/global-registration/coronavirus-vaccine-date-person-1')
+  }
+})
+
+router.post('/antigen/v2/action9/edit-check-answers/coronavirus-vaccine-person-1', function (req, res) {
+  let vaccine = req.session.data['vaccine-person-1']
+  if (vaccine == "No"){
+    res.redirect('/antigen/v2/global-registration/check-your-answers-person-1')
+  } else {
+    res.redirect('/antigen/v2/global-registration/edit-check-answers/coronavirus-vaccine-date-person-1')
   }
 })
 
