@@ -25,10 +25,6 @@
 {% block content %}
   {% include "includes/gtm-noscript.html" %}
 
-<span class="govuk-caption-l">Section 2 of 4</span>
-<h1 class="govuk-heading-l">
- Your details
-</h1>
 ​
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
@@ -50,6 +46,80 @@
             <a href="/antigen/{{version}}/global-registration/edit-check-answers/name">
               Change
               <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['date-of-birth-month'] == "1" or data['date-of-birth-month'] == "01" %}
+            {{ data['date-of-birth-day'] }} January {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "2" or data['date-of-birth-month'] == "02" %}
+            {{ data['date-of-birth-day'] }} February {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "3" or data['date-of-birth-month'] == "03" %}
+            {{ data['date-of-birth-day'] }} March {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "4" or data['date-of-birth-month'] == "04" %}
+            {{ data['date-of-birth-day'] }} April {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "5" or data['date-of-birth-month'] == "05" %}
+            {{ data['date-of-birth-day'] }} May {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "6" or data['date-of-birth-month'] == "06" %}
+            {{ data['date-of-birth-day'] }} June {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "7" or data['date-of-birth-month'] == "07" %}
+            {{ data['date-of-birth-day'] }} July {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "8" or data['date-of-birth-month'] == "08" %}
+            {{ data['date-of-birth-day'] }} August {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "9" or data['date-of-birth-month'] == "09" %}
+            {{ data['date-of-birth-day'] }} September {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "10" %}
+            {{ data['date-of-birth-day'] }} October {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "11" %}
+            {{ data['date-of-birth-day'] }} November {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "12" %}
+            {{ data['date-of-birth-day'] }} December {{ data['date-of-birth-year'] }}
+            {% else %}
+            6 December 1976
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/date-of-birth">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Contact details
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['email'] == "Yes" %}
+            {{ data['email-address'] }}<br>
+            {% endif %}
+            {{ data['mobile-phone-number'] or '07700 900000' }}<br>
+            {% if data['landline-number'] == "Yes" %}
+            {{ data['landline-telephone-number'] or '020 7946 0000' }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/email-address">
+              Change
+              <span class="govuk-visually-hidden">contact details</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Country of residence
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['country'] or 'England' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/country">
+              Change
+              <span class="govuk-visually-hidden">country of residence</span>
             </a>
           </dd>
         </div>
@@ -102,94 +172,7 @@
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Country of residence
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['country'] or 'England' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/country">
-              Change
-              <span class="govuk-visually-hidden">country of residence</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Contact details
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['email'] == "Yes" %}
-            {{ data['email-address'] }}<br>
-            {% endif %}
-            {{ data['mobile-phone-number'] or '07771900900' }}<br>
-            {% if data['landline-number'] == "Yes" %}
-            {{ data['landline-telephone-number'] }}
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/email-address">
-              Change
-              <span class="govuk-visually-hidden">contact details</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Date of birth
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['date-of-birth-month'] == "1" or data['date-of-birth-month'] == "01" %}
-            {{ data['date-of-birth-day'] }} January {{ data['date-of-birth-year'] }}
-            {% elseif data['date-of-birth-month'] == "2" or data['date-of-birth-month'] == "02" %}
-            {{ data['date-of-birth-day'] }} February {{ data['date-of-birth-year'] }}
-            {% elseif data['date-of-birth-month'] == "3" or data['date-of-birth-month'] == "03" %}
-            {{ data['date-of-birth-day'] }} March {{ data['date-of-birth-year'] }}
-            {% elseif data['date-of-birth-month'] == "4" or data['date-of-birth-month'] == "04" %}
-            {{ data['date-of-birth-day'] }} April {{ data['date-of-birth-year'] }}
-            {% elseif data['date-of-birth-month'] == "5" or data['date-of-birth-month'] == "05" %}
-            {{ data['date-of-birth-day'] }} May {{ data['date-of-birth-year'] }}
-            {% elseif data['date-of-birth-month'] == "6" or data['date-of-birth-month'] == "06" %}
-            {{ data['date-of-birth-day'] }} June {{ data['date-of-birth-year'] }}
-            {% elseif data['date-of-birth-month'] == "7" or data['date-of-birth-month'] == "07" %}
-            {{ data['date-of-birth-day'] }} July {{ data['date-of-birth-year'] }}
-            {% elseif data['date-of-birth-month'] == "8" or data['date-of-birth-month'] == "08" %}
-            {{ data['date-of-birth-day'] }} August {{ data['date-of-birth-year'] }}
-            {% elseif data['date-of-birth-month'] == "9" or data['date-of-birth-month'] == "09" %}
-            {{ data['date-of-birth-day'] }} September {{ data['date-of-birth-year'] }}
-            {% elseif data['date-of-birth-month'] == "10" %}
-            {{ data['date-of-birth-day'] }} October {{ data['date-of-birth-year'] }}
-            {% elseif data['date-of-birth-month'] == "11" %}
-            {{ data['date-of-birth-day'] }} November {{ data['date-of-birth-year'] }}
-            {% elseif data['date-of-birth-month'] == "12" %}
-            {{ data['date-of-birth-day'] }} December {{ data['date-of-birth-year'] }}
-            {% else %}
-            6 December 1976
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/date-of-birth">
-              Change
-              <span class="govuk-visually-hidden">date of birth</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Medical record (male, female, other…)
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['gender'] or 'Male' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers/gender">
-              Change
-              <span class="govuk-visually-hidden">medical record</span>
-            </a>
-          </dd>
-        </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Ethnicity
@@ -204,13 +187,29 @@
             </a>
           </dd>
         </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Medical record (male, female, other…)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['gender'] or 'Male' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers/gender">
+              Change
+              <span class="govuk-visually-hidden">medical record</span>
+            </a>
+          </dd>
+        </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             NHS number
           </dt>
           <dd class="govuk-summary-list__value">
             {% if data['nhs-number-known'] == "Yes" %}
-            {{ data['nhs-number'] }}
+            {{ data['nhs-number'] or '485 777 3456' }}
             {% else %}
             Not known
             {% endif %}
@@ -247,32 +246,34 @@
             Coronavirus vaccine
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['vaccine'] == "Yes" and data['vaccine-date'] == "More than 14 days ago" %}
+            {% if data['vaccine'] == "Yes, 1 dose" and data['vaccine-date'] == "More than 14 days ago" or data['vaccine'] == "Yes, 2 or more doses" and data['vaccine-date'] == "More than 14 days ago" %}
               {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
-              January {{ data['vaccine-year'] }}
+              Yes, {{ data['vaccine-date'] }} <br>January {{ data['vaccine-year'] }}
               {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
-              February {{ data['vaccine-year'] }}
+              Yes, {{ data['vaccine-date'] }} <br>February {{ data['vaccine-year'] }}
               {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
-              March {{ data['vaccine-year'] }}
+              Yes, {{ data['vaccine-date'] }} <br>March {{ data['vaccine-year'] }}
               {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
-              April {{ data['vaccine-year'] }}
+              Yes, {{ data['vaccine-date'] }} <br>April {{ data['vaccine-year'] }}
               {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
-              May {{ data['vaccine-year'] }}
+              Yes, {{ data['vaccine-date'] }} <br>May {{ data['vaccine-year'] }}
               {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
-              June {{ data['vaccine-year'] }}
+              Yes, {{ data['vaccine-date'] }} <br>June {{ data['vaccine-year'] }}
               {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
-              July {{ data['vaccine-year'] }}
+              Yes, {{ data['vaccine-date'] }} <br>July {{ data['vaccine-year'] }}
               {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
-              August {{ data['vaccine-year'] }}
+              Yes, {{ data['vaccine-date'] }} <br>August {{ data['vaccine-year'] }}
               {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
-              September {{ data['vaccine-year'] }}
+              Yes, {{ data['vaccine-date'] }} <br>September {{ data['vaccine-year'] }}
               {% elseif data['vaccine-month'] == "10" %}
-              October {{ data['vaccine-year'] }}
+              Yes, {{ data['vaccine-date'] }} <br>October {{ data['vaccine-year'] }}
               {% elseif data['vaccine-month'] == "11" %}
-              November {{ data['vaccine-year'] }}
+              Yes, {{ data['vaccine-date'] }} <br>November {{ data['vaccine-year'] }}
               {% elseif data['vaccine-month'] == "12" %}
-              December {{ data['vaccine-year'] }}
+              Yes, {{ data['vaccine-date'] }} <br>December {{ data['vaccine-year'] }}
               {% endif %}
+            {% elseif data['vaccine'] == "Yes, 1 dose" or data['vaccine'] == "Yes, 2 or more doses" %}
+            {{ data['vaccine'] }}
             {% else %}
             No
             {% endif %}
@@ -333,7 +334,7 @@
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
-            Work
+            Place of study or work
             {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
             Study
             {% endif %}
@@ -370,7 +371,7 @@
         </div>
         {% endif %}
         </dl>
-       
+
         <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Antibody test details</h2>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
@@ -378,7 +379,7 @@
               Agreed to do antibody tests
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['fingerprick-test'] or 'Yes' }}
+              {{ data['fingerprick-test'] or 'Yes. The antibody tests will be sent to your home address.' }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/antigen/{{version}}/global-registration/fingerprick-test">
@@ -388,7 +389,7 @@
             </dd>
           </div>
         </dl>
- 
+
 
       <form action="/antigen/{{version}}/global-registration/people-confirmed" method="post" novalidate>
 
