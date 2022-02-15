@@ -272,7 +272,7 @@
               {% elseif data['vaccine-month'] == "12" %}
               Yes, {{ data['vaccine-date'] }} <br>December {{ data['vaccine-year'] }}
               {% endif %}
-            {% elseif data['vaccine'] == "Yes, 1 dose" or data['vaccine'] == "Yes, 2 or more doses" %}
+            {% elseif data['vaccine'] == "Yes, 1 dose" and data['vaccine-date'] !== "More than 14 days ago" or data['vaccine'] == "Yes, 2 or more doses" and data['vaccine-date'] !== "More than 14 days ago" %}
             {{ data['vaccine'] }}
             {% else %}
             No
