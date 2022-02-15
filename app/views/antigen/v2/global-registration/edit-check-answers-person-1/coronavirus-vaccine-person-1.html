@@ -25,48 +25,43 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">
-        Coronavirus vaccination
-      </h1>
-
-      <p class="govuk-body">
-        They're fully vaccinated if it's at least 14 days after:
-      </p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>their 2nd dose of an approved coronavirus vaccine</li>
-        <li>a single-dose vaccine like the Janssen vaccine</li>
-      </ul>
-
-      <p class="govuk-body">
-        They count as fully vaccinated even if they have not had a booster vaccine.
-      </p>
-
-      <form action="/antigen/{{version}}/global-registration/edit-check-answers-person-1/action9/coronavirus-vaccine-person-1" method="post" novalidate>
+      <form class="form" action="/antigen/{{version}}/action9/coronavirus-vaccine-person-1" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              Is {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} fully vaccinated against coronavirus?
+          <fieldset class="govuk-fieldset govuk-!-margin-bottom-7" aria-describedby="vaccine-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                Has {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} had a coronavirus vaccine?
+              </h1>
             </legend>
-            <div class="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="vaccine-2-person-1" name="vaccine-person-1" type="radio" value="Yes" {{ checked("vaccine-person-1", "Yes") }}>
-                <label class="govuk-label govuk-radios__label" for="vaccine-2-person-1">
-                  Yes, they're fully vaccinated
-                </label>
-              </div>
+            <span id="vaccine-hint" class="govuk-body">
+              We are asking this question to better understand how effective the vaccine is.
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-5">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="vaccine-1-person-1" name="vaccine-person-1" type="radio" value="No" {{ checked("vaccine-person-1", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="vaccine-1-person-1">
-                  No, they're not fully vaccinated
+                  No
                 </label>
               </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-2-person-1" name="vaccine-person-1" type="radio" value="Yes, 1 dose" {{ checked("vaccine-person-1", "Yes, 1 dose") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-2-person-1">
+                  Yes, they've had 1 dose
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-3-person-1" name="vaccine-person-1" type="radio" value="Yes, 2 or more doses" {{ checked("vaccine-person-1", "Yes, 2 or more doses") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-3-person-1">
+                  Yes, they've had 2 or more doses
+                </label>
+              </div>
+            </div>
           </fieldset>
         </div>
 
-        <button class="govuk-button" data-module="govuk-button">
-          Continue
-        </button>
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
       </form>
     </div>
   </div>
