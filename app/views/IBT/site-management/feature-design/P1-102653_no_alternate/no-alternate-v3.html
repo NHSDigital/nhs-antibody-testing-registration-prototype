@@ -1,0 +1,182 @@
+{% set version = "v1" %}
+{% set serviceName = "COVID-19" %}
+{% set pageTitle = "What’s changing at this test site?" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+    <a class="govuk-back-link" href="#">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <div aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary" id="error-summary" class="govuk-error-summary" style="display: none;">
+                <h2 id="error-summary-title" class="govuk-error-summary__title"> There is a problem </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list pl-0"></ul>
+                </div>
+            </div>
+            <h1 class="govuk-heading-xl"> {{ pageTitle }} </h1>
+            <form>
+                <div class="govuk-form-group">
+                    <fieldset role="group" class="govuk-fieldset">
+                        <div class="govuk-radios" data-module="govuk-radios">
+                            <div class="govuk-radios__item"><input type="radio" id="message-template" name="message-template" class="govuk-radios__input" value="1">
+                                <label for="message-template" class="govuk-label govuk-radios__label">
+                                    <strong> The site's address has changed </strong>
+                                    <span><br>People can either visit this location or book a new test (MTU only) </span></label>
+                            </div>
+                            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                            <div class="govuk-radios__item"><input type="radio" id="message-template-2" name="message-template" class="govuk-radios__input" value="3">
+                                <label for="message-template-2" class="govuk-label govuk-radios__label">
+                                    <strong> The site's operating hours have changed </strong>
+                                    <span><br>People can either visit within the new hours or book a new test </span></label>
+                            </div>
+
+                            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                            <div class="govuk-radios__item">
+                            <input type="radio" id="message-template-5" name="message-template" class="govuk-radios__input" value="2" data-aria-controls="suggest-alternatives-5">
+                                <label for="message-template-5" class="govuk-label govuk-radios__label">
+                                    <strong> This site is closed </strong>
+                                    <span><br>People can either visit a new test site or book a new test </span></label>
+                            </div>
+                             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="suggest-alternatives-5">
+                                <div class="govuk-form-group">
+                                <fieldset class="govuk-fieldset">
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                        <h3 class="govuk-fieldset__heading">
+                                            Do you want to suggest alternative sites?
+                                        </h3>
+                                    </legend>
+                                    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="yes-alternate" name="alternate" type="radio" value="yes">
+                                        <label class="govuk-label govuk-radios__label" for="yes-alternate">
+                                        Yes
+                                        </label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="no-alternate" name="alternate" type="radio" value="no">
+                                        <label class="govuk-label govuk-radios__label" for="no-alternate">
+                                        No
+                                        </label>
+                                    </div>
+                                    </div>
+                                </fieldset>
+                                </div>
+                            </div>
+
+                            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                            <div class="govuk-radios__item">
+                                <input type="radio" id="message-template-4" name="message-template" class="govuk-radios__input" value="4" data-aria-controls="suggest-alternatives-4">
+                                <label class="govuk-label govuk-radios__label" for="message-template-4">
+                                    <strong> This site is closed due to bad weather </strong>
+                                    <span><br>People can either visit a new test site or book a new test </span></label>
+                            </div>
+                            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="suggest-alternatives-4">
+                                <div class="govuk-form-group">
+                                <fieldset class="govuk-fieldset">
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                        <h3 class="govuk-fieldset__heading">
+                                            Do you want to suggest alternative sites?
+                                        </h3>
+                                    </legend>
+                                    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="yes-alternate" name="alternate" type="radio" value="yes">
+                                        <label class="govuk-label govuk-radios__label" for="yes-alternate">
+                                        Yes
+                                        </label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="no-alternate" name="alternate" type="radio" value="no">
+                                        <label class="govuk-label govuk-radios__label" for="no-alternate">
+                                        No
+                                        </label>
+                                    </div>
+                                    </div>
+                                </fieldset>
+                                </div>
+                            </div>
+
+                            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                            <div class="govuk-radios__item"><input type="radio" id="message-template-9" name="message-template" class="govuk-radios__input" value="10" data-aria-controls="suggest-alternatives-9">
+                                <label for="message-template-9" class="govuk-label govuk-radios__label">
+                                    <strong> Drive through appointments are cancelled </strong>
+                                    <span><br>  People can either visit a new test site or book a new test </span></label>
+                            </div>
+                            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="suggest-alternatives-9">
+                                <div class="govuk-form-group">
+                                <fieldset class="govuk-fieldset">
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                        <h3 class="govuk-fieldset__heading">
+                                            Do you want to suggest alternative sites?
+                                        </h3>
+                                    </legend>
+                                    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="yes-alternate" name="alternate" type="radio" value="yes">
+                                        <label class="govuk-label govuk-radios__label" for="yes-alternate">
+                                        Yes
+                                        </label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="no-alternate" name="alternate" type="radio" value="no">
+                                        <label class="govuk-label govuk-radios__label" for="no-alternate">
+                                        No
+                                        </label>
+                                    </div>
+                                    </div>
+                                </fieldset>
+                                </div>
+                            </div>
+
+                            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                            <div class="govuk-radios__item"><input type="radio" id="message-template-8" name="message-template" class="govuk-radios__input" value="9" data-aria-controls="suggest-alternatives-8">
+                                <label for="message-template-8" class="govuk-label govuk-radios__label">
+                                    <strong> Walk through appointments are cancelled </strong>
+                                    <span><br>  People can either visit a new test site or book a new test </span></label>
+                            </div>
+                            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="suggest-alternatives-8">
+                                <div class="govuk-form-group">
+                                <fieldset class="govuk-fieldset">
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                        <h3 class="govuk-fieldset__heading">
+                                            Do you want to suggest alternative sites?
+                                        </h3>
+                                    </legend>
+                                    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="yes-alternate" name="alternate" type="radio" value="yes">
+                                        <label class="govuk-label govuk-radios__label" for="yes-alternate">
+                                        Yes
+                                        </label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="no-alternate" name="alternate" type="radio" value="no">
+                                        <label class="govuk-label govuk-radios__label" for="no-alternate">
+                                        No
+                                        </label>
+                                    </div>
+                                    </div>
+                                </fieldset>
+                                </div>
+                            </div>
+                            
+
+                            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                            <div class="govuk-radios__item"><input type="radio" id="message-template-10" name="message-template" class="govuk-radios__input" value="6">
+                                <label for="message-template-10" class="govuk-label govuk-radios__label">
+                                    <strong> This site has reopened </strong>
+                                    <span><br>     People can visit within the new hours or book a new test </span></label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <button type="submit" class="govuk-!-margin-top-4 govuk-button"> Continue </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
