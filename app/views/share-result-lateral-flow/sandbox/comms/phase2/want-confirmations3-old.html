@@ -1,5 +1,5 @@
 {% set version = "sandbox" %}
-{% set pageTitle = "Email and text confirmation" %}
+{% set pageTitle = "Email and text confirmation for this test result" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -24,9 +24,14 @@
 
       <form class="form" action="/share-result-lateral-flow/{{version}}/comms/phase2/welsh-confirmation" method="post">
 
-              <h1 class="govuk-heading-l">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
                 {{ pageTitle }}
               </h1>
+            </legend>
+              <div class="govuk-body">
 
                                 {% if data['whos-taking-the-test'] == "someone-else" %}
                                 <p class="body">We will always send an email to confirm the test result.</p>
@@ -40,16 +45,30 @@
                                 <p class="body">You can also get a text if you need one. However, you can help the NHS save money if you only get an email.</p>
                                 {% endif %}
 
-            <div class="govuk-form-group">
-                <fieldset class="govuk-fieldset">
-                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                           {% if data['whos-taking-the-test'] == "someone-else" %}
-                           What confirmation do they need for this test result?
-                           {% else %}
-                           What confirmation do you need for this test result?
-                           {% endif %}
-                         </legend>
-                <div class="govuk-radios" data-module="govuk-radios">
+
+                            {% if data['whos-taking-the-test'] == "someone-else" %}
+                            <p> <strong>What confirmation do they need for this test result?</p>
+                            {% else %}
+                            <p> <strong>What confirmation do you need for this test result?</p>
+                            {% endif %}
+
+              </div>
+            <!--  <div id="waste-hint" class="govuk-body">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Messages are in English unless they choose to receive them in Welsh as well
+                {% else %}
+                Messages are in English unless you choose to receive them in Welsh as well
+                {% endif %}
+              </div> -->
+              <div class="govuk-form-group">
+                 <!-- <fieldset class="govuk-fieldset">
+                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                     {% if data['whos-taking-the-test'] == "someone-else" %}
+                     Would {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} like to receive a confirmation of their test result?
+                     {% else %}
+                     Would you like to receive a confirmation of your test result?
+                     {% endif %}
+                   </legend> -->
                    <div class="govuk-radios__item">
                      <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" {{ checked("contact-choice", "Email") }}>
                      <label class="govuk-label govuk-radios__label" for="swab-test-date-1">
@@ -62,8 +81,6 @@
                        Email and text
                      </label>
                    </div>
-                </div>
-
               </fieldset>
             </div>
 
