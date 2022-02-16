@@ -126,7 +126,7 @@
             {% elseif data['landline-number-person-1'] == "different" %}
             {{ data['landline-telephone-number-person-1'] or '1234567890'}}<br>
             {% else %}
-            
+
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
@@ -183,11 +183,7 @@
             NHS number
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['nhs-number-known-person-1'] == "Yes" %}
-            {{ data['nhs-number-person-1'] }}
-            {% else %}
-            Not known
-            {% endif %}
+            {{ data['nhs-number'] or 'Not known' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/nhs-number-known-person-1">
@@ -346,7 +342,7 @@
         </div>
         {% endif %}
         </dl>
- 
+
         <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Antibody test details</h2>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
