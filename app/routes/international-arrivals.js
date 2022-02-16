@@ -430,6 +430,187 @@ router.post('/international-arrivals/v3/action3/check-your-answers-person-1', fu
 
 
 // International Arrivals Version Four - Red route not England
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/name', function (req, res) {
+  let finalDestination = req.session.data['final-destination']
+  let redCountryTravel = req.session.data['red-country-travel']
+
+  if (finalDestination == "England") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/name')
+  } else if (redCountryTravel == "Yes") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/service-unavailable')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/name')
+  }
+})
+
+// International Arrivals Version Four - Red route skip travel package
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/travel-route', function (req, res) {
+  let redCountryTravel = req.session.data['red-country-travel']
+
+  if (redCountryTravel == "Yes") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/mobile-number')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/travel-route')
+  }
+})
+
+// International Arrivals Version Four - Travel Package Exempt
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/travel-package-exempt', function (req, res) {
+  let travelPackageExempt = req.session.data['travel-package-exempt']
+  if (travelPackageExempt == "Yes, I need a replacement test kit") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/travel-package-provider')
+  } else if (travelPackageExempt == 'Yes, I am in financial hardship') {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/tbc')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/name')
+  }
+})
+
+// International Arrivals Version Four - Ethnic group
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+
+  if (ethnicGroup == "Asian or Asian British") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/ethnic-background-another')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/nhs-number-known')
+  }
+
+})
+
+// International Arrivals Version Four - NHS Number Known
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/nhs-number-known', function (req, res) {
+  let nhsNumber = req.session.data['nhs-number']
+  if (!nhsNumber) {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/nhs-number-known-error')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/registered-with-GP')
+  }
+})
+
+// International Arrivals Version Four - Regisered With GP
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/registered-with-GP', function (req, res) {
+  let registeredWithGP = req.session.data['registered-with-GP']
+  if (registeredWithGP == "Yes") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/address')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/gender')
+  }
+})
+
+// International Arrivals Version Four - Vaccine
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/vaccine', function (req, res) {
+  let vaccine = req.session.data['vaccine']
+  if (vaccine == "No") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/ethnic-group')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/vaccine-date')
+  }
+})
+
+// International Arrivals Version Four - Check your answers
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/check-your-answers', function (req, res) {
+  let redCountryTravel = req.session.data["red-country-travel"]
+  if (redCountryTravel == "Yes") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/people-confirmed-red')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/people-confirmed')
+  }
+})
+
+// International Arrivals Version Four - Travel Details Same Person 1
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/travel-details-same-person-1', function (req, res) {
+  let travelDetailsSame = req.session.data['travel-details-same-person-1']
+  if (travelDetailsSame == "No") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/cannot-add-person')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/red-country-travel-person-1')
+  }
+})
+
+// International Arrivals Version Four - Red route travel
+router.post("/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/red-country-travel-person-1", function (req, res) {
+  let redCountryTravel = req.session.data["red-country-travel"]
+  let redCountryTravelPerson = req.session.data["red-country-travel-person-1"]
+  if (redCountryTravel == "Yes" && redCountryTravelPerson !== "Yes" || redCountryTravel == "No" && redCountryTravelPerson !== "No") {
+    res.redirect("/IBT/international-arrivals/unassisted/e2e-prototypes/research/cannot-add-person")
+  } else if (!redCountryTravelPerson) {
+    res.redirect("/IBT/international-arrivals/unassisted/e2e-prototypes/research/red-country-travel-person-1-error")
+  } else {
+    res.redirect("/IBT/international-arrivals/unassisted/e2e-prototypes/research/name-person-1")
+  }
+})
+
+// International Arrivals Version Four - Ethnic Group Person 1
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/ethnic-group-person-1', function (req, res) {
+  let ethnicGroupPerson1 = req.session.data['ethnic-group-person-1']
+  if (ethnicGroupPerson1 == "Asian or Asian British") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/ethnic-background-asian-person-1')
+  } else if (ethnicGroupPerson1 == "Black, African, Black British or Caribbean") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/ethnic-background-black-person-1')
+  } else if (ethnicGroupPerson1 == "Mixed or multiple ethnic groups") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/ethnic-background-mixed-person-1')
+  } else if (ethnicGroupPerson1 == "White") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/ethnic-background-white-person-1')
+  } else if (ethnicGroupPerson1 == "Another ethnic group") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/ethnic-background-another-person-1')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/nhs-number-known-person-1')
+  }
+})
+
+// International Arrivals Version Four - NHS Number Known Person 1
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/nhs-number-known-person-1', function (req, res) {
+  let nhsNumberKnownPerson1 = req.session.data['nhs-number-known-person-1']
+  if (nhsNumberKnownPerson1 == "Yes") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/nhs-number-person-1')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/registered-with-GP-person-1')
+  }
+})
+
+// International Arrivals Version Four - Registered With GP Person 1
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/registered-with-GP-person-1', function (req, res) {
+  let registeredWithGP = req.session.data['registered-with-GP-person-1']
+  if (registeredWithGP == "Yes") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/address-person-1')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/gender-person-1')
+  }
+})
+
+// International Arrivals Version Four - Vaccine Person 1
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/vaccine-person-1', function (req, res) {
+  let vaccine = req.session.data['vaccine-person-1']
+  if (vaccine == "No") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/ethnic-group-person-1')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/vaccine-date-person-1')
+  }
+})
+
+// International Arrivals Version Four - Check your answers Person 1
+router.post('/IBT/international-arrivals/unassisted/e2e-prototypes/research/action4/check-your-answers-person-1', function (req, res) {
+  let redCountryTravel = req.session.data["red-country-travel"]
+  if (redCountryTravel == "Yes") {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/people-confirmed-person-1-red')
+  } else {
+    res.redirect('/IBT/international-arrivals/unassisted/e2e-prototypes/research/people-confirmed-person-1')
+  }
+})
+
+
+
+
+// International Arrivals Version Four - Red route not England
 router.post('/international-arrivals/v4/action4/name', function (req, res) {
   let finalDestination = req.session.data['final-destination']
   let redCountryTravel = req.session.data['red-country-travel']

@@ -1,0 +1,51 @@
+{% set version = "research" %}
+{% set pageTitle = "What is your email address?" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/international-arrivals/unassisted/e2e-prototypes/{{version}}/mobile-number">Back</a>
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/international-arrivals/unassisted/e2e-prototypes/{{version}}/email-verification" method="post">
+
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--xl" for="email-address">
+            {{ pageTitle }}
+            </label>
+          </h1>
+          <p>We'll send an email confirmation code, your unique booking reference and your 
+            test results to this email address.</p>
+          <div id="email-address-hint" class="govuk-hint">
+            For example, name@example.com.
+          </div>
+          <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" spellcheck="false" value="{{ data['email-address'] }}" aria-describedby="email-address-hint">
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{% set version = "research" %}
+{% set pageTitle = "Are the next person's travel details the same as yours?" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['red-country-travel'] == "Yes" %}
+<a class="govuk-back-link" href="/IBT/international-arrivals/unassisted/e2e-prototypes/{{version}}/people-confirmed-red">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/IBT/international-arrivals/unassisted/e2e-prototypes/{{version}}/people-confirmed">Back</a>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+​
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <form action="/IBT/international-arrivals/unassisted/e2e-prototypes/{{version}}/action4/travel-details-same-person-1" method="post" novalidate>
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+        Are the next person's travel details the same as {{ data['first-name'] or 'Jon' }} {{ data['last-name'] or 'Appleseed' }}'s?
+      </h1>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col govuk-!-width-one-half"></th>
+            <th scope="col govuk-!-width-one-half"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Flight, Eurostar or ferry number</th>
+            <td class="govuk-table__cell govuk-!-padding-left-2" style="border-left: 1px solid #b1b4b6">{{ data['flight-eurostar-ferry'] or '9W15' }}</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Departure country</th>
+            <td class="govuk-table__cell govuk-!-padding-left-2" style="border-left: 1px solid #b1b4b6">{{ data['departure-country-v4'] or 'Italy' }}</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Destination country</th>
+            <td class="govuk-table__cell govuk-!-padding-left-2" style="border-left: 1px solid #b1b4b6">{{ data['final-destination'] or 'England' }}</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Point of entry</th>
+            <td class="govuk-table__cell govuk-!-padding-left-2" style="border-left: 1px solid #b1b4b6">{{ data['port-of-entry'] or 'Heathrow' }}</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Date of entry</th>
+            <td class="govuk-table__cell govuk-!-padding-left-2" style="border-left: 1px solid #b1b4b6">
+              {% if data['date-of-entry-month'] == "1" or data['date-of-entry-month'] == "01" %}
+              {{ data['date-of-entry-day'] }} January {{ data['date-of-entry-year'] }}
+              {% elseif data['date-of-entry-month'] == "2" or data['date-of-entry-month'] == "02" %}
+              {{ data['date-of-entry-day'] }} February {{ data['date-of-entry-year'] }}
+              {% elseif data['date-of-entry-month'] == "3" or data['date-of-entry-month'] == "03" %}
+              {{ data['date-of-entry-day'] }} March {{ data['date-of-entry-year'] }}
+              {% elseif data['date-of-entry-month'] == "4" or data['date-of-entry-month'] == "04" %}
+              {{ data['date-of-entry-day'] }} April {{ data['date-of-entry-year'] }}
+              {% elseif data['date-of-entry-month'] == "5" or data['date-of-entry-month'] == "05" %}
+              {{ data['date-of-entry-day'] }} May {{ data['date-of-entry-year'] }}
+              {% elseif data['date-of-entry-month'] == "6" or data['date-of-entry-month'] == "06" %}
+              {{ data['date-of-entry-day'] }} June {{ data['date-of-entry-year'] }}
+              {% elseif data['date-of-entry-month'] == "7" or data['date-of-entry-month'] == "07" %}
+              {{ data['date-of-entry-day'] }} July {{ data['date-of-entry-year'] }}
+              {% elseif data['date-of-entry-month'] == "8" or data['date-of-entry-month'] == "08" %}
+              {{ data['date-of-entry-day'] }} August {{ data['date-of-entry-year'] }}
+              {% elseif data['date-of-entry-month'] == "9" or data['date-of-entry-month'] == "09" %}
+              {{ data['date-of-entry-day'] }} September {{ data['date-of-entry-year'] }}
+              {% elseif data['date-of-entry-month'] == "10" %}
+              {{ data['date-of-entry-day'] }} October {{ data['date-of-entry-year'] }}
+              {% elseif data['date-of-entry-month'] == "11" %}
+              {{ data['date-of-entry-day'] }} November {{ data['date-of-entry-year'] }}
+              {% elseif data['date-of-entry-month'] == "12" %}
+              {{ data['date-of-entry-day'] }} December {{ data['date-of-entry-year'] }}
+              {% else %}
+              3 October 2021
+              {% endif %}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="govuk-radios govuk-!-margin-top-6 govuk-!-margin-bottom-6" data-module="govuk-radios">
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="travel-details-same-person-1-1" name="travel-details-same-person-1" type="radio" value="Yes" {{ checked("travel-details-same-person-1", "Yes") }}>
+          <label class="govuk-label govuk-radios__label" for="travel-details-same-person-1-1">
+            Yes
+          </label>
+        </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="travel-details-same-person-1-2" name="travel-details-same-person-1" type="radio" value="No" {{ checked("travel-details-same-person-1", "No") }}>
+          <label class="govuk-label govuk-radios__label" for="travel-details-same-person-1-2">
+            No
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Save and continue
+      </button>
+
+    </form>
+
+  </div>
+
+
+</div>
+{% endblock %}
