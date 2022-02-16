@@ -1,4 +1,4 @@
-{% set version = "sandbox" %}
+{% set version = "v29" %}
 {% set pageTitle = "Do you want confirmation in Welsh as well as English for this test result?" %}
 
 {% extends "includes/layout-LFD.html" %}
@@ -14,7 +14,7 @@
     </span>
   </p>
 </div>
-<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/comms/phase2/want-confirmations3">Back</a>
+<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/confirmations">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -22,7 +22,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/share-result-lateral-flow/{{version}}/comms/phase2/check-answers-both2" method="post">
+      <form class="form" action="/share-result-lateral-flow/{{version}}/check-answers" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="want-confirmations-hint">
@@ -66,13 +66,13 @@
                      {% endif %}
                    </legend> -->
                    <div class="govuk-radios__item">
-                     <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" {{ checked("welsh-confirmation", "Yes") }}>
+                     <input class="govuk-radios__input" id="swab-test-date-1" name="welsh" type="radio" value="Yes" {{ checked("welsh", "Yes") }}>
                      <label class="govuk-label govuk-radios__label" for="swab-test-date-1">
                        Yes
                      </label>
                    </div>
                    <div class="govuk-radios__item">
-                     <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" {{ checked("welsh-confirmation", "No") }}>
+                     <input class="govuk-radios__input" id="swab-test-date-2" name="welsh" type="radio" value="No" {{ checked("welsh", "No") }}>
                      <label class="govuk-label govuk-radios__label" for="swab-test-date-2">
                        No
                      </label>
