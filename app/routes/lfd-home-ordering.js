@@ -1059,7 +1059,7 @@ router.post('/lfd-home-ordering/v8/action10/email-address', function (req, res) 
     if (emailAddress == "No" ) {
         res.redirect('/lfd-home-ordering/v8/call-us')
     } else {
-        res.redirect('/lfd-home-ordering/v8/confirm-email-address')
+        res.redirect('/lfd-home-ordering/v8/mobile-number')
     }
 
 })
