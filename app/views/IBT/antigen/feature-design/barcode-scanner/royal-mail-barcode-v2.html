@@ -172,6 +172,16 @@
       modal2.style.display = 'none'
       modal1.style.display = 'none'
     }
+    function addListener(button, buttonClicked) {
+      button.addEventListener('click', function (event) {
+        event.preventDefault()
+        if (button.getAttribute('disabled') === 'disabled') {
+        } else {
+          event.preventDefault()
+          buttonClicked(button)
+        }
+      })
+    }
   
     function manualEntryButtonClicked(target) {
       setTimeout(function () {
@@ -180,15 +190,20 @@
         document.getElementById('mail-barcode-reference-1').focus()
       }, 100)
     }
+
+    function closeButtonClicked(target) {
+      setTimeout(function () {
+        closeModals()
+        document.getElementById('mail-barcode-reference-1').focus()
+      }, 100)
+    }
   
     function scanButtonClicked(target) {
       navigator.permissions.query({name:'camera'})
     .then(function(permissionStatus) {
       if(permissionStatus.state == "prompt") {
-        // console.log('camera permission state is ', permissionStatus.state);
         openBarcodePickerModal()
       } else {
-        // console.log('camera permission state is ', permissionStatus.state);
         if(permissionStatus.state == "granted") {
           openBarcodePickerModal()
         } else if(permissionStatus.state == "denied") {
@@ -197,7 +212,6 @@
       }
 
       permissionStatus.onchange = function() {
-        // console.log('camera permission state has changed to ', this.state);
         if(this.state == "denied") {
           openErrorModal()
           removeBarcodePicker()
@@ -209,13 +223,6 @@
       };
     })
     }
-
-    function closeButtonClicked(target) {
-      setTimeout(function () {
-        closeModals()
-        document.getElementById('mail-barcode-reference-1').focus()
-      }, 100)
-    }
   
     function submitEvent() {
       var manualEntryButton = document.getElementById('manual-entry')
@@ -223,46 +230,12 @@
       var scanBarcodeButton2 = document.getElementById('scan-barcode-2')
       var closeButton1 = document.getElementById('close-button-1')
       var closeButton2 = document.getElementById('close-button-2')
-      manualEntryButton.addEventListener('click', function (event) {
-        event.preventDefault()
-        if (manualEntryButton.getAttribute('disabled') === 'disabled') {
-        } else {
-          event.preventDefault()
-          manualEntryButtonClicked(manualEntryButton)
-        }
-      })
-      scanBarcodeButton.addEventListener('click', function (event) {
-        event.preventDefault()
-        if (scanBarcodeButton.getAttribute('disabled') === 'disabled') {
-        } else {
-          event.preventDefault()
-          scanButtonClicked(scanBarcodeButton)
-        }
-      })
-      scanBarcodeButton2.addEventListener('click', function (event) {
-        event.preventDefault()
-        if (scanBarcodeButton2.getAttribute('disabled') === 'disabled') {
-        } else {
-          event.preventDefault()
-          scanButtonClicked(scanBarcodeButton2)
-        }
-      })
-      closeButton1.addEventListener('click', function (event) {
-        event.preventDefault()
-        if (closeButton1.getAttribute('disabled') === 'disabled') {
-        } else {
-          event.preventDefault()
-          closeButtonClicked(closeButton1)
-        }
-      })
-      closeButton2.addEventListener('click', function (event) {
-        event.preventDefault()
-        if (closeButton2.getAttribute('disabled') === 'disabled') {
-        } else {
-          event.preventDefault()
-          closeButtonClicked(closeButton2)
-        }
-      })
+
+      addListener(manualEntryButton, manualEntryButtonClicked)
+      addListener(scanBarcodeButton, scanButtonClicked)
+      addListener(scanBarcodeButton2, scanButtonClicked)
+      addListener(closeButton1, closeButtonClicked)
+      addListener(closeButton2, closeButtonClicked)
     }
 
     const barcodePicker = document.getElementById('barcodePicker')
