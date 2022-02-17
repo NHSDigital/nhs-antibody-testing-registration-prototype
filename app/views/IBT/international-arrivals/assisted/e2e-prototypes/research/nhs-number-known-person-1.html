@@ -1,0 +1,85 @@
+{% set version = "research" %}
+{% set pageTitle = "NHS number" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <!-- {% if data['ethnic-group-person-1'] == "Asian or Asian British" %}
+  <a class="govuk-back-link" href="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/ethnic-background-asian-person-1">Back</a>
+  {% elseif data['ethnic-group-person-1'] == "Black, African, Black British or Caribbean" %}
+  <a class="govuk-back-link" href="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/ethnic-background-black-person-1">Back</a>
+  {% elseif data['ethnic-group-person-1'] == "Mixed or multiple ethnic groups" %}
+  <a class="govuk-back-link" href="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/ethnic-background-mixed-person-1">Back</a>
+  {% elseif data['ethnic-group-person-1'] == "White" %}
+  <a class="govuk-back-link" href="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/ethnic-background-white-person-1">Back</a>
+  {% elseif data['ethnic-group-person-1'] == "Another ethnic group" %}
+  <a class="govuk-back-link" href="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/ethnic-background-another-person-1">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/ethnic-group-person-1">Back</a>
+  {% endif %} -->
+
+  <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+
+  
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/action3/nhs-number-known-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nhs-number-known-hint nhs-number-known-hint-2 nhs-number-known-hint-3 nhs-number-known-hint-4">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+            <p class="govuk-body">
+              An NHS number is a 10-digit number, for example, 485 777 3456. You can find it on any letter the NHS has sent you, on a prescription, or by logging in to a GP practice online service.<br><br>
+              In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.<br><br>
+              It's OK if you do not have an NHS number or you do not live in the UK, you can still continue.
+            </p>
+
+            <p class="govuk-!-margin-top-5"><a class="govuk-link" href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/" target="blank">Look up NHS number (opens in new tab)</a></p>
+
+            <div class="govuk-form-group govuk-!-margin-bottom-3">
+              <label class="govuk-label" for="nhs-number-person-1">
+                <strong>What is {{ data['first-name-person-1'] or 'Sophie' }} {{ data['last-name-person-1'] or 'Appleseed' }}'s NHS number?</strong>
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="nhs-number-person-1" name="nhs-number-person-1" type="text" value="{{ data['nhs-number-person-1'] }}">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        
+          <a class="govuk-button govuk-button--secondary" href="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/registered-with-GP-person-1">Continue without NHS number</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,140 @@
+{% set version = "research" %}
+{% set pageTitle = "Confirm people for testing" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/check-your-answers">Back</a>
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <p class="govuk-body">
+        You can order travel test packages for yourself and up to 9 other people that you're travelling with. They must have the same delivery address as you.
+      </p>
+
+      <p class="govuk-body">
+        You only need to order a travel test package for people who do not qualify as fully vaccinated and are aged 18 and over.
+      </p>
+
+      <p class="govuk-body govuk-!-margin-bottom-1">They do not need a travel test package if they:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>qualify as fully vaccinated</li>
+          <li>are aged 17 and under (even if they're not vaccinated)</li>
+        </ul>
+
+        <ul class="govuk-list">
+          {% if data['final-destination'] == "England" %}
+          <li>
+            <a href="https://www.gov.uk/guidance/countries-with-approved-covid-19-vaccination-programmes-and-proof-of-vaccination" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in England (opens in new tab or window)</a>
+          </li>
+          {% elseif data['final-destination'] == "Scotland" %}
+          <li>
+            <a href="https://www.gov.scot/publications/coronavirus-covid-19-international-travel-quarantine/" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in Scotland (opens in new tab or window)</a>
+          </li>
+          {% elseif data['final-destination'] == "Wales" %}
+          <li>
+            <a href="https://gov.wales/check-if-your-proof-covid-19-vaccination-valid-travel-wales" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in Wales (opens in new tab or window)</a>
+          </li>
+          {% elseif data['final-destination'] == "Northern Ireland" %}
+          <li>
+            <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-vaccination-status-travel" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in Northern Ireland (opens in new tab or window)</a>
+          </li>
+          {% else %}
+          <li>
+            <a href="https://www.gov.uk/guidance/countries-with-approved-covid-19-vaccination-programmes-and-proof-of-vaccination" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in England (opens in new tab or window)</a>
+          </li>
+          <li>
+            <a href="https://www.gov.scot/publications/coronavirus-covid-19-international-travel-quarantine/" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in Scotland (opens in new tab or window)</a>
+          </li>
+          <li>
+            <a href="https://gov.wales/check-if-your-proof-covid-19-vaccination-valid-travel-wales" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in Wales (opens in new tab or window)</a>
+          </li>
+          <li>
+            <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-vaccination-status-travel" class="govuk-link" rel="noreferrer noopener" target="_blank">Check if you qualify as fully vaccinated or not in Northern Ireland (opens in new tab or window)</a>
+          </li>
+          {% endif %}
+        </ul>
+
+      <p>Once you've confirmed who needs testing, you can complete and pay for your order.</p>
+      
+      <div class="info-summary">
+        <div>
+          <p class="govuk-body">
+            <strong>{{ data['first-name'] or 'Jon' }} {{ data['last-name'] or 'Appleseed' }}</strong><br>
+            {% if data['dob-month'] == "1" or data['dob-month'] == "01" %}
+            {{ data['dob-day'] }} January {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "2" or data['dob-month'] == "02" %}
+            {{ data['dob-day'] }} February {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "3" or data['dob-month'] == "03" %}
+            {{ data['dob-day'] }} March {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "4" or data['dob-month'] == "04" %}
+            {{ data['dob-day'] }} April {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "5" or data['dob-month'] == "05" %}
+            {{ data['dob-day'] }} May {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "6" or data['dob-month'] == "06" %}
+            {{ data['dob-day'] }} June {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "7" or data['dob-month'] == "07" %}
+            {{ data['dob-day'] }} July {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "8" or data['dob-month'] == "08" %}
+            {{ data['dob-day'] }} August {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "9" or data['dob-month'] == "09" %}
+            {{ data['dob-day'] }} September {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "10" %}
+            {{ data['dob-day'] }} October {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "11" %}
+            {{ data['dob-day'] }} November {{ data['dob-year'] }}
+            {% elseif data['dob-month'] == "12" %}
+            {{ data['dob-day'] }} December {{ data['dob-year'] }}
+            {% else %}
+            6 December 1976
+            {% endif %}<br>
+            Arrival test<br>
+            £68<br>
+            <a href="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/check-your-answers">Edit details</a>
+          </p>
+        </div>
+        <p class="govuk-body-m"><strong class="govuk-!-padding-right-4">Amount to pay</strong> 
+          {% if data['travel-package-exempt'] == "Yes, I'm ordering on behalf of an asylum seeker" or data['travel-package-exempt'] == "Yes, I need a replacement test kit" %}
+          £0.00
+          {% else %}
+            £68
+          {% endif %}
+        </p>
+      </div>
+
+      <div class="inline-buttons-wrapper govuk-!-margin-top-8">
+        <form class="form" action="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/delivery-address" method="post">
+          <button class="govuk-button" data-module="govuk-button">
+            Continue to payment
+          </button>
+        </form>
+        <form class="form" action="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/travel-details-same-person-1" method="post">
+          <button class="govuk-button govuk-button--secondary govuk-!-margin-right-1" data-module="govuk-button">
+            Add another person
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

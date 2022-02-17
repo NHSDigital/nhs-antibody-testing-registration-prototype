@@ -207,8 +207,10 @@
     .then(function(permissionStatus) {
       if(permissionStatus.state == "prompt") {
         // console.log('camera permission state is ', permissionStatus.state);
-        openBarcodePickerModal()
-        document.getElementById('scanner-wrapper').innerHTML += scannerContent
+        if(modal2.style.display == 'block') {
+          openBarcodePickerModal()
+          document.getElementById('scanner-wrapper').innerHTML += scannerContent
+        }
       } else {
         // console.log('camera permission state is ', permissionStatus.state);
         if(permissionStatus.state == "granted") {

@@ -202,7 +202,10 @@
       navigator.permissions.query({name:'camera'})
     .then(function(permissionStatus) {
       if(permissionStatus.state == "prompt") {
-        openBarcodePickerModal()
+        // openBarcodePickerModal()
+        if(modal2.style.display == 'block') {
+          document.getElementById('scanner-wrapper').innerHTML += scannerContent
+        }
       } else {
         if(permissionStatus.state == "granted") {
           openBarcodePickerModal()
@@ -218,7 +221,7 @@
         } else if (this.state == "prompt") {
           closeModals()
         } else {
-          openBarcodePickerModal()
+          // openBarcodePickerModal()
         }
       };
     })

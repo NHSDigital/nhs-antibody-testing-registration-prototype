@@ -1,0 +1,68 @@
+{% set version = "research" %}
+{% set pageTitle = "What is your reason for calling?" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+<a class="govuk-back-link" href="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/red-country-travel">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/name" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="travel-package-exempt-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <!-- <div class="govuk-body">
+            Find out more on <a href="#">Exemptions - people who do not need to take a test</a>.
+          </div> -->
+          <div class="govuk-radios govuk-!-margin-top-6 govuk-!-margin-bottom-6" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="travel-package-exempt-1" name="travel-package-exempt" type="radio" value="I want to order a travel test package" {{ checked("travel-package-exempt", "I want to order a travel test package") }}>
+              <label class="govuk-label govuk-radios__label" for="travel-package-exempt-1">
+                I want to order a travel test package
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="travel-package-exempt-4" name="travel-package-exempt" type="radio" value="I want to use my hardship arrangement code to order a travel test package" {{ checked("travel-package-exempt", "I want to use my hardship arrangement code to order a travel test package") }}>
+              <label class="govuk-label govuk-radios__label" for="travel-package-exempt-4">
+                I want to use my hardship arrangement code to order a travel test package
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="travel-package-exempt-1" name="travel-package-exempt" type="radio" value="I need a replacement test kit" {{ checked("travel-package-exempt", "I need a replacement test kit") }}>
+              <label class="govuk-label govuk-radios__label" for="travel-package-exempt-1">
+                I need a replacement test kit
+              </label>
+            </div>
+          </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
