@@ -1,5 +1,5 @@
 {% set version = "v8" %}
-{% set pageTitle = "What is your home address?" %}
+{% set pageTitle = "Enter your home address in the UK" %}
 
 {% extends "includes/layout.html" %}
 
@@ -34,34 +34,41 @@
               {{ pageTitle }}
             </h1>
           </legend>
-          <p>
+          <!--p>
             Postcode<br><br>
             <strong>{{ data['home-postcode'] | default('LS1 3BE') }}</strong>
             <a href="/lfd-home-ordering/{{version}}/home-address" class="govuk-!-margin-left-5">
               Change
               <span class="govuk-visually-hidden">your postcode</span>
             </a>
-          </p>
+          </p-->
 
           <div class="govuk-form-group">
             <label class="govuk-label" for="address-line-1">
               Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
             </label>
-            <input class="govuk-input" id="address-line-1" name="address-line-1" type="text" autocomplete="address-line1">
+            <input class="govuk-input govuk-input--width-20" id="address-line-1" name="address-line-1" type="text" autocomplete="address-line1">
           </div>
 
           <div class="govuk-form-group">
             <label class="govuk-label" for="address-line-2">
               <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
             </label>
-            <input class="govuk-input" id="address-line-2" name="address-line-2" type="text" autocomplete="address-line2">
+            <input class="govuk-input govuk-input--width-20 " id="address-line-2" name="address-line-2" type="text" autocomplete="address-line2">
           </div>
 
           <div class="govuk-form-group">
             <label class="govuk-label" for="address-town">
               Town or city
             </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="address-town" type="text" autocomplete="address-level2">
+            <input class="govuk-input govuk-input--width-20" id="address-town" name="address-town" type="text" autocomplete="address-level2">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="home-postcode">
+                Postcode
+            </label>
+            <input class="govuk-input govuk-input--width-20" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}">
           </div>
 
         </fieldset>
