@@ -35,8 +35,27 @@
                 {{ pageTitle }}
               </h1>
             </legend>
+
+            <span id="post-code-hint" class="govuk-body">
+              <strong class="govuk-!-font-size-27">
+                {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+                  {{ data['home-address'] }}
+                {% else %}
+                  {{ data['address-line-1'] or '5 Souterhead Road'}},
+                    {% if data['address-line-2'] %}
+                      {{ data['address-line-2'] }},
+                    {% endif %}
+                    {% if data['address-town'] %}
+                      {{ data['address-town'] }},
+                    {% endif %}
+                  {{ data['home-postcode'] or 'LS1 3BE' }}
+                {% endif %}
+              </strong><br><br>
+
+            </span>
+
             <span id="delivery-address-hint" class="govuk-hint">
-              Your delivery address is where your home test kit will be sent.
+              Your delivery address is where your test kit will be sent.
             </span>
             <div class="govuk-radios govuk-!-margin-top-5">
               <div class="govuk-radios__item">
