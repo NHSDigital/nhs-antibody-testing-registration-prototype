@@ -160,6 +160,31 @@
     `
     const modal1 = document.getElementById('modal-window-1')
     const modal2 = document.getElementById('modal-window-2')
+    function removeBarcodePicker() {
+      document.getElementById('scanner-wrapper').removeChild(document.getElementById('barcodePicker'))
+    } 
+    function openBarcodePickerModal() {
+      modal1.style.display = 'none'
+      modal2.style.display = 'block'
+    }
+    function openErrorModal() {
+      modal1.style.display = 'block'
+      modal2.style.display = 'none'
+    }
+    function closeModals() {
+      modal2.style.display = 'none'
+      modal1.style.display = 'none'
+    }
+    function addListener(button, buttonClicked) {
+      button.addEventListener('click', function (event) {
+        event.preventDefault()
+        if (button.getAttribute('disabled') === 'disabled') {
+        } else {
+          event.preventDefault()
+          buttonClicked(button)
+        }
+      })
+    }
   
     function manualEntryButtonClicked(target) {
       setTimeout(function () {
@@ -168,64 +193,51 @@
         document.getElementById('mail-barcode-reference-1').focus()
       }, 100)
     }
+
+    function closeButtonClicked(target) {
+      setTimeout(function () {
+        closeModals()
+        document.getElementById('mail-barcode-reference-1').focus()
+        removeBarcodePicker()
+      }, 100)
+    }
   
-    function buttonClicked2(target) {
+    function scanButtonClicked(target) {
       navigator.permissions.query({name:'camera'})
     .then(function(permissionStatus) {
       if(permissionStatus.state == "prompt") {
-        console.log('camera permission state is ', permissionStatus.state);
-        modal1.style.display = 'none'
-        modal2.style.display = 'block'
-        document.getElementById('scanner-wrapper').innerHTML += scannerContent
+        // console.log('camera permission state is ', permissionStatus.state);
+        if(modal2.style.display == 'block') {
+          openBarcodePickerModal()
+          document.getElementById('scanner-wrapper').innerHTML += scannerContent
+        }
       } else {
-        console.log('camera permission state is ', permissionStatus.state);
-
-          if(permissionStatus.state == "granted") {
-            modal1.style.display = 'none'
-            modal2.style.display = 'block'
-            document.getElementById('scanner-wrapper').innerHTML += scannerContent
-          } else if(permissionStatus.state == "denied") {
-            modal2.style.display = 'none'
-            modal1.style.display = 'block'
-            document.getElementById('scanner-wrapper').removeChild(document.getElementById('barcodePicker'))
-          }
+        // console.log('camera permission state is ', permissionStatus.state);
+        if(permissionStatus.state == "granted") {
+          openBarcodePickerModal()
+          document.getElementById('scanner-wrapper').innerHTML += scannerContent
+        } else if(permissionStatus.state == "denied") {
+          openErrorModal()
+          removeBarcodePicker()
+        }
       }
 
       permissionStatus.onchange = function() {
-        console.log('camera permission state has changed to ', this.state);
+        // console.log('camera permission state has changed to ', this.state);
         if(this.state == "denied") {
-          modal2.style.display = 'none'
-          modal1.style.display = 'block'
-          document.getElementById('scanner-wrapper').removeChild(document.getElementById('barcodePicker'))
+          openErrorModal()
+          removeBarcodePicker()
         } else if (this.state == "prompt") {
-          modal2.style.display = 'none'
-          modal1.style.display = 'none'
-          document.getElementById('scanner-wrapper').removeChild(document.getElementById('barcodePicker'))
+          closeModals()
+          removeBarcodePicker()
         } else {
-          modal1.style.display = 'none'
-          modal2.style.display = 'block'
+          openBarcodePickerModal()
           if(document.getElementById('scanner-wrapper').childNodes.length == "2") {
             document.getElementById('scanner-wrapper').innerHTML += scannerContent
           }
         }
       };
     })
-    }
-
-    function closeButtonClicked(target) {
-      setTimeout(function () {
-        modal1.style.display = 'none'
-        modal2.style.display = 'none'
-        document.getElementById('mail-barcode-reference-1').focus()
-        document.getElementById('scanner-wrapper').removeChild(document.getElementById('barcodePicker'))
-      }, 100)
-    }
-
-    function buttonClicked4(target) {
-      setTimeout(function () {
-        modal2.style.display = 'block'
-        document.getElementById('scanner-wrapper').innerHTML += scannerContent
-      }, 100)
     }
   
     function submitEvent() {
@@ -234,46 +246,12 @@
       var scanBarcodeButton2 = document.getElementById('scan-barcode-2')
       var closeButton1 = document.getElementById('close-button-1')
       var closeButton2 = document.getElementById('close-button-2')
-      manualEntryButton.addEventListener('click', function (event) {
-        event.preventDefault()
-        if (manualEntryButton.getAttribute('disabled') === 'disabled') {
-        } else {
-          event.preventDefault()
-          manualEntryButtonClicked(manualEntryButton)
-        }
-      })
-      scanBarcodeButton.addEventListener('click', function (event) {
-        event.preventDefault()
-        if (scanBarcodeButton.getAttribute('disabled') === 'disabled') {
-        } else {
-          event.preventDefault()
-          buttonClicked2(scanBarcodeButton)
-        }
-      })
-      scanBarcodeButton2.addEventListener('click', function (event) {
-        event.preventDefault()
-        if (scanBarcodeButton2.getAttribute('disabled') === 'disabled') {
-        } else {
-          event.preventDefault()
-          buttonClicked2(scanBarcodeButton2)
-        }
-      })
-      closeButton1.addEventListener('click', function (event) {
-        event.preventDefault()
-        if (closeButton1.getAttribute('disabled') === 'disabled') {
-        } else {
-          event.preventDefault()
-          closeButtonClicked(closeButton1)
-        }
-      })
-      closeButton2.addEventListener('click', function (event) {
-        event.preventDefault()
-        if (closeButton2.getAttribute('disabled') === 'disabled') {
-        } else {
-          event.preventDefault()
-          closeButtonClicked(closeButton2)
-        }
-      })
+
+      addListener(manualEntryButton, manualEntryButtonClicked)
+      addListener(scanBarcodeButton, scanButtonClicked)
+      addListener(scanBarcodeButton2, scanButtonClicked)
+      addListener(closeButton1, closeButtonClicked)
+      addListener(closeButton2, closeButtonClicked)
     }
 
     const barcodePicker = document.getElementById('barcodePicker')

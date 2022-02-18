@@ -1,0 +1,54 @@
+{% set version = "research" %}
+{% set pageTitle = "What is your passport number?" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['travel-package-exempt'] == "Yes, I'm eligible for a hardship arrangement" %}
+  <a class="govuk-back-link" href="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/hardship-arrangement">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/date-of-birth">Back</a>
+  {% endif %}
+  
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/date-of-entry" method="post">
+
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--xl" for="passport-number">
+              {{ pageTitle }}
+            </label>
+          </h1>
+          <p class="govuk-body">Check your passport and find the page with your passport number.</p>
+          <div id="passport-number-hint" class="govuk-hint">
+            For example, 502135326 (in the UK)
+          </div>
+          <input class="govuk-input govuk-!-width-two-thirds" id="passport-number" name="passport-number" type="text" aria-describedby="passport-number-hint" value="{{ data['passport-number'] }}">
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
