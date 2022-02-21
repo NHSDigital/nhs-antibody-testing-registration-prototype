@@ -56,9 +56,6 @@
               <p class="govuk-body">
                 You'll find it on the right-hand side of the label on your return box. Do not scan the QR code, which is on the left-hand side of the label.
               </p>
-              <p class="govuk-body">
-                It should look like this:
-              </p>
               <div class="govuk-!-margin-top-5">
                 <img src="/public/images/royal-mail-barcode.png" class="responsive-image" alt="Illustration of a royal mail barcode showing the position on return box. It is on the right-hand side of the label on your return box."/>
               </div>
@@ -126,7 +123,20 @@
             </p>
     
             <script src="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x"></script>
-    
+
+            <scandit-barcode-picker
+              id="barcodePicker"
+              configure.licenseKey="AbZxHhS+NbmiADJfUiuZ2iUaZRoeKa4GCTLu4KFFgGyKH2vUkn0JpCJoyBABajTEH3YqOMsYTH7iWoi+1XBqvjJpT6vbWLs/jEXEg3dhgNQ3UA9ZD0J+8QtrqDinWyRI3XECxE5s9JU1NV9evxgBz9xhH8I9WGbev1mCapBsKk2yYVH33yTlG1tcETWkDzDtbW9mYwh5MyxhcntcwHOFsHwh0zaSHf9bohhSkkQZ5D4xKHAnRhHf5Z7WkHMmCGg5pDu6xTg60YCEZy74vbVdjgg1sBfrxX3mvW/AGytCkn5v4JZ3I1mKqtqCNQxuJTNiecouIIcYdU2Vz3DocNpXGozfmtM/5K6TvrsEeeWYjkA/U8V3CzafMn1xVVdQEvEY0i0elNOtD3TnmrgbF1qv7582IV9kU8JQetxUkj79YLVEJAmAPaxrG4dazuTha6o2El8ElvhvM8U1yN2aXn2LtCfGXZabA0zYCDesH7PzxOlLLYPOr6JIaKPfBK3Gw9VqxrhAYZlPsJoKjEyZkbbisUOY29YFT1AwxrWa49qzETKkUPu0iL2WwzQ4NJnoZs9GFZAeP8V079cKfyI+Q0jPzQglzKmNe7jMepYWDr7jn/sTGb/j+dM/BwSODQQRWiHENrQ2N517Pgob2cP8q33GrBg92OTPcSpI7LB9lI0ZDrfqFX5+cnaFBUn01OU0mYEoU7TPGyHrplUJA0pSUTa+8WvljEpYoNd9qqMtGjc7xP+60/UNix51ZbFFv/tp1vXpUC2IUpWZQHSvgbI6CK6hSBZMwLhWluYIOHM/NicvzIoJlFlMaIVQ/u8HYhM9ZxlNGMf7DyvFswMeiKcqJlrhFISYpi9AHl/Tys6LZ0OKJUCTraR6altiFXc16q/DwGF3uJ6bjbb/uoGGIz/47JVaW+xEVYaXkA=="
+              configure.engineLocation="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x/build/"
+              playSoundOnScan="true"
+              scanSettings.searchArea='{"x":0.1,"y":0.2,"width":0.8,"height":0.6}'
+              guiStyle="viewfinder"
+              enableTorchToggle="true"
+              videoFit="cover"
+              scanSettings.enabledSymbologies='["data-matrix", "code128", "qr"]'
+              >
+            </scandit-barcode-picker>
+            
           </div>
           <button id="close-button-2" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
         </dialog>
@@ -138,25 +148,9 @@
   <script type="text/javascript">
     submitEvent()
 
-    const scannerContent = `
-    <scandit-barcode-picker
-      id="barcodePicker"
-      configure.licenseKey="AbZxHhS+NbmiADJfUiuZ2iUaZRoeKa4GCTLu4KFFgGyKH2vUkn0JpCJoyBABajTEH3YqOMsYTH7iWoi+1XBqvjJpT6vbWLs/jEXEg3dhgNQ3UA9ZD0J+8QtrqDinWyRI3XECxE5s9JU1NV9evxgBz9xhH8I9WGbev1mCapBsKk2yYVH33yTlG1tcETWkDzDtbW9mYwh5MyxhcntcwHOFsHwh0zaSHf9bohhSkkQZ5D4xKHAnRhHf5Z7WkHMmCGg5pDu6xTg60YCEZy74vbVdjgg1sBfrxX3mvW/AGytCkn5v4JZ3I1mKqtqCNQxuJTNiecouIIcYdU2Vz3DocNpXGozfmtM/5K6TvrsEeeWYjkA/U8V3CzafMn1xVVdQEvEY0i0elNOtD3TnmrgbF1qv7582IV9kU8JQetxUkj79YLVEJAmAPaxrG4dazuTha6o2El8ElvhvM8U1yN2aXn2LtCfGXZabA0zYCDesH7PzxOlLLYPOr6JIaKPfBK3Gw9VqxrhAYZlPsJoKjEyZkbbisUOY29YFT1AwxrWa49qzETKkUPu0iL2WwzQ4NJnoZs9GFZAeP8V079cKfyI+Q0jPzQglzKmNe7jMepYWDr7jn/sTGb/j+dM/BwSODQQRWiHENrQ2N517Pgob2cP8q33GrBg92OTPcSpI7LB9lI0ZDrfqFX5+cnaFBUn01OU0mYEoU7TPGyHrplUJA0pSUTa+8WvljEpYoNd9qqMtGjc7xP+60/UNix51ZbFFv/tp1vXpUC2IUpWZQHSvgbI6CK6hSBZMwLhWluYIOHM/NicvzIoJlFlMaIVQ/u8HYhM9ZxlNGMf7DyvFswMeiKcqJlrhFISYpi9AHl/Tys6LZ0OKJUCTraR6altiFXc16q/DwGF3uJ6bjbb/uoGGIz/47JVaW+xEVYaXkA=="
-      configure.engineLocation="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x/build/"
-      playSoundOnScan="true"
-      scanSettings.searchArea='{"x":0.1,"y":0.2,"width":0.8,"height":0.6}'
-      guiStyle="viewfinder"
-      enableTorchToggle="true"
-      videoFit="cover"
-      scanSettings.enabledSymbologies='["data-matrix", "code128", "qr"]'
-      >
-    </scandit-barcode-picker>
-    `
     const modal1 = document.getElementById('modal-window-1')
     const modal2 = document.getElementById('modal-window-2')
-    function removeBarcodePicker() {
-      document.getElementById('scanner-wrapper').removeChild(document.getElementById('barcodePicker'))
-    } 
+
     function openBarcodePickerModal() {
       modal1.style.display = 'none'
       modal2.style.display = 'block'
@@ -192,7 +186,6 @@
       setTimeout(function () {
         closeModals()
         document.getElementById('mail-barcode-reference-1').focus()
-        removeBarcodePicker()
       }, 100)
     }
   
@@ -200,35 +193,26 @@
       navigator.permissions.query({name:'camera'})
     .then(function(permissionStatus) {
       if(permissionStatus.state == "prompt") {
-        // console.log('camera permission state is ', permissionStatus.state);
+        // openBarcodePickerModal()
         if(modal2.style.display == 'block') {
-          openBarcodePickerModal()
           document.getElementById('scanner-wrapper').innerHTML += scannerContent
         }
       } else {
-        // console.log('camera permission state is ', permissionStatus.state);
         if(permissionStatus.state == "granted") {
           openBarcodePickerModal()
-          document.getElementById('scanner-wrapper').innerHTML += scannerContent
         } else if(permissionStatus.state == "denied") {
           openErrorModal()
-          removeBarcodePicker()
         }
       }
 
       permissionStatus.onchange = function() {
-        // console.log('camera permission state has changed to ', this.state);
         if(this.state == "denied") {
           openErrorModal()
           removeBarcodePicker()
         } else if (this.state == "prompt") {
           closeModals()
-          removeBarcodePicker()
         } else {
-          openBarcodePickerModal()
-          if(document.getElementById('scanner-wrapper').childNodes.length == "2") {
-            document.getElementById('scanner-wrapper').innerHTML += scannerContent
-          }
+          // openBarcodePickerModal()
         }
       };
     })
