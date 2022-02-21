@@ -1,0 +1,197 @@
+{% set version = "v3" %}
+{% set pageTitle = "Search for an order" %}
+
+{% extends "includes/layout-intl-arrivals.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/superuser-home">Back</a>
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/international-arrivals/{{version}}/manage-orders/search-results" method="post">
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="reference-number">
+            {{ pageTitle }}
+          </label>
+        </h1>
+        </label>
+        <div id="reference-hint" class="govuk-hint">
+          Enter an order number (for example, A12345678E), unique booking reference (for example, NHSXX1234567) or email address.
+        </div>
+        <input class="govuk-input govuk-!-width-two-thirds" id="reference-number" name="reference-number" type="text" value="{{ data['reference-number'] }}" aria-describedby="reference-hint">
+      </div>
+      <button class="govuk-button" data-module="govuk-button">Search</button>
+    </form>
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-width-container">
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">View order</th>
+          <th scope="col" class="govuk-table__header">Email address</th>
+          <th scope="col" class="govuk-table__header">Booking reference</th>
+          <th scope="col" class="govuk-table__header">Order number</th>
+          <th scope="col" class="govuk-table__header">Arrival date</th>
+          <th scope="col" class="govuk-table__header">Delivery status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% if data['reference-number'] == "A12345678B" %}
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href="#">Jane Smith</a></td>
+          <td class="govuk-table__cell">jsmith@gmail.com</td>
+          <td class="govuk-table__cell">NHSTT1234561</td>
+          <td class="govuk-table__cell">A12345678B</td>
+          <td class="govuk-table__cell">13 Jun 2022</td>
+          {% if data['order-12345678-status'] == "Refunded" %}
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
+          {% else %}
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Scheduled</strong></td>
+          {% endif %}
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href="#">Pete Smith</a></td>
+          <td class="govuk-table__cell">psmith@gmail.com</td>
+          <td class="govuk-table__cell">NHSTT1234562</td>
+          <td class="govuk-table__cell">A12345678B</td>
+          <td class="govuk-table__cell">13 Jun 2022</td>
+          {% if data['order-12345678-status'] == "Refunded" %}
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
+          {% else %}
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Scheduled</strong></td>
+          {% endif %}
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href="#">Maggie Smith</a></td>
+          <td class="govuk-table__cell">msmith@gmail.com</td>
+          <td class="govuk-table__cell">NHSTT1234563</td>
+          <td class="govuk-table__cell">A12345678B</td>
+          <td class="govuk-table__cell">13 Jun 2022</td>
+          {% if data['order-12345678-status'] == "Refunded" %}
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
+          {% else %}
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Scheduled</strong></td>
+          {% endif %}
+        </tr>
+        {% elseif data['reference-number'] == "A12345676B" %}
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href="#">Rianne Jones</a></td>
+          <td class="govuk-table__cell">r.jones@gmail.com</td>
+          <td class="govuk-table__cell">NHSTT1234564</td>
+          <td class="govuk-table__cell">A12345676B</td>
+          <td class="govuk-table__cell">13 Jun 2022</td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Dispatched</strong></td>
+        </tr>
+        {% elseif data['reference-number'] == "A12345677B" %}
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href="#">Zara Alime</a></td>
+          <td class="govuk-table__cell">zara.alime@hotmail.com</td>
+          <td class="govuk-table__cell">NHSTT1234565</td>
+          <td class="govuk-table__cell">A12345677B</td>
+          <td class="govuk-table__cell">13 Jun 2022</td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Dispatched</strong></td>
+        </tr>
+        {% elseif data['reference-number'] == "A12345675B" %}
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href="#">David Green</a></td>
+          <td class="govuk-table__cell">david.green@hotmail.com</td>
+          <td class="govuk-table__cell">NHSTT1234566</td>
+          <td class="govuk-table__cell">A12345675B</td>
+          <td class="govuk-table__cell">13 Jun 2022</td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Dispatched</strong></td>
+        </tr>
+        {% else %}
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href="#">Jane Smith</a></td>
+          <td class="govuk-table__cell">jsmith@gmail.com</td>
+          <td class="govuk-table__cell">NHSTT1234561</td>
+          <td class="govuk-table__cell">A12345678B</td>
+          <td class="govuk-table__cell">13 Jun 2022</td>
+          {% if data['order-12345678-status'] == "Refunded" %}
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
+          {% else %}
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Scheduled</strong></td>
+          {% endif %}
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href="#">Pete Smith</a></td>
+          <td class="govuk-table__cell">psmith@gmail.com</td>
+          <td class="govuk-table__cell">NHSTT1234562</td>
+          <td class="govuk-table__cell">A12345678B</td>
+          <td class="govuk-table__cell">13 Jun 2022</td>
+          {% if data['order-12345678-status'] == "Refunded" %}
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
+          {% else %}
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Scheduled</strong></td>
+          {% endif %}
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href="#">Maggie Smith</a></td>
+          <td class="govuk-table__cell">msmith@gmail.com</td>
+          <td class="govuk-table__cell">NHSTT1234563</td>
+          <td class="govuk-table__cell">A12345678B</td>
+          <td class="govuk-table__cell">13 Jun 2022</td>
+          {% if data['order-12345678-status'] == "Refunded" %}
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
+          {% else %}
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Scheduled</strong></td>
+          {% endif %}
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href="#">Rianne Jones</a></td>
+          <td class="govuk-table__cell">r.jones@gmail.com</td>
+          <td class="govuk-table__cell">NHSTT1234564</td>
+          <td class="govuk-table__cell">A12345677B</td>
+          <td class="govuk-table__cell">13 Jun 2022</td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Scheduled</strong></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href="#">Zara Alime</a></td>
+          <td class="govuk-table__cell">zara.alime@hotmail.com</td>
+          <td class="govuk-table__cell">NHSTT1234565</td>
+          <td class="govuk-table__cell">A12345676B</td>
+          <td class="govuk-table__cell">13 Jun 2022</td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Dispatched</strong></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href="#">David Green</a></td>
+          <td class="govuk-table__cell">david.green@hotmail.com</td>
+          <td class="govuk-table__cell">NHSTT1234566</td>
+          <td class="govuk-table__cell">A12345675B</td>
+          <td class="govuk-table__cell">13 Jun 2022</td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Dispatched</strong></td>
+        </tr>
+
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="proto-action big">
+  <a href="search">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to search</div>
+  </a>
+</div>
+
+{% endblock %}

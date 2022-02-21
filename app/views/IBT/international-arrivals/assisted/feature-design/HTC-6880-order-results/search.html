@@ -1,4 +1,4 @@
-{% set version = "research" %}
+{% set version = "v3" %}
 {% set pageTitle = "Search for an order" %}
 
 {% extends "includes/layout-intl-arrivals.html" %}
@@ -15,7 +15,7 @@
   </p>
 </div>
 
-<a class="govuk-back-link" href="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/superuser-home">Back</a>
+<a class="govuk-back-link" href="/international-arrivals/{{version}}/superuser-home">Back</a>
 
 {% endblock %}
 
@@ -24,21 +24,27 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form action="/IBT/international-arrivals/assisted/e2e-prototypes/{{version}}/manage-orders/search-results" method="post">
+    <form action="search-results" method="post">
       <div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--xl" for="reference-number">
+        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="reference-number">
             {{ pageTitle }}
           </label>
         </h1>
         </label>
         <div id="reference-hint" class="govuk-hint">
-          Enter an email, order number or unique booking reference.<br>For example, NHSTT1234567
+          Enter an order number (for example, A12345678E), unique booking reference (for example, NHSXX1234567) or email address.
         </div>
         <input class="govuk-input govuk-!-width-two-thirds" id="reference-number" name="reference-number" type="text" value="{{ data['reference-number'] }}" aria-describedby="reference-hint">
       </div>
       <button class="govuk-button" data-module="govuk-button">Search</button>
     </form>
   </div>
+</div>
+
+<div class="proto-action big">
+  <a href="search-results">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to results</div>
+  </a>
 </div>
 
 {% endblock %}
