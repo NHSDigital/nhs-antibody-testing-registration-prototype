@@ -1,0 +1,76 @@
+{% set version = "v33" %}
+{% set pageTitle = "Taking a photo of your test strip" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/using-mobile">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+
+        <!-- <h2 class="govuk-heading-s">
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          Help the service by taking a clear photo, otherwise it may not be able to read {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s result.
+          {% else %}
+          Help the service by taking a clear photo, otherwise it may not be able to read your result.</h2>
+          {% endif %} -->
+
+          <h2 class="govuk-heading-s">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            Help the service by taking a clear photo, otherwise it may not be able to read {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s result.
+            {% else %}
+            Help the service by taking a clear photo, otherwise it may not be able to read your result.</h2>
+            {% endif %}
+
+        <ol class="govuk-list govuk-list--number govuk-u-margin-bottom-6">
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          <li>Hold the smartphone or tablet flat above the test strip and move it until all 4 corners of the test strip fit into the outline on the screen. </li>
+          <li>Make sure the letters C and T on the test strip are the right way up. The specimen well (where they dropped the test fluid) must be at the bottom of the photo.</li>
+          <li>Make sure there are no shadows or reflections on the test strip.</li>
+          <li>Make sure no personal information is in the photo, for example paperwork with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s name, address, date of birth or bank details.</li>
+          {% else %}
+          <li>Hold the smartphone or tablet flat above the test strip and move it until all 4 corners of the test strip fit into the outline on the screen. </li>
+          <li>Make sure the letters C and T on the test strip are the right way up. The specimen well (where you dropped the test fluid) must be at the bottom of the photo.</li>
+          <li>Make sure there are no shadows or reflections on the test strip.</li>
+          <li>Make sure no personal information is in the photo, for example paperwork with your name, address, date of birth or bank details.</li>
+          {% endif %}
+        </ol>
+
+        <div class="permission-wrap">
+          <!-- <img class="iOS-cam-per govuk-image__img" src="/images/ios-permission.png" alt="iOS camera permission dialogue"> -->
+              <img src="/public/images/TakeAPhoto3.svg" alt="Illustration of how to take a good photo of a rapid lateral flow test strip. The image shows a pair of hands holding a smartphone over the test strip, with the test strip centred in the middle of the smartphone screen and the specimen well at the bottom of the photo." style="width: 100%">
+        </div>
+
+        <p class="govuk-body">
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          <p>On the next screen, the service may ask if it can use the camera on {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s smartphone or tablet. Choose 'yes' so the service can read their test result.</p>
+          {% else %}
+          <p>On the next screen, the service may ask if it can use the camera on your smartphone or tablet. Choose 'yes' so the service can read your test result.</p>
+          {% endif %}
+
+
+        <a href="scan-test-result-android" class="govuk-button govuk-u-margin-bottom-8">
+          Take Photo
+        </a>
+
+    </div>
+</div>
+
+{% endblock %}

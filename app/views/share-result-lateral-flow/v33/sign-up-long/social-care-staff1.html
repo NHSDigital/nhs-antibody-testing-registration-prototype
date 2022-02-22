@@ -1,0 +1,72 @@
+{% set version = "v33" %}
+{% set pageTitle = "Which of these best describes you?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/about-work">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/social-care-uon" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-1" name="country" type="radio" {{ checked("social-care-staff", "  I work in social care and received my kits from my organisation") }}>
+                <label class="govuk-label govuk-radios__label" for="country-1">
+                  I work in social care and receive tests from my place of work
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-2" name="country" type="radio" {{ checked("social-care-staff", "  I work in an open residential children’s home") }}>
+                <label class="govuk-label govuk-radios__label" for="country-2">
+                    I work in an open residential children’s home
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-5" name="country" type="radio" {{ checked("social-care-staff", " I'm a professional visiting a care home") }}>
+                <label class="govuk-label govuk-radios__label" for="country-5">
+                   I'm a professional visiting a social care service for work
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("social-care-staff", "   I work in social care but did not receive my kits from my organisation") }}>
+                <label class="govuk-label govuk-radios__label" for="country-4">
+                  I work in social care but did not receive my tests from my organisation
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

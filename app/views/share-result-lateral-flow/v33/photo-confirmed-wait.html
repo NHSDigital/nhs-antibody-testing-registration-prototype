@@ -1,0 +1,69 @@
+{% set version = "v33" %}
+{% set pageTitle = "We are still reading the result" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .ccms-loader {
+    border: 12px solid #DEE0E2;
+    border-radius: 50%;
+    border-top-color: #005EA5;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 0.7s linear infinite;
+    animation: spin 0.7s linear infinite;
+    text-align: center;
+    margin: 20px auto 10px;
+  }
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+<meta http-equiv="refresh" content="10;url=negative-result-photo">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/share-result-lateral-flow/{{version}}/negative-result-photo" method="post">
+
+        <div class="govuk-u-margin-bottom-6" id="dynamic-content" role="alert" aria-live="assertive">
+          <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+          <p class="govuk-body">This make take up to another 20 seconds.<br>
+            Do not go back, close this window or leave this service.<p>
+        </div>
+
+            <br>
+              <div aria-hidden="true" style="text-align:center; margin:20px auto">
+                <div class="ccms-loader"></div>
+              </div>
+
+          <!--  <button class="govuk-button" type="submit" data-module="govuk-button" disabled>
+              Continue
+            </button> -->
+
+          </form>
+      </div>
+  </div>
+
+{% endblock %}
