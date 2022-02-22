@@ -1,0 +1,87 @@
+{% set version = "v1" %}
+{% set pageTitle = "Why do you need lateral flow tests?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/do-you-have-symptoms">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/lfd-home-ordering/{{version}}/action10/country" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div class="govuk-hint">You can only order lateral flow tests for one of the below reasons.</div>
+            <div class="govuk-hint">This helps the NHS prioritise tests for people who need them most.</div>
+            <div class="govuk-radios govuk-!-margin-top-9 govuk-!-margin-bottom-6">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="eligibility-group-1" name="eligibility-group" type="radio" value="I am eligible for COVID-19 treatments and need more tests" {{ checked("eligibility", "I am eligible for COVID-19 treatments and need more tests") }}>
+                <label class="govuk-label govuk-radios__label" for="eligibility-group-1">
+                  I am eligible for COVID-19 treatments and need more tests
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="eligibility-group-2" name="eligibility-group" type="radio" value="I work or volunteer for the NHS" {{ checked("eligibility", "I work or volunteer for the NHS") }}>
+                <label class="govuk-label govuk-radios__label" for="eligibility-group-2">
+                  I work or volunteer for the NHS
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="eligibility-group-3" name="eligibility-group" type="radio" value="I work or volunteer for a hospice or independent healthcare provider" {{ checked("eligibility", "I work or volunteer for a hospice or independent healthcare provider") }}>
+                <label class="govuk-label govuk-radios__label" for="eligibility-group-3">
+                  I work or volunteer for a hospice or independent healthcare provider
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="eligibility-group-4" name="eligibility-group" type="radio" value="I have been asked to test before a hospital visit" {{ checked("eligibility", "I have been asked to test before a hospital visit") }}>
+                <label class="govuk-label govuk-radios__label" for="eligibility-group-4">
+                  I have been asked to test before a hospital visit
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="eligibility-group-5" name="eligibility-group" type="radio" value="I am visiting someone in a hospital or hospice" {{ checked("eligibility", "I am visiting someone in a hospital or hospice") }}>
+                <label class="govuk-label govuk-radios__label" for="celigibility-group-5">
+                  I am visiting someone in a hospital or hospice
+                </label>
+              </div>
+              <div class="govuk-radios__divider">or</div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="eligibility-group-6" name="eligibility-group" type="radio" value="None of the above" {{ checked("eligibility", "None of the above") }}>
+                <label class="govuk-label govuk-radios__label" for="celigibility-group-6">
+                  None of the above
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
