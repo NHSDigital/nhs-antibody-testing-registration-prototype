@@ -1,0 +1,111 @@
+{% set version = "v33" %}
+{% set pageTitle = "Do you have an email address?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+  <div id="includedContent1"></div>
+<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/nhs-number">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/share-result-lateral-flow/{{version}}/mobile" method="post">
+
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+          <h2 class="govuk-error-summary__title" id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+              <li>
+                <a href="#email-1">Enter the email address of the person who took the test.</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have an email address?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+            </legend>
+            <span id="email-hint" class="govuk-body">
+            <!--  <p>If you’re reporting a result for someone else use their email.</p> -->
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            <p class="govuk-body">If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} has one, we'll send your test results to this email address. If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} do not have it, choose 'No, I do not have an email address.'</p>
+            {% else %}
+              <p class="govuk-body">If you have one, we'll send your test results to this email address. If you do not have it, choose 'No, I do not have an email address.'</p>
+              {% endif %}
+            </span>
+
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-1" checked="checked" name="email" type="radio" value="Yes" aria-describedby="email-results-hint email-error" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="email-1">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  Yes, they have an email address
+                  {% else %}
+                  Yes, I have an email address
+                  {% endif %}
+                </label>
+              </div>
+
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
+                <div id="email-results-hint" class="govuk-hint">
+                  Make sure you're happy for your test results to go to this person. Do not use a work or shared email address unless you're comfortable with others seeing your results.
+                </div>
+                <div class="govuk-form-group govuk-form-group--error">
+                    <p id="email-error" class="govuk-error-message">
+                      <span class="govuk-visually-hidden">Error:</span> Enter the email address of the person who took the test.
+                    </p>
+                  <label class="govuk-label" for="email-address">
+                    Email address
+                  </label>
+                  <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+                </div><br>
+                <label class="govuk-label" for="email-address-1">
+                    Confirm email address
+                  </label>
+                  <input class="govuk-input" id="email-address-1" name="email-address" type="text" value="{{ data['email-address'] }}">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="I do not have an email address" {{ checked("email", "I do not have an email address") }}>
+                <label class="govuk-label govuk-radios__label" for="email-2">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  No, they do not have an email address
+                  {% else %}
+                  No, I do not have an email address
+                  {% endif %}
+                </label>
+              </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+
+{% endblock %}
