@@ -1,0 +1,88 @@
+{% set version = "v33" %}
+{% set pageTitle = "What was the test for?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/index">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="enter-barcode-number-hint" class="govuk-body">
+             <p>If you’re reporting a result for someone else, answer for them.<p>
+             <p>If you’re in the household or support bubble of someone who goes to or works at a school: select the “schools” option unless you got the test from your employer or a social care service.</p>
+          </span>
+          <div class="govuk-radios govuk-!-margin-top-5"">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="social-care" onclick="setLocation(this);" {{ checked("home-org-use", "Care home") }}>
+              <label class="govuk-label govuk-radios__label" for="country-1">
+                A social care service, for example domiciliary care, care homes, extra care, supported living, children’s homes and day care centres
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-5" name="country" type="radio" value="school-type" onclick="setLocation(this);" {{ checked("home-org-use","NHS staff testing programme") }}>
+              <label class="govuk-label govuk-radios__label" for="country-5">
+                A nursery, school, college, childcare provider or other education provider
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="nhs-primary" onclick="setLocation(this);" {{ checked("home-org-use","NHS staff testing programme") }}>
+              <label class="govuk-label govuk-radios__label" for="country-4">
+                The NHS as part of staff testing (NHS England, Wales and Northern Ireland only)
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-6" name="country" type="radio" value="employer-uon" onclick="setLocation(this);" {{ checked("home-org-use","NHS staff testing programme") }}>
+              <label class="govuk-label govuk-radios__label" for="country-6">
+                An employer (not listed above) as part of their workplace testing programme
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-8" name="country" type="radio" value="test-date" onclick="setLocation(this);" {{ checked("home-org-use","NHS staff testing programme") }}>
+              <label class="govuk-label govuk-radios__label" for="country-8">
+                Travel to Scottish Islands
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="test-date" onclick="setLocation(this);" {{ checked("home-org-use","None of the above") }}>
+              <label class="govuk-label govuk-radios__label" for="country-3">
+                None of the above
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+
+{% endblock %}

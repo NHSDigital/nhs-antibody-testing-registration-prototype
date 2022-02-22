@@ -1,0 +1,79 @@
+{% set version = "v33" %}
+{% set pageTitle = "Where in the UK do you live?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/test-for-work" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Where in the UK do they live?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+            </legend>
+
+            <p> If you do not normally live in the UK, select the country where you're staying while you're in the UK.</p>
+
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }}>
+                <label class="govuk-label govuk-radios__label" for="country-1">
+                  England
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="Scotland" {{ checked("country", "Scotland") }}>
+                <label class="govuk-label govuk-radios__label" for="country-4">
+                  Scotland
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="Northern Ireland" {{ checked("country", "Northern Ireland") }}>
+                <label class="govuk-label govuk-radios__label" for="country-3">
+                  Northern Ireland
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="Wales" {{ checked("country", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-2">
+                  Wales
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+{% endblock %}
