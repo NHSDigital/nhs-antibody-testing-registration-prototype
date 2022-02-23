@@ -99,10 +99,9 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action3/do-you-have-sympt
   router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/overseas-travel', function (req, res) {
     let overseasTravel = req.session.data['have-you-travelled-overseas']
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
-    uniqueBarcode = uniqueBarcode.slice(0,2)
     if (overseasTravel == "Yes") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/travel-route')
-    } else if (uniqueBarcode == "LF") {
+    } else if (uniqueBarcode == "LFU00000009") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/site-id')
     } else if (uniqueBarcode == "COE00000501") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/royal-mail-barcode')
@@ -114,8 +113,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action3/do-you-have-sympt
 
   router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/travelled-to', function (req, res) {
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
-    uniqueBarcode = uniqueBarcode.slice(0,2)
-    if (uniqueBarcode == "LF") {
+    if (uniqueBarcode == "LFU00000009") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/site-id')
     } else if (uniqueBarcode == "COE00000501") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/royal-mail-barcode')
@@ -240,14 +238,23 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action/gp-address-same', 
 // Version 1 - Lite Registration Accounts - site confirmation route
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/site-confirmation', function (req, res) {
   let confirmSite = req.session.data['confirm-site']
-  let uniqueBarcode = req.session.data['kit-barcode-reference-1']
-  uniqueBarcode = uniqueBarcode.slice(0,2)
-  if (confirmSite == "Yes" && barcode == "LHE00000501") {
-    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/daily-contact-testing')
-  } else if (confirmSite == "Yes" && barcode !== "LHE00000501") {
+  let barcode = req.session.data['kit-barcode-reference-1']
+  if (confirmSite == "Yes" && barcode == "LFU00000009") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/repeat-testing')
+  } else if (confirmSite == "Yes" && barcode !== "LFU00000009") {
     res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/test-date')
   } else {
     res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/site-id')
+  }
+})
+
+// Version 1 - Lite Registration Accounts - 7-day repeat testing
+router.post('/IBT/litereg-accounts/e2e-prototypes/live/action5/repeat-testing', function (req, res) {
+  let repeatTesting = req.session.data['repeat-testing']
+  if (repeatTesting == "Yes") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/trace-id')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/test-date')
   }
 })
 
