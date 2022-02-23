@@ -42,7 +42,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/whos-taking-the-t
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/enter-barcode', function (req, res) {
   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
   if (uniqueBarcode == "LAMP") {
-    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/which-university')
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/test-date')
   } else {
     res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/overseas-travel')
   }
@@ -99,9 +99,10 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action3/do-you-have-sympt
   router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/overseas-travel', function (req, res) {
     let overseasTravel = req.session.data['have-you-travelled-overseas']
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+    uniqueBarcode = uniqueBarcode.slice(0,2)
     if (overseasTravel == "Yes") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/travel-route')
-    } else if (uniqueBarcode == "LHE00000501") {
+    } else if (uniqueBarcode == "LF") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/site-id')
     } else if (uniqueBarcode == "COE00000501") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/royal-mail-barcode')
@@ -113,7 +114,8 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action3/do-you-have-sympt
 
   router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/travelled-to', function (req, res) {
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
-    if (uniqueBarcode == "LHE00000501") {
+    uniqueBarcode = uniqueBarcode.slice(0,2)
+    if (uniqueBarcode == "LF") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/site-id')
     } else if (uniqueBarcode == "COE00000501") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/royal-mail-barcode')
