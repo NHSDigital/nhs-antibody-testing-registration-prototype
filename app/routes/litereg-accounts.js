@@ -240,7 +240,8 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action/gp-address-same', 
 // Version 1 - Lite Registration Accounts - site confirmation route
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/site-confirmation', function (req, res) {
   let confirmSite = req.session.data['confirm-site']
-  let barcode = req.session.data['kit-barcode-reference-1']
+  let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+  uniqueBarcode = uniqueBarcode.slice(0,2)
   if (confirmSite == "Yes" && barcode == "LHE00000501") {
     res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/daily-contact-testing')
   } else if (confirmSite == "Yes" && barcode !== "LHE00000501") {
