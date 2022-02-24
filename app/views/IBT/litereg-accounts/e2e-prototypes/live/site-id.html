@@ -15,10 +15,13 @@
     </p>
   </div>
 
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  {% if data['kit-barcode-reference-1'] == "LFU00000009" and data['have-you-travelled-overseas'] == "No" %}
+  <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/overseas-travel">Back</a>
+  {% elseif data['kit-barcode-reference-1'] !== "LFU00000009" and data['have-you-travelled-overseas'] == "No" %}
+  <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/test-place">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/travelled-to">Back</a>
+  {% endif %}
 
 {% endblock %}
 

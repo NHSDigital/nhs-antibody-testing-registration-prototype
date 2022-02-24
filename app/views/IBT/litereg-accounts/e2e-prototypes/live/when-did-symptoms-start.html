@@ -29,7 +29,11 @@
           <fieldset class="govuk-fieldset" role="group" aria-describedby="symptoms-start-date-1-hint symptoms-start-date-2-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                {{ pageTitle }}
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                When did {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s symptoms start?
+                {% else %}
+                When did your symptoms start?
+                {% endif %}
               </h1>
             </legend>
             <p class="govuk-body">

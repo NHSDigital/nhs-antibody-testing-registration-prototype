@@ -281,6 +281,17 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action7/vaccine', functio
   }
 })
 
+ // Version 1 - Lite Registration Accounts - vaccine date route
+ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action5/nhs-number-known', function (req, res) {
+  let barcode = req.session.data['kit-barcode-reference-1']
+  let redTraveller = req.session.data['travel-route']
+  if (barcode !== "user@testing.co.uk" && redTraveller !== "Yes") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/fingerprick-test')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/check-your-answers')
+  }
+})
+
 
 // VERSION 2
 
