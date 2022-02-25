@@ -1,0 +1,103 @@
+{% set version = "v7" %}
+{% set pageTitle = "Is this the delivery address for the PCR test kits?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/antigen/{{version}}/global-registration/people-confirmed">Back</a>
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
+    <h2 class="govuk-error-summary__title" id="error-summary-title">
+      There is a problem
+    </h2>
+    <div class="govuk-error-summary__body">
+      <ul class="govuk-list govuk-error-summary__list">
+        <li>
+          <a href="#full-name-input">Select an option</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/antigen/{{version}}/action3/delivery-address-same" method="post">
+
+      <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+            {{ pageTitle }}
+          </h1>
+        </legend>
+
+
+        <div id="content-1">
+          <span id="post-code-hint" class="govuk-body">
+            <strong class="govuk-!-font-size-27">
+                {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+                  {{ data['home-address'] }}
+                {% else %}
+                  {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+                  {{ data['home-postcode'] or 'LS1 3BE' }}
+                {% endif %}
+            </strong> <br><br>
+
+
+            <div class="govuk-form-group govuk-form-group--error">
+  <label class="govuk-label" for="full-name-input">
+
+
+            <p id="nationality-error" class="govuk-error-message">
+             <span class="govuk-visually-hidden">Error:</span> Select an option
+            </p>
+
+          </span>
+          <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="delivery-address-same-1" name="delivery-address-same" type="radio" value="Yes" {{ checked("delivery-address-same", "Yes") }}>
+              <label class="govuk-label govuk-radios__label" for="delivery-address-same-1">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="delivery-address-same-2" name="delivery-address-same" type="radio" value="No" {{ checked("delivery-address-same", "No") }}>
+              <label class="govuk-label govuk-radios__label" for="delivery-address-same-2">
+                No
+              </label>
+            </div>
+            <!-- <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="delivery-address-same-3" name="delivery-address-same" type="radio" value="I don't know" {{ checked("delivery-address-same", "I don't know") }}>
+              <label class="govuk-label govuk-radios__label" for="delivery-address-same-3">
+                I don't know
+              </label>
+            </div> -->
+          </div>
+        </div>
+
+      </fieldset>
+
+      <button class="govuk-button" type="submit" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

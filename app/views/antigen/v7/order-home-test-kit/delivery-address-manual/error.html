@@ -31,12 +31,35 @@
             <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-5">
               {{ pageTitle }}
             </h1>
-          </legend>
+            </legend>
+
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title" id="error-summary-title">
+        There is a problem
+      </h2>
+      <div class="govuk-error-summary__body">
+        <ul class="govuk-list govuk-error-summary__list">
+          <li>
+            <a href="#full-name-input">Enter a building and street</a> <br>
+            <a href="#full-name-input">Enter a town and city </a><br>
+            <a href="#full-name-input">Enter a postcode</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/antigen/{{version}}/order-home-test-kit/order-summary" method="post">
 
 
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
+            <p id="full-name-input-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter a building and street
+            </p>
             <label class="govuk-label govuk-!-font-size-24" for="address-line-1">
-            Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
+              Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
             </label>
             <input class="govuk-input" id="delivery-address-line-1" name="delivery-address-line-1" type="text" autocomplete="delivery-address-line1">
           </div>
@@ -48,20 +71,25 @@
             <input class="govuk-input" id="delivery-address-line-2" name="delivery-address-line-2" type="text" autocomplete="delivery-address-line2">
           </div>
 
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
+            <p id="full-name-input-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter a town and city
+            </p>
             <label class="govuk-label govuk-!-font-size-24" for="delivery-address-town">
-            Town or city
+              Town or city
             </label>
             <input class="govuk-input govuk-!-width-two-thirds" id="delivery-address-town" name="delivery-address-town" type="text" autocomplete="address-level2">
           </div>
 
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
+            <p id="full-name-input-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter a postcode
+            </p>
             <label class="govuk-label govuk-!-font-size-24" for="delivery-address-town">
-          <label class="govuk-label govuk-!-font-size-24" for="delivery-address-town">
-          Postcode
-          </label>
-          <input class="govuk-input govuk-!-width-two-thirds" id="delivery-address-town" name="delivery-address-town" type="text" autocomplete="address-level2">
-        </div>
+            Postcode
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="delivery-address-town" name="delivery-address-town" type="text" autocomplete="address-level2">
+          </div>
 
         </fieldset>
 
