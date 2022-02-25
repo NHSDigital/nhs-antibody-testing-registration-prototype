@@ -1,5 +1,5 @@
 {% set version = "live" %}
-{% set pageTitle = "Do you know your NHS Test and Trace ID?" %}
+{% set pageTitle = "Tell NHS Test and Trace you’re doing daily contact testing" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -14,7 +14,7 @@
     </span>
   </p>
 </div>
-  <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/test-place">Back</a>
+  <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/repeat-testing">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -22,58 +22,63 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/site-id" method="post">
+      <form class="form" action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/test-date" method="post">
 
         <div class="govuk-form-group govuk-!-margin-bottom-6">
-          <fieldset class="govuk-fieldset" aria-describedby="trace-id-known-hint">
+          <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                Do you know {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS Test and Trace ID?
+                Tell NHS Test and Trace they’re doing daily contact testing
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
               </h1>
             </legend>
-            <span id="trace-id-known-hint" class="govuk-body">
+            <p class="govuk-body">
+              <strong>
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                We can do this for you now, so they stop getting reminder calls and emails about self-isolation
+                {% else %}
+                We can do this for you now, and stop them sending reminder calls and emails about self-isolation
+                {% endif %}
+              </strong>
+            </p>
+            <p class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              Their NHS Test and Trace ID is an 8 character code we texted them.
+              Enter the reference number they were given. It’s called an Account ID. Find it on NHS Test and Trace emails and texts.
               {% else %}
-              Your NHS Test and Trace ID is an 8 character code we texted you.
+              Enter the reference number they gave you. It’s called an Account ID. Find it on NHS Test and Trace emails and texts.
               {% endif %}
-            </span>
-            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="trace-id-known-1" name="trace-id-known" type="radio" value="Yes" data-aria-controls="conditional-trace-id-known" {{ checked("trace-id-known", "Yes") }}>
-                <label class="govuk-label govuk-radios__label" for="trace-id-known-1">
-                  {% if data['whos-taking-the-test'] == "someone-else" %}
-                  Yes, I know their NHS Test and Trace ID
-                  {% else %}
-                  Yes, I know my NHS Test and Trace ID
-                  {% endif %}
-                </label>
+            </p>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="trace-id">
+                If you can, enter the Account ID
+              </label>
+              <div id="trace-id-hint" class="govuk-hint">
+                It’s 8 characters, for example ae60a100
               </div>
-              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-trace-id-known">
-                <div class="govuk-form-group">
-                  <label class="govuk-label" for="trace-id">
-                    trace ID
-                  </label>
-                  <input class="govuk-input govuk-!-width-two-thirds" id="trace-id" name="trace-id" type="text" value="{{ data['trace-id'] }}">
-                </div>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="trace-id-known-2" name="trace-id-known" type="radio" value="No" {{ checked("trace-id-known", "No") }}>
-                <label class="govuk-label govuk-radios__label" for="trace-id-known-2">
-                  {% if data['whos-taking-the-test'] == "someone-else" %}
-                  No, I do not know their NHS Test and Trace ID
-                  {% else %}
-                  No, I do not know my NHS Test and Trace ID
-                  {% endif %}
-                </label>
-              </div>
+              <input class="govuk-input" aria-describedby="trace-id-hint" id="trace-id" name="trace-id" type="text" value="{{ data['trace-id'] }}">
             </div>
           </fieldset>
         </div>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Help with this question
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            It's OK if they do not have an Account ID (not everyone will).<br><br>
+            If they have one but you cannot enter it now, they will keep getting calls and reminders. It can be entered the next time they use this service.
+            {% else %}
+            It's OK if you do not have an Account ID (not everyone will).<br><br>
+            If you have one but you cannot enter it now, you will keep getting calls and reminders. You can enter it the next time you use this service.
+            {% endif %}
+          </div>
+        </details>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 

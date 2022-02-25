@@ -15,7 +15,14 @@
     </p>
   </div>
 
+  {% if data['kit-barcode-reference-1'] == "LFU00000009" and data['have-you-travelled-overseas'] == "No" %}
+  <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/overseas-travel">Back</a>
+  {% elseif data['kit-barcode-reference-1'] !== "LFU00000009" and data['have-you-travelled-overseas'] == "No" %}
   <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/test-place">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/travelled-to">Back</a>
+  {% endif %}
+
 {% endblock %}
 
 {% block content %}
@@ -60,7 +67,7 @@
         </div>
       </div>
 
-      <p class="govuk-body"><a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/site-postcode">I do not know the test site ID</a></p>
+      <!-- <p class="govuk-body"><a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/site-postcode">I do not know the test site ID</a></p> -->
 
       <button class="govuk-button" type="submit" data-module="govuk-button">
         Continue

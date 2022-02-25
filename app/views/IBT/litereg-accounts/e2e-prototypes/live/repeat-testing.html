@@ -1,5 +1,5 @@
 {% set version = "live" %}
-{% set pageTitle = "Are you doing 7-day repeat testing?" %}
+{% set pageTitle = "Are you taking part in daily contact testing (DCT)?" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -15,10 +15,7 @@
   </p>
 </div>
 
-{{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.go(-1);"
-}) }}
+<a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/site-confirmation">Back</a>
 
 {% endblock %}
 
@@ -27,14 +24,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/test-date" method="post">
+      <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/action5/repeat-testing" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="repeat-testing-1-hint repeat-testing-2-hint repeat-testing-3-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                Are they doing 7-day repeat testing?
+                Are they taking part in daily contact testing (DCT)?
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
@@ -42,13 +39,9 @@
             </legend>
             <span id="repeat-testing-1-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              If they’re a contact of someone who tested positive for coronavirus (COVID-19), they may have chosen to take a test every day for 7 days instead of self-isolating. If so, you can select ‘Yes’.
-              <br><br>
-              If their test result is negative, they can continue their normal activities without needing to self-isolate.
+              This means taking a test every day for 7 days (usually because they are a contact of someone who has tested positive for coronavirus). A number of organisations are inviting their employees to take part in DCT.
               {% else %}
-              If you’re a contact of someone who tested positive for coronavirus (COVID-19), you may have chosen to take a test every day for 7 days instead of self-isolating.If so, you can select ‘Yes’.
-              <br><br>
-              If your test result is negative, you can continue your normal activities without needing to self-isolate.
+              This means taking a test every day for 7 days (usually because you are a contact of someone who has tested positive for coronavirus). A number of organisations are inviting their employees to take part in DCT.
               {% endif %}
             </span>
 
@@ -63,12 +56,6 @@
                 <input class="govuk-radios__input" id="repeat-testing-2" name="repeat-testing" type="radio" value="No" {{ checked("repeat-testing", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="repeat-testing-2">
                   No
-                </label>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="repeat-testing-3" name="repeat-testing" type="radio" value="I do not know" data-aria-controls="conditional-repeat-testing" {{ checked("repeat-testing", "I do not know") }}>
-                <label class="govuk-label govuk-radios__label" for="repeat-testing-3">
-                    I do not know
                 </label>
               </div>
 

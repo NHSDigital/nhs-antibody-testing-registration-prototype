@@ -1,0 +1,608 @@
+{% set version = "live" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout-lite-registration.html" %}
+
+{% block beforeContent %}
+
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+
+      <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Test registration details</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+         <dt class="govuk-summary-list__key">
+           Test kit barcode reference
+         </dt>
+         <dd class="govuk-summary-list__value">
+           {{ data['kit-barcode-reference-1'] or 'CHE00000501' }}
+         </dd>
+         <dd class="govuk-summary-list__actions">
+           <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/enter-barcode">
+             Change
+             <span class="govuk-visually-hidden">test kit barcode reference</span>
+           </a>
+         </dd>
+       </div>
+
+       {% if data['test-place'] !== "At a test site, government quarantine hotel, or in accommodation as part of an event/conference" and data['mail-barcode-reference-1'] %}
+       <div class="govuk-summary-list__row">
+         <dt class="govuk-summary-list__key">
+           Royal Mail barcode reference
+         </dt>
+         <dd class="govuk-summary-list__value">
+           {{ data['mail-barcode-reference-1'] or 'AA 1234 5678 9AA' }}
+         </dd>
+         <dd class="govuk-summary-list__actions">
+           <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode">
+             Change
+             <span class="govuk-visually-hidden">royal mail barcode reference</span>
+           </a>
+         </dd>
+       </div>
+       {% endif %}
+       {% if data['kit-barcode-reference-1'] == 'LF' or data['kit-barcode-reference-1'] == 'COE00000501' %}
+       <div class="govuk-summary-list__row">
+         <dt class="govuk-summary-list__key">
+           Test site
+         </dt>
+         <dd class="govuk-summary-list__value">
+           {% if data['site-id'] != undefined or data['site-id'] != "" %}
+             {% if data['site-id'] == "LEA4" %}
+             LEA4 - Leicester Students' Union
+             {% else %}
+             Chessington MTU
+             {% endif %}
+           {% else %}
+           {{ data['test-site'] or 'Sandwell (Sandwell General Hospital)' }}
+           {% endif %}
+         </dd>
+         <dd class="govuk-summary-list__actions">
+           <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/site-id">
+             Change
+             <span class="govuk-visually-hidden">test site</span>
+           </a>
+         </dd>
+       </div>
+       {% endif %}
+
+       {% if data['kit-barcode-reference-1'] !== "LFU00000009" %}
+       <div class="govuk-summary-list__row">
+         <dt class="govuk-summary-list__key">
+           Test location
+         </dt>
+         <dd class="govuk-summary-list__value">
+           {{ data['test-place'] or 'At home' }}
+         </dd>
+         <dd class="govuk-summary-list__actions">
+           <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/test-place">
+             Change
+             <span class="govuk-visually-hidden">test location</span>
+           </a>
+         </dd>
+       </div>
+       {% endif %}
+
+       {% if data['test-place'] == 'At a test site, government quarantine hotel, or in accommodation as part of an event/conference' or data['kit-barcode-reference-1'] == 'LFU00000009' %}
+       <div class="govuk-summary-list__row">
+         <dt class="govuk-summary-list__key">
+           Test site
+         </dt>
+         <dd class="govuk-summary-list__value">
+           {% if data['site-id'] != undefined or data['site-id'] != "" %}
+           London and Manchester Healthcare Limited
+           {% else %}
+           {{ data['test-site'] or 'Sandwell (Sandwell General Hospital)' }}
+           {% endif %}
+         </dd>
+         <dd class="govuk-summary-list__actions">
+           <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/site-id">
+             Change
+             <span class="govuk-visually-hidden">test site</span>
+           </a>
+         </dd>
+       </div>
+       {% endif %}
+
+       {% if data['kit-barcode-reference-1'] == "LFU00000009" %}
+       <div class="govuk-summary-list__row">
+         <dt class="govuk-summary-list__key">
+           Doing 7-day repeat testing?
+         </dt>
+         <dd class="govuk-summary-list__value">
+           {{ data['repeat-testing'] or 'No' }}
+         </dd>
+         <dd class="govuk-summary-list__actions">
+           <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/repeat-testing">
+             Change
+             <span class="govuk-visually-hidden">Doing 7-day repeat testing?</span>
+           </a>
+         </dd>
+       </div>
+       {% endif %}
+
+       <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Test date and time
+        </dt>
+        {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "1" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "01" %}
+        <dd class="govuk-summary-list__value">
+          {{ data['date-of-swab-test-day'] }} January {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+        </dd>
+        {% endif %}
+        {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "2" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "02" %}
+        <dd class="govuk-summary-list__value">
+          {{ data['date-of-swab-test-day'] }} February {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+        </dd>
+        {% endif %}
+        {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "3" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "03" %}
+        <dd class="govuk-summary-list__value">
+          {{ data['date-of-swab-test-day'] }} March {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+        </dd>
+        {% endif %}
+        {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "4" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "04" %}
+        <dd class="govuk-summary-list__value">
+          {{ data['date-of-swab-test-day'] }} April {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+        </dd>
+        {% endif %}
+        {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "5" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "05" %}
+        <dd class="govuk-summary-list__value">
+          {{ data['date-of-swab-test-day'] }} May {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+        </dd>
+        {% endif %}
+        {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "6" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "06" %}
+        <dd class="govuk-summary-list__value">
+          {{ data['date-of-swab-test-day'] }} June {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+        </dd>
+        {% endif %}
+        {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "7" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "07" %}
+        <dd class="govuk-summary-list__value">
+          {{ data['date-of-swab-test-day'] }} July {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+        </dd>
+        {% endif %}
+        {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "8" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "08" %}
+        <dd class="govuk-summary-list__value">
+          {{ data['date-of-swab-test-day'] }} August {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+        </dd>
+        {% endif %}
+        {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "9" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "09" %}
+        <dd class="govuk-summary-list__value">
+          {{ data['date-of-swab-test-day'] }} September {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+        </dd>
+        {% endif %}
+        {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "10" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "10" %}
+        <dd class="govuk-summary-list__value">
+          {{ data['date-of-swab-test-day'] }} October {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+        </dd>
+        {% endif %}
+        {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "11" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "11" %}
+        <dd class="govuk-summary-list__value">
+          {{ data['date-of-swab-test-day'] }} November {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+        </dd>
+        {% endif %}
+        {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "12" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "12" %}
+        <dd class="govuk-summary-list__value">
+          {{ data['date-of-swab-test-day'] }} December {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+        </dd>
+        {% endif %}
+        {% if data['swab-test-date'] !== "different" %}
+        <dd class="govuk-summary-list__value">
+          {{ data['swab-test-date'] or '4 December' }}: {{ data['swab-test-time'] or '6' }}{{ data['swab-test-time-ampm'] or 'am' }}
+        </dd>
+        {% endif %}
+        <dd class="govuk-summary-list__actions">
+            <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/test-date">
+            Change
+            <span class="govuk-visually-hidden">test date and time</span>
+            </a>
+        </dd>
+      </div>
+
+       {% if data['daily-contact-testing'] == "Yes" %}
+       <div class="govuk-summary-list__row">
+         <dt class="govuk-summary-list__key">
+           Trace Account ID
+         </dt>
+         <dd class="govuk-summary-list__value">
+           {{ data['trace-id'] or 'ae60a100' }}
+         </dd>
+         <dd class="govuk-summary-list__actions">
+           <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/trace-id">
+             Change
+             <span class="govuk-visually-hidden">trace account id</span>
+           </a>
+         </dd>
+       </div>
+         {% endif %}
+       </dl>
+
+      <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Personal details</h2>
+      <p class="govuk-body">Check that your personal details are correct. You can change them if they are not.</p>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}
+          </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/name">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+              </a>
+            </dd>
+          </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['date-of-birth-month'] == "1" or data['date-of-birth-month'] == "01" %}
+            {{ data['date-of-birth-day'] }} January {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "2" or data['date-of-birth-month'] == "02" %}
+            {{ data['date-of-birth-day'] }} February {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "3" or data['date-of-birth-month'] == "03" %}
+            {{ data['date-of-birth-day'] }} March {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "4" or data['date-of-birth-month'] == "04" %}
+            {{ data['date-of-birth-day'] }} April {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "5" or data['date-of-birth-month'] == "05" %}
+            {{ data['date-of-birth-day'] }} May {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "6" or data['date-of-birth-month'] == "06" %}
+            {{ data['date-of-birth-day'] }} June {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "7" or data['date-of-birth-month'] == "07" %}
+            {{ data['date-of-birth-day'] }} July {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "8" or data['date-of-birth-month'] == "08" %}
+            {{ data['date-of-birth-day'] }} August {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "9" or data['date-of-birth-month'] == "09" %}
+            {{ data['date-of-birth-day'] }} September {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "10" %}
+            {{ data['date-of-birth-day'] }} October {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "11" %}
+            {{ data['date-of-birth-day'] }} November {{ data['date-of-birth-year'] }}
+            {% elseif data['date-of-birth-month'] == "12" %}
+            {{ data['date-of-birth-day'] }} December {{ data['date-of-birth-year'] }}
+            {% else %}
+            6 December 1976
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/date-of-birth">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Contact details
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['email-address'] %}
+            {{ data['email-address'] }}<br>
+            {% endif %}
+            {{ data['mobile-phone-number'] or '07700 900000' }}<br>
+            {% if data['landline-number'] == "Yes" %}
+            {{ data['landline-telephone-number'] or '020 7946 0000' }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/email-address">
+              Change
+              <span class="govuk-visually-hidden">contact details</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Country of residence
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['country'] or 'England' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/country">
+              Change
+              <span class="govuk-visually-hidden">country of residence</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Home address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+              {{ data['home-address'] }}
+            {% else %}
+              {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+              {{ data['home-postcode'] or 'LS1 3BE' }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/postcode">
+              Change
+              <span class="govuk-visually-hidden">first line of address and postcode</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            GP registered address
+          </dt>
+          {% if data['gp-address-same'] !== "No" %}
+          <dd class="govuk-summary-list__value">
+            {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+              {{ data['home-address'] }}
+            {% else %}
+              {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+              {{ data['home-postcode'] or 'LS1 3BE' }}
+            {% endif %}
+          </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            {% if data['gp-address'] and data['gp-address'] !== "Select from 5 addresses" %}
+              {{ data['gp-address'] }}
+            {% else %}
+              {{ data['address-line-1-gp'] or '5 Souterhead Road'}}<br>
+              {{ data['gp-postcode'] or 'LS1 3BE' }}
+            {% endif %}
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/address">
+              Change
+              <span class="govuk-visually-hidden">postcode</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnicity
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ethnic-group'] or 'White' }}{% if data['ethnic-background'] !== 'Prefer not to say' and data['ethnic-background'] !== undefined %}{% if data['ethnic-background'] == "Another" %}, {{ data['another-ethnic-background'] or 'Irish'}}{% else %}, {{ data['ethnic-background'] or 'Irish'}}{% endif %}{% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/ethnic-group">
+              Change
+              <span class="govuk-visually-hidden">ethnicity</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Medical record (male, female, other…)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['gender'] or 'Male' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/gender">
+              Change
+              <span class="govuk-visually-hidden">medical record</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            NHS number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['nhs-number'] or 'Not known' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/nhs-number-known">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+
+      <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Employment and education</h2>
+      <p class="govuk-body">If your test is positive, we may use this information for contact tracing.</p>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Travels to nursery, work or place of education
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
+            Travels to work
+            {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
+            Travels to nursery, school, college or university
+            {% else %}
+            {{ data['currently-in-work'] or 'No' }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/currently-in-work">
+              Change
+              <span class="govuk-visually-hidden">currently in work?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['currently-in-work'] == "Yes - they travel to a workplace" or data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
+            Place of study or work
+            {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
+            Place of study or work
+            {% endif %}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
+              {% if data['industry'] !== "Prefer not to say" %}
+              {{ data['industry'] or 'Heath and social care' }}<br>
+              {% endif %}
+              {{ data['occupation-autocomplete'] or 'Prefer not to say' }}<br>
+              {% if data['employer'] !== "Prefer not to say" %}
+              {{ data['employer'] }}
+              {% endif %}
+            {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
+            {{ data['study-grade'] or 'College' }}<br>
+              {% if data['name'] and data['town'] %}
+              {{ data['name'] or 'Prefer not to say' }}, {{ data['town'] or 'Prefer not to say' }}
+              {% endif %}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            {% if data['currently-in-work'] == "Yes - they travel to a workplace" %}
+            <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/industry">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+            {% elseif data['currently-in-work'] == "Yes - they go to nursery, school, college or university" %}
+            <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/study-grade">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+            {% endif %}
+          </dd>
+        </div>
+        {% endif %}
+        </dl>
+
+        <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Vaccine and travel history</h2>
+        <p class="govuk-body">We may use this information to monitor new coronavirus variants.</p>
+
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Positive coronavirus test
+            </dt>
+             <dd class="govuk-summary-list__value">
+              {{ data['previous-infection'] or 'No' }}
+             </dd>
+           <dd class="govuk-summary-list__actions">
+              <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/previous-infection">
+                Change
+                <span class="govuk-visually-hidden">positive coronavirus test</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Coronavirus vaccine
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['vaccine'] == "Yes, 1 dose" and data['vaccine-date'] == "More than 14 days ago" or data['vaccine'] == "Yes, 2 or more doses" and data['vaccine-date'] == "More than 14 days ago" %}
+                {% if data['vaccine-month'] == "1" or data['vaccine-month'] == "01" %}
+                {{ data['vaccine'] }} <br>January {{ data['vaccine-year'] }}
+                {% elseif data['vaccine-month'] == "2" or data['vaccine-month'] == "02" %}
+                {{ data['vaccine'] }} <br>February {{ data['vaccine-year'] }}
+                {% elseif data['vaccine-month'] == "3" or data['vaccine-month'] == "03" %}
+                {{ data['vaccine'] }} <br>March {{ data['vaccine-year'] }}
+                {% elseif data['vaccine-month'] == "4" or data['vaccine-month'] == "04" %}
+                {{ data['vaccine'] }} <br>April {{ data['vaccine-year'] }}
+                {% elseif data['vaccine-month'] == "5" or data['vaccine-month'] == "05" %}
+                {{ data['vaccine'] }} <br>May {{ data['vaccine-year'] }}
+                {% elseif data['vaccine-month'] == "6" or data['vaccine-month'] == "06" %}
+                {{ data['vaccine'] }} <br>June {{ data['vaccine-year'] }}
+                {% elseif data['vaccine-month'] == "7" or data['vaccine-month'] == "07" %}
+                {{ data['vaccine'] }} <br>July {{ data['vaccine-year'] }}
+                {% elseif data['vaccine-month'] == "8" or data['vaccine-month'] == "08" %}
+                {{ data['vaccine'] }} <br>August {{ data['vaccine-year'] }}
+                {% elseif data['vaccine-month'] == "9" or data['vaccine-month'] == "09" %}
+                {{ data['vaccine'] }} <br>September {{ data['vaccine-year'] }}
+                {% elseif data['vaccine-month'] == "10" %}
+                {{ data['vaccine'] }} <br>October {{ data['vaccine-year'] }}
+                {% elseif data['vaccine-month'] == "11" %}
+                {{ data['vaccine'] }} <br>November {{ data['vaccine-year'] }}
+                {% elseif data['vaccine-month'] == "12" %}
+                {{ data['vaccine'] }} <br>December {{ data['vaccine-year'] }}
+                {% endif %}
+              {% elseif data['vaccine'] == "Yes, 1 dose" and data['vaccine-date'] !== "More than 14 days ago" or data['vaccine'] == "Yes, 2 or more doses" and data['vaccine-date'] !== "More than 14 days ago" %}
+              {{ data['vaccine'] }}<br>{{ data['vaccine-date'] }}
+              {% else %}
+              No
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/vaccine">
+                Change
+                <span class="govuk-visually-hidden">Coronavirus vaccine</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Travelled overseas
+            </dt>
+            {% if data['have-you-travelled-overseas'] !== "Yes" %}
+            <dd class="govuk-summary-list__value">No
+            </dd>
+            {% else %}
+            <dd class="govuk-summary-list__value">Yes, to
+              {{ data['country-visited-autocomplete'] or 'France' }}<br>
+            </dd>
+            {% endif %}
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/overseas-travel">
+                Change
+                <span class="govuk-visually-hidden">country visited</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['have-you-travelled-overseas'] == "Yes" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Travelled to red list country
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['travel-route'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/litereg-accounts/e2e-prototypes/live/travel-route">
+                Change
+                <span class="govuk-visually-hidden">country visited</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+        </dl>
+
+
+      <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/confirmation" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

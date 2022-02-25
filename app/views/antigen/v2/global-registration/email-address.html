@@ -27,8 +27,45 @@
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+            {% if data['way-to-test'] == "home testing" %}
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+              <h1 class="govuk-heading-l">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+            <div id="email-address-hint">
+              <p class="govuk-body">We need an email address to send the test results. Use one they'll have access to later.</p>
+
+              <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
+
+              <p class="govuk-body">If they're getting a test for a child, enter their email not the child's.</p>
+
+              <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way to get the test results.</p>
+
+            </div>
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+             What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}'s email address?
+             </legend>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="email-address">
+                    Email address
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+                </div>
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="confirm-email-address">
+                    Confirm email address
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
+                </div>
+
+            {% else %}
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l">
                 {{ pageTitle }}
               </h1>
             </legend>
@@ -46,21 +83,40 @@
             </div>
 
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-             What's {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }} 's email address?
-             </legend>
+                Does {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }} have an email address?
+            </legend>
 
-                <div class="govuk-form-group govuk-!-margin-top-6">
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="different" data-aria-controls="conditional-email-address" {{ checked("email", "different") }}>
+                <label class="govuk-label govuk-radios__label" for="email-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
+                <div class="govuk-form-group">
                   <label class="govuk-label" for="email-address">
                     Email address
                   </label>
-                  <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+                  <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="tel" value="{{ data['email-address'] }}">
                 </div>
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="confirm-email-address">
                     Confirm email address
                   </label>
-                  <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
+                  <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="tel" value="{{ data['confirm-email-address'] }}">
                 </div>
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="No" {{ checked("email", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="email-2">
+                  No
+                </label>
+              </div>
+            </div>
+
+            {% endif %}
 
           </fieldset>
         </div>

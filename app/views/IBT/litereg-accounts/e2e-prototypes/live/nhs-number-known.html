@@ -24,7 +24,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/check-your-answers" method="post">
+      <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/action5/nhs-number-known" method="post">
       
         <div class="govuk-form-group">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -72,8 +72,13 @@
           <br>
 
           <button class="govuk-button" data-module="govuk-button">Continue</button>
+
           <p>
+            {% if data['kit-barcode-reference-1'] !== "user@testing.co.uk" and data['travel-route'] !== "Yes" %}
+            <a class="govuk-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/fingerprick-test">Continue without NHS number</a>
+            {% else %}
             <a class="govuk-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/check-your-answers">Continue without NHS number</a>
+            {% endif %}
           </p>
           
         </div>

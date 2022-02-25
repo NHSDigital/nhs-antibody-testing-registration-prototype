@@ -10,9 +10,9 @@ function loadJSONFromFile(fileName, path = "app/data/") {
   return JSON.parse(jsonFile) // Return JSON as object
 }
 
-// VERSION 1
+// LIVE VERSION
 
-// Version 1 - Lite Registration Accounts- Mobile number route
+// Live - Lite Registration Accounts- Mobile number route
 
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/landline-number', function (req, res) {
   let mobileNumber = req.session.data['mobile-number']
@@ -25,7 +25,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/landline-number',
 
 })
 
-// Version 1 - Lite Registration Accounts - Who's taking the test route
+// Live - Lite Registration Accounts - Who's taking the test route
 
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/whos-taking-the-test', function (req, res) {
   let person = req.session.data['whos-taking-the-test']
@@ -37,12 +37,12 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/whos-taking-the-t
 
 })
 
-// Version 1 - Lite Registration Accounts - enter barcode route
+// Live - Lite Registration Accounts - enter barcode route
 
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/enter-barcode', function (req, res) {
   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
   if (uniqueBarcode == "LAMP") {
-    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/which-university')
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/test-date')
   } else {
     res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/overseas-travel')
   }
@@ -59,7 +59,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/enter-barcode', f
 //   }
 // })
 
-// Version 1 - Lite Registration Accounts - Test date route
+// Live - Lite Registration Accounts - Test date route
 
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/test-date', function (req, res) {
   let emailAddress = req.session.data['email-address']
@@ -71,7 +71,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/test-date', funct
 
 })
 
-// Version 1 - Lite Registration Accounts - Do you have symptoms route
+// Live - Lite Registration Accounts - Do you have symptoms route
 
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action3/do-you-have-symptoms', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
@@ -83,7 +83,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action3/do-you-have-sympt
 
 })
 
-  // Version 2 - Lite Registration Accounts - Overseas travel route
+  // Live - Lite Registration Accounts - Overseas travel route
 
   // router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/enter-barcode', function (req, res) {
   //   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
@@ -101,7 +101,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action3/do-you-have-sympt
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
     if (overseasTravel == "Yes") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/travel-route')
-    } else if (uniqueBarcode == "LHE00000501") {
+    } else if (uniqueBarcode == "LFU00000009") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/site-id')
     } else if (uniqueBarcode == "COE00000501") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/royal-mail-barcode')
@@ -113,7 +113,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action3/do-you-have-sympt
 
   router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/travelled-to', function (req, res) {
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
-    if (uniqueBarcode == "LHE00000501") {
+    if (uniqueBarcode == "LFU00000009") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/site-id')
     } else if (uniqueBarcode == "COE00000501") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/royal-mail-barcode')
@@ -123,7 +123,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action3/do-you-have-sympt
 
   })
 
-// Version 2 - Lite Registration Accounts - First line of address and postcode route
+// Live - Lite Registration Accounts - First line of address and postcode route
 
   router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/address', function (req, res) {
   let emailAddress = req.session.data['email-address']
@@ -136,7 +136,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action3/do-you-have-sympt
 
 })
 
-// Version 1 - Lite Registration Accounts - Ethnic group route
+// Live - Lite Registration Accounts - Ethnic group route
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/ethnic-group', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
@@ -156,7 +156,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/ethnic-group', fu
 
 })
 
-// Version 1 - Lite Registration Accounts - Currently in work route
+// Live - Lite Registration Accounts - Currently in work route
 
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/currently-in-work', function (req, res) {
   let inWork = req.session.data['currently-in-work']
@@ -170,7 +170,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/currently-in-work
 
 })
 
-// Version 1 - Lite Registration Accounts - Login email route
+// Live - Lite Registration Accounts - Login email route
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/user-account/action9/login-email', function (req, res) {
   let loginEmail = req.session.data['email-address']
 
@@ -182,7 +182,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/user-account/action9/logi
 
 })
 
-// Version 1 - Lite Registration Accounts - Home page testing route
+// Live - Lite Registration Accounts - Home page testing route
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/home-page', function (req, res) {
   let loginEmail = req.session.data['email-address']
 
@@ -194,7 +194,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/home-page', funct
 
 })
 
-// Version 1 - Lite Registration Accounts - Create password route
+// Live - Lite Registration Accounts - Create password route
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/create-password', function (req, res) {
   let password = req.session.data['password']
   let confirmPassword = req.session.data['confirm-password']
@@ -205,7 +205,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/create-password',
   }
 })
 
-// Version 1 - Lite Registration Accounts - check mobile route
+// Live - Lite Registration Accounts - check mobile route
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/check-mobile', function (req, res) {
   let securityCode = req.session.data['security-code']
   if (securityCode == "") {
@@ -215,7 +215,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/check-mobile', fu
   }
 })
 
-// Version 1 - Lite Registration Accounts - test place route
+// Live - Lite Registration Accounts - test place route
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action4/test-place', function (req, res) {
   let testPlace = req.session.data['test-place']
   if (testPlace == "At a test site, government quarantine hotel, or in accommodation as part of an event/conference") {
@@ -225,7 +225,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action4/test-place', func
   }
 })
 
-// Version 1 - Lite Registration Accounts - GP address same route
+// Live - Lite Registration Accounts - GP address same route
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action/gp-address-same', function (req, res) {
   let gpAdressSame = req.session.data['gp-address-same']
   if (gpAdressSame == "No"){
@@ -235,20 +235,30 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action/gp-address-same', 
   }
 })
 
-// Version 1 - Lite Registration Accounts - site confirmation route
+// Live - Lite Registration Accounts - site confirmation route
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action9/site-confirmation', function (req, res) {
   let confirmSite = req.session.data['confirm-site']
   let barcode = req.session.data['kit-barcode-reference-1']
-  if (confirmSite == "Yes" && barcode == "LHE00000501") {
-    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/daily-contact-testing')
-  } else if (confirmSite == "Yes" && barcode !== "LHE00000501") {
+  if (confirmSite == "Yes" && barcode == "LFU00000009") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/repeat-testing')
+  } else if (confirmSite == "Yes" && barcode !== "LFU00000009") {
     res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/test-date')
   } else {
     res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/site-id')
   }
 })
 
-// Version 1 - Lite Registration Accounts - vaccine route
+// Live - Lite Registration Accounts - 7-day repeat testing
+router.post('/IBT/litereg-accounts/e2e-prototypes/live/action5/repeat-testing', function (req, res) {
+  let repeatTesting = req.session.data['repeat-testing']
+  if (repeatTesting == "Yes") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/trace-id')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/test-date')
+  }
+})
+
+// Live - Lite Registration Accounts - vaccine route
 router.post('/IBT/litereg-accounts/e2e-prototypes/live/action7/vaccine', function (req, res) {
   let vaccine = req.session.data['vaccine']
   let loginEmail = req.session.data['email-address']
@@ -261,7 +271,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action7/vaccine', functio
   }
 })
 
- // Version 1 - Lite Registration Accounts - vaccine date route
+ // Live - Lite Registration Accounts - vaccine date route
  router.post('/IBT/litereg-accounts/e2e-prototypes/live/action7/vaccine-date', function (req, res) {
   let loginEmail = req.session.data['email-address']
   if (loginEmail == "user@testing.co.uk") {
@@ -270,6 +280,305 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action7/vaccine', functio
     res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/country')
   }
 })
+
+ // Live - Lite Registration Accounts - vaccine date route
+ router.post('/IBT/litereg-accounts/e2e-prototypes/live/action5/nhs-number-known', function (req, res) {
+  let barcode = req.session.data['kit-barcode-reference-1']
+  let redTraveller = req.session.data['travel-route']
+  if (barcode !== "user@testing.co.uk" && redTraveller !== "Yes") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/fingerprick-test')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/live/check-your-answers')
+  }
+})
+
+
+// RESEARCH VERSION
+
+// Research - Lite Registration Accounts - Mobile number route
+
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/landline-number', function (req, res) {
+  let mobileNumber = req.session.data['mobile-number']
+  let emailAddress = req.session.data['email']
+  if (mobileNumber == "No" && emailAddress == "No" ) {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/call-us')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/nhs-number-known')
+  }
+
+})
+
+// Research - Lite Registration Accounts - Who's taking the test route
+
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/whos-taking-the-test', function (req, res) {
+  let person = req.session.data['whos-taking-the-test']
+  if (person == "myself") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/coronavirus-account')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/enter-barcode')
+  }
+
+})
+
+// Research - Lite Registration Accounts - enter barcode route
+
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/enter-barcode', function (req, res) {
+  let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+  if (uniqueBarcode == "LAMP") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/test-date')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/overseas-travel')
+  }
+})
+
+// router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/enter-barcode', function (req, res) {
+//   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+//   if (uniqueBarcode == "LHE00000501") {
+//     res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/site-id')
+//   } else if (uniqueBarcode == "COE00000501") {
+//     res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/royal-mail-barcode')
+//   } else {
+//     res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/quarantine-question')
+//   }
+// })
+
+// Research - Lite Registration Accounts - Test date route
+
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/test-date', function (req, res) {
+  let emailAddress = req.session.data['email-address']
+  if (emailAddress == "user@testing.co.uk") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/do-you-have-symptoms')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/name')
+  }
+
+})
+
+// Research - Lite Registration Accounts - Do you have symptoms route
+
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action3/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/when-did-symptoms-start')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/previous-infection')
+  }
+
+})
+
+  // Research - Lite Registration Accounts - Overseas travel route
+
+  // router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/enter-barcode', function (req, res) {
+  //   let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+  //   if (uniqueBarcode == "LHE00000501") {
+  //     res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/site-id')
+  //   } else if (uniqueBarcode == "COE00000501") {
+  //     res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/royal-mail-barcode')
+  //   } else {
+  //     res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/test-place')
+  //   }
+  // })
+
+  router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/overseas-travel', function (req, res) {
+    let overseasTravel = req.session.data['have-you-travelled-overseas']
+    let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+    if (overseasTravel == "Yes") {
+      res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/travel-route')
+    } else if (uniqueBarcode == "LFU00000009") {
+      res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/site-id')
+    } else if (uniqueBarcode == "COE00000501") {
+      res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/royal-mail-barcode')
+    } else {
+      res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/test-place')
+    }
+
+  })
+
+  router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/travelled-to', function (req, res) {
+    let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+    if (uniqueBarcode == "LFU00000009") {
+      res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/site-id')
+    } else if (uniqueBarcode == "COE00000501") {
+      res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/royal-mail-barcode')
+    } else {
+      res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/test-place')
+    }
+
+  })
+
+// Research - Lite Registration Accounts - First line of address and postcode route
+
+  router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/address', function (req, res) {
+  let emailAddress = req.session.data['email-address']
+  let password = req.session.data['password']
+  if (emailAddress != "user@testing.co.uk" && password == " " || emailAddress != "user@testing.co.uk" && password == undefined) {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/email-address')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/email-address-account')
+  }
+
+})
+
+// Research - Lite Registration Accounts - Ethnic group route
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/ethnic-background-another')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/currently-in-work')
+  }
+
+})
+
+// Research - Lite Registration Accounts - Currently in work route
+
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/currently-in-work', function (req, res) {
+  let inWork = req.session.data['currently-in-work']
+  if (inWork == "Yes - they travel to a workplace" || inWork == "Yes - I travel to a workplace"){
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/industry')
+  } else if (inWork == "Yes - they go to nursery, school, college or university" || inWork == "Yes - I go to nursery, school, college or university"){
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/study-grade')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/do-you-have-symptoms')
+  }
+
+})
+
+// Research - Lite Registration Accounts - Login email route
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/user-account/action9/login-email', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/user-account/enter-password')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/user-account/create-password')
+  }
+
+})
+
+// Research - Lite Registration Accounts - Home page testing route
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/home-page', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == 'user@testing.co.uk'){
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/test-place')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/email-address-account')
+  }
+
+})
+
+// Research - Lite Registration Accounts - Create password route
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/user-account/create-password-error')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/user-account/check-email')
+  }
+})
+
+// Research - Lite Registration Accounts - check mobile route
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/user-account/check-mobile-error')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/user-account/agreement')
+  }
+})
+
+// Research - Lite Registration Accounts - test place route
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action4/test-place', function (req, res) {
+  let testPlace = req.session.data['test-place']
+  if (testPlace == "At a test site, government quarantine hotel, or in accommodation as part of an event/conference") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/site-id')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/royal-mail-barcode')
+  }
+})
+
+// Research - Lite Registration Accounts - GP address same route
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action/gp-address-same', function (req, res) {
+  let gpAdressSame = req.session.data['gp-address-same']
+  if (gpAdressSame == "No"){
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/address')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/email-address')
+  }
+})
+
+// Research - Lite Registration Accounts - site confirmation route
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/site-confirmation', function (req, res) {
+  let confirmSite = req.session.data['confirm-site']
+  let barcode = req.session.data['kit-barcode-reference-1']
+  if (confirmSite == "Yes" && barcode == "LFU00000009") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/repeat-testing')
+  } else if (confirmSite == "Yes" && barcode !== "LFU00000009") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/test-date')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/site-id')
+  }
+})
+
+// Research - Lite Registration Accounts - 7-day repeat testing
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action5/repeat-testing', function (req, res) {
+  let repeatTesting = req.session.data['repeat-testing']
+  if (repeatTesting == "Yes") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/trace-id')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/test-date')
+  }
+})
+
+// Research - Lite Registration Accounts - vaccine route
+router.post('/IBT/litereg-accounts/e2e-prototypes/research/action7/vaccine', function (req, res) {
+  let vaccine = req.session.data['vaccine']
+  let loginEmail = req.session.data['email-address']
+  if (vaccine == "No" && loginEmail == "user@testing.co.uk") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/check-your-answers')
+  } else if (vaccine == "No" && loginEmail != "user@testing.co.uk") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/country')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/vaccine-date')
+  }
+})
+
+ // Research - Lite Registration Accounts - vaccine date route
+ router.post('/IBT/litereg-accounts/e2e-prototypes/research/action7/vaccine-date', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+  if (loginEmail == "user@testing.co.uk") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/check-your-answers')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/country')
+  }
+})
+
+ // Research - Lite Registration Accounts - vaccine date route
+ router.post('/IBT/litereg-accounts/e2e-prototypes/research/action5/nhs-number-known', function (req, res) {
+  let barcode = req.session.data['kit-barcode-reference-1']
+  let redTraveller = req.session.data['travel-route']
+  if (barcode !== "user@testing.co.uk" && redTraveller !== "Yes") {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/fingerprick-test')
+  } else {
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/check-your-answers')
+  }
+})
+
+
+
+
+
 
 
 // VERSION 2
@@ -2096,12 +2405,45 @@ router.post('/share-result-lateral-flow/v19-2/action9/check-mobile', function (r
           })
 
           // Version 29 - LDF self report accounts - check mobile route
-          router.post('/share-result-lateral-flow/v2/action9/check-mobile', function (req, res) {
+          router.post('/share-result-lateral-flow/v29/action9/check-mobile', function (req, res) {
           let securityCode = req.session.data['security-code']
           if (securityCode == "") {
             res.redirect('/share-result-lateral-flow/v29/user-account/check-mobile-error')
           } else {
             res.redirect('/share-result-lateral-flow/v29/user-account/agreement')
+          }
+          })
+
+          // Version 33 - LDF self report accounts - Who's taking the test route
+
+          router.post('/share-result-lateral-flow/v33/action9/whos-taking-the-test', function (req, res) {
+            let person = req.session.data['whos-taking-the-test']
+            if (person == "myself") {
+              res.redirect('/share-result-lateral-flow/v33/coronavirus-account')
+            } else {
+              res.redirect('/share-result-lateral-flow/v33/country')
+            }
+          })
+
+          // Version 29 - LDF self report accounts - Create password route
+
+          router.post('/share-result-lateral-flow/v33/action9/create-password', function (req, res) {
+          let password = req.session.data['password']
+          let confirmPassword = req.session.data['confirm-password']
+          if (password == "" || confirmPassword == "") {
+            res.redirect('/share-result-lateral-flow/v33/user-account/create-password-error')
+          } else {
+            res.redirect('/share-result-lateral-flow/v33/user-account/check-email')
+          }
+          })
+
+          // Version 29 - LDF self report accounts - check mobile route
+          router.post('/share-result-lateral-flow/v33/action9/check-mobile', function (req, res) {
+          let securityCode = req.session.data['security-code']
+          if (securityCode == "") {
+            res.redirect('/share-result-lateral-flow/v33/user-account/check-mobile-error')
+          } else {
+            res.redirect('/share-result-lateral-flow/v33/user-account/agreement')
           }
           })
 

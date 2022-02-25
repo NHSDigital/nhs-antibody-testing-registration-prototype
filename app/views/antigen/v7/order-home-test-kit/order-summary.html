@@ -1,5 +1,5 @@
 {% set version = "v7" %}
-{% set pageTitle = "Your home PCR test order summary" %}
+{% set pageTitle = "Order summary" %}
 
 {% extends "includes/layout.html" %}
 
@@ -42,7 +42,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Delivery address
+            PCR delivery address
           </dt>
           <dd class="govuk-summary-list__value">
               {% if data['delivery-address-same'] and data['delivery-address'] !== 'Select from 5 addresses' %}
@@ -66,42 +66,26 @@
         </div>
       </dl>
 
-      <!-- <h2 class="govuk-heading-m">Disclaimer</h2> -->
 
-      <div class="govuk-warning-text govuk-!-margin-bottom-2">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <span class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Important</span>
-          <h2 class="govuk-heading-m govuk-!-margin-bottom-0">By ordering a home test kit, I confirm that:</h2>
-        </span>
-      </div>
+      <h2 class="govuk-heading-l">Declaration</h2>
 
-      <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-8">
+      <p class="govuk-body">
+        By ordering a PCR home test kit, I confirm that: <br>
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
         <li>The information I've provided is up to date and correct</li>
         <li>I agree with the <a href="#">Terms and conditions</a> and <a href="#">Privacy policy</a> of this service</li>
         <li>I am happy to be contacted about my order</li>
         <li>I'll aim to return the kit within 48 hours</li>
-        <!-- <li>If I test positive, and I have agreed to do so, I will take part in antibody testing</li> -->
       </ul>
 
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
-          <div class="govuk-checkboxes">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="confirm" name="confirm" type="checkbox" value="Yes" onclick="checkBox()">
-              <label class="govuk-label govuk-checkboxes__label" for="confirm">
-                Yes, I confirm that all the above apply
-              </label>
-            </div>
-          </div>
-        </fieldset>
-      </div>
 
       <form action="/antigen/{{version}}/order-home-test-kit/confirmation" method="post">
 
-        <button id="button" disabled class="govuk-button govuk-!-margin-bottom-3" type="submit" data-module="govuk-button">
-          Place order
-        </button>
+        <button class="govuk-button" data-module="govuk-button">
+    Agree and place order
+  </button>
 
       </form>
 
