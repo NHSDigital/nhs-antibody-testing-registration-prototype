@@ -1,0 +1,41 @@
+{% set version = "research" %}
+{% set pageTitle = "What's your home postcode?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/user-account/edit-personal-details/home-page">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/user-account/edit-personal-details/home-page" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="post-code-hint" class="govuk-hint">
+            Enter your home postcode (ideally the one you used to register with your GP)
+          </span>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="home-postcode">
+              Postcode
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
