@@ -79,16 +79,21 @@
             </div>
 
             <div class="govuk-radios govuk-!-margin-top-7">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="fingerprick-test-1" name="fingerprick-test" type="radio" value="Yes. The antibody tests will be sent to their home address." {{ checked("fingerprick-test", "Yes. The antibody tests will be sent to their home address.") }}>
+                <label class="govuk-label govuk-radios__label" for="fingerprick-test-1">
+                Yes, they are willing to do the antibody tests
+                </label>
+              </div>
+              {% else %}
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="fingerprick-test-1" name="fingerprick-test" type="radio" value="Yes. The antibody tests will be sent to your home address." {{ checked("fingerprick-test", "Yes. The antibody tests will be sent to your home address.") }}>
                 <label class="govuk-label govuk-radios__label" for="fingerprick-test-1">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                Yes, they are willing to do the antibody tests
-                {% else %}
                 Yes, I am willing to do the antibody tests
-                {% endif %}
                 </label>
               </div>
+              {% endif %}
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="fingerprick-test-2" name="fingerprick-test" type="radio" value="No" {{ checked("fingerprick-test", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="fingerprick-test-2">
