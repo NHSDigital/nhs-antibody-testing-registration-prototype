@@ -40,7 +40,7 @@
             </div>
           </fieldset>
         </div>
-        <a class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-scan">Scan barcode</a>
+        <a id="scan-button" class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="#">Scan barcode</a>
         <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
         
         <p class="govuk-body">
@@ -54,8 +54,21 @@
     </div>
   </div>
 
-  <!-- <script type="text/javascript">
+  <script type="text/javascript">
     submitEvent()
+
+    function scanButtonClicked(target) {
+      navigator.permissions.query({name:'camera'}).then(function(permissionStatus) {
+      console.log('camera permission state is ', permissionStatus.state);
+        if(permissionStatus.state == "denied") {
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-permissions-denied';
+        } else {
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-scan';
+        }
+      });
+    }
+
+    
 
     function addListener(button, buttonClicked) {
       button.addEventListener('click', function (event) {
@@ -68,20 +81,11 @@
       })
     }
   
-    function manualEntryButtonClicked(target) {
-      setTimeout(function () {
-        document.getElementById('content-1').style.display = 'none'
-        document.getElementById('content-2').style.display = 'block'
-        document.getElementById('mail-barcode-reference-1').focus()
-      }, 100)
-    }
-
-  
     function submitEvent() {
-      var manualEntryButton = document.getElementById('manual-entry')
-      addListener(manualEntryButton, manualEntryButtonClicked)
+      var scanButton = document.getElementById('scan-button')
+      addListener(scanButton, scanButtonClicked)
     }
   
-  </script> -->
+  </script>
 
 {% endblock %}

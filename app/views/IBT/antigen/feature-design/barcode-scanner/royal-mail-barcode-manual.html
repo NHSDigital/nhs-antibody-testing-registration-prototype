@@ -45,7 +45,7 @@
               <div id="enter-barcode-number-hint-3" class="govuk-hint">
                 For example, ZD 6904 0038 5GB
               </div>
-              <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] }}>
+              <input autofocus class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] }}>
             </div>
             <div class="govuk-form-group">
               <label class="govuk-label" for="mail-barcode-reference-2">
@@ -56,7 +56,7 @@
           </fieldset>
         </div>
         <button class="govuk-button" data-module="govuk-button">Continue</button>
-        <a class="govuk-button govuk-button--secondary" data-module="govuk-button" href="/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-scan">Use barcode scanner</a>
+        <a id="scan-button" class="govuk-button govuk-button--secondary" data-module="govuk-button" href="#">Use barcode scanner</a>
 
         <p class="govuk-body">
           <a href="/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode" role="button" draggable="false" class="govuk-link" data-module="govuk-button">
@@ -68,5 +68,39 @@
 
     </div>
   </div>
+
+  <script type="text/javascript">
+    submitEvent()
+
+    function scanButtonClicked(target) {
+      navigator.permissions.query({name:'camera'}).then(function(permissionStatus) {
+      console.log('camera permission state is ', permissionStatus.state);
+        if(permissionStatus.state == "denied") {
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-permissions-denied';
+        } else {
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-scan';
+        }
+      });
+    }
+
+    
+
+    function addListener(button, buttonClicked) {
+      button.addEventListener('click', function (event) {
+        event.preventDefault()
+        if (button.getAttribute('disabled') === 'disabled') {
+        } else {
+          event.preventDefault()
+          buttonClicked(button)
+        }
+      })
+    }
+  
+    function submitEvent() {
+      var scanButton = document.getElementById('scan-button')
+      addListener(scanButton, scanButtonClicked)
+    }
+  
+  </script>
 
 {% endblock %}
