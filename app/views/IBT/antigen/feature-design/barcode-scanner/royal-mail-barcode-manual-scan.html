@@ -38,10 +38,27 @@
             <div class="govuk-!-margin-top-5">
               <img src="/public/images/royal-mail-barcode.png" class="responsive-image" alt="Illustration of a royal mail barcode showing the position on return box. It is on the right-hand side of the label on your return box."/>
             </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mail-barcode-reference-1">
+                Royal Mail barcode reference
+              </label>
+              <div id="enter-barcode-number-hint-3" class="govuk-hint">
+                For example, ZD 6904 0038 5GB
+              </div>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] }}>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mail-barcode-reference-2">
+                Confirm Royal Mail barcode reference
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-2" name="mail-barcode-reference-2" type="text" value={{ data['mail-barcode-reference-2'] }}>
+            </div>
           </fieldset>
         </div>
-        <a class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-scan">Scan barcode</a>
-        <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
+        <!-- <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <a class="govuk-button govuk-button--secondary" data-module="govuk-button">Use barcode scanner</a> -->
+        <button id="manual-entry" class="govuk-button" data-module="govuk-button">Continue</button>
+        <a class="govuk-button govuk-button--secondary" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-manual-scan">Use barcode scanner</a>
 
         <div class="gem-c-modal-dialogue" data-module="modal-dialogue" id="modal-window-2" style="display: block;">
           <div class="gem-c-modal-dialogue__overlay"></div>
@@ -98,7 +115,7 @@
       permissionStatus.onchange = function() {
         console.log('camera permission state has changed to ', this.state);
         if(this.state == "denied") {
-          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-permissions-denied';
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-manual-permissions-denied';
         } else if (this.state == "prompt") {
           
         } else {
@@ -119,7 +136,7 @@
     }
 
     function closeButtonClicked(target) {
-        window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode';
+        window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-manual';
     }
   
     function manualEntryButtonClicked(target) {

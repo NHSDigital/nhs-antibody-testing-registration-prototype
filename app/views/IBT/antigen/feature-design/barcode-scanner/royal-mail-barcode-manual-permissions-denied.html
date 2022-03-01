@@ -23,7 +23,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-scanned" method="post">
+      <form action="/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
@@ -38,12 +38,30 @@
             <div class="govuk-!-margin-top-5">
               <img src="/public/images/royal-mail-barcode.png" class="responsive-image" alt="Illustration of a royal mail barcode showing the position on return box. It is on the right-hand side of the label on your return box."/>
             </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mail-barcode-reference-1">
+                Royal Mail barcode reference
+              </label>
+              <div id="enter-barcode-number-hint-3" class="govuk-hint">
+                For example, ZD 6904 0038 5GB
+              </div>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] }}>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mail-barcode-reference-2">
+                Confirm Royal Mail barcode reference
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-2" name="mail-barcode-reference-2" type="text" value={{ data['mail-barcode-reference-2'] }}>
+            </div>
           </fieldset>
         </div>
-        <a class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-scan">Scan barcode</a>
-        <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
+        <!-- <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <a id="scan-button" data-target="modal-with-data-attributes" class="govuk-button govuk-button--secondary" data-module="govuk-button" data-toggle="modal" href="/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-manual-scan">Use barcode scanner</a> -->
 
-        <div class="gem-c-modal-dialogue" data-module="modal-dialogue" id="modal-window-2" style="display: block;">
+        <button id="manual-entry" class="govuk-button" data-module="govuk-button">Continue</button>
+        <a class="govuk-button govuk-button--secondary" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-manual-scan">Use barcode scanner</a>
+
+        <div class="gem-c-modal-dialogue" data-module="modal-dialogue" id="modal-window-1" style="display: block;">
           <div class="gem-c-modal-dialogue__overlay"></div>
           <dialog class="gem-c-modal-dialogue__box" aria-modal="true" role="dialog" tabindex="0">
             <div class="gem-c-modal-dialogue__header">
@@ -52,28 +70,27 @@
                 <image src="/assets/govuk-logotype-crown-0cdbde943be3a6518a5d7c00b607d134f4d5e3d0e8c68a1bfa2dc81f1f3edc4e.png" class="gem-c-modal-dialogue__logotype-crown-fallback-image"></image>
               </svg>
             </div>    
-            <div class="gem-c-modal-dialogue__content" id="scanner-wrapper">
-              <p class="govuk-body">
-                <strong>Scanning will start automatically when the barcode is within the frame</strong>
+            <div class="gem-c-modal-dialogue__content">
+              <p class="govuk-body"><strong>Camera access needs to be enabled</strong></p>
+              <p class="govuk-body" style="display: flex; align-items: center;">
+                <svg width="40px" height="38px" viewBox="0 0 471 472" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <title>camera-not-enabled@2x</title>
+                  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="camera-not-enabled" fill="#000000" fill-rule="nonzero">
+                      <path d="M467.0831,3.3945 C465.0519,1.2304 462.212,-5.68434189e-14 459.2433,-5.68434189e-14 C456.2746,-5.68434189e-14 453.4347,1.2305 451.4035,3.3945 L142.9535,311.8445 L30.2735,425.6345 L3.3945,452.5135 L3.3945,452.517406 C1.2304,454.548606 0,457.384606 0,460.357206 C0,463.326006 1.2305,466.161906 3.3945,468.197006 C5.4257,470.361106 8.2656,471.591506 11.2343,471.591506 C14.203,471.591506 17.0429,470.361006 19.0741,468.197006 L297.9541,189.317006 L385.3091,100.840006 L467.0711,19.078006 C469.2352,17.046806 470.4656,14.206906 470.4656,11.238206 C470.4656,8.269506 469.2351,5.429606 467.0711,3.398406 L467.0831,3.3945 Z" id="Path"></path>
+                      <path d="M139.1431,299.5245 C135.9673,289.6065 134.3814,279.2475 134.44,268.8365 C134.498593,242.1175 145.139,216.5165 164.03,197.6255 C182.921,178.7345 208.526,168.0945 235.241,168.0355 C245.655,167.976907 256.011,169.5628 265.929,172.7386 L347.019,91.6486 L318.347,48.6406 C312.3197,39.4961 302.191,33.8866 291.242,33.6323564 L179.242,33.6323564 C167.972,33.589631 157.445,39.2342 151.242,48.6406 L117.195,100.8356 L56.043,100.8356 C47.1328,100.8356 38.586,104.3747 32.285,110.6754 C25.9803,116.9762 22.4406171,125.5234 22.4406171,134.4334 L22.4406171,403.2334 C22.417762,406.9873 23.10136,410.71 24.4568,414.2104 L139.1431,299.5245 Z" id="Path"></path>
+                      <path d="M414.4431,100.8345 L401.4511,100.8345 L305.5801,196.7055 C325.5921,215.3505 337.1661,241.3265 337.6461,268.6745 C338.13048,296.0185 327.4781,322.3895 308.1381,341.7295 C288.7981,361.0695 262.4311,371.7175 235.0831,371.2375 C207.7351,370.75312 181.7591,359.1785 163.1141,339.1715 L65.4501,436.8355 L414.4401,436.8355 C423.3503,436.8355 431.8971,433.2925 438.1981,426.9917 C444.5028,420.6909 448.0419,412.1437 448.0419,403.2337 L448.0419,134.4337 C448.0419,125.5235 444.5028,116.9767 438.1981,110.6757 C431.8973,104.3749 423.3501,100.8345 414.4401,100.8345 L414.4431,100.8345 Z" id="Path"></path>
+                    </g>
+                  </g>
+                </svg>
+                <span class="govuk-!-padding-left-3">Camera not available</span>
               </p>
-      
-              <script src="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x"></script>
-  
-              <scandit-barcode-picker
-                id="barcodePicker"
-                configure.licenseKey="AbZxHhS+NbmiADJfUiuZ2iUaZRoeKa4GCTLu4KFFgGyKH2vUkn0JpCJoyBABajTEH3YqOMsYTH7iWoi+1XBqvjJpT6vbWLs/jEXEg3dhgNQ3UA9ZD0J+8QtrqDinWyRI3XECxE5s9JU1NV9evxgBz9xhH8I9WGbev1mCapBsKk2yYVH33yTlG1tcETWkDzDtbW9mYwh5MyxhcntcwHOFsHwh0zaSHf9bohhSkkQZ5D4xKHAnRhHf5Z7WkHMmCGg5pDu6xTg60YCEZy74vbVdjgg1sBfrxX3mvW/AGytCkn5v4JZ3I1mKqtqCNQxuJTNiecouIIcYdU2Vz3DocNpXGozfmtM/5K6TvrsEeeWYjkA/U8V3CzafMn1xVVdQEvEY0i0elNOtD3TnmrgbF1qv7582IV9kU8JQetxUkj79YLVEJAmAPaxrG4dazuTha6o2El8ElvhvM8U1yN2aXn2LtCfGXZabA0zYCDesH7PzxOlLLYPOr6JIaKPfBK3Gw9VqxrhAYZlPsJoKjEyZkbbisUOY29YFT1AwxrWa49qzETKkUPu0iL2WwzQ4NJnoZs9GFZAeP8V079cKfyI+Q0jPzQglzKmNe7jMepYWDr7jn/sTGb/j+dM/BwSODQQRWiHENrQ2N517Pgob2cP8q33GrBg92OTPcSpI7LB9lI0ZDrfqFX5+cnaFBUn01OU0mYEoU7TPGyHrplUJA0pSUTa+8WvljEpYoNd9qqMtGjc7xP+60/UNix51ZbFFv/tp1vXpUC2IUpWZQHSvgbI6CK6hSBZMwLhWluYIOHM/NicvzIoJlFlMaIVQ/u8HYhM9ZxlNGMf7DyvFswMeiKcqJlrhFISYpi9AHl/Tys6LZ0OKJUCTraR6altiFXc16q/DwGF3uJ6bjbb/uoGGIz/47JVaW+xEVYaXkA=="
-                configure.engineLocation="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x/build/"
-                playSoundOnScan="true"
-                scanSettings.searchArea='{"x":0.1,"y":0.2,"width":0.8,"height":0.6}'
-                guiStyle="viewfinder"
-                enableTorchToggle="true"
-                videoFit="cover"
-                scanSettings.enabledSymbologies='["data-matrix", "code128", "qr"]'
-                >
-              </scandit-barcode-picker>
-              
+              <p class="govuk-body">You will need to allow camera permissions to use the scanner.</p>
+              <p class="govuk-body">You may need to change the settings on your device.</p>
+              <p class="govuk-body">If you wish to scan the Royal Mail barcode, please read the help below the update your settings before you continue</p>
+              <p class="body"><a href="#" target="blank">iOS(Apple): how to allow camera access (opens in new tab)</a></p>
             </div>
-            <button id="close-button-2" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
+            <button id="close-button" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
           </dialog>
         </div>
 
@@ -98,7 +115,7 @@
       permissionStatus.onchange = function() {
         console.log('camera permission state has changed to ', this.state);
         if(this.state == "denied") {
-          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-permissions-denied';
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-manual-permissions-denied';
         } else if (this.state == "prompt") {
           
         } else {
@@ -119,7 +136,7 @@
     }
 
     function closeButtonClicked(target) {
-        window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode';
+        window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-manual';
     }
   
     function manualEntryButtonClicked(target) {
@@ -135,19 +152,11 @@
       // var scanBarcodeButton = document.getElementById('scan-barcode')
       // var scanBarcodeButton2 = document.getElementById('scan-barcode-2')
       // var closeButton1 = document.getElementById('close-button-1')
-      var closeButton2 = document.getElementById('close-button-2')
+      var closeButton = document.getElementById('close-button')
 
       addListener(manualEntryButton, manualEntryButtonClicked)
-      addListener(closeButton2, closeButtonClicked)
+      addListener(closeButton, closeButtonClicked)
     }
-
-    const barcodePicker = document.getElementById('barcodePicker')
-    barcodePicker.addEventListener('scan', function (event) {
-      event.preventDefault()
-      setTimeout(function () {
-        window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-scanned';
-      }, 100)
-    })
   
   </script>
 

@@ -54,6 +54,19 @@
             </div>    
             <div class="gem-c-modal-dialogue__content">
               <p class="govuk-body"><strong>Camera access needs to be enabled</strong></p>
+              <p class="govuk-body" style="display: flex; align-items: center;">
+                <svg width="40px" height="38px" viewBox="0 0 471 472" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <title>camera-not-enabled@2x</title>
+                  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="camera-not-enabled" fill="#000000" fill-rule="nonzero">
+                      <path d="M467.0831,3.3945 C465.0519,1.2304 462.212,-5.68434189e-14 459.2433,-5.68434189e-14 C456.2746,-5.68434189e-14 453.4347,1.2305 451.4035,3.3945 L142.9535,311.8445 L30.2735,425.6345 L3.3945,452.5135 L3.3945,452.517406 C1.2304,454.548606 0,457.384606 0,460.357206 C0,463.326006 1.2305,466.161906 3.3945,468.197006 C5.4257,470.361106 8.2656,471.591506 11.2343,471.591506 C14.203,471.591506 17.0429,470.361006 19.0741,468.197006 L297.9541,189.317006 L385.3091,100.840006 L467.0711,19.078006 C469.2352,17.046806 470.4656,14.206906 470.4656,11.238206 C470.4656,8.269506 469.2351,5.429606 467.0711,3.398406 L467.0831,3.3945 Z" id="Path"></path>
+                      <path d="M139.1431,299.5245 C135.9673,289.6065 134.3814,279.2475 134.44,268.8365 C134.498593,242.1175 145.139,216.5165 164.03,197.6255 C182.921,178.7345 208.526,168.0945 235.241,168.0355 C245.655,167.976907 256.011,169.5628 265.929,172.7386 L347.019,91.6486 L318.347,48.6406 C312.3197,39.4961 302.191,33.8866 291.242,33.6323564 L179.242,33.6323564 C167.972,33.589631 157.445,39.2342 151.242,48.6406 L117.195,100.8356 L56.043,100.8356 C47.1328,100.8356 38.586,104.3747 32.285,110.6754 C25.9803,116.9762 22.4406171,125.5234 22.4406171,134.4334 L22.4406171,403.2334 C22.417762,406.9873 23.10136,410.71 24.4568,414.2104 L139.1431,299.5245 Z" id="Path"></path>
+                      <path d="M414.4431,100.8345 L401.4511,100.8345 L305.5801,196.7055 C325.5921,215.3505 337.1661,241.3265 337.6461,268.6745 C338.13048,296.0185 327.4781,322.3895 308.1381,341.7295 C288.7981,361.0695 262.4311,371.7175 235.0831,371.2375 C207.7351,370.75312 181.7591,359.1785 163.1141,339.1715 L65.4501,436.8355 L414.4401,436.8355 C423.3503,436.8355 431.8971,433.2925 438.1981,426.9917 C444.5028,420.6909 448.0419,412.1437 448.0419,403.2337 L448.0419,134.4337 C448.0419,125.5235 444.5028,116.9767 438.1981,110.6757 C431.8973,104.3749 423.3501,100.8345 414.4401,100.8345 L414.4431,100.8345 Z" id="Path"></path>
+                    </g>
+                  </g>
+                </svg>
+                <span class="govuk-!-padding-left-3">Camera not available</span>
+              </p>
               <p class="govuk-body">You will need to allow camera permissions to use the scanner.</p>
               <p class="govuk-body">You may need to change the settings on your device.</p>
               <p class="govuk-body">If you wish to scan the Royal Mail barcode, please read the help below the update your settings before you continue</p>
@@ -77,14 +90,14 @@
   <script type="text/javascript">
     submitEvent()
 
+    document.body.parentNode.style.overflow = "hidden"
+
     navigator.permissions.query({name:'camera'}).then(function(permissionStatus) {
       console.log('camera permission state is ', permissionStatus.state);
       permissionStatus.onchange = function() {
         console.log('camera permission state has changed to ', this.state);
         if(this.state == "denied") {
-          setTimeout(function () {
-            window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-permissions-denied';
-          }, 100)
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-permissions-denied';
         } else if (this.state == "prompt") {
           
         } else {
