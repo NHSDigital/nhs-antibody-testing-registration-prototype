@@ -15,7 +15,7 @@
   </p>
 </div>
 
-  <a class="govuk-back-link" href="/lfd-home-ordering/{{version}}/order-home-test-kit/confirm-email-code">Back</a>
+  <a class="govuk-back-link" href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/order-home-test-kit/confirm-email-code">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -23,7 +23,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -34,7 +34,7 @@
             {{ data['email-address'] | default('example@example.co.uk')}}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/lfd-home-ordering/{{version}}/order-home-test-kit/email-address">
+            <a class="govuk-link" href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/order-home-test-kit/email-address">
               Change<span class="govuk-visually-hidden">email address</span>
             </a>
           </dd>
@@ -55,7 +55,7 @@
               {{ data['address-postcode'] | default ('SW1A 2AB')}}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/lfd-home-ordering/{{version}}/order-home-test-kit/postcode">
+              <a class="govuk-link" href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/order-home-test-kit/postcode">
                 Change<span class="govuk-visually-hidden">home address</span>
               </a>
             </dd>
@@ -78,47 +78,29 @@
             {% if data['delivery-address-same'] !== 'Yes' and data['delivery-address-same'] !== 'No' %} Same as home address{% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/lfd-home-ordering/{{version}}/order-home-test-kit/delivery-address">
+            <a class="govuk-link" href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/order-home-test-kit/delivery-address">
               Change<span class="govuk-visually-hidden"> delivery address</span>
             </a>
           </dd>
         </div>
       </dl>
 
-      <h2 class="govuk-heading-l">Disclaimer</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-7">Declaration</h2>
 
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <span class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Important</span>
-          <h2 class="govuk-heading-s govuk-!-margin-bottom-0">By ordering a pack of 7 rapid lateral flow home test kits, I confirm that:</h2>
-        </span>
-      </div>
+      <p class="govuk-body">By ordering rapid lateral flow home tests, I confirm that:</p>
 
-      <ul class="govuk-list govuk-list--bullet">
+
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
         <li>The information I've provided is up to date and correct</li>
         <li>I agree with the <a href="#">Terms and conditions</a> and <a href="#">Privacy policy</a> of this service</li>
         <li>I am happy to be contacted about my order</li>
         <li>I understand that these tests are not for resale</li>
       </ul>
 
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
-          <div class="govuk-checkboxes">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="confirm" name="confirm" type="checkbox" value="Yes" onclick="checkBox()">
-              <label class="govuk-label govuk-checkboxes__label" for="confirm">
-                Yes, I confirm that all the above apply
-              </label>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-
-      <form action="/lfd-home-ordering/{{version}}/order-home-test-kit/confirmation" method="post">
+      <form action="/IBT/lfd-home-order/e2e-prototypes/{{version}}/order-home-test-kit/confirmation" method="post">
 
         <button id="button" class="govuk-button govuk-!-margin-bottom-3" type="submit" data-module="govuk-button">
-          Place order
+          Agree and place order
         </button>
 
       </form>
