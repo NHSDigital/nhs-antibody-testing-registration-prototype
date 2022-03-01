@@ -1,0 +1,73 @@
+{% set version = "live" %}
+{% set pageTitle = "Which address do they currently live at?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['coronavirus-account'] == "Yes" %}
+  {% include "includes/account-menu.html" %}
+{% endif %}
+
+  <a class="govuk-back-link" href="/IBT/lfd-collect/e2e-prototypes/{{version}}/country-another">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-collect/e2e-prototypes/{{version}}/find-address-another" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <div class="govuk-form-group govuk-!-margin-top-5">
+            <label class="govuk-label" for="home-postcode">
+              <strong>Postcode</strong>
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}">
+          </div>
+
+        </fieldset>
+
+        <p class="govuk-body"> <a href="/IBT/lfd-collect/e2e-prototypes/{{version}}/manual-address" class="govuk-link">Enter address manually</a><br><br>
+        </p>
+
+        <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
+
+        <details class="govuk-details govuk-!-margin-top-2 govuk-!-margin-bottom-0" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              If you do not have a fixed address
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p class="govuk-body">
+              You can use the postcode of a nearby reference address, such as your GP.
+              <br><br>
+              You can also call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.
+            </p>
+          </div>
+        </details>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
