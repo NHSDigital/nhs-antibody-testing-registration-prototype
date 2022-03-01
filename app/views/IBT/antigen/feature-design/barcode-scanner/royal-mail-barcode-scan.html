@@ -128,6 +128,22 @@
   <script type="text/javascript">
     submitEvent()
 
+    navigator.permissions.query({name:'camera'}).then(function(permissionStatus) {
+      console.log('camera permission state is ', permissionStatus.state);
+      permissionStatus.onchange = function() {
+        console.log('camera permission state has changed to ', this.state);
+        if(this.state == "denied") {
+          setTimeout(function () {
+            window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-permissions-denied';
+          }, 100)
+        } else if (this.state == "prompt") {
+          
+        } else {
+
+        }
+      };
+    });
+
     function addListener(button, buttonClicked) {
       button.addEventListener('click', function (event) {
         event.preventDefault()
@@ -150,7 +166,6 @@
         document.getElementById('mail-barcode-reference-1').focus()
       }, 100)
     }
-
   
     function submitEvent() {
       var manualEntryButton = document.getElementById('manual-entry')
@@ -162,6 +177,8 @@
       addListener(manualEntryButton, manualEntryButtonClicked)
       addListener(closeButton2, closeButtonClicked)
     }
+
+    
   
   </script>
 
