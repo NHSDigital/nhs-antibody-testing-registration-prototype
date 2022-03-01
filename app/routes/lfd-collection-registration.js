@@ -398,4 +398,134 @@ router.post('/lfd-collection-registration/v3/action10/mobile-number', function (
   }
 })
 
+// Version Live
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/action10/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes") {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/different-test')
+  } else {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/nhs-account')
+  }
+})
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/action10/pharmacy-collection', function (req, res) {
+  let pharmacyCollection = req.session.data['pharmacy-collection']
+  if (pharmacyCollection == "Yes") {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/go-to-pharmacy')
+  } else {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/nhs-account')
+  }
+})
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/action10/nhs-account', function (req, res) {
+  let signin = req.session.data['coronavirus-account']
+  if (signin == "Yes") {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/user-account/login-email')
+  } else {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/name')
+  }
+})
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/user-account/action10/login-email', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+  if (loginEmail == "user@testing.co.uk"){
+      res.redirect('/IBT/lfd-collect/e2e-prototypes/live/user-account/enter-password')
+  } else {
+      res.redirect('/IBT/lfd-collect/e2e-prototypes/live/user-account/create-password')
+  }
+})
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/action10/create-password', function (req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+      res.redirect('/IBT/lfd-collect/e2e-prototypes/live/user-account/create-password-error')
+  } else {
+      res.redirect('/IBT/lfd-collect/e2e-prototypes/live/user-account/check-email')
+  }
+})
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/action10/check-mobile', function (req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/user-account/check-mobile-error')
+  } else {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/user-account/agreement')
+  }
+})
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/user-account/action10/home-page', function (req, res) {
+  let loginEmail = req.session.data['email-address']
+  if (loginEmail == "user@testing.co.uk"){
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/check-your-answers')
+  } else {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/name')
+  }
+})
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/action10/collecting-for', function (req, res) {
+  let collectingFor = req.session.data['collecting-for']
+  if (collectingFor == "Another household"){
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/email-address-another')
+  } else {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/country')
+  }
+})
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/action10/country', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "England") {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/address')
+  } else {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/service-unavailable-country')
+  }
+})
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/action10/find-address', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "England"){
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/nhs-testing-programme')
+  } else {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/check-your-answers')
+  }
+})
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/action10/manual-address', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "England"){
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/nhs-testing-programme')
+  } else {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/check-your-answers')
+  }
+})
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/action10/nhs-testing-programme', function (req, res) {
+  let programme = req.session.data['nhs-testing-programme']
+  if (programme == "Yes" ) {
+      res.redirect('/IBT/lfd-collect/e2e-prototypes/live/work-area')
+  } else {
+      res.redirect('/IBT/lfd-collect/e2e-prototypes/live/check-your-answers')
+  }
+})
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/action10/work-area', function (req, res) {
+  let workArea = req.session.data['work-area']
+  if (workArea == "Community pharmacy" || workArea == "Dentistry" || workArea == "General practice" || workArea == "Optometry" || workArea == "Other" ) {
+      res.redirect('/IBT/lfd-collect/e2e-prototypes/live/work-postcode')
+  } else {
+      res.redirect('/IBT/lfd-collect/e2e-prototypes/live/trust')
+  }
+})
+
+router.post('/IBT/lfd-collect/e2e-prototypes/live/action10/mobile-number', function (req, res) {
+  let mobileNumber = req.session.data['mobile-number']
+  let emailAddress = req.session.data['email-address']
+  if (mobileNumber == "No" && !emailAddress) {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/no-mobile-email')
+  } else {
+    res.redirect('/IBT/lfd-collect/e2e-prototypes/live/collecting-for')
+  }
+})
+
 module.exports = router
