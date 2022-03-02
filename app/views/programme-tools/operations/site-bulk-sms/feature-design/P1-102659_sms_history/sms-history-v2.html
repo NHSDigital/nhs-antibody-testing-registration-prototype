@@ -1,0 +1,166 @@
+{% set version = "v1" %}
+{% set serviceName = "COVID-19" %}
+{% set pageTitle = "What’s changing at this test site?" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+    <a class="govuk-back-link" href="#">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-three-quarters">
+            <h1 class="govuk-heading-xl"> Test site appointment changes </h1>
+            <p class="govuk-body"> View any test site appointment that has been affected by a change in location, date, or operating hours. Information is organised in alphabetical order. </p>
+            <p class="govuk-body"> ‘Sent’ - Message request has been sent to GOV.UK Notify </p>
+            <p class="govuk-body"> ‘Pending’ - Message request hasn't yet been sent to GOV.UK Notify </p>
+            <p class="govuk-body"> ‘Failed’ - Message request has had a processing error before reaching GOV.UK Notify </p>
+            <section class="search-input__section">
+                <h1 class="govuk-heading-m govuk-!-margin-top-7"> Search a keyword  from a message sent out </h1>
+                <p class="govuk-hint"> For example, ‘Islington Finsbury Center’. </p>
+                <form class="search-input__form">
+                    <div class="govuk-!-width-three-quarters govuk-form-group">
+                        <label for="search" class="govuk-label"></label><!----><!----><input id="search" name="search" class="govuk-input"></div>
+                    <div class="search-input__buttons"><!----><input type="submit" class="govuk-button search-input__submit" value="Search"></div>
+                </form>
+            </section>
+            <button class="govuk-!-margin-top-4 govuk-button--secondary govuk-button"> Refresh Page </button>
+        </div>
+        <div class="govuk-grid-column-full">
+            <div class="govuk-tabs" data-module="govuk-tabs">
+                <h2 class="govuk-tabs__title">
+                    Contents
+                </h2>
+                <ul class="govuk-tabs__list">
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                    <a class="govuk-tabs__tab" href="#today">
+                        Today
+                    </a>
+                    </li>
+                    <li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#yesterday">
+                        Yesterday
+                    </a>
+                    </li>
+                </ul>
+                <div class="govuk-tabs__panel" id="today">
+                    <h2 class="govuk-heading-l govuk-!-margin-bottom-4">Today</h2>
+                    <div class="govuk-!-padding-4 govuk-!-margin-bottom-7" style="background-color: #f3f2f1">
+                    <table class="govuk-table">
+                        <caption class="govuk-table__caption govuk-table__caption--m">SMS summary</caption>
+                        <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">SMS sent out</th>
+                            <td class="govuk-table__cell">653</td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Sites affects</th>
+                            <td class="govuk-table__cell">12</td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Citizens affects</th>
+                            <td class="govuk-table__cell">571</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    <table class="govuk-table">
+                        <caption class="govuk-table__caption govuk-table__caption--m">Breakdown of reasons for sending an SMS</caption>
+                        <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Address changed</th>
+                            <td class="govuk-table__cell">39 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">6%</strong></td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Opening hours changed</th>
+                            <td class="govuk-table__cell">45<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">7%</strong></td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Site closed</th>
+                            <td class="govuk-table__cell">130<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">20%</strong></td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Site closed due to bad weather</th>
+                            <td class="govuk-table__cell">209<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">32%</strong></td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Drive through cancelled</th>
+                            <td class="govuk-table__cell">150<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">23%</strong></td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Walk through cancelled</th>
+                            <td class="govuk-table__cell">0<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">0%</strong></td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Site reopened</th>
+                            <td class="govuk-table__cell">78<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">12%</strong></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    <table class="govuk-table">
+                        <!---->
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header"> SMS requested on </th>
+                                <th scope="col" class="govuk-table__header"> Impact date and time </th>
+                                <th scope="col" class="govuk-table__header"> Impacted site name </th>
+                                <th scope="col" class="govuk-table__header"> SMS message sent out </th>
+                            </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                                <!---->
+                                <td class="govuk-table__cell"> 28 February 2022 14:55 <br><br>
+                                    <strong class="govuk-tag govuk-tag--grey"> SENT </strong>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> 28 February 2022 3:30am to 28 February 2022 12:59pm </p> 0 appointments affected </td>
+                                <td class="govuk-table__cell">
+                                    <strong>Gryphon Sports Centre</strong>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> Sorry we've had to cancel your appointment as Gryphon Sports Centre is closed on 28 February 2022.  <br></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="yesterday">
+                    <h2 class="govuk-heading-l">Yesterday</h2>
+                    <div class="govuk-heading-s"> Total citizens affected: 0 </div>
+                    <table class="govuk-table">
+                        <!---->
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header"> SMS requested on </th>
+                                <th scope="col" class="govuk-table__header"> Impact date and time </th>
+                                <th scope="col" class="govuk-table__header"> Impacted site name </th>
+                                <th scope="col" class="govuk-table__header"> SMS message sent out </th>
+                            </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                                <!---->
+                                <td class="govuk-table__cell"> 28 February 2022 14:55 <br><br>
+                                    <strong class="govuk-tag govuk-tag--grey"> SENT </strong>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> 28 February 2022 3:30am to 28 February 2022 12:59pm </p> 0 appointments affected </td>
+                                <td class="govuk-table__cell">
+                                    <strong>Gryphon Sports Centre</strong>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> Sorry we've had to cancel your appointment as Gryphon Sports Centre is closed on 28 February 2022.  <br></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
