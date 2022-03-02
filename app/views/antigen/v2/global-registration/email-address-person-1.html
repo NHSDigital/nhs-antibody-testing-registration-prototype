@@ -27,8 +27,7 @@
       <form action="/antigen/{{version}}/global-registration/gender-person-1" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
-
+          <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
               {{ pageTitle }}
@@ -72,11 +71,18 @@
                </div>
              </div>
              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-2-person-1" name="email-person-1" type="radio" value="same" {{ checked("email-person-1", "same") }}>
+                <input class="govuk-radios__input" id="email-2-person-1" name="email-person-1" type="radio" value="No" {{ checked("email-person-1", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="email-2-person-1">
-                  No, use {{ data['email-address'] or 'psmith@testing.co.uk' }} (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith'}})
+                  No
                 </label>
               </div>
+              <p>Or</p>
+              <div class="govuk-radios__item">
+                 <input class="govuk-radios__input" id="email-3-person-1" name="email-3-person-1" type="radio" value="same" {{ checked("email-person-1", "same") }}>
+                 <label class="govuk-label govuk-radios__label" for="email-3-person-1">
+                   Use {{ data['email-address'] or 'psmith@testing.co.uk' }} (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith'}})
+                 </label>
+               </div>
             </div>
 
           </fieldset>
