@@ -2243,5 +2243,19 @@ router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/bulk-rou
 });
 
 
+// feature-design
+
+router.post('/OBT/registration/feature-design/TTOLDT-314-UON/UON-check', function (req, res) {
+  let answer = req.body.changeUON;
+
+  if (answer == 'yes') {
+    res.redirect('/OBT/registration/feature-design/TTOLDT-314-UON/how')
+  } else if (answer == 'no') {
+      res.redirect('/OBT/registration/feature-design/TTOLDT-314-UON/UON')
+    } else {
+    res.redirect('/OBT/registration/feature-design/TTOLDT-314-UON/UON-check?error=empty')
+    }
+});
+
 
 module.exports = router
