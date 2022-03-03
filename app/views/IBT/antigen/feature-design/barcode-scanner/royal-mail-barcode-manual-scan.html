@@ -85,7 +85,7 @@
                 guiStyle="viewfinder"
                 enableTorchToggle="true"
                 videoFit="cover"
-                scanSettings.enabledSymbologies='["data-matrix", "code128", "qr"]'
+                scanSettings.enabledSymbologies='["data-matrix", "code128", "qr", "ean8", "ean13", "upca", "upce"]'
                 >
               </scandit-barcode-picker>
               
@@ -149,9 +149,6 @@
   
     function submitEvent() {
       var manualEntryButton = document.getElementById('manual-entry')
-      // var scanBarcodeButton = document.getElementById('scan-barcode')
-      // var scanBarcodeButton2 = document.getElementById('scan-barcode-2')
-      // var closeButton1 = document.getElementById('close-button-1')
       var closeButton2 = document.getElementById('close-button-2')
 
       addListener(manualEntryButton, manualEntryButtonClicked)
@@ -162,7 +159,17 @@
     barcodePicker.addEventListener('scan', function (event) {
       event.preventDefault()
       setTimeout(function () {
-        window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-scanned';
+        const barcodeReference = event.detail.barcodes[0].data;
+        const checkLettersEnd = barcodeReference.slice(11,13)
+
+        if(event.detail.barcodes[0].symbology == "code128" && checkLettersEnd == "GB") {
+     
+          localStorage.setItem("barcodeData", barcodeReference);
+  
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-manual-scanned';
+        } else {
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-manual-incorrect';
+        }
       }, 100)
     })
   

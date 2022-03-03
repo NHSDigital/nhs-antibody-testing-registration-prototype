@@ -1,0 +1,103 @@
+{% set pageTitle = "Test kit barcode reference" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="#">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode-manual" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+            <div id="enter-barcode-number-hint" class="govuk-body">
+              Use the camera on your phone, tablet or computer to scan the test kit barcode.
+            </div>
+            
+            <div id="enter-barcode-number-hint" class="govuk-body">
+              The test kit barcode should look like this:
+            </div>
+
+            <div class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
+              <img src="/public/images/barcode-number-2.png" alt="Image of the test kit barcode"/>
+            </div>
+
+            <span id="enter-barcode-number-hint" class="govuk-body">
+              You’ll find the same test kit barcode in 4 different places. You only have to scan one of them. Choose to scan one of the barcodes on the:<br><br>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>plastic tube</li>
+                <li>leak proof bag</li>
+                <li>instruction leaflet</li>
+                <li>return box</li>
+              </ul>
+            </span>
+
+          </fieldset>
+        </div>
+
+        <a id="scan-button" class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="#">Scan barcode</a>
+        <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    submitEvent()
+
+    function scanButtonClicked(target) {
+      navigator.permissions.query({name:'camera'}).then(function(permissionStatus) {
+      console.log('camera permission state is ', permissionStatus.state);
+        if(permissionStatus.state == "denied") {
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode-permissions-denied';
+        } else {
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode-scan';
+        }
+      });
+    }
+
+    
+
+    function addListener(button, buttonClicked) {
+      button.addEventListener('click', function (event) {
+        event.preventDefault()
+        if (button.getAttribute('disabled') === 'disabled') {
+        } else {
+          event.preventDefault()
+          buttonClicked(button)
+        }
+      })
+    }
+  
+    function submitEvent() {
+      var scanButton = document.getElementById('scan-button')
+      addListener(scanButton, scanButtonClicked)
+    }
+  
+  </script>
+
+{% endblock %}
