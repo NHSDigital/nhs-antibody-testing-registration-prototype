@@ -1,0 +1,91 @@
+{% set version = "live" %}
+{% set pageTitle = "Where in the UK do you live?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+  text: "Back",
+  href: "/lfd-home-ordering/v8/order-home-test"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-home-order/e2e-prototypes/{{version}}/action10/country" method="post">
+
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+          <h2 class="govuk-error-summary__title" id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+              <li>
+                <a href="#error-1">Select a result</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="govuk-form-group govuk-form-group--error">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="no-result-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select a result
+            </span>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input required class="govuk-radios__input" id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }} aria-required="true">
+                <label class="govuk-label govuk-radios__label" for="country-1">
+                  England
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="Scotland" {{ checked("country", "Scotland") }} aria-required="true">
+                <label class="govuk-label govuk-radios__label" for="country-4">
+                  Scotland
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="Northern Ireland" {{ checked("country", "Northern Ireland") }} aria-required="true">
+                <label class="govuk-label govuk-radios__label" for="country-3">
+                  Northern Ireland
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="Wales" {{ checked("country", "Wales") }} aria-required="true">
+                <label class="govuk-label govuk-radios__label" for="country-2">
+                  Wales
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

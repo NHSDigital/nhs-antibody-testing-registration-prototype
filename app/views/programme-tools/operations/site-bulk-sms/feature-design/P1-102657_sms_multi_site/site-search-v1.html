@@ -1,0 +1,46 @@
+{% set version = "v1" %}
+{% set serviceName = "COVID-19" %}
+{% set pageTitle = "What’s changing at this test site?" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <div aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary" id="error-summary" class="govuk-error-summary" style="display: none;">
+                <h2 id="error-summary-title" class="govuk-error-summary__title"> There is a problem </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list pl-0"></ul>
+                </div>
+            </div>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3"> Search for the test site </h1>
+            <p class="govuk-body-l">You can search with the site reference or a postcode.</p>
+            <form action="3-site-select-v1" method="get">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full">
+                        <div class="govuk-form-group">
+                            <label for="reference" class="govuk-label"> Site reference </label>
+                            <div id="reference-hint" class="govuk-hint">
+                            For example, SE002, LTS0041 or NTM
+                            </div>
+                            <input id="reference" name="reference" maxlength="100" spellcheck="false" class="govuk-input govuk-!-width-one-half">
+                        </div>
+                        <div class="govuk-form-group">
+                            <label for="postcode" class="govuk-label"> Postcode </label><!----><!---->
+                            <input id="postcode" name="postcode" maxlength="100" spellcheck="false" class="govuk-input govuk-!-width-one-half">
+                        </div>
+                    </div>
+                </div>
+            <button type="submit" class="govuk-!-margin-top-4 govuk-button"> Search </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,110 @@
+{% set pageTitle = "Royal Mail barcode reference" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <p class="govuk-body">
+              You'll find it on the right-hand side of the label on your return box. Do not scan the QR code, which is on the left-hand side of the label.
+            </p>
+            <div class="govuk-!-margin-top-5">
+              <img src="/public/images/royal-mail-barcode.png" class="responsive-image" alt="Illustration of a royal mail barcode showing the position on return box. It is on the right-hand side of the label on your return box."/>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mail-barcode-reference-1">
+                Royal Mail barcode reference
+              </label>
+              <div id="enter-barcode-number-hint-3" class="govuk-hint">
+                For example, ZD 6904 0038 5GB
+              </div>
+              <input autofocus class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] }}>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mail-barcode-reference-2">
+                Confirm Royal Mail barcode reference
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-2" name="mail-barcode-reference-2" type="text" value={{ data['mail-barcode-reference-2'] }}>
+            </div>
+          </fieldset>
+        </div>
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <a id="scan-button" class="govuk-button govuk-button--secondary" data-module="govuk-button" href="#">Use barcode scanner</a>
+
+        <p class="govuk-body">
+          <a href="/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode" role="button" draggable="false" class="govuk-link" data-module="govuk-button">
+            I do not know my Royal Mail barcode
+          </a>
+        </p>
+
+      </form>
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    submitEvent()
+
+    // const URLorigin = document.referrer;
+    // console.log(URLorigin)
+
+    function scanButtonClicked(target) {
+      navigator.permissions.query({name:'camera'}).then(function(permissionStatus) {
+      console.log('camera permission state is ', permissionStatus.state);
+        if(permissionStatus.state == "denied") {
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-manual-permissions-denied';
+        } else {
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-manual-scan';
+        }
+      });
+    }
+
+    function addListener(button, buttonClicked) {
+      button.addEventListener('click', function (event) {
+        event.preventDefault()
+        if (button.getAttribute('disabled') === 'disabled') {
+        } else {
+          event.preventDefault()
+          buttonClicked(button)
+        }
+      })
+    }
+  
+    function submitEvent() {
+      var scanButton = document.getElementById('scan-button')
+      addListener(scanButton, scanButtonClicked)
+    }
+  
+  </script>
+
+{% endblock %}

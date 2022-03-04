@@ -23,63 +23,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode" method="post">
+      <form action="/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-manual" method="post">
 
-        <div id="content-1">
-          <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
-                  {{ pageTitle }}
-                </h1>
-              </legend>
-              <p class="govuk-body">
-                You'll find it on the right-hand side of the label on your return box. Do not scan the QR code, which is on the left-hand side of the label.
-              </p>
-              <div class="govuk-!-margin-top-5">
-                <img src="/public/images/royal-mail-barcode.png" class="responsive-image" alt="Illustration of a royal mail barcode showing the position on return box. It is on the right-hand side of the label on your return box."/>
-              </div>
-            </fieldset>
-          </div>
-          <a class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-scan">Scan barcode</a>
-          <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <p class="govuk-body">
+              You'll find it on the right-hand side of the label on your return box. Do not scan the QR code, which is on the left-hand side of the label.
+            </p>
+            <div class="govuk-!-margin-top-5">
+              <img src="/public/images/royal-mail-barcode.png" class="responsive-image" alt="Illustration of a royal mail barcode showing the position on return box. It is on the right-hand side of the label on your return box."/>
+            </div>
+          </fieldset>
         </div>
-
-        <div id="content-2" style="display: none;">
-          <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
-                  {{ pageTitle }}
-                </h1>
-              </legend>
-              <p class="govuk-body">
-                You'll find it on the right-hand side of the label on your return box. Do not scan the QR code, which is on the left-hand side of the label.
-              </p>
-              <div class="govuk-!-margin-top-5">
-                <img src="/public/images/royal-mail-barcode.png" class="responsive-image" alt="Illustration of a royal mail barcode showing the position on return box. It is on the right-hand side of the label on your return box."/>
-              </div>
-              <div class="govuk-form-group">
-                <label class="govuk-label" for="mail-barcode-reference-1">
-                  Royal Mail barcode reference
-                </label>
-                <div id="enter-barcode-number-hint-3" class="govuk-hint">
-                  For example, ZD 6904 0038 5GB
-                </div>
-                <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] }}>
-              </div>
-              <div class="govuk-form-group">
-                <label class="govuk-label" for="mail-barcode-reference-2">
-                  Confirm Royal Mail barcode reference
-                </label>
-                <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-2" name="mail-barcode-reference-2" type="text" value={{ data['mail-barcode-reference-2'] }}>
-              </div>
-            </fieldset>
-          </div>
-          <button class="govuk-button" data-module="govuk-button">Continue</button>
-          <a class="govuk-button govuk-button--secondary" data-module="govuk-button" href="/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-scan">Use barcode scanner</a>
-        </div>
-
+        <a id="scan-button" class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="#">Scan barcode</a>
+        <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
+        
         <p class="govuk-body">
           <a href="/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode" role="button" draggable="false" class="govuk-link" data-module="govuk-button">
             I do not know my Royal Mail barcode
@@ -94,6 +57,19 @@
   <script type="text/javascript">
     submitEvent()
 
+    function scanButtonClicked(target) {
+      navigator.permissions.query({name:'camera'}).then(function(permissionStatus) {
+      console.log('camera permission state is ', permissionStatus.state);
+        if(permissionStatus.state == "denied") {
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-permissions-denied';
+        } else {
+          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-scan';
+        }
+      });
+    }
+
+    
+
     function addListener(button, buttonClicked) {
       button.addEventListener('click', function (event) {
         event.preventDefault()
@@ -105,18 +81,9 @@
       })
     }
   
-    function manualEntryButtonClicked(target) {
-      setTimeout(function () {
-        document.getElementById('content-1').style.display = 'none'
-        document.getElementById('content-2').style.display = 'block'
-        document.getElementById('mail-barcode-reference-1').focus()
-      }, 100)
-    }
-
-  
     function submitEvent() {
-      var manualEntryButton = document.getElementById('manual-entry')
-      addListener(manualEntryButton, manualEntryButtonClicked)
+      var scanButton = document.getElementById('scan-button')
+      addListener(scanButton, scanButtonClicked)
     }
   
   </script>

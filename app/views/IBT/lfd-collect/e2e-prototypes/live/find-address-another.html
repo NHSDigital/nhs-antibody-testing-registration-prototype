@@ -1,0 +1,72 @@
+{% set version = "live" %}
+{% set pageTitle = "Which address does the person you’re collecting for currently live at?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['coronavirus-account'] == "Yes" %}
+  {% include "includes/account-menu.html" %}
+{% endif %}
+
+  <a class="govuk-back-link" href="/IBT/lfd-collect/e2e-prototypes/{{version}}/address-another">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-collect/e2e-prototypes/{{version}}/check-your-answers" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+            <p class="govuk-!-margin-top-5">
+              <strong>Postcode</strong><br><br>
+              <strong>{{ data['home-postcode'] | default('LS1 3BE') }}</strong>
+              <a href="/IBT/lfd-collect/e2e-prototypes/{{version}}/address-another" class="govuk-!-margin-left-5">
+                Change
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="home-address">
+                <strong class="govuk-!-font-size-24">Select an address</strong>
+              </label>
+              <select class="govuk-select" id="home-address" name="home-address">
+                <option>5 addresses found</option>
+                <option value="1 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">1 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+                <option value="2 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">2 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+                <option value="3 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">3 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+                <option value="4 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">4 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+                <option value="5 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}">5 Souterhead Road, London, {{ data['home-postcode'] or 'LS1 3BE' }}</option>
+              </select>
+            </div>
+            <p class="govuk-body"><a class="govuk-link govuk-!-font-size-19" href="/IBT/lfd-collect/e2e-prototypes/{{version}}/manual-address-another">I cannot find my address in the list</a></p>
+
+        </fieldset>
+
+        <button class="govuk-button" type="submit" data-module="govuk-button">continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

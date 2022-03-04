@@ -1,0 +1,87 @@
+{% set version = "live" %}
+{% set pageTitle = "What is your email address?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['coronavirus-account'] == "Yes" %}
+  {% include "includes/account-menu.html" %}
+{% endif %}
+
+  <a class="govuk-back-link" href="/IBT/lfd-collect/e2e-prototypes/{{version}}/date-of-birth">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/lfd-collect/e2e-prototypes/{{version}}/mobile-number" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+            {% if data['coronavirus-account'] == "Yes" %}
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                Where should we email your test collection code?
+              </h1>
+            </legend>
+            <span id="email-address-hint" class="govuk-body">
+              We’ll email your collection code to this email address.<br>
+              We may also use it to contact you about your collection.
+            </span>
+  
+            <div class="govuk-form-group govuk-!-margin-top-6">
+                <label class="govuk-label" for="email-address">
+                Email address
+                </label>
+                <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+            </div>
+            {% else %}
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                {{ pageTitle }}
+                </h1>
+            </legend>
+            <span id="email-address-hint" class="govuk-body">
+              We’ll send your collect code to this email address. We may also use it to contact you about your collection.<br><br>
+              If you do not have an email address, you can provide one that belongs to someone you trust.
+            </span>
+      
+            <div class="govuk-form-group govuk-!-margin-top-6">
+                <label class="govuk-label" for="email-address">
+                Email address
+                </label>
+                <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+            </div>
+            <div class="govuk-form-group govuk-!-margin-bottom-4">
+              <label class="govuk-label" for="confirm-email-address">
+                Confirm email address
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
+            </div>
+            <p class="govuk-body"><a class="govuk-link" href="/IBT/lfd-collect/e2e-prototypes/{{version}}/mobile-number">I do not have access to an email address</a></p>
+            {% endif %}
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

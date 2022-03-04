@@ -493,7 +493,7 @@
         {% endif %}
         </dl>
 
-        <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Vaccine and travel history</h2>
+        <h2 class="govuk-heading-l govuk-!-margin-bottom-3">VVaccination and travel history</h2>
         <p class="govuk-body">We may use this information to monitor new coronavirus variants.</p>
 
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -583,7 +583,7 @@
               {{ data['travel-route'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/IBT/litereg-accounts/e2e-prototypes/live/travel-route">
+              <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/travel-route">
                 Change
                 <span class="govuk-visually-hidden">country visited</span>
               </a>
@@ -591,6 +591,26 @@
           </div>
           {% endif %}
         </dl>
+
+        {% if data['have-you-travelled-overseas'] !== "Yes" %}
+        <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Antibody test details</h2>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Agreed to do antibody tests
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['fingerprick-test'] or 'Yes. The antibody tests will be sent to your home address.' }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/fingerprick-test">
+                Change
+                <span class="govuk-visually-hidden">antibody tests</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+        {% endif %}
 
 
       <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/confirmation" method="post" novalidate>
