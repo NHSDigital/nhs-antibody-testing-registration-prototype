@@ -1,0 +1,76 @@
+{% set version = "live" %}
+{% set pageTitle = "Does the person travel to nursery, work or a place of education?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/check-eligibility/e2e-prototypes/{{version}}/global-registration/ethnic-group-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/check-eligibility/e2e-prototypes/{{version}}/action4/work-or-study-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="work-or-study-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} travel to nursery, work or a place of education?
+              </h1>
+            </legend>
+            <span id="work-or-study-hint" class="govuk-body">
+              This will help us understand more about the spread of the virus.
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-or-study-1-person-1" name="work-or-study-person-1" type="radio" value="Yes - they travel to a workplace" {{ checked("work-or-study-person-1", "Yes - they travel to a workplace") }}>
+                <label class="govuk-label govuk-radios__label" for="work-or-study-1-person-1">
+                  Yes - they travel to a workplace
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-or-study-2-person-1" name="work-or-study-person-1" type="radio" value="Yes - they go to nursery, school, college or university" {{ checked("work-or-study-person-1", "Yes - they go to nursery, school, college or university") }}>
+                <label class="govuk-label govuk-radios__label" for="work-or-study-2-person-1">
+                  Yes - they go to nursery, school, college or university
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-or-study-3-person-1" name="work-or-study-person-1" type="radio" value="No" {{ checked("work-or-study-person-1", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="work-or-study-3-person-1">
+                  No
+                </label>
+              </div>
+              <p class="govuk-body">or</p>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-or-study-3-person-1" name="work-or-study-person-1" type="radio" value="Prefer not to say" {{ checked("work-or-study-person-1", "Prefer not to say") }}>
+                <label class="govuk-label govuk-radios__label" for="work-or-study-3-person-1">
+                  Prefer not to say / not applicable
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

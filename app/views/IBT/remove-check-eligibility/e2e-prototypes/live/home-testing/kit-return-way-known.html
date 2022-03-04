@@ -1,0 +1,65 @@
+{% set version = "live" %}
+{% set pageTitle = "Do you know how you'll return your test kit?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/check-eligibility/e2e-prototypes/{{version}}/home-testing/">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+  
+      <form action="/IBT/check-eligibility/e2e-prototypes/{{version}}/action3/kit-return-way-known" method="post">
+  
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="do-you-have-the-app-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="do-you-have-the-app-hint" class="govuk-body">
+              It’s very important that you follow the enclosed paper instructions on how to return your test kit.<br><br>
+              You’ll either need to find your nearest Royal Mail priority postbox or book your courier.
+            </span>
+  
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="kit-return-way-known-1" name="kit-return-way-known" type="radio" value="Yes" {{ checked("kit-return-way-known", "Yes") }}>
+                  <label class="govuk-label govuk-radios__label" for="kit-return-way-known-1">
+                    Yes
+                  </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="kit-return-way-known-2" name="kit-return-way-known" type="radio" value="No" {{ checked("kit-return-way-known", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="kit-return-way-known-2">
+                    No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+  
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+  
+      </form>
+  
+    </div>
+  </div>
+
+{% endblock %}

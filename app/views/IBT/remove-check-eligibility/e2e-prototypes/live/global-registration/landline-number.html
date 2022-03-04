@@ -1,0 +1,71 @@
+{% set version = "live" %}
+{% set pageTitle = "Do you have a landline phone number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/check-eligibility/e2e-prototypes/{{version}}/global-registration/">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/check-eligibility/e2e-prototypes/{{version}}/global-registration/gender" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="landline-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                Does {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }} have a landline phone number?
+              </h1>
+            </legend>
+            <span id="landline-number-hint" class="govuk-body">
+              If they have one, we may use this number to call them if they have had contact with someone who has tested positive with coronavirus.
+           </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="landline-number-1" name="landline-number" type="radio" value="Yes" data-aria-controls="conditional-landline-number" {{ checked("landline-number", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="landline-number-1">
+                  Yes, I do have a landline phone number
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-landline-number">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="landline-telephone-number">
+                    Landline phone number
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-third" id="landline-telephone-number" name="landline-telephone-number" type="tel" value="{{ data['landline-telephone-number'] }}">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="landline-number-2" name="landline-number" type="radio" value="I do not have a landline" {{ checked("landline-number", "I do not have a landline") }}>
+                <label class="govuk-label govuk-radios__label" for="landline-number-2">
+                  No, I do not have a landline phone number
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
