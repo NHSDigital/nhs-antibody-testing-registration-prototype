@@ -93,19 +93,27 @@
 
     document.body.parentNode.style.overflow = "hidden"
 
-    navigator.permissions.query({name:'camera'}).then(function(permissionStatus) {
-      console.log('camera permission state is ', permissionStatus.state);
-      permissionStatus.onchange = function() {
-        console.log('camera permission state has changed to ', this.state);
-        if(this.state == "denied") {
-          window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-permissions-denied';
-        } else if (this.state == "prompt") {
-          
-        } else {
+    navigator.mediaDevices.getUserMedia( { video: true } )
+    .then( ( stream ) => {
+          // window.location.href = '/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode-scan';
+    },
+    e => {
+      window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-permissions-denied';
+    } );
 
-        }
-      };
-    });
+    // navigator.permissions.query({name:'camera'}).then(function(permissionStatus) {
+    //   console.log('camera permission state is ', permissionStatus.state);
+    //   permissionStatus.onchange = function() {
+    //     console.log('camera permission state has changed to ', this.state);
+    //     if(this.state == "denied") {
+    //       window.location.href = '/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode-permissions-denied';
+    //     } else if (this.state == "prompt") {
+          
+    //     } else {
+
+    //     }
+    //   };
+    // });
 
     function addListener(button, buttonClicked) {
       button.addEventListener('click', function (event) {
