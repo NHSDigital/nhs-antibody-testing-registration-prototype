@@ -260,11 +260,11 @@ router.post('/IBT/antigen/e2e-prototypes/live/action3/home-ordering', function (
 router.post('/IBT/antigen/e2e-prototypes/live/action3/how-will-you-get-test', function (req, res) {
   let wayToTest = req.session.data['way-to-test']
   if (wayToTest == "drive-through"){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/visiting-drive-through')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/visiting-drive-through')
   } else if (wayToTest == "walk-in") {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/visiting-walk-through')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/visiting-walk-through')
   } else if (wayToTest == "home testing") {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/home-ordering')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/order-home-test-kit')
   }
 
 })

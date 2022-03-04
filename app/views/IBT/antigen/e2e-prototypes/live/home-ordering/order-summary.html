@@ -41,7 +41,7 @@
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
+        <!-- <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Home address
             </dt>
@@ -59,7 +59,7 @@
                 Change<span class="govuk-visually-hidden">home address</span>
               </a>
             </dd>
-          </div>
+          </div> -->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Delivery address
@@ -72,7 +72,8 @@
             {{ data['delivery-address-town'] }}<br>
             {{ data['delivery-address-postcode'] }}
             {% endif %}
-            {% if data['delivery-address-same'] === 'Yes' %}Same as home address{% endif %}
+            {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+            {{ data['home-postcode'] or 'LS1 3BE' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/IBT/antigen/e2e-prototypes/{{version}}/home-ordering/delivery-address">
@@ -94,7 +95,7 @@
 
       <ul class="govuk-list govuk-list--bullet">
         <li>The information I've provided is up to date and correct</li>
-        <li>I agree with the <a href="#">Terms and conditions</a> and <a href="#">Privacy policy</a> of this service</li>
+        <li>I agree with the <a class="govuk-link" rel="noreferrer noopener" target="_blank" href="https://www.gov.uk/help/terms-conditions">Terms and conditions (opens in new tab)</a> and <a href="https://www.gov.uk/government/publications/coronavirus-covid-19-testing-privacy-information" class="govuk-link" rel="noreferrer noopener" target="_blank">Privacy policy (opens in new tab)</a> of this service</li>
         <li>I am happy to be contacted about my order</li>
         <li>I'll aim to return the kit within 48 hours</li>
       </ul>
@@ -112,7 +113,7 @@
 
       <form action="/IBT/antigen/e2e-prototypes/{{version}}/home-ordering/confirmation" method="post">
 
-        <button id="button" disabled class="govuk-button govuk-!-margin-bottom-3" type="submit" data-module="govuk-button">
+        <button id="button" class="govuk-button govuk-!-margin-bottom-3" type="submit" data-module="govuk-button">
           Place order
         </button>
 
@@ -121,7 +122,7 @@
     </div>
   </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
   resetAttributes()
 
@@ -139,6 +140,6 @@
     button.setAttribute('disabled')
   }
 
-</script>
+</script> -->
 
 {% endblock %}
