@@ -1,85 +1,70 @@
 {% set version = "live" %}
-{% set pageTitle = "Do you know the NHS number of the person who needs a test?" %}
+{% set pageTitle = "NHS number" %}
 
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        beta
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
 
-  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/country">Back</a>
+<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/check-your-answers">Back</a>
+
 {% endblock %}
 
 {% block content %}
 {% include "includes/gtm-noscript.html" %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/antigen/e2e-prototypes/{{version}}/action3/nhs-number-known" method="post">
+    <h1 class="govuk-heading-l">
+      NHS number
+    </h1>
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
-                Can you provide {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?
-              </h1>
-            </legend>
+    <p class="govuk-body">
+      They can find it on any letter the NHS has sent them, on a prescription, or by logging in to a GP practice online service.
+    </p>
 
-            <span id="nhs-number-known-hint" class="govuk-body">
-              This number helps us quickly save their test result to their:<br>
-              <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
-                <li>GP record</li>
-                <li><strong>NHS COVID Pass</strong> - In England, they may be asked to show this pass to get into some events, or to travel abroad</li>
-              </ul>
-            </span>
-<!--
-            <span id="nhs-number-known-hint-3" class="govuk-body">
-              <a href="https://www.nhs.uk/using-the-nhs/about-the-nhs/what-is-an-nhs-number/" target="blank">Look up their NHS number</a>.
-              <br><br>
-              It's OK if you do not have it, you can still continue.
-            </span> -->
+    <p class="govuk-body">
+      In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.
+    </p>
 
-            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5 govuk-!-margin-bottom-5" data-module="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="nhs-number-known-1" name="nhs-number-known" type="radio" value="Yes" {{ checked("nhs-number-known", "Yes") }}>
-                <label class="govuk-label govuk-radios__label" for="nhs-number-known-1">
-                  Yes, I can provide their NHS number
-                </label>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="nhs-number-known-2" name="nhs-number-known" type="radio" value="No" {{ checked("nhs-number-known", "No") }}>
-                <label class="govuk-label govuk-radios__label" for="nhs-number-known-2">
-                  No, I cannot provide their NHS number
-                </label>
-              </div>
-            </div>
+    <p class="govuk-body">
+      It's OK if they do not have an NHS number or they do not live in the UK, they can still continue.
+    </p>
 
-            <h2 class="govuk-heading-l govuk-!-margin-bottom-5">
-              What it looks like
-            </h2>
+    <p class="govuk-!-margin-top-5"><a href="https://www.nhs.uk/nhs-services/online-services/find-nhs-number/" target="_blank">Look up NHS number (opens in new tab)</a></p>
 
-            <span id="nhs-number-known-hint4" class="govuk-body">
-              An NHS number is 10 digits. It will be on any prescriptions or letters from a GP or hospital.<br><br>
-              In Scotland, it’s known as a CHI number. In Northern Ireland, it’s known as an H&C number.
-            </span>
+    <form action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/fingerprick-test" method="post">
 
-          </fieldset>
-        </div>
+      <div class="govuk-form-group govuk-!-margin-top-8">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?
+          </legend>
+          <div id="nhs-number-hint" class="govuk-hint">
+            A 10-digit number, for example, 485 777 3456
+          </div>
+          <input class="govuk-input govuk-input--width-20" id="nhs-number" name="nhs-number" type="text" aria-describedby="nhs-number-hint" value="{{ data['nhs-number'] }}">
+        </fieldset>
+      </div>
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      <button class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Continue
+      </button>
 
-      </form>
-
-    </div>
+      <p><a class="govuk-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/fingerprick-test">Continue without NHS number</a></p>
+    </form>
   </div>
+</div>
+
 
 {% endblock %}

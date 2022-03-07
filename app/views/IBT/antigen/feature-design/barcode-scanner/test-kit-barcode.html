@@ -14,10 +14,11 @@
     </p>
   </div>
 
-  {{ govukBackLink({
+  <!-- {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.go(-1);"
-  }) }}
+  }) }} -->
+  <a class="govuk-back-link" href="/IBT/antigen/feature-design/barcode-scanner/royal-mail-barcode">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -29,39 +30,33 @@
       <form action="/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode-manual" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
+          <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
                 {{ pageTitle }}
               </h1>
             </legend>
 
-            <div id="enter-barcode-number-hint" class="govuk-body">
-              Use the camera on your phone, tablet or computer to scan the test kit barcode.
-            </div>
+            <p class="govuk-body">
+              You’ll find the same test kit barcode in 4 different places. You only have to scan one of them. Choose to scan one of the barcodes on the:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>plastic tube</li>
+              <li>leak proof bag</li>
+              <li>instruction leaflet</li>
+              <li>return box</li>
+            </ul>
             
-            <div id="enter-barcode-number-hint" class="govuk-body">
-              The test kit barcode should look like this:
-            </div>
+            <p class="govuk-body">
+              It should look like this:
+            </p>
 
-            <div class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
-              <img src="/public/images/barcode-number-2.png" alt="Image of the test kit barcode"/>
-            </div>
-
-            <span id="enter-barcode-number-hint" class="govuk-body">
-              You’ll find the same test kit barcode in 4 different places. You only have to scan one of them. Choose to scan one of the barcodes on the:<br><br>
-              <ul class="govuk-list govuk-list--bullet">
-                <li>plastic tube</li>
-                <li>leak proof bag</li>
-                <li>instruction leaflet</li>
-                <li>return box</li>
-              </ul>
-            </span>
+            <img src="/public/images/barcode-number-2.png" alt="Image of the test kit barcode"/>
 
           </fieldset>
         </div>
 
-        <a id="scan-button" class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="#">Scan barcode</a>
+        <a id="scan-button" class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode-scan">Scan barcode</a>
         <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
 
       </form>
@@ -69,12 +64,11 @@
     </div>
   </div>
 
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     submitEvent()
 
     function scanButtonClicked(target) {
       navigator.permissions.query({name:'camera'}).then(function(permissionStatus) {
-      console.log('camera permission state is ', permissionStatus.state);
         if(permissionStatus.state == "denied") {
           window.location.href = '/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode-permissions-denied';
         } else {
@@ -83,7 +77,15 @@
       });
     }
 
-    
+    function scanButtonClicked(target) {
+      navigator.mediaDevices.getUserMedia( { video: true } )
+        .then( ( stream ) => {
+              window.location.href = '/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode-scan';
+        },
+        e => {
+              window.location.href = '/IBT/antigen/feature-design/barcode-scanner/test-kit-barcode-permissions-denied';
+        } );
+    }
 
     function addListener(button, buttonClicked) {
       button.addEventListener('click', function (event) {
@@ -101,6 +103,6 @@
       addListener(scanButton, scanButtonClicked)
     }
   
-  </script>
+  </script> -->
 
 {% endblock %}

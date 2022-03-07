@@ -1,0 +1,138 @@
+{% set version = "live" %}
+{% set pageTitle = "Find a PCR test site" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+
+  <!-- {% if data['nhs-number-known-person-1'] %}
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/people-confirmed-person-1">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/people-confirmed">Back</a>
+  {% endif %} -->
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/action3/find-test-site" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="find-test-site-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="find-test-site-hint" class="govuk-body">
+            Enter your postcode to find a test site where you can have a coronavirus (COVID-19) test.
+          </span>
+          <div class="govuk-form-group govuk-!-margin-top-6">
+            <label class="govuk-label" for="home-postcode">
+              Postcode
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] or 'N1 2US' }}">
+          </div>
+        </fieldset>
+
+        <button id="button" class="govuk-button govuk-!-margin-bottom-6 govuk-!-margin-top-4" type="submit" data-module="govuk-button">
+          Find the test site
+        </button>
+
+        <!-- <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" style="display:none" type="submit" data-module="govuk-button">
+          Find a test site
+        </button>
+
+        <button id="button-hidden-2" class="govuk-button govuk-!-margin-top-4" style="display:none" type="submit" data-module="govuk-button">
+          Find a test site
+        </button>
+
+        <div id="spinner" style="display: none;">
+          <img src="/public/images/spinner.gif" width="16" alt=""><span class="govuk-body govuk-!-margin-left-2">Please wait...</span>
+        </div>
+
+        <div id="tryagain" style="display: none;">
+          <span class="govuk-body govuk-!-margin-left-0">Sorry, we could not process your request. Try the button again in 1 minute.</span>
+        </div> -->
+
+      </form>
+
+    </div>
+  </div>
+
+<!--  <script type="text/javascript">-->
+<!--    submitSpinner()-->
+<!--    submitSpinner2()-->
+<!--  -->
+<!--    function buttonClicked(target) {-->
+<!--      target.setAttribute('disabled', 'disabled')-->
+<!--      document.getElementById('spinner').style.display = 'block'-->
+<!--      document.getElementById("spinner").focus();-->
+<!--  -->
+<!--      setTimeout(function () {-->
+<!--        document.getElementById('spinner').style.display = 'none'-->
+<!--        document.getElementById('tryagain').style.display = 'block'-->
+<!--        document.getElementById("tryagain").focus();-->
+<!--      }, 3000)-->
+<!--  -->
+<!--      setTimeout(function () {-->
+<!--        target.removeAttribute('disabled', 'disabled')-->
+<!--        document.getElementById('button').style.display = 'none'-->
+<!--        document.getElementById('button-hidden').style.display = 'block'-->
+<!--      }, 6000)-->
+<!--    }-->
+<!--  -->
+<!--    function buttonClicked2(target) {-->
+<!--      target.setAttribute('disabled', 'disabled')-->
+<!--      document.getElementById('spinner').style.display = 'block'-->
+<!--      document.getElementById('tryagain').style.display = 'none'-->
+<!--      document.getElementById("spinner").focus();-->
+<!--  -->
+<!--      setTimeout(function () {-->
+<!--        document.getElementById('button-hidden-2').click()-->
+<!--      }, 3000)-->
+<!--    }-->
+<!--  -->
+<!--    function submitSpinner() {-->
+<!--      var selects = document.getElementById('button')-->
+<!--      selects.addEventListener('click', function (event) {-->
+<!--        event.preventDefault()-->
+<!--        if (selects.getAttribute('disabled') === 'disabled') {-->
+<!--        } else {-->
+<!--          event.preventDefault()-->
+<!--          buttonClicked(selects)-->
+<!--        }-->
+<!--      })-->
+<!--    }-->
+<!--  -->
+<!--    function submitSpinner2() {-->
+<!--      var selects = document.getElementById('button-hidden')-->
+<!--      selects.addEventListener('click', function (event) {-->
+<!--        event.preventDefault()-->
+<!--        if (selects.getAttribute('disabled') === 'disabled') {-->
+<!--        } else {-->
+<!--          event.preventDefault()-->
+<!--          buttonClicked2(selects)-->
+<!--        }-->
+<!--      })-->
+<!--    }-->
+<!--  </script>-->
+
+{% endblock %}

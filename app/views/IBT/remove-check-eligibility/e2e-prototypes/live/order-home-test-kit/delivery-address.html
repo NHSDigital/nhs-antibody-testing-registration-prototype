@@ -1,0 +1,62 @@
+{% set version = "live" %}
+{% set pageTitle = "What is your delivery address?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/IBT/check-eligibility/e2e-prototypes/{{version}}/order-home-test-kit/delivery-postcode">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/check-eligibility/e2e-prototypes/{{version}}/order-home-test-kit/confirm-email-address" method="post">
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-5">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+
+          <p>
+            <strong class="govuk-!-margin-bottom-4 govuk-!-display-block">Postcode</strong>
+            <strong>{{ data['delivery-address-postcode'] | default('LS1 3BE') }}</strong>
+            <a href="/IBT/check-eligibility/e2e-prototypes/{{version}}/order-home-test-kit/postcode" class="govuk-!-margin-left-5">
+              Change
+              <span class="govuk-visually-hidden">your postcode</span>
+            </a>
+          </p>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="delivery-address">
+              Address
+            </label>
+            <select class="govuk-select" id="delivery-address" name="delivery-address">
+              <option>Select from 5 addresses</option>
+              <option value="Oxford House, Oxford Row, Leeds, {{ data['delivery-address-postcode'] | default('LS1 3BE') }}">Oxford House, Oxford Row, Leeds, {{ data['delivery-address-postcode'] | default('LS1 3BE') }}</option>
+              <option value="Office 14 New Station St, Leeds, LS1 5DL">Office 14 New Station St, Leeds, LS1 5DL</option>
+              <option value="38 Park Square North, Leeds, LS1 2NY">38 Park Square North, Leeds, LS1 2NY</option>
+              <option value="Lion House, 41, York Place, Leeds, LS1 2ED">Lion House, 41, York Place, Leeds, LS1 2ED</option>
+              <option value="1 Whitehall Quay Whitehall Rd, Leeds, LS1 4HR">1 Whitehall Quay Whitehall Rd, Leeds, LS1 4HR</option>
+            </select>
+          </div>
+
+        </fieldset>
+
+        <p class="govuk-body"><a href="/IBT/check-eligibility/e2e-prototypes/{{version}}/order-home-test-kit/delivery-address-manual">I can't find my address on the list</a></p>
+
+        <button class="govuk-button" type="submit" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+

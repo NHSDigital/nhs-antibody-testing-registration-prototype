@@ -1,0 +1,71 @@
+{% set version = "live" %}
+{% set pageTitle = "Does the person needing a test have an email address?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+  <a class="govuk-back-link" href="/IBT/check-eligibility/e2e-prototypes/{{version}}/global-registration/landline-number">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/check-eligibility/e2e-prototypes/{{version}}/global-registration/gender" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="mobile-number-hint" class="govuk-body">
+                If you have one, we’ll email your test site pass and test results to you. You can print this out or bring a copy of it on your mobile phone.
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="email-1">
+                  Yes, I have an email address
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="email-address">
+                    Make sure you’re happy for the test results to go to this email address. Do not use a work or shared email address unless you’re comfortable with others seeing your results.<br><br>
+                    Email address
+                  </label>
+                  <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}" aria-describedby="conditional-email-address-hint">
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="I do not have an email address" {{ checked("email", "I do not have an email address") }}>
+                <label class="govuk-label govuk-radios__label" for="email-2">
+                  No, I don’t have an email address
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
