@@ -1,0 +1,317 @@
+{% set version = "v1" %}
+{% set serviceName = "COVID-19" %}
+{% set pageTitle = "What’s changing at this test site?" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+    <a class="govuk-back-link" href="#">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-three-quarters">
+            <h1 class="govuk-heading-xl"> Test site appointment changes </h1>
+            <p class="govuk-body"> View any test site appointment that has been affected by a change in location, date or operating hours. </p>
+            <section class="search-input__section">
+                <h1 class="govuk-heading-m govuk-!-margin-top-7"> Search a keyword  from a message sent out </h1>
+                <p class="govuk-hint"> For example, ‘Islington Finsbury Center’. </p>
+                <form class="search-input__form">
+                    <div class="govuk-!-width-three-quarters govuk-form-group">
+                        <label for="search" class="govuk-label"></label><!----><!----><input id="search" name="search" class="govuk-input"></div>
+                    <div class="search-input__buttons"><!----><input type="submit" class="govuk-button search-input__submit" value="Search"></div>
+                </form>
+            </section>
+            <button class="govuk-!-margin-top-4 govuk-button--secondary govuk-button"> Refresh Page </button>
+        </div>
+        <div class="govuk-grid-column-full">
+            <div class="govuk-tabs" data-module="govuk-tabs">
+                <h2 class="govuk-tabs__title">
+                    Contents
+                </h2>
+                <ul class="govuk-tabs__list">
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                        <a class="govuk-tabs__tab" href="#today">
+                        Today
+                    </a>
+                    </li>
+                    <li class="govuk-tabs__list-item">
+                        <a class="govuk-tabs__tab" href="#yesterday">
+                        Yesterday
+                    </a>
+                    </li>
+                </ul>
+                <div class="govuk-tabs__panel" id="today">
+                    <h2 class="govuk-heading-l govuk-!-margin-bottom-1">Today</h2>
+                    <span class="govuk-caption-l govuk-!-margin-bottom-4">28 February 2022</span>
+                    <div class="govuk-!-padding-4 govuk-!-margin-bottom-6" style="background-color: #f3f2f1">
+                        <div style="display: flex; justify-content:space-between; align-items:top">
+                            <div>
+                                <h3 class="govuk-heading-s">SMS summary</h3>
+                                <ul class="govuk-!-padding-left-0" style="list-style: none; display: flex; flex-direction: row">
+                                    <li style="margin-right: 4.375rem">
+                                        <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f">SMS total</p>
+                                        <p class="govuk-body-l govuk-!-margin-bottom-4">653</p>
+                                    </li>
+                                    <li style="margin-right: 4.375rem">
+                                        <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f">Sites affected</p>
+                                        <p class="govuk-body-l govuk-!-margin-bottom-4">12</p>
+                                    </li>
+                                    <li style="margin-right: 4.375rem">
+                                        <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f">People affected</p>
+                                        <p class="govuk-body-l govuk-!-margin-bottom-4">653</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="govuk-form-group">
+                            <label class="govuk-label" for="sort">
+                                Select a region
+                            </label>
+                            <select class="govuk-select" id="sort" name="sort">
+                                <option value="published" selected>All regions</option>
+                                <option value="views">Midlands</option>
+                                <option value="views">North East</option>
+                                <option value="views">North West</option>
+                                <option value="views">Northern Ireland</option>
+                                <option value="views">Scotland</option>
+                                <option value="views">South East</option>
+                                <option value="updated">South West</option>
+                                <option value="comments">Wales</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="govuk-heading-s">Breakdown of reasons for sending an SMS</h3>
+                            <ul class="govuk-!-padding-left-0 govuk-!-margin-bottom-0" style="list-style: none; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;">
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Address changed</p>
+                                    <p class="govuk-body-l" style="display: flex; align-items:center">39 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">6%</strong>
+                                    </p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Operating hours changed</p>
+                                    <p class="govuk-body-l" style="display: flex; align-items:center">45<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">7%</strong>
+                                    </p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Site closed</p>
+                                    <p class="govuk-body-l" style="display: flex; align-items:center">130<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">20%</strong>
+                                    </p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Site closed due to bad weather</p>
+                                    <p class="govuk-body-l" style="display: flex; align-items:center">209<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">32%</strong>
+                                    </p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Drive through cancelled</p>
+                                    <p class="govuk-body-l govuk-!-margin-bottom-3" style="display: flex; align-items:center">150<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">23%</strong>
+                                    </p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Walk through cancelled</p>
+                                    <p class="govuk-body-l govuk-!-margin-bottom-3" style="display: flex; align-items:center">0<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">0%</strong>
+                                    </p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Site reopened</p>
+                                    <p class="govuk-body-l govuk-!-margin-bottom-3" style="display: flex; align-items:center">78<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">12%</strong>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <table class="govuk-table">
+                        <!---->
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header" style="white-space:nowrap"> Time of request</th>
+                                <th scope="col" class="govuk-table__header"> Site affected </th>
+                                <th scope="col" class="govuk-table__header"> Date and time </th>
+                                <th scope="col" class="govuk-table__header"> SMS message</th>
+                            </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                                <!---->
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body govuk-!-margin-bottom-1">15:08</p>
+                                    <strong class="govuk-tag govuk-tag--grey"> SENT </strong>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body">Gryphon Sports Centre</p>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> 28 February 2022 3:30am to 28 February 2022 12:59pm </p> 44 appointments affected </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> Sorry we've had to cancel your appointment as Gryphon Sports Centre is closed on 28 February 2022.  <br></p>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <!---->
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body govuk-!-margin-bottom-1">15:03</p>
+                                    <strong class="govuk-tag govuk-tag--grey"> SENT </strong>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body">Hinkley - Mobile Unit</p>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> 28 February 2022 3:30am to 28 February 2022 12:59pm </p> 32 appointments affected </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> Sorry we've had to cancel your appointment as Hinkley - Mobile Unit is closed on 28 February 2022.  <br></p>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <!---->
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body govuk-!-margin-bottom-1">14:55</p>
+                                    <strong class="govuk-tag govuk-tag--grey"> SENT </strong>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body">Victoria Street No 2 Car Park Dugdale Street</p>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> 28 February 2022 3:30am to 28 February 2022 12:59pm </p> 542 appointments affected </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> Due to weather issues we've had to cancel your appointment at the Hinkley - Mobile Unit on 02 March 2022.  <br></p>
+                                    <p class="govuk-body"> You can visit one of the test sites below.        <br></p>
+                                    <p class="govuk-body">
+                                        <br></p>
+                                    <p class="govuk-body"> Nuneaton - Mobile Unit, Harefield Road Car Park, Nuneaton, CV11 4HR on 02 March 2022 between 12:00 am to 12:30 pm and 1:30 am to 1:30 pm;  <br></p>
+                                    <p class="govuk-body"> Victoria Street No 2 Car Park Dugdale Street, Victoria Street No. 2 Car Park, Nuneaton, CV11 5QE on 02 March 2022 between 12:30 am to 12:30 pm.  <br></p>
+                                    <p class="govuk-body">
+                                        <br></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="yesterday">
+                    <h2 class="govuk-heading-l govuk-!-margin-bottom-1">Yesterday</h2>
+                    <span class="govuk-caption-l govuk-!-margin-bottom-4">27 February 2022</span>
+                    <div class="govuk-!-padding-4 govuk-!-margin-bottom-6" style="background-color: #f3f2f1">
+                        <div>
+                            <h3 class="govuk-heading-s">SMS summary</h3>
+                            <ul class="govuk-!-padding-left-0" style="list-style: none; display: flex; flex-direction: row">
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f">SMS total</p>
+                                    <p class="govuk-body-l govuk-!-margin-bottom-4">527</p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f">Sites affected</p>
+                                    <p class="govuk-body-l govuk-!-margin-bottom-4">3</p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f">People affected</p>
+                                    <p class="govuk-body-l govuk-!-margin-bottom-4">527</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="govuk-heading-s">Breakdown of reasons for sending an SMS</h3>
+                            <ul class="govuk-!-padding-left-0 govuk-!-margin-bottom-0" style="list-style: none; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;">
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Address changed</p>
+                                    <p class="govuk-body-l" style="display: flex; align-items:center">45 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">6%</strong>
+                                    </p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Operating hours changed</p>
+                                    <p class="govuk-body-l" style="display: flex; align-items:center">23<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">7%</strong>
+                                    </p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Site closed</p>
+                                    <p class="govuk-body-l" style="display: flex; align-items:center">154<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">20%</strong>
+                                    </p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Site closed due to bad weather</p>
+                                    <p class="govuk-body-l" style="display: flex; align-items:center">177<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">32%</strong>
+                                    </p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Drive through cancelled</p>
+                                    <p class="govuk-body-l govuk-!-margin-bottom-3" style="display: flex; align-items:center">112<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">23%</strong>
+                                    </p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Walk through cancelled</p>
+                                    <p class="govuk-body-l govuk-!-margin-bottom-3" style="display: flex; align-items:center">3<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">1%</strong>
+                                    </p>
+                                </li>
+                                <li style="margin-right: 4.375rem">
+                                    <p class="govuk-body-s govuk-!-margin-bottom-1" style="color: #505a5f; white-space: nowrap">Site reopened</p>
+                                    <p class="govuk-body-l govuk-!-margin-bottom-3" style="display: flex; align-items:center">65<strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1" style="font-size: .875rem;">12%</strong>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <table class="govuk-table">
+                        <!---->
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header" style="white-space:nowrap"> Time of request </th>
+                                <th scope="col" class="govuk-table__header"> Site affected </th>
+                                <th scope="col" class="govuk-table__header"> Impact date and time </th>
+                                <th scope="col" class="govuk-table__header"> SMS message</th>
+                            </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                                <!---->
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body govuk-!-margin-bottom-1">14:23</p>
+                                    <strong class="govuk-tag govuk-tag--grey"> SENT </strong>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body">Grosvenor Hall</p>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> 27 February 2022 3:30am to 28 February 2022 12:59pm </p> 62 appointments affected </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> Sorry we've had to cancel your appointment as Grosvenor Hall is closed on 28 February 2022.  <br></p>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <!---->
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body govuk-!-margin-bottom-1">12:33</p>
+                                    <strong class="govuk-tag govuk-tag--grey"> SENT </strong>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body">Westminster - Mobile Unit</p>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> 28 February 2022 3:30am to 28 February 2022 12:59pm </p> 432 appointments affected </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> Sorry we've had to cancel your appointment as Westminster - Mobile Unit is closed on 28 February 2022.  <br></p>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <!---->
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body govuk-!-margin-bottom-1">10:24</p>
+                                    <strong class="govuk-tag govuk-tag--grey"> SENT </strong>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body">Wheatsheaf Community Hall</p>
+                                </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> 27 February 2022 3:30am to 28 February 2022 12:59pm </p> 23 appointments affected </td>
+                                <td class="govuk-table__cell">
+                                    <p class="govuk-body"> Sorry we've had to cancel your appointment as Wheatsheaf Community Hall is closed on 28 February 2022.  <br></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
