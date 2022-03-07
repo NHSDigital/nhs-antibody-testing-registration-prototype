@@ -1,5 +1,5 @@
-{% set version = "live" %}
-{% set pageTitle = "Email address" %}
+{% set version = "research" %}
+{% set pageTitle = "Do you have an email address?" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -24,75 +24,65 @@
 
       <form class="form" action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/mobile-number" method="post">
 
-          <div class="govuk-form-group">
+        <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
-
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-l govuk-!-margin-bottom-8">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have an email address?
+                {% else %}
                 {{ pageTitle }}
+                {% endif %}
               </h1>
             </legend>
-
-            <div id="email-address-hint" class="govuk-body">
+            <span id="email-address-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-
-                <p class="govuk-body">We need an email address to send the test results. Use one they'll have access to later.</p>
-
-                <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
-
-                <p class="govuk-body">If they're getting a test for a child, enter their email not the child's.</p>
-
-                <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way to get the test results.</p>
-
-                {% else %}
-                <p class="govuk-body">We need an email address to send your test results. Use one you'll have access to later.</p>
-
-                <p class="govuk-body">If you're getting a test for a child, enter your email not theirs.</p>
-
-                <p class="govuk-body">If your mobile number is going to change soon, it's important you give us an email address, as it's the only way to get your test results.</p>
+              If they have one, we’ll send their test results to this email address.<br><br>
+              If they are a baby or child and you can receive emails on their behalf, select ‘Yes’.
+              {% else %}
+              If you have one, we’ll send your test results to this email address.
               {% endif %}
-            </div>
-
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              {% if data['whos-taking-the-test'] == "someone-else" %}
-              Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have an email address?
-               {% else %}
-               Do you have an email address where you can get the test results?
-               {% endif %}
-             </legend>
-
+            </span>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
                 <label class="govuk-label govuk-radios__label" for="email-1">
                   {% if data['whos-taking-the-test'] == "someone-else" %}
-                  Yes
+                  Yes, they have an email address
                   {% else %}
-                  Yes
+                  Yes, I have an email address
                   {% endif %}
                 </label>
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="email-address">
+                    {% if data['whos-taking-the-test'] == "someone-else" %}
+                    Get their permission before you enter their email address.<br><br>
+                    Make sure they’re happy for their test results to go to this email address. Do not use a work or shared email address unless they’re comfortable with others seeing their results.<br><br>
+                    Children need to be aged 16 and over to receive their results. If the child is younger than 16, you (their parent or guardian) should enter your email address here.
+                    {% else %}
+                    Make sure you’re happy for your test results to go to this email address. Do not use a work or shared email address unless you’re comfortable with others seeing your results.
+                    {% endif %}
+                    <br><br>
                     Email address
                   </label>
-                  <input class="govuk-input govuk-input--width-20" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+                  <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}" aria-describedby="conditional-email-address-hint">
                 </div>
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="confirm-email-address">
                     Confirm email address
                   </label>
-                  <input class="govuk-input govuk-input--width-20" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
+                  <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
                 </div>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="No" {{ checked("email", "No") }}>
                 <label class="govuk-label govuk-radios__label" for="email-2">
                   {% if data['whos-taking-the-test'] == "someone-else" %}
-                  No
+                  No, they do not have an email address
                   {% else %}
-                  No
+                  No, I do not have an email address
                   {% endif %}
                 </label>
               </div>
