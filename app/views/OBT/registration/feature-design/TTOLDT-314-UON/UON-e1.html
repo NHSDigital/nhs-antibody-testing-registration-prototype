@@ -1,0 +1,97 @@
+{% set pageHeading = "Find the organisation that gave you the test kits" %}
+ {% set version = "OBT/individual-accounts/v3" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - COVID-19
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+ <form class="" action="UON-check" method="get">
+
+   <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
+     <h2 class="govuk-error-summary__title" id="error-summary-title">
+       There is a problem
+     </h2>
+     <div class="govuk-error-summary__body">
+       <ul class="govuk-list govuk-error-summary__list">
+         <li>
+           <a href="#passport-issued-day">Enter the UON</a>
+         </li>
+       </ul>
+     </div>
+   </div>
+
+    <h1 class="govuk-heading-xl">
+      {{ pageHeading }}
+    </h1>
+
+<p>You can search for the organisation by entering its unique organisation number (UON).</p>
+
+      <div class="govuk-form-group govuk-form-group--error">
+        <label class="govuk-label" for="">
+      <h2 class="govuk-heading-m">What is the UON?
+        </label>
+        <div id="passport-issued-hint" class="govuk-hint">
+      An 8 digit number like 12345678
+        </div>
+        <p id="passport-issued-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Enter the UON
+    </p>
+        <input class="govuk-input govuk-!-width-one-third" id="" name="" type="text">
+      </div>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            What to do if you do not know the UON
+            </span>
+        </summary>
+        <div class="govuk-details__text">
+        <p>The organisation may have given it to you with your test kit. </p>
+        <p><a href='name-postcode'>Look up the organisation with its name and postcode</a></p>
+        <p>You can also <a href='https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/'>find the UON with the organisation ID and postcode (opens in a new tab)</a></p>
+         </div>
+      </details>
+
+
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+
+
+      </form>
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

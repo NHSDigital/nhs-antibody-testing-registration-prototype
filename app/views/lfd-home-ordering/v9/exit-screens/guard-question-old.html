@@ -1,0 +1,87 @@
+{% set version = "v9" %}
+{% set pageTitle = "Are you sure you are eligible for rapid lateral flow tests?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Important
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+             Only get tests if you are sure you are eligible.
+            <!-- <a class="govuk-notification-banner__link" href="#">View application</a>. -->
+          </p>
+        </div>
+      </div>
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+          {{ pageTitle }}
+      </h1>
+
+      <p class="govuk-body">At this time of year, there is extra demand for NHS coronavirus testing.
+         Help the NHS and only get rapid lateral flow tests if you really need them.</p>
+
+      <p class="govuk-body">You are eligible to get rapid lateral flow tests if you:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>one</li>
+          <li>two</li>
+          <li>three</li>
+        </ul>
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+              You should only order rapid lateral flow tests if you are eligible
+          </strong>
+        </div>
+
+        <a href="/lfd-home-ordering/{{version}}/do-you-have-symptoms">
+          <button class="govuk-button" data-module="govuk-button">
+            I am eligible for rapid lateral flow tests
+          </button></a>
+        <a href="/lfd-home-ordering/{{version}}/exit-screens/not-eligible">
+          <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Show me other ways to get tested
+          </button></a>
+
+
+      <!--      <form action="/antigen/{{version}}/refer-and-triage/essential-worker" method="post">
+              <button class="govuk-button" data-module="govuk-button">
+                I am eligible for a PCR test
+              </button>
+            </form>
+            <form action="/antigen/{{version}}/refer-and-triage/not-eligible" method="post">
+              <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Show me other ways to get tested
+              </button>
+            </form> -->
+
+
+    </div>
+</div>
+
+{% endblock %}

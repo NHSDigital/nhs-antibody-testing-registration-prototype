@@ -1,0 +1,112 @@
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      John Smith
+  {% endif %}
+{% endset %}
+{% set pageHeading = "Find the organisation that gave you the test kits" %}
+ {% set version = "organisational/ind-accounts/v3" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - COVID-19
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
+  <h2 class="govuk-error-summary__title" id="error-summary-title">
+    There is a problem
+  </h2>
+  <div class="govuk-error-summary__body">
+    <ul class="govuk-list govuk-error-summary__list">
+      <li>
+        <a href="#passport-issued-day">Enter name of head office</a>
+      </li>
+      <li>
+        <a href="#postcode-input">Enter postcode of head office</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+      <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+
+
+       <form class="" action="name-postcode-e2" method="get">
+
+         <div class="govuk-form-group">
+
+     <p>You can search for the organisation which gave you the test kits by entering both the head office name and postcode.</p>
+
+   <h2 class="govuk-heading-m">What are the organisation's details?</h2>
+
+   <div class="govuk-form-group govuk-form-group--error">
+ <label class="govuk-label" for="address-postcode">
+  Name of head office
+ </label>
+ <p id="passport-issued-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Enter name of head office
+    </p>
+ <input class="govuk-input govuk-input--width-20" id="address-postcode" name="address-postcode" type="text" autocomplete="postal-code">
+ </div>
+
+ <div class="govuk-form-group govuk-form-group--error">
+    <label class="govuk-label" for="address-postcode">
+      Postcode of head office
+    </label>
+    <p id="passport-issued-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Enter postcode of head office</p>
+    <input class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode" type="text" autocomplete="postal-code">
+  </div>
+
+<div>
+  <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        What to do if you do not know these details
+        </span>
+    </summary>
+    <div class="govuk-details__text">
+    <p>You can ask the organisation or search the Internet for the name and postcode.</p>
+    <p>If you are unable to complete this form call 119. Lines are open 7am to 11pm.</p>
+   </div>
+  </details>
+  </div>
+
+
+         <input class="govuk-button" type="submit" value="Continue">
+
+       </form>
+
+    </div>
+  </div>
+
+{% endblock %}
