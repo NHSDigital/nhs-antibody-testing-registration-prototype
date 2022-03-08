@@ -1247,10 +1247,10 @@ router.post('/lfd-home-ordering/v8/action10/work-area', function(req, res) {
 
 router.post('/lfd-home-ordering/v9/action10/country', function(req, res) {
   let country = req.session.data['country']
-  if (country == "England" || country == "Scotland" || country == "Northern Ireland" || country == "Wales") {
-    res.redirect('/lfd-home-ordering/v8/do-you-have-symptoms')
+  if (country == "England") {
+    res.redirect('/lfd-home-ordering/v9/exit-screens/guard-question-england')
   } else {
-    res.redirect('/lfd-home-ordering/v8/error-screens/country')
+    res.redirect('/lfd-home-ordering/v9/do-you-have-symptoms')
   }
 
 })
