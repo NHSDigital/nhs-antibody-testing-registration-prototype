@@ -1,0 +1,56 @@
+{% set pageTitle = "Royal Mail barcode reference" %}
+
+{% extends "includes/layout-lite-registration.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="#">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/royal-mail-barcode-manual" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <p class="govuk-body">
+              You'll find it on the right-hand side of the label on your return box. Do not scan the QR code, which is on the left-hand side of the label.
+            </p>
+            <div class="govuk-!-margin-top-5">
+              <img src="/public/images/royal-mail-barcode.png" class="responsive-image" alt="Illustration of a royal mail barcode showing the position on return box. It is on the right-hand side of the label on your return box."/>
+            </div>
+          </fieldset>
+        </div>
+        <a id="scan-button" class="govuk-button" data-toggle="modal" role="button" data-target="modal-with-data-attributes" href="/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/royal-mail-barcode-scan">Scan barcode</a>
+        <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
+        
+        <p class="govuk-body">
+          <a href="/IBT/litereg-accounts/e2e-prototypes/research/test-date" role="button" draggable="false" class="govuk-link" data-module="govuk-button">
+            I do not know my Royal Mail barcode
+          </a>
+        </p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
