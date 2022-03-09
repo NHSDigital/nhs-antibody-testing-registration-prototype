@@ -1,0 +1,115 @@
+{% set pageTitle = "Test kit barcode reference" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/litereg-accounts/e2e-prototypes/research/overseas-travel" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+            <p class="govuk-body">
+              You’ll find the same test kit barcode in 4 different places. You only have to scan one of them. Choose to scan one of the barcodes on the:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>plastic tube</li>
+              <li>leak proof bag</li>
+              <li>instruction leaflet</li>
+              <li>return box</li>
+            </ul>
+            
+            <p class="govuk-body">
+              It should look like this:
+            </p>
+
+            <img src="/public/images/barcode-number-2.png" alt="Image of the test kit barcode"/>
+
+            <div class="govuk-form-group govuk-!-margin-top-6">
+              <label class="govuk-label" for="kit-barcode-reference-1">
+                Test kit barcode reference
+              </label>
+              <div id="enter-barcode-number-hint-3" class="govuk-hint">
+                For example, AA135562600
+              </div>
+              <input autofocus class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="kit-barcode-reference-2">
+                Confirm test kit barcode reference
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }}>
+            </div>
+
+          </fieldset>
+        </div>
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <a id="scan-button" class="govuk-button govuk-button--secondary" data-module="govuk-button" href="/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/test-kit-barcode-manual-scan">Use barcode scanner</a>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- <script type="text/javascript">
+    submitEvent()
+
+    function scanButtonClicked(target) {
+      navigator.permissions.query({name:'camera'}).then(function(permissionStatus) {
+      console.log('camera permission state is ', permissionStatus.state);
+        if(permissionStatus.state == "denied") {
+          window.location.href = '/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/test-kit-barcode-manual-permissions-denied';
+        } else {
+          window.location.href = '/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/test-kit-barcode-manual-scan';
+        }
+      });
+    }
+
+    
+
+    function addListener(button, buttonClicked) {
+      button.addEventListener('click', function (event) {
+        event.preventDefault()
+        if (button.getAttribute('disabled') === 'disabled') {
+        } else {
+          event.preventDefault()
+          buttonClicked(button)
+        }
+      })
+    }
+  
+    function submitEvent() {
+      var scanButton = document.getElementById('scan-button')
+      addListener(scanButton, scanButtonClicked)
+    }
+  
+  </script> -->
+
+{% endblock %}
