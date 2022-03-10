@@ -1,3 +1,4 @@
+{% set version = "research" %}
 {% set pageTitle = "Royal Mail barcode reference" %}
 
 {% extends "includes/layout-lite-registration.html" %}
@@ -23,7 +24,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/royal-mail-barcode" method="post">
+      <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
@@ -40,7 +41,7 @@
             </div>
           </fieldset>
         </div>
-        <a id="scan-button" class="govuk-button" data-toggle="modal" role="button" data-target="modal-with-data-attributes" href="/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/royal-mail-barcode-scan">Scan barcode</a>
+        <a id="scan-button" class="govuk-button" data-toggle="modal" role="button" data-target="modal-with-data-attributes" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode-scan">Scan barcode</a>
         <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
         
         <p class="govuk-body">
@@ -149,7 +150,7 @@
                 </ul>
               </div>
             </div>
-            <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/royal-mail-barcode-scan">Scan again</a>
+            <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode-scan">Scan again</a>
           </div>
           <button id="close-button" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
         </dialog>
@@ -171,7 +172,7 @@
               </p>
               <p class="govuk-body">Royal Mail barcode reference: <strong id="scanned-barcode"></strong></p>
               <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/litereg-accounts/e2e-prototypes/research/test-date">Continue</a>
-              <p class="body"><a href="/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/royal-mail-barcode-scan">Scan again</a></p>
+              <p class="body"><a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode-scan">Scan again</a></p>
             </div>
             <button id="close-button" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
           </dialog>
@@ -179,7 +180,7 @@
 
     navigator.mediaDevices.getUserMedia( { video: true } )
     .then( ( stream ) => {
-          // window.location.href = '/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/royal-mail-barcode-scan';
+          // window.location.href = '/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode-scan';
     },
     e => {
       document.getElementById('modal-window-2').innerHTML = modalPermissionsDenied
@@ -197,7 +198,7 @@
     }
 
     function closeButtonClicked(target) {
-        window.location.href = '/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/royal-mail-barcode';
+        window.location.href = '/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode';
     }
   
     function manualEntryButtonClicked(target) {
