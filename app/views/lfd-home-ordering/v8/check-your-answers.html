@@ -118,10 +118,11 @@
                 Home address
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if data['home-address'] != "Select from 5 addresses" %}
-                {{ data['home-address'] }}
+                {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+                  {{ data['home-address'] }}
                 {% else %}
-                1 House, New Station St, Leeds, LS1 5DL
+                  {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+                  {{ data['home-postcode'] or 'LS1 3BE' }}
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
