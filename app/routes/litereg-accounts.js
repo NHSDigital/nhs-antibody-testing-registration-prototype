@@ -315,7 +315,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/whos-taking-t
   if (person == "myself") {
     res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/coronavirus-account')
   } else {
-    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/enter-barcode')
+    res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/test-kit-barcode')
   }
 
 })
