@@ -67,7 +67,7 @@
               Contact details
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['email-address'] }}<br>
+              {{ data['email-address'] or 'petesmith@domain.com' }}<br>
               {% if data['mobile-number'] == "Yes" %}
               {{ data['mobile-phone-number'] }}
               {% else %}
@@ -119,9 +119,7 @@
               </dt>
               <dd class="govuk-summary-list__value">
                 {% if data['home-address'] != "Select from 5 addresses" %}
-                {{ data['home-address'] }}
-                {% else %}
-                1 House, New Station St, Leeds, LS1 5DL
+                {{ data['home-address'] or '1 House, New Station St, Leeds, LS1 5DL'}}
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
