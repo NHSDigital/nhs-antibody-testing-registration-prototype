@@ -110,6 +110,11 @@
 
     document.body.parentNode.style.overflow = "hidden"
 
+    if(localStorage.getItem("mailBarcodeData")) {
+      document.getElementById('mail-barcode-reference-1').value = localStorage.getItem("mailBarcodeData");
+      document.getElementById('mail-barcode-reference-2').value = localStorage.getItem("mailBarcodeData");
+    }
+
     const modalPermissionsDenied = `
           <div class="gem-c-modal-dialogue__overlay"></div>
           <dialog class="gem-c-modal-dialogue__box" aria-modal="true" role="dialog" tabindex="0">
@@ -187,7 +192,7 @@
                 This is what we have captured:
               </p>
               <p class="govuk-body">Royal Mail barcode reference: <strong id="scanned-barcode"></strong></p>
-              <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/litereg-accounts/e2e-prototypes/research/overseas-travel">Continue</a>
+              <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/litereg-accounts/e2e-prototypes/research/test-date">Continue</a>
               <p class="body"><a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode-manual-scan">Scan again</a></p>
             </div>
             <button id="close-button" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
@@ -242,10 +247,10 @@
 
         if(event.detail.barcodes[0].symbology == "code128" && checkLettersEnd == "GB") {
      
-          localStorage.setItem("barcodeData", barcodeReference);
+          localStorage.setItem("mailBarcodeData", barcodeReference);
   
           document.getElementById('modal-window-2').innerHTML = modalScannedBarcode;
-          document.getElementById('scanned-barcode').innerHTML = localStorage.getItem("barcodeData");
+          document.getElementById('scanned-barcode').innerHTML = localStorage.getItem("mailBarcodeData");
         } else {
           document.getElementById('modal-window-2').innerHTML = modalIncorrectCode;
         }

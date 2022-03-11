@@ -87,8 +87,12 @@
               
             </div>
             <button id="close-button-2" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
+
           </dialog>
         </div>
+
+        <input style="display: none; visibility: hidden;" class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" >
+        <input style="display: none; visibility: hidden;" class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" >
 
       </form>
 
@@ -99,6 +103,11 @@
     submitEvent()
 
     document.body.parentNode.style.overflow = "hidden"
+
+    if(localStorage.getItem("barcodeData")) {
+      document.getElementById('kit-barcode-reference-1').value = localStorage.getItem("barcodeData");
+      document.getElementById('kit-barcode-reference-2').value = localStorage.getItem("barcodeData");
+    }
 
     const modalPermissionsDenied = `
           <div class="gem-c-modal-dialogue__overlay"></div>

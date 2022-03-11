@@ -15,10 +15,13 @@
     </p>
   </div>
 
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.go(-1);"
-  }) }}
+  {% if data['whos-taking-the-test'] == "myself" and data['email-address'] %}
+  <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/user-account/home-page">Back</a>
+  {% elseif data['whos-taking-the-test'] == "myself" %}
+  <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/coronavirus-account">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/whos-taking-the-test">Back</a>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -60,13 +63,13 @@
               <div id="enter-barcode-number-hint-3" class="govuk-hint">
                 For example, AA135562600
               </div>
-              <input autofocus class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
+              <input autofocus class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }} onchange="updateBarcodeData()">
             </div>
             <div class="govuk-form-group">
               <label class="govuk-label" for="kit-barcode-reference-2">
                 Confirm test kit barcode reference
               </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }}>
+              <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }} onchange="updateBarcodeData()">
             </div>
 
           </fieldset>
@@ -78,5 +81,18 @@
 
     </div>
   </div>
+
+  <script type="text/javascript">
+
+    function updateBarcodeData() {
+      localStorage.setItem("barcodeData", document.getElementById('kit-barcode-reference-1').value)
+    }
+
+    if(localStorage.getItem("barcodeData")) {
+      document.getElementById('kit-barcode-reference-1').value = localStorage.getItem("barcodeData");
+      document.getElementById('kit-barcode-reference-2').value = localStorage.getItem("barcodeData");
+    }
+
+  </script>
 
 {% endblock %}

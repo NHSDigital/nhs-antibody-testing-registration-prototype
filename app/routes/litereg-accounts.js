@@ -382,9 +382,13 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/research/action3/do-you-have-s
   router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/overseas-travel', function (req, res) {
     let overseasTravel = req.session.data['have-you-travelled-overseas']
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
+    if(uniqueBarcode) {
+      uniqueBarcode = req.session.data['kit-barcode-reference-1'].slice(0,2)
+    }
+    
     if (overseasTravel == "Yes") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/travel-route')
-    } else if (uniqueBarcode == "LFU00000009") {
+    } else if (uniqueBarcode == "LF") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/site-id')
     } else if (uniqueBarcode == "COE00000501") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/royal-mail-barcode')
@@ -396,7 +400,10 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/research/action3/do-you-have-s
 
   router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/travelled-to', function (req, res) {
     let uniqueBarcode = req.session.data['kit-barcode-reference-1']
-    if (uniqueBarcode == "LFU00000009") {
+    if(uniqueBarcode) {
+      uniqueBarcode = req.session.data['kit-barcode-reference-1'].slice(0,2)
+    }
+    if (uniqueBarcode == "LF") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/site-id')
     } else if (uniqueBarcode == "COE00000501") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/royal-mail-barcode')
@@ -521,10 +528,11 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/research/action/gp-address-sam
 // Research - Lite Registration Accounts - site confirmation route
 router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/site-confirmation', function (req, res) {
   let confirmSite = req.session.data['confirm-site']
-  let barcode = req.session.data['kit-barcode-reference-1']
-  if (confirmSite == "Yes" && barcode == "LFU00000009") {
+  let uniqueBarcode = req.session.data['kit-barcode-reference-1'].slice(0,2)
+  let uniqueBarcodeStorage = localStorage.getItem("mailBarcodeData").slice(0,2);
+  if (confirmSite == "Yes" && uniqueBarcode == "LF" || confirmSite == "Yes" && uniqueBarcodeStorage == "LF") {
     res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/repeat-testing')
-  } else if (confirmSite == "Yes" && barcode !== "LFU00000009") {
+  } else if (confirmSite == "Yes" && uniqueBarcode !== "LF" || confirmSite == "Yes" && uniqueBarcodeStorage !== "LF") {
     res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/test-date')
   } else {
     res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/site-id')
