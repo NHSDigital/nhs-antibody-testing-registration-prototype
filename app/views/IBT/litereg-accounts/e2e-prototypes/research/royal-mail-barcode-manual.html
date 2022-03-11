@@ -15,15 +15,16 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/test-place">Back</a>
+  <a class="govuk-back-link" href="#">Back</a>
 {% endblock %}
 
 {% block content %}
+  {% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode-manual" method="post">
+      <form action="/IBT/litereg-accounts/e2e-prototypes/research/test-date" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
@@ -38,13 +39,28 @@
             <div class="govuk-!-margin-top-5">
               <img src="/public/images/royal-mail-barcode.png" class="responsive-image" alt="Illustration of a royal mail barcode showing the position on return box. It is on the right-hand side of the label on your return box."/>
             </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mail-barcode-reference-1">
+                Royal Mail barcode reference
+              </label>
+              <div id="enter-barcode-number-hint-3" class="govuk-hint">
+                For example, ZD 6904 0038 5GB
+              </div>
+              <input autofocus class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] }}>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mail-barcode-reference-2">
+                Confirm Royal Mail barcode reference
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-2" name="mail-barcode-reference-2" type="text" value={{ data['mail-barcode-reference-2'] }}>
+            </div>
           </fieldset>
         </div>
-        <a id="scan-button" class="govuk-button" data-toggle="modal" role="button" data-target="modal-with-data-attributes" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode-scan">Scan barcode</a>
-        <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
-        
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <a id="scan-button" class="govuk-button govuk-button--secondary" data-module="govuk-button" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode-manual-scan">Use barcode scanner</a>
+
         <p class="govuk-body">
-          <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/test-date" role="button" draggable="false" class="govuk-link" data-module="govuk-button">
+          <a href="/IBT/litereg-accounts/e2e-prototypes/research/test-date" role="button" draggable="false" class="govuk-link" data-module="govuk-button">
             I do not know my Royal Mail barcode
           </a>
         </p>
