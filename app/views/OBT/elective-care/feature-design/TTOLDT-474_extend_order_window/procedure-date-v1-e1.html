@@ -1,0 +1,72 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "What is the patient's procedure date?" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag"> beta </strong>
+      <span class="govuk-phase-banner__text"> This is a new service – your <a target="_blank" href="https://feedback.digital.nhs.uk/jfe/form/SV_0Nxdm4p12JAngk6" class="govuk-link"> feedback (opens in new tab)</a> will help us to improve it. </span></p>
+  </div>
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#procedure-date-error">Procedure date must be between 6 and 11 days from today</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+          <span class="govuk-caption-xl"> Cardiology </span> {{ pageTitle }} 
+        </h1>
+        <p class="govuk-body-l govuk-!-margin-bottom-5">Enter a procedure date between 6 and 11 days from today.</p>
+        <form action="n6_new-order-cya-v1" method="get">
+          <div class="govuk-form-group govuk-form-group--error" id="procedure-date">
+              <div id="procedure-date-hint" class="govuk-hint">For example, 19 7 2021</div>
+              <p id="procedure-date-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Procedure date must be between 6 and 11 days from today
+              </p>
+              <div>
+                <div class="govuk-date-input">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label for="procedure-date-day" class="govuk-label"> Day </label>
+                      <span id="procedure-date-day-hint" class="govuk-hint govuk-visually-hidden"> For example, 19 7 2021 </span>
+                      <input id="procedure-date-day" autocomplete="off" aria-describedby="procedure-date-day-hint" name="day" inputmode="numeric" maxlength="2" pattern="[0-9]*" class="govuk-input govuk-input--error govuk-input--width-2"></div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label for="procedure-date-month" class="govuk-label"> Month </label>
+                      <span id="procedure-date-month-hint" class="govuk-hint govuk-visually-hidden"> For example, 19 7 2021 </span>
+                      <input id="procedure-date-month" autocomplete="off" aria-describedby="procedure-date-month-hint" name="month" inputmode="numeric" maxlength="2" pattern="[0-9]*" class="govuk-input govuk-input--error govuk-input--width-2"></div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label for="procedure-date-year" class="govuk-label"> Year </label>
+                      <span id="procedure-date-year-hint" class="govuk-hint govuk-visually-hidden"> For example, 19 7 2021 </span>
+                      <input id="procedure-date-year" autocomplete="off" aria-describedby="procedure-date-year-hint" name="year" inputmode="numeric" maxlength="4" minlength="4" pattern="[0-9]*" class="govuk-input govuk-input--error govuk-input--width-4"></div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <button type="submit" class="govuk-!-margin-top-4 govuk-button"> Continue </button>
+        </form>
+    </div>
+  </div>
+
+{% endblock %}
