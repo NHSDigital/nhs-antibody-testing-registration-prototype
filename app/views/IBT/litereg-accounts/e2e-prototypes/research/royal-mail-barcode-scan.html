@@ -1,4 +1,5 @@
-{% set pageTitle = "Test kit barcode reference" %}
+{% set version = "research" %}
+{% set pageTitle = "Royal Mail barcode reference" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -23,37 +24,31 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/test-kit-barcode" method="post">
+      <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
                 {{ pageTitle }}
               </h1>
             </legend>
-
             <p class="govuk-body">
-              You’ll find the same test kit barcode in 4 different places. You only have to scan one of them. Choose to scan one of the barcodes on the:
+              You'll find it on the right-hand side of the label on your return box. Do not scan the QR code, which is on the left-hand side of the label.
             </p>
-            <ul class="govuk-list govuk-list--bullet">
-              <li>plastic tube</li>
-              <li>leak proof bag</li>
-              <li>instruction leaflet</li>
-              <li>return box</li>
-            </ul>
-            
-            <p class="govuk-body">
-              It should look like this:
-            </p>
-
-            <img src="/public/images/barcode-number-2.png" alt="Image of the test kit barcode"/>
-
+            <div class="govuk-!-margin-top-5">
+              <img src="/public/images/royal-mail-barcode.png" class="responsive-image" alt="Illustration of a royal mail barcode showing the position on return box. It is on the right-hand side of the label on your return box."/>
+            </div>
           </fieldset>
         </div>
-
-        <a id="scan-button" class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/test-kit-barcode-scan">Scan barcode</a>
+        <a id="scan-button" class="govuk-button" data-toggle="modal" role="button" data-target="modal-with-data-attributes" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode-scan">Scan barcode</a>
         <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
+        
+        <p class="govuk-body">
+          <a href="/IBT/litereg-accounts/e2e-prototypes/research/test-date" role="button" draggable="false" class="govuk-link" data-module="govuk-button">
+            I do not know my Royal Mail barcode
+          </a>
+        </p>
 
         <div class="gem-c-modal-dialogue" data-module="modal-dialogue" id="modal-window-2" style="display: block;">
           <div class="gem-c-modal-dialogue__overlay"></div>
@@ -125,7 +120,7 @@
               </p>
               <p class="govuk-body">You will need to allow camera permissions to use the scanner.</p>
               <p class="govuk-body">You may need to change the settings on your device.</p>
-              <p class="govuk-body">If you wish to scan the test kit barcode, please read the help below the update your settings before you continue</p>
+              <p class="govuk-body">If you wish to scan the Royal Mail barcode, please read the help below the update your settings before you continue</p>
               <p class="body"><a href="#" target="blank">iOS(Apple): how to allow camera access (opens in new tab)</a></p>
             </div>
             <button id="close-button" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
@@ -149,13 +144,13 @@
               <div class="govuk-error-summary__body">
                 <ul class="govuk-list govuk-error-summary__list">
                   <li>
-                    <a href="#">That is not a test kit reference barcode.
+                    <a href="#">That is not a Royal Mail reference barcode.
                       Please try another one</a>
                   </li>
                 </ul>
               </div>
             </div>
-            <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/test-kit-barcode-scan">Scan again</a>
+            <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode-scan">Scan again</a>
           </div>
           <button id="close-button" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
         </dialog>
@@ -175,9 +170,9 @@
                 Thanks for scanning your barcode.<br>
                 This is what we have captured:
               </p>
-              <p class="govuk-body">Test kit barcode reference: <strong id="scanned-barcode"></strong></p>
-              <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/litereg-accounts/e2e-prototypes/research/overseas-travel">Continue</a>
-              <p class="body"><a href="/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/test-kit-barcode-scan">Scan again</a></p>
+              <p class="govuk-body">Royal Mail barcode reference: <strong id="scanned-barcode"></strong></p>
+              <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/litereg-accounts/e2e-prototypes/research/test-date">Continue</a>
+              <p class="body"><a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode-scan">Scan again</a></p>
             </div>
             <button id="close-button" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
           </dialog>
@@ -185,26 +180,11 @@
 
     navigator.mediaDevices.getUserMedia( { video: true } )
     .then( ( stream ) => {
-          // window.location.href = '/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/test-kit-barcode-scan';
+          // window.location.href = '/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode-scan';
     },
     e => {
-      // window.location.href = '/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/test-kit-barcode-permissions-denied';
       document.getElementById('modal-window-2').innerHTML = modalPermissionsDenied
     } );
-
-    // navigator.permissions.query({name:'camera'}).then(function(permissionStatus) {
-    //   console.log('camera permission state is ', permissionStatus.state);
-    //   permissionStatus.onchange = function() {
-    //     console.log('camera permission state has changed to ', this.state);
-    //     if(this.state == "denied") {
-    //       window.location.href = '/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/test-kit-barcode-permissions-denied';
-    //     } else if (this.state == "prompt") {
-          
-    //     } else {
-
-    //     }
-    //   };
-    // });
 
     function addListener(button, buttonClicked) {
       button.addEventListener('click', function (event) {
@@ -218,7 +198,7 @@
     }
 
     function closeButtonClicked(target) {
-        window.location.href = '/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/test-kit-barcode';
+        window.location.href = '/IBT/litereg-accounts/e2e-prototypes/{{version}}/royal-mail-barcode';
     }
   
     function manualEntryButtonClicked(target) {
@@ -244,16 +224,14 @@
         const barcodeReference = event.detail.barcodes[0].data;
         const checkLettersEnd = barcodeReference.slice(11,13)
 
-        if(event.detail.barcodes[0].symbology == "code128" && checkLettersEnd !== "GB" && barcodeReference.length > 10) {
+        if(event.detail.barcodes[0].symbology == "code128" && checkLettersEnd == "GB") {
      
-          localStorage.setItem("barcodeData", barcodeReference);
+          localStorage.setItem("mailBarcodeData", barcodeReference);
   
           document.getElementById('modal-window-2').innerHTML = modalScannedBarcode;
-          document.getElementById('scanned-barcode').innerHTML = localStorage.getItem("barcodeData");
-          // window.location.href = '/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/test-kit-barcode-scanned';
+          document.getElementById('scanned-barcode').innerHTML = localStorage.getItem("mailBarcodeData");
         } else {
           document.getElementById('modal-window-2').innerHTML = modalIncorrectCode;
-          // window.location.href = '/IBT/litereg-accounts/feature-design/SAID-112_barcode-scanner/test-kit-barcode-incorrect';
         }
       }, 300)
     })

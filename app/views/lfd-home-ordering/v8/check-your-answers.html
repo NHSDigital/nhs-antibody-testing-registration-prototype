@@ -67,7 +67,7 @@
               Contact details
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['email-address'] }}<br>
+              {{ data['email-address'] or 'petesmith@domain.com' }}<br>
               {% if data['mobile-number'] == "Yes" %}
               {{ data['mobile-phone-number'] }}
               {% else %}
@@ -118,10 +118,11 @@
                 Home address
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if data['home-address'] != "Select from 5 addresses" %}
-                {{ data['home-address'] }}
+                {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+                  {{ data['home-address'] }}
                 {% else %}
-                1 House, New Station St, Leeds, LS1 5DL
+                  {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+                  {{ data['home-postcode'] or 'LS1 3BE' }}
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
@@ -131,33 +132,38 @@
               </dd>
             </div>
 
+
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Delivery address
               </dt>
+              {% if data['delivery-address-same'] !== "No" %}
               <dd class="govuk-summary-list__value">
-                {% if data['delivery-address-same'] == "No" and data['home-address'] != data['delivery-address'] and data['delivery-address'] != "Select from 5 addresses" %}
-                {{ data['delivery-address'] }}
+                {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+                  {{ data['home-address'] }}
                 {% else %}
-                Same as home address
+                  {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+                  {{ data['home-postcode'] or 'LS1 3BE' }}
                 {% endif %}
-                <!-- {% if data['delivery-address-same'] === 'No' and data['delivery-address-line-1'] == undefined %}{{ data['delivery-address'] }}{% endif %}
-                {% if data['delivery-address-same'] === 'No' and data['delivery-address-line-1'] !== undefined %}
-                {{ data['delivery-address-line-1'] }}<br>
-                {% if data['delivery-address-line-2'] %}
-                {{ data['delivery-address-line-2'] }}<br>
-                {% endif %}
-                {{ data['delivery-address-town'] }}<br>
-                {{ data['delivery-address-postcode'] }}
-                {% endif %}
-                {% if data['delivery-address-same'] === 'Yes' %}Same as home address{% endif %} -->
               </dd>
+              {% else %}
+              <dd class="govuk-summary-list__value">
+                {% if data['delivery-address'] and data['delivery-address'] !== "Select from 5 addresses" %}
+                  {{ data['delivery-address'] }}
+                {% else %}
+                  {{ data['delivery-address-line-1'] or '5 Souterhead Road'}}<br>
+                  {{ data['delivery-address-postcode'] or 'LS1 3BE' }}
+                {% endif %}
+              </dd>
+              {% endif %}
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/lfd-home-ordering/{{version}}/delivery-address">
-                  Change<span class="govuk-visually-hidden"> delivery address</span>
+                <a href="/lfd-home-ordering/{{version}}/home-address-question">
+                  Change
+                  <span class="govuk-visually-hidden">postcode</span>
                 </a>
               </dd>
             </div>
+
           </dl>
 
 
@@ -255,11 +261,12 @@
       <p class="govuk-body">By ordering rapid lateral flow home tests, I confirm that:</p>
       <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
         <li>The information I've provided is up to date and correct</li>
-        <li>I agree with the <a href="#">Terms and conditions</a> and <a href="#">Privacy policy</a> of this service</li>
+        <li>I agree with the <a href="https://www.gov.uk/help/terms-conditions" target="_blank">Terms and conditions</a> and <a href="https://www.gov.uk/help/privacy-notice" target="_blank">Privacy policy</a> of this service</li>
         <li>I am happy to be contacted about my order</li>
+        <li>I understand that these tests are not for resale</li>
       </ul>
 
-      <form action="/lfd-home-ordering/{{version}}/order-summary" method="post" novalidate>
+      <form action="/lfd-home-ordering/{{version}}/confirmation" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 

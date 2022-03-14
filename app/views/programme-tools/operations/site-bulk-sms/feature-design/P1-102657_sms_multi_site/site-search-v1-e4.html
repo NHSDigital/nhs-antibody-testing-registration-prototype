@@ -1,0 +1,61 @@
+{% set version = "v1" %}
+{% set serviceName = "COVID-19" %}
+{% set pageTitle = "What’s changing at this test site?" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                    <li>
+                        <a href="#reference-input">Enter a site reference or postcode - do not enter both</a>
+                    </li>
+                    <li>
+                        <a href="#postcode-input">Enter a site reference or postcode - do not enter both</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3"> Search for the test site </h1>
+            <p class="govuk-body-l">You can search with the site reference or a postcode.</p>
+            <form action="3-site-select-v1" method="get">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full">
+                        <div class="govuk-form-group govuk-form-group--error">
+                            <label for="reference-input" class="govuk-label"> Site reference </label>
+                            <div id="reference-hint" class="govuk-hint">
+                            For example, SE002, LTS0041 or NTM
+                            </div>
+                            <p id="event-name-error" class="govuk-error-message">
+                                <span class="govuk-visually-hidden">Error:</span> Enter a site reference or postcode - do not enter both
+                            </p>
+                            <input id="reference-input" name="reference-input" maxlength="100" spellcheck="false" class="govuk-input govuk-input--error govuk-!-width-one-half">
+                        </div>
+                        <div class="govuk-form-group govuk-form-group--error">
+                            <label for="postcode-input" class="govuk-label"> Postcode </label><!----><!---->
+                            <p id="event-name-error" class="govuk-error-message">
+                                <span class="govuk-visually-hidden">Error:</span> Enter a site reference or postcode - do not enter both
+                            </p>
+                            <input id="postcode-input" name="postcode-input" maxlength="100" spellcheck="false" class="govuk-input govuk-input--error govuk-!-width-one-half">
+                        </div>
+                    </div>
+                </div>
+            <button type="submit" class="govuk-!-margin-top-4 govuk-button"> Search </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
