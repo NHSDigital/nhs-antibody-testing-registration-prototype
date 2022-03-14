@@ -1,0 +1,154 @@
+{% set version = "research" %}
+{% set pageTitle = "Is this the address registered with the person's GP?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/check-your-answers">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/check-your-answers" method="post">
+
+      <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+            What is the home address registered with {{ data['first-name-person-1'] | default('Jane') }} {{ data['last-name-person-1'] | default('Wilson') }}'s GP?
+          </h1>
+        </legend>
+
+          <span id="post-code-hint" class="govuk-body">
+            This will help us find and update their GP record with their test result.<br><br>
+            The test does not have to be sent to this address.
+          </span>
+          <div class="govuk-form-group govuk-!-margin-top-5">
+            <label class="govuk-label" for="gp-postcode">
+              Postcode
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="gp-postcode-person-1" name="gp-postcode-person-1" type="text" autocomplete="postal-code" value="{{ data['gp-postcode-person-1'] }}" autofocus>
+          </div>
+
+          <div id="content-2" style="display: none;">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="gp-address">
+                <strong class="govuk-!-font-size-24">Select an address</strong>
+              </label>
+              <select class="govuk-select" id="gp-address-person-1" name="gp-address-person-1">
+                <option>Select from 5 addresses</option>
+                <option value="1 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}">1 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}</option>
+                <option value="2 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}">2 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}</option>
+                <option value="3 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}">3 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}</option>
+                <option value="4 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}">4 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}</option>
+                <option value="5 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}">5 Souterhead Road, London, {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}</option>
+              </select>
+            </div>
+            <p class="govuk-body">
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">I can't find my address in the list</a>
+            </p>
+          </div>
+
+          <div id="content-3" style="display: none;">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-line-1-gp-person-1">
+                Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="address-line-1-gp-person-1" name="address-line-1-gp-person-1" type="text" autocomplete="address-line1-gp-person-1" value="{{ data['address-line-1-gp-person-1'] }}">
+            </div>
+  
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-line-2-gp-person-1">
+                <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="address-line-2-gp-person-1" name="address-line-2-gp-person-1" type="text" autocomplete="address-line2-gp-person-1" value="{{ data['address-line-2-gp-person-1'] }}">
+            </div>
+  
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-town-gp-person-1">
+                Town or city
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="address-town-gp-person-1" name="address-town-gp-person-1" type="text" autocomplete="address-level2-gp" value="{{ data['address-town-gp-person-1'] }}">
+            </div>
+          </div>
+
+        </fieldset>
+
+        <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
+
+        <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" style="display:none" type="submit" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+   <script type="text/javascript">
+  submitEvent()
+
+  function buttonClicked(target) {
+    setTimeout(function () {
+      document.getElementById('find-address').style.display = 'none'
+      document.getElementById('button-hidden').style.display = 'block'
+      document.getElementById('content-2').style.display = 'block'
+      document.getElementById('hidden-link').style.display = 'inline'
+      document.getElementById('gp-address-person-1').focus()
+    }, 100)
+  }
+
+  function buttonClicked2(target) {
+    setTimeout(function () {
+      document.getElementById('gp-address-person-1').value = 'Select from 5 addresses'
+      document.getElementById('content-2').style.display = 'none'
+      document.getElementById('content-3').style.display = 'block'
+      document.getElementById('gp-postcode-person-1').focus()
+    }, 100)
+  }
+
+  function submitEvent() {
+    var selects = document.getElementById('find-address')
+    var selectedLink = document.getElementById('manual-address')
+    selects.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selects.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked(selects)
+      }
+    })
+    selectedLink.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selectedLink.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked2(selectedLink)
+      }
+    })
+    
+  }
+
+</script>
+
+<div class="proto-action big">
+  <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/address-person-1">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
+  </a>
+</div>
+
+{% endblock %}

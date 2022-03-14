@@ -1,0 +1,204 @@
+{% set version = "research" %}
+{% set pageTitle = "Enter the details of this place" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/study-grade-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form lass="form" action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/check-your-answers-person-1" method="post">
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper govuk-!-margin-bottom-8">
+          <label class="govuk-label govuk-label--xl" for="institution">
+            Enter the details of this of this place
+          </label>
+        </h1>
+        <span id="institution-hint" class="govuk-body">
+          This will help us learn about the type of places where the virus spreads. It will also help contact tracers
+        </span>
+        <label class="govuk-label govuk-!-margin-top-4" for="name-person-1">
+          Name of the nursery, school or college
+        </label>
+        <input class="govuk-input govuk-!-width-two-thirds" id="name-person-1" name="name-person-1" type="text" value="{{ data['name-person-1'] }}">
+        <label class="govuk-label">
+          Town
+        </label>
+        <input class="govuk-input govuk-!-width-two-thirds" id="town-person-1" name="town-person-1" type="text" value="{{ data['town-person-1'] }}">
+
+      </div>
+
+      <button class="govuk-button" type="submit" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+    <a class="govuk-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/check-your-answers-person-1">Prefer not to say</a>
+
+  </div>
+</div>
+
+<style>
+.autocomplete__wrapper {
+  position: relative;
+  max-width: 35em;
+  margin-bottom: 20px;
+  font-family: "GDS Transport",Arial,sans-serif;
+}
+
+@media (min-width: 40.0625em) {
+  .autocomplete__wrapper {
+    margin-bottom: 30px;
+  }
+}
+
+.autocomplete__hint, .autocomplete__input {
+  -webkit-appearance: none;
+  border: 2px solid #0b0c0c;
+  border-radius: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.autocomplete__input {
+  background-color: transparent;
+  position: relative;
+}
+
+.autocomplete__hint {
+  color: #b1b4b6;
+  position: absolute;
+}
+
+.autocomplete__input--default {
+  padding: 5px;
+}
+
+.autocomplete__input--focused {
+  outline: 3px solid #fd0;
+  outline-offset: 0;
+  box-shadow: inset 0 0 0 2px;
+}
+
+.autocomplete__input--show-all-values {
+  padding: 5px 34px 5px 5px;
+  cursor: pointer;
+}
+
+.autocomplete__dropdown-arrow-down {
+  z-index: -1;
+  display: inline-block;
+  position: absolute;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  top: 10px;
+}
+
+.autocomplete__menu {
+  background-color: #fff;
+  border: 2px solid #0b0c0c;
+  border-top: 0;
+  color: #0b0c0c;
+  margin: 0;
+  max-height: 342px;
+  overflow-x: hidden;
+  padding: 0;
+  width: 100%;
+  width: calc(100% - 4px);
+}
+
+.autocomplete__menu--visible {
+  display: block;
+}
+
+.autocomplete__menu--hidden {
+  display: none;
+}
+
+.autocomplete__menu--overlay {
+  box-shadow: rgba(0, 0, 0, 0.256863) 0 2px 6px;
+  left: 0;
+  position: absolute;
+  top: 100%;
+  z-index: 100;
+}
+
+.autocomplete__menu--inline {
+  position: relative;
+}
+
+.autocomplete__option {
+  border-bottom: solid #b1b4b6;
+  border-width: 1px 0;
+  cursor: pointer;
+  display: block;
+  position: relative;
+}
+
+.autocomplete__option > * {
+  pointer-events: none;
+}
+
+.autocomplete__option:first-of-type {
+  border-top-width: 0;
+}
+
+.autocomplete__option:last-of-type {
+  border-bottom-width: 0;
+}
+
+.autocomplete__option--odd {
+  background-color: #fafafa;
+}
+
+.autocomplete__option--focused, .autocomplete__option:hover {
+  background-color: #1d70b8;
+  border-color: #1d70b8;
+  color: #fff;
+  outline: 0;
+}
+
+.autocomplete__option--no-results {
+  background-color: #fafafa;
+  color: #646b6f;
+  cursor: not-allowed;
+}
+
+.autocomplete__hint, .autocomplete__input, .autocomplete__option {
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.autocomplete__hint, .autocomplete__option {
+  padding: 5px;
+}
+
+@media (min-width: 641px) {
+  .autocomplete__hint, .autocomplete__input, .autocomplete__option {
+    font-size: 19px;
+    line-height: 1.31579;
+  }
+}
+</style>
+
+{% endblock %}
