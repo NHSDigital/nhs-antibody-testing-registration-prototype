@@ -597,6 +597,21 @@ router.post('/IBT/antigen/e2e-prototypes/live/action8/vaccine-person-1', functio
 
 // ******************* RESEARCH - Merged V7 and V2 ***************** //
 
+// Research version - Antigen Check Eligibility - Country route
+
+router.post('/IBT/antigen/e2e-prototypes/research/action1/country', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "Scotland" ){
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-scotland')
+  } else if(country == "Wales") {
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-wales')
+  } else if(country == "Northern Ireland") {
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-northern-ireland')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-england')
+  }
+})
+
 // Research version - Antigen Check Eligibility - Mobile number route
 
 router.post('/IBT/antigen/e2e-prototypes/research/action3/mobile-number', function (req, res) {
@@ -7346,5 +7361,25 @@ router.post('/antigen/v7/action2/edit/fingerprick-test-person-1', function (req,
 //     res.redirect('/antigen/v6/site-appointment-booking/find-test-site')
 //   }
 // })
+
+
+
+
+// ******************* FEATURE DESIGNS ***************** //
+
+// UTO Feature Design - Antigen Check Eligibility - Country route
+
+router.post('/IBT/antigen/feature-design/UTO/action1/country', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "Scotland" ){
+    res.redirect('/IBT/antigen/feature-design/UTO/eligibility-scotland')
+  } else if(country == "Wales") {
+    res.redirect('/IBT/antigen/feature-design/UTO/eligibility-wales')
+  } else if(country == "Northern Ireland") {
+    res.redirect('/IBT/antigen/feature-design/UTO/eligibility-northern-ireland')
+  } else {
+    res.redirect('/IBT/antigen/feature-design/UTO/eligibility-england')
+  }
+})
 
 module.exports = router
