@@ -1,0 +1,81 @@
+{% set version = "v1" %}
+{% set serviceName = "COVID-19" %}
+{% set pageTitle = "What’s changing at this test site?" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3"> Search for the test site </h1>
+            <p class="govuk-body-l ">You can search with the site reference or a postcode.</p>
+            <form action="#" method="get">
+                <div class="govuk-form-group">
+                    <label for="reference" class="govuk-label"> Site reference </label>
+                    <div id="reference-hint" class="govuk-hint">
+                    For example, SE002, LTS0041 or NTM
+                    </div>
+                    <div style="display:flex; flex-direction:row; align-items:flex-start">
+                        <input id="reference" name="reference" maxlength="100" spellcheck="false" class="govuk-input govuk-!-width-one-half govuk-input--width-10">
+                        <div class="govuk-button-group govuk-!-margin-bottom-0 govuk-!-margin-left-3" style="display:flex; flex-direction:row; align-items:center">
+                            <button type="submit" class="govuk-button govuk-!-margin-bottom-0"> Search </button>
+                            <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0"> Add another site reference  </button>
+                        </div>
+                    </div>
+                    <p class="govuk-body govuk-!-margin-top-6 govuk-!-margin-bottom-2">Site references to be searched:</p>
+                    <dl class="govuk-summary-list govuk-!-width-one-half">
+                        <div class="govuk-summary-list__row">
+                            <dd class="govuk-summary-list__value">
+                            SE002
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="#">
+                                Remove<span class="govuk-visually-hidden"> site reference</span>
+                            </a>
+                            </dd>
+                        </div>
+                        <div class="govuk-summary-list__row">
+                            <dd class="govuk-summary-list__value">
+                            LTS0041
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="#">
+                                Remove<span class="govuk-visually-hidden"> site reference</span>
+                            </a>
+                            </dd>
+                        </div>
+                        <div class="govuk-summary-list__row">
+                            <dd class="govuk-summary-list__value" style="border-bottom: none">
+                            LTM
+                            </dd>
+                            <dd class="govuk-summary-list__actions" style="border-bottom: none">
+                            <a class="govuk-link" href="#">
+                                Remove<span class="govuk-visually-hidden"> site reference</span>
+                            </a>
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+            </form>
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+            <form action="#" method="get">
+                <div class="govuk-form-group">
+                    <label for="postcode" class="govuk-label"> Postcode </label>
+                    <div style="display:flex; flex-direction:row; align-items:flex-start">
+                        <input id="postcode" name="postcode" maxlength="100" spellcheck="false" class="govuk-input govuk-!-width-one-half govuk-input--width-10">
+                        <button type="submit" class="govuk-button govuk-!-margin-left-3"> Search </button>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+{% endblock %}
