@@ -1,4 +1,4 @@
-{% set version = "live" %}
+{% set version = "research" %}
 {% set pageTitle = "When did these symptoms start?" %}
 
 {% extends "includes/layout.html" %}
@@ -15,7 +15,7 @@
   </p>
 </div>
 
-  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/refer-and-triage/do-you-have-symptoms">Back</a>
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/check-eligibility/do-you-have-symptoms">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +24,20 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/antigen/e2e-prototypes/{{version}}/refer-and-triage/government-pilot" method="post">
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#error-1">Enter the date symptoms started</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/action3/when-did-symptoms-start" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset govuk-!-margin-bottom-6" role="group" aria-describedby="symptoms-start-date-1-hint">
@@ -95,14 +108,16 @@
               </label>
             </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-date-of-onset">
-                <span class="govuk-body"><strong>Enter the date symptoms started</strong></span>
+                <span id="date-of-onset-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> Enter the date symptoms started
+                </span>
                 <div class="govuk-date-input govuk-!-margin-top-4" id="symptoms-start-date">
                   <div class="govuk-date-input__item">
                     <div class="govuk-form-group">
                       <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-day">
                         Day
                       </label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="symptoms-start-date-day" name="symptoms-start-date-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-day'] }}">
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="symptoms-start-date-day" name="symptoms-start-date-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-day'] }}">
                     </div>
                   </div>
                   <div class="govuk-date-input__item">
@@ -110,7 +125,7 @@
                       <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-month">
                         Month
                       </label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="symptoms-start-date-month" name="symptoms-start-date-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-month'] }}">
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="symptoms-start-date-month" name="symptoms-start-date-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-month'] }}">
                     </div>
                   </div>
                   <div class="govuk-date-input__item">
@@ -118,7 +133,7 @@
                       <label class="govuk-label govuk-date-input__label" for="symptoms-start-date-year">
                         Year
                       </label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="symptoms-start-date-year" name="symptoms-start-date-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-year'] }}">
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="symptoms-start-date-year" name="symptoms-start-date-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['symptoms-start-date-year'] }}">
                     </div>
                   </div>
                 </div>
@@ -128,35 +143,20 @@
           </fieldset>
 
           <button class="govuk-button" data-module="govuk-button">Continue</button>
-
-          <!-- <div class="govuk-warning-text">
+          <!-- <div class="govuk-warning-text govuk-!-margin-top-4">
             <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
             <strong class="govuk-warning-text__text govuk-!-font-size-19">
               <span class="govuk-warning-text__assistive">Warning</span>
-              If they have a high temperature, a new continuous cough, or loss or change to their sense of smell or taste, they should stay at home until they get their result. They can leave home to get or post a test.<br>
-              <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">Check if people they live with need to self-isolate on NHS.UK</a>
+              If you have a high temperature, a new continuous cough, or loss or change to your sense of smell or taste, you need to self-isolate immediately. If you have any other symptoms, you do not have to self-isolate until you get a positive result.<br>
+              <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">Check if people you live with need to self-isolate on NHS.UK</a>
             </strong>
           </div> -->
-
         </div>
 
-          </fieldset>
-
-          <button class="govuk-button" data-module="govuk-button">Continue</button>
-
-        </div>
-
-        <div class="govuk-warning-text">
-          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-          <strong class="govuk-warning-text__text govuk-!-font-size-19">
-            <span class="govuk-warning-text__assistive">Warning</span>
-            If they have a high temperature, a new continuous cough, or loss or change to their sense of smell or taste, they should stay at home until they get their result. They can leave home to get or post a test. <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" class="govuk-link">Check if people they live with need to self-isolate on NHS.UK.</a>
-          </strong>
-        </div>
-       
       </form>
 
     </div>
+
   </div>
 
 {% endblock %}

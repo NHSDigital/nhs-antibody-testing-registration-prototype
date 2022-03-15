@@ -1,0 +1,75 @@
+{% set version = "research" %}
+{% set pageTitle = "Is the person who needs a test part of a trial or government pilot project?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['do-you-have-symptoms'] == "Yes" %}
+<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/check-eligibility/when-did-symptoms-start">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/check-eligibility/follow-up-test">Back</a>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/action3/government-pilot" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="government-pilot-address-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="government-pilot-hint" class="govuk-body">
+              For example, they:<br><br>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>have been invited to take part in the Contact Testing Study</li>
+                <li>were told to get a test by the COVID Symptom Study app (by ZOE)</li>
+                <li>are taking a test before a dental procedure (Dental Patient Testing)</li>
+              </ul>
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-3" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="government-pilot-1" name="government-pilot" type="radio" value="Yes" {{ checked("government-pilot", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="government-pilot-2">
+                  Yes
+                </label>
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="government-pilot-2" name="government-pilot" type="radio" value="No" {{ checked("government-pilot", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="government-pilot-2">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

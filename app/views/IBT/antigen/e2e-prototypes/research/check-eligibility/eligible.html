@@ -1,0 +1,71 @@
+{% set version = "research" %}
+{% set pageTitle = "Step 1: Eligibility complete" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div> 
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <div class="govuk-panel govuk-panel--confirmation" style="background-color:	transparent;">
+        <h1 class="govuk-panel__title" style="color: #1d70b8">
+          {{ pageTitle }}
+        </h1>
+        <div class="govuk-!-margin-left-5" style="text-align: left;">
+
+          <div class="checkmark-box govuk-!-margin-top-5">
+            <p class="govuk-body govuk-!-font-size-24 checkmark-black bold"><strong>&#10004</strong></p>
+            <p class="govuk-body govuk-!-font-size-24"><strong>You're eligible for a test</strong></p>
+          </div>
+
+          <div class="govuk-!-padding-left-9">
+            <div class="govuk-panel__body govuk-!-font-size-19 govuk-!-margin-bottom-5">
+              <strong style="color: #000">What happens next</strong>
+            </div>
+            <div class="checkmark-box">
+              <p class="govuk-body govuk-!-font-size-19 checkmark-black"><strong>2</strong></p>
+              <p class="govuk-body govuk-!-font-size-19">Enter personal details</p>
+            </div>
+            <div class="checkmark-box">
+              <p class="govuk-body govuk-!-font-size-19 checkmark-black"><strong>3</strong></p>
+              <p class="govuk-body govuk-!-font-size-19">Add additional household members</p>
+            </div>
+            <div class="checkmark-box govuk-!-margin-bottom-5">
+              <p class="govuk-body govuk-!-font-size-19 checkmark-black"><strong>4</strong></p>
+              <p class="govuk-body govuk-!-font-size-19">Book a test</p>
+            </div>
+            <form action="/IBT/antigen/e2e-prototypes/{{version}}/check-eligibility/" method="post">
+  
+              <button class="govuk-button" data-module="govuk-button">Continue</button>
+      
+            </form>
+          </div>
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
