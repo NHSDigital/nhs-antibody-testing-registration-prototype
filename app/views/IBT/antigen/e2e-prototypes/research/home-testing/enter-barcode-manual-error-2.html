@@ -1,0 +1,135 @@
+{% set version = "research" %}
+{% set pageTitle = "Enter the test kit barcode reference" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/home-testing/enter-barcode-number">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#error-1">The test kit barcode did not scan. Try again or enter the test kit barcode reference instead.</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/action2/enter-barcode-manual" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint enter-barcode-number-hint-2 enter-barcode-number-hint-3">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+            <span id="enter-barcode-number-hint" class="govuk-body">
+              The test kit barcode should look like this:
+            </span>
+
+            <div class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
+              <img src="/public/images/barcode-number-2.png" alt="Image of the test kit barcode" />
+            </div>
+
+            <div id="enter-barcode-number-hint-2" class="govuk-body">
+              Enter the 11 character reference below the barcode.
+            </div>
+
+            <div id="content-1" class="govuk-!-margin-top-5">
+              <div class="govuk-form-group govuk-form-group--error">
+                <label class="govuk-label" for="kit-barcode-reference-1">
+                  Test kit barcode reference
+                </label>
+                <div id="enter-barcode-number-hint-3" class="govuk-hint">
+                  For example, AA135562600
+                </div>
+                <span id="kit-barcode-reference-error-1" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> The test kit barcode did not scan. Try again or enter the test kit barcode reference instead.
+                </span>
+                <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] }}>
+              </div>
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="kit-barcode-reference-2">
+                  Confirm test kit barcode reference
+                </label>
+                <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] }}>
+              </div>
+            </div>
+
+            <div id="content-2" style="display: none;" class="govuk-!-margin-top-5">
+
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Use the barcode scanner</button>
+
+
+      </form>
+
+    </div>
+  </div>
+
+  <script>
+
+    setTimeout(function () {
+      const content2inner = `
+      <div class="govuk-form-group govuk-form-group--error">
+        <label class="govuk-label" for="kit-barcode-reference-1">
+          Test kit barcode reference
+        </label>
+        <div id="enter-barcode-number-hint-3" class="govuk-hint">
+          For example, AA135562600
+        </div>
+        <span id="kit-barcode-reference-error-1" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> The test kit barcode did not scan. Try again or enter the test kit barcode reference instead.
+        </span>
+        <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value={{ data['kit-barcode-reference-1'] or 'AA135562600' }}>
+      </div>
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="kit-barcode-reference-2">
+          Confirm test kit barcode reference
+        </label>
+        <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value={{ data['kit-barcode-reference-2'] or 'AA135562600' }}>
+      </div>
+      `
+      const content1 = document.getElementById('content-1');
+      const content2 = document.getElementById('content-2');
+      const URLorigin = document.referrer.replace("antigen/v2/home-testing/scan-barcode", "")
+      const replaced = document.referrer.replace(URLorigin , "")
+        if (replaced == 'antigen/v2/home-testing/scan-barcode') {
+          content1.parentNode.removeChild(content1)
+          content2.style.display = 'block';
+          content2.innerHTML = content2inner
+        }
+    }, 50)
+
+    </script>
+
+{% endblock %}

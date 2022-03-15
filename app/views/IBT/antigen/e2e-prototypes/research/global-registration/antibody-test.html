@@ -1,0 +1,67 @@
+{% set version = "research" %}
+{% set pageTitle = "If you test positive would you be willing to take an antibody test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/nhs-number-known">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/action2/antibody-test" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="antibody-test-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="antibody-test-hint" class="govuk-body">
+              An antibody test is a fingerprick blood test to check if you've have coronavirus (COVID-19) before.<br><br>
+              The fingerprick test lets us see if your current symptoms are from a reinfection.<br><br>
+              Taking the test helps the NHS and research scientists learn more about who's had the virus more than once, and how it has spread.<br><br>
+              The kit will be sent to you automatically if you test positive, we just need your delivery address.<br><br>
+            </span>
+
+            <div class="govuk-radios govuk-!-margin-top-5">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="antibody-test-1" name="antibody-test" type="radio" value="Yes" {{ checked("antibody-test", "Yes") }}>
+                    <label class="govuk-label govuk-radios__label" for="antibody-test-1">
+                        Yes
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="antibody-test-2" name="antibody-test" type="radio" value="No" {{ checked("antibody-test", "No") }}>
+                    <label class="govuk-label govuk-radios__label" for="antibody-test-2">
+                        No
+                    </label>
+                </div>
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

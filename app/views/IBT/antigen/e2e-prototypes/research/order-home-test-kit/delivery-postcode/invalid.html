@@ -1,0 +1,212 @@
+{% set version = "research" %}
+{% set pageTitle = "What is Pete Smith's delivery address?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/gp-address-same">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
+    <h2 class="govuk-error-summary__title" id="error-summary-title">
+      There is a problem
+    </h2>
+    <div class="govuk-error-summary__body">
+      <ul class="govuk-list govuk-error-summary__list">
+        <li>
+          <a href="#full-name-input">Enter a UK postcode</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/IBT/antigen/e2e-prototypes/{{version}}/order-home-test-kit/order-summary" method="post">
+
+      <fieldset class="govuk-fieldset">
+
+          <div id="content-1">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+<p> This will be the address the test kit will be sent to. </p> <br>
+
+            <div class="govuk-form-group govuk-form-group--error">
+              <label class="govuk-label govuk-!-margin-bottom-3" for="delivery-address-postcode" style="line-height: 0.8;">
+                Postcode
+              </label>
+              <p id="full-name-input-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Enter a UK postcode
+              </p>
+              <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode" name="delivery-address-postcode" type="text" autocomplete="postal-code" value="{{ data['delivery-address-postcode'] }}" autofocus>
+            </div>
+            <p class="govuk-body">
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address" role="button" href="#">Enter address manually</a>
+            </p>
+            <button id="find-address" class="govuk-button" type="submit" data-module="govuk-button">Find address</button>
+          </div>
+
+          <div id="content-2" style="display: none;">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                Select the delivery address for the PCR test kits
+              </h1>
+            </legend>
+            <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
+              <strong>Postcode</strong><br><br>
+              <strong>{{ data['delivery-address-postcode'] | default('LS1 3BE') }}</strong>
+              <a href="/IBT/antigen/e2e-prototypes/{{version}}/order-home-test-kit/delivery-address" class="govuk-!-margin-left-5">
+                <strong>Change</strong>
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="delivery-address">
+                <strong class="govuk-!-font-size-19">Select an address</strong>
+              </label>
+              <select class="govuk-select" id="delivery-address" name="delivery-address">
+                <option>Select from 5 addresses</option>
+                <option value="1 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}">1 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}</option>
+                <option value="2 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}">2 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}</option>
+                <option value="3 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}">3 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}</option>
+                <option value="4 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}">4 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}</option>
+                <option value="5 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}">5 Souterhead Road, London, {{ data['delivery-address-postcode'] or 'LS1 3BE' }}</option>
+              </select>
+            </div>
+            <p class="govuk-body">
+              <a class="govuk-link govuk-!-font-size-19" id="manual-address-2" role="button" href="#">I cannot find my address in the list</a>
+            </p>
+            <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
+              Continue
+            </button>
+          </div>
+
+          <div id="content-3" style="display: none;">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                Enter the delivery address for the PCR test kits
+              </h1>
+            </legend>
+            <!-- <p class="govuk-!-margin-bottom-6" style="line-height: 0.8;">
+              <strong>Postcode</strong><br><br>
+              {{ data['delivery-address-postcode'] | default('LS1 3BE') }}
+              <a href="/IBT/antigen/e2e-prototypes/{{version}}/order-home-test-kit/delivery-postcode-option-2" class="govuk-!-margin-left-5">
+                <strong>Change</strong>
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p> -->
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="delivery-address-line-1">
+                <strong>Building and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="delivery-address-line-1" name="delivery-address-line-1" type="text" autocomplete="address-line1-delivery" value="{{ data['delivery-address-line-1'] }}">
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="delivery-address-line-2">
+                <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="delivery-address-line-2" name="delivery-address-line-2" type="text" autocomplete="address-line2-delivery" value="{{ data['delivery-address-line-2'] }}">
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="delivery-address-town">
+                <strong>Town or city</strong>
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="delivery-address-town" name="delivery-address-town" type="text" autocomplete="address-level2-delivery" value="{{ data['delivery-address-town'] }}">
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="delivery-address-postcode-manual">
+                <strong>Postcode</strong>
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode-manual" name="delivery-address-postcode-manual" type="text" autocomplete="postal-code" value="{{ data['delivery-address-postcode-manual'] }}">
+            </div>
+            <button id="button-hidden" class="govuk-button govuk-!-margin-top-4" type="submit" data-module="govuk-button">
+              Continue
+            </button>
+          </div>
+
+        </fieldset>
+
+      </form>
+
+    </div>
+  </div>
+
+   <script type="text/javascript">
+  submitEvent()
+
+  function buttonClicked(target) {
+    setTimeout(function () {
+      document.getElementById('content-1').style.display = 'none'
+      // document.getElementById('find-address').style.display = 'none'
+      // document.getElementById('button-hidden').style.display = 'block'
+      document.getElementById('content-2').style.display = 'block'
+      document.getElementById('delivery-address').focus()
+    }, 100)
+  }
+
+  function buttonClicked2(target) {
+    setTimeout(function () {
+      document.getElementById('delivery-address').value = 'Select from 5 addresses'
+      document.getElementById('content-1').style.display = 'none'
+      document.getElementById('content-2').style.display = 'none'
+      document.getElementById('content-3').style.display = 'block'
+      document.getElementById('delivery-address-postcode').focus()
+    }, 100)
+  }
+
+  function submitEvent() {
+    var selects = document.getElementById('find-address')
+    var selectedLink = document.getElementById('manual-address')
+    var selectedLink2 = document.getElementById('manual-address-2')
+    selects.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selects.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked(selects)
+      }
+    })
+    selectedLink.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selectedLink.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked2(selectedLink)
+      }
+    })
+    selectedLink2.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selectedLink2.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked2(selectedLink2)
+      }
+    })
+
+  }
+
+</script>
+
+{% endblock %}

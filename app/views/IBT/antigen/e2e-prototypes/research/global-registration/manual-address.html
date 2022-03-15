@@ -1,0 +1,84 @@
+{% set version = "research" %}
+{% set pageTitle = "What is the address registered with their GP?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/find-address-gp">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/nhs-number-known" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="address-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="address-hint" class="govuk-body">
+            This will help us find and update their GP record with their test result. The test does not have to be sent to this address.
+          </span>
+
+            <p class="govuk-!-margin-top-6">
+              <strong>Postcode</strong><br><br>
+              <strong>{{ data['home-postcode'] | default('LS1 3BE') }}</strong>
+              <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/address" class="govuk-!-margin-left-5">
+                Change
+                <span class="govuk-visually-hidden">your postcode</span>
+              </a>
+            </p>
+  
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-line-1">
+                <strong>Building and street</strong> <span class="govuk-visually-hidden">line 1 of 2</span>
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="address-line-1-gp" name="address-line-1-gp" type="text" autocomplete="address-line1-gp" value="{{ data['address-line-1-gp'] }}">
+            </div>
+  
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-line-2">
+                <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="address-line-2-gp" name="address-line-2-gp" type="text" autocomplete="address-line2-gp" value="{{ data['address-line-2-gp'] }}">
+            </div>
+  
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-town">
+                <strong>Town or city</strong>
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="address-town-gp" name="address-town-gp" type="text" autocomplete="address-level2-gp" value="{{ data['address-town-gp'] }}">
+            </div>
+
+        </fieldset>
+
+        <button class="govuk-button" type="submit" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <div class="proto-action big">
+    <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/gp-address-same-option-2">
+      <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 2</div>
+    </a>
+  </div>
+
+{% endblock %}

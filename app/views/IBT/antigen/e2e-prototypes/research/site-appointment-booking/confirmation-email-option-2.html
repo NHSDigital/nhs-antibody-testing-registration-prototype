@@ -1,0 +1,170 @@
+{% set version = "research" %}
+{% set pageTitle = "Confirmation email" %}
+{% extends "includes/layout.html" %}
+
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+        {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Smith' }}
+      </h1>
+
+     <h2 class="govuk-heading-m">Date of birth: {{ data['date-of-birth-day'] or '15 March 1988' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}</h2>
+
+     <p class="govuk-body">
+      Your pass to access the test site -<br>
+       <strong>Have this ready to show staff when you arrive</strong>
+      </p>
+
+     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+     <div style="display: flex; justify-content: center;">
+       <img src="/public/images/qr-collect.png" alt="randox number" style="height: 40%; width: 40%;" />
+     </div>
+
+     <p class="govuk-body govuk-!-margin-top-6 govuk-!-margin-bottom-8" style="text-align: center;">Pass ID: 12653234356</p>
+
+     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+        <p class="govuk-body govuk-!-margin-top-2">
+          {% if data['test-site'] == "Lee Valley Athletics Park" %}
+              <strong>Lee Valley Athletics Park (drive in only no bikes)</strong><br>
+              Lee Valley Athletics Centre<br>
+              London<br>
+              N9 0AR
+            {% elseif data['test-site'] == "Greenwich" %}
+              <strong>Greenwich (drive in only - no motorbikes)</strong><br>
+              TFL Car Park, Edmund Halley Way<br>
+              London<br>
+              SE10 0PH
+            {% elseif data['test-site'] == "Twickenham" %}
+              <strong>Twickenham (drive in only - no motorbikes)</strong><br>
+              Twickenham Stadium, 200 Whitton Road, Gate D<br>
+              Twickenham<br>
+              TW1 1DZ
+            {% elseif data['test-site'] == "Haringey Stamford Hill" %}
+              <strong>Haringey Stamford Hill - Walk through site</strong><br>
+              Stamford Hill Primary School<br>
+              Haringey<br>
+              N15 6HD
+            {% elseif data['test-site'] == "Hackney Sandford Court" %}
+              <strong>Hackney Sandford Court - Walk through site</strong><br>
+              Sandford Court, Bethune Rd<br>
+              London<br>
+              N16 5BB
+            {% elseif data['test-site'] == "Camden Ramsay Hall" %}
+              <strong>Camden Ramsay Hall - Walk through site</strong>br>
+              Ramsay Hall (No step free access)<br>
+              Camden<br>
+              W1T 5HB
+            {% else %}
+              <strong>Heathrow airport test site</strong><br><br>
+              125 testing lane<br>
+              Highbury & Islington<br>
+              RM4 3RS
+            {% endif %}
+            <br><br>
+          <strong>Date:</strong> {{ data['appointment-date'] or '30 Oct' }} 2020<br>
+          <strong>Time:</strong> {{ data['time'] or '9:30am to 10:00am' }}<br>
+          {% if data['vehicle-registration-number'] !== undefined %}
+          <strong>Vehicle:</strong> {{ data['vehicle-registration-number'] or 'CU57ABC' }}
+          {% endif %}
+        </p>
+
+     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+     <h2 class="govuk-heading-m">What you'll need to bring to the test site</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>a copy of your test site pass (and passes for any children getting a test) - have the QR code in the pass ready to display (on the email, printed off or as a screenshot) or it could delay your entry to the test site</li>
+      <li>photo ID - a driving licence or passport for each person getting a test</li>
+      <li>hand sanitiser or antiseptic wipes - because we may ask you to do the test yourself, so you'll need clean hands</li>
+      <li>face coverings for each person aged 3 years and over, if you are visiting a walk-through site</li>
+    </ul>
+
+    <p class="govuk-body">You may also want to bring a bottle of water, as we cannot provide water at the test site.</p>
+
+    <div class="govuk-warning-text govuk-!-margin-top-7">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text govuk-!-font-size-19">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        If you have a high temperature, a new continuous cough, or loss or change to your sense of smell or taste, you need to self-isolate immediately. If you have any other symptoms, you do not have to self-isolate until you get a positive result.<br>
+        <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">Check if people you live with need to self-isolate on NHS.UK</a>
+      </strong>
+    </div>
+
+    <h2 class="govuk-heading-m">What happens at the test site</h2>
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        If you’re visiting a walk-through test site, you must wear a face covering.
+      </strong>
+    </div>
+
+    <p class="govuk-body">You'll stay in your vehicle or testing bay during your visit.</p>
+
+    <p class="govuk-body">Depending on which site you go to, you’ll either be asked to do the test yourself (with instructions) or an assistant will do the swab test for you. Staff will let you know which test you’ll be doing when you arrive at the test site.</p>
+    <iframe class="govuk-!-margin-bottom-4" width="550" height="315"
+    src="https://www.youtube.com/embed/eYETUcSFXmw">
+    </iframe>
+    <p class="govuk-body"><a href="https://www.youtube.com/watch?v=eYETUcSFXmw">Watch a short video: what happens at a test site</a></p>
+
+    <h2 class="govuk-heading-m">How to take the swab test</h2>
+    <p class="govuk-body">
+      It usually takes no more than 10 minutes to do the test. You'll recieve your test results by text message a day or two later.
+    </p>
+    <p class="govuk-body">Watch a short video: how to take a swab test</p>
+    <iframe class="govuk-!-margin-bottom-4" width="550" height="315"
+    src="https://www.youtube.com/embed/zCqo7MhQT6U">
+    </iframe>
+    
+    <p class="govuk-body">
+      You'll receive your test results by text message. Most people get their result the next day, but it may take up to 3 days.<br><br>
+      If you do not get your result by day 6, call the coronavirus testing contact centre on 119. The contact centre is open from 7am to 11pm.
+    </p>
+
+    <h2 class="govuk-heading-m">If you're bringing a baby or a child</h2>
+
+    <p class="govuk-body">If you're bringing a child aged 11 or under to be tested, you (their parent or guardian) will be asked to swab test your child. You'll be given paper instructions.</p>
+
+    <p class="govuk-body">You'll swab test your child either in a testing bay (walk-through) or from the back seat of your vehicle (drive-through). If you're going to a drive-through site, you may want to bring another adult, so one of you can already be seated in the back when you arrive. Otherwise, you'll need to climb onto the back seat.</p>
+
+    <p class="govuk-body">You'll not be able to leave the vehicle or the testing bay during the test.</p>
+
+    <p class="govuk-body">Before you swab test your child, you'll need to read the paper instructions. It can take about 20 minutes to read the instructions and then do the test.</p>
+
+    <p class="govuk-body">You may want to bring something to keep your child entertained while you read and then swab yourself.</p>
+
+    <h2 class="govuk-heading-m">Antibody testing</h2>
+    <p class="govuk-body govuk-!-margin-bottom-8">
+      If you agreed to do antibody testing, you may receive an antibody test kit in the post, 2-3 days after you get a positive PCR test result. Your 2nd antibody test kit will arrive 3 weeks after the first one.<br><br>
+      The kit contains clear instructions on how to do the test. It's important you do the test and post it back <strong>as soon as possible.</strong> You can leave home to post a test kit while self isolating. <a href="#">Find more info on how to prepare for, take and return the antibody test.</a>
+    </p>
+
+    <h3 class="govuk-heading-s">Do you need a BSL interpreter?</h3>
+
+    <p class="govuk-body">If you are Deaf and need a BSL interpreter during your drive-through test, <a href="#">download the free InterpreterNow app</a> before you appointment.</p>
+
+
+    <h3 class="govuk-heading-s">Can you help the NHS?</h3>
+
+    <p class="govuk-body">If you are over 50 and recently developed coronavirus symptoms, you may be able to take part in a clinical trial. <a href="#">Find out more and check if you qualify</a>.</p>
+
+    <h3 class="govuk-heading-s">Help us improve our service</h3>
+
+    <p class="govuk-body"><a class="govuk-link govuk-!-margin-right-2" href="#">Fill in our short survey</a> (takes 3 minutes)</p>
+
+    </div>
+  </div>
+  <div class="proto-action big">
+    <a href="/IBT/antigen/e2e-prototypes/{{version}}/site-appointment-booking/confirmation-email">
+      <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
+    </a>
+  </div>
+{% endblock %}

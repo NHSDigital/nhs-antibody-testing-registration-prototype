@@ -1,0 +1,78 @@
+{% set version = "research" %}
+{% set pageTitle = "Why has the person been asked to get a follow-up PCR test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/check-eligibility/follow-up-test">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/action3/follow-up-test-reason-option-2" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="follow-up-test-reason-1" name="follow-up-test-reason" type="radio" value="After entering the UK, they got a positive day 2 travel test result" {{ checked("follow-up-test-reason", "After entering the UK, they got a positive day 2 travel test result") }}>
+                <label class="govuk-label govuk-radios__label" for="follow-up-test-reason-1">
+                  After entering the UK, they got a positive day 2 travel test result
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="follow-up-test-reason-2" name="follow-up-test-reason" type="radio" value="They got a positive lateral flow test result with no recent international travel" {{ checked("follow-up-test-reason", "They got a positive lateral flow test result with no recent international travel") }}>
+                <label class="govuk-label govuk-radios__label" for="follow-up-test-reason-2">
+                  They got a positive lateral flow test result with no recent international travel
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="follow-up-test-reason-3" name="follow-up-test-reason" type="radio" value="Their previous test was unclear (void)" {{ checked("follow-up-test-reason", "Their previous test was unclear (void)") }}>
+                <label class="govuk-label govuk-radios__label" for="follow-up-test-reason-3">
+                  Their previous test was unclear (void)
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="follow-up-test-reason-4" name="follow-up-test-reason" type="radio" value="Another reason" {{ checked("follow-up-test-reason", "Another reason") }}>
+                <label class="govuk-label govuk-radios__label" for="follow-up-test-reason-4">
+                  Another reason
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+
+    <div class="proto-action big">
+      <a href="/IBT/antigen/e2e-prototypes/{{version}}/check-eligibility/follow-up-test-reason">
+        <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
+      </a>
+    </div>
+
+  </div>
+
+{% endblock %}

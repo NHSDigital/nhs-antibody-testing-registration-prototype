@@ -1,0 +1,62 @@
+{% set version = "research" %}
+{% set pageTitle = "What's the email address or phone number you used to register?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/home-testing/order-id">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/home-testing/enter-order-id" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="send-order-id-hint">
+
+          <span id="send-order-id-hint" class="govuk-body">
+            We will send your Order ID to either your mobile phone or email address, depending on what you choose.
+          </span>
+        
+          <div class="govuk-form-group govuk-!-margin-top-6">
+            <label class="govuk-label" for="register-email-address">
+              Email address
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="register-email-address" name="register-email-address" type="text" value="{{ data['register-email-address'] }}">
+          </div>
+
+          <p class="govuk-body"><strong>or</strong></p>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="register-mobile-number">
+              Mobile number
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="register-mobile-number" name="register-mobile-number" type="text" value="{{ data['register-mobile-number'] }}">
+          </div>
+        
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

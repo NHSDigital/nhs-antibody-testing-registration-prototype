@@ -1,0 +1,56 @@
+{% set version = "research" %}
+{% set pageTitle = "Unfortunately they cannot get an antibody test" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['fingerprick-test-person-1'] == "No" and data['antibody-test-person-1'] == "Yes" %}
+<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/fingerprick-test-person-1">Back</a>
+{% elseif data['fingerprick-test-person-1'] == "No" and data['antibody-test-person-1'] == "No" or data['fingerprick-test-person-1'] == undefined and data['antibody-test-person-1'] == "No" %}
+<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/antibody-test-person-1">Back</a>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/check-your-answers-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="antibody-test-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                Unfortunately they cannot get an antibody test
+              </h1>
+            </legend>
+            <span id="antibody-test-hint" class="govuk-body">
+              Please continue to get their PCR test.
+            </span>
+
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

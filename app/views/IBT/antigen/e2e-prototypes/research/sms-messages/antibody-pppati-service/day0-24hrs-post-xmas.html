@@ -1,0 +1,101 @@
+{% set version = "research" %}
+{% set pageTitle = "Text message" %}
+
+{% extends "includes/layout.html" %}
+
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    body {
+      background-color: #f3f2f1 !important;
+      -webkit-text-size-adjust: 100%;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: normal;
+      margin: 50px auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-text-message {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 340px;
+      min-height: 420px;
+    }
+
+    .app-text-message__text {
+      max-width: 255px;
+      word-wrap: break-word;
+      margin-bottom: 12px;
+      line-height: 24px;
+      position:relative;
+      padding:10px 20px;
+      border-radius:25px;
+      background:#E5E5EA;
+      color:black;
+
+      &:before, &:after {
+        content:"";
+        position:absolute;
+        bottom:-2px;
+        height:20px;
+      }
+
+       &:before {
+        left:-7px;
+        border-left:20px solid #E5E5EA;
+        border-bottom-right-radius: 16px 14px;
+        transform:translate(0, -2px);
+      }
+
+      &:after {
+        left:4px;
+        width:26px;
+        background:white;
+        border-bottom-right-radius: 10px;
+        transform:translate(-30px, -2px);
+      }
+    }
+    </style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h1 class="govuk-heading-l">Text message</h1>
+
+      <div class="app-text-message">
+        <h2 class="govuk-heading-s">UK_Gov</h2>
+        <p class="app-text-message__text">
+          Dear {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}<br><br>
+          
+            Your first of 2 antibody test kits arrive in 2-3 days.<br><br>
+            You will need 30 minutes to prepare and do the test. In preparation, drink plenty of water and warm your hands up.<br><br>
+            Read the test instructions included in the kit. Do the test and return it as soon as you can. Your second antibody test kit will be sent in the next 4 weeks.<br><br>
+            If you do not complete and return this antibody test, you will not receive the second one.<br><br>
+            Find out more about antibody testing on the NHS website at:
+            More advice: <a class="govuk-link" href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/antibody-testing-to-check-if-youve-had-coronavirus/">https://www.nhs.uk/conditions/coronavirus-covid-19/testing/antibody-testing-to-check-if-youve-had-coronavirus/</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block bodyEnd %}
+<div class="proto-action big">
+  <a href="/IBT/antigen/e2e-prototypes/{{version}}/sms-messages/02-antibody-1">
+    <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Text message 2</div>
+  </a>
+</div>
+{% endblock %}

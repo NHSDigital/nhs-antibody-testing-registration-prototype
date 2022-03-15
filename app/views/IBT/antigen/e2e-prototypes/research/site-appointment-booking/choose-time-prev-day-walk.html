@@ -1,0 +1,129 @@
+{% set version = "research" %}
+{% set pageTitle = "Choose a time" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/site-appointment-booking/choose-walk-through-site">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/site-appointment-booking/confirm-appointment-walk" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="time-1-hint time-2-hint time-3-hint time-4-hint time-5-hint time-6-hint time-7-hint time-8-hint time-9-hint time-10-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            {% if data['test-site'] == "Haringey Stamford Hill" %}
+            <span id="time-1-hint" class="govuk-body govuk-!-margin-bottom-2">
+              Haringey Stamford Hill - Walk through site<br>
+              Stamford Hill Primary School<br>
+              Haringey<br>
+              N15 6HD
+            </span>
+            {% endif %}
+            {% if data['test-site'] == "Hackney Sandford Court" %}
+            <span id="time-8-hint" class="govuk-body govuk-!-margin-bottom-2">
+              Hackney Sandford Court - Walk through site<br>
+              Sandford Court, Bethune Rd<br>
+              London<br>
+              N16 5BB
+            </span>
+            {% endif %}
+            {% if data['test-site'] == "Camden Ramsay Hall" %}
+            <span id="time-9-hint" class="govuk-body govuk-!-margin-bottom-2">
+              Camden Ramsay Hall - Walk through site<br>
+              Ramsay Hall (No step free access)<br>
+              Camden<br>
+              W1T 5HB
+            </span>
+            {% endif %}
+
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+  
+            <p class="govuk-body-l govuk-!-margin-bottom-2"">
+              <span id="time-2-hint">
+                Available test times for your household
+              </span>
+            </p>
+            <br>
+            <span id="time-3-hint" class="govuk-body">
+              When booking a test, please be aware that:
+            </span>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4 govuk-!-margin-top-4">
+              <li><span id="time-4-hint" class="govuk-body govuk-!-margin-bottom-0">you must turn up at the start time of your appointment and not arrive early or late</span></li>
+              <li><span id="time-5-hint" class="govuk-body govuk-!-margin-bottom-0">it usually takes no more than 10 minutes to test each person</span></li>
+              <li><span id="time-6-hint" class="govuk-body govuk-!-margin-bottom-0">if there are more than one of you for testing, you'll have to wait a bit longer</span></li>
+              <li><span id="time-7-hint" class="govuk-body">you should not expect to be at the site for any more than an hour</span></li>
+            </ul>
+
+            <p class="govuk-body"><strong>Tuesday 27 July</strong></p>
+
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="time-1" name="time" type="radio" value="8:30am to 9:00am" {{ checked("time", "8:30am to 9:00am") }}>
+                <label class="govuk-label govuk-radios__label" for="time-1">
+                    8:30am to 9:00am
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="time-2" name="time" type="radio" value="9:00am to 9:30am" {{ checked("time", "9:00am to 9:30am") }}>
+                <label class="govuk-label govuk-radios__label" for="time-2">
+                    9:00am to 9:30am
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="time-3" name="time" type="radio" value="10:00am to 10:30am" {{ checked("time", "10:00am to 10:30am") }}>
+                <label class="govuk-label govuk-radios__label" for="time-3">
+                    10:00am to 10:30am
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="time-5" name="time" type="radio" value="1:30pm to 2:00pm" {{ checked("time", "1:30pm to 2:00pm") }}>
+                <label class="govuk-label govuk-radios__label" for="time-5">
+                  1:30pm to 2:00pm
+                </label>
+              </div>
+            </div>
+            <p class="govuk-!-margin-top-4"><a class="govuk-link" href="/IBT/antigen/e2e-prototypes/{{version}}/site-appointment-booking/choose-time-walk">See next day</a></p>
+          </fieldset>
+        </div>
+
+        <div class="govuk-radios" style="display: none;">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="appointment-date" name="appointment-date" type="radio" value="27 July" checked >
+            <label class="govuk-label govuk-radios__label" for="appointment-date">
+              27 July
+            </label>
+          </div>
+        </div>
+
+        <button class="govuk-button govuk-!-margin-right-6" data-module="govuk-button">Continue</button>
+
+        <p style="display: inline-block;"><a class="govuk-button govuk-button--secondary" href="/IBT/antigen/e2e-prototypes/{{version}}/site-appointment-booking/choose-walk-through-site">Change test site</a></p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
