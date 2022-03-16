@@ -597,6 +597,21 @@ router.post('/IBT/antigen/e2e-prototypes/live/action8/vaccine-person-1', functio
 
 // ******************* RESEARCH - Merged V7 and V2 ***************** //
 
+// Research version - Antigen Check Eligibility - Country route
+
+router.post('/IBT/antigen/e2e-prototypes/research/action1/country', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "Scotland" ){
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-scotland')
+  } else if(country == "Wales") {
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-wales')
+  } else if(country == "Northern Ireland") {
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-northern-ireland')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-england')
+  }
+})
+
 // Research version - Antigen Check Eligibility - Mobile number route
 
 router.post('/IBT/antigen/e2e-prototypes/research/action3/mobile-number', function (req, res) {
@@ -612,19 +627,13 @@ router.post('/IBT/antigen/e2e-prototypes/research/action3/mobile-number', functi
 
 router.post('/IBT/antigen/e2e-prototypes/research/action4/do-you-have-symptoms', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
-  if (symptoms == "No"){
+  let country = req.session.data['country']
+  if (symptoms == "No" && country == "Scotland" || symptoms == "No" && country == "Northern Ireland"){
     res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/follow-up-test')
+  } else if (symptoms == "No" && country == "England" || symptoms == "No" && country == "Wales"){
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/')
   } else {
     res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/when-did-symptoms-start')
-  }
-})
-
-router.post('/IBT/antigen/e2e-prototypes/research/action/status-page', function (req, res) {
-  let screenOption = req.session.data['screen-option']
-  if (screenOption == "option-2" || screenOption == "option-2" ){
-    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/do-you-have-symptoms-option-2')
-  } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/do-you-have-symptoms')
   }
 })
 
@@ -7346,5 +7355,56 @@ router.post('/antigen/v7/action2/edit/fingerprick-test-person-1', function (req,
 //     res.redirect('/antigen/v6/site-appointment-booking/find-test-site')
 //   }
 // })
+
+
+
+
+// ******************* FEATURE DESIGNS ***************** //
+
+// UTO Feature Design - Antigen Check Eligibility - Country route
+
+router.post('/IBT/antigen/feature-design/UTO/action1/country', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "Scotland" ){
+    res.redirect('/IBT/antigen/feature-design/UTO/eligibility-scotland')
+  } else if(country == "Wales") {
+    res.redirect('/IBT/antigen/feature-design/UTO/eligibility-wales')
+  } else if(country == "Northern Ireland") {
+    res.redirect('/IBT/antigen/feature-design/UTO/eligibility-northern-ireland')
+  } else {
+    res.redirect('/IBT/antigen/feature-design/UTO/eligibility-england')
+  }
+})
+
+// UTO Feature Design - Antigen Check Eligibility - Do you have symptoms route
+
+router.post('/IBT/antigen/feature-design/UTO/action2/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  let country = req.session.data['country']
+  if (symptoms == "No" && country == "Scotland" || symptoms == "No" && country == "Northern Ireland"){
+    res.redirect('/IBT/antigen/feature-design/UTO/follow-up-test')
+  } else if (symptoms == "No" && country == "England" || symptoms == "No" && country == "Wales"){
+    res.redirect('/IBT/antigen/feature-design/UTO/name')
+  } else {
+    res.redirect('/IBT/antigen/feature-design/UTO/when-did-symptoms-start')
+  }
+})
+
+// UTO Feature Design - Antigen Check Eligibility - When did symptoms start route
+
+router.post('/IBT/antigen/feature-design/UTO/action3/when-did-symptoms-start', function (req, res) {
+  let dateOfOnset = req.session.data['date-of-onset']
+  let yearOfOnset = req.session.data['symptoms-start-date-year']
+  let country = req.session.data['country']
+  if (!dateOfOnset){
+    res.redirect('/IBT/antigen/feature-design/UTO/when-did-symptoms-start-error-2')
+  } else if (dateOfOnset == "different" && yearOfOnset !== "2021" && yearOfOnset !== "2022"){
+    res.redirect('/IBT/antigen/feature-design/UTO/when-did-symptoms-start-error')
+  } else if (country == "Scotland" || country == "Northern Ireland") {
+    res.redirect('/IBT/antigen/feature-design/UTO/follow-up-test')
+  } else {
+    res.redirect('/IBT/antigen/feature-design/UTO/name')
+  }
+})
 
 module.exports = router
