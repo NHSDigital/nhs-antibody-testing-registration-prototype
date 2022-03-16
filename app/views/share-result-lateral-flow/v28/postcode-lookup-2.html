@@ -1,5 +1,5 @@
 {% set version = "v28" %}
-{% set pageTitle = "What is your home address?" %}
+{% set pageTitle = "What is your home address in the UK?" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -27,11 +27,20 @@
               {% endif %}
             </h1>
           </legend>
-          <label class="govuk-label" for="postcode">
+
+          <p class="govuk-body">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            If they do not have a home address in the UK, use the address where they're staying.
+            {% else %}
+            If you do not have a home address in the UK, use the address where you're staying.
+            {% endif %}
+            </p>
+
+          <!-- <label class="govuk-label" for="postcode">
             <strong class="govuk-!-font-size-24">Postcode</strong>
-          </label>
+          </label> -->
           <p>
-            {{ data['home-postcode'] | default('LS1 3BE') }}LS1 3BE
+            <strong>{{ data['home-postcode'] | default('LS1 3BE') }}</strong>
             <a href="/share-result-lateral-flow/{{version}}/postcode-lookup" class="govuk-!-margin-left-5">
               Change
               <span class="govuk-visually-hidden">your postcode</span>

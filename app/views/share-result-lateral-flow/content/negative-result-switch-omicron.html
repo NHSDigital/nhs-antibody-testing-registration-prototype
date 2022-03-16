@@ -18,6 +18,26 @@
 <div>
 <br><p class="govuk-body">This result has been reported to the NHS.</p>
 
+<h2 class="govuk-heading-m">New COVID-19 treatments</h2>
+
+  {% if data['whos-taking-the-test'] == "someone-else" %}
+  <p class="govuk-body">Follow the guidance on further testing if they have symptoms and they are eligible for new COVID-19 treatments:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-care-and-treatments-for-coronavirus/treatments-for-coronavirus/">England: COVID-19 treatments (opens in new tab).</a></li>
+      <li><a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19-treatments">Scotland: COVID-19 treatments (opens in new tab).</a></li>
+      <li><a href="https://gov.wales/covid-19-treatments">Wales: COVID-19 treatments (opens in new tab).</a></li>
+      <li><a href="https://www.nidirect.gov.uk/articles/treatments-coronavirus-covid-19">Northern Ireland: COVID-19 treatments (opens in new tab).</a></li>
+    </ul>
+  {% else %}
+    <p class="govuk-body">Follow the guidance on further testing if you have symptoms and you are eligible for new COVID-19 treatments:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-care-and-treatments-for-coronavirus/treatments-for-coronavirus/">England: COVID-19 treatments (opens in new tab).</a></li>
+        <li><a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19-treatments">Scotland: COVID-19 treatments (opens in new tab).</a></li>
+        <li><a href="https://gov.wales/covid-19-treatments">Wales: COVID-19 treatments (opens in new tab).</a></li>
+        <li><a href="https://www.nidirect.gov.uk/articles/treatments-coronavirus-covid-19">Northern Ireland: COVID-19 treatments (opens in new tab).</a></li>
+      </ul>
+  {% endif %}
+
   {% if data['whos-taking-the-test'] == "someone-else" %}
   <h2 class="govuk-heading-m">What {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} needs to know</h2>
   {% else %}
@@ -48,6 +68,40 @@
         </ul>
     {% endif %}
 
+    <p class="govuk-body">Find out more about self-isolation and treating symptoms:</p>
+      <ul class="govuk-list govuk-list--bullet">
+          <li><a href="https://www.nhsinform.scot/isolation">Scotland: self-isolation guidance (opens in new tab)</a></li>
+          <li><a href="https://gov.wales/self-isolation">Wales: self-isolation guidance (opens in new tab)</a></li>
+          <li><a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts">Northern Ireland: self-isolation guidance (opens in new tab)</a></li>
+      </ul>
+
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <h2 class="govuk-heading-m">If they're worried</h2>
+    {% else %}
+    <h2 class="govuk-heading-m">If you're worried</h2>
+    {% endif %}
+
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <p class="govuk-body">If their symptons get worse or you need medical help:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li><a href="https://digital.nhs.uk/services/nhs-111-online">use 111 online (opens in new tab)</a>.</li>
+        <li>call 111 if they're in England, Wales or Scotland</li>
+        <li>call a GP or GP out-of-hours service if they're in Northern Ireland</li>
+        <li>call 999 if they feel very unwell or think there's something seriously wrong</li>
+      </ul>
+    {% else %}
+      <p class="govuk-body">If your symptons get worse or you need medical help:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>use 111 online (opens in new tab)</li>
+          <li>call 111 if you're in England, Wales or Scotland</li>
+          <li>call a GP or GP out-of-hours service if you're in Northern Ireland</li>
+          <li>call 999 if you feel very unwell or think there's something seriously wrong</li>
+        </ul>
+    {% endif %}
+
+
+
+
     {% if data['whos-taking-the-test'] == "someone-else" %}
       <p class="govuk-body">If they're worried about any symptoms, including a cough that does not go away, they should contact 111
         (England and Scotland only) or speak to their GP. In an emergency dial 999.</p>
@@ -56,8 +110,8 @@
         (England and Scotland only) or speak to your GP. In an emergency dial 999.</p>
     {% endif %}
 
-    <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">
-      Find out if you need to self-isolate, despite this negative result.</a></p>
+    <!-- <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">
+      Find out if you need to self-isolate, despite this negative result.</a></p> -->
 
    <br>
    <button class="govuk-button" data-module="govuk-button">Report another result</button>
@@ -133,9 +187,9 @@
    {% endif %}
  </a></p>
  {% if data['whos-taking-the-test'] == "someone-else" %}
- <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS advice if they have to self isolate</a>
+ <!-- <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS advice if they have to self isolate</a> -->
  {% else %}
- <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS advice if you have to self isolate</a>
+ <!-- <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS advice if you have to self isolate</a> -->
  {% endif %}
  <p><a href="https://www.covid19.nhs.uk/" target="_blank" rel="noreferrer">Get the free NHS COVID-19 app for England and Wales</a></p>
  <p><a href="https://covid-19.hscni.net/stop-covid-ni-mobile-app/" target="_blank" rel="noreferrer">Get the free StopCOVID app for Northern Ireland</a></p>
