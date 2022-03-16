@@ -765,14 +765,24 @@ router.post('/IBT/antigen/e2e-prototypes/research/action3/how-will-you-get-test'
 
 // Research version - Antigen Global Registration - Landline number route
 
+// router.post('/IBT/antigen/e2e-prototypes/research/action3/landline-number', function (req, res) {
+//   let car = req.session.data['do-you-have-a-car']
+//   if (car == "No") {
+//     res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/email-address-home')
+//   } else {
+//     res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/email-address')
+//   }
+
+// })
+
 router.post('/IBT/antigen/e2e-prototypes/research/action3/landline-number', function (req, res) {
-  let car = req.session.data['do-you-have-a-car']
-  if (car == "No") {
+  let emailAddress = req.session.data['email-address']
+  let wayToTest = req.session.data['way-to-test']
+  if (emailAddress && wayToTest == "home testing"){
     res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/email-address-home')
   } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/email-address')
+    res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/gender')
   }
-
 })
 
 // Research version - Antigen Global Registration - Landline number route - person 1
