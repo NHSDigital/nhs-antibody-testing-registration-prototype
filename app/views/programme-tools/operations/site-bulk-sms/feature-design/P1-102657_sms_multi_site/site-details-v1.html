@@ -1,6 +1,6 @@
 {% set version = "v1" %}
 {% set serviceName = "COVID-19" %}
-{% set pageTitle = "What’s changing at this test site?" %}
+{% set pageTitle = "Complete test site information" %}
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
@@ -14,237 +14,96 @@
 
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3"> Search for the test site </h1>
-            <p class="govuk-body-l ">You can search with the site reference or a postcode.</p>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-5"> {{pageTitle}} </h1>
+            <p class="govuk-body govuk-!-margin-bottom-5">Tell us the times that people at these test sites are going to be affected, and if it’s today or tomorrow.</p>
+        </div>
+        <div class="govuk-grid-column-full">
             <form action="#" method="get">
-                <div class="govuk-form-group">
-                    <label for="reference" class="govuk-label"> Site reference </label>
-                    <div id="reference-hint" class="govuk-hint">
-                    For example, SE002, LTS0041 or NTM
-                    </div>
-                    {# <input id="reference" name="reference" maxlength="100" spellcheck="false" class="govuk-input govuk-!-width-one-half"> #}
-                    <div id="reference-container" name="site-reference"></div>
+                <table class="govuk-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Site ref</th>
+                    <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Address</th>
+                    <th scope="col" class="govuk-table__header">Operating hours</th>
+                    <th scope="col" class="govuk-table__header">Day</th>
+                    <th scope="col" class="govuk-table__header">Start time</th>
+                    <th scope="col" class="govuk-table__header">End time</th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">WOO</td>
+                        <td class="govuk-table__cell">Woolpack Way Car Park<br/>Woolpack Way Car Park<br/>Atherstone<br/>CV9 1AD<br/>West Midlands</td>
+                        <td class="govuk-table__cell">09:00 to 16:00</td>
+                        <td class="govuk-table__cell">
+                            <div class="govuk-form-group">
+                                <select class="govuk-select" id="day" name="day">
+                                    <option value="today">Today</option>
+                                    <option value="tomorrow">Tomorrow</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <input class="govuk-input govuk-input--width-5" id="event-name" name="event-name" type="text">
+                            <p class="govuk-body-s govuk-!-margin-top-1">For example,<br/>08:30</p>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <input class="govuk-input govuk-input--width-5" id="event-name" name="event-name" type="text">
+                            <p class="govuk-body-s govuk-!-margin-top-1">For example,<br/>17:00</p>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">XCI</td>
+                        <td class="govuk-table__cell">Nuneaton - Mobile Unit<br/>Harefield Road Car Park<br/>Nuneaton<br/>CV11 4HR</td>
+                        <td class="govuk-table__cell">09:00 to 16:00</td>
+                        <td class="govuk-table__cell">
+                            <div class="govuk-form-group">
+                            <select class="govuk-select" id="day" name="day">
+                                <option value="today">Today</option>
+                                <option value="tomorrow">Tomorrow</option>
+                            </select>
+                            </div>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <input class="govuk-input govuk-input--width-5" id="event-name" name="event-name" type="text">
+                            <p class="govuk-body-s govuk-!-margin-top-1">For example,<br/>08:30</p>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <input class="govuk-input govuk-input--width-5" id="event-name" name="event-name" type="text">
+                            <p class="govuk-body-s govuk-!-margin-top-1">For example,<br/>17:00</p>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">NVS</td>
+                        <td class="govuk-table__cell">Victoria Street No 2 Car Park Dugdale Street<br/>Victoria Street No. 2 Car Park<br/>Nuneaton<br/>CV11 5QE
+                        </td>
+                        <td class="govuk-table__cell">09:00 to 16:00</td>
+                        <td class="govuk-table__cell">
+                            <div class="govuk-form-group">
+                            <select class="govuk-select" id="day" name="day">
+                                <option value="today">Today</option>
+                                <option value="tomorrow">Tomorrow</option>
+                            </select>
+                            </div>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <input class="govuk-input govuk-input--width-5" id="event-name" name="event-name" type="text">
+                            <p class="govuk-body-s govuk-!-margin-top-1">For example,<br/>08:30</p>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <input class="govuk-input govuk-input--width-5" id="event-name" name="event-name" type="text">
+                            <p class="govuk-body-s govuk-!-margin-top-1">For example,<br/>17:00</p>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                <div class="govuk-button-group">
+                    <button type="submit" class="govuk-button govuk-!-margin-top-1"> Continue </button>
+                    <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-top-1"> Add another test site </button>
                 </div>
-                <div class="govuk-button-group" style="display:flex; flex-direction:row; align-items:center">
-                    <button type="submit" class="govuk-button"> Search </button>
-                    <button type="submit" class="govuk-button govuk-button--secondary"> Add another site reference  </button>
-                </div>
-                <p class="govuk-body govuk-!-margin-top-4 govuk-!-margin-bottom-2">Site references to be searched:</p>
-                <dl class="govuk-summary-list govuk-!-margin-bottom-0 govuk-!-width-three-quarters">
-                    <div class="govuk-summary-list__row">
-                        <dd class="govuk-summary-list__value">
-                        WOO, Woolpack Way Car Park
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Remove<span class="govuk-visually-hidden"> site reference</span>
-                        </a>
-                        </dd>
-                    </div>
-                    <div class="govuk-summary-list__row">
-                        <dd class="govuk-summary-list__value">
-                        NVS, Victoria Street No 2 Car Park Dugdale Street
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Remove<span class="govuk-visually-hidden"> site reference</span>
-                        </a>
-                        </dd>
-                    </div>
-                    <div class="govuk-summary-list__row">
-                        <dd class="govuk-summary-list__value" style="border-bottom: none">
-                        MAN, Nuneaton - Mobile Unit
-                        </dd>
-                        <dd class="govuk-summary-list__actions" style="border-bottom: none">
-                        <a class="govuk-link" href="#">
-                            Remove<span class="govuk-visually-hidden"> site reference</span>
-                        </a>
-                        </dd>
-                    </div>
-                </dl>
-            </form>
-            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-            <form action="#" method="get">
-                <div class="govuk-form-group">
-                    <label for="postcode" class="govuk-label"> Postcode </label>
-                    <input id="postcode" name="postcode" maxlength="100" spellcheck="false" class="govuk-input govuk-!-width-one-half">
-                </div>
-                <button type="submit" class="govuk-button"> Search </button>
             </form>
             
         </div>
     </div>
-
-    <style>
-    .autocomplete__wrapper {
-        position: relative;
-        max-width: 50%;
-        margin-bottom: 20px;
-        font-family: "GDS Transport",Arial,sans-serif;
-        text-transform: capitalize;
-    }
-
-    @media (min-width: 40.0625em) {
-        .autocomplete__wrapper {
-        margin-bottom: 30px;
-        }
-    }
-
-    .autocomplete__hint, .autocomplete__input {
-        -webkit-appearance: none;
-        border: 2px solid #0b0c0c;
-        border-radius: 0;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        margin-bottom: 0;
-        width: 100%;
-        text-transform: capitalize;
-    }
-
-    .autocomplete__input {
-        background-color: transparent;
-        position: relative;
-        text-transform: capitalize;
-    }
-
-    .autocomplete__hint {
-        color: #b1b4b6;
-        position: absolute;
-    }
-
-    .autocomplete__input--default {
-        padding: 5px;
-    }
-
-    .autocomplete__input--focused {
-        outline: 3px solid #fd0;
-        outline-offset: 0;
-        box-shadow: inset 0 0 0 2px;
-    }
-
-    .autocomplete__input--show-all-values {
-        padding: 5px 34px 5px 5px;
-        cursor: pointer;
-    }
-
-    .autocomplete__dropdown-arrow-down {
-        z-index: -1;
-        display: inline-block;
-        position: absolute;
-        right: 8px;
-        width: 24px;
-        height: 24px;
-        top: 10px;
-    }
-
-    .autocomplete__menu {
-        background-color: #fff;
-        border: 2px solid #0b0c0c;
-        border-top: 0;
-        color: #0b0c0c;
-        margin: 0;
-        max-height: 342px;
-        overflow-x: hidden;
-        padding: 0;
-        width: 100%;
-        width: calc(100% - 4px);
-    }
-
-    .autocomplete__menu--visible {
-        display: block;
-    }
-
-    .autocomplete__menu--hidden {
-        display: none;
-    }
-
-    .autocomplete__menu--overlay {
-        box-shadow: rgba(0, 0, 0, 0.256863) 0 2px 6px;
-        left: 0;
-        position: absolute;
-        top: 100%;
-        z-index: 100;
-    }
-
-    .autocomplete__menu--inline {
-        position: relative;
-    }
-
-    .autocomplete__option {
-        border-bottom: solid #b1b4b6;
-        border-width: 1px 0;
-        cursor: pointer;
-        display: block;
-        position: relative;
-    }
-
-    .autocomplete__option > * {
-        pointer-events: none;
-    }
-
-    .autocomplete__option:first-of-type {
-        border-top-width: 0;
-    }
-
-    .autocomplete__option:last-of-type {
-        border-bottom-width: 0;
-    }
-
-    .autocomplete__option--odd {
-        background-color: #fafafa;
-    }
-
-    .autocomplete__option--focused, .autocomplete__option:hover {
-        background-color: #1d70b8;
-        border-color: #1d70b8;
-        color: #fff;
-        outline: 0;
-    }
-
-    .autocomplete__option--no-results {
-        background-color: #fafafa;
-        color: #646b6f;
-        cursor: not-allowed;
-    }
-
-    .autocomplete__hint, .autocomplete__input, .autocomplete__option {
-        font-size: 16px;
-        line-height: 1.25;
-    }
-
-    .autocomplete__hint, .autocomplete__option {
-        padding: 5px;
-    }
-
-    @media (min-width: 641px) {
-        .autocomplete__hint, .autocomplete__input, .autocomplete__option {
-        font-size: 19px;
-        line-height: 1.31579;
-        }
-    }
-    </style>
-    <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
-    <script>
-    const sitereferences = [
-                "WOO, Woolpack Way Car Park",
-                "NVS, Victoria Street No 2 Car Park Dugdale Street",
-                "MAN, Nuneaton - Mobile Unit",
-    ];
-
-    accessibleAutocomplete({
-        autoselect: true,
-        element: document.querySelector('#reference-container'),
-        id: 'site-reference',
-        name: 'reference-autocomplete',
-        source: sitereferences,
-        defaultValue: '{{ data["reference-autocomplete"] }}',
-        displayMenu: 'overlay',
-        minLength: 2,
-        tNoResults: function() {
-        return "No matches"
-        }
-    });
-    </script>
 
 {% endblock %}
