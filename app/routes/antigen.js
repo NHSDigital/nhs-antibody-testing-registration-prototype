@@ -779,9 +779,9 @@ router.post('/IBT/antigen/e2e-prototypes/research/action3/how-will-you-get-test'
 // })
 
 router.post('/IBT/antigen/e2e-prototypes/research/action3/landline-number', function (req, res) {
-  let emailAddress = req.session.data['email-address']
+  // let emailAddress = req.session.data['email-address']
   let wayToTest = req.session.data['way-to-test']
-  if (!emailAddress && wayToTest == "home testing"){
+  if (wayToTest == "home testing"){
     res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/email-address-home')
   } else {
     res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/gender')
