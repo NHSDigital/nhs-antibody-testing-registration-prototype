@@ -648,7 +648,7 @@ router.post('/IBT/antigen/e2e-prototypes/research/action3/do-you-have-symptoms-p
 
 // Research version - Antigen Check Eligibility - When did symptoms start route
 
-router.post('/IBT/antigen/feature-design/UTO/action3/when-did-symptoms-start', function (req, res) {
+router.post('/IBT/antigen/e2e-prototypes/research/action3/when-did-symptoms-start', function (req, res) {
   let dateOfOnset = req.session.data['date-of-onset']
   let yearOfOnset = req.session.data['symptoms-start-date-year']
   let country = req.session.data['country']
