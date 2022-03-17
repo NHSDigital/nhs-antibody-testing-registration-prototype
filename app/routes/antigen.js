@@ -648,15 +648,18 @@ router.post('/IBT/antigen/e2e-prototypes/research/action3/do-you-have-symptoms-p
 
 // Research version - Antigen Check Eligibility - When did symptoms start route
 
-router.post('/IBT/antigen/e2e-prototypes/research/action3/when-did-symptoms-start', function (req, res) {
+router.post('/IBT/antigen/feature-design/UTO/action3/when-did-symptoms-start', function (req, res) {
   let dateOfOnset = req.session.data['date-of-onset']
   let yearOfOnset = req.session.data['symptoms-start-date-year']
+  let country = req.session.data['country']
   if (!dateOfOnset){
     res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/when-did-symptoms-start-error-2')
-  } else if (dateOfOnset == "different" && yearOfOnset !== "2020" && yearOfOnset !== "2021"){
+  } else if (dateOfOnset == "different" && yearOfOnset !== "2021" && yearOfOnset !== "2022"){
     res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/when-did-symptoms-start-error')
-  } else {
+  } else if (country == "Scotland" || country == "Northern Ireland") {
     res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/follow-up-test')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/')
   }
 })
 
