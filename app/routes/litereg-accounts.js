@@ -528,8 +528,9 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/research/action/gp-address-sam
 // Research - Lite Registration Accounts - site confirmation route
 router.post('/IBT/litereg-accounts/e2e-prototypes/research/action9/site-confirmation', function (req, res) {
   let confirmSite = req.session.data['confirm-site']
+  let uniqueBarcode = req.session.data['kit-barcode-reference-1']
   if(uniqueBarcode) {
-    uniqueBarcode = req.session.data['kit-barcode-reference-1'].slice(0,2)
+    uniqueBarcode = uniqueBarcode.slice(0,2)
   }
 
   if (confirmSite == "Yes" && uniqueBarcode == "LF") {
