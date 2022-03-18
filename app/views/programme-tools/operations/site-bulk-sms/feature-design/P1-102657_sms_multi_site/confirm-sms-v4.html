@@ -1,0 +1,106 @@
+{% set version = "v1" %}
+{% set serviceName = "COVID-19" %}
+{% set pageTitle = "Confirm text message and site affected" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-6"> {{pageTitle}} </h1>
+            <p class="govuk-body"> You’re about to send approximately 512 people this message.</p>
+            <p class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-2"> Message </p>
+            <a class="govuk-link govuk-!-font-size-19 govuk-!-margin-bottom-3" href="#" style="display:block;">Change the reason why the SMS is being sent</a>
+            <div class="govuk-inset-text">
+                <p class="govuk-body"> Sorry we've had to cancel all walk through appointments at the [site name] on [date affected]. Drive through appointments are not affected.  </p>
+                <p class="govuk-body"> Book a new test at https://www.nhs.uk/ask-for-a-coronavirus-test.  </p>
+                <p class="govuk-body"> If you cannot get online, call 119 if you're in England, Wales or Northern Ireland or 0300 303 2713 if you're in Scotland. </p>
+            </div>
+        </div>
+        <div class="govuk-grid-column-full">
+            <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">Sites affected</h2>
+            <a class="govuk-link govuk-!-font-size-19 govuk-!-margin-bottom-3" href="#" style="display:block;">Change site information</a>
+            <table class="govuk-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Site ref</th>
+                    <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Name</th>
+                    <th scope="col" class="govuk-table__header">Day</th>
+                    <th scope="col" class="govuk-table__header">Start time</th>
+                    <th scope="col" class="govuk-table__header">End time</th>
+                    <th scope="col" class="govuk-table__header">People affected</th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">WOO</td>
+                        <td class="govuk-table__cell">Woolpack Way Car Park</td>
+                        <td class="govuk-table__cell">
+                            Today
+                        </td>
+                        <td class="govuk-table__cell">
+                            08:30
+                        </td>
+                        <td class="govuk-table__cell">
+                            17:00
+                        </td>
+                        <td class="govuk-table__cell">
+                            175
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">XCI</td>
+                        <td class="govuk-table__cell">Nuneaton - Mobile Unit</td>
+                        <td class="govuk-table__cell">
+                            Today
+                        </td>
+                        <td class="govuk-table__cell">
+                            08:30
+                        </td>
+                        <td class="govuk-table__cell">
+                            17:00
+                        </td>
+                        <td class="govuk-table__cell">
+                            175
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">NVS</td>
+                        <td class="govuk-table__cell">Victoria Street No 2 Car Park Dugdale Street</td>
+                        <td class="govuk-table__cell">
+                            Today
+                        </td>
+                        <td class="govuk-table__cell">
+                            08:30
+                        </td>
+                        <td class="govuk-table__cell">
+                            17:00
+                        </td>
+                        <td class="govuk-table__cell">
+                            175
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+
+            <div class="govuk-form-group govuk-!-margin-top-8">
+                <fieldset role="group" class="govuk-fieldset">
+                    <div class="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item"><input type="checkbox" id="confirm-text-message" name="confirm-text-message" class="govuk-checkboxes__input" value="true">
+                            <label for="confirm-text-message" class="govuk-label govuk-checkboxes__label"> I've checked that the text message and the sites affected are correct </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <button type="submit" class="govuk-!-margin-top-4 govuk-button"> Request text messages </button>
+        </div>
+    </div>
+
+{% endblock %}
