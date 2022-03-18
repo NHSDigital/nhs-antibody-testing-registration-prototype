@@ -1,0 +1,47 @@
+{% set version = "v7" %}
+{% set pageTitle = "Home tests are not yet available for this address" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-5">{{ pageTitle }}</h1>
+
+    <br>
+    <p class="govuk-body">If you have symptoms of coronavirus and think you need to be tested, stay at home and contact your GP.</p>
+
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+  resetAttributes()
+
+  function checkBox(target) {
+    const checkbox = document.getElementById('confirm')
+    const button = document.getElementById('button')
+    checkbox.toggleAttribute('checked')
+    button.toggleAttribute('disabled')
+  }
+
+  function resetAttributes() {
+    const checkbox = document.getElementById('confirm')
+    const button = document.getElementById('button')
+    checkbox.removeAttribute('checked')
+    button.setAttribute('disabled')
+  }
+
+</script>
+
+{% endblock %}
