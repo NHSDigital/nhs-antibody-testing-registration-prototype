@@ -16,7 +16,7 @@
         <div class="govuk-grid-column-two-thirds">
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-3"> Search for the test site </h1>
             <p class="govuk-body-l ">You can search with the site reference or a postcode.</p>
-            <form action="#" method="get">
+            <form action="site-search-v4-o2" method="get">
                 <div class="govuk-form-group">
                     <label for="reference" class="govuk-label"> Site reference </label>
                     <div id="reference-hint" class="govuk-hint">
@@ -25,43 +25,10 @@
                     {# <input id="reference" name="reference" maxlength="100" spellcheck="false" class="govuk-input govuk-!-width-one-half"> #}
                     <div id="reference-container" name="site-reference"></div>
                 </div>
-                <div class="govuk-button-group" style="display:flex; flex-direction:row; align-items:center">
-                    <button type="submit" class="govuk-button"> Search </button>
-                    <button type="submit" class="govuk-button govuk-button--secondary"> Add another site reference  </button>
+                <div class="govuk-button-group govuk-!-margin-bottom-0" style="display:flex; flex-direction:row; align-items:center">
+                    <button type="submit" class="govuk-button govuk-!-margin-bottom-1"> Search </button>
+                    <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-1"> Add site reference to list </button>
                 </div>
-                <p class="govuk-body govuk-!-margin-top-4 govuk-!-margin-bottom-2">Site references to be searched:</p>
-                <dl class="govuk-summary-list govuk-!-margin-bottom-0 govuk-!-width-three-quarters">
-                    <div class="govuk-summary-list__row">
-                        <dd class="govuk-summary-list__value">
-                        WOO, Woolpack Way Car Park
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Remove<span class="govuk-visually-hidden"> site reference</span>
-                        </a>
-                        </dd>
-                    </div>
-                    <div class="govuk-summary-list__row">
-                        <dd class="govuk-summary-list__value">
-                        NVS, Victoria Street No 2 Car Park Dugdale Street
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Remove<span class="govuk-visually-hidden"> site reference</span>
-                        </a>
-                        </dd>
-                    </div>
-                    <div class="govuk-summary-list__row">
-                        <dd class="govuk-summary-list__value" style="border-bottom: none">
-                        MAN, Nuneaton - Mobile Unit
-                        </dd>
-                        <dd class="govuk-summary-list__actions" style="border-bottom: none">
-                        <a class="govuk-link" href="#">
-                            Remove<span class="govuk-visually-hidden"> site reference</span>
-                        </a>
-                        </dd>
-                    </div>
-                </dl>
             </form>
             <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
             <form action="#" method="get">
@@ -228,11 +195,24 @@
     <script>
     const sitereferences = [
                 "WOO, Woolpack Way Car Park",
+                "XCI, Nuneaton - Mobile Unit",
                 "NVS, Victoria Street No 2 Car Park Dugdale Street",
-                "MAN, Nuneaton - Mobile Unit",
     ];
 
     accessibleAutocomplete({
+        autoselect: true,
+        element: document.querySelector('#reference-container'),
+        id: 'site-reference',
+        name: 'reference-autocomplete',
+        source: sitereferences,
+        displayMenu: 'overlay',
+        minLength: 2,
+        tNoResults: function() {
+        return "No matches"
+        }
+    });
+
+    {# accessibleAutocomplete({
         autoselect: true,
         element: document.querySelector('#reference-container'),
         id: 'site-reference',
@@ -244,7 +224,7 @@
         tNoResults: function() {
         return "No matches"
         }
-    });
+    }); #}
     </script>
 
 {% endblock %}

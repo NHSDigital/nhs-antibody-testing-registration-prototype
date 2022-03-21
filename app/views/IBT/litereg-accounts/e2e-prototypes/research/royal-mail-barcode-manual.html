@@ -46,13 +46,13 @@
               <div id="enter-barcode-number-hint-3" class="govuk-hint">
                 For example, ZD 6904 0038 5GB
               </div>
-              <input autofocus class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" value={{ data['mail-barcode-reference-1'] }}>
+              <input autofocus class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-1" name="mail-barcode-reference-1" type="text" onchange="updateBarcodeData()" value={{ data['mail-barcode-reference-1'] }}>
             </div>
             <div class="govuk-form-group">
               <label class="govuk-label" for="mail-barcode-reference-2">
                 Confirm Royal Mail barcode reference
               </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-2" name="mail-barcode-reference-2" type="text" value={{ data['mail-barcode-reference-2'] }}>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mail-barcode-reference-2" name="mail-barcode-reference-2" type="text" onchange="updateBarcodeData()" value={{ data['mail-barcode-reference-2'] }}>
             </div>
           </fieldset>
         </div>
@@ -71,6 +71,10 @@
   </div>
 
   <script type="text/javascript">
+
+    function updateBarcodeData() {
+      localStorage.setItem("mailBarcodeData", document.getElementById('mail-barcode-reference-1').value)
+    }
 
     if(localStorage.getItem("mailBarcodeData")) {
       document.getElementById('mail-barcode-reference-1').value = localStorage.getItem("mailBarcodeData");
