@@ -1,6 +1,6 @@
 {% set version = "v1" %}
 {% set serviceName = "COVID-19" %}
-{% set pageTitle = "What’s changing at this test site?" %}
+{% set pageTitle = "Search for test sites" %}
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
@@ -14,20 +14,17 @@
 
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3"> Search for the test site </h1>
-            <p class="govuk-body-l ">You can search with the site reference or a postcode.</p>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3"> {{pageTitle}} </h1>
+            <p class="govuk-body-l ">You can search with a site reference or a postcode.</p>
             <form action="site-search-v4-o2" method="get">
                 <div class="govuk-form-group">
-                    <label for="reference" class="govuk-label"> Site reference </label>
-                    <div id="reference-hint" class="govuk-hint">
-                    For example, SE002, LTS0041 or NTM
+                    <label for="site-reference" class="govuk-label"> Site reference </label>
+                    <div class="govuk-hint" id="site-reference__assistiveHint">For example, SE002, LTS0041 or NTM</div>
+                    <div id="site-reference" name="site-reference"></div>
+                    <div class="govuk-button-group govuk-!-margin-bottom-0">
+                        <button type="submit" class="govuk-button govuk-!-margin-bottom-1"> Search <span class="govuk-visually-hidden"> just this reference</span></button>
+                        <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-1"> Add site reference to list </button>
                     </div>
-                    {# <input id="reference" name="reference" maxlength="100" spellcheck="false" class="govuk-input govuk-!-width-one-half"> #}
-                    <div id="reference-container" name="site-reference"></div>
-                </div>
-                <div class="govuk-button-group govuk-!-margin-bottom-0" style="display:flex; flex-direction:row; align-items:center">
-                    <button type="submit" class="govuk-button govuk-!-margin-bottom-1"> Search </button>
-                    <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-1"> Add site reference to list </button>
                 </div>
             </form>
             <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
@@ -38,7 +35,6 @@
                 </div>
                 <button type="submit" class="govuk-button"> Search </button>
             </form>
-            
         </div>
     </div>
 
@@ -201,7 +197,7 @@
 
     accessibleAutocomplete({
         autoselect: true,
-        element: document.querySelector('#reference-container'),
+        element: document.querySelector('#site-reference'),
         id: 'site-reference',
         name: 'reference-autocomplete',
         source: sitereferences,
@@ -211,20 +207,6 @@
         return "No matches"
         }
     });
-
-    {# accessibleAutocomplete({
-        autoselect: true,
-        element: document.querySelector('#reference-container'),
-        id: 'site-reference',
-        name: 'reference-autocomplete',
-        source: sitereferences,
-        defaultValue: '{{ data["reference-autocomplete"] }}',
-        displayMenu: 'overlay',
-        minLength: 2,
-        tNoResults: function() {
-        return "No matches"
-        }
-    }); #}
     </script>
 
 {% endblock %}
