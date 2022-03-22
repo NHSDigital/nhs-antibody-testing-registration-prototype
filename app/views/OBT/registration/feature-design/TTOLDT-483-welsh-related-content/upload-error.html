@@ -1,0 +1,89 @@
+{% set pageHeading = "Upload their test details?" %}
+ {% set version = "organisational/lft/carehome-registration" %}
+{% set serviceName = "Get a coronavirus test" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+{% block beforeContent %}
+
+
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+      }) }}
+    </div>
+  </div>
+</div>
+
+<div class=“”>
+  <div class=“govuk-grid-row”>
+    <div class=“govuk-grid-column-full”>
+      <a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#file-upload-1">Check that the spreadsheet has been completed in the same language you have used to register tests</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h1 class="govuk-heading-xl">Upload test details</h1>
+
+      <form class="form" action="/organisational/lft/carehome-registration/enhancements/lft-bulk-delete" method="post">
+
+        <p>This spreadsheet allows you to register both PCR and lateral flow tests. You can also report lateral flow test results.</p>
+        <p>It is designed to save your organisation time and effort by uploading multiple test details at once.</p>
+    <p>To do this:</p>
+        <ul class="govuk-list govuk-list--bullet">
+    <li><a href="#" class="govuk-link">download our spreadsheet</a> if you have not already</li>
+    <li>remove any people who haven’t been tested</li>
+    <li>do not add any sheets, row or columns</li>
+    <li>enter details for up to 100 people at a time</li>
+    <li>save the completed spreadsheet and then upload it</li>
+    </ul>
+
+    <p>For help, see <a href="https://www.gov.uk/government/publications/organisation-testing-registration-record-of-users/multiple-registration-upload-guidance" class="govuk-link">multiple registration upload guidance (opens in new tab).</a></p>
+
+<div class="govuk-form-group govuk-form-group--error">
+  <label class="govuk-label" for="file-upload-1">
+    Upload a file
+  </label>
+  <span id="file-upload-1-error" class="govuk-error-message">
+    <span class="govuk-visually-hidden">Error:</span>Check that the spreadsheet has been completed in the same language you have used to register tests
+  </span>
+  <input class="govuk-input govuk-input--error" id="file-upload-1" name="file-upload-1" type="file" aria-describedby="file-upload-1-hint file-upload-1-error">
+</div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
