@@ -1463,6 +1463,16 @@ router.post('/IBT/lfd-home-order/feature-design/SAID-468/country', function(req,
   }
 
 })
+// VERSION DEV
+router.post('/IBT/lfd-home-order/feature-design/SAID-468-2/country', function(req, res) {
+  let country = req.session.data['country']
+  if (country == "England") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-468-2/guard-question-england')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-468-2/do-you-have-symptoms')
+  }
+
+})
 
 
 
