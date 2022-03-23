@@ -1,6 +1,6 @@
 {% set version = "v1" %}
 {% set serviceName = "COVID-19" %}
-{% set pageTitle = "What’s changing at this test site?" %}
+{% set pageTitle = "Search for test sites" %}
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
@@ -14,19 +14,16 @@
 
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3"> Search for the test site </h1>
-            <p class="govuk-body-l ">You can search with the site reference or a postcode.</p>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3"> {{pageTitle}} </h1>
+            <p class="govuk-body-l ">You can search with a site reference or a postcode.</p>
             <form action="site-search-v4-o4" method="get">
                 <div class="govuk-form-group">
-                    <label for="reference" class="govuk-label"> Site reference </label>
-                    <div id="reference-hint" class="govuk-hint">
-                    For example, SE002, LTS0041 or NTM
-                    </div>
-                    <div id="reference-container" name="site-reference"></div>
+                    <label for="site-reference" class="govuk-label"> Site reference </label>
+                    <div class="govuk-hint" id="site-reference__assistiveHint">For example, SE002, LTS0041 or NTM</div>
+                    <div id="site-reference" name="site-reference"></div>
+                    <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0"> Add site reference to list  </button>
                 </div>
-                <button type="submit" class="govuk-button govuk-button--secondary"> Add site reference to list </button>
                 <div class="govuk-!-padding-bottom-4 govuk-!-padding-left-4 govuk-!-padding-right-4 govuk-!-padding-top-4 " style="background-color: #f3f2f1">
-                    {# <p class="govuk-body govuk-!-margin-top-0 govuk-!-margin-bottom-2">Site references to be searched</p> #}
                     <h3 class="govuk-heading-s govuk-!-margin-top-0 govuk-!-margin-bottom-2">Site references to be searched</h3>
                     <dl class="govuk-summary-list govuk-!-margin-bottom-0">
                         <div class="govuk-summary-list__row">
@@ -35,7 +32,7 @@
                             </dd>
                             <dd class="govuk-summary-list__actions">
                             <a class="govuk-link" href="#">
-                                Remove<span class="govuk-visually-hidden"> site reference</span>
+                                Remove<span class="govuk-visually-hidden"> WOO, Woolpack Way Car Park</span>
                             </a>
                             </dd>
                         </div>
@@ -45,7 +42,7 @@
                             </dd>
                             <dd class="govuk-summary-list__actions">
                             <a class="govuk-link" href="#">
-                                Remove<span class="govuk-visually-hidden"> site reference</span>
+                                Remove<span class="govuk-visually-hidden"> XCI, Nuneaton - Mobile Unit</span>
                             </a>
                             </dd>
                         </div>
@@ -224,7 +221,7 @@
 
     accessibleAutocomplete({
         autoselect: true,
-        element: document.querySelector('#reference-container'),
+        element: document.querySelector('#site-reference'),
         id: 'site-reference',
         name: 'reference-autocomplete',
         source: sitereferences,
