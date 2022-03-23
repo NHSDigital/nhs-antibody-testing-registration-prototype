@@ -1,0 +1,63 @@
+{% set version = "research" %}
+{% set pageTitle = "Test strip QR code reference" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <a class="govuk-back-link" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/test-date">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-manual" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+            <p class="govuk-body">
+              The reference is printed on the test strip under the QR code.
+            </p>
+            <p class="govuk-body">
+              The test strip QR code should look like this:
+            </p>
+
+            <img src="/public/images/lfd-test-strip.svg" class="responsive-image-center" alt="Illustration of a test strip showing the reference  printed on the test strip under the QR code"/>
+
+          </fieldset>
+        </div>
+
+        <div class="govuk-button-group">
+          <a id="scan-button" class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-scan">Scan QR code</a>
+          <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter test strip QR code manually</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <!-- <script>
+    $(function(){
+      $("#includedContent").load("../content/barcode.html");
+    });
+  </script> -->
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+{% endblock %}

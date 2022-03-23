@@ -1,0 +1,67 @@
+
+  <div class="govuk-panel govuk-panel--confirmation govuk-panel-lft-result">
+   <h1 class="govuk-panel__title">
+     {% if data['whos-taking-the-test'] == "someone-else" %}
+     {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s coronavirus test result is void
+     {% else %}
+     Your coronavirus test result is void
+     {% endif %}
+   </h1>
+    <div class="govuk-panel__body">
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+       It’s not possible to say if they had coronavirus or were infectious when the test was done
+      {% else %}
+       It’s not possible to say if you had coronavirus or were infectious when the test was done
+      {% endif %}
+    </div>
+  </div>
+
+ <div>
+  <br><p class="govuk-body">This result has been reported to the NHS.</p>
+
+  {% if data['whos-taking-the-test'] == "someone-else" %}
+  <h2 class="govuk-heading-m">What they must do</h2>
+  {% else %}
+  <h2 class="govuk-heading-m">What you must do</h2>
+  {% endif %}
+
+  <p class="govuk-body">Take another lateral flow test as soon as possible.</p>
+
+  <p class="govuk-body">To stay safe:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>get vaccinated</li>
+      <li>handwash regularly</li>
+      <li>download the NHS COVID-19 app (in England and Wales), the Protect Scotland app (in Scotland) and the StopCovidNI app (in Northern Ireland)</li>
+      <li>open windows if meeting indoors</li>
+      <li>wearing a face covering in crowded indoor settings</li>
+      <li>stay home if unwell</li>
+      <li>get tested and self-isolate if you need to</li>
+    </ul>
+
+   <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">Find out if you need to self-isolate </a></p>
+
+   <br>
+   <button class="govuk-button" data-module="govuk-button">Report another result</button>
+   <br>
+
+   <div class="govuk-inset-text">
+    <a href="contest-invalid">I think the service incorrectly read the result</a>
+  </div>
+
+   <h3 class="govuk-heading-m">Help and advice</h3>
+   <p><a href="https://www.gov.uk/find-coronavirus-support" target="_blank" rel="noreferrer">
+     {% if data['whos-taking-the-test'] == "someone-else" %}
+     <p class="govuk-body">Find out what support they can get if they’re affected by coronavirus.</p>
+     {% else %}
+     <p class="govuk-body">Find out what support you can get if you’re affected by coronavirus.</p>
+     {% endif %}
+   </a></p>
+   {% if data['whos-taking-the-test'] == "someone-else" %}
+   <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS advice if they have to self isolate</a>
+   {% else %}
+   <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS advice if you have to self isolate</a>
+   {% endif %}
+   <p><a href="https://www.covid19.nhs.uk/" target="_blank" rel="noreferrer">Get the free NHS COVID-19 app for England and Wales</a></p>
+   <p><a href="https://covid-19.hscni.net/stop-covid-ni-mobile-app/" target="_blank" rel="noreferrer">Get the free StopCOVID app for Northern Ireland</a></p>
+   <p><a href="https://protect.scot/" target="_blank" rel="noreferrer">Get the free Protect Scotland app</a></p>
+  </div>
