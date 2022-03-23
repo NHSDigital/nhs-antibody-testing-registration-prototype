@@ -1,0 +1,172 @@
+{% set version = "v29" %}
+{% set pageTitle = "Take a photo of your test strip" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <div id="content-1">
+          <div style="position: relative; display: flex; justify-content: center; align-items: center;" class="camera-test-result wrapper govuk-!-margin-bottom-3">
+            <div id="strip-outline-white" style="border: solid white 6px; border-radius: 5px; width: 94px; height: 354px; position: absolute;"></div>
+            <div id="strip-outline-black" style="border: solid black 3px; border-radius: 5px; width: 90px; height: 350px; position: absolute;"></div>
+            <div id="inner-rectangle-white" style="border: solid white 4px; width: 40px; height: 120px; position: absolute; margin-top: -88px"></div>
+            <div id="inner-rectangle-black" style="border: solid black 3px; width: 36px; height: 116px; position: absolute; margin-top: -88px"></div>
+            <div id="inner-round-rec-white" style="border: solid white 4px; border-radius: 20px; width: 44px; height: 90px; position: absolute; margin-top: 192px"></div>
+            <div id="inner-round-rec-black" style="border: solid black 3px; border-radius: 20px; width: 40px; height: 86px; position: absolute; margin-top: 192px"></div>
+            <div style="width: 5px; height: 80px; position: absolute; margin-top: -10px; margin-left: 50px; text-align: left;"><p style="color: #fff;"><p></div>
+            <div style="width: 5px; height: 80px; position: absolute; margin-top: 40px; margin-left: 52px; text-align: left;"><p style="color: #fff;"><p></div>
+            <div class="camera-overlay right"></div>
+            <div class="camera-overlay left"></div>
+            <div class="camera-overlay top"></div>
+            <div class="camera-overlay bottom"></div>
+            <video id="video" class="camera-test-result" autoplay capture="environment"></video>
+          </div>
+        </div>
+
+        <div id="content-2" style="display: none;">
+          <h1 class="govuk-heading-l govuk-!-margin-bottom-5">Check and upload your photo</h1>
+          <p class="govuk-body"><strong>To take a good photo, make sure:</strong></p>
+          <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
+            <li>you hold your phone/tablet flat and steady, directly above the test strip</li>
+            <li>the C and T letters are the right way up and within the stencil</li>
+            <li>the specimen well (where you squeezed the fluid) is at the bottom and within the stencil</li>
+            <li>the photo is in focus with no shadows or bright lights on it</li>
+            <li>all 4 corners of the test strip fit into the rectangular outline</li>
+            <li>no personal information is in the photo, for example bank details</li>
+            </ul>
+          <div style="position: relative; display: flex; justify-content: center; align-items: center;" class="camera-test-result wrapper govuk-!-margin-bottom-3">
+            <div class="camera-overlay right"></div>
+            <div class="camera-overlay left"></div>
+            <div class="camera-overlay top"></div>
+            <div class="camera-overlay bottom"></div>
+            <canvas id="canvas" class="camera-test-result canvas"></canvas>
+          </div>
+        </div>
+
+        <div class="image-overlay__button">
+        		<div id="snap" href="#" role="button" class="camera-button">
+        			<div>Take Photo</div>
+        			<div class="camera-button__circle"></div>
+        			<div class="camera-button__ring"></div>
+        		</div>
+        </div>
+
+
+      <!--  <a id="snap" href="#" role="button" draggable="false" class="govuk-button" data-module="govuk-button" style="display: inline-block;">
+          Take Photo
+        </a> -->
+        <!-- <button id="snap" class="govuk-button" type="submit" data-module="govuk-button" style="display: inline-block;">Snap Photo</button> -->
+        <a id="snap-2" href="photo-confirmed" role="button" draggable="false" class="govuk-button" data-module="govuk-button" style="display: none;">
+          Upload photo
+        </a>
+
+        <a id="cancel" href="/antigen/{{version}}/home-testing/enter-barcode-number" role="button" draggable="false" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button" style="display: inline-block;">
+          Cancel
+        </a>
+        <a id="cancel-2" href="#" role="button" draggable="false" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button" style="display: none;">
+          Re-take your photo
+        </a>
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+submitEvent()
+
+function buttonClicked(target) {
+  setTimeout(function () {
+    document.getElementById('content-1').style.display = 'none'
+    document.getElementById('snap').style.display = 'none'
+    document.getElementById('cancel').style.display = 'none'
+    document.getElementById('snap-2').style.display = 'inline-block'
+    document.getElementById('cancel-2').style.display = 'inline-block'
+    document.getElementById('content-2').style.display = 'block'
+  }, 100)
+}
+
+function buttonClicked2(target) {
+  setTimeout(function () {
+    document.getElementById('content-1').style.display = 'block'
+    document.getElementById('snap').style.display = 'inline-block'
+    document.getElementById('cancel').style.display = 'inline-block'
+    document.getElementById('snap-2').style.display = 'none'
+    document.getElementById('cancel-2').style.display = 'none'
+    document.getElementById('content-2').style.display = 'none'
+  }, 100)
+}
+
+function submitEvent() {
+    var selects = document.getElementById('snap')
+    var selectedLink = document.getElementById('cancel-2')
+    // var selectedLink2 = document.getElementById('manual-address-2')
+    selects.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selects.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked(selects)
+      }
+    })
+    selectedLink.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selectedLink.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked2(selectedLink)
+      }
+    })
+
+  }
+
+// Put event listeners into place
+window.addEventListener("DOMContentLoaded", function() {
+  // Grab elements, create settings, etc.
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+  var video = document.getElementById('video');
+  var mediaConfig =  { video: {facingMode: 'environment'} };
+  var errBack = function(e) {
+    console.log('An error has occurred!', e)
+  };
+
+  // Put video listeners into place
+  if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
+    //video.src = window.URL.createObjectURL(stream);
+    video.srcObject = stream;
+      video.play();
+    });
+  }
+  else if(navigator.getUserMedia) { // Standard
+    navigator.getUserMedia(mediaConfig, function(stream) {
+      video.src = stream;
+      video.play();
+    }, errBack);
+  } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+    navigator.webkitGetUserMedia(mediaConfig, function(stream){
+      video.src = window.webkitURL.createObjectURL(stream);
+      video.play();
+    }, errBack);
+  } else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
+    navigator.mozGetUserMedia(mediaConfig, function(stream){
+      video.src = window.URL.createObjectURL(stream);
+      video.play();
+    }, errBack);
+  }
+
+  // Trigger photo take
+  document.getElementById('snap').addEventListener('click', function() {
+    context.drawImage(video, 0, 0, 300, 150);
+  });
+
+}, false);
+
+
+  </script>
+
+{% endblock %}
