@@ -24,7 +24,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode" method="post">
+      <form action="/IBT/lfd-self-report/e2e-prototypes/{{version}}/name" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
@@ -97,9 +97,9 @@
 
     document.body.parentNode.style.overflow = "hidden"
 
-    if(localStorage.getItem("barcodeData")) {
-      document.getElementById('kit-barcode-reference-1').value = localStorage.getItem("barcodeData");
-      document.getElementById('kit-barcode-reference-2').value = localStorage.getItem("barcodeData");
+    if(localStorage.getItem("testStripIdData")) {
+      document.getElementById('test-strip-id').value = localStorage.getItem("testStripIdData");
+      document.getElementById('test-strip-id-confirm').value = localStorage.getItem("testStripIdData");
     }
 
     const modalPermissionsDenied = `
@@ -128,10 +128,9 @@
               </p>
               <p class="govuk-body">You will need to allow camera permissions to use the scanner.</p>
               <p class="govuk-body">You may need to change the settings on your device.</p>
-              <p class="govuk-body">If you wish to scan the test kit barcode, please read the help below the update your settings before you continue</p>
               <p class="body"><a href="#" target="blank">iOS(Apple): how to allow camera access (opens in new tab)</a></p>
             </div>
-            <button id="close-button" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
+            <a class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode">×</a>
           </dialog>
     `
 
@@ -160,7 +159,7 @@
             </div>
             <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-scan">Scan again</a>
           </div>
-          <button id="close-button" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
+          <a class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode">×</a>
         </dialog>
     `
 
@@ -179,10 +178,10 @@
                 This is what we have captured:
               </p>
               <p class="govuk-body">Test strip QR code: <strong id="scanned-barcode"></strong></p>
-              <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/name">Continue</a>
-              <p class="body"><a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-scan">Scan again</a></p>
+              <button id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/name">Continue</button>
+              <p class="body"><a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-manual-scan">Scan again</a></p>
             </div>
-            <button id="close-button" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
+            <a class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode">×</a>
           </dialog>
     `
 
@@ -233,10 +232,12 @@
 
         if(event.detail.barcodes[0].symbology == "qr" && checkLettersEnd !== "GB" && barcodeReference.length > 10) {
 
-          localStorage.setItem("barcodeData", barcodeReference);
+          if(!localStorage.getItem("testStripIdData")) {
+            localStorage.setItem("testStripIdData", barcodeReference);
+          }
 
           document.getElementById('modal-window-2').innerHTML = modalScannedBarcode;
-          document.getElementById('scanned-barcode').innerHTML = localStorage.getItem("barcodeData");
+          document.getElementById('scanned-barcode').innerHTML = localStorage.getItem("testStripIdData");
         } else {
           document.getElementById('modal-window-2').innerHTML = modalIncorrectCode;
         }

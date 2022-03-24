@@ -38,18 +38,18 @@
 
             <div class="govuk-form-group govuk-!-margin-top-6">
               <label class="govuk-label" for="test-strip-id">
-                Test kit barcode reference
+                Test strip QR code reference
               </label>
               <!-- <div id="enter-barcode-number-hint-3" class="govuk-hint">
                 For example, AA135562600
               </div> -->
-              <input autofocus class="govuk-input govuk-!-width-two-thirds" id="test-strip-id" name="test-strip-id" type="text" onchange="updateBarcodeData()" value={{ data['test-strip-id'] }}>
+              <input autofocus class="govuk-input govuk-!-width-two-thirds" id="test-strip-id" name="test-strip-id" type="text" onchange="updateTestStripIdData()" value={{ data['test-strip-id'] }}>
             </div>
             <div class="govuk-form-group">
               <label class="govuk-label" for="test-strip-id-confirm">
-                Confirm test kit barcode reference
+                Confirm test strip QR code reference
               </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="test-strip-id-confirm" name="test-strip-id-confirm" type="text" onchange="updateBarcodeData()" value={{ data['test-strip-id-confirm'] }}>
+              <input class="govuk-input govuk-!-width-two-thirds" id="test-strip-id-confirm" name="test-strip-id-confirm" type="text" onchange="updateTestStripIdData()" value={{ data['test-strip-id-confirm'] }}>
             </div>
 
           </fieldset>
@@ -64,13 +64,13 @@
 
   <script type="text/javascript">
 
-    function updateBarcodeData() {
-      localStorage.setItem("barcodeData", document.getElementById('test-strip-id').value)
+    function updateTestStripIdData() {
+      localStorage.setItem("testStripIdData", document.getElementById('test-strip-id').value)
     }
 
-    if(localStorage.getItem("barcodeData")) {
-      document.getElementById('test-strip-id').value = localStorage.getItem("barcodeData");
-      document.getElementById('test-strip-id-confirm').value = localStorage.getItem("barcodeData");
+    if(localStorage.getItem("testStripIdData")) {
+      document.getElementById('test-strip-id').value = localStorage.getItem("testStripIdData");
+      document.getElementById('test-strip-id-confirm').value = localStorage.getItem("testStripIdData");
     }
 
   </script>
