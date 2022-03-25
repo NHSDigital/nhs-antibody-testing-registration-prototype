@@ -185,15 +185,46 @@
           </dialog>
     `
 
-    navigator.permissions.query( { name: 'camera' } ).then(function(permissionStatus){
-
-        permissionStatus.onchange = function(){
-            if(permissionStatus.state == "denied") {
-              document.getElementById('modal-window-2').innerHTML = modalPermissionsDenied
-            }
+    function getBrowserName() {
+        var name = "Unknown";
+        if(navigator.userAgent.indexOf("MSIE")!=-1){
+            name = "MSIE";
         }
+        else if(navigator.userAgent.indexOf("Firefox")!=-1){
+            name = "Firefox";
+        }
+        else if(navigator.userAgent.indexOf("Opera")!=-1){
+            name = "Opera";
+        }
+        else if(navigator.userAgent.indexOf("Chrome") != -1){
+            name = "Chrome";
+        }
+        else if(navigator.userAgent.indexOf("Safari")!=-1){
+            name = "Safari";
+        }
+        console.log(name)
+        return name;   
+    }
 
-    })
+    getBrowserName()
+
+    navigator.mediaDevices.getUserMedia( { video: true } )
+            .then( ( stream ) => {
+                  // window.location.href = '/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-manual-scan';
+            },
+            e => {
+              document.getElementById('modal-window-2').innerHTML = modalPermissionsDenied
+            } );
+
+    // navigator.permissions.query( { name: 'camera' } ).then(function(permissionStatus){
+
+    //   permissionStatus.onchange = function(){
+    //       if(permissionStatus.state == "denied") {
+    //         document.getElementById('modal-window-2').innerHTML = modalPermissionsDenied
+    //       }
+    //   }
+
+    //   })
 
     function addListener(button, buttonClicked) {
       button.addEventListener('click', function (event) {
