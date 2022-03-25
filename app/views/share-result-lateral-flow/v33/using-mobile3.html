@@ -1,0 +1,70 @@
+{% set version = "v33" %}
+{% set pageTitle = "Automatically read your result with a smartphone or tablet camera" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/share-result-lateral-flow/{{version}}/photo-guidance" method="post">
+
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Automatically read {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s result automatically with a smartphone or tablet camera
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                <p class="govuk-body">We can automatically read their result from a photo of their test strip. It usually takes less than 20 seconds.</p>
+                <p class="govuk-body">Some people may need help from another person to take a photo. They can also <a class="govuk-link" href="/share-result-lateral-flow/{{version}}/choose-result">enter the test result themselves</a>.</p>
+                {% else %}
+                <p class="govuk-body">We can automatically read your result from a photo of your test strip. It usually takes less than 20 seconds.</p>
+                <p class="govuk-body">Some people may need help from another person to use this service. You can also <a class="govuk-link" href="/share-result-lateral-flow/{{version}}/choose-result">enter the test result yourself</a>.</p>
+                {% endif %}
+
+                <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      How this works
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                  <p class="govuk-body">This is authorised by the UK health regulator, the Medicines and Healthcare products Regulatory Agency (MHRA).</p>
+                  <p class="govuk-body">We can read very faint test lines that are hard to see yourself. So it is more accurate than reading the result yourself.</p>
+                </details>
+
+                                {% if data['whos-taking-the-test'] == "someone-else" %}
+                                <p class="govuk-body">By continuing, they agree to follow the advice based on their result.</p>
+                                {% else %}
+                                <p class="govuk-body">By continuing, you agree to follow the advice based on your result.</p>
+                                {% endif %}
+                                <br>
+
+          <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
