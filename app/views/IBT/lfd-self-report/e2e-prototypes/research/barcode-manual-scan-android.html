@@ -1,7 +1,7 @@
 {% set version = "research" %}
 {% set pageTitle = "Test strip QR code reference" %}
 
-{% extends "includes/layout-LFD.html" %}
+{% extends "includes/layout-lite-registration.html" %}
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
@@ -40,13 +40,29 @@
             <p class="govuk-body">
               The test strip QR code should look like this:
             </p>
-
+            
             <img src="/public/images/lfd-test-strip.svg" class="responsive-image-center" alt="Illustration of a test strip showing the reference  printed on the test strip under the QR code"/>
+
+            <div class="govuk-form-group govuk-!-margin-top-6">
+              <label class="govuk-label" for="test-strip-id">
+                Test strip QR code reference
+              </label>
+              <!-- <div id="enter-barcode-number-hint-3" class="govuk-hint">
+                For example, AA135562600
+              </div> -->
+              <input class="govuk-input govuk-!-width-two-thirds" id="test-strip-id" name="test-strip-id" type="text" onchange="updateTestStripIdData()" value={{ data['test-strip-id'] }}>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="test-strip-id-confirm">
+                Confirm test strip QR code reference
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="test-strip-id-confirm" name="test-strip-id-confirm" type="text" onchange="updateTestStripIdData()" value={{ data['test-strip-id-confirm'] }}>
+            </div>
 
           </fieldset>
         </div>
 
-        <a id="scan-button" class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-scan-android">Scan barcode</a>
+        <a id="scan-button" class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-manual-scan-android">Scan barcode</a>
         <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
 
         <div class="gem-c-modal-dialogue" data-module="modal-dialogue" id="modal-window-2" style="display: block;">
@@ -60,7 +76,7 @@
             </div>
             <div class="gem-c-modal-dialogue__content" id="scanner-wrapper">
               <p class="govuk-body">
-                <strong>Scanning will start automatically when the QR code is within the frame</strong>
+                <strong>Scanning will start automatically when the barcode is within the frame</strong>
               </p>
 
               <script src="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x"></script>
@@ -79,8 +95,7 @@
               </scandit-barcode-picker>
 
             </div>
-            <button id="close-button-2" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
-
+            <a id="close-button-2" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-manual">×</a>
           </dialog>
         </div>
 
@@ -96,6 +111,10 @@
     submitEvent()
 
     document.body.parentNode.style.overflow = "hidden"
+
+    function updateTestStripIdData() {
+      localStorage.setItem("testStripIdData", document.getElementById('test-strip-id').value)
+    }
 
     if(localStorage.getItem("testStripIdData")) {
       document.getElementById('test-strip-id').value = localStorage.getItem("testStripIdData");
@@ -130,7 +149,7 @@
               <p class="govuk-body">You may need to change the settings on your device.</p>
               <p class="body"><a href="#" target="blank">iOS(Apple): how to allow camera access (opens in new tab)</a></p>
             </div>
-            <a class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode">×</a>
+            <a class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-manual">×</a>
           </dialog>
     `
 
@@ -151,15 +170,15 @@
               <div class="govuk-error-summary__body">
                 <ul class="govuk-list govuk-error-summary__list">
                   <li>
-                    <a href="#">That is not a correct QR code.
-                      Please try again</a>
+                    <a href="#">That is not a test kit reference barcode.
+                      Please try another one</a>
                   </li>
                 </ul>
               </div>
             </div>
-            <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-scan-android">Scan again</a>
+            <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-manual-scan-android">Scan again</a>
           </div>
-          <a class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode">×</a>
+          <a class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-manual">×</a>
         </dialog>
     `
 
@@ -174,12 +193,12 @@
             </div>
             <div class="gem-c-modal-dialogue__content">
               <p class="govuk-body">
-                Thanks for scanning your QR code.<br>
+                Thanks for scanning your barcode.<br>
                 This is what we have captured:
               </p>
-              <p class="govuk-body">Test strip QR code: <strong id="scanned-barcode"></strong></p>
+              <p class="govuk-body">Test kit barcode reference: <strong id="scanned-barcode"></strong></p>
               <button id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/name">Continue</button>
-              <p class="body"><a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-scan-android">Scan again</a></p>
+              <p class="body"><a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-manual-scan-android">Scan again</a></p>
             </div>
             <a class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-manual">×</a>
           </dialog>
@@ -205,7 +224,7 @@
     }
 
     function closeButtonClicked(target) {
-        window.location.href = '/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode';
+        window.location.href = '/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-manual';
     }
 
     function manualEntryButtonClicked(target) {
@@ -235,13 +254,14 @@
           if(!localStorage.getItem("testStripIdData")) {
             localStorage.setItem("testStripIdData", barcodeReference);
           }
-
+          
           document.getElementById('modal-window-2').innerHTML = modalScannedBarcode;
           document.getElementById('scanned-barcode').innerHTML = localStorage.getItem("testStripIdData");
+          document.getElementById('test-strip-id').value = localStorage.getItem("testStripIdData")
         } else {
           document.getElementById('modal-window-2').innerHTML = modalIncorrectCode;
         }
-      }, 300)
+      }, 100)
     })
 
   </script>
