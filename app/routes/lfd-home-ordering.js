@@ -1468,7 +1468,17 @@ router.post('/IBT/lfd-home-order/feature-design/SAID-468-2/country', function(re
   let country = req.session.data['country']
   if (country == "England") {
     res.redirect('/IBT/lfd-home-order/feature-design/SAID-468-2/guard-question-england')
-  } else {
+  }
+  else if (country == "Scotland") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-468-2/guard-question-scotland')
+  }
+  else if (country == "Wales") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-468-2/guard-question-wales')
+  }
+  else if (country == "Northern Ireland") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-468-2/guard-question-northern-ireland')
+  }
+  else {
     res.redirect('/IBT/lfd-home-order/feature-design/SAID-468-2/do-you-have-symptoms')
   }
 
