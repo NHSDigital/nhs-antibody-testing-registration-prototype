@@ -115,7 +115,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
     } else if (ethnicGroup == "Another ethnic group") {
       res.redirect('/IBT/lfd-self-report/e2e-prototypes/research/ethnic-background-another')
     } else {
-      res.redirect('/IBT/lfd-self-report/e2e-prototypes/research/occupation')
+      res.redirect('/IBT/lfd-self-report/e2e-prototypes/research/postcode-lookup')
     }
 
   })
