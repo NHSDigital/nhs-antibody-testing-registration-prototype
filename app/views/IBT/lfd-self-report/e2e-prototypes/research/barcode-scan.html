@@ -34,21 +34,6 @@
               </h1>
             </legend>
 
-            <script src="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x"></script>
-
-              <scandit-barcode-picker
-                id="barcodePicker"
-                configure.licenseKey="AbZxHhS+NbmiADJfUiuZ2iUaZRoeKa4GCTLu4KFFgGyKH2vUkn0JpCJoyBABajTEH3YqOMsYTH7iWoi+1XBqvjJpT6vbWLs/jEXEg3dhgNQ3UA9ZD0J+8QtrqDinWyRI3XECxE5s9JU1NV9evxgBz9xhH8I9WGbev1mCapBsKk2yYVH33yTlG1tcETWkDzDtbW9mYwh5MyxhcntcwHOFsHwh0zaSHf9bohhSkkQZ5D4xKHAnRhHf5Z7WkHMmCGg5pDu6xTg60YCEZy74vbVdjgg1sBfrxX3mvW/AGytCkn5v4JZ3I1mKqtqCNQxuJTNiecouIIcYdU2Vz3DocNpXGozfmtM/5K6TvrsEeeWYjkA/U8V3CzafMn1xVVdQEvEY0i0elNOtD3TnmrgbF1qv7582IV9kU8JQetxUkj79YLVEJAmAPaxrG4dazuTha6o2El8ElvhvM8U1yN2aXn2LtCfGXZabA0zYCDesH7PzxOlLLYPOr6JIaKPfBK3Gw9VqxrhAYZlPsJoKjEyZkbbisUOY29YFT1AwxrWa49qzETKkUPu0iL2WwzQ4NJnoZs9GFZAeP8V079cKfyI+Q0jPzQglzKmNe7jMepYWDr7jn/sTGb/j+dM/BwSODQQRWiHENrQ2N517Pgob2cP8q33GrBg92OTPcSpI7LB9lI0ZDrfqFX5+cnaFBUn01OU0mYEoU7TPGyHrplUJA0pSUTa+8WvljEpYoNd9qqMtGjc7xP+60/UNix51ZbFFv/tp1vXpUC2IUpWZQHSvgbI6CK6hSBZMwLhWluYIOHM/NicvzIoJlFlMaIVQ/u8HYhM9ZxlNGMf7DyvFswMeiKcqJlrhFISYpi9AHl/Tys6LZ0OKJUCTraR6altiFXc16q/DwGF3uJ6bjbb/uoGGIz/47JVaW+xEVYaXkA=="
-                configure.engineLocation="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x/build/"
-                playSoundOnScan="true"
-                scanSettings.searchArea='{"x":0.1,"y":0.2,"width":0.8,"height":0.6}'
-                guiStyle="viewfinder"
-                enableTorchToggle="true"
-                videoFit="cover"
-                scanSettings.enabledSymbologies='["data-matrix", "code128", "qr"]'
-                >
-              </scandit-barcode-picker>
-
             <p class="govuk-body">
               The reference is printed on the test strip under the QR code.
             </p>
@@ -64,7 +49,7 @@
         <a id="scan-button" class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-scan">Scan barcode</a>
         <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
 
-        <div class="gem-c-modal-dialogue" data-module="modal-dialogue" id="modal-window-2" style="display: none;">
+        <div class="gem-c-modal-dialogue" data-module="modal-dialogue" id="modal-window-2" style="display: block;">
           <div class="gem-c-modal-dialogue__overlay"></div>
           <dialog class="gem-c-modal-dialogue__box" aria-modal="true" role="dialog" tabindex="0">
             <div class="gem-c-modal-dialogue__header">
@@ -78,7 +63,20 @@
                 <strong>Scanning will start automatically when the QR code is within the frame</strong>
               </p>
 
-              
+              <script src="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x"></script>
+
+              <scandit-barcode-picker
+                id="barcodePicker"
+                configure.licenseKey="AbZxHhS+NbmiADJfUiuZ2iUaZRoeKa4GCTLu4KFFgGyKH2vUkn0JpCJoyBABajTEH3YqOMsYTH7iWoi+1XBqvjJpT6vbWLs/jEXEg3dhgNQ3UA9ZD0J+8QtrqDinWyRI3XECxE5s9JU1NV9evxgBz9xhH8I9WGbev1mCapBsKk2yYVH33yTlG1tcETWkDzDtbW9mYwh5MyxhcntcwHOFsHwh0zaSHf9bohhSkkQZ5D4xKHAnRhHf5Z7WkHMmCGg5pDu6xTg60YCEZy74vbVdjgg1sBfrxX3mvW/AGytCkn5v4JZ3I1mKqtqCNQxuJTNiecouIIcYdU2Vz3DocNpXGozfmtM/5K6TvrsEeeWYjkA/U8V3CzafMn1xVVdQEvEY0i0elNOtD3TnmrgbF1qv7582IV9kU8JQetxUkj79YLVEJAmAPaxrG4dazuTha6o2El8ElvhvM8U1yN2aXn2LtCfGXZabA0zYCDesH7PzxOlLLYPOr6JIaKPfBK3Gw9VqxrhAYZlPsJoKjEyZkbbisUOY29YFT1AwxrWa49qzETKkUPu0iL2WwzQ4NJnoZs9GFZAeP8V079cKfyI+Q0jPzQglzKmNe7jMepYWDr7jn/sTGb/j+dM/BwSODQQRWiHENrQ2N517Pgob2cP8q33GrBg92OTPcSpI7LB9lI0ZDrfqFX5+cnaFBUn01OU0mYEoU7TPGyHrplUJA0pSUTa+8WvljEpYoNd9qqMtGjc7xP+60/UNix51ZbFFv/tp1vXpUC2IUpWZQHSvgbI6CK6hSBZMwLhWluYIOHM/NicvzIoJlFlMaIVQ/u8HYhM9ZxlNGMf7DyvFswMeiKcqJlrhFISYpi9AHl/Tys6LZ0OKJUCTraR6altiFXc16q/DwGF3uJ6bjbb/uoGGIz/47JVaW+xEVYaXkA=="
+                configure.engineLocation="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x/build/"
+                playSoundOnScan="true"
+                scanSettings.searchArea='{"x":0.1,"y":0.2,"width":0.8,"height":0.6}'
+                guiStyle="viewfinder"
+                enableTorchToggle="true"
+                videoFit="cover"
+                scanSettings.enabledSymbologies='["data-matrix", "code128", "qr"]'
+                >
+              </scandit-barcode-picker>
 
             </div>
             <button id="close-button-2" class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue">×</button>
