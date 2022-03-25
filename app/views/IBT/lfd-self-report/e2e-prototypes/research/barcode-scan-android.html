@@ -46,7 +46,7 @@
           </fieldset>
         </div>
 
-        <a id="scan-button" class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-scan">Scan barcode</a>
+        <a id="scan-button" class="govuk-button" data-toggle="modal" data-target="modal-with-data-attributes" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-scan-android">Scan barcode</a>
         <button id="manual-entry" class="govuk-button govuk-button--secondary" data-module="govuk-button">Enter barcode manually</button>
 
         <div class="gem-c-modal-dialogue" data-module="modal-dialogue" id="modal-window-2" style="display: block;">
@@ -157,7 +157,7 @@
                 </ul>
               </div>
             </div>
-            <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-scan">Scan again</a>
+            <a id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-scan-android">Scan again</a>
           </div>
           <a class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode">×</a>
         </dialog>
@@ -179,19 +179,19 @@
               </p>
               <p class="govuk-body">Test strip QR code: <strong id="scanned-barcode"></strong></p>
               <button id="scan-button" class="govuk-button" data-module="govuk-button" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/name">Continue</button>
-              <p class="body"><a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-scan">Scan again</a></p>
+              <p class="body"><a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-scan-android">Scan again</a></p>
             </div>
             <a class="gem-c-modal-dialogue__close-button" aria-label="Close modal dialogue" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-manual">×</a>
           </dialog>
     `
 
-    navigator.mediaDevices.getUserMedia( { video: true } )
-      .then( ( stream ) => {
-            // window.location.href = '/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode-manual-scan';
-      },
-      e => {
-        document.getElementById('modal-window-2').innerHTML = modalPermissionsDenied
-      } );
+    navigator.permissions.query( { name: 'camera' } ).then(function(permissionStatus){
+      permissionStatus.onchange = function(){
+        if(permissionStatus.state == "denied") {
+          document.getElementById('modal-window-2').innerHTML = modalPermissionsDenied
+        }
+      }
+    })
 
     function addListener(button, buttonClicked) {
       button.addEventListener('click', function (event) {
