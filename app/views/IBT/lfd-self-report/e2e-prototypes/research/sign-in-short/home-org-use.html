@@ -1,0 +1,90 @@
+{% set version = "v28" %}
+{% set pageTitle = "Who was the test for?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              Who was their test for?
+              {% else %}
+              {{ pageTitle }}
+              {% endif %}
+            </h1>
+          </legend>
+          <span id="enter-barcode-number-hint" class="govuk-body">
+          <!--   <p>If you’re reporting a result for someone else, answer for them.<p> -->
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          <p>If they're in the household or bubble of someone who goes to or works at a school: select the "schools" option unless they got the test from their employer or a social care service.</p>
+          {% else %}
+          <p>If you're in the household or bubble of someone who goes to or works at a school: select the "schools" option unless you got the test from your employer or a social care service.</p>
+          {% endif %}
+          </span>
+          <div class="govuk-radios govuk-!-margin-top-5"">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="social-care" onclick="setLocation(this);" {{ checked("home-org-use", "Care home") }}>
+              <label class="govuk-label govuk-radios__label" for="country-1">
+                A social care service, for example domiciliary care, care homes, extra care, supported living, children’s homes and day care centres
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-5" name="country" type="radio" value="school-type" onclick="setLocation(this);" {{ checked("home-org-use","NHS staff testing programme") }}>
+              <label class="govuk-label govuk-radios__label" for="country-5">
+                A nursery, school, college, university, childcare provider or other education provider
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="nhs-primary" onclick="setLocation(this);" {{ checked("home-org-use","NHS staff testing programme") }}>
+              <label class="govuk-label govuk-radios__label" for="country-4">
+                The NHS as part of staff testing (England, Wales and Northern Ireland only)
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-6" name="country" type="radio" value="employer-uon" onclick="setLocation(this);" {{ checked("home-org-use","NHS staff testing programme") }}>
+              <label class="govuk-label govuk-radios__label" for="country-6">
+                An employer or organisation (not listed above) as part of their testing programme
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="test-date" onclick="setLocation(this);" {{ checked("home-org-use","None of the above") }}>
+              <label class="govuk-label govuk-radios__label" for="country-3">
+                None of the above
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+<!-- corresponding html file name included from content folder -->
+<script>
+  $(function(){
+    $("#includedContent1").load("/includes/LFD-account-menu.html");
+  });
+</script>
+
+{% endblock %}

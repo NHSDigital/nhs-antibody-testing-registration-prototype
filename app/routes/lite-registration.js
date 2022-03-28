@@ -100,6 +100,26 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
 
   })
 
+  // Research version - LFD Results sharing - Ethnic group route
+  router.post('/IBT/lfd-self-report/e2e-prototypes/research/action6/ethnic-group', function (req, res) {
+    let ethnicGroup = req.session.data['ethnic-group']
+
+    if (ethnicGroup == "Asian or Asian British"){
+      res.redirect('/IBT/lfd-self-report/e2e-prototypes/research/ethnic-background-asian')
+    } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+      res.redirect('/IBT/lfd-self-report/e2e-prototypes/research/ethnic-background-black')
+    } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+      res.redirect('/IBT/lfd-self-report/e2e-prototypes/research/ethnic-background-mixed')
+    } else if (ethnicGroup == "White") {
+      res.redirect('/IBT/lfd-self-report/e2e-prototypes/research/ethnic-background-white')
+    } else if (ethnicGroup == "Another ethnic group") {
+      res.redirect('/IBT/lfd-self-report/e2e-prototypes/research/ethnic-background-another')
+    } else {
+      res.redirect('/IBT/lfd-self-report/e2e-prototypes/research/postcode-lookup')
+    }
+
+  })
+
   // Version 3 - LFD Results sharing - Ethnic group route
   router.post('/share-result-lateral-flow/v3/action6/ethnic-group', function (req, res) {
     let ethnicGroup = req.session.data['ethnic-group']

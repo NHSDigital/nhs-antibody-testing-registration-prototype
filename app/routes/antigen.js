@@ -651,12 +651,15 @@ router.post('/IBT/antigen/e2e-prototypes/research/action3/do-you-have-symptoms-p
 router.post('/IBT/antigen/e2e-prototypes/research/action3/when-did-symptoms-start', function (req, res) {
   let dateOfOnset = req.session.data['date-of-onset']
   let yearOfOnset = req.session.data['symptoms-start-date-year']
+  let country = req.session.data['country']
   if (!dateOfOnset){
     res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/when-did-symptoms-start-error-2')
-  } else if (dateOfOnset == "different" && yearOfOnset !== "2020" && yearOfOnset !== "2021"){
+  } else if (dateOfOnset == "different" && yearOfOnset !== "2021" && yearOfOnset !== "2022"){
     res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/when-did-symptoms-start-error')
-  } else {
+  } else if (country == "Scotland" || country == "Northern Ireland") {
     res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/follow-up-test')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/')
   }
 })
 
@@ -765,14 +768,24 @@ router.post('/IBT/antigen/e2e-prototypes/research/action3/how-will-you-get-test'
 
 // Research version - Antigen Global Registration - Landline number route
 
+// router.post('/IBT/antigen/e2e-prototypes/research/action3/landline-number', function (req, res) {
+//   let car = req.session.data['do-you-have-a-car']
+//   if (car == "No") {
+//     res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/email-address-home')
+//   } else {
+//     res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/email-address')
+//   }
+
+// })
+
 router.post('/IBT/antigen/e2e-prototypes/research/action3/landline-number', function (req, res) {
-  let car = req.session.data['do-you-have-a-car']
-  if (car == "No") {
+  let emailAddress = req.session.data['email-address']
+  let wayToTest = req.session.data['way-to-test']
+  if (!emailAddress && wayToTest == "home testing"){
     res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/email-address-home')
   } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/email-address')
+    res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/gender')
   }
-
 })
 
 // Research version - Antigen Global Registration - Landline number route - person 1

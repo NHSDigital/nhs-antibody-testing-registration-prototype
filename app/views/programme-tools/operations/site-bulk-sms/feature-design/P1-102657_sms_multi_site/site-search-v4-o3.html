@@ -1,0 +1,236 @@
+{% set version = "v1" %}
+{% set serviceName = "COVID-19" %}
+{% set pageTitle = "Search for test sites" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3"> {{pageTitle}} </h1>
+            <p class="govuk-body-l ">You can search with a site reference or a postcode.</p>
+            <form action="site-search-v4-o4" method="get">
+                <div class="govuk-form-group">
+                    <label for="site-reference" class="govuk-label"> Site reference </label>
+                    <div class="govuk-hint" id="site-reference__assistiveHint">For example, SE002, LTS0041 or NTM</div>
+                    <div id="site-reference" name="site-reference"></div>
+                    <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0"> Add site reference to list  </button>
+                </div>
+                <div class="govuk-!-padding-bottom-4 govuk-!-padding-left-4 govuk-!-padding-right-4 govuk-!-padding-top-4 " style="background-color: #f3f2f1">
+                    <h3 class="govuk-heading-s govuk-!-margin-top-0 govuk-!-margin-bottom-2">Site references to be searched</h3>
+                    <dl class="govuk-summary-list govuk-!-margin-bottom-0">
+                        <div class="govuk-summary-list__row">
+                            <dd class="govuk-summary-list__value">
+                            WOO, Woolpack Way Car Park
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="#">
+                                Remove<span class="govuk-visually-hidden"> WOO, Woolpack Way Car Park</span>
+                            </a>
+                            </dd>
+                        </div>
+                        <div class="govuk-summary-list__row">
+                            <dd class="govuk-summary-list__value">
+                            XCI, Nuneaton - Mobile Unit
+                            </dd>
+                            <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="#">
+                                Remove<span class="govuk-visually-hidden"> XCI, Nuneaton - Mobile Unit</span>
+                            </a>
+                            </dd>
+                        </div>
+                    </dl>
+                    <button type="submit" class="govuk-button govuk-!-margin-top-5 govuk-!-margin-bottom-1"> Search </button>
+                </div>
+            </form>
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+            <form action="#" method="get">
+                <div class="govuk-form-group">
+                    <label for="postcode" class="govuk-label"> Postcode </label>
+                    <input id="postcode" name="postcode" maxlength="100" spellcheck="false" class="govuk-input govuk-!-width-one-half">
+                </div>
+                <button type="submit" class="govuk-button"> Search </button>
+            </form>
+            
+        </div>
+    </div>
+
+    <style>
+    .autocomplete__wrapper {
+        position: relative;
+        max-width: 50%;
+        margin-bottom: 20px;
+        font-family: "GDS Transport",Arial,sans-serif;
+        text-transform: capitalize;
+    }
+
+    @media (min-width: 40.0625em) {
+        .autocomplete__wrapper {
+        margin-bottom: 30px;
+        }
+    }
+
+    .autocomplete__hint, .autocomplete__input {
+        -webkit-appearance: none;
+        border: 2px solid #0b0c0c;
+        border-radius: 0;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        margin-bottom: 0;
+        width: 100%;
+        text-transform: capitalize;
+    }
+
+    .autocomplete__input {
+        background-color: transparent;
+        position: relative;
+        text-transform: capitalize;
+    }
+
+    .autocomplete__hint {
+        color: #b1b4b6;
+        position: absolute;
+    }
+
+    .autocomplete__input--default {
+        padding: 5px;
+    }
+
+    .autocomplete__input--focused {
+        outline: 3px solid #fd0;
+        outline-offset: 0;
+        box-shadow: inset 0 0 0 2px;
+    }
+
+    .autocomplete__input--show-all-values {
+        padding: 5px 34px 5px 5px;
+        cursor: pointer;
+    }
+
+    .autocomplete__dropdown-arrow-down {
+        z-index: -1;
+        display: inline-block;
+        position: absolute;
+        right: 8px;
+        width: 24px;
+        height: 24px;
+        top: 10px;
+    }
+
+    .autocomplete__menu {
+        background-color: #fff;
+        border: 2px solid #0b0c0c;
+        border-top: 0;
+        color: #0b0c0c;
+        margin: 0;
+        max-height: 342px;
+        overflow-x: hidden;
+        padding: 0;
+        width: 100%;
+        width: calc(100% - 4px);
+    }
+
+    .autocomplete__menu--visible {
+        display: block;
+    }
+
+    .autocomplete__menu--hidden {
+        display: none;
+    }
+
+    .autocomplete__menu--overlay {
+        box-shadow: rgba(0, 0, 0, 0.256863) 0 2px 6px;
+        left: 0;
+        position: absolute;
+        top: 100%;
+        z-index: 100;
+    }
+
+    .autocomplete__menu--inline {
+        position: relative;
+    }
+
+    .autocomplete__option {
+        border-bottom: solid #b1b4b6;
+        border-width: 1px 0;
+        cursor: pointer;
+        display: block;
+        position: relative;
+    }
+
+    .autocomplete__option > * {
+        pointer-events: none;
+    }
+
+    .autocomplete__option:first-of-type {
+        border-top-width: 0;
+    }
+
+    .autocomplete__option:last-of-type {
+        border-bottom-width: 0;
+    }
+
+    .autocomplete__option--odd {
+        background-color: #fafafa;
+    }
+
+    .autocomplete__option--focused, .autocomplete__option:hover {
+        background-color: #1d70b8;
+        border-color: #1d70b8;
+        color: #fff;
+        outline: 0;
+    }
+
+    .autocomplete__option--no-results {
+        background-color: #fafafa;
+        color: #646b6f;
+        cursor: not-allowed;
+    }
+
+    .autocomplete__hint, .autocomplete__input, .autocomplete__option {
+        font-size: 16px;
+        line-height: 1.25;
+    }
+
+    .autocomplete__hint, .autocomplete__option {
+        padding: 5px;
+    }
+
+    @media (min-width: 641px) {
+        .autocomplete__hint, .autocomplete__input, .autocomplete__option {
+        font-size: 19px;
+        line-height: 1.31579;
+        }
+    }
+    </style>
+    <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+    <script>
+    const sitereferences = [
+                "WOO, Woolpack Way Car Park",
+                "XCI, Nuneaton - Mobile Unit",
+                "NVS, Victoria Street No 2 Car Park Dugdale Street",
+    ];
+
+    accessibleAutocomplete({
+        autoselect: true,
+        element: document.querySelector('#site-reference'),
+        id: 'site-reference',
+        name: 'reference-autocomplete',
+        source: sitereferences,
+        displayMenu: 'overlay',
+        minLength: 2,
+        tNoResults: function() {
+        return "No matches"
+        }
+    });
+    </script>
+
+{% endblock %}

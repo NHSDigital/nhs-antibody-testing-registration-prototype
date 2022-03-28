@@ -1,0 +1,90 @@
+{% set version = "research" %}
+{% set pageTitle = "Open camera" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/gender">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+                <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                      {{ pageTitle }}
+                    </h1>
+                  </legend>
+
+              <div>
+                <video id="video" width="400" height="480" capture="environment" autoplay></video>
+                <button id="snap">Snap Photo</button>
+                <canvas id="canvas" width="400" height="480"></canvas>
+              </div>
+      </div>
+    </div>
+
+    <script>
+
+  		// Put event listeners into place
+  		window.addEventListener("DOMContentLoaded", function() {
+  			// Grab elements, create settings, etc.
+              var canvas = document.getElementById('canvas');
+              var context = canvas.getContext('2d');
+              var video = document.getElementById('video');
+              var mediaConfig =  { video: true };
+              var errBack = function(e) {
+              	console.log('An error has occurred!', e)
+              };
+
+  			// Put video listeners into place
+              if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                  navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
+  					//video.src = window.URL.createObjectURL(stream);
+  					video.srcObject = stream;
+                      video.play();
+                  });
+              }
+
+              /* Legacy code below! */
+              else if(navigator.getUserMedia) { // Standard
+  				navigator.getUserMedia(mediaConfig, function(stream) {
+  					video.src = stream;
+  					video.play();
+  				}, errBack);
+  			} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+  				navigator.webkitGetUserMedia(mediaConfig, function(stream){
+  					video.src = window.webkitURL.createObjectURL(stream);
+  					video.play();
+  				}, errBack);
+  			} else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
+  				navigator.mozGetUserMedia(mediaConfig, function(stream){
+  					video.src = window.URL.createObjectURL(stream);
+  					video.play();
+  				}, errBack);
+  			}
+
+  			// Trigger photo take
+  			document.getElementById('snap').addEventListener('click', function() {
+  				context.drawImage(video, 0, 0, 640, 480);
+  			});
+  		}, false);
+
+  	</script>
+
+
+{% endblock %}

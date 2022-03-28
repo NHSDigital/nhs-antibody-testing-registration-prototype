@@ -1,0 +1,109 @@
+{% set version = "v1" %}
+{% set serviceName = "COVID-19" %}
+{% set pageTitle = "Complete test site information" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-5"> {{pageTitle}} </h1>
+            <p class="govuk-body govuk-!-margin-bottom-5">Tell us the times that people at these test sites are going to be affected, and if it’s today or tomorrow.</p>
+        </div>
+        <div class="govuk-grid-column-full">
+            <form action="bulk-no-alternate-v1" method="get">
+                <table class="govuk-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Site ref</th>
+                    <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Address</th>
+                    <th scope="col" class="govuk-table__header">Operating hours</th>
+                    <th scope="col" class="govuk-table__header">Day</th>
+                    <th scope="col" class="govuk-table__header">Start time</th>
+                    <th scope="col" class="govuk-table__header">End time</th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">WOO<br/><a href="#" class="govuk-link">Change</a></td>
+                        <td class="govuk-table__cell">Woolpack Way Car Park<br/>Woolpack Way Car Park<br/>Atherstone<br/>CV9 1AD<br/>West Midlands</td>
+                        <td class="govuk-table__cell">09:00 to 16:00</td>
+                        <td class="govuk-table__cell">
+                            <div class="govuk-form-group">
+                                <select class="govuk-select" id="day" name="day">
+                                    <option value="today">Today</option>
+                                    <option value="tomorrow">Tomorrow</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <input class="govuk-input govuk-input--width-5" id="event-name" name="event-name" type="text">
+                            <p class="govuk-body-s govuk-!-margin-top-1">For example,<br/>08:30</p>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <input class="govuk-input govuk-input--width-5" id="event-name" name="event-name" type="text">
+                            <p class="govuk-body-s govuk-!-margin-top-1">For example,<br/>17:00</p>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">XCI<br/><a href="#" class="govuk-link">Change</a></td>
+                        <td class="govuk-table__cell">Nuneaton - Mobile Unit<br/>Harefield Road Car Park<br/>Nuneaton<br/>CV11 4HR</td>
+                        <td class="govuk-table__cell">09:00 to 16:00</td>
+                        <td class="govuk-table__cell">
+                            <div class="govuk-form-group">
+                            <select class="govuk-select" id="day" name="day">
+                                <option value="today">Today</option>
+                                <option value="tomorrow">Tomorrow</option>
+                            </select>
+                            </div>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <input class="govuk-input govuk-input--width-5" id="event-name" name="event-name" type="text">
+                            <p class="govuk-body-s govuk-!-margin-top-1">For example,<br/>08:30</p>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <input class="govuk-input govuk-input--width-5" id="event-name" name="event-name" type="text">
+                            <p class="govuk-body-s govuk-!-margin-top-1">For example,<br/>17:00</p>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">NVS<br/><a href="#" class="govuk-link">Change</a></td>
+                        <td class="govuk-table__cell">Victoria Street No 2 Car Park Dugdale Street<br/>Victoria Street No. 2 Car Park<br/>Nuneaton<br/>CV11 5QE
+                        </td>
+                        <td class="govuk-table__cell">09:00 to 16:00</td>
+                        <td class="govuk-table__cell">
+                            <div class="govuk-form-group">
+                            <select class="govuk-select" id="day" name="day">
+                                <option value="today">Today</option>
+                                <option value="tomorrow">Tomorrow</option>
+                            </select>
+                            </div>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <input class="govuk-input govuk-input--width-5" id="event-name" name="event-name" type="text">
+                            <p class="govuk-body-s govuk-!-margin-top-1">For example,<br/>08:30</p>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <input class="govuk-input govuk-input--width-5" id="event-name" name="event-name" type="text">
+                            <p class="govuk-body-s govuk-!-margin-top-1">For example,<br/>17:00</p>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                <div class="govuk-button-group">
+                    <button type="submit" class="govuk-button govuk-!-margin-top-1"> Continue </button>
+                    <button class="govuk-button govuk-button--secondary govuk-!-margin-top-1"> Add another test site </button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+{% endblock %}

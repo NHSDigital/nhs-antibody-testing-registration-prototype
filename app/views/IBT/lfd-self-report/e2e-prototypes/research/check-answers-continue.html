@@ -1,0 +1,354 @@
+{% set version = "research" %}
+{% set pageTitle = "Check answers and continue" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-7">{{ pageTitle }}</h1>
+
+  <!--    <p class="govuk-body">Photo successfully uploaded</p> -->
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <h2 class="govuk-heading-m">Personal details</h2>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['first-name'] }} {{ data['last-name'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/name">
+                Change
+                <span class="govuk-visually-hidden">name</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date of birth
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/date-of-birth">
+                Change
+                <span class="govuk-visually-hidden">date of birth</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Gender
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Female
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/gender">
+                Change
+                <span class="govuk-visually-hidden">gender</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Ethnic group
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['ethnic-group'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/ethnic-group">
+                Change
+                <span class="govuk-visually-hidden">ethnic group</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['ethnic-group'] !== "Prefer not to say" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Ethnic background
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['ethnic-background'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/ethnic-background">
+                Change
+                <span class="govuk-visually-hidden">ethnic background</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+
+          <!-- {% if data['do-you-have-symptoms'] == "Yes" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date of onset
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['symptoms-start-date-day'] }} {{ data['symptoms-start-date-month'] }} {{ data['symptoms-start-date-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/symptoms-start">
+                Change
+                <span class="govuk-visually-hidden">date of onset</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %} -->
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['address'] }}<br>
+              {{ data['home-postcode'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/address">
+                Change
+                <span class="govuk-visually-hidden">address</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Country
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['country'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/country">
+                Change
+                <span class="govuk-visually-hidden">country of residence</span>
+              </a>
+            </dd>
+          </div>
+
+          {% if data['email'] == "Yes" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['email-address'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/gotm-email">
+                Change
+                <span class="govuk-visually-hidden">email address</span>
+              </a>
+            </dd>
+          </div>
+          {% elseif data['email'] !== "Yes" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email
+            </dt>
+            <dd class="govuk-summary-list__value">
+              I do not have an email address
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/got-email">
+                Change
+                <span class="govuk-visually-hidden">email address</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Mobile
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['mobile-phone-number'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/mobile-number">
+                Change
+                <span class="govuk-visually-hidden">mobile</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              NHS number known
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <!-- {{ data['nhs-number-known'] }} --> Yes, I know my NHS number
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/nhs-number-known">
+                Change
+                <span class="govuk-visually-hidden">NHS number known</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              NHS number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['nhs-number'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/nhs-number">
+                Change
+                <span class="govuk-visually-hidden">NHS number</span>
+              </a>
+            </dd>
+          </div>
+
+      </dl>
+
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <h2 class="govuk-heading-m">Test details</h2>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Why test taken
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['home-org-use'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/home-org-use">
+              Change
+              <span class="govuk-visually-hidden">why did you take this test?</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Which describes you?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['social-care'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/social-care">
+              Change
+              <span class="govuk-visually-hidden">which of these best describes you?</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Care home’s number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['social-care-uon'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/social-care-uon">
+              Change
+              <span class="govuk-visually-hidden">what’s the care home’s unique organisation number?</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['swab-test-date'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/test-date">
+              Change
+              <span class="govuk-visually-hidden">test date</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test kit ID number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['kit-barcode-reference-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/barcode">
+              Change
+              <span class="govuk-visually-hidden">test kit ID number</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Result
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Positive
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/photo-choose-result">
+              Change
+              <span class="govuk-visually-hidden">result</span>
+            </a>
+          </dd>
+        </div>
+
+<!--        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Photo of test
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Upload successfully
+          </dd>
+          <dd class="govuk-summary-list__actions">
+              &nbsp;
+              <span class="govuk-visually-hidden">Photo of test</span>
+          </dd>
+        </div> -->
+
+
+      </dl>
+
+      <form action="/IBT/lfd-self-report/e2e-prototypes/{{version}}/using-mobile" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
