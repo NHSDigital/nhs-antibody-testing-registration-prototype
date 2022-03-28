@@ -1,5 +1,5 @@
 {% set version = "v33" %}
-{% set pageTitle = "Read your test result automatically using a smartphone or tablet" %}
+{% set pageTitle = "Automatically read your result with a smartphone or tablet camera" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -28,13 +28,13 @@
 
               <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                Read {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s test result automatically with a smartphone or tablet
+                Automatically read {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s result with a smartphone or tablet camera
                 {% else %}
                 {{ pageTitle }}
                 {% endif %}
               </h1>
 
-            <div class="govuk-inset-text">
+        <!--    <div class="govuk-inset-text">
               {% if data['whos-taking-the-test'] == "someone-else" %}
               Use the camera in their phone or tablet to read the test result for them.
               Follow our instructions to access the camera.
@@ -42,16 +42,16 @@
               Use the camera in your phone or tablet to read the test result.
               Follow our instructions to access your camera.
               {% endif %}
-            </div>
+            </div> -->
 
                 {% if data['whos-taking-the-test'] == "someone-else" %}
-                <p class="govuk-body">Some people may need help from another person to take a photo. They can also <a class="govuk-link" href="/share-result-lateral-flow/{{version}}/choose-result">enter the test result themselves</a>.</p>
-                <p class="govuk-body">We can automatically read their result from their photo of the test strip. It usually takes less than 20 seconds.</p>
                 <p class="govuk-body">We can read very faint test lines that are hard to see. So it is more accurate than reading the result themselves.</p>
+                <p class="govuk-body"><!--We can automatically read their result from their photo of the test strip.-->It usually takes less than 20 seconds.</p>
+                <p class="govuk-body">Some people may need help from another person to take a photo. They can also <a class="govuk-link" href="/share-result-lateral-flow/{{version}}/choose-result">enter the test result themselves</a>.</p>
                 {% else %}
-                <p class="govuk-body">Some people may need help from another person to use this service. You can also <a class="govuk-link" href="/share-result-lateral-flow/{{version}}/choose-result">enter the test result yourself</a>.</p>
-                <p class="govuk-body">We can automatically read your result from your photo of the test strip. It usually takes less than 20 seconds.</p>
                 <p class="govuk-body">We can read very faint test lines that are hard to see yourself. So it is more accurate than reading the result yourself.</p>
+                <p class="govuk-body"><!-- We can automatically read your result from your photo of the test strip.--> It usually takes less than 20 seconds.</p>
+                <p class="govuk-body">Some people may need help from another person to use this service. You can also <a class="govuk-link" href="/share-result-lateral-flow/{{version}}/choose-result">enter the test result yourself</a>.</p>
                 {% endif %}
 
                                 {% if data['whos-taking-the-test'] == "someone-else" %}
