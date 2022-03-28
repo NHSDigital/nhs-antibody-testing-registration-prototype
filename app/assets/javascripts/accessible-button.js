@@ -11,15 +11,11 @@ var ICON_MUTE_URL = '#icon-mute';
 var ICON_SOUND_URL = '#icon-sound';
 
 function init() {
-  var actionButton = document.getElementById('action');
+  var actionButton = document.getElementById('snap');
   actionButton.addEventListener('click', activateActionButton);
   actionButton.addEventListener('keydown', actionButtonKeydownHandler);
   actionButton.addEventListener('keyup', actionButtonKeyupHandler);
 
-  var toggleButton = document.getElementById('toggle');
-  toggleButton.addEventListener('click', toggleButtonClickHandler);
-  toggleButton.addEventListener('keydown', toggleButtonKeydownHandler);
-  toggleButton.addEventListener('keyup', toggleButtonKeyupHandler);
 }
 
 /**
