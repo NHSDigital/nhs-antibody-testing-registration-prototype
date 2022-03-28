@@ -101,27 +101,36 @@ function buttonClicked2(target) {
 }
 
 function submitEvent() {
-    var selects = document.getElementById('snap')
-    var selectedLink = document.getElementById('cancel-2')
-    // var selectedLink2 = document.getElementById('manual-address-2')
-    selects.addEventListener('click', function (event) {
-      event.preventDefault()
-      if (selects.getAttribute('disabled') === 'disabled') {
-      } else {
+  var selects = document.getElementById('snap')
+  var selectedLink = document.getElementById('cancel-2')
+  // var selectedLink2 = document.getElementById('manual-address-2')
+  // selects.addEventListener('click', function (event) {
+  //   event.preventDefault()
+  //   if (selects.getAttribute('disabled') === 'disabled') {
+  //   } else {
+  //     event.preventDefault()
+  //     buttonClicked(selects)
+  //   }
+  // })
+  selects.addEventListener('keypress', function (event) {
+    event.preventDefault()
+    if (selects.getAttribute('disabled') === 'disabled') {
+    } else {
+      if (event.key === "Enter"){
         event.preventDefault()
         buttonClicked(selects)
       }
-    })
-    selectedLink.addEventListener('click', function (event) {
+    }
+  })
+  selectedLink.addEventListener('click', function (event) {
+    event.preventDefault()
+    if (selectedLink.getAttribute('disabled') === 'disabled') {
+    } else {
       event.preventDefault()
-      if (selectedLink.getAttribute('disabled') === 'disabled') {
-      } else {
-        event.preventDefault()
-        buttonClicked2(selectedLink)
-      }
-    })
-
-  }
+      buttonClicked2(selectedLink)
+    }
+  })
+}
 
 // Put event listeners into place
 window.addEventListener("DOMContentLoaded", function() {
