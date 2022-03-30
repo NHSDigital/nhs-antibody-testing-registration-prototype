@@ -1,0 +1,79 @@
+{% set version = research" %}
+{% set pageTitle = "Registration confirmed" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">{{ pageTitle }}</h1>
+    </div>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-third" style="border: none"></th>
+          <th scope="col" class="govuk-table__header govuk-!-width-two-thirds" style="border: none"></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">{{ data['first-name'] | default('Bob') }} {{ data['last-name'] | default('Smith') }}</th>
+          {% if data['swab-test-date'] == "different" %}
+          <td class="govuk-table__cell">
+            {{ data['email-address'] | default('bobsmith@test.co.uk') }}<br>
+            {{ data['mobile-phone-number'] | default('123456789') }}<br>
+            Test kit barcode reference: {{ data['kit-barcode-reference-1'] | default('CHE00000501') }}<br>
+            Test date and time: {{ data['date-of-swab-test-day'] | default('4') }} {{ data['date-of-swab-test-month'] | default('9') }} {{ data['date-of-swab-test-year'] | default('2020') }}, {{ data['swab-test-time'] | default('7') }}{{ data['swab-test-time-ampm'] | default('am') }}
+          </td>
+          {% else %}
+          <td class="govuk-table__cell">
+            {{ data['email-address'] | default('bobsmith@test.co.uk') }}<br>
+            {{ data['mobile-phone-number'] | default('123456789') }}<br>
+            Test kit barcode reference: {{ data['kit-barcode-reference-1'] | default('CHE00000501') }}<br>
+            Test date and time: {{ data['swab-test-date'] | default('28 March 2020') }}, {{ data['swab-test-time'] | default('7') }}{{ data['swab-test-time-ampm'] | default('am') }}
+          </td>
+          {% endif %}
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="govuk-heading-m">Next steps</h2>
+
+    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+      <li>if you have registered multiple test kits, it's very important that each person takes the test registered to them to make sure they receive the correct results.</li>
+      <li>if you're doing the swab test yourself, you can watch <a class="govuk-link" href="#">this instructional video.</a></li>
+    </ul>
+
+    <h2 class="govuk-heading-m">We want to hear from you</h2>
+
+    <p class="govuk-body govuk-!-margin-bottom-8"><a class="govuk-link govuk-!-margin-right-2" href="#">What did you think of our service?</a> (takes 3 minutes)</p>
+
+    <form action="/lite-registration-lateral-flow/{{version}}/" method="post" novalidate>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Register someone else
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

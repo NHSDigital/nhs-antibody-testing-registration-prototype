@@ -1,0 +1,29 @@
+
+    <!--   <span id="country-hint" class="govuk-body">
+        If you’re reporting a result for someone else, answer for them.
+      </span>
+        <br> -->
+
+        <span id="post-code-hint" class="govuk-body">
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          Enter the first line of {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s address and home postcode (ideally the one they gave their GP).
+          {% else %}
+          Enter the first line of your address and home postcode (ideally the one you gave your GP).
+          {% endif %}
+        </span>
+        <div id="includedContent"></div>
+        <div class="govuk-form-group govuk-!-margin-top-5">
+          <label class="govuk-label" for="address">
+            First line of address
+          </label>
+          <input class="govuk-input govuk-input--width-10" id="address" name="address" type="text" value="{{ data['address'] }}">
+        </div>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="home-postcode">
+            Postcode
+          </label>
+          <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}">
+        </div>
+      </fieldset>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>

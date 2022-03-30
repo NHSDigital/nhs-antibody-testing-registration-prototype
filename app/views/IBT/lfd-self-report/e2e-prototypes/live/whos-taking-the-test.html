@@ -1,0 +1,61 @@
+{% set version = "live" %}
+{% set pageTitle = "Who are you reporting a result for?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+  {% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/IBT/lfd-self-report/e2e-prototypes/{{version}}/country" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+            </legend>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="whos-taking-the-test-1" name="whos-taking-the-test" type="radio" value="Pete Smith" {{ checked("whos-taking-the-test", "myself") }}>
+                <label class="govuk-label govuk-radios__label" for="whos-taking-the-test-1">
+                  <strong>Myself</strong>
+                  <!-- <span id="about-work-hint" class="govuk-hint govuk-!-margin-bottom-1">
+                    November 20 1981
+                  </span> -->
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="whos-taking-the-test-2" name="whos-taking-the-test" type="radio" value="someone-else" {{ checked("whos-taking-the-test", "someone-else") }}>
+                <label class="govuk-label govuk-radios__label" for="whos-taking-the-test-2">
+                  <strong>Someone else</strong>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+{% endblock %}

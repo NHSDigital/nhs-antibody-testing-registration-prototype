@@ -1,0 +1,71 @@
+{% set version = "research" %}
+{% set pageTitle = "Do you want to save their details to your household?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-self-report/e2e-prototypes/{{version}}/choose-result" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Do you want to save {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s to your household?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+            </legend>
+              <span id="nhs-number-hint" class="govuk-body">
+                If this person is part of your household, you can save their details to your Test and Trace account. This makes reporting future test results quicker and easier.
+              </span>
+              <br>
+              <br>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }}>
+                <label class="govuk-label govuk-radios__label" for="country-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-4" name="country" type="radio" value="Scotland" {{ checked("country", "Scotland") }}>
+                <label class="govuk-label govuk-radios__label" for="country-4">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-inset-text">If you save this person's details to your account, you are declaring that you have their permission to do this.</div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% set version = "live" %}
+{% set pageTitle = "What is your home address in the UK?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <a class="govuk-back-link" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/occupation">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-self-report/e2e-prototypes/{{version}}/postcode-lookup-2" method="post">
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s home address?
+              {% else %}
+              {{ pageTitle }}
+              {% endif %}
+            </h1>
+          </legend>
+
+          <span id="occupation-hint" class="govuk-body">
+            <p>If you do not have a home address in the UK, use the address where you're staying.</p>
+          </span>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="postcode">
+            Postcode
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] }}">
+          </div>
+        </fieldset>
+
+         <p class="govuk-body">
+            <a class="govuk-link" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/postcode-manual">Enter address manually</a>
+         </p>
+
+        <button class="govuk-button" data-module="govuk-button">Find address</button>
+
+                <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              If you do not have a fixed address
+
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            You can use the postcode of a nearby reference address, such as your GP. <br> <br>
+            You can also call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.
+          </div>
+        </details>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+
+{% endblock %}
