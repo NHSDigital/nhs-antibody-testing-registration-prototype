@@ -15,7 +15,6 @@ function init() {
   actionButton.addEventListener('click', activateActionButton);
   actionButton.addEventListener('keydown', actionButtonKeydownHandler);
   actionButton.addEventListener('keyup', actionButtonKeyupHandler);
-
 }
 
 /**
@@ -49,8 +48,8 @@ function actionButtonKeyupHandler(event) {
   }
 }
 
-function activateActionButton() {
-  window.print();
-}
+// function activateActionButton() {
+//  window.print();
+// }
 
 window.onload = init;
