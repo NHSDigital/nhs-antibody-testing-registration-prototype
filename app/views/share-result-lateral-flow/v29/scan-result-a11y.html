@@ -74,6 +74,8 @@
           Re-take your photo
         </a>
 
+        <!-- <script src="/public/javascripts/accessible-button.js"></script> -->
+
     </div>
   </div>
 
@@ -108,6 +110,14 @@ function submitEvent() {
     var selectedLink = document.getElementById('cancel-2')
     // var selectedLink2 = document.getElementById('manual-address-2')
     selects.addEventListener('click', function (event) {
+      event.preventDefault()
+      if (selects.getAttribute('disabled') === 'disabled') {
+      } else {
+        event.preventDefault()
+        buttonClicked(selects)
+      }
+    })
+    selects.addEventListener('keydown', function (event) {
       event.preventDefault()
       if (selects.getAttribute('disabled') === 'disabled') {
       } else {
@@ -167,7 +177,7 @@ window.addEventListener("DOMContentLoaded", function() {
     context.drawImage(video, 0, 0, 300, 150);
   });
 
-  // Trigger photo take
+  // Trigger photo take for keydown
   document.getElementById('snap').addEventListener('keydown', function(event) {
      if (event.key === "Enter") {
        context.drawImage(video, 0, 0, 300, 150);
