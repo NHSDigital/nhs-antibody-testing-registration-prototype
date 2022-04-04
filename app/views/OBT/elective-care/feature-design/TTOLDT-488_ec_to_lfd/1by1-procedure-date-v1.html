@@ -1,0 +1,49 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "What is the patient's procedure date?" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl  govuk-!-margin-bottom-5">
+        <span class="govuk-caption-xl"> Group 1 </span> {{ pageTitle }} </h1>
+        <form action="new-order-cya-v1" method="get">
+          <p class="govuk-body-l">Enter a procedure date between 6 and 11 days from today</p>
+          <div class="govuk-form-group" id="procedure-date">
+              <div id="procedure-date-hint" class="govuk-hint">For example, 19 7 2021</div>
+              <div>
+                <div class="govuk-date-input">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label for="procedure-date-day" class="govuk-label"> Day </label>
+                      <span id="procedure-date-day-hint" class="govuk-hint govuk-visually-hidden"> For example, 19 7 2021 </span>
+                      <input id="procedure-date-day" autocomplete="off" aria-describedby="procedure-date-day-hint" name="day" inputmode="numeric" maxlength="2" pattern="[0-9]*" class="govuk-input govuk-input--width-2"></div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label for="procedure-date-month" class="govuk-label"> Month </label>
+                      <span id="procedure-date-month-hint" class="govuk-hint govuk-visually-hidden"> For example, 19 7 2021 </span>
+                      <input id="procedure-date-month" autocomplete="off" aria-describedby="procedure-date-month-hint" name="month" inputmode="numeric" maxlength="2" pattern="[0-9]*" class="govuk-input govuk-input--width-2"></div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label for="procedure-date-year" class="govuk-label"> Year </label>
+                      <span id="procedure-date-year-hint" class="govuk-hint govuk-visually-hidden"> For example, 19 7 2021 </span>
+                      <input id="procedure-date-year" autocomplete="off" aria-describedby="procedure-date-year-hint" name="year" inputmode="numeric" maxlength="4" minlength="4" pattern="[0-9]*" class="govuk-input govuk-input--width-4"></div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <button data-v-9543c7be="" type="submit" class="govuk-!-margin-top-4 govuk-button"> Continue </button>
+        </form>
+    </div>
+  </div>
+
+{% endblock %}

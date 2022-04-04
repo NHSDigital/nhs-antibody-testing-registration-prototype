@@ -1,0 +1,115 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set pageHeading = "Enter their personal details" %}
+{% set serviceName = electiveCareServiceName %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ electiveCareServiceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        {{ pageHeading }}
+      </h1>
+
+      <form class="" action="mobile-number" method="get">
+        {{ govukInput({
+          label: {
+            text: "First name"
+          },
+          classes: "govuk-input--width-20",
+          id: "covidUpload",
+          name: "cuFirstName"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Last name"
+          },
+          classes: "govuk-input--width-20",
+          id: "covidUpload",
+          name: "cuLastName"
+        }) }}
+
+        {{ govukDateInput({
+          id: "dob",
+          namePrefix: "dob",
+          fieldset: {
+            legend: {
+              text: "Date of birth",
+              isPageHeading: false,
+              classes: "govuk-body"
+            }
+          },
+          hint: {
+            text: "For example, 12 11 2007"
+          }
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "covidGender",
+          name: "cuGender",
+          fieldset: {
+            legend: {
+              text: "Which of the following is on their medical record?",
+              isPageHeading: true,
+              classes: "govuk-body"
+            }
+          },
+          hint: {
+            text: "We are asking this question so we can find their GP record and save their test result there."
+          },
+          items: [
+            {
+              value: "Female",
+              text: "Female"
+            },
+            {
+              value: "Male",
+              text: "Male"
+            },
+            {
+              value: "Other",
+              text: "Other/ Not specified/ I do not know"
+            }
+          ]
+        }) }}
+
+        {{ govukDetails({
+          summaryText: "Why are there not more options?",
+          text: "We understand there are other ways a person may answer this question. In this case we just need to know what's on the person's GP record."
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "NHS number"
+          },
+          hint: {
+            text: "An NHS number is 10 digits. In Scotland, it’s known as a CHI number. In Northern Ireland, it’s known as an H&C number."
+          },
+          classes: "govuk-input--width-20",
+          id: "cuNumber",
+          name: "cuNumber"
+        }) }}
+
+        <p class="govuk-body">
+          <a href="https://www.nhs.uk/nhs-services/online-services/find-nhs-number/" target="_blank" class="govuk-link govuk-!-margin-bottom-7" style="display: block"> Find your NHS number  (opens in new tab). </a>
+        </p>
+
+        <input class="govuk-button" type="submit" value="Continue">
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
