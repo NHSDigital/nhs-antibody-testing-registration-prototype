@@ -1696,7 +1696,7 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/test-reason-wo
 router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/test-reason-health', function(req, res) {
   let health = req.session.data['test-reason-health']
   if (health == "You have an eligible health condition" ) {
-    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction//qualifying-condition')
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/qualifying-condition')
   } else if (health == "Your doctor or healthcare professional has told you to get a test because you're being admitted to hospital") {
       res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/hospital-name')
   } else if (health == "You've spoken to your GP or healthcare professional recently and they asked you to get a test") {
