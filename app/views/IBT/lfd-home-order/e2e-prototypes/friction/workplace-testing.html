@@ -1,0 +1,76 @@
+{% set version = "friction" %}
+{% set pageTitle = "Do you want to collect your tests instead of ordering online?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/IBT/lfd-home-order/e2e-prototypes/{{version}}/action10/workplace-testing" method="post">
+
+            <div class="govuk-form-group govuk-!-padding-bottom-5">
+                <fieldset class="govuk-fieldset" aria-describedby="workplace-testing-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                            {{ pageTitle }}
+                        </h1>
+                    </legend>
+                    <span id="workplace-testing-hint" class="govuk-body">
+                        <strong class="govuk-!-font-size-24">It’s quicker, you can get more tests and you free up home delivery for those that need it most</strong>
+                    </span>
+                    <div style="border-left: 10px solid #b1b4b6;" class="govuk-body govuk-!-margin-top-6 govuk-!-padding-left-4 govuk-!-padding-top-2 govuk-!-padding-bottom-1">
+                      <ul class="govuk-list govuk-list--bullet">
+                        <li>You can get up to 28 tests (home delivery is 7 tests) per household</li>
+                        <li>You can get the tests today (home delivery is 2 days)</li>
+                        <li>No paperwork or ID is needed</li>
+                        <li>Sites are COVID-secure and operated by trained staff</li>
+                        <li><a href="https://maps.test-and-trace.nhs.uk/findatestcenter.html#" target="blank" class="govuk-link">Find your local collection site</a> (opens in a new tab) - new ones opening so always check</li>
+                        <li><a href="#" class="govuk-link">You can also take a test at a community assisted test site</a> if you prefer (opens in a new tab)</li>
+                      </ul>
+                    </div>
+                    <div class="govuk-radios govuk-!-margin-top-5">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="workplace-testing-1" name="workplace-testing" type="radio" value="Yes" {{ checked("workplace-testing", "Yes") }}>
+                            <label class="govuk-label govuk-radios__label" for="workplace-testing-1">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="workplace-testing-2" name="workplace-testing" type="radio" value="No" {{ checked("workplace-testing", "No") }}>
+                            <label class="govuk-label govuk-radios__label" for="workplace-testing-2">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
