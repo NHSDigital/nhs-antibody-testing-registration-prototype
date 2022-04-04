@@ -1669,6 +1669,16 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/do-you-have-sy
   // }
 })
 
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/category', function(req, res) {
+  let category = req.session.data['test-reason-category']
+  if (category == "Wales") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/do-you-have-symptoms')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/error-screens/country')
+  }
+
+})
+
 router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/email-address', function(req, res) {
   let emailAddress = req.session.data['email']
   if (emailAddress == "No") {
