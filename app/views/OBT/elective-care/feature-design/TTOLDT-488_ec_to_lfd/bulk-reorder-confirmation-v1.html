@@ -1,0 +1,82 @@
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      Pete Smith
+  {% endif %}
+{% endset %}
+
+{% set dob %}
+  {% if data["cuDOB-day"] and data["cuDOB-month"] and data["cuDOB-year"]  %}
+    {{ data["cuDOB-day"]}} {{ data["cuDOB-month"] | monthToWord }} {{ data["cuDOB-year"]}}
+  {% else %}
+    31 March 1975
+  {% endif %}
+{% endset %}
+
+{% set version = "v1" %}
+{% set pageTitle = "Order confirmed" %}
+
+{% extends "includes/layout.html" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+      <p class="govuk-body govuk-!-margin-bottom-0" style="color: #ffffff">31 April 2021</p>
+    </div>
+    <h2 class="govuk-heading-m govuk-!-margin-top-9">Order summary</h2>
+
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Test kit orders"
+          },
+          value: {
+            text: "0"
+          }
+        },
+        {
+          key: {
+            text: "Test kit reorders"
+          },
+          value: {
+            html: "3"
+          }
+        }
+      ]
+    }) }}
+
+    <a href="request-home-testing" role="button" draggable="false" class="govuk-button govuk-!-margin-top-2" data-module="govuk-button">
+      Order more tests
+    </a>
+  </div>
+  <div class="govuk-grid-column-three-quarters">
+    <h2 class="govuk-heading-m govuk-!-margin-top-7">What happens next?</h2>
+
+    <div class="govuk-warning-text govuk-!-margin-bottom-4">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        You will no longer get an email with the patient's test result.
+      </strong>
+    </div>
+
+    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
+      <li>you'll get an email confirming the test kit orders</li>
+      <li>patients will get a text to confirm their result which they can bring to the procedure to prove they are negative</li>
+      <li>they must take a rapid lateral flow test and report their results using the gov.uk service</li>
+      <li>patients will call the trust if they are positive</li>
+      <li>it is up to the trust to explain this process to patients as we no longer send them texts</li>
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1695,15 +1695,25 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/test-reason-wo
 
 router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/test-reason-health', function(req, res) {
   let health = req.session.data['test-reason-health']
-  if (health == "You have an eligible health condition" ) {
+  if (health == "You've been told by the NHS that you're eligible for COVID-19 treatments" ) {
     res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/qualifying-condition')
-  } else if (health == "Your doctor or healthcare professional has told you to get a test because you're being admitted to hospital") {
+  } else if (health == "Your doctor or healthcare professional has told you to get a test because you're being admitted into hospital for a procedure") {
       res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/hospital-name')
   } else if (health == "You've spoken to your GP or healthcare professional recently and they asked you to get a test") {
       res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/date-asked-to-test')
   } else {
     res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/not-eligible-v2')
   }
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/qualifying-condition', function(req, res) {
+  let qualify = req.session.data['qualifying-condition']
+  if (qualify == "Yes") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/coronavirus-account')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/not-eligible-v2')
+  }
+
 })
 
 router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/email-address', function(req, res) {
@@ -1734,7 +1744,7 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/date-of-birth'
 // })
 
 router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/home-address-question', function(req, res) {
-  let defrictionryAddressSame = req.session.data['delivery-address-same']
+  let deliveryAddressSame = req.session.data['delivery-address-same']
   let country = req.session.data['country']
   if (deliveryAddressSame == "No") {
     res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/delivery-postcode')
@@ -1746,6 +1756,15 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/home-address-q
 router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/nhs-testing-programme', function(req, res) {
   let programme = req.session.data['nhs-testing-programme']
   if (programme == "Yes") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/work-area')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/check-your-answers')
+  }
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/nhs-staff-member', function(req, res) {
+  let nhsstaff = req.session.data['test-reason-work']
+  if (nhsstaff == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" || nhsstaff == "You work for the NHS and have COVID-19 symptoms") {
     res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/work-area')
   } else {
     res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/check-your-answers')
