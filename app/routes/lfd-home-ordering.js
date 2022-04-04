@@ -1695,15 +1695,25 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/test-reason-wo
 
 router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/test-reason-health', function(req, res) {
   let health = req.session.data['test-reason-health']
-  if (health == "You have an eligible health condition" ) {
+  if (health == "You've been told by the NHS that you're eligible for COVID-19 treatments" ) {
     res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/qualifying-condition')
-  } else if (health == "Your doctor or healthcare professional has told you to get a test because you're being admitted to hospital") {
+  } else if (health == "Your doctor or healthcare professional has told you to get a test because you're going into hospital for a procedure") {
       res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/hospital-name')
   } else if (health == "You've spoken to your GP or healthcare professional recently and they asked you to get a test") {
       res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/date-asked-to-test')
   } else {
     res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/not-eligible-v2')
   }
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/qualifying-condition', function(req, res) {
+  let qualify = req.session.data['qualifying-condition']
+  if (qualify == "Yes") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/coronavirus-account')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/not-eligible-v2')
+  }
+
 })
 
 router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/email-address', function(req, res) {
