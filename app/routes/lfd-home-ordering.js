@@ -1644,4 +1644,166 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/work-area', functi
 
 })
 
+
+
+
+// VERSION FRICTION //
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/country', function(req, res) {
+  let country = req.session.data['country']
+  if (country == "England" || country == "Scotland" || country == "Northern Ireland" || country == "Wales") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/do-you-have-symptoms')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/error-screens/country')
+  }
+
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/do-you-have-symptoms', function(req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  // if (symptoms == "No") {
+        res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/no-more-tests-available-v5')
+    // res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/coronavirus-account')
+  // } else {
+  //   res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/different-test')
+  // }
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/email-address', function(req, res) {
+  let emailAddress = req.session.data['email']
+  if (emailAddress == "No") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/call-us')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/mobile-number')
+  }
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/date-of-birth', function(req, res) {
+  let country = req.session.data['country']
+  if (country == "England") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/nhs-testing-programme')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/check-your-answers')
+  }
+})
+
+// router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action11/contact-with-positive', function(req, res) {
+//   let contactWithPositive = req.session.data['contact-with-positive']
+//   if (contactWithPositive == "No") {
+//     res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/work-from-home')
+//   } else {
+//     res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/daily-contact-testing')
+//   }
+// })
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/home-address-question', function(req, res) {
+  let defrictionryAddressSame = req.session.data['delivery-address-same']
+  let country = req.session.data['country']
+  if (deliveryAddressSame == "No") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/delivery-postcode')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/confirm-email-address')
+  }
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/nhs-testing-programme', function(req, res) {
+  let programme = req.session.data['nhs-testing-programme']
+  if (programme == "Yes") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/work-area')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/check-your-answers')
+  }
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/enter-password', function(req, res) {
+  let country = req.session.data['country']
+  if (country == "England") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/nhs-testing-programme')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/check-your-answers')
+  }
+})
+
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/coronavirus-account', function(req, res) {
+  let signin = req.session.data['coronavirus-account']
+  if (signin == "Yes") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/user-account/login-email')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/name')
+  }
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/user-account/action10/login-email', function(req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/user-account/enter-password')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/user-account/create-password')
+  }
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/create-password', function(req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/user-account/create-password-error')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/user-account/check-email')
+  }
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/check-mobile', function(req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/user-account/check-mobile-error')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/user-account/agreement')
+  }
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/user-account/action10/home-page', function(req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/check-your-answers')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/name')
+  }
+
+})
+
+
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/contact-with-positive', function(req, res) {
+  let contactWithPositive = req.session.data['contact-with-positive']
+  if (contactWithPositive == "No") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/dct-unavailable')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/notified-how')
+  }
+
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/dct-opt-in', function(req, res) {
+  let dctOptIn = req.session.data['dct-opt-in']
+  if (dctOptIn == "No") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/self-isolate')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/name')
+  }
+
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/work-area', function(req, res) {
+  let workArea = req.session.data['work-area']
+  if (workArea == "Community pharmacy" || workArea == "Dentistry" || workArea == "General practice" || workArea == "Optometry" || workArea == "Other") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/work-postcode')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/trust')
+  }
+
+})
+
 module.exports = router
