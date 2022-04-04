@@ -1680,6 +1680,19 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/test-reason-ca
   }
 })
 
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/test-reason-work', function(req, res) {
+  let work = req.session.data['test-reason-work']
+  if (work == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" || work == "You work for the NHS and have COVID-19 symptoms" ) {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/coronavirus-account')
+  } else if (work == "You work for an NHS-commissioned independent healthcare provider in a patient-facing role looking after NHS patients") {
+      res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/healthcare-provider-name')
+  } else if (work == "You work in the adult social care sector") {
+      res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/adult-social-care-role')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/not-eligible-v2')
+  }
+})
+
 router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/email-address', function(req, res) {
   let emailAddress = req.session.data['email']
   if (emailAddress == "No") {
