@@ -1669,14 +1669,15 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/do-you-have-sy
   // }
 })
 
-router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/category', function(req, res) {
+router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/test-reason-category', function(req, res) {
   let category = req.session.data['test-reason-category']
-  if (category == "Wales") {
-    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/do-you-have-symptoms')
+  if (category == "You been asked to take a test by a doctor or healthcare professional, or you have an eligible health condition") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/test-reason-health')
+  } else if (category == "You been asked to take a test for your job") {
+      res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/test-reason-work')
   } else {
-    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/error-screens/country')
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/not-eligible-v2')
   }
-
 })
 
 router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/email-address', function(req, res) {

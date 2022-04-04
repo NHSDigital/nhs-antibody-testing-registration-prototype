@@ -1,0 +1,94 @@
+{% set version = "friction" %}
+{% set pageTitle = "What is your area of work?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-home-order/e2e-prototypes/{{version}}/action10/test-reason-work" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset aria-describedby="country-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <!-- <span id="country-hint" class="govuk-hint">If you're away from home, select the country where you're staying.</span> -->
+            <div class="govuk-radios govuk-!-margin-bottom-3">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-1" name="test-reason-work" type="radio" value="You been asked to take a test by a doctor or healthcare professional, or you have an eligible health condition" {{ checked("test-reason-category", "You been asked to take a test by a doctor or healthcare professional, or you have an eligible health condition") }} >
+                <label class="govuk-label govuk-radios__label" for="work-1">
+                  You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme
+                </label>
+              <!--  <div id="health-hint" class="govuk-hint govuk-radios__hint">
+                  For example you are eligible for COVID-19 treatments, or you are being admitted to hospital
+                </div> -->
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-2" name="test-reason-work" type="radio" aria-describedby="work-hint" value="You been asked to take a test for your job" {{ checked("test-reason-category", "You been asked to take a test for your job") }} >
+                <label class="govuk-label govuk-radios__label" for="work-2">
+                  You work for an NHS-commissioned independent healthcare provider in a patient-facing role looking after NHS patients
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-3" name="test-reason-work" type="radio" aria-describedby="work-hint" value="You been asked to take a test for your job" {{ checked("test-reason-category", "You been asked to take a test for your job") }} aria-describedby="health-hint" >
+                <label class="govuk-label govuk-radios__label" for="work-3">
+                  You work for the NHS and have COVID-19 symptoms
+                </label>
+                <div id="work-hint" class="govuk-hint govuk-radios__hint">
+                  <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/symptoms/" target="_blank" rel="noreferrer">You have one of the 3 main symptoms</a> (opens in new tab) or you have recently tested positive and need to take a test to return to work
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-4" name="test-reason-work" type="radio" aria-describedby="work-hint" value="You been asked to take a test for your job" {{ checked("test-reason-category", "You been asked to take a test for your job") }} aria-describedby="health-hint" >
+                <label class="govuk-label govuk-radios__label" for="work-4">
+                  You work in the adult social care sector
+                </label>
+                <div id="work-hint" class="govuk-hint govuk-radios__hint">
+                  This is for <a href="https://www.gov.uk/government/publications/coronavirus-covid-19-testing-for-adult-social-care-settings" target="_blank" rel="noreferrer">Personal assistants, Shared Lives carers, Care Quality Commission (CQC) inspectors or social workers</a> (opens in new tab)
+                </div>
+              </div>
+              <div class="govuk-radios__divider">or</div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-5" name="test-reason-work" type="radio" value="Another reason" {{ checked("test-reason-category", "Another reason") }} >
+                <label class="govuk-label govuk-radios__label" for="work-5">
+                  Another reason
+                </label>
+              <!--  <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                  For example you work for the NHS or an NHS funded partner organisation
+                </div> -->
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
