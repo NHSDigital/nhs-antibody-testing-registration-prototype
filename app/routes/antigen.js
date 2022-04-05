@@ -604,11 +604,11 @@ router.post('/IBT/antigen/e2e-prototypes/research/action1/country', function (re
   if (country == "Scotland" ){
     res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-scotland')
   } else if(country == "Wales") {
-    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-wales')
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/service-unavailable')
   } else if(country == "Northern Ireland") {
     res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-northern-ireland')
   } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-england')
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/service-unavailable')
   }
 })
 
