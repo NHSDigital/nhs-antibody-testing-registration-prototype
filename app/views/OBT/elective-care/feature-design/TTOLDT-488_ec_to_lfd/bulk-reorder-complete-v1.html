@@ -15,7 +15,12 @@
 {% endset %}
 
 {% set version = "v1" %}
-{% set pageTitle = "Order confirmed" %}
+{% set pageHeading = "Order confirmed" %}
+{% set serviceName = electiveCareServiceName %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ electiveCareServiceName }} - GOV.UK
+{% endblock %}
 
 {% extends "includes/layout.html" %}
 
@@ -25,7 +30,7 @@
   <div class="govuk-grid-column-full">
 
     <div class="govuk-panel govuk-panel--confirmation">
-      <h1 class="govuk-panel__title govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+      <h1 class="govuk-panel__title govuk-!-margin-bottom-3">{{ pageHeading }}</h1>
       <p class="govuk-body govuk-!-margin-bottom-0" style="color: #ffffff">31 April 2021</p>
     </div>
     <h2 class="govuk-heading-m govuk-!-margin-top-9">Order summary</h2>
@@ -69,12 +74,20 @@
     </div>
 
     <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
-      <li>you'll get an email confirming the test kit orders</li>
-      <li>patients will get a text to confirm their result which they can bring to the procedure to prove they are negative</li>
-      <li>they must take a rapid lateral flow test and report their results using the gov.uk service</li>
+      <li>you will get an email confirming the test kit orders</li>
+      <li>patients must take a rapid lateral flow test and <a class="govuk-link" href="#">report their result online</a>. If they cannot use the online service, they can call 119.</li>
+      <li>they will get a text to confirm their result which they can bring to the procedure to prove they are negative</li>
       <li>patients will call the trust if they are positive</li>
-      <li>it is up to the trust to explain this process to patients as we no longer send them texts</li>
+      <li>it is up to the trust to explain all of this to patients as we no longer send them texts</li>
     </ul>
+
+      <div style="background-color: #f3f2f1; padding: 1rem 2rem; position: fixed; top: 15%; right: 30px; border-radius: 20px">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Prototype links: </h3>
+        <ul style="list-style: none; padding-left: 0">
+          <li><a href="homepage-block-v1">Home</a></li>
+          <li><a href="request-home-testing-v1">Order more tests</a></li>
+        </ul>
+      </div>
 
   </div>
 </div>
