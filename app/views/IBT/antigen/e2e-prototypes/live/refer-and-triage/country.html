@@ -1,5 +1,5 @@
 {% set version = "live" %}
-{% set pageTitle = "Where in the UK does the person who needs a test live?" %}
+{% set pageTitle = "Where in the UK do you live?" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,37 +15,37 @@
     </p>
   </div>
 
-  {% if data['vaccine'] !== "No" %}
-  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/vaccine-date">Back</a>
-  {% else %}
-  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/vaccine">Back</a>
-  {% endif %}
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/govuk/get-coronavirus-test">Back</a>
+
 {% endblock %}
 
 {% block content %}
-{% include "includes/gtm-noscript.html" %}
+  {% include "includes/gtm-noscript.html" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/home-address" method="post">
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/action1/country" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
-                Where in the UK does {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }} live?
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                {{ pageTitle }}
               </h1>
             </legend>
-            <span id="country-hint" class="govuk-body">
-              If they do not normally live in the UK, select the country where they’re staying while they’re in the UK.
-            </span>
-            <br><br>
+
             <div class="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="country-1" name="country" type="radio" value="England" {{ checked("country", "England") }}>
                 <label class="govuk-label govuk-radios__label" for="country-1">
                   England
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="Wales" {{ checked("country", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-2">
+                  Wales
                 </label>
               </div>
               <div class="govuk-radios__item">
@@ -58,12 +58,6 @@
                 <input class="govuk-radios__input" id="country-3" name="country" type="radio" value="Northern Ireland" {{ checked("country", "Northern Ireland") }}>
                 <label class="govuk-label govuk-radios__label" for="country-3">
                   Northern Ireland
-                </label>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="country-2" name="country" type="radio" value="Wales" {{ checked("country", "Wales") }}>
-                <label class="govuk-label govuk-radios__label" for="country-2">
-                  Wales
                 </label>
               </div>
             </div>

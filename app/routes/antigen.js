@@ -54,6 +54,19 @@ router.post('/antigen/v1/action3/contact-tracing-code', function (req, res) {
   }
 })
 
+router.post('/IBT/antigen/e2e-prototypes/live/action1/country', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "Scotland" ){
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/eligibility-scotland')
+  } else if(country == "Wales") {
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/service-unavailable')
+  } else if(country == "Northern Ireland") {
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/eligibility-northern-ireland')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/service-unavailable')
+  }
+})
+
 router.post('/IBT/antigen/e2e-prototypes/live/action3/1-have-you-travelled-overseas-person-1', function (req, res) {
   let OverseasTravel = req.session.data['have-you-travelled-overseas-person-1']
   if (OverseasTravel == "No"){
