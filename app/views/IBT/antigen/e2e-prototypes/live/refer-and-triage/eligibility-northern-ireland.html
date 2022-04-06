@@ -1,0 +1,76 @@
+{% set version = "live" %}
+{% set pageTitle = "Check if you are eligible for a PCR test" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div> 
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/refer-and-triage/country">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-9">{{ pageTitle }}</h1>
+
+        <p class="govuk-body">You are eligible to get a PCR test if you have any coronavirus symptoms.</p>
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            If you have a high temperature, a new continuous cough, or loss or change to your sense of smell or taste, you should self-isolate straight away. You can leave home to get or post a test.
+          </strong>
+        </div>
+
+        <p class="govuk-body"><a class="govuk-link" href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" target="_blank">Find guidance for self-isolation (opens in new tab)</a>.</p>
+
+        <p class="govuk-body">You may also be eligible if you:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>have been identified as part of an eligible group</li>
+            <li>have been asked to get a follow-up test</li>
+            <li>need to get a test for someone you live with who has symptoms</li>
+            <li>are a health and social care worker</li>
+            <li>are a close contact of a health and social care worker</li>
+        </ul>
+
+        <p class="govuk-body"><a class="govuk-link" href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-testing" target="_blank">Find out if you need to get a PCR test (opens in a new tab) </a>.</p>
+
+        <h2 class="govuk-heading-m">If you're worried</h3>
+        <p class="govuk-body">If your symptoms do not get better, or get worse, contact your GP or your GP out of hours service. In an emergency dial 999.</p>
+        
+        <h2 class="govuk-heading-m">Disclaimer</h3>
+        <p class="govuk-body">By selecting 'Confirm and continue', I confirm I am eligible to get a PCR test.</p>
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/refer-and-triage/essential-worker" method="post">
+
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">
+            Confirm and continue
+          </button>
+        
+          <a class="govuk-button govuk-button--secondary" role="button" href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-testing#toc-3">
+            I am not eligible
+          </a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
