@@ -26,6 +26,7 @@ router.use('/', require('./routes/international-arrivals.js'))
 router.use('/', require('./routes/provider-list.js'))
 router.use('/', require('./routes/lamp-test-return.js'))
 router.use('/', require('./routes/bulk-order-home-kits.js'))
+router.use('/', require('./routes/elective-care.js'))
 // router.use('/', require('./routes/international-arrivals-admin.js'))
 router.use('/', require('./routes/accessibility.js'))
 
