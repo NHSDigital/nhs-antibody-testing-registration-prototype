@@ -1661,12 +1661,13 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/country', func
 
 router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/do-you-have-symptoms', function(req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
-  // if (symptoms == "No") {
-        res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/no-more-tests-available-v5')
-    // res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/coronavirus-account')
-  // } else {
-  //   res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/different-test')
-  // }
+  let country = req.session.data['country']
+   if (country == "Scotland") {
+     res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/scotland-gate')
+   } else {
+      res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/no-more-tests-available-v5')
+   }
+
 })
 
 router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/test-reason-category', function(req, res) {
