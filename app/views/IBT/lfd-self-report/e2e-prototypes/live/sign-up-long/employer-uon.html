@@ -1,0 +1,103 @@
+{% set version = "live" %}
+{% set pageTitle = "Enter the unique organisation number (UON)" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/lfd-self-report/e2e-prototypes/{{version}}/employer-uon-check" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="enter-barcode-number-hint" class="govuk-body">
+              This is a reference number for the employer or organisation.
+              It is 8 digits and sometimes called a “UON”.
+            </span>
+
+             <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+               <summary class="govuk-details__summary">
+                 <span class="govuk-details__summary-text">
+                   {% if data['whos-taking-the-test'] == "someone-else" %}
+                   What to do if they cannot find this number
+                   {% else %}
+                   What to do if you cannot find this number
+                   {% endif %}
+                 </span>
+               </summary>
+               <div class="govuk-details__text">
+                 <p class="govuk-body">
+                   {% if data['whos-taking-the-test'] == "someone-else" %}
+                   Get the UON from the employer or organisation that gave them the test kit.
+                   {% else %}
+                   Get the UON from the employer or organisation that gave you the test kit.
+                   {% endif %}
+                 </p>
+                 <p class="govuk-body">
+                   {% if data['whos-taking-the-test'] == "someone-else" %}
+                   They can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">find the UON online (opens in a new tab)</a>.
+                   {% else %}
+                   You can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">find the UON online (opens in a new tab)</a>.
+                   {% endif %}
+                 </p>
+                 <p class="govuk-body">
+                   {% if data['whos-taking-the-test'] == "someone-else" %}
+                   If they still need help, call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.
+                   {% else %}
+                   If you still need help, call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.
+                   {% endif %}
+                 </p>
+               </div>
+             </details>
+            <br>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="social-care-uon">
+                Unique organisation number
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="social-care-uon" name="social-care-uon" type="text" value={{ data['social-care-uon'] }}>
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      </form>
+
+      <p>
+          <a class="govuk-link" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/postcode2">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            They don't know the UON
+            {% else %}
+            I don't know the UON
+            {% endif %}
+          </a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

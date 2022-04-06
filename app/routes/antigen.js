@@ -90,11 +90,11 @@ router.post('/IBT/antigen/e2e-prototypes/live/action3/contact-tracing-code', fun
   let traceCode = req.session.data['contact-tracing-code']
   let traceID = req.session.data['contact-tracing-code-id']
   if (!traceCode){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/contact-tracing-code-error-2')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/contact-tracing-code-error-2')
   } else if (traceCode == "Yes" && !traceID ){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/contact-tracing-code-error')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/contact-tracing-code-error')
   } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/')
   }
 })
 
@@ -115,9 +115,9 @@ router.post('/IBT/antigen/e2e-prototypes/live/action3/kit-return-way-known', fun
 router.post('/IBT/antigen/e2e-prototypes/live/action3/mobile-number', function (req, res) {
   let mobilePhoneNumber = req.session.data['mobile-number']
   if (mobilePhoneNumber == "No"){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/call-us')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/call-us')
   } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/email-address')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/email-address')
   }
 
 })
@@ -127,9 +127,9 @@ router.post('/IBT/antigen/e2e-prototypes/live/action3/mobile-number', function (
 router.post('/IBT/antigen/e2e-prototypes/live/action4/do-you-have-symptoms', function (req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
   if (symptoms == "Yes"){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/when-did-symptoms-start')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/when-did-symptoms-start')
   } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/follow-up-test')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/follow-up-test')
   }
 
 })
@@ -140,11 +140,11 @@ router.post('/IBT/antigen/e2e-prototypes/live/action3/when-did-symptoms-start', 
   let dateOfOnset = req.session.data['date-of-onset']
   let yearOfOnset = req.session.data['symptoms-start-date-year']
   if (!dateOfOnset){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/when-did-symptoms-start-error-2')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/when-did-symptoms-start-error-2')
   } else if (dateOfOnset == "different" && yearOfOnset !== "2020" && yearOfOnset !== "2021"){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/when-did-symptoms-start-error')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/when-did-symptoms-start-error')
   } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/government-pilot')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/government-pilot')
   }
 
 })
@@ -167,9 +167,9 @@ router.post('/IBT/antigen/e2e-prototypes/live/action3/when-did-symptoms-start-pe
 router.post('/IBT/antigen/e2e-prototypes/live/action3/when-did-symptoms-start-error', function (req, res) {
   let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
   if (yearSymptomsStarted != "2021"){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/when-did-symptoms-start-error')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/when-did-symptoms-start-error')
   } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/government-pilot')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/government-pilot')
   }
 
 })
@@ -179,9 +179,9 @@ router.post('/IBT/antigen/e2e-prototypes/live/action3/when-did-symptoms-start-er
 router.post('/IBT/antigen/e2e-prototypes/live/action3/follow-up-test', function (req, res) {
   let symptoms = req.session.data['follow-up-test']
   if (symptoms == "Yes"){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/follow-up-test-reason')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/follow-up-test-reason')
   } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/government-pilot')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/government-pilot')
   }
 
 })
@@ -193,9 +193,9 @@ router.post('/IBT/antigen/e2e-prototypes/live/action3/government-pilot', functio
   let symptoms = req.session.data['do-you-have-symptoms']
   let followUpTest = req.session.data['follow-up-test']
   if (governmentPilot == "None of the above" && symptoms == "No" && followUpTest == "No") {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/reason-for-test')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/reason-for-test')
   } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/')
   }
 })
 
@@ -205,12 +205,12 @@ router.post('/IBT/antigen/e2e-prototypes/live/action3/reason-for-test', function
   let whoAsked = req.session.data['who-asked-for-test']
   let reason = req.session.data['reason-for-test']
   if (reason == "None of the above"){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/cannot-have-test')
-  } else if (whoAsked == "Contact tracers told me to get a test") {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/contact-tracing-code')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/cannot-have-test')
+  } else if (reason == "I’ve been in contact with someone who’s tested positive for coronavirus" && whoAsked == "Contact tracers told me to get a test") {
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/contact-tracing-code')
   }
   else {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/')
   }
 
 })
@@ -222,15 +222,15 @@ router.post('/IBT/antigen/e2e-prototypes/live/action3/security-check', function 
   let emailAddress = req.session.data['email']
   let car = req.session.data['do-you-have-a-car']
   if (car == "No" && postcode == "N0000" && emailAddress == "Yes"){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/eligible-for-home-test')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/eligible-for-home-test')
   } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/eligible-for-walk-in-test')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/eligible-for-walk-in-test')
   } else if (car == "No" && postcode == "N0000" && emailAddress !== "Yes") {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/call-us-for-test')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/call-us-for-test')
   } else if (car == "Yes" && emailAddress !== "Yes" && postcode == "N0000"){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/eligible-for-drive-through-test')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/eligible-for-drive-through-test')
   } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/how-will-you-get-test')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/how-will-you-get-test')
   }
 
 })
@@ -242,15 +242,15 @@ router.post('/IBT/antigen/e2e-prototypes/live/action3/home-ordering', function (
   let emailAddress = req.session.data['email']
   let car = req.session.data['do-you-have-a-car']
   if (car == "No" && postcode == "N0000" && emailAddress == "Yes"){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/eligible-for-home-test')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/eligible-for-home-test')
   } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/eligible-for-walk-in-test')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/eligible-for-walk-in-test')
   } else if (car == "No" && postcode == "N0000" && emailAddress !== "Yes") {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/call-us-for-test')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/call-us-for-test')
   } else if (car == "Yes" && emailAddress !== "Yes" && postcode == "N0000"){
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/eligible-for-drive-through-test')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/eligible-for-drive-through-test')
   } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/live/check-eligibility/how-will-you-get-test')
+    res.redirect('/IBT/antigen/e2e-prototypes/live/refer-and-triage/how-will-you-get-test')
   }
 
 })
@@ -604,11 +604,11 @@ router.post('/IBT/antigen/e2e-prototypes/research/action1/country', function (re
   if (country == "Scotland" ){
     res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-scotland')
   } else if(country == "Wales") {
-    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-wales')
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/service-unavailable')
   } else if(country == "Northern Ireland") {
     res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-northern-ireland')
   } else {
-    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/eligibility-england')
+    res.redirect('/IBT/antigen/e2e-prototypes/research/check-eligibility/service-unavailable')
   }
 })
 

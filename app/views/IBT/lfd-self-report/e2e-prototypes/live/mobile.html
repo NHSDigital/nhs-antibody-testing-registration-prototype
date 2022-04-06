@@ -1,0 +1,92 @@
+{% set version = "live" %}
+{% set pageTitle = "What's your mobile number?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+  <a class="govuk-back-link" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/got-email">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-self-report/e2e-prototypes/{{version}}/want-confirmations-2" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s mobile number?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+
+              </h1>
+            </legend>
+            <span id="email-hint" class="govuk-body">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              <p class="govuk-body">If they are a parent or guardian reporting for a child, they can use their own mobile number.</p>
+              <p class="govuk-body">For international numbers, include the country code (for example, +33).</p>
+              <p class="govuk-body">Contact details are only used to send messages related to this service, such as a text message confirming a test result has been successfully reported.</p>
+              <p class="govuk-body">If a test result is positive, the NHS may also use the details they supply for
+                <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing-and-tracing/nhs-test-and-trace-if-youre-contacted-after-testing-positive-for-coronavirus/">contact tracing</a>.</p
+              {% else %}
+              <p class="govuk-body">If you are a parent or guardian reporting for a child, you can use your own mobile number.</p>
+              <p class="govuk-body">For international numbers, include the country code (for example, +33).</p> 
+              <p class="govuk-body">Contact details are only used to send messages related to this service, such as a text message confirming a test result has been successfully reported.</p>
+              <p class="govuk-body">If a test result is positive, the NHS may also use the details you supply for
+                <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing-and-tracing/nhs-test-and-trace-if-youre-contacted-after-testing-positive-for-coronavirus/">contact tracing</a>.</p>
+              {% endif %}
+            </span>
+
+                    <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+                      <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                          Don't have a mobile number?
+                        </span>
+                      </summary>
+                      <div class="govuk-details__text">
+                          <!--  <p class="govuk-body"><a class="govuk-link" href="https://nhstt.fra1.qualtrics.com/jfe/form/SV_bqskiabRU9HTFkO" rel="noreferrer">Report any problems online</a> or call the contact centre:</p>            <ul class="govuk-list govuk-list--bullet">
+                              <li>119 if you’re in England, Wales or Northern Ireland</li>
+                              <li>0300 303 2713 if you’re in Scotland</li>
+                            </ul>
+                            <p class="govuk-body">Lines are open 7am to 11pm.</p> -->
+                            <p>Call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.</p>
+                      </div>
+                    </details>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-!-margin-top-3" for="mobile-phone-number">
+                Mobile phone number
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="mobile-phone-number" name="mobile-phone-number" type="tel" value="{{ data['mobile-phone-number'] }}">
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="mobile-phone-number-confirm">
+                Confirm mobile phone number
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="mobile-phone-number-confirm" name="mobile-phone-number-confirm" type="tel" value="{{ data['mobile-phone-number-confirm'] }}">
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+{% endblock %}

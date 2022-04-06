@@ -1,0 +1,168 @@
+{% set version = "friction" %}
+{% set pageTitle = "Order summary" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['email-address'] or 'psmith@example.co.uk' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/email-address">
+              Change<span class="govuk-visually-hidden">email address</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Home address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['home-address'] != "Select from 5 addresses" %}
+              {{ data['home-address'] }}
+              {% else %}
+              1 House, New Station St, Leeds, LS1 5DL
+              {% endif %}
+              <!-- {{ data['address-line-1'] }}<br>
+              {% if data['address-line-2'] %}
+              {{ data['address-line-2'] }}<br>
+              {% endif %}
+              {{ data['address-town'] }}<br>
+              {% if data['address-county'] %}
+              {{ data['address-county'] }}<br>
+              {% endif %}
+              {{ data['address-postcode'] }} -->
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/postcode">
+                Change<span class="govuk-visually-hidden">home address</span>
+              </a>
+            </dd>
+          </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            delivery address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['delivery-address-same'] == "No" and data['home-address'] != data['delivery-address'] and data['delivery-address'] != "Select from 5 addresses" %}
+            {{ data['delivery-address'] }}
+            {% else %}
+            Same as home address
+            {% endif %}
+            <!-- {% if data['delivery-address-same'] === 'No' and data['delivery-address-line-1'] == undefined %}{{ data['delivery-address'] }}{% endif %}
+            {% if data['delivery-address-same'] === 'No' and data['delivery-address-line-1'] !== undefined %}
+            {{ data['delivery-address-line-1'] }}<br>
+            {% if data['delivery-address-line-2'] %}
+            {{ data['delivery-address-line-2'] }}<br>
+            {% endif %}
+            {{ data['delivery-address-town'] }}<br>
+            {{ data['delivery-address-postcode'] }}
+            {% endif %}
+            {% if data['delivery-address-same'] === 'Yes' %}Same as home address{% endif %} -->
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/delivery-address">
+              Change<span class="govuk-visually-hidden"> delivery address</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-l">Disclaimer</h2>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <span class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Important</span>
+          <h2 class="govuk-heading-s govuk-!-margin-bottom-0">By ordering a pack of 7 rapid lateral flow home test kits, I confirm that:</h2>
+        </span>
+      </div>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>The information I've provided is up to date and correct</li>
+        <li>I agree with the <a href="#">Terms and conditions</a> and <a href="#">Privacy policy</a> of this service</li>
+        <li>I am happy to be contacted about my order</li>
+        <!-- <li>I am 18 or over</li> -->
+      </ul>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="confirm" name="confirm" type="checkbox" value="Yes" onclick="checkBox()">
+              <label class="govuk-label govuk-checkboxes__label" for="confirm">
+                Yes, I confirm that all the above apply
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <form action="/IBT/lfd-home-order/e2e-prototypes/{{version}}/confirmation" method="post">
+
+        <button id="button" class="govuk-button govuk-!-margin-bottom-3" type="submit" data-module="govuk-button">
+          Place order
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+<!-- <script type="text/javascript">
+
+  resetAttributes()
+
+  function checkBox(target) {
+    const checkbox = document.getElementById('confirm')
+    const button = document.getElementById('button')
+    checkbox.toggleAttribute('checked')
+    button.toggleAttribute('disabled')
+  }
+
+  function resetAttributes() {
+    const checkbox = document.getElementById('confirm')
+    const button = document.getElementById('button')
+    checkbox.removeAttribute('checked')
+    button.setAttribute('disabled')
+  }
+
+</script> -->
+
+{% endblock %}
+{% block bodyEnd %}
+  <div class="proto-action big">
+    <a href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/exit-screens/no-more-tests-available-v4">
+      <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">No tests page</div>
+    </a>
+  </div>
+{% endblock %}

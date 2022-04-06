@@ -1,0 +1,95 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set pageHeading = "Which group are you ordering test kits for?" %}
+{% set serviceName = electiveCareServiceName %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ electiveCareServiceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="bulk-or-individual-v1" method="post">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-6">
+            {{ pageHeading }}
+          </h1>
+          <p class="govuk-body">You can only order home tests for one group at a time.</p>
+        </legend>
+        <div class="govuk-form-group">
+          <div class="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="where-do-you-live" name="where-do-you-live" type="radio" value="england">
+              <label class="govuk-label govuk-radios__label" for="where-do-you-live">
+                Group 1
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
+              <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+                Group 2
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="where-do-you-live-3" name="where-do-you-live" type="radio" value="wales">
+              <label class="govuk-label govuk-radios__label" for="where-do-you-live-3">
+                Group 3
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="where-do-you-live-4" name="where-do-you-live" type="radio" value="northern-ireland">
+              <label class="govuk-label govuk-radios__label" for="where-do-you-live-4">
+                Group 4
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="where-do-you-live-4" name="where-do-you-live" type="radio" value="northern-ireland">
+              <label class="govuk-label govuk-radios__label" for="where-do-you-live-4">
+                Group 5
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="govuk-form-group">
+          <select class="govuk-select" id="sort" name="sort" style="width:300px;">
+            <option value="" selected>Group 1</option>
+            <option value="" selected>Group 2</option>
+            <option value="" selected>Group 3</option>
+            <option value="" selected>Group 4</option>
+            <option value="" selected>Group 5</option>
+            <option value="" selected>Group 6</option>
+            <option value="" selected>Group 7</option>
+            <option value="" selected>Group 8</option>
+            <option value="" selected>Group 9</option>
+            <option value="" selected>Group 10</option>
+            <option value="" selected>Group 11</option>
+            <option value="" selected>Group 12</option>
+            <option value="" selected>Group 13</option>
+            <option value="" selected>Group 14</option>
+            <option value="" selected>Group 15</option>
+          </select>
+        </div> -->
+        <hr class="govuk-section-break govuk-section-break--l">
+        <button class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+      </fieldset>
+    </form>
+    <hr class="govuk-section-break govuk-section-break--m">
+  </div>
+</div>
+
+
+
+{% endblock %}

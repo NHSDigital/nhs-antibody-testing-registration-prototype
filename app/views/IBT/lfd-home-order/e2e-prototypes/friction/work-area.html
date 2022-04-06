@@ -1,0 +1,105 @@
+{% set version = "friction" %}
+{% set pageTitle = "Select the area you work in" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-home-order/e2e-prototypes/{{version}}/action10/work-area" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+           <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="work-area-1" name="work-area" type="radio" value="Acute (hospital) trust" {{ checked("work-area", "Acute (hospital) trust") }}>
+            <label class="govuk-label govuk-radios__label" for="work-area-1">
+              Acute (hospital) trust
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="work-area-2" name="work-area" type="radio" value="Ambulance service trust" {{ checked("work-area", "Ambulance service trust") }}>
+            <label class="govuk-label govuk-radios__label" for="work-area-2">
+              Ambulance service trust
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="work-area-3" name="work-area" type="radio" value="Community health trust" {{ checked("work-area", "Community health trust") }}>
+            <label class="govuk-label govuk-radios__label" for="work-area-3">
+              Community health trust
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="work-area-4" name="work-area" type="radio" value="Community pharmacy" {{ checked("work-area", "Community pharmacy") }}>
+            <label class="govuk-label govuk-radios__label" for="work-area-4">
+              Community pharmacy
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="work-area-5" name="work-area" type="radio" value="Dentistry" {{ checked("work-area", "Dentistry") }}>
+            <label class="govuk-label govuk-radios__label" for="work-area-5">
+              Dentistry
+            </label>
+          </div>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-area-6" name="work-area" type="radio" value="General practice" {{ checked("work-area", "General practice") }}>
+                <label class="govuk-label govuk-radios__label" for="work-area-6">
+                  General practice
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-area-7" name="work-area" type="radio" value="Mental health trust" {{ checked("work-area", "Mental health trust") }}>
+                <label class="govuk-label govuk-radios__label" for="work-area-7">
+                  Mental health trust
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-area-8" name="work-area" type="radio" value="Optometry" {{ checked("work-area", "Optometry") }}>
+                <label class="govuk-label govuk-radios__label" for="work-area-8">
+                  Optometry
+                </label>
+              </div>
+              <div class="govuk-radios__divider">or</div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-area-9" name="work-area" type="radio" value="Other" {{ checked("work-area", "Other") }}>
+                <label class="govuk-label govuk-radios__label" for="work-area-9">
+                   Other services commissioned by NHS England
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
