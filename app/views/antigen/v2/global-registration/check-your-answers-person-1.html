@@ -23,10 +23,7 @@
 
 {% block content %}
   {% include "includes/gtm-noscript.html" %}
-<span class="govuk-caption-l">Section 3 of 4</span>
-<h1 class="govuk-heading-l">
- Your details
-</h1>
+
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
@@ -51,6 +48,68 @@
             </a>
           </dd>
         </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-birth-person-1-day'] or '2 June 1984' }} {{ data['date-of-birth-person-1-month'] }} {{ data['date-of-birth-person-1-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/date-of-birth-person-1">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Contact details
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['email-person-1'] == "same" %}
+            {{ data['email-address'] or 'psmith@example.co.uk' }}<br>
+            {% else %}
+            {{ data['email-address-person-1'] or 'jwilson@example.co.uk' }}<br>
+            {% endif %}
+            {% if data['mobile-number-person-1'] == "same" %}
+            {{ data['mobile-phone-number'] or '07771900900' }}<br>
+            {% else %}
+            {{ data['mobile-phone-number-person-1'] or '07771905678' }}<br>
+            {% endif %}
+            {% if data['landline-number-person-1'] == "same" %}
+            {{ data['landline-telephone-number'] or '077456788765' }}<br>
+            {% elseif data['landline-number-person-1'] == "different" %}
+            {{ data['landline-telephone-number-person-1'] or '1234567890'}}<br>
+            {% else %}
+
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/email-address-person-1">
+              Change
+              <span class="govuk-visually-hidden">contact details</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Country of residence
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['country-person-1'] or 'England' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/country-person-1">
+              Change
+              <span class="govuk-visually-hidden">country of residence</span>
+            </a>
+          </dd>
+        </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             GP registered address
@@ -92,78 +151,7 @@
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Country of residence
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['country-person-1'] or 'England' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/country-person-1">
-              Change
-              <span class="govuk-visually-hidden">country of residence</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Contact details
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['email-person-1'] == "same" %}
-            {{ data['email-address'] or 'psmith@example.co.uk' }}<br>
-            {% else %}
-            {{ data['email-address-person-1'] or 'jwilson@example.co.uk' }}<br>
-            {% endif %}
-            {% if data['mobile-number-person-1'] == "same" %}
-            {{ data['mobile-phone-number'] or '07771900900' }}<br>
-            {% else %}
-            {{ data['mobile-phone-number-person-1'] or '07771905678' }}<br>
-            {% endif %}
-            {% if data['landline-number-person-1'] == "same" %}
-            {{ data['landline-telephone-number'] or '077456788765' }}<br>
-            {% elseif data['landline-number-person-1'] == "different" %}
-            {{ data['landline-telephone-number-person-1'] or '1234567890'}}<br>
-            {% else %}
 
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/email-address-person-1">
-              Change
-              <span class="govuk-visually-hidden">contact details</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Date of birth
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['date-of-birth-person-1-day'] or '2 June 1984' }} {{ data['date-of-birth-person-1-month'] }} {{ data['date-of-birth-person-1-year'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/date-of-birth-person-1">
-              Change
-              <span class="govuk-visually-hidden">date of birth</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Medical record (male, female, other…)
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['gender-person-1'] or 'Female' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/gender-person-1">
-              Change
-              <span class="govuk-visually-hidden">medical record</span>
-            </a>
-          </dd>
-        </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Ethnicity
@@ -178,6 +166,22 @@
             </a>
           </dd>
         </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Medical record (male, female, other…)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['gender-person-1'] or 'Female' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/antigen/{{version}}/global-registration/edit-check-answers-person-1/gender-person-1">
+              Change
+              <span class="govuk-visually-hidden">medical record</span>
+            </a>
+          </dd>
+        </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             NHS number
@@ -192,6 +196,7 @@
             </a>
           </dd>
         </div>
+
       </dl>
 
       <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Vaccination and travel history</h2>
