@@ -918,11 +918,11 @@ router.post('/IBT/antigen/e2e-prototypes/research/action3/nhs-number-known-perso
 // Research version - Antigen Global Registration - NHS number known edit check answers route
 
 router.post('/IBT/antigen/e2e-prototypes/research/global-registration/edit-check-answers/action9/nhs-number-known', function (req, res) {
-  let nhsNumberKnown = req.session.data['nhs-number-known']
-  if (nhsNumberKnown == "Yes"){
-    res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/edit-check-answers/nhs-number')
-  } else {
+  let nhsNumber = req.session.data['nhs-number']
+  if (nhsNumber){
     res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/check-your-answers')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/edit-check-answers/nhs-number-known-error')
   }
 })
 
