@@ -7,7 +7,7 @@
   {% include "includes/ec-beta-banner-v1.html" %}
   {{ govukBackLink({
       text: "Back",
-      href: "javascript:window.history.go(-1);"
+      href: "homepage-block-v1"
     }) }}
 {% endblock %}
 
@@ -18,7 +18,7 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <h1 class="govuk-heading-xl govuk-!-margin-bottom-5"> {{ pageTitle }} </h1>
-          <p class="govuk-body"> You can only find patients with a procedure coming up in the next 10 days. </p><hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible"></div>
+          <p class="govuk-body"> You can only find patients with a procedure coming up in the next 11 days. </p><hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible"></div>
       </div>
       <h3 class="govuk-heading-m govuk-!-margin-bottom-3">Select a group</h3>
       <p class="govuk-hint">This will show test kits ordered by each group.</p>
@@ -37,7 +37,7 @@
             <h3 class="govuk-heading-m govuk-!-margin-bottom-3">Filter within group</h3>
             <div class="govuk-grid-row">
               <div class="govuk-label-wrapper govuk-grid-column-one-half">
-                <label class="govuk-label" for="search" style="white-space: nowrap">Search by patient name, order ID or NHS number</label>
+                <label class="govuk-label" for="search" style="white-space: nowrap">Search by patient first name, last name, order ID or NHS number</label>
                 <input id="search" autocomplete="off" spellcheck="false" maxlength="60" class="govuk-input">
               </div>
               <button type="submit" class="govuk-!-margin-top-6 govuk-grid-column-one-quarter govuk-button"> Search </button>
@@ -78,6 +78,7 @@
         </div>
       </form>
 
+      <h2 class="govuk-heading-m govuk-!-margin-top-4"> Displaying records 1 to 10 from Cardiology </h2>
       <p class="govuk-body-s govuk-!-margin-bottom-3"> Last updated 17 Nov 2021 at 10:38 <button class="govuk-body-s govuk-link button-styled-link govuk-!-margin-bottom-0"> Check for update </button>
       </p>
 
@@ -89,20 +90,21 @@
             <th scope="col" class="govuk-table__header"> NHS number </th>
             <th scope="col" class="govuk-table__header"> Mobile number </th>
             <th scope="col" class="govuk-table__header"> Order ID </th>
+            <th scope="col" class="govuk-table__header"> Test type </th>
             <th scope="col" class="govuk-table__header" aria-sort="none"> Test result </th>
             <th scope="col" class="govuk-table__header" aria-sort="none"> Status </th>
-            <th scope="col" class="govuk-table__header"></th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Lia Beatty<br> Male<br> 1 Jan 1999 </td>
-            <td class="govuk-table__cell">19 Nov 2021<br/><a class="govuk-link" href="#">Cancel</a></td>
-            <td class="govuk-table__cell">1967269858 </td>
+            <td class="govuk-table__cell">19 Nov 2021<br/><a class="govuk-link" href="cancel-confirm-v1">Cancel</a></td>
+            <td class="govuk-table__cell">1967269858</td>
             <td class="govuk-table__cell">+447860031259 </td>
             <td class="govuk-table__cell">5376775122 </td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1" style="font-size: 14px;">Negative</strong></td>
-            <td class="govuk-table__cell">Result ready<br/>18 Nov 2021</td>
+            <td class="govuk-table__cell">PCR </td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red govuk-!-margin-top-1" style="font-size: 14px;">Positive</strong></td>
+            <td class="govuk-table__cell">Result ready<br/>18 Nov 2021<br/><a class="govuk-link" href="order-details-v1">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">
@@ -110,88 +112,101 @@
             <br> Male
             <br> 1 Jan 1999 </td>
             <td class="govuk-table__cell">19 Nov 2021 <br>
-            <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-1" style="font-size: 14px;">Cancelled</strong></td>
+            <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-1" style="font-size: 14px;">Cancelled</strong>
+            </td>
             <td class="govuk-table__cell">1161949755 </td>
             <td class="govuk-table__cell">+447860031259 </td>
             <td class="govuk-table__cell">3541735907 </td>
+            <td class="govuk-table__cell">LFT </td>
             <td class="govuk-table__cell">—</td>
-            <td class="govuk-table__cell">Test kit sent to patient<br/>18 Nov 2021</td>
+            <td class="govuk-table__cell">Test kit ordered<br/>18 Nov 2021<br/><a class="govuk-link" href="order-details-v1">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Narciso Hirthe<br> Male<br> 1 Jan 1999 </td>
             <td class="govuk-table__cell">19 Nov 2021<br>
-            <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-1" style="font-size: 14px;">Cancelled</strong></td>
+            <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-1" style="font-size: 14px;">Cancelled</strong>
+            </td>
             <td class="govuk-table__cell">1628772808 </td>
             <td class="govuk-table__cell">+447860031259 </td>
             <td class="govuk-table__cell">9249976767 </td>
+            <td class="govuk-table__cell">LFT </td>
             <td class="govuk-table__cell">—</td>
-            <td class="govuk-table__cell">Test kit sent to patient<br/>18 Nov 2021</td>
+            <td class="govuk-table__cell">Test kit ordered<br/>18 Nov 2021<br/><a class="govuk-link" href="order-details-v1">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Aileen Goldner<br> Male<br> 1 Jan 1999 </td>
-            <td class="govuk-table__cell">19 Nov 2021<br/><a class="govuk-link" href="#">Cancel</a></td>
+            <td class="govuk-table__cell">19 Nov 2021<br/><a class="govuk-link" href="cancel-confirm-v1">Cancel</a></td>
             <td class="govuk-table__cell">1465815082 </td>
             <td class="govuk-table__cell">+447860031259 </td>
             <td class="govuk-table__cell">5911511050 </td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red govuk-!-margin-top-1" style="font-size: 14px;">Positive</strong></td>
-            <td class="govuk-table__cell">Result ready<br/>18 Nov 2021</td>
+            <td class="govuk-table__cell">PCR </td>
+            <td class="govuk-table__cell">—</td>
+            <td class="govuk-table__cell">Test kit on its way to lab<br/>18 Nov 2021<br/><a class="govuk-link" href="order-details-v1">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Samantha Jones<br> Female<br> 1 Jan 1999 </td>
             <td class="govuk-table__cell">20 Nov 2021<br/>
-            <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-1" style="font-size: 14px;">Cancelled</strong></td>
+            <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-1" style="font-size: 14px;">Cancelled</strong>
+            </td>
             <td class="govuk-table__cell">1053998724 </td>
             <td class="govuk-table__cell">+447860031259 </td>
             <td class="govuk-table__cell">0596229554 </td>
-            <td class="govuk-table__cell">—</td>
-            <td class="govuk-table__cell">Test kit on its way to lab<br/>18 Nov 2021</td>
+            <td class="govuk-table__cell">PCR </td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1" style="font-size: 14px;">Negative</strong></td>
+            <td class="govuk-table__cell">Result ready<br/>18 Nov 2021<br/><a class="govuk-link" href="order-details-v1">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
 
             <td class="govuk-table__cell">John Smith<br> Male<br> 1 Jan 1999 </td>
-            <td class="govuk-table__cell">21 Nov 2021<br/><a class="govuk-link" href="#">Cancel</a></td>
+            <td class="govuk-table__cell">21 Nov 2021<br/><a class="govuk-link" href="cancel-confirm-v1">Cancel</a></td>
             <td class="govuk-table__cell">1900821117 </td>
             <td class="govuk-table__cell">+447860031259 </td>
             <td class="govuk-table__cell">0006708086 </td>
+            <td class="govuk-table__cell">LFT </td>
             <td class="govuk-table__cell">—</td>
-            <td class="govuk-table__cell">Test kit on its way to lab<br/>18 Nov 2021</td>
+            <td class="govuk-table__cell">Test kit ordered<br/>18 Nov 2021<br/><a class="govuk-link" href="order-details-v1">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">John Smith<br> Male<br> 1 Jan 1999 </td>
             <td class="govuk-table__cell">21 Nov 2021<br/>
-            <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-1" style="font-size: 14px;">Cancelled</strong></td>
+            <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-1" style="font-size: 14px;">Cancelled</strong>
+            </td>
             <td class="govuk-table__cell">1900821117 </td>
             <td class="govuk-table__cell">+447860031259 </td>
             <td class="govuk-table__cell">5820441121 </td>
+            <td class="govuk-table__cell">PCR </td>
             <td class="govuk-table__cell">—</td>
-            <td class="govuk-table__cell">Test kit sent to patient<br/>18 Nov 2021</td>
+            <td class="govuk-table__cell">Test kit sent to patient<br/>18 Nov 2021<br/><a class="govuk-link" href="order-details-v1">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Hulda Nikolaus<br> Male<br> 1 Jan 1999 </td>
-            <td class="govuk-table__cell">19 Nov 2021<br/><a class="govuk-link" href="#">Cancel</a></td>
+            <td class="govuk-table__cell">19 Nov 2021<br/><a class="govuk-link" href="cancel-confirm-v1">Cancel</a></td>
             <td class="govuk-table__cell">1080920242 </td>
             <td class="govuk-table__cell">+447860031259 </td>
             <td class="govuk-table__cell">9702174086 </td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1" style="font-size: 14px;">Negative</strong></td>
-            <td class="govuk-table__cell">Result ready<br/>18 Nov 2021</td>
+            <td class="govuk-table__cell">LFT </td>
+            <td class="govuk-table__cell">—</td>
+            <td class="govuk-table__cell">Test kit ordered<br/>18 Nov 2021<br/><a class="govuk-link" href="order-details-v1">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Charlie King<br> Male<br> 1 Jan 1999 </td>
-            <td class="govuk-table__cell">19 Nov 2021<br/><a class="govuk-link" href="#">Cancel</a></td>
+            <td class="govuk-table__cell">19 Nov 2021<br/><a class="govuk-link" href="cancel-confirm-v1">Cancel</a></td>
             <td class="govuk-table__cell">1890362263 </td>
             <td class="govuk-table__cell">+447860031259 </td>
             <td class="govuk-table__cell">6229618871 </td>
+            <td class="govuk-table__cell">PCR </td>
             <td class="govuk-table__cell">—</td>
-            <td class="govuk-table__cell">Test kit ordered<br/>18 Nov 2021</td>
+            <td class="govuk-table__cell">Test kit ordered<br/>18 Nov 2021<br/><a class="govuk-link" href="order-details-v1">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Dana McLaughlin<br> Male<br> 1 Jan 1999 </td>
-            <td class="govuk-table__cell">19 Nov 2021<br/><a class="govuk-link" href="#">Cancel</a></td>
+            <td class="govuk-table__cell">19 Nov 2021<br/><a class="govuk-link" href="cancel-confirm-v1">Cancel</a></td>
             <td class="govuk-table__cell">1856809870 </td>
             <td class="govuk-table__cell">+447860031259 </td>
             <td class="govuk-table__cell">5848745855 </td>
-            <td class="govuk-table__cell">—</td>
-            <td class="govuk-table__cell">Test kit on its way to lab<br/>18 Nov 2021</td>
+            <td class="govuk-table__cell">PCR </td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1" style="font-size: 14px;">Negative</strong></td>
+            <td class="govuk-table__cell">Result ready<br/>18 Nov 2021<br/><a class="govuk-link" href="order-details-v1">Manage</a></td>
           </tr>
         </tbody>
       </table>
