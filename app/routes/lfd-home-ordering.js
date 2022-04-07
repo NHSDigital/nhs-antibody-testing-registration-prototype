@@ -1664,7 +1664,14 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/do-you-have-sy
   let country = req.session.data['country']
    if (country == "Scotland") {
      res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/scotland-gate')
-   } else {
+   }
+   if (country == "Northern Ireland") {
+     res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/guard-question-northern-ireland')
+   }
+   if (country == "Wales") {
+     res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/guard-question-wales')
+   }
+   else {
       res.redirect('/IBT/lfd-home-order/e2e-prototypes/friction/exit-screens/no-more-tests-available-v5')
    }
 
