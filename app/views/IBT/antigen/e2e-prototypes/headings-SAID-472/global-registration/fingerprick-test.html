@@ -22,103 +22,103 @@
 {% block content %}
 {% include "includes/gtm-noscript.html" %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/check-your-answers" method="post">
+    <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
 
-        <fieldset role="group" aria-describedby="antibodyOptIn-hint" class="govuk-fieldset">
+    <p class="govuk-body">
+      If they test positive for COVID-19, and they agree to antibody testing, we may send them antibody tests.
+    </p>
 
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-fieldset__heading">{{ pageTitle }}</h1>
-          </legend>
+    <p class="govuk-body">
+      Antibody tests help the NHS learn how likely people are to get COVID-19 a second time or after a vaccination, and the impact of variants.
+    </p>
 
-          <div id="antibodyOptIn-hint">
+    <p class="govuk-body">
+      Not everyone who tests positive for COVID-19 will be sent antibody tests because there is a limited number. If they are sent antibody tests, they will:
+    </p>
 
-            <p class="govuk-body">
-              If they test positive for COVID-19, and they agree to antibody testing, we may send them antibody tests.
-            </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>get a text telling them an antibody test is on its way</li>
+      <li>be posted 2 antibody tests 3 weeks apart to their home address</li>
+      <li>do a fingerprick blood test on themselves at home each time</li>
+      <li>need to post back the completed antibody tests</li>
+      <li>get the test results sent to them</li>
+    </ul>
 
-            <p class="govuk-body">
-              Antibody tests help the NHS learn how likely people are to get COVID-19 a second time or after a vaccination, and the impact of variants.
-            </p>
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Video: How to collect your blood sample
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="govuk-!-margin-bottom-5 govuk-!-margin-top-4 videoWrapper">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/BUgBOSgnMv0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </details>
+    <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/check-your-answers" method="post">
+      <fieldset role="group" aria-describedby="antibodyOptIn-hint" class="govuk-fieldset">
 
-            <p class="govuk-body">
-              Not everyone who tests positive for COVID-19 will be sent antibody tests because there is a limited number. If they are sent antibody tests, they will:
-            </p>
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          Would {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }} also be willing to do 2 separate antibody tests?
+        </legend>
 
-            <ul class="govuk-list govuk-list--bullet">
-              <li>get a text telling them an antibody test is on its way</li>
-              <li>be posted 2 antibody tests 3 weeks apart to their home address</li>
-              <li>do a fingerprick blood test on themselves at home each time</li>
-              <li>need to post back the completed antibody tests</li>
-              <li>get the test results sent to them</li>
-            </ul>
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            <span id="antibodyOptIn-hint">By selecting Yes you confirm that they are OK doing a fingerprick blood test, and do not take anticoagulants ('blood-thinning' medicines) or have a blood clotting disorder such as haemophilia.</span>
+          </strong>
+        </div>
 
-            <details class="govuk-details" data-module="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                  Video: How to collect your blood sample
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-                <div class="govuk-!-margin-bottom-5 govuk-!-margin-top-4 videoWrapper">
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/BUgBOSgnMv0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-              </div>
-            </details>
+  </div>
 
-            <h2 class="govuk-heading-m">Would {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }} also be willing to do 2 separate antibody tests?</h2>
-
-            <div class="govuk-warning-text">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                By selecting Yes you confirm that they are OK doing a fingerprick blood test, and do not take anticoagulants ('blood-thinning' medicines) or have a blood clotting disorder such as haemophilia.
-              </strong>
-            </div>
-
-          </div>
-
-          <div class="govuk-form-group">
-            <div class="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="fingerprick-test-1" name="fingerprick-test" type="radio" value="Yes. The antibody tests will be sent to your home address." {{ checked("fingerprick-test", "Yes. The antibody tests will be sent to your home address.") }}>
-                <label class="govuk-label govuk-radios__label" for="fingerprick-test-1">
-                  Yes, they are willing to do the antibody tests
-                </label>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="fingerprick-test-2" name="fingerprick-test" type="radio" value="No" {{ checked("fingerprick-test", "No") }}>
-                <label class="govuk-label govuk-radios__label" for="fingerprick-test-2">
-                  No, they are not willing to do the antibody tests
-                </label>
-              </div>
-            </div>
-          </div>
-
-        </fieldset>
-
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
-
-      </form>
-
+  <div class="govuk-form-group">
+    <div class="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="fingerprick-test-1" name="fingerprick-test" type="radio" value="Yes. The antibody tests will be sent to your home address."
+          {{ checked("fingerprick-test", "Yes. The antibody tests will be sent to your home address.") }}>
+        <label class="govuk-label govuk-radios__label" for="fingerprick-test-1">
+          Yes, they are willing to do the antibody tests
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="fingerprick-test-2" name="fingerprick-test" type="radio" value="No" {{ checked("fingerprick-test", "No") }}>
+        <label class="govuk-label govuk-radios__label" for="fingerprick-test-2">
+          No, they are not willing to do the antibody tests
+        </label>
+      </div>
     </div>
   </div>
 
-  <style media="screen">
-    .videoWrapper {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-}
-.videoWrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-  </style>
+  </fieldset>
+
+  <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+  </form>
+
+</div>
+</div>
+
+<style media="screen">
+  .videoWrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 */
+    height: 0;
+  }
+
+  .videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
 
 {% endblock %}
