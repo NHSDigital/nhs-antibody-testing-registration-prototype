@@ -15,123 +15,130 @@
   </p>
 </div>
 
-  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/home-registration/enter-barcode-number">Back</a>
+<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/home-registration/enter-barcode-number">Back</a>
 {% endblock %}
 
 {% block content %}
 {% include "includes/gtm-noscript.html" %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/antigen/e2e-prototypes/{{version}}/home-registration/check-your-answers" method="post">
+    <h1 class="govuk-heading-l">
+      {{ pageTitle }}
+    </h1>
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="swab-test-date-1-hint swab-test-date-2-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                {{ pageTitle }}
-              </h1>
-            </legend>
-            <span id="swab-test-date-1-hint" class="govuk-body">
-              Select the date and time you'll take your coronavirus test. If you've already taken the coronavirus test, tell us the date and time you did it.<br><br>
-              We need to know this so the lab can work out when the test is due to expire. If you select the wrong date and time, it could mean you receive an incorrect result.
-            </span>
-            <div class="govuk-warning-text govuk-!-margin-top-6">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                Do not take or post your test on a bank holiday
-              </strong>
+    <p class="govuk-body swab-test-date-1-hint">Select the date and time you'll take your coronavirus test. If you've already taken the coronavirus test, tell us the date and time you did it.</p>
+    <p class="govuk-body">We need to know this so the lab can work out when the test is due to expire. If you select the wrong date and time, it could mean you receive an incorrect result.
+    </p>
+
+    <div class="govuk-warning-text govuk-!-margin-top-6">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        Do not take or post your test on a bank holiday
+      </strong>
+    </div>
+
+    <p class="govuk-body">
+      If you're returning it by courier, do the test at least 1 hour before 8am on the morning of your collection.</p>
+
+    <form action="/IBT/antigen/e2e-prototypes/{{version}}/home-registration/check-your-answers" method="post">
+
+      <div class="govuk-form-group govuk-!-margin-top-6">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">Select a date</legend>
+          <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" value="21 October 2020" {{ checked("swab-test-date", "21 October 2020") }}>
+              <label class="govuk-label govuk-radios__label" for="swab-test-date-1">
+                Today, 21 October 2020
+              </label>
             </div>
-            <span id="swab-test-date-2-hint" class="govuk-body">
-              If you're returning it by courier, do the test at least 1 hour before 8am on the morning of your collection.<br><br>
-              <strong>Select a date</strong>
-            </span>
-            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="swab-test-date-1" name="swab-test-date" type="radio" value="21 October 2020" {{ checked("swab-test-date", "21 October 2020") }}>
-                <label class="govuk-label govuk-radios__label" for="swab-test-date-1">
-                  Today, 21 October 2020
-                </label>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" value="22 October 2020" {{ checked("swab-test-date", "22 October 2020") }}>
-                <label class="govuk-label govuk-radios__label" for="swab-test-date-2">
-                  Tomorrow, 22 October 2020
-                </label>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="swab-test-date-3" name="swab-test-date" type="radio" value="different" data-aria-controls="conditional-swab-test-date" {{ checked("swab-test-date", "different") }}>
-                <label class="govuk-label govuk-radios__label" for="swab-test-date-3">
-                    A different date
-                </label>
-              </div>
-              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-swab-test-date">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="swab-test-date-2" name="swab-test-date" type="radio" value="22 October 2020" {{ checked("swab-test-date", "22 October 2020") }}>
+              <label class="govuk-label govuk-radios__label" for="swab-test-date-2">
+                Tomorrow, 22 October 2020
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="swab-test-date-3" name="swab-test-date" type="radio" value="different" data-aria-controls="conditional-swab-test-date" {{ checked("swab-test-date", "different") }}>
+              <label class="govuk-label govuk-radios__label" for="swab-test-date-3">
+                A different date
+              </label>
+            </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-swab-test-date">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">When did you take your test?</legend>
+
+            <div class="govuk-date-input" id="date-of-swab-test">
+              <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label" for="different-date">
-                    When did you take your test?<br>
+                  <label class="govuk-label govuk-date-input__label" for="date-of-swab-test-day">
+                    Day
                   </label>
-                  <div class="govuk-date-input" id="date-of-swab-test">
-                    <div class="govuk-date-input__item">
-                      <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="date-of-swab-test-day">
-                          Day
-                        </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-swab-test-day" name="date-of-swab-test-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-swab-test-day'] }}">
-                      </div>
-                    </div>
-                    <div class="govuk-date-input__item">
-                      <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="date-of-swab-test-month">
-                          Month
-                        </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-swab-test-month" name="date-of-swab-test-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-swab-test-month'] }}">
-                      </div>
-                    </div>
-                    <div class="govuk-date-input__item">
-                      <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="date-of-swab-test-year">
-                          Year
-                        </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-of-swab-test-year" name="date-of-swab-test-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-swab-test-year'] }}">
-                      </div>
-                    </div>
-                  </div>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-swab-test-day" name="date-of-swab-test-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false"
+                    value="{{ data['date-of-swab-test-day'] }}">
                 </div>
               </div>
-              <div class="govuk-form-group govuk-!-margin-top-6">
-                <label class="govuk-label govuk-date-input__label" for="swab-test-time">
-                  <strong>Enter a time</strong><br>
-                  <span class="govuk-hint govuk-!-margin-top-2">For example, enter 9 then select am or pm</span>
-                  Hour
-                </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="swab-test-time" name="swab-test-time" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['swab-test-time'] }}">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-of-swab-test-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-swab-test-month" name="date-of-swab-test-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false"
+                    value="{{ data['date-of-swab-test-month'] }}">
+                </div>
               </div>
-              <div class="govuk-radios" data-module="govuk-radios">
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="swab-test-time-am" name="swab-test-time-ampm" type="radio" value="am" {{ checked("swab-test-time-ampm", "am") }}>
-                  <label class="govuk-label govuk-radios__label" for="swab-test-time-am">
-                    am
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-of-swab-test-year">
+                    Year
                   </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-of-swab-test-year" name="date-of-swab-test-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false"
+                    value="{{ data['date-of-swab-test-year'] }}">
                 </div>
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="swab-test-time-pm" name="swab-test-time-ampm" type="radio" value="pm" {{ checked("swab-test-time-ampm", "pm") }}>
-                  <label class="govuk-label govuk-radios__label" for="swab-test-time-pm">
-                    pm
-                  </label>
-                </div>
-             </div>
+              </div>
             </div>
           </fieldset>
         </div>
+      </div>
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      <div class="govuk-form-group govuk-!-margin-top-6">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">Enter a time</legend>
 
-      </form>
+          <div id="swab-test-time" class="govuk-hint">For example, enter 9 then select am or pm</div>
 
-    </div>
+          <label class="govuk-label" for="swab-test-time">Hour</label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="swab-test-time" name="swab-test-time" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['swab-test-time'] }}">
+
+          <div class="govuk-radios govuk-!-margin-top-6" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="swab-test-time-am" name="swab-test-time-ampm" type="radio" value="am" {{ checked("swab-test-time-ampm", "am") }}>
+              <label class="govuk-label govuk-radios__label" for="swab-test-time-am">
+                am
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="swab-test-time-pm" name="swab-test-time-ampm" type="radio" value="pm" {{ checked("swab-test-time-ampm", "pm") }}>
+              <label class="govuk-label govuk-radios__label" for="swab-test-time-pm">
+                pm
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
   </div>
+</div>
 
 {% endblock %}
-
