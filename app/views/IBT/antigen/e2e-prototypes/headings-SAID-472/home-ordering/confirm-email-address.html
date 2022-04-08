@@ -1,0 +1,59 @@
+{% set version = "headings-SAID-472" %}
+{% set pageTitle = "Check your email address" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{% if data['delivery-address-same'] ==='No' %}
+<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/home-ordering/delivery-address">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/home-ordering/home-address-question">Back</a>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/home-ordering/confirm-email-code" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="email-address-hint" class="govuk-body">
+            We'll send a confirmation code to this email address. You'll need to enter this code to continue.<br><br>
+            Check that you're happy for us to use this email address, or you can change it.<br><br>
+            If you're an essential worker and you have a work email address that you can access, it would help us if you used this. Change it to your work email, if you need to. If you do not have a work email address, a personal one is fine.
+          </span>
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-!-margin-top-7" for="email-address">
+                Email address
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+          </div>
+        </fieldset>
+
+        <button class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% set version = "headings-SAID-472" %}
+{% set pageTitle = "Which place does the person attend?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/work-or-study-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/institution-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="study-grade-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Which place does {{ data['first-name-person-1'] or "Jane" }} {{ data['last-name-person-1'] or "Wilson" }} attend?
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-!-margin-top-5">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-1-person-1" name="study-grade-person-1" type="radio" value="Nursery" {{ checked("study-grade-person-1", "Nursery") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-1-person-1">
+                  Nursery
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-2-person-1" name="study-grade-person-1" type="radio" value="Primary school" {{ checked("study-grade-person-1", "Primary school") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-2-person-1">
+                  Primary school
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-3-person-1" name="study-grade-person-1" type="radio" value="Secondary school" {{ checked("study-grade-person-1", "Secondary school") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-3-person-1">
+                  Secondary school
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-4-person-1" name="study-grade-person-1" type="radio" value="College" {{ checked("study-grade-person-1", "College") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-4-person-1">
+                  College
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-5-person-1" name="study-grade-person-1" type="radio" value="University" {{ checked("study-grade-person-1", "University") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-5-person-1">
+                  University
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-6-person-1" name="study-grade-person-1" type="radio" value="Other" {{ checked("study-grade-person-1", "Other") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-6-person-1">
+                  Other
+                </label>
+              </div>
+              <p class="govuk-body">or</p>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="study-grade-7-person-1" name="study-grade-person-1" type="radio" value="Prefer not to say" {{ checked("study-grade-person-1", "Prefer not to say") }}>
+                <label class="govuk-label govuk-radios__label" for="study-grade-7-person-1">
+                  Prefer not to say
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
