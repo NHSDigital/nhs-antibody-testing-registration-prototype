@@ -1,0 +1,161 @@
+{% set version = "headings-SAID-472" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/home-registration/swab-test-date">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ pageTitle }}</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you know how to return your test?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['kit-return-way-known'] or 'Yes' }}
+            </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/home-registration/kit-return-way-known">
+              Change
+              <span class="govuk-visually-hidden">do you know how to return your test?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Royal Mail barcode reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mail-barcode-reference-1'] or 'ZD438798206GB' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/home-registration/royal-mail-barcode">
+              Change
+              <span class="govuk-visually-hidden">royal mail barcode reference</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Test kit barcode reference
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['kit-barcode-reference-1'] or 'CHE00000102'}}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/antigen/e2e-prototypes/{{version}}/home-registration/royal-mail-barcode">
+                Change
+                <span class="govuk-visually-hidden">test kit barcode reference</span>
+              </a>
+            </dd>
+          </div>
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Test date and time
+            </dt>
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "1" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "01" %}
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-swab-test-day'] }} January {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            </dd>
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "2" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "02" %}
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-swab-test-day'] }} February {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            </dd>
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "3" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "03" %}
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-swab-test-day'] }} March {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            </dd>
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "4" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "04" %}
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-swab-test-day'] }} April {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            </dd>
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "5" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "05" %}
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-swab-test-day'] }} May {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            </dd>
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "6" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "06" %}
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-swab-test-day'] }} June {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            </dd>
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "7" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "07" %}
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-swab-test-day'] }} July {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            </dd>
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "8" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "08" %}
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-swab-test-day'] }} August {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            </dd>
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "9" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "09" %}
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-swab-test-day'] }} September {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            </dd>
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "10" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "10" %}
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-swab-test-day'] }} October {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            </dd>
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "11" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "11" %}
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-swab-test-day'] }} November {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            </dd>
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" and data['date-of-swab-test-month'] == "12" or data['swab-test-date'] == "different" and data['date-of-swab-test-month'] == "12" %}
+            <dd class="govuk-summary-list__value">
+              {{ data['date-of-swab-test-day'] }} December {{ data['date-of-swab-test-year'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            </dd>
+            {% endif %}
+            {% if data['swab-test-date'] !== "different" %}
+            <dd class="govuk-summary-list__value">
+              {{ data['swab-test-date'] }}: {{ data['swab-test-time'] }}{{ data['swab-test-time-ampm'] }}
+            </dd>
+            {% endif %}
+            <dd class="govuk-summary-list__actions">
+                <a href="/IBT/antigen/e2e-prototypes/{{version}}/home-registration/swab-test-date">
+                Change
+                <span class="govuk-visually-hidden">test date and time</span>
+                </a>
+            </dd>
+          </div>
+      </dl>
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/home-registration/security-check" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

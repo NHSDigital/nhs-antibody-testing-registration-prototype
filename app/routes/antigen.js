@@ -908,7 +908,7 @@ router.post('/IBT/antigen/e2e-prototypes/research/action3/address-person-1', fun
     }
 })
 
-// Research version - Antigen Global Registration - NHS number known route 
+// Research version - Antigen Global Registration - NHS number known route
 
 router.post('/IBT/antigen/e2e-prototypes/research/action3/nhs-number-known', function (req, res) {
   let nhsNumber = req.session.data['nhs-number']
@@ -7431,6 +7431,562 @@ router.post('/IBT/antigen/feature-design/UTO/action3/when-did-symptoms-start', f
   } else {
     res.redirect('/IBT/antigen/feature-design/UTO/name')
   }
+})
+
+
+// Heading SAID-472
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action1/country', function (req, res) {
+  let country = req.session.data['country']
+  if (country == "Scotland" ){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/eligibility-scotland')
+  } else if(country == "Wales") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/service-unavailable')
+  } else if(country == "Northern Ireland") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/eligibility-northern-ireland')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/service-unavailable')
+  }
+})
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/1-have-you-travelled-overseas-person-1', function (req, res) {
+  let OverseasTravel = req.session.data['have-you-travelled-overseas-person-1']
+  if (OverseasTravel == "No"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/previous-infection-person-1')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/1-which-countries-travelled-to-person-1')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Global registration - GP address same route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/gp-address-same', function (req, res) {
+  let gpAdressSame = req.session.data['gp-address-same']
+  if (gpAdressSame == "No"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/address')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/nhs-number-known')
+  }
+})
+
+// Heading SAID-472 - Antigen Global Registration - Delivery address same route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/delivery-address-same', function (req, res) {
+  let deliveryAdressSame = req.session.data['delivery-address-same']
+  if (deliveryAdressSame == "No"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/home-ordering/delivery-postcode')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/home-ordering/confirm-email-address')
+  }
+})
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/contact-tracing-code', function (req, res) {
+  let traceCode = req.session.data['contact-tracing-code']
+  let traceID = req.session.data['contact-tracing-code-id']
+  if (!traceCode){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/contact-tracing-code-error-2')
+  } else if (traceCode == "Yes" && !traceID ){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/contact-tracing-code-error')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/')
+  }
+})
+
+// Heading SAID-472 - Antigen Home Registration - Kit return way known route
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/kit-return-way-known', function (req, res) {
+  let returnWayKnown = req.session.data['kit-return-way-known']
+
+  if (returnWayKnown == "Yes"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/home-registration/order-id')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/home-registration/check-instructions')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Refer and Triage - Mobile number route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/mobile-number', function (req, res) {
+  let mobilePhoneNumber = req.session.data['mobile-number']
+  if (mobilePhoneNumber == "No"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/call-us')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/email-address')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Refer and Triage - Do you have symptoms route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action4/do-you-have-symptoms', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (symptoms == "Yes"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/when-did-symptoms-start')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/follow-up-test')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Refer and Triage - When did symptoms start route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/when-did-symptoms-start', function (req, res) {
+  let dateOfOnset = req.session.data['date-of-onset']
+  let yearOfOnset = req.session.data['symptoms-start-date-year']
+  if (!dateOfOnset){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/when-did-symptoms-start-error-2')
+  } else if (dateOfOnset == "different" && yearOfOnset !== "2020" && yearOfOnset !== "2021"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/when-did-symptoms-start-error')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/government-pilot')
+  }
+
+})
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/when-did-symptoms-start-person-1', function (req, res) {
+  let dateOfOnset = req.session.data['date-of-onset-person-1']
+  let yearOfOnset = req.session.data['symptoms-start-date-year-person-1']
+  if (!dateOfOnset){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/when-did-symptoms-start-person-1-error-2')
+  } else if (dateOfOnset == "different" && yearOfOnset !== "2020" && yearOfOnset !== "2021"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/when-did-symptoms-start-person-1-error')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/mobile-number-person-1')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Refer and Triage - When did symptoms start error route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/when-did-symptoms-start-error', function (req, res) {
+  let yearSymptomsStarted = req.session.data['symptoms-start-date-year']
+  if (yearSymptomsStarted != "2021"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/when-did-symptoms-start-error')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/government-pilot')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Refer and Triage - Follow up test
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/follow-up-test', function (req, res) {
+  let symptoms = req.session.data['follow-up-test']
+  if (symptoms == "Yes"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/follow-up-test-reason')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/government-pilot')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Refer and Triage - Government pilot route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/government-pilot', function (req, res) {
+  let governmentPilot = req.session.data['professional-pilot']
+  let symptoms = req.session.data['do-you-have-symptoms']
+  let followUpTest = req.session.data['follow-up-test']
+  if (governmentPilot == "None of the above" && symptoms == "No" && followUpTest == "No") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/reason-for-test')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/')
+  }
+})
+
+// Heading SAID-472 - Antigen Refer and Triage - Reason for test route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/reason-for-test', function (req, res) {
+  let whoAsked = req.session.data['who-asked-for-test']
+  let reason = req.session.data['reason-for-test']
+  if (reason == "None of the above"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/cannot-have-test')
+  } else if (reason == "I’ve been in contact with someone who’s tested positive for coronavirus" && whoAsked == "Contact tracers told me to get a test") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/contact-tracing-code')
+  }
+  else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Refer and Triage - Security check route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/security-check', function (req, res) {
+  let postcode = req.session.data['home-postcode']
+  let emailAddress = req.session.data['email']
+  let car = req.session.data['do-you-have-a-car']
+  if (car == "No" && postcode == "N0000" && emailAddress == "Yes"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/eligible-for-home-test')
+  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/eligible-for-walk-in-test')
+  } else if (car == "No" && postcode == "N0000" && emailAddress !== "Yes") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/call-us-for-test')
+  } else if (car == "Yes" && emailAddress !== "Yes" && postcode == "N0000"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/eligible-for-drive-through-test')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/how-will-you-get-test')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Refer and Triage - Order home test kit route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/home-ordering', function (req, res) {
+  let postcode = req.session.data['home-postcode']
+  let emailAddress = req.session.data['email']
+  let car = req.session.data['do-you-have-a-car']
+  if (car == "No" && postcode == "N0000" && emailAddress == "Yes"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/eligible-for-home-test')
+  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/eligible-for-walk-in-test')
+  } else if (car == "No" && postcode == "N0000" && emailAddress !== "Yes") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/call-us-for-test')
+  } else if (car == "Yes" && emailAddress !== "Yes" && postcode == "N0000"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/eligible-for-drive-through-test')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/how-will-you-get-test')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Refer and Triage - How will you get test route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/how-will-you-get-test', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "drive-through"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/visiting-drive-through')
+  } else if (wayToTest == "walk-in") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/visiting-walk-through')
+  } else if (wayToTest == "home testing") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/refer-and-triage/order-home-test-kit')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Global Registration - Ethnic group route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/ethnic-group', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+  if (ethnicGroup == "Asian or Asian British"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/ethnic-background-asian')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/ethnic-background-black')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/ethnic-background-mixed')
+  } else if (ethnicGroup == "White") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/ethnic-background-white')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/ethnic-background-another')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/work-or-study')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Global Registration - Currently in work route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/work-or-study', function (req, res) {
+  let inWork = req.session.data['work-or-study']
+  if (inWork == "Yes - they travel to a workplace"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/industry')
+  } else if (inWork == "Yes - they go to nursery, school, college or university"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/study-grade')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/1-have-you-travelled-overseas')
+  }
+
+})
+
+// Genomic variance - route 1
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/1-have-you-travelled-overseas', function (req, res) {
+  let OverseasTravel = req.session.data['have-you-travelled-overseas']
+  if (OverseasTravel == "No"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/previous-infection')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/1-which-countries-travelled-to')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Global Registration - NHS number known route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/nhs-number-known', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/nhs-number')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/fingerprick-test')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Global Registration - Do you have symptoms person 1 route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/do-you-have-symptoms-person-1', function (req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms-person-1']
+  if (symptoms == "Yes"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/when-did-symptoms-start-person-1')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/mobile-number-person-1')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Global Registration - Do you have symptoms person 1 route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/landline-number-person-1', function (req, res) {
+  let wayToTest = req.session.data['way-to-test']
+  if (wayToTest == "home testing"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/email-address-home-person-1')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/email-address-person-1')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Global Registration - Ethnic group person 1 route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/ethnic-group-person-1', function (req, res) {
+  let ethnicGroupPerson1 = req.session.data['ethnic-group-person-1']
+  if (ethnicGroupPerson1 == "Asian or Asian British"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/ethnic-background-asian-person-1')
+  } else if (ethnicGroupPerson1 == "Black, African, Black British or Caribbean") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/ethnic-background-black-person-1')
+  } else if (ethnicGroupPerson1 == "Mixed or multiple ethnic groups") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/ethnic-background-mixed-person-1')
+  } else if (ethnicGroupPerson1 == "White") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/ethnic-background-white-person-1')
+  } else if (ethnicGroupPerson1 == "Another ethnic group") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/ethnic-background-another-person-1')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/work-or-study-person-1')
+  }
+})
+
+// Heading SAID-472 - Antigen Global Registration - NHS number known person 1 route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/nhs-number-known-person-1', function (req, res) {
+  let nhsNumberKnown = req.session.data['nhs-number-known-person-1']
+  if (nhsNumberKnown == "Yes"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/nhs-number-person-1')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/check-your-answers-person-1')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Global Registration - Currently in work person 1 route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action4/work-or-study-person-1', function (req, res) {
+  let inWork = req.session.data['work-or-study-person-1']
+  if (inWork == "Yes - they travel to a workplace"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/industry-person-1')
+  } else if (inWork == "Yes - they go to nursery, school, college or university"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/study-grade-person-1')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/have-you-travelled-overseas-person-1')
+  }
+})
+
+// Live version- Antigen Global Registration - have you travelled overseas
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/have-you-travelled-overseas-person-1', function (req, res) {
+  let OverseasTravel = req.session.data['have-you-travelled-overseas']
+  if (OverseasTravel == "No"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/previous-infection-person-1')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/which-countries-travelled-to-person-1')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Global Registration - people confirmed route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/people-confirmed', function (req, res) {
+  let postcode = req.session.data['home-postcode']
+  let emailAddress = req.session.data['email']
+  let car = req.session.data['do-you-have-a-car']
+  let chosenWayToTest = req.session.data['way-to-test']
+  if (chosenWayToTest == "drive-through"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/find-test-site')
+  } else if (chosenWayToTest == "walk-in") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/find-test-site')
+  } else if (chosenWayToTest == "home testing") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/home-ordering/')
+  } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/home-ordering/')
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress !== "Yes") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/find-test-site')
+  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/find-test-site')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/find-test-site')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Global Registration - people confirmed person 1 route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/people-confirmed-person-1', function (req, res) {
+  let postcode = req.session.data['home-postcode']
+  let emailAddress = req.session.data['email']
+  let car = req.session.data['do-you-have-a-car']
+  let chosenWayToTest = req.session.data['way-to-test']
+  if (chosenWayToTest == "drive-through"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/find-test-site')
+  } else if (chosenWayToTest == "walk-in") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/find-test-site')
+  } else if (chosenWayToTest == "home testing") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/home-ordering/')
+  } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/home-ordering/')
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress !== "Yes") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/find-test-site')
+  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/find-test-site')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Site Appointment Booking - find a test site route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/find-test-site', function (req, res) {
+  let postcode = req.session.data['home-postcode']
+  let emailAddress = req.session.data['email']
+  let car = req.session.data['do-you-have-a-car']
+  let chosenWayToTest = req.session.data['way-to-test']
+  if (chosenWayToTest == "drive-through"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/choose-drive-through-site')
+  } else if (chosenWayToTest == "walk-in") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/choose-walk-through-site')
+  } else if (chosenWayToTest == "home testing") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/home-ordering/')
+  } else if (car == "No" && postcode == "N0000" && emailAddress == "Yes") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/home-ordering/')
+  } else if (car == "Yes" && postcode == "N0000" && emailAddress !== "Yes") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/choose-drive-through-site')
+  } else if (car == "No" && postcode !== "N0000" && emailAddress !== "Yes") {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/choose-walk-through-site')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/choose-drive-through-site')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Site Appointment Booking - Choose time prev day route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/choose-time-drive', function (req, res) {
+  let chosenType = req.session.data['way-to-test']
+  if (chosenType == "drive-through"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/vehicle-registration-number')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/confirm-appointment-drive')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Site Appointment Booking - Choose time prev day route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/choose-time-walk', function (req, res) {
+  let chosenTime = req.session.data['time']
+  if (chosenTime == "8:30am to 9:00am"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/time-not-available-walk')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/confirm-appointment-walk')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Site Appointment Booking - Choose time prev day route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/choose-time-prev-day-drive', function (req, res) {
+  let chosenType = req.session.data['way-to-test']
+  if (chosenType == "drive-through"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/vehicle-registration-number')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/confirm-appointment-drive')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Site Appointment Booking - Choose time prev day route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/choose-time-prev-day-walk', function (req, res) {
+  let chosenTime = req.session.data['time']
+  if (chosenTime == "8:30am to 9:00am"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/time-not-available-walk')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/appointment-booking/confirm-appointment-walk')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Order Home Test Kit - Confirm identity route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action5/confirm-identity', function (req, res) {
+  let confirmIdentity = req.session.data['confirm-identity']
+  if (confirmIdentity == "Yes"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/home-ordering/order-summary')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/govuk/get-coronavirus-test')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Order Home Test Kit - Home address question route
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action5/home-address-question', function (req, res) {
+  let deliveryAddressSame = req.session.data['delivery-address-same']
+  if (deliveryAddressSame == "Yes"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/home-ordering/confirm-email-address')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/home-ordering/delivery-postcode')
+  }
+
+})
+
+// Heading SAID-472 - Antigen Vaccine
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action8/vaccine', function (req, res) {
+  let vaccine = req.session.data['vaccine']
+  if (vaccine == "No"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/country')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/vaccine-date')
+  }
+
+})
+
+// Heading SAID-472 - Antigen vaccine-person-1
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action8/vaccine-person-1', function (req, res) {
+  let vaccinePerson1 = req.session.data['vaccine-person-1']
+  if (vaccinePerson1 == "No"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/gp-address-same-person-1')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/vaccine-date-person-1')
+  }
+
+})
+
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action3/gp-address-same-person-1', function (req, res) {
+  let gpAdressSame = req.session.data['gp-address-same-person-1']
+  if (gpAdressSame == "No"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/address-person-1')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/nhs-number-known-person-1')
+  }
+})
+
+// Live - Antigen vaccine-person-1
+router.post('/IBT/antigen/e2e-prototypes/headings-SAID-472/action8/vaccine-person-1', function (req, res) {
+  let vaccinePerson1 = req.session.data['vaccine-person-1']
+  if (vaccinePerson1 == "No"){
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/country-person-1')
+  } else {
+    res.redirect('/IBT/antigen/e2e-prototypes/headings-SAID-472/global-registration/vaccine-date-person-1')
+  }
+
 })
 
 module.exports = router
