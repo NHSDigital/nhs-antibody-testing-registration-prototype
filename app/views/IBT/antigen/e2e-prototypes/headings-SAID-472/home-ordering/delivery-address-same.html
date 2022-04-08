@@ -29,12 +29,12 @@
 
       <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+          <h1 class="govuk-fieldset__heading">
             {{ pageTitle }}
           </h1>
         </legend>
 
-        <div id="content-1">
+        <!--div id="content-1">
           <span id="post-code-hint" class="govuk-body">
             <strong class="govuk-!-font-size-27">
                 {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
@@ -44,7 +44,8 @@
                 {% endif %}
             </strong>
           </span>
-          <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">
+
+            <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="delivery-address-same-1" name="delivery-address-same" type="radio" value="Yes" {{ checked("delivery-address-same", "Yes") }}>
               <label class="govuk-label govuk-radios__label" for="delivery-address-same-1">
@@ -57,14 +58,41 @@
                 No
               </label>
             </div>
-            <!-- <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="delivery-address-same-3" name="delivery-address-same" type="radio" value="I don't know" {{ checked("delivery-address-same", "I don't know") }}>
-              <label class="govuk-label govuk-radios__label" for="delivery-address-same-3">
-                I don't know
-              </label>
-            </div> -->
           </div>
-        </div>
+
+        </div-->
+
+
+
+        <div class="govuk-form-group">
+         <fieldset class="govuk-fieldset">
+           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+             {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+               {{ data['home-address'] }}
+             {% else %}
+               {{ data['address-line-1'] or '5 Souterhead Road'}}, {{ data['home-postcode'] or 'LS1 3BE' }}
+             {% endif %}
+           </legend>
+           <div class="govuk-radios" data-module="govuk-radios">
+             <div class="govuk-radios" data-module="govuk-radios">
+             <div class="govuk-radios__item">
+               <input class="govuk-radios__input" id="delivery-address-same-1" name="delivery-address-same" type="radio" value="Yes" {{ checked("delivery-address-same", "Yes") }}>
+               <label class="govuk-label govuk-radios__label" for="delivery-address-same-1">
+                 Yes
+               </label>
+             </div>
+             <div class="govuk-radios__item">
+               <input class="govuk-radios__input" id="delivery-address-same-2" name="delivery-address-same" type="radio" value="No" {{ checked("delivery-address-same", "No") }}>
+               <label class="govuk-label govuk-radios__label" for="delivery-address-same-2">
+                 No
+               </label>
+             </div>
+           </div>
+           </div>
+
+         </fieldset>
+       </div>
+
 
       </fieldset>
 
