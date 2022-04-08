@@ -34,9 +34,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
 
-    <h1 class="govuk-heading-l govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
-
-
+    <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
     <h2 class="govuk-heading-m">Personal details</h2>
     <p class="govuk-body">Check that your personal details are correct. You can change them if they are not.</p>
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -87,7 +85,7 @@
           Contact details
         </dt>
         <dd class="govuk-summary-list__value">
-          {{ data['email-address'] or 'psmith@example.co.uk' }}</br>
+          {{ data['email-address'] or 'psmith@example.co.uk' }}<br>
           {% if data['mobile-number'] == "Yes" %}
           {{ data['mobile-phone-number'] or '07700 900 982'}}
           {% else %}
@@ -134,27 +132,23 @@
     </dl>
 
     {% if data['country'] == "England" %}
-
-
-      {% if data['nhs-testing-programme'] == "Yes" %}
-
     <h2 class="govuk-heading-m">NHS details</h2>
     <dl class="govuk-summary-list govuk-!-margin-bottom6">
       <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Work for the NHS
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['nhs-testing-programme'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/nhs-testing-programme">
-              Change
-              <span class="govuk-visually-hidden">work for the nhs</span>
-            </a>
-          </dd>
-        </div>
-
+        <dt class="govuk-summary-list__key">
+          Work for the NHS
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['nhs-testing-programme'] or 'No' }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/nhs-testing-programme">
+            Change
+            <span class="govuk-visually-hidden">work for the nhs</span>
+          </a>
+        </dd>
+      </div>
+      {% if data['nhs-testing-programme'] == "Yes" %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Area of work and occupation
@@ -219,7 +213,7 @@
 
       <input type="hidden" name="answers-checked" value="true">
 
-      <button type="submit" class="govuk-button" data-module="govuk-button">
+      <button type="submit" class="govuk-!-margin-top-5 govuk-button" data-module="govuk-button">
         Save and continue
       </button>
 
