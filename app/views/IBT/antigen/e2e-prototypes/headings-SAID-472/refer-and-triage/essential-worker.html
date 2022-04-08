@@ -1,0 +1,88 @@
+{% set version = "headings-SAID-472" %}
+{% set pageTitle = "Is the person who needs the test in a priority group?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['country'] == "Scotland" %}
+<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/refer-and-triage/eligibility-scotland">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/refer-and-triage/eligibility-northern-ireland">Back</a>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Priority groups
+    </h1>
+
+    <p class="govuk-body"> Priority groups help to make sure people who need tests the most get them first.</p>
+    <h3 class="govuk-heading-s govuk-!-margin-bottom-0">In England</h3>
+    <p class="govuk-body"><a href="https://www.gov.uk/guidance/essential-workers-prioritised-for-covid-19-testing" target="_blank" rel="noopener noreferrer" class="govuk-link"> Essential workers</a> such as NHS and
+      social care staff, teachers and transport staff are in a priority group. </p>
+    <h3 class="govuk-heading-s govuk-!-margin-bottom-0">In Scotland</h3>
+    <p class="govuk-body"><a href="https://www.gov.scot/publications/coronavirus-covid-19-getting-tested/pages/essential-worker-pcr-prioritisation/" target="_blank" rel="noopener noreferrer"
+        class="govuk-link">Essential workers</a>, those on the <a href="https://www.mygov.scot/covid-highest-risk" target="_blank" rel="noopener noreferrer" class="govuk-link">Highest Risk List </a> or <a
+        href="https://www.nhsinform.scot/covid19treatments" target="_blank" rel="noopener noreferrer" class="govuk-link"> eligible for new COVID-19 treatments</a> are in a priority group. </p>
+    <h3 class="govuk-heading-s govuk-!-margin-bottom-0">In Wales</h3>
+    <p class="govuk-body">People who have been told they are <a href="https://gov.wales/covid-19-treatments" target="_blank" rel="noopener noreferrer" class="govuk-link">eligible for new COVID-19 treatments </a> are in a
+      priority group. </p>
+    <h3 class="govuk-heading-s govuk-!-margin-bottom-0">In Northern Ireland</h3>
+    <p class="govuk-body">Essential workers, or those <a href="https://www.nidirect.gov.uk/articles/treatments-coronavirus-covid-19" target="_blank" rel="noopener noreferrer" class="govuk-link">eligible for
+        new COVID-19 treatments </a> are in a priority group. </p>
+
+    <form action="/IBT/antigen/e2e-prototypes/{{version}}/refer-and-triage/do-you-have-symptoms" method="post">
+
+      <div class="govuk-form-group govuk-!-margin-top-8">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            {{ pageTitle }}
+          </legend>
+          <div class="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="essential-worker-1" name="essential-worker" type="radio" value="Yes" {{ checked("essential-worker", "Yes") }}>
+              <label class="govuk-label govuk-radios__label" for="essential-worker-1">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="essential-worker-2" name="essential-worker" type="radio" value="No" {{ checked("essential-worker", "No") }}>
+              <label class="govuk-label govuk-radios__label" for="essential-worker-2">
+                No
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="essential-worker-3" name="essential-worker" type="radio" value="I don't know" {{ checked("essential-worker", "I don't know") }}>
+              <label class="govuk-label govuk-radios__label" for="essential-worker-3">
+                I do not know
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

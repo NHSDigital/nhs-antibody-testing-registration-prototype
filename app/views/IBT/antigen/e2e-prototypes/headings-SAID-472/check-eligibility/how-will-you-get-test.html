@@ -1,0 +1,119 @@
+{% set version = "headings-SAID-472" %}
+{% set pageTitle = "How do you want to get the coronavirus test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/action3/how-will-you-get-test" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="how-will-you-get-test-hint" class="govuk-body">
+              Based on your answers, these testing services are available to you.
+            </span>
+            <div class="govuk-warning-text govuk-!-margin-bottom-6 govuk-!-margin-top-5">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text govuk-!-font-size-19">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                If no tests are available online, do not call the contact centre to get a test. You will not be able to get a test through the contact centre.
+              </strong>
+            </div>
+
+            <div class="govuk-radios govuk-!-margin-top-5">
+              {% if data['do-you-have-a-car'] == "Yes" and data['follow-up-test-reason'] !== "After entering the UK, they got a positive day 2 travel test result"%}
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="way-to-test-1" name="way-to-test" type="radio" value="drive-through" {{ checked("way-to-test", "drive-through") }} aria-describedby="drive-through-1-hint drive-through-2-hint drive-through-3-hint drive-through-4-hint">
+                <label class="govuk-label govuk-radios__label" for="way-to-test-1">
+                  <span  class="govuk-body-l"><strong>At a drive-through test site</strong></span>
+                </label>
+                <div style="margin-left: -40px" class="govuk-!-margin-top-3">
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li><span id="drive-through-1-hint">you need to book your test as soon as possible</span></li>
+                    <li><span id="drive-through-2-hint">you or someone you live with must drive to the test site by car, small van or motorbike (some sites do not accept motorbikes)</span></li>
+                    <li><span id="drive-through-3-hint">at some test sites, you may be able to ask a staff member to do the test for you</span></li>
+                  </ul>
+                  <span id="drive-through-4-hint">
+                    <strong>Your nearest test site by road is Camden The Forum - Mobile Unit</strong><br><br>
+                    "Drive Through Only", This test site is outdoors in the corner of Greenwood Place nearest the O2 Forum. It is not at the Greenwood Centre so please do not enter that building, Greenwood Place<br>
+                    Kentish Town<br>
+                    NW5 1LB<br>
+                    <strong>3.6 miles</strong> by road<br><br>
+                    179 appointments available.
+                  </span>
+                </div>
+              </div>
+              {% endif %}
+              {% if data['follow-up-test-reason'] !== "After entering the UK, they got a positive day 2 travel test result" %}
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="way-to-test-2" name="way-to-test" type="radio" value="walk-in" {{ checked("way-to-test", "walk-in") }} aria-describedby="walk-in-1-hint walk-in-2-hint walk-in-3-hint walk-in-4-hint walk-in-5-hint">
+                <label class="govuk-label govuk-radios__label" for="way-to-test-2">
+                  <span class="govuk-body-l"><strong>At a walk-through test site</strong></span>
+                </label>
+                <div style="margin-left: -40px" class="govuk-!-margin-top-3">
+                <ul class="govuk-list govuk-list--bullet">
+                  <li><span id="walk-in-1-hint">you need to book your test slot as soon as possible</span></li>
+                  <li><span id="walk-in-2-hint">do not travel to the test site by public transport or taxi</span></li>
+                  <li><span id="walk-in-3-hint">you can choose to go by foot, bike or car (parking may not be available on site)</span></li>
+                  <li><span id="walk-in-4-hint">you can ask for a staff member to guide you as you do this test yourself</span></li>
+                  </ul>
+                  <span id="walk-in-5-hint" class="govuk-body-m">
+                    <strong>Your nearest test site by road is Alexandra Palace Paddock - Walk through site</strong><br><br>
+                    Alexandra Palace Paddock Car Park No 7 & 8<br>
+                    Haringey<br>
+                    N22 7AY<br>
+                    <strong>2.6 miles</strong> by road<br><br>
+                    208 appointments available.
+                  </span>
+                </div>
+              </div>
+              {% endif %}
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="way-to-test-3" name="way-to-test" type="radio" value="home testing" {{ checked("way-to-test", "home testing") }} aria-describedby="home-testing-1-hint home-testing-2-hint home-testing-3-hint home-testing-4-hint"">
+                <label class="govuk-label govuk-radios__label" for="way-to-test-3">
+                  <span  class="govuk-body-l"><strong>Home testing</strong></span>
+                </label>
+                <div style="margin-left: -40px" class="govuk-!-margin-top-3">
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li><span id="home-testing-1-hint">you can get a test kit for yourself and up to 3 other people you live with</span></li>
+                    <li><span id="home-testing-2-hint">if you're getting a test after a positive day 2 travel test, you can only order one test at a time</span></li>
+                    <li><span id="home-testing-3-hint">it is posted to your delivery address and should arrive the day after you order it</span></li>
+                    <li><span id="home-testing-4-hint">it’s important that you return your test as soon as possible after doing it</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

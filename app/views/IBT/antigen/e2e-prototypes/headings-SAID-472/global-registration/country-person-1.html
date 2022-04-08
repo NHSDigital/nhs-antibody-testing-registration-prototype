@@ -1,0 +1,75 @@
+{% set version = "headings-SAID-472" %}
+{% set pageTitle = "What country do they live in?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  {% if data['vaccine-person-1'] == "No" %}
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/vaccine-person-1">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/vaccine-date-person-1">Back</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/address-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                Where in the UK does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} live?
+              </h1>
+            </legend>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-1-person-1" name="country-person-1" type="radio" value="England" {{ checked("country-person-1", "England") }}>
+                <label class="govuk-label govuk-radios__label" for="country-1-person-1">
+                  England {% if data['country'] == "England" %}(the same as {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}) {% endif %}
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-2-person-1" name="country-person-1" type="radio" value="Wales" {{ checked("country-person-1", "Wales") }}>
+                <label class="govuk-label govuk-radios__label" for="country-2-person-1">
+                  Wales {% if data['country'] == "Wales" %}(the same as {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}) {% endif %}
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-3-person-1" name="country-person-1" type="radio" value="Northern Ireland" {{ checked("country-person-1", "Northern Ireland") }}>
+                <label class="govuk-label govuk-radios__label" for="country-3-person-1">
+                  Northern Ireland {% if data['country'] == "Northern Ireland" %}(the same as {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}) {% endif %}
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="country-4-person-1" name="country-person-1" type="radio" value="Scotland" {{ checked("country-person-1", "Scotland") }}>
+                <label class="govuk-label govuk-radios__label" for="country-4-person-1">
+                  Scotland {% if data['country'] == "Scotland" %}(the same as {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Appleseed' }}) {% endif %}
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
