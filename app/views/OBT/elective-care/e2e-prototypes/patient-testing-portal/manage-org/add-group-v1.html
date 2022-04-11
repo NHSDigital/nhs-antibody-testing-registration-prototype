@@ -1,6 +1,5 @@
-{% set version = "v1" %}
-{% set pageTitle = "Group management" %}
 {% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "Create a new group" %}
 
 {% extends "includes/layout.html" %}
 
@@ -14,34 +13,33 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/elective-care-testing/{{version}}/account-management/groups" method="post">
+      <form action="add-group-cya-v1" method="post">
 
         <fieldset class="govuk-fieldset" aria-describedby="create-group-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-              Cardiology
+              {{ pageTitle }}
             </h1>
           </legend>
           
-          <span id="create-group-hint" class="govuk-body">
-              We'll send the patient results for this group to this email address.
-          </span>
+          <p class="govuk-body">Create a group within your organisation, for example, a department or location.</p>
+          <p class="govuk-body">Then enter a shared group email address. We'll send the results of patients in this group to this email address.</p>
 
+    
           <div class="govuk-form-group govuk-!-margin-top-5">
-            <label class="govuk-label" for="group-3-name">
+            <label class="govuk-label" for="group-1-name">
               Group name
             </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="group-3-name" name="group-3-name" type="text" value="{{ data['group-3-name'] }}">
+            <input class="govuk-input govuk-!-width-two-thirds" id="group-1-name" name="group-1-name" type="text" value="Oncology">
           </div>
 
           <div class="govuk-form-group">
-            <label class="govuk-label govuk-!-margin-bottom-2" for="shared-email-address-3">
+            <label class="govuk-label" for="shared-email-address-1">
               Email address
             </label>
             <span class="govuk-hint">This should be a shared group email address</span>
             <input class="govuk-input govuk-!-width-two-thirds" id="shared-email-address-1" name="shared-email-address-1" type="text" value="{{ data['shared-email-address-1'] }}">
           </div>
-
 
         </fieldset>
 
