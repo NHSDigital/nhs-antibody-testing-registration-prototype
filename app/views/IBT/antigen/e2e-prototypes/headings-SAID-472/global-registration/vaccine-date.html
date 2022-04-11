@@ -24,32 +24,27 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <h1 class="govuk-heading-l">
+        Date of vaccine
+      </h1>
+
+      <p class="govuk-body">
+        We are asking this question to better understand how effective the vaccine is.
+      </p>
+      <p class="govuk-body">
+        If the person has only had 1 dose, tell us when they had this dose.
+      </p>
+      <p class="govuk-body">
+        If the person has had 2 or more doses, tell us when they had their most recent dose. This includes boosters.
+      </p>
+
+
       <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/country" method="post">
 
-        <fieldset class="govuk-fieldset" aria-describedby="vaccination-hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-            <h1 class="govuk-heading-xl">
-              Date of vaccine
-            </h1>
-          </legend>
-
-          <div id="vaccination-hint">
-            <p class="govuk-body">
-              We are asking this question to better understand how effective the vaccine is.
-            </p>
-            <p class="govuk-body">
-              If the person has only had 1 dose, tell us when they had this dose.
-            </p>
-            <p class="govuk-body">
-              If the person has had 2 or more doses, tell us when they had their most recent dose. This includes boosters.
-            </p>
-          </div>
-
-          <h2 class="govuk-heading-m">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
             When did {{ data['first-name'] or 'John' }} {{ data['last-name'] or 'Smith' }} have their most recent vaccine?
-          </h2>
-
-          <div class="govuk-form-group">
+          </legend>
             <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-4" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="vaccine-date-1" name="vaccine-date" type="radio" value="Less than 7 days ago" {{ checked("vaccine-date", "Less than 7 days ago") }}>
@@ -93,7 +88,6 @@
                 </div>
               </div>
             </div>
-          </div>
 
         </fieldset>
 

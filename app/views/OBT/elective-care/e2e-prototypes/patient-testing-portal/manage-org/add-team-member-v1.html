@@ -1,0 +1,84 @@
+{% set serviceName = oldElectiveCareServiceName %}
+{% set pageTitle = "Add a team member" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <fieldset class="govuk-fieldset" aria-describedby="create-group-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+
+          <p class="govuk-body">Add a team member so they can order home tests for elective care patients.</p>
+
+          <form action="add-team-member-cya-v1" method="post">
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="">
+                First name
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="" name="" type="text" value="John">
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="">
+                Last name
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="" name="" type="text" value="Smith">
+            </div>
+
+            <div class="govuk-form-group govuk-!-margin-bottom-8">
+              <label class="govuk-label" for="">
+                Email address
+              </label>
+              <span class="govuk-hint">This should be their work email address</span>
+              <input class="govuk-input govuk-!-width-two-thirds" id="" name="" type="text" value="john.smith@mail.com">
+            </div>
+          </fieldset>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h1 class="govuk-fieldset__heading">
+                  Which groups should this team member belong to?
+                </h1>
+              </legend>
+              <div class="govuk-checkboxes">
+                <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids" name="groupIds" class="govuk-checkboxes__input" checked>
+                  <label for="group-ids" class="govuk-label govuk-checkboxes__label"> Cardiology </label>
+                </div>
+                <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-2" name="groupIds" class="govuk-checkboxes__input" checked>
+                  <label for="group-ids-2" class="govuk-label govuk-checkboxes__label"> Gastroenterology </label>
+                </div>
+                <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-3" name="groupIds" class="govuk-checkboxes__input">
+                  <label for="group-ids-3" class="govuk-label govuk-checkboxes__label"> Radiology </label>
+                </div>
+                <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-4" name="groupIds" class="govuk-checkboxes__input">
+                  <label for="group-ids-4" class="govuk-label govuk-checkboxes__label"> Ophthalmology </label>
+                </div>
+                <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-5" name="groupIds" class="govuk-checkboxes__input">
+                  <label for="group-ids-5" class="govuk-label govuk-checkboxes__label"> Oncology </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <button class="govuk-button govuk-!-margin-top-6" type="submit" data-module="govuk-button">
+            Save and continue
+          </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

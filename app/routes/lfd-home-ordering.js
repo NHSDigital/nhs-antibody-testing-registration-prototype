@@ -1500,12 +1500,23 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/country', function
 
 router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/do-you-have-symptoms', function(req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
-  // if (symptoms == "No") {
-    res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/coronavirus-account')
-  // } else {
-  //   res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/different-test')
-  // }
+  let country = req.session.data['country']
+   if (country == "Scotland") {
+     res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/guard-question-scotland')
+   }
+   if (country == "Northern Ireland") {
+     res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/guard-question-northern-ireland')
+   }
+   if (country == "Wales") {
+     res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/guard-question-wales')
+   }
+   else {
+      res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/guard-question-england')
+   }
+
 })
+
+
 
 router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/email-address', function(req, res) {
   let emailAddress = req.session.data['email']

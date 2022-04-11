@@ -4,56 +4,57 @@
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        beta
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
 
-  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/home-address">Back</a>
+<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/home-address">Back</a>
 
 {% endblock %}
 
 {% block content %}
-  {% include "includes/gtm-noscript.html" %}
+{% include "includes/gtm-noscript.html" %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
     <form action="/IBT/antigen/e2e-prototypes/{{version}}/action3/gp-address-same" method="post">
 
-      <fieldset class="govuk-fieldset" aria-describedby="post-code-hint">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+      <fieldset class="govuk-fieldset" aria-describedby="post-code-hint-1 post-code-hint-2 post-code-hint-3">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-!-padding-bottom-6">
+          <h1 class="govuk-fieldset__heading">
             Is this the address registered with {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s GP?
           </h1>
         </legend>
 
-        <div id="content-1">
-          <span id="post-code-hint" class="govuk-body">
-            <strong class="govuk-!-font-size-27">
-              {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
-                {{ data['home-address'] }}
-              {% else %}
-                {{ data['address-line-1'] or '5 Souterhead Road'}}, 
-                  {% if data['address-line-2'] %}
-                    {{ data['address-line-2'] }}, 
-                  {% endif %}
-                  {% if data['address-town'] %}
-                    {{ data['address-town'] }},
-                  {% endif %}
-                {{ data['home-postcode'] or 'LS1 3BE' }}
-              {% endif %}
-            </strong><br><br>
-            This will help us find and update the GP record with their test results.<br><br>
-            <strong>If they’re not registered with a GP in the UK, select “I do not know”</strong>
-          </span>
-          <div class="govuk-radios govuk-!-margin-top-5 govuk-!-margin-bottom-7">
+        <p id="post-code-hint-1" class="govuk-body">
+          <strong class="govuk-!-font-size-27">
+            {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+            {{ data['home-address'] }}
+            {% else %}
+            {{ data['address-line-1'] or '5 Souterhead Road'}},
+            {% if data['address-line-2'] %}
+            {{ data['address-line-2'] }},
+            {% endif %}
+            {% if data['address-town'] %}
+            {{ data['address-town'] }},
+            {% endif %}
+            {{ data['home-postcode'] or 'LS1 3BE' }}
+            {% endif %}
+          </strong>
+        </p>
+        <p id="post-code-hint-2" class="govuk-body">This will help us find and update the GP record with their test results.</p>
+        <p id="post-code-hint-3" class="govuk-body govuk-!-font-weight-bold">If they’re not registered with a GP in the UK, select “I do not know”</p>
+
+        <div class="govuk-form-group">
+          <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="gp-address-same-1" name="gp-address-same" type="radio" value="Yes" {{ checked("gp-address-same", "Yes") }}>
               <label class="govuk-label govuk-radios__label" for="gp-address-same-1">
@@ -73,6 +74,7 @@
               </label>
             </div>
           </div>
+
         </div>
 
       </fieldset>
