@@ -1,0 +1,38 @@
+{% set serviceName = oldElectiveCareServiceName %}
+{% set pageTitle = "Details updated" %}
+{% set memberType = data['member-type'] %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+    {% include "includes/ec-beta-banner-v1.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <div class="govuk-!-margin-bottom-6 govuk-panel--confirmation govuk-panel">
+                <h1 class="govuk-panel__title"> You've updated the team members details </h1>
+                <div class="govuk-panel__body">
+                    <p class="govuk-!-font-size-19 govuk-!-margin-0" style="color:white"> John Smith </p>
+                    <p class="govuk-!-font-size-19 govuk-!-margin-0" style="color:white"> Cardiology, Gastroenterology </p>
+                    <p class="govuk-!-font-size-19 govuk-!-margin-0" style="color:white"> Signs in with: 
+                    {% if memberType == 'ep' %}
+                        Email &amp; password (Active)
+                    {% else %}
+                        Smartcard (Active)
+                    {% endif %}    
+                    </p>
+                </div>
+            </div>
+            <a href="manage-organisation-v1" class="govuk-button govuk-!-margin-top-2"> Finish </a>
+        </div>
+
+        <div style="background-color: #f3f2f1; padding: 1rem 2rem; position: fixed; top: 15%; right: 30px; border-radius: 20px">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Prototype links: </h3>
+            <ul style="list-style: none; padding-left: 0">
+                <li><a href="add-team-member-e1-v1">Error 1</a></li>
+                <li><a href="add-team-member-e2-v1">Error 2</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
