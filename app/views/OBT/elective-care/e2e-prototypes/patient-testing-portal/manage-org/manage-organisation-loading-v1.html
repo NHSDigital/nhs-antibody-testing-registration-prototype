@@ -1,0 +1,32 @@
+{% set serviceName = oldElectiveCareServiceName %}
+{% set pageTitle = "Manage groups and team members" %}
+{% extends "includes/layout.html" %}
+<link href="/public/stylesheets/custom/ec-styling.css" media="all" rel="stylesheet" type="text/css" />
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <div class="loading-container">
+        <h1 class="govuk-heading-l"> Elective care management </h1>
+        <p class="govuk-body">Please wait while we find groups</p>
+        <div class="ec__loading-spinner"></div>
+        <div class="govuk-inset-text">
+          <p class="govuk-body">Do not close this window or leave this service.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    setTimeout(function(){
+        window.location.href = 'manage-organisation-v1';
+    }, 2000);
+
+  </script>
+
+{% endblock %}
