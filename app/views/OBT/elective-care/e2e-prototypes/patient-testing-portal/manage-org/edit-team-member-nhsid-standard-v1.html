@@ -1,5 +1,6 @@
 {% set serviceName = oldElectiveCareServiceName %}
 {% set pageTitle = "Manage a team member" %}
+{% set memberType = "nhsid" %}
 {% extends "includes/layout.html" %}
 
 {% block beforeContent %}
@@ -11,36 +12,31 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <div aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary" id="error-summary" class="govuk-error-summary" style="display: none;">
-        <h2 id="error-summary-title" class="govuk-error-summary__title"> There is a problem </h2>
-        <div class="govuk-error-summary__body">
-          <ul class="govuk-list govuk-error-summary__list pl-0"></ul>
-        </div>
-      </div>
-      <h1 class="govuk-heading-xl"> Manage a team member </h1>
-      <form>
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-half">
-            <div class="govuk-form-group">
-              <label for="first-name" class="govuk-label"> First name </label><input id="first-name" autocomplete="off" spellcheck="false" maxlength="60" class="govuk-input" value="John"></div>
-            <div class="govuk-form-group">
-              <label for="last-name" class="govuk-label"> Last name </label><input id="last-name" autocomplete="off" spellcheck="false" maxlength="60" class="govuk-input" value="Smith"></div>
-          </div>
-        </div>
-
+      <form action="edit-team-member-cya-v1" method="post">
+        <h1 class="govuk-heading-xl"> Manage a team member </h1>
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
             <div class="govuk-form-group">
-              <label for="email" class="govuk-label"> Email address </label>
-              <span id="email-hint" class="govuk-hint"> This should be their work email address </span><input id="email" autocomplete="off" aria-describedby="email-hint" spellcheck="false" maxlength="254" class="govuk-input" value="john.smith@mail.com"></div>
+              <label class="govuk-label" for="">First name</label>
+              <p class="govuk-body govuk-!-margin-bottom-6">John</p>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="">Last name</label>
+              <p class="govuk-body govuk-!-margin-bottom-6">Smith</p>
+            </div>
+
+            <div class="govuk-form-group govuk-!-margin-bottom-5">
+              <label class="govuk-label" for="">Email address</label>
+              <span class="govuk-hint">This should be their work email address</span>
+              <p class="govuk-body">john.smith@mail.com</p>
+            </div>
           </div>
         </div>
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
-            <h4 class="govuk-heading-m  govuk-!-margin-top-6"> Sign in </h4>
-            <p class="govuk-body"> This team member can sign in with an <strong>email and password</strong>.</p>
-            <a class="govuk-link govuk-body" href="#" style="display: inline-block;">Send a new temporary password</a>
+            <h4 class="govuk-heading-m govuk-!-margin-top-6"> Sign in </h4>
+            <p class="govuk-body"> This team member can sign in with a <strong>Smartcard</strong>.</p>
             <details class="govuk-details" data-module="govuk-details">
               <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">
@@ -70,10 +66,9 @@
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
-            <h4 class="govuk-heading-m  govuk-!-margin-top-3"> Permissions</h4>
+            <h4 class="govuk-heading-m govuk-!-margin-top-3"> Permissions</h4>
             <p class="govuk-body">This team member has <strong>standard permissions</strong>.</p>
-            <p class="govuk-body">To change this, email the elective care support team at:</p>
-            <a href="#" class="govuk-link govuk-body" style="display: inline-block">ElectiveCareTesting@dhsc.gov.uk</a>
+            <p class="govuk-body"> Users who sign in with a Smartcard can only have standard permissions.</p>
             <details class="govuk-details govuk-!-margin-bottom-0" data-module="govuk-details">
               <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">Learn about team member permissions</span>
@@ -108,8 +103,8 @@
           </div>
         </div>
 
-        <h4 class="govuk-heading-m  govuk-!-margin-top-8"> Which groups should this team member belong to? </h4>
-        <div class="govuk-form-group" id="member-groups">
+        <h4 class="govuk-heading-m govuk-!-margin-top-8"> Which groups should this team member belong to? </h4>
+        <div class="govuk-form-group">
           <fieldset role="group" class="govuk-fieldset">
             <div class="govuk-checkboxes">
               <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids" name="groupIds" class="govuk-checkboxes__input" checked>
@@ -132,10 +127,14 @@
         </div>
         <div class="govuk-button-group govuk-!-margin-top-8">
           <button type="submit" class="govuk-button"> Save and continue </button>
-          <button class="govuk-button--secondary govuk-button"> Cancel </button>
+          <a href="manage-organisation-v1" class="govuk-button--secondary govuk-button"> Cancel </a>
         </div>
-      </form>
-    </div>
+      </div>
+      
+      {# to pass member type to CYA page #}
+      <input name="member-type" value={{memberType}} style="display:none">
+    
+    </form>
   </div>
 
 {% endblock %}
