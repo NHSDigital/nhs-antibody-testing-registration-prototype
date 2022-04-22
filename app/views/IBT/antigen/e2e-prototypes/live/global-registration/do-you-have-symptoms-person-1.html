@@ -1,5 +1,5 @@
 {% set version = "live" %}
-{% set pageTitle = "Do they currently have any coronavirus symptoms?" %}
+{% set pageTitle = "Coronavirus symptoms" %}
 
 {% extends "includes/layout.html" %}
 
@@ -29,35 +29,50 @@
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="symptoms-person-1-hint symptoms-2-person-1-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                            Does {{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }} currently have any coronavirus symptoms?
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                            {{ pageTitle }}
                         </h1>
                     </legend>
-                    <div class="govuk-radios" data-module="govuk-radios">
 
-                        <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="do-you-have-symptoms-1-person-1" name="do-you-have-symptoms-person-1" type="radio" value="Yes" {{ checked("do-you-have-symptoms-person-1", "Yes") }}>
-                            <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1-person-1">
-                                Yes, they currently have symptoms
-                            </label>
+                    <div class="govuk-warning-text govuk-!-margin-bottom-6">
+                        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                        <strong class="govuk-warning-text__text">
+                          <span class="govuk-warning-text__assistive">Warning</span>
+                          If the person who needs a test has a high temperature, a new continuous cough, or loss or change to their sense of smell or taste, they should stay at home. They can leave home to get or post a test.
+                        </strong>
+                      </div>
+
+                      <p class="govuk-body">
+                        Find out more about guidance across the UK. The following links open in a new tab:
+                      </p>
+            
+                        <ul class="govuk-list govuk-list--bullet">
+                          <li><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noopener noreferrer" class="govuk-link"> England: stay at home guidance<span class="govuk-visually-hidden"> (opens in new tab)</span></a></li>
+                          <li><a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noopener noreferrer" class="govuk-link"> Scotland: self-isolation guidance<span class="govuk-visually-hidden"> (opens in new tab)</span></a></li>
+                          <li><a href="https://gov.wales/self-isolation" target="_blank" rel="noopener noreferrer" class="govuk-link"> Wales: self-isolation guidance<span class="govuk-visually-hidden"> (opens in new tab)</span></a></li>
+                          <li><a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" target="_blank" rel="noopener noreferrer" class="govuk-link"> Northern Ireland: self-isolation guidance<span class="govuk-visually-hidden"> (opens in new tab)</span></a></li>
+                        </ul>
+
+                        <h2 class="govuk-heading-s">
+                            Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} currently have any coronavirus symptoms?
+                        </h2>
+                        <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="do-you-have-symptoms-1-person-1" name="do-you-have-symptoms-person-1" type="radio" value="Yes" {{ checked("do-you-have-symptoms-person-1", "Yes") }}>
+                                <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1-person-1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="do-you-have-symptoms-2-person-1" name="do-you-have-symptoms-person-1" type="radio" value="No" {{ checked("do-you-have-symptoms-person-1", "No") }}>
+                                <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2-person-1">
+                                    No
+                                </label>
+                            </div>
                         </div>
-                        <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="do-you-have-symptoms-2-person-1" name="do-you-have-symptoms-person-1" type="radio" value="No" {{ checked("do-you-have-symptoms-person-1", "No") }}>
-                            <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2-person-1">
-                                No, they do not currently have symptoms
-                            </label>
-                        </div>
-                    </div>
+
                 </fieldset>
             </div>
-
-            <div class="govuk-warning-text govuk-!-margin-bottom-9">
-                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-                <strong class="govuk-warning-text__text">
-                  <span class="govuk-warning-text__assistive">Warning</span>
-                  If they have a high temperature, a new continuous cough, or loss or change to their sense of smell or taste, they should stay at home until they get their result. They can leave home to get or post a test. <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" class="govuk-link">Check if people they live with need to self-isolate on NHS.UK.​</a>
-                </strong>
-              </div>
 
             <button class="govuk-button" data-module="govuk-button">Continue</button>
 
