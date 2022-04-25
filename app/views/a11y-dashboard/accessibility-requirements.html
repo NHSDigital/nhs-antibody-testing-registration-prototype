@@ -60,13 +60,15 @@
     <div class="nhsuk-width-container {{ containerClasses }}">
 
       <div class="nhsuk-back-link nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-0">
-        <a class="nhsuk-back-link__link" href="/a11y-dashboard/">
+        <a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
           <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
             <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
           </svg>
-          Back</a>
+          Go back</a>
+
+
       </div>
-      
+
         <main class="nhsuk-main-wrapper {{ mainClasses }}" id="maincontent" role="main">
 
           {% block content %}
@@ -78,11 +80,11 @@
               </h3>
             </div>
           </div>
-          
+
           <h2 class="nhsuk-heading-m nhsuk-u-margin-left-5 nhsuk-u-margin-right-5" style="color: #4c6272">
             Government accessibility requirements
           </h2>
-          
+
           <div class="nhsuk-card nhsuk-u-margin-bottom-0" id="guidelines">
             <div class="nhsuk-card__content collapsible">
               <h3 class="nhsuk-card__heading">
@@ -273,11 +275,40 @@
             </div>
           </div>
 
+        <!-- <p class="govuk-body nhsuk-u-margin-top-5 nhsuk-u-font-size-16" style="text-align:right;"><a class="nhsuk-link" href="#">Back to Top</a></p> -->
+        <div style="justify-content: end; text-align: right; display: flex;">
+          <button class="nhsuk-u-margin-top-5 nhsuk-u-font-size-16 link-styled-button" onclick="topFunction()" id="myBtn" title="Back to top">Back to top</button>
+        </div>
+        
+
+
           {% endblock %}
         </form>
       </main>
     </div>
     {% endblock %}
+
+    <script>
+//Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+    </script>
 
   </body>
 
