@@ -1,0 +1,57 @@
+{% set version = "live" %}
+{% set pageTitle = "What is your delivery address?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-home-order/e2e-prototypes/{{version}}/delivery-address" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="delivery-address-postcode-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="delivery-address-postcode-hint" class="govuk-hint govuk-!-margin-bottom-6">
+            This will be the address your test kit is sent to.
+          </span>
+          <div class="govuk-form-group govuk-!-margin-top-6">
+            <label class="govuk-label" for="delivery-address-postcode">
+              Postcode
+          </label>
+            <input class="govuk-input govuk-input--width-20" id="delivery-address-postcode" name="delivery-address-postcode" type="text" autocomplete="postal-code" value="{{ data['delivery-address-postcode'] }}">
+          </div>
+        </fieldset>
+<!--
+        <p class="govuk-body govuk-!-margin-bottom-8"><a href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/delivery-address-manual">Enter address manually</a></p> -->
+
+        <button class="govuk-button" data-module="govuk-button">Find address</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

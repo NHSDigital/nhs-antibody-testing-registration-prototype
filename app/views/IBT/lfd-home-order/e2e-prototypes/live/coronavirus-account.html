@@ -1,4 +1,4 @@
-{% set version = "live" %}
+{% set version = "friction" %}
 {% set pageTitle = "Sign in or create an account" %}
 
 {% extends "includes/layout.html" %}
@@ -15,15 +15,10 @@
     </p>
   </div>
 
-  {% if data['country'] == "Scotland" %}
-<a class="govuk-back-link" href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/guard-question-scotland">Back</a>
-{% elseif data['country'] == "Wales" %}
-<a class="govuk-back-link" href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/guard-question-wales">Back</a>
-{% elseif data['country'] == "Northern Ireland" %}
-<a class="govuk-back-link" href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/guard-question-northern-ireland">Back</a>
-{% else %}
-<a class="govuk-back-link" href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/guard-question-england">Back</a>
-{% endif %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
 
 {% endblock %}
 

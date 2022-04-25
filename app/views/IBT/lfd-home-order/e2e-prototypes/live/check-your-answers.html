@@ -1,4 +1,4 @@
-{% set version = "live" %}
+{% set version = "friction" %}
 {% set pageTitle = "Check your answers" %}
 
 {% extends "includes/layout.html" %}
@@ -15,7 +15,8 @@
   </p>
 </div>
 
-{% if data['nhs-testing-programme'] == "Yes" %}
+{% if data['test-reason-work'] == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" or
+data['test-reason-work'] == "You work for the NHS and have COVID-19 symptoms" %}
 <a class="govuk-back-link" href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/occupation">Back</a>
 
 {% else %}
@@ -34,9 +35,104 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
 
-    <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+
+    {% if data['country'] == "England" %}
+    <h2 class="govuk-heading-m">Reason for test</h2>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Reason
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <!-- You been asked to take a test by a doctor or healthcare professional, or you have an eligible health condition -->
+          {% if data['test-reason-category'] == "You been asked to take a test by a doctor or healthcare professional, or you have an eligible health condition" %}
+
+          <!-- Eligible for COVID-19 treatments -->
+          {% if data['test-reason-health'] == "You've been told by the NHS that you're eligible for COVID-19 treatments" %}
+          {% if data['qualifying-condition'] == "Yes" %}
+          Eligible for COVID-19 treatments
+          {% endif %}
+
+          <!-- Being admitted into [hospital] for a procedure or treatment -->
+          {% elseif data['test-reason-health'] == "Your doctor or healthcare professional has told you to get a test because you're being admitted into hospital for a procedure" %}
+          Being admitted into {{ data['hospital-name'] or 'Manchester Royal Infirmary' }} for a procedure or treatment
+
+          <!-- On [1 March 2022] a GP or healthcare professional asked you to get a test -->
+          {% elseif data['test-reason-health'] == "You've spoken to your GP or healthcare professional recently and they asked you to get a test" %}
+          On
+          {% if data['date-asked-month'] == "1" or data['date-asked-month'] == "01" %}
+          {{ data['date-asked-day'] }} January {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "2" or data['date-asked-month'] == "02" %}
+          {{ data['date-asked-day'] }} February {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "3" or data['date-asked-month'] == "03" %}
+          {{ data['date-asked-day'] }} March {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "4" or data['date-asked-month'] == "04" %}
+          {{ data['date-asked-day'] }} April {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "5" or data['date-asked-month'] == "05" %}
+          {{ data['date-asked-day'] }} May {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "6" or data['date-asked-month'] == "06" %}
+          {{ data['date-asked-day'] }} June {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "7" or data['date-asked-month'] == "07" %}
+          {{ data['date-asked-day'] }} July {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "8" or data['date-asked-month'] == "08" %}
+          {{ data['date-asked-day'] }} August {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "9" or data['date-asked-month'] == "09" %}
+          {{ data['date-asked-day'] }} September {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "10" %}
+          {{ data['date-asked-day'] }} October {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "11" %}
+          {{ data['date-asked-day'] }} November {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "12" %}
+          {{ data['date-asked-day'] }} December {{ data['date-asked-year'] }}
+          {% else %}
+          6 December 1976
+          {% endif %}
+          a GP or healthcare professional asked you to get a test
+
+          {% endif %}
+
+          <!-- You been asked to take a test for your job -->
+          {% elseif data['test-reason-category'] == "You been asked to take a test for your job" %}
+
+          <!-- Work for NHS in a patient-facing role and taking part in the NHS staff testing programme -->
+          {% if data['test-reason-work'] == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" %}
+          Work for NHS in a patient-facing role and taking part in the NHS staff testing programme
+
+          <!-- Work for the NHS and have COVID-19 symptoms -->
+          {% elseif data['test-reason-work'] == "You work for the NHS and have COVID-19 symptoms" %}
+          Work for the NHS and have COVID-19 symptoms
+
+          <!-- Work for NHS-commissioned independent healthcare provider -->
+          {% elseif data['test-reason-work'] == "You work for an NHS-commissioned independent healthcare provider in a patient-facing role looking after NHS patients" %}
+          Work for NHS-commissioned independent healthcare provider<br />
+          {{ data['provider-name'] or 'Nuffield Health'}}
+
+          <!-- Work in the adult social care sector-->
+          {% elseif data['test-reason-work'] == "You work in the adult social care sector" %}
+          Work in the adult social care sector<br />
+          {{ data['adult-social-role' or 'Social Worker'] }}
+
+          {% endif %}
+
+          <!-- Default fallback -->
+          {% else %}
+          Eligible for COVID-19 treatments
+
+          {% endif %}
+
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/IBT/lfd-home-order/e2e-prototypes/friction/test-reason-category">
+            Change<span class="govuk-visually-hidden"> reason</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+    {% endif %}
+
     <h2 class="govuk-heading-m">Personal details</h2>
-    <p class="govuk-body">Check that your personal details are correct. You can change them if they are not.</p>
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       <!-- <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -132,14 +228,12 @@
     </dl>
 
     {% if data['country'] == "England" %}
-    <h2 class="govuk-heading-m">NHS details</h2>
-    <dl class="govuk-summary-list govuk-!-margin-bottom6">
-      <div class="govuk-summary-list__row">
+    <!-- <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Work for the NHS
         </dt>
         <dd class="govuk-summary-list__value">
-          {{ data['nhs-testing-programme'] or 'No' }}
+          {{ data['nhs-testing-programme'] }}
         </dd>
         <dd class="govuk-summary-list__actions">
           <a href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/nhs-testing-programme">
@@ -147,20 +241,23 @@
             <span class="govuk-visually-hidden">work for the nhs</span>
           </a>
         </dd>
-      </div>
-      {% if data['nhs-testing-programme'] == "Yes" %}
+      </div> -->
+
+    {% if data['test-reason-work'] == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" or
+    data['test-reason-work'] == "You work for the NHS and have COVID-19 symptoms" %}
+    <h2 class="govuk-heading-m">NHS details</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom6">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Area of work and occupation
+          Area of work
         </dt>
         <dd class="govuk-summary-list__value">
-          {{ data['work-area'] }} <br>
-          {{ data['occupation-autocomplete'] }}
+          {{ data['work-area'] }}
         </dd>
         <dd class="govuk-summary-list__actions">
           <a href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/work-area">
             Change
-            <span class="govuk-visually-hidden">area of work and occupation</span>
+            <span class="govuk-visually-hidden">area of work</span>
           </a>
         </dd>
       </div>
@@ -184,7 +281,20 @@
         </dd>
       </div>
       {% endif %}
-
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Occupation
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['occupation-autocomplete'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/IBT/lfd-home-order/e2e-prototypes/{{version}}/occupation">
+            Change
+            <span class="govuk-visually-hidden">occupation</span>
+          </a>
+        </dd>
+      </div>
       {% if data['work-area'] != "Community pharmacy"
                   and data['work-area'] != "Dentistry"
                   and data['work-area'] != "General practice"
@@ -213,7 +323,7 @@
 
       <input type="hidden" name="answers-checked" value="true">
 
-      <button type="submit" class="govuk-!-margin-top-5 govuk-button" data-module="govuk-button">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
         Save and continue
       </button>
 
