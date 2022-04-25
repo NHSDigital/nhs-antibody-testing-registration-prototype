@@ -95,7 +95,7 @@
     </div>
   </div>
 
-  <div class="gem-c-modal-dialogue" data-module="modal-dialogue" id="modal-window-2" style="display: block;">
+  <div class="gem-c-modal-dialogue" data-module="modal-dialogue" data-open="" id="modal-window-2" style="display: block;">
     <div class="gem-c-modal-dialogue__overlay"></div>
     <dialog class="gem-c-modal-dialogue__box" aria-modal="true" aria-live="polite" role="dialog" autofocus tabindex="0" style="outline: none;">
       <div class="gem-c-modal-dialogue__header">
@@ -264,6 +264,12 @@
 
       addListener(manualEntryButton, manualEntryButtonClicked)
       addListener(closeButton2, closeButtonClicked)
+
+      closeButton2.addEventListener('keydown', function(e) {
+        if (e.keyCode == 9) {
+          e.preventDefault();
+        }
+      });
     }
 
     const barcodePicker = document.getElementById('barcodePicker')
