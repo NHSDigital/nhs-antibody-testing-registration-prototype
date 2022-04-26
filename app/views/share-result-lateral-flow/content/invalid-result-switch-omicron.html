@@ -38,7 +38,6 @@
      <ul class="govuk-list govuk-list--bullet">
        <li>get vaccinated</li>
        <li>handwash regularly</li>
-       <li>download the NHS COVID-19 app (in Wales), the Protect Scotland app (in Scotland) and the StopCovidNI app (in Northern Ireland)</li>
        <li>open windows if meeting indoors</li>
        <li>wear a face covering in crowded indoor settings</li>
        <li>stay home if unwell</li>
@@ -49,7 +48,6 @@
        <ul class="govuk-list govuk-list--bullet">
          <li>get vaccinated</li>
          <li>handwash regularly</li>
-         <li>download the NHS COVID-19 app (in Wales), the Protect Scotland app (in Scotland) and the StopCovidNI app (in Northern Ireland)</li>
          <li>open windows if meeting indoors</li>
          <li>wear a face covering in crowded indoor settings</li>
          <li>stay home if unwell</li>
@@ -58,28 +56,40 @@
    {% endif %}
 
    <h3 class="govuk-heading-s">In Scotland, Wales and Northern Ireland</h3>
-     <ul class="govuk-list govuk-list--bullet">
-         <li><a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19-general-advice" target="_blank" link="noreferrer">Scotland: symptoms guidance (opens in new tab)</a></li>
-         <li><a href="https://gov.wales/self-isolation" target="_blank" link="noreferrer">Wales: self-isolation guidance (opens in new tab)</a></li>
-         <li><a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" target="_blank" link="noreferrer">Northern Ireland: self-isolation guidance (opens in new tab)</a></li>
-     </ul>
-   <p>Self-isolate immediately. Find out more about self-isolation and treating symptoms:</p>
+   {% if data['whos-taking-the-test'] == "someone-else" %}
+   <p>If they get symptoms, follow the guidance (the following links open in a new tab):</p>
+   {% else %}
+   <p>If you get symptoms, follow the guidance (the following links open in a new tab):</p>
+   {% endif %}
+   <ul class="govuk-list govuk-list--bullet">
+       <li><a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19-general-advice" target="_blank" link="noreferrer">Scotland: symptoms guidance<span class="govuk-visually-hidden">(opens in new tab)</span></a></li>
+       <li><a href="https://gov.wales/self-isolation" target="_blank" link="noreferrer">Wales: self-isolation guidance<span class="govuk-visually-hidden">(opens in new tab)</span></a></li>
+       <li><a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" target="_blank" link="noreferrer">Northern Ireland: self-isolation guidance<span class="govuk-visually-hidden">(opens in new tab)</span></a></li>
+   </ul>
 
 
    {% if data['whos-taking-the-test'] == "someone-else" %}
-     <p class="govuk-body">If they're worried about any symptoms, including a cough that does not go away, they should contact 111
-       (England and Scotland only) or speak to their GP. In an emergency dial 999.</p>
+   <h3 class="govuk-heading-s">If they're worried</h3>
    {% else %}
-     <p class="govuk-body">If you're worried about any symptoms, including a cough that does not go away, you should contact 111
-       (England and Scotland only) or speak to your GP. In an emergency dial 999.</p>
+   <h3 class="govuk-heading-s">If you're worried</h3>
    {% endif %}
 
    {% if data['whos-taking-the-test'] == "someone-else" %}
-     <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">
-       Find out if they need to self-isolate</a></p>
+   <p class="govuk-body">If their symptons get worse or you need medical help:</p>
+     <ul class="govuk-list govuk-list--bullet">
+       <li><a href="https://digital.nhs.uk/services/nhs-111-online" target="_blank" link="noreferrer">use 111 online (opens in new tab)</a>.</li>
+       <li>call 111 if they're in England, Wales or Scotland</li>
+       <li>call a GP or GP out-of-hours service if they're in Northern Ireland</li>
+       <li>call 999 if they feel very unwell or think there's something seriously wrong</li>
+     </ul>
    {% else %}
-     <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">
-       Find out if you need to self-isolate</a></p>
+     <p class="govuk-body">If your symptons get worse or you need medical help:</p>
+       <ul class="govuk-list govuk-list--bullet">
+         <li><a href="https://digital.nhs.uk/services/nhs-111-online" target="_blank" link="noreferrer">use 111 online (opens in new tab)</a>.</li>
+         <li>call 111 if you're in England, Wales or Scotland</li>
+         <li>call a GP or GP out-of-hours service if you're in Northern Ireland</li>
+         <li>call 999 if you feel very unwell or think there's something seriously wrong</li>
+       </ul>
    {% endif %}
 
   <br>
@@ -92,45 +102,61 @@
     </span>
   </summary>
   <div class="govuk-details__text">
-    <h4 class="govuk-heading-m">The test result was positive</h4>
+    <h2 class="govuk-heading-m">The test result was positive</h2>
+
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <p>If the test result was positive, the person taking the test should take another rapid lateral flow test as soon as possible and report the result.</p>
+    <p>Use a new test kit, and not reuse anything from the first test kit.</p>
+    {% else %}
+    <p>If the test result was positive, you should take another rapid lateral flow test as soon as possible and report the result.</p>
+    <p>Use a new test kit, and not reuse anything from the first test kit.</p>
+    {% endif %}
 
     <div class="govuk-warning-text">
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text">
         <span class="govuk-warning-text__assistive">Warning</span>
         {% if data['whos-taking-the-test'] == "someone-else" %}
-           They should self-isolate immediately.
-           Find further self-isolation guidance for
-           <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">England</a>,
-           <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland</a>,
-           <a href="https://gov.wales/self-isolation" target="_blank" rel="noreferrer">Wales</a>
-           or <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts#toc-0" target="_blank" rel="noreferrer">Northern Ireland</a> (open in new tabs)
+           Follow the guidance for the country they are in
          {% else %}
-           Self-isolate immediately.
-           Find further self-isolation guidance for
-           <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noreferrer">England</a>,
-           <a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noreferrer">Scotland</a>,
-           <a href="https://gov.wales/self-isolation" target="_blank" rel="noreferrer">Wales</a>
-           or <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts#toc-0" target="_blank" rel="noreferrer">Northern Ireland</a> (open in new tabs)
+         Follow the guidance for the country you are in
         {% endif %}
       </strong>
     </div>
 
-    {% if data['whos-taking-the-test'] == "someone-else" %}
-    <p>If the test result was actually positive, the person who took the test should take another rapid lateral flow test as soon as possible and report the result, so contact tracing can begin.</p>
-    <p>They should use a new test kit, and not reuse anything from the first test kit.</p>
-    {% else %}
-    <p>If the test result was actually positive, you should take another rapid lateral flow test as soon as possible and report the result, so contact tracing can begin.</p>
-    <p>Use a new test kit, and not reuse anything from the first test kit.</p>
-    {% endif %}
+    <h3 class="govuk-heading-s">In England</h3>
 
-        <h4 class="govuk-heading-m">The test result was negative</h4>
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <p>They should try to stay at home and avoid contact with other people. Find out <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/"  target="_blank" link="noreferrer">when to stay at home and what to do (opens in a new tab)</a></p>
+     {% else %}
+     <p>You should try to stay at home and avoid contact with other people. Find out <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/"  target="_blank" link="noreferrer">when to stay at home and what to do (opens in a new tab)</a></p>
+     {% endif %}
+
+     <h3 class="govuk-heading-s">In Scotland</h3>
+
+     {% if data['whos-taking-the-test'] == "someone-else" %}
+     <p>They should try to stay at home and avoid contact with other people. Find out <a href="https://www.nhsinform.scot/isolation" target="_blank" link="noreferrer">when to stay at home and what to do (opens in a new tab)</a></p>
+      {% else %}
+      <p>You should try to stay at home and avoid contact with other people. Find out <a href="https://www.nhsinform.scot/isolation" target="_blank" link="noreferrer">when to stay at home and what to do (opens in a new tab)</a></p>
+      {% endif %}
+
+    <h3 class="govuk-heading-s">In Wales and Northern Ireland</h3>
+
+    <p>Self-isolate immediately. Find out more about self-isolation and treating symptoms:</p>
+
+     <ul class="govuk-list govuk-list--bullet">
+       <li><a href="https://gov.wales/self-isolation" target="_blank" link="noreferrer">Wales: self-isolation guidance (opens in new tab)</a></li>
+       <li><a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" target="_blank" link="noreferrer">Northern Ireland: self-isolation guidance (opens in new tab)</a></li>
+      </ul>
+
+
+        <h2 class="govuk-heading-m">The test result was negative</h2>
 
         {% if data['whos-taking-the-test'] == "someone-else" %}
-        <p class="govuk-body">If the test result was actually negative,
+        <p class="govuk-body">If the test result was negative,
           the person who took the test should take another rapid lateral flow test as soon as possible and report the result.</p>
         {% else %}
-        <p class="govuk-body">If the test result was actually negative,
+        <p class="govuk-body">If the test result was negative,
           you should take another rapid lateral flow test as soon as possible and report the result.</p>
         {% endif %}
 
@@ -140,12 +166,13 @@
         <p class="govuk-body">Use a new test kit, and do not reuse anything from the first test kit.</p>
         {% endif %}
 
-        <h4 class="govuk-heading-s">Get a new rapid lateral flow test kit</h4>
+        <h3 class="govuk-heading-s">Get a new lateral flow test kit</h3>
+
         {% if data['whos-taking-the-test'] == "someone-else" %}
-        <p class="govuk-body">If they do not have another rapid lateral flow test available, they can <a href="https://www.gov.uk/order-coronavirus-rapid-lateral-flow-tests">order a new test pack online</a> for home delivery.</p>
+        <p class="govuk-body">If they do not have another rapid lateral flow test available, they may be able to order a new test pack online for home delivery.</p>
         <p class="govuk-body">Or, <a href="https://maps.test-and-trace.nhs.uk/">find out where to collect rapid lateral flow test kits locally</a>.</p>
         {% else %}
-        <p class="govuk-body">If you do not have another rapid lateral flow test available, you can <a href="https://www.gov.uk/order-coronavirus-rapid-lateral-flow-tests">order a new test pack online</a> for home delivery.</p>
+        <p class="govuk-body">If you do not have another rapid lateral flow test available, you may be able to order a new test pack online for home delivery.</p>
         <p class="govuk-body">Or, <a href="https://maps.test-and-trace.nhs.uk/">find out where to collect rapid lateral flow test kits locally</a>.</p>
         {% endif %}
 
@@ -153,20 +180,21 @@
    </details>
 
 
-   <h3 class="govuk-heading-m">Help and advice</h3>
-   <p><a href="https://www.gov.uk/find-coronavirus-support" target="_blank" rel="noreferrer">
+   <h2 class="govuk-heading-m">Help and advice</h2>
+   <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/help-and-financial-support-while-youre-self-isolating/" target="_blank" rel="noreferrer">
      {% if data['whos-taking-the-test'] == "someone-else" %}
-     <p class="govuk-body">Find out what support they can get if they’re affected by coronavirus.</p>
+     Find out what support they can get if they’re affected by coronavirus
      {% else %}
-     <p class="govuk-body">Find out what support you can get if you’re affected by coronavirus.</p>
+     Find out what support you can get if you’re affected by coronavirus
      {% endif %}
    </a></p>
    {% if data['whos-taking-the-test'] == "someone-else" %}
-   <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS advice if they have to self isolate</a>
+   <!-- <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS advice if they have to self isolate</a> -->
    {% else %}
-   <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS advice if you have to self isolate</a>
+   <!-- <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">NHS advice if you have to self isolate</a> -->
    {% endif %}
-   <p><a href="https://www.covid19.nhs.uk/" target="_blank" rel="noreferrer">Get the free NHS COVID-19 app for England and Wales</a></p>
-   <p><a href="https://covid-19.hscni.net/stop-covid-ni-mobile-app/" target="_blank" rel="noreferrer">Get the free StopCOVID app for Northern Ireland</a></p>
-   <p><a href="https://protect.scot/" target="_blank" rel="noreferrer">Get the free Protect Scotland app</a></p>
+   <p><a href="https://www.covid19.nhs.uk/" target="_blank" rel="noreferrer">Get the free NHS COVID-19 app for Wales</a></p>
+   <!--  <p><a href="https://covid-19.hscni.net/stop-covid-ni-mobile-app/" target="_blank" rel="noreferrer">Get the free StopCOVID app for Northern Ireland</a></p>
+   <p><a href="https://protect.scot/" target="_blank" rel="noreferrer">Get the free Protect Scotland app</a></p> -->
+
   </div>
