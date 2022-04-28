@@ -2135,7 +2135,7 @@ router.post('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-r
   if (answer == 'yes') {
     res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/when-symptoms')
     } else {
-    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/daily-contact-testing')
+    res.redirect('/OBT/registration/e2e-prototypes/lft-pcr-with-results-live/single-route/enter-test-kit')
     }
 });
 
