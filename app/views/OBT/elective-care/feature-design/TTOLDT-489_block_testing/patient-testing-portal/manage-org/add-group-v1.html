@@ -1,0 +1,55 @@
+{% set serviceName = oldElectiveCareServiceName %}
+{% set pageTitle = "Create a new group" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="add-group-cya-v1" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="create-group-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          
+          <p class="govuk-body">Create a group within your organisation, for example, a department or location.</p>
+          <p class="govuk-body">Then enter a shared group email address. We'll send the results of patients in this group to this email address.</p>
+
+    
+          <div class="govuk-form-group govuk-!-margin-top-5">
+            <label class="govuk-label" for="group-1-name">
+              Group name
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="group-1-name" name="group-1-name" type="text" value="Oncology">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="shared-email-address-1">
+              Email address
+            </label>
+            <span class="govuk-hint">This should be a shared group email address</span>
+            <input class="govuk-input govuk-!-width-two-thirds" id="shared-email-address-1" name="shared-email-address-1" type="text" value="cardiology@mail.com">
+          </div>
+
+        </fieldset>
+
+        <button class="govuk-button  govuk-!-margin-top-6" type="submit" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
