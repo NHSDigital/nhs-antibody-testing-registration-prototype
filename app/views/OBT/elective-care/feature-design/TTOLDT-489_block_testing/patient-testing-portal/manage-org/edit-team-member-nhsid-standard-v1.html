@@ -1,0 +1,150 @@
+{% set serviceName = oldElectiveCareServiceName %}
+{% set pageTitle = "Manage a team member" %}
+{% set memberType = "nhsid" %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Important
+              </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+              <p class="govuk-notification-banner__heading">You can no longer order tests using this service.</p>
+          </div>
+      </div>
+      <form action="edit-team-member-cya-v1" method="post">
+        <h1 class="govuk-heading-xl"> Manage a team member </h1>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="">First name</label>
+              <p class="govuk-body govuk-!-margin-bottom-6">John</p>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="">Last name</label>
+              <p class="govuk-body govuk-!-margin-bottom-6">Smith</p>
+            </div>
+
+            <div class="govuk-form-group govuk-!-margin-bottom-5">
+              <label class="govuk-label" for="">Email address</label>
+              <span class="govuk-hint">This should be their work email address</span>
+              <p class="govuk-body">john.smith@mail.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <h4 class="govuk-heading-m govuk-!-margin-top-6"> Sign in </h4>
+            <p class="govuk-body"> This team member can sign in with a <strong>Smartcard</strong>.</p>
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    Learn about sign in
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Smartcard</h3>
+                <p class="govuk-body govuk-!-margin-bottom-2">Team members can securely view test results in the portal.</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>you cannot create Smartcard team members</li>
+                  <li>team members request Smartcard access when signing in</li>
+                  <li>an enhanced team member needs to approve this request</li>
+                </ul>
+
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Email and password</h3>
+                <p class="govuk-body govuk-!-margin-bottom-2">This option does not let team members view test results in this portal.</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>you can create team members who have email and password access</li>
+                  <li>team members can use the portal once they’ve accepted their email invitation</li>
+                  <li>if a team member starts using a Smartcard, mark their email and password account as inactive so they only have one way of signing in</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <h4 class="govuk-heading-m govuk-!-margin-top-3"> Permissions</h4>
+            <p class="govuk-body">This team member has <strong>standard permissions</strong>.</p>
+            <p class="govuk-body"> Users who sign in with a Smartcard can only have standard permissions.</p>
+            <details class="govuk-details govuk-!-margin-bottom-0" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">Learn about team member permissions</span>
+              </summary>
+              <div class="govuk-details__text">
+                    Depending on a team member's role, they will be given certain permissions. The available permissions are:
+                    
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2 govuk-!-margin-top-6"> Standard </h3>
+                <p class="govuk-body">Order home tests, check patient details, view test results (when signed in with a Smartcard) and confirm procedure cancellations.</p>
+
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2 govuk-!-margin-top-6"> Enhanced </h3>
+                <p class="govuk-body">Standard permissions, plus manage team members and groups.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <h4 class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-8"> Account status </h4>
+            <span class="govuk-hint govuk-!-margin-bottom-4">Remove sign in access by marking team member as inactive.</span>
+            <fieldset role="group" class="govuk-fieldset govuk-form-group">
+              <div class="govuk-radios">
+                <div class="govuk-radios__item"><input type="radio" id="status" name="status" class="govuk-radios__input" value="true" checked>
+                  <label for="status" class="govuk-label govuk-radios__label"> Active </label>
+                </div>
+                <div class="govuk-radios__item"><input type="radio" id="status-2" name="status" class="govuk-radios__input" value="false">
+                  <label for="status-2" class="govuk-label govuk-radios__label"> Inactive </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        <h4 class="govuk-heading-m govuk-!-margin-top-8"> Which groups should this team member belong to? </h4>
+        <div class="govuk-form-group">
+          <fieldset role="group" class="govuk-fieldset">
+            <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids" name="groupIds" class="govuk-checkboxes__input" checked>
+                <label for="group-ids" class="govuk-label govuk-checkboxes__label"> Cardiology </label>
+              </div>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-2" name="groupIds" class="govuk-checkboxes__input" checked>
+                <label for="group-ids-2" class="govuk-label govuk-checkboxes__label"> Gastroenterology </label>
+              </div>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-3" name="groupIds" class="govuk-checkboxes__input">
+                <label for="group-ids-3" class="govuk-label govuk-checkboxes__label"> Radiology </label>
+              </div>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-4" name="groupIds" class="govuk-checkboxes__input">
+                <label for="group-ids-4" class="govuk-label govuk-checkboxes__label"> Ophthalmology </label>
+              </div>
+              <div class="govuk-checkboxes__item"><input type="checkbox" id="group-ids-5" name="groupIds" class="govuk-checkboxes__input">
+                <label for="group-ids-5" class="govuk-label govuk-checkboxes__label"> Oncology </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="govuk-button-group govuk-!-margin-top-8">
+          <button type="submit" class="govuk-button"> Save and continue </button>
+          <a href="manage-organisation-v1" class="govuk-button--secondary govuk-button"> Cancel </a>
+        </div>
+      </div>
+      
+      {# to pass member type to CYA page #}
+      <input name="member-type" value={{memberType}} style="display:none">
+    
+    </form>
+  </div>
+
+{% endblock %}
