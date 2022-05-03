@@ -1881,4 +1881,257 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/work-area', fu
 
 })
 
+// VERSION DA ELIGIBILITY //
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/country', function(req, res) {
+  let country = req.session.data['country']
+  if (country == "England" || country == "Scotland" || country == "Northern Ireland" || country == "Wales") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/do-you-have-symptoms')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/error-screens/country')
+  }
+
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/do-you-have-symptoms', function(req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  let country = req.session.data['country']
+   if (country == "Scotland") {
+     res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/exit-screens/no-more-tests-available-scotland')
+   }
+   if (country == "Northern Ireland") {
+     res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/exit-screens/no-more-tests-available-ni')
+   }
+   if (country == "Wales") {
+     res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/exit-screens/no-more-tests-available-wales')
+   }
+   else {
+      res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/exit-screens/no-more-tests-available-england')
+   }
+
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/test-reason-category-england', function(req, res) {
+  let category = req.session.data['test-reason-category']
+  if (category == "You been asked to take a test by a doctor or healthcare professional, or you have an eligible health condition") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/test-reason-health')
+  } else if (category == "You been asked to take a test for your job") {
+      res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/test-reason-work')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/exit-screens/not-eligible-v2')
+  }
+})
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/test-reason-category-scotland', function(req, res) {
+  let category = req.session.data['test-reason-category']
+  if (category == "You are eligible for COVID-19 treatments") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/qualifying-condition')
+  } else if (category == "Another reason") {
+      res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/exit-screens/not-eligible-v2')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/coronavirus-account')
+  }
+})
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/test-reason-category-wales', function(req, res) {
+  let category = req.session.data['test-reason-category']
+  if (category == "A doctor or specialist has said you're eligible for new COVID-19 treatments") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/qualifying-condition')
+  } else if (category == "None of the above") {
+      res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/exit-screens/not-eligible-v2')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/coronavirus-account')
+  }
+})
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/test-reason-category-ni', function(req, res) {
+  let category = req.session.data['test-reason-category']
+  if (category == "A doctor or specialist has said you may be eligible for COVID-19 treatments") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/qualifying-condition')
+  } else if (category == "Another reason") {
+      res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/exit-screens/not-eligible-v2')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/coronavirus-account')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/test-reason-work', function(req, res) {
+  let work = req.session.data['test-reason-work']
+  if (work == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" || work == "You work for the NHS and have COVID-19 symptoms" ) {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/coronavirus-account')
+  } else if (work == "You work for an NHS-commissioned independent healthcare provider in a patient-facing role looking after NHS patients") {
+      res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/healthcare-provider-name')
+  } else if (work == "You work in the adult social care sector") {
+      res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/adult-social-care-role')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/exit-screens/not-eligible-v2')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/test-reason-health', function(req, res) {
+  let health = req.session.data['test-reason-health']
+  if (health == "You've been told by the NHS that you're eligible for COVID-19 treatments" ) {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/qualifying-condition')
+  } else if (health == "Your doctor or healthcare professional has told you to get a test because you're being admitted into hospital for a procedure") {
+      res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/hospital-name')
+  } else if (health == "You've spoken to your GP or healthcare professional recently and they asked you to get a test") {
+      res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/date-asked-to-test')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/exit-screens/not-eligible-v2')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/qualifying-condition', function(req, res) {
+  let qualify = req.session.data['qualifying-condition']
+  if (qualify == "Yes") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/coronavirus-account')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/exit-screens/not-eligible-v2')
+  }
+
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/email-address', function(req, res) {
+  let emailAddress = req.session.data['email']
+  if (emailAddress == "No") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/call-us')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/mobile-number')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/date-of-birth', function(req, res) {
+  let country = req.session.data['country']
+  if (country == "England") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/nhs-testing-programme')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/check-your-answers')
+  }
+})
+
+// router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action11/contact-with-positive', function(req, res) {
+//   let contactWithPositive = req.session.data['contact-with-positive']
+//   if (contactWithPositive == "No") {
+//     res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/work-from-home')
+//   } else {
+//     res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/daily-contact-testing')
+//   }
+// })
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/home-address-question', function(req, res) {
+  let deliveryAddressSame = req.session.data['delivery-address-same']
+  let country = req.session.data['country']
+  if (deliveryAddressSame == "No") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/delivery-postcode')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/confirm-email-address')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/nhs-testing-programme', function(req, res) {
+  let programme = req.session.data['nhs-testing-programme']
+  if (programme == "Yes") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/work-area')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/check-your-answers')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/nhs-staff-member', function(req, res) {
+  let nhsstaff = req.session.data['test-reason-work']
+  if (nhsstaff == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" || nhsstaff == "You work for the NHS and have COVID-19 symptoms") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/work-area')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/check-your-answers')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/enter-password', function(req, res) {
+  let country = req.session.data['country']
+  if (country == "England") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/nhs-testing-programme')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/check-your-answers')
+  }
+})
+
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/coronavirus-account', function(req, res) {
+  let signin = req.session.data['coronavirus-account']
+  if (signin == "Yes") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/user-account/login-email')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/name')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/user-account/action10/login-email', function(req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/user-account/enter-password')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/user-account/create-password')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/create-password', function(req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/user-account/create-password-error')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/user-account/check-email')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/check-mobile', function(req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/user-account/check-mobile-error')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/user-account/agreement')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/user-account/action10/home-page', function(req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/check-your-answers')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/name')
+  }
+
+})
+
+
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/contact-with-positive', function(req, res) {
+  let contactWithPositive = req.session.data['contact-with-positive']
+  if (contactWithPositive == "No") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/dct-unavailable')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/notified-how')
+  }
+
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/dct-opt-in', function(req, res) {
+  let dctOptIn = req.session.data['dct-opt-in']
+  if (dctOptIn == "No") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/self-isolate')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/name')
+  }
+
+})
+
+router.post('/IBT/lfd-home-order/feature-design/da-eligibility/action10/work-area', function(req, res) {
+  let workArea = req.session.data['work-area']
+  if (workArea == "Community pharmacy" || workArea == "Dentistry" || workArea == "General practice" || workArea == "Optometry" || workArea == "Other") {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/work-postcode')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/da-eligibility/trust')
+  }
+
+})
+
 module.exports = router

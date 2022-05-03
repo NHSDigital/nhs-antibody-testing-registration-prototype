@@ -1,0 +1,77 @@
+{% set version = "da-eligibility" %}
+{% set pageTitle = "What is your delivery address?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-home-order/feature-design/friction/confirm-email-address" method="post">
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+
+          <label class="govuk-label">
+            Postcode
+          </label>
+
+            <p class="govuk-!-margin-bottom-8">
+            <strong>{{ data['delivery-address-postcode'] | default('LS1 3BE') }}</strong>
+            <a href="/IBT/lfd-home-order/feature-design/{{version}}/delivery-postcode" class="govuk-!-margin-left-5">
+              Change
+              <span class="govuk-visually-hidden">your postcode</span>
+            </a>
+          </p>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-!-font-size-20" for="home-address">
+              Address
+            </label>
+            <select class="govuk-select" id="delivery-address" name="delivery-address">
+              <option>Select from 5 addresses</option>
+              <option value="Oxford House, Oxford Row, Leeds, {{ data['delivery-address-postcode'] | default('LS1 3BE') }}">Oxford House, Oxford Row, Leeds, {{ data['delivery-address-postcode'] | default('LS1 3BE') }}</option>
+              <option value="Office 14 New Station St, Leeds, LS1 5DL">Office 14 New Station St, Leeds, LS1 5DL</option>
+              <option value="38 Park Square North, Leeds, LS1 2NY">38 Park Square North, Leeds, LS1 2NY</option>
+              <option value="Lion House, 41, York Place, Leeds, LS1 2ED">Lion House, 41, York Place, Leeds, LS1 2ED</option>
+              <option value="1 Whitehall Quay Whitehall Rd, Leeds, LS1 4HR">1 Whitehall Quay Whitehall Rd, Leeds, LS1 4HR</option>
+            </select>
+          </div>
+
+        </fieldset>
+
+        <p class="govuk-body"><a href="/IBT/lfd-home-order/feature-design/{{version}}/delivery-address-manual">I can't find my address on the list</a></p>
+
+        <button class="govuk-button" type="submit" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
