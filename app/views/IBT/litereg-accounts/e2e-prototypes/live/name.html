@@ -1,5 +1,5 @@
 {% set version = "live" %}
-{% set pageTitle = "What's your name?" %}
+{% set pageTitle = "What’s your name?" %}
 
 {% extends "includes/layout-lite-registration.html" %}
 
@@ -24,35 +24,41 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-      {% if data['whos-taking-the-test'] == "someone-else" %}
-      What's the name of the person taking the test?
-      {% else %}
-      {{ pageTitle }}
-      {% endif %}
-      </h1>
-
       <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/date-of-birth" method="post">
 
-        <fieldset class="govuk-fieldset">
+        <fieldset role="group" class="govuk-fieldset">
 
-          <div class="govuk-form-group govuk-!-margin-top-6">
-            <label class="govuk-label" for="first-name">
-              First name
-            </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="first-name" name="first-name" type="text" value="{{ data['first-name'] }}">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-heading-xl">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              What’s the name of the person taking the test?
+              {% else %}
+              {{ pageTitle }}
+              {% endif %}
+            </h1>
+          </legend>
+
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="first-name">
+                  First name
+                </label>
+                <input class="govuk-input" maxlength="60" id="first-name" autocomplete="given-name" autocorrect="off" name="first-name" type="text" value="{{ data['first-name'] }}">
+              </div>
+    
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="last-name">
+                  Last name
+                </label>
+                <input class="govuk-input" maxlength="60" id="last-name" name="last-name" autocomplete="family-name" autocorrect="off" type="text" value="{{ data['last-name'] }}">
+              </div>
+            </div>
           </div>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="last-name">
-              Last name
-            </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="last-name" name="last-name" type="text" value="{{ data['last-name'] }}">
-          </div>
-
+          <button type="submit" class="govuk-!-margin-top-4 govuk-button" data-module="govuk-button">Continue</button>
+          
         </fieldset>
-
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
 
       </form>
 
