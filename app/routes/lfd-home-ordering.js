@@ -1900,15 +1900,24 @@ router.post('/IBT/lfd-home-order/feature-design/SAID-478/action10/do-you-have-sy
      res.redirect('/IBT/lfd-home-order/feature-design/SAID-478/no-more-tests-available-scotland')
    }
    if (country == "Northern Ireland") {
-     res.redirect('/IBT/lfd-home-order/feature-design/SAID-478/no-more-tests-available-ni')
+     if (symptoms == "Yes") {
+       res.redirect('/IBT/lfd-home-order/feature-design/SAID-478/coronavirus-account')
+     }
+     else{
+       res.redirect('/IBT/lfd-home-order/feature-design/SAID-478/no-more-tests-available-ni')
+     }
    }
    if (country == "Wales") {
-     res.redirect('/IBT/lfd-home-order/feature-design/SAID-478/no-more-tests-available-wales')
+     if (symptoms == "Yes") {
+       res.redirect('/IBT/lfd-home-order/feature-design/SAID-478/coronavirus-account')
+     }
+     else{
+       res.redirect('/IBT/lfd-home-order/feature-design/SAID-478/no-more-tests-available-wales')
+     }
    }
    else {
       res.redirect('/IBT/lfd-home-order/feature-design/SAID-478/no-more-tests-available-england')
    }
-
 })
 
 router.post('/IBT/lfd-home-order/feature-design/SAID-478/action10/test-reason-category-england', function(req, res) {
