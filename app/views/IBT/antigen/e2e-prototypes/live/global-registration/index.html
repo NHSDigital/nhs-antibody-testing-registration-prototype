@@ -30,47 +30,31 @@
 
       <form action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/landline-number" method="post">
 
-        <div class="govuk-form-group govuk-!-margin-bottom-8">
-          <fieldset class="govuk-fieldset" role="group">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                What's {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }}'s date of birth?
-              </h1>
-            </legend>
-            <!-- <span id="date-of-birth-hint" class="govuk-hint">
-              For example, 31 3 1980
-            </span> -->
-            <div class="govuk-date-input" id="date-of-birth">
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="date-of-birth-day">
-                    Day
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-birth-day" name="date-of-birth-day" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-birth-day'] }}">
-                </div>
-              </div>
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="date-of-birth-month">
-                    Month
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-birth-month" name="date-of-birth-month" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-birth-month'] }}">
-                </div>
-              </div>
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="date-of-birth-year">
-                    Year
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-of-birth-year" name="date-of-birth-year" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['date-of-birth-year'] }}">
+        <div class="govuk-form-group">
+          <fieldset role="group" class="govuk-fieldset">
+            <div autocomplete="bday">
+              <h1 class="govuk-heading-l"> What's John Lee's date of birth? </h1>
+              <div class="govuk-form-group">
+                <div class="govuk-date-input">
+                  <div class="govuk-date-input__item">
+                    <label for="date-of-birth-day" class="govuk-label"> Day </label>
+                    <input aria-describedby="date-of-birth-hint" autocomplete="bday-day" name="day" id="date-of-birth-day" inputmode="numeric" maxlength="2" label="Day" fieldsize="2" pattern="[0-9]*" class="govuk-input govuk-input--width-2" value="{{ data['date-of-birth-day'] }}">
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <label for="date-of-birth-month" class="govuk-label"> Month </label>
+                    <input aria-describedby="date-of-birth-hint" autocomplete="bday-month" name="month" id="date-of-birth-month" inputmode="numeric" maxlength="2" label="Month" fieldsize="2" pattern="[0-9]*" class="govuk-input govuk-input--width-2" value="{{ data['date-of-birth-month'] }}">
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <label for="date-of-birth-year" class="govuk-label"> Year </label>
+                    <input aria-describedby="date-of-birth-hint" autocomplete="bday-year" name="year" id="date-of-birth-year" inputmode="numeric" maxlength="4" label="Year" fieldsize="4" pattern="[0-9]*" class="govuk-input govuk-date-input__item govuk-input--width-4" value="{{ data['date-of-birth-year'] }}">
+                  </div>
                 </div>
               </div>
             </div>
           </fieldset>
         </div>
 
-
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <button class="govuk-!-margin-top-4 govuk-button" data-module="govuk-button">Continue</button>
 
       </form>
 
