@@ -1502,16 +1502,16 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/do-you-have-sympto
   let symptoms = req.session.data['do-you-have-symptoms']
   let country = req.session.data['country']
    if (country == "Scotland") {
-     res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/guard-question-scotland')
+     res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/exit-screens/scotland-gate')
    }
    if (country == "Northern Ireland") {
-     res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/guard-question-northern-ireland')
+     res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/exit-screens/guard-question-northern-ireland')
    }
    if (country == "Wales") {
-     res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/guard-question-wales')
+     res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/exit-screens/guard-question-wales')
    }
    else {
-      res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/guard-question-england')
+      res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/exit-screens/no-more-tests-available-v5')
    }
 
 })
