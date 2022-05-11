@@ -1886,8 +1886,8 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/friction/action10/work-area', fu
 router.post('/IBT/lfd-home-order/feature-design/SAID-478/action10/country', function(req, res) {
   let country = req.session.data['country']
   if (country == "England" || country == "Scotland" || country == "Northern Ireland" || country == "Wales") {
-    // res.redirect('/IBT/lfd-home-order/feature-design/SAID-478/do-you-have-symptoms')
-    res.redirect('/IBT/lfd-home-order/feature-design/SAID-478/do-you-have-symptoms-v2')
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-478/do-you-have-symptoms')
+    // res.redirect('/IBT/lfd-home-order/feature-design/SAID-478/do-you-have-symptoms-v2')
   } else {
     res.redirect('/IBT/lfd-home-order/feature-design/SAID-478/error-screens/country')
   }
