@@ -1,0 +1,59 @@
+{% extends "includes/layout.html" %}
+{% set pageHeading = "How do you want to order these rapid lateral flow tests?" %}
+{% set serviceName = electiveCareServiceName %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ electiveCareServiceName }} - GOV.UK
+{% endblock %}
+
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="" action="" method="post">
+        {{ govukRadios({
+            idPrefix: "cuUploadType",
+            name: "cuUploadType",
+            fieldset: {
+              legend: {
+                text: pageHeading,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-8"
+              }
+            },
+            errorMessage: {
+              text: "Select an option"
+            },
+            items: [
+              {
+                value: "bulk",
+                text: "Order in bulk",
+                hint: {
+                  html: 'Use our spreadsheet to add details for up to 100 people at a time'
+                }
+              },
+              {
+                value: "1by1",
+                text: "Order one by one",
+                hint: {
+                  html: "Use an online form to add details one by one"
+                }
+              }
+            ]
+          }) }}
+        <input class="govuk-button govuk-!-margin-top-3" type="submit" value="Continue">
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

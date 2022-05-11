@@ -1,0 +1,62 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set pageHeading = "Confirm you want to reorder a PCR test kit" %}
+{% set serviceName = electiveCareServiceName %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ electiveCareServiceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="5" method="post">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-5">
+              {{ pageHeading }}
+            </h1>
+          </legend>
+
+          <div class="govuk-warning-text govuk-!-margin-top-2">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text">
+              <span class="govuk-warning-text__assistive">Warning</span>
+              If you continue, the patients' previous orders will be cancelled.
+            </strong>
+          </div>
+
+          <p class="govuk-body">If they have already received a test kit, it will need to be thrown away. We'll send them a text explaining this.</p>
+
+        </fieldset>
+
+        <div class="govuk-button-group govuk-!-margin-top-4">
+          {{ govukButton({
+            text: "Confirm",
+            href: "bulk-reorder-complete-v1"
+          }) }}
+
+          {{ govukButton({
+            text: "Cancel",
+            href: "#",
+            classes: "govuk-button--secondary"
+          }) }}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}
