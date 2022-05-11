@@ -1516,7 +1516,52 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/do-you-have-sympto
 
 })
 
+router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/test-reason-category', function(req, res) {
+  let category = req.session.data['test-reason-category']
+  if (category == "You been asked to take a test by a doctor or healthcare professional, or you have an eligible health condition") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/test-reason-health')
+  } else if (category == "You been asked to take a test for your job") {
+      res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/test-reason-work')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/exit-screens/not-eligible-v2')
+  }
+})
 
+router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/test-reason-work', function(req, res) {
+  let work = req.session.data['test-reason-work']
+  if (work == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" || work == "You work for the NHS and have COVID-19 symptoms" ) {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/coronavirus-account')
+  } else if (work == "You work for an NHS-commissioned independent healthcare provider in a patient-facing role looking after NHS patients") {
+      res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/healthcare-provider-name')
+  } else if (work == "You work in the adult social care sector") {
+      res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/adult-social-care-role')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/exit-screens/not-eligible-v2')
+  }
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/test-reason-health', function(req, res) {
+  let health = req.session.data['test-reason-health']
+  if (health == "You've been told by the NHS that you're eligible for COVID-19 treatments" ) {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/qualifying-condition')
+  } else if (health == "Your doctor or healthcare professional has told you to get a test because you're being admitted into hospital for a procedure") {
+      res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/hospital-name')
+  } else if (health == "You've spoken to your GP or healthcare professional recently and they asked you to get a test") {
+      res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/date-asked-to-test')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/exit-screens/not-eligible-v2')
+  }
+})
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/qualifying-condition', function(req, res) {
+  let qualify = req.session.data['qualifying-condition']
+  if (qualify == "Yes") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/coronavirus-account')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/exit-screens/not-eligible-v2')
+  }
+
+})
 
 router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/email-address', function(req, res) {
   let emailAddress = req.session.data['email']
@@ -1558,6 +1603,16 @@ router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/home-address-quest
 router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/nhs-testing-programme', function(req, res) {
   let programme = req.session.data['nhs-testing-programme']
   if (programme == "Yes") {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/work-area')
+  } else {
+    res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/check-your-answers')
+  }
+})
+
+
+router.post('/IBT/lfd-home-order/e2e-prototypes/live/action10/nhs-staff-member', function(req, res) {
+  let nhsstaff = req.session.data['test-reason-work']
+  if (nhsstaff == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" || nhsstaff == "You work for the NHS and have COVID-19 symptoms") {
     res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/work-area')
   } else {
     res.redirect('/IBT/lfd-home-order/e2e-prototypes/live/check-your-answers')
