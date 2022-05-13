@@ -30,9 +30,9 @@
          <strong class="govuk-warning-text__text">
            <span class="govuk-warning-text__assistive">Warning</span>
            {% if data['whos-taking-the-test'] == "someone-else" %}
-           You should stay at home and avoid contact with other people. Do not visit care homes or hospitals. <a href="https://www.nhsinform.scot/covid19"> Find out more about when to stay at home and what to do (opens in new tab)</a>.
+           They should stay at home and avoid contact with other people.They should not visit care homes or hospitals. <a href="https://www.nhsinform.scot/covid19"> Find out more about when to stay at home and what to do (opens in new tab)</a>.
             {% else %}
-          hey should stay at home and avoid contact with other people.They should not visit care homes or hospitals. <a href="https://www.nhsinform.scot/covid19"> Find out more about when to stay at home and what to do (opens in new tab)</a>.
+            You should stay at home and avoid contact with other people. Do not visit care homes or hospitals. <a href="https://www.nhsinform.scot/covid19"> Find out more about when to stay at home and what to do (opens in new tab)</a>.
            {% endif %}
          </strong>
        </div>
@@ -45,14 +45,15 @@
        <p class="govuk-body">If you're under 18, should do this for 3 days after the day you took the test, or from the day your symptoms started, whichever was earlier.</p>
        {% endif %}
 
-
+       {% if data['whos-taking-the-test'] == "someone-else" %}
         <h2 class="govuk-heading-m"> Tell people they have COVID-19</h2>
-
-        {% if data['whos-taking-the-test'] == "someone-else" %}
         <p class="govuk-body">They should tell anyone they were in close contact with in the 2 days before they had a positive test result, or got symptoms, that they've tested positive for COVID-19.</p>
+
         {% else %}
+        <h2 class="govuk-heading-m"> Tell people you have COVID-19</h2>
         <p class="govuk-body">You should tell anyone you were in close contact with in the 2 days before you had a positive test result, or got symptoms, that you've tested positive for COVID-19.</p>
         {% endif %}
+
 
         <h2 class="govuk-heading-m"> COVID-19 treatments</h2>
         {% if data['whos-taking-the-test'] == "someone-else" %}
