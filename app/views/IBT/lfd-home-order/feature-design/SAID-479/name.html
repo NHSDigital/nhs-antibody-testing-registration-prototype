@@ -1,0 +1,61 @@
+{% set version = "SAID-479" %}
+{% set pageTitle = "What is your name?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/IBT/lfd-home-order/feature-design/{{version}}/email-address" method="post">
+
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            {{ pageTitle }}
+          </h1>
+        </legend>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="first-name">
+            First name
+          </label>
+          <input class="govuk-input govuk-!-width-two-thirds" id="first-name" name="first-name" type="text" value="{{ data['first-name'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="last-name">
+            Last name
+          </label>
+          <input class="govuk-input govuk-!-width-two-thirds" id="last-name" name="last-name" type="text" value="{{ data['last-name'] }}">
+        </div>
+
+      </fieldset>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
