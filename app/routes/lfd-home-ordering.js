@@ -2221,35 +2221,24 @@ router.post('/IBT/lfd-home-order/feature-design/SAID-478/action10/work-area', fu
 
 router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/country', function(req, res) {
   let country = req.session.data['country']
-  if (country == "England" || country == "Scotland" || country == "Northern Ireland" || country == "Wales") {
-    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/do-you-have-symptoms')
-    // res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/do-you-have-symptoms-v2')
+  if (country == "England") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/do-you-have-symptoms-england')
+  } else if (country == "Scotland") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/scotland-gate')
+  } else if (country == "Northern Ireland") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/ni-gate')
+  } else if (country == "Wales") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/guard-question-wales')
   } else {
     res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/error-screens/country')
   }
 
 })
 
-router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/do-you-have-symptoms', function(req, res) {
+router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/do-you-have-symptoms-england', function(req, res) {
   let symptoms = req.session.data['do-you-have-symptoms']
   let country = req.session.data['country']
-  if (country == "Scotland") {
-    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/no-more-tests-available-scotland')
-  }
-  if (country == "Northern Ireland") {
-    if (symptoms == "Yes") {
-      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/coronavirus-account')
-    } else {
-      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/no-more-tests-available-ni')
-    }
-  }
-  if (country == "Wales") {
-    if (symptoms == "Yes") {
-      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/coronavirus-account')
-    } else {
-      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/no-more-tests-available-wales')
-    }
-  } else {
+  if (country == "England") {
     res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/no-more-tests-available-england')
   }
 })
@@ -2264,59 +2253,28 @@ router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/test-reason-ca
     res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-v2')
   }
 })
-router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/test-reason-category-scotland', function(req, res) {
-  let category = req.session.data['test-reason-category']
-  if (category == "You have a health condition which means you're eligible for antiviral or antibody treatments for coronavirus (COVID-19)") {
-    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/qualifying-condition-scotland')
-  } else if (category == "Another reason") {
-    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-scotland')
-  } else {
-    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/coronavirus-account')
-  }
-})
-router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/test-reason-category-wales', function(req, res) {
-  let category = req.session.data['test-reason-category']
-  if (category == "A doctor or specialist said you're eligible for antiviral or antibody treatments for coronavirus (COVID-19)") {
-    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/qualifying-condition-wales')
-  } else if (category == "Another reason") {
-    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-wales')
-  } else {
-    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/coronavirus-account')
-  }
-})
-router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/test-reason-category-ni', function(req, res) {
-  let category = req.session.data['test-reason-category']
-  if (category == "You may be eligible for COVID-19 treatments and you need to order lateral flow tests in case you become symptomatic") {
-    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/qualifying-condition-ni')
-  } else if (category == "Another reason") {
-    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-ni')
-  } else {
-    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/coronavirus-account')
-  }
-})
+
 
 router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/test-reason-work', function(req, res) {
   let work = req.session.data['test-reason-work']
   let symptoms = req.session.data['do-you-have-symptoms']
-  if (work == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme") {
+  if (work == "You work for the NHS") {
     if (symptoms == "Yes") {
       res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/coronavirus-account')
     } else {
-      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-v2')
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-test-pause')
     }
-  } else if (work == "You work for the NHS and have COVID-19 symptoms") {
-    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/coronavirus-account')
   } else if (work == "You work for an NHS-commissioned independent healthcare provider in a patient-facing role looking after NHS patients") {
     if (symptoms == "Yes") {
       res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/healthcare-provider-name')
     } else {
-      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-v2')
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-test-pause')
     }
   } else if (work == "You work in the adult social care sector") {
     if (symptoms == "Yes") {
       res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/adult-social-care-role')
     } else {
-      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-v2')
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-test-pause')
     }
   } else {
     res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-v2')
@@ -2332,7 +2290,7 @@ router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/test-reason-he
     if (symptoms == "Yes") {
       res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/hospital-name')
     } else {
-      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-v2')
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-test-pause')
     }
   } else if (health == "You've spoken to your GP or healthcare professional recently and they asked you to get a test") {
     res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/date-asked-to-test')
@@ -2425,7 +2383,7 @@ router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/nhs-testing-pr
 
 router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/nhs-staff-member', function(req, res) {
   let nhsstaff = req.session.data['test-reason-work']
-  if (nhsstaff == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" || nhsstaff == "You work for the NHS and have COVID-19 symptoms") {
+  if (nhsstaff == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" || nhsstaff == "You work for the NHS") {
     res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/work-area')
   } else {
     res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/check-your-answers')
