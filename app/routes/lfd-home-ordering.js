@@ -2286,11 +2286,7 @@ router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/test-reason-he
   if (health == "You've been told by the NHS that you're eligible for COVID-19 treatments") {
     res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/qualifying-condition-england')
   } else if (health == "Your doctor or healthcare professional has told you to get a test because you're being admitted into hospital for a procedure") {
-    if (symptoms == "Yes") {
-      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/hospital-name')
-    } else {
-      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-test-pause')
-    }
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/hospital-name')
   } else if (health == "You've spoken to your GP or healthcare professional recently and they asked you to get a test") {
     res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/date-asked-to-test')
   } else {
