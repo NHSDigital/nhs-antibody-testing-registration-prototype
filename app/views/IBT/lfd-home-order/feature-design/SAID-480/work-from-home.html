@@ -1,0 +1,79 @@
+{% set version = "SAID-480" %}
+{% set pageTitle = "About the people in your household or bubble" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/IBT/lfd-home-order/feature-design/{{version}}/action10/work-from-home" method="post">
+
+            <div class="govuk-form-group govuk-!-padding-bottom-5">
+                <fieldset class="govuk-fieldset" aria-describedby="work-from-home-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                            {{ pageTitle }}
+                        </h1>
+                    </legend>
+                    <span id="work-from-home-hint" class="govuk-body">
+                        <strong class="govuk-!-font-size-24">Do any of them go to college or school (including nursery), or work at one?</strong><br><br>
+                      School staff includes teaching and non-teaching staff. It does not matter if they're temporary or voluntary.
+                    </span>
+                    <details class="govuk-details govuk-!-margin-top-5" data-module="govuk-details">
+                        <summary class="govuk-details__summary">
+                          <span class="govuk-details__summary-text">
+                            What are support or childcare bubbles?
+                          </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                            Bubbles are a way for 2 households to support one another.<br><br>
+                            The aim is to help people who have been cut off from friends and family (a support bubble) or those who need childcare support (a childcare bubble). There are limited and strict rules on when you are allowed to create, leave or join a bubble.<br><br>
+                            <a href="https://www.gov.uk/guidance/making-a-support-bubble-with-another-household" class="govuk-link">Find out about support or childcare bubbles (opens new tab)</a>
+                        </div>
+                    </details>
+                    <div class="govuk-radios govuk-!-margin-top-5">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="work-from-home-1" name="work-from-home" type="radio" value="Yes" {{ checked("work-from-home", "Yes") }}>
+                            <label class="govuk-label govuk-radios__label" for="work-from-home-1">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="work-from-home-2" name="work-from-home" type="radio" value="No" {{ checked("work-from-home", "No") }}>
+                            <label class="govuk-label govuk-radios__label" for="work-from-home-2">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

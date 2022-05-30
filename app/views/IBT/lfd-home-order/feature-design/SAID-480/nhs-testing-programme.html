@@ -1,0 +1,63 @@
+{% set version = "SAID-480" %}
+{% set pageTitle = "Do you work for the NHS in England and take part in their staff testing programme?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+          <form action="/IBT/lfd-home-order/feature-design/{{version}}/action10/nhs-testing-programme" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                        <h1 class="govuk-heading-xl">
+                            {{ pageTitle }}
+                        </h1>
+                    </legend>
+                    <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="nhs-testing-programme-1" name="nhs-testing-programme" type="radio" value="Yes" {{ checked("nhs-testing-programme", "Yes") }}>
+                            <label class="govuk-label govuk-radios__label" for="nhs-testing-programme-1">
+                                Yes
+                            </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="nhs-testing-programme-2" name="nhs-testing-programme" type="radio" value="No" {{ checked("nhs-testing-programme", "No") }}>
+                            <label class="govuk-label govuk-radios__label" for="nhs-testing-programme-2">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
