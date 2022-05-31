@@ -19,7 +19,13 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+              <h1 class="govuk-heading-l">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Did their employer provide the test kit?
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
             </legend>
             <div class="govuk-radios">
               <div class="govuk-radios__item">
