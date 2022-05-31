@@ -22,16 +22,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/mobile-number" method="post">
-
-          <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
-
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-l govuk-!-margin-bottom-8">
+              <h1 class="govuk-heading-l>
                 {{ pageTitle }}
               </h1>
-            </legend>
+
 
             <div id="email-address-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
@@ -53,6 +47,9 @@
               {% endif %}
             </div>
 
+            <form class="form" action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/mobile-number" method="post">
+              <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               {% if data['whos-taking-the-test'] == "someone-else" %}
               Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have an email address?
@@ -97,12 +94,14 @@
                 </label>
               </div>
             </div>
-          </fieldset>
-        </div>
+            </fieldset>
+            </div>
+            </form>
+
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
-      </form>
+
 
     </div>
   </div>
