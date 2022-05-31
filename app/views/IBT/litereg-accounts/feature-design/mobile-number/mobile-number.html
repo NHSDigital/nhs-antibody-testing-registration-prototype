@@ -23,16 +23,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/landline-number" method="post">
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint">
-
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
                 {{ pageTitle }}
               </h1>
-            </legend>
+
 
             <div id="mobile-number-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
@@ -54,6 +49,9 @@
               {% endif %}
             </div>
 
+            <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/landline-number" method="post">
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               {% if data['whos-taking-the-test'] == "someone-else" %}
               Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have a mobile number?
@@ -62,27 +60,28 @@
                {% endif %}
              </legend>
 
-            <div class="govuk-form-group">
-              <label class="govuk-label govuk-!-margin-top-3" for="mobile-phone-number">
-                Mobile phone number
-              </label>
-              <div id="telephone-number-hint" class="govuk-hint">
-                For international numbers include the country code (Eg,+33)
-              </div>
-              <input class="govuk-input govuk-input--width-20" id="mobile-phone-number" name="mobile-phone-number" type="tel" value="{{ data['mobile-phone-number'] }}">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-!-margin-top-3" for="mobile-phone-number">
+                    Mobile phone number
+                  </label>
+                  <div id="telephone-number-hint" class="govuk-hint">
+                    For international numbers include the country code (Eg,+33)
+                  </div>
+                  <input class="govuk-input govuk-input--width-20" id="mobile-phone-number" name="mobile-phone-number" type="tel" value="{{ data['mobile-phone-number'] }}">
+
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="mobile-phone-number-confirm">
+                      Confirm mobile phone number
+                    </label>
+                    <input class="govuk-input govuk-input--width-20" id="mobile-phone-number-confirm" name="mobile-phone-number-confirm" type="tel" value="{{ data['mobile-phone-number-confirm'] }}">
+                  </div>
+                </div>
+
+            </fieldset>
             </div>
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="mobile-phone-number-confirm">
-                Confirm mobile phone number
-              </label>
-              <input class="govuk-input govuk-input--width-20" id="mobile-phone-number-confirm" name="mobile-phone-number-confirm" type="tel" value="{{ data['mobile-phone-number-confirm'] }}">
-            </div>
-          </fieldset>
-        </div>
+          </form>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
-
-      </form>
 
     </div>
   </div>
