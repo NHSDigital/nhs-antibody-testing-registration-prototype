@@ -1,0 +1,73 @@
+{% set version = "v29" %}
+{% set pageTitle = "Tell us why you took this test" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/about-work-2">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="about-work">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="about-work-1" name="about-work" type="radio" value="/share-result-lateral-flow/{{version}}/social-care-staff" onclick="setLocation(this);"  {{ checked("about-work-1", "I am symptomatic") }}>
+            <label class="govuk-label govuk-radios__label" for="about-work-1">
+              <strong>I am symptomatic</strong>
+              <!-- <span id="about-work-hint" class="govuk-hint" style="color: #000000;">
+                This includes domiciliary care, care homes, extra care, supported living, children’s homes and day care centres
+              </span> -->
+            </label>
+          </div>
+          <div class="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-2" name="about-work" type="radio" value="/share-result-lateral-flow/{{version}}/childcare" onclick="setLocation(this);"  {{ checked("about-work-2", "For rapid response or outbreak testing in a care setting") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-2">
+                <strong>For rapid response or outbreak testing in a care setting</strong>
+                <!-- <span id="about-work-hint" class="govuk-hint" style="color: #000000;">
+                  For example a nursery, school, college, university, childcare provider, childminder or other education provider
+                </span> -->
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-3" name="about-work" type="radio" value="/share-result-lateral-flow/{{version}}/nhs-primary" onclick="setLocation(this);"  {{ checked("about-work-3", "To check if I am still testing positive") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-3">
+                <strong>To check if I am still testing positive</strong>
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="about-work-4" name="about-work" type="radio" value="/share-result-lateral-flow/{{version}}/employee-wtp" onclick="setLocation(this);"  {{ checked("about-work-4", "Other") }}>
+              <label class="govuk-label govuk-radios__label" for="about-work-4">
+                <strong>Other</strong>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+
+{% endblock %}

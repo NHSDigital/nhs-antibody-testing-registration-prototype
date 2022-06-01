@@ -1,0 +1,60 @@
+{% set version = "v29" %}
+{% set pageTitle = "Where do you get your tests?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/test-for-work">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">{{ pageTitle }}</h1>
+
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="tests-from">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="tests-from-1" name="tests-from" type="radio" value="/share-result-lateral-flow/{{version}}/social-care-staff" onclick="setLocation(this);"  {{ checked("tests-from-1", "From my place of work") }}>
+            <label class="govuk-label govuk-radios__label" for="tests-from-1">
+              <strong>From my place of work</strong>
+              <!-- <span id="about-work-hint" class="govuk-hint" style="color: #000000;">
+                This includes domiciliary care, care homes, extra care, supported living, children’s homes and day care centres
+              </span> -->
+            </label>
+          </div>
+          <div class="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="tests-from-2" name="tests-from" type="radio" value="/share-result-lateral-flow/{{version}}/childcare" onclick="setLocation(this);"  {{ checked("tests-from-2", "I order tests myself") }}>
+              <label class="govuk-label govuk-radios__label" for="tests-from-2">
+                <strong>I order tests myself</strong>
+                <!-- <span id="about-work-hint" class="govuk-hint" style="color: #000000;">
+                  For example a nursery, school, college, university, childcare provider, childminder or other education provider
+                </span> -->
+              </label>
+            </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+
+{% endblock %}
