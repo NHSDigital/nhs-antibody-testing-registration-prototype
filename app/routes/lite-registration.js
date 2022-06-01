@@ -1063,7 +1063,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
         })
 
         // Version 29 - LFD Results sharing - check answers
-        router.post('/share-result-lateral-flow/v29/action/check-answers', function (req, res) {
+        router.post('/share-result-lateral-flow/v29/action/test-reason', function (req, res) {
           let result = req.session.data['choose-result']
 
           if (result == "Positive"){
@@ -1072,6 +1072,20 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
             res.redirect('/share-result-lateral-flow/v29/negative-result')
           } else {
             res.redirect('/share-result-lateral-flow/v29/invalid-result')
+          }
+
+        })
+
+        // Version 29 - LFD Results sharing - test for work
+        router.post('/share-result-lateral-flow/v29/action/test-for-work', function (req, res) {
+          let result = req.session.data['test-for-work']
+
+          if (result == "Yes"){
+            res.redirect('/share-result-lateral-flow/v29/about-work-2')
+          } else if(result == "No") {
+            res.redirect('/share-result-lateral-flow/v29/test-reason')
+          } else {
+            res.redirect('/share-result-lateral-flow/v29/test-for-work')
           }
 
         })
