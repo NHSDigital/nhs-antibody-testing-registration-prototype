@@ -1090,6 +1090,59 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
 
         })
 
+        // Version 29 - LFD Results sharing - about the work
+        router.post('/share-result-lateral-flow/v29/action/about-work-2', function (req, res) {
+          let result = req.session.data['about-work']
+
+          if (result == "It’s for a social care service"){
+            res.redirect('/share-result-lateral-flow/v29/about-work-3')
+          } else if(result == "It’s for an education provider") {
+            res.redirect('/share-result-lateral-flow/v29/about-work-3')
+          } else if(result == "It’s for the NHS in England or Northern Ireland") {
+            res.redirect('/share-result-lateral-flow/v29/about-work-3')
+          } else if(result == "It’s for an independent healthcare provider commissioned by the NHS") {
+            res.redirect('/share-result-lateral-flow/v29/about-work-3')
+          } else if(result == "It’s for a homeless service") {
+            res.redirect('/share-result-lateral-flow/v29/about-work-3')
+          } else if(result == "It’s for a domestic abuse service") {
+            res.redirect('/share-result-lateral-flow/v29/about-work-3')
+          } else if(result == "It’s not listed") {
+            res.redirect('/share-result-lateral-flow/v29/about-work-3')
+          }
+
+        })
+
+        // Version 29 - LFD Results sharing - why took the test
+        router.post('/share-result-lateral-flow/v29/action/about-work-3', function (req, res) {
+          let result = req.session.data['about-test']
+
+          if (result == "I am symptomatic"){
+            res.redirect('/share-result-lateral-flow/v29/where-tests-from')
+          } else if(result == "For rapid response or outbreak testing in a care setting") {
+            res.redirect('/share-result-lateral-flow/v29/where-tests-from')
+          } else if(result == "To check if I am still testing positive") {
+            res.redirect('/share-result-lateral-flow/v29/where-tests-from')
+          } else if(result == "Other") {
+            res.redirect('/share-result-lateral-flow/v29/where-tests-from')
+          }
+
+        })
+
+        // Version 29 - LFD Results sharing - where test from
+        router.post('/share-result-lateral-flow/v29/action/where-test-from', function (req, res) {
+          let result = req.session.data['tests-from']
+
+          if (result == "From my place of work"){
+            res.redirect('/share-result-lateral-flow/v29/urg-number')
+          } else if(result == "I order tests myself") {
+            res.redirect('/share-result-lateral-flow/v29/urg-number')
+          } else {
+            res.redirect('/share-result-lateral-flow/v29/where-test-from')
+          }
+
+        })
+
+
         // Version 33 - LFD Results sharing - Ethnic group route
         router.post('/share-result-lateral-flow/v33/action6/ethnic-group', function (req, res) {
           let ethnicGroup = req.session.data['ethnic-group']
