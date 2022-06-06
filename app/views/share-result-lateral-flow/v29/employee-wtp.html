@@ -6,7 +6,7 @@
 {% block beforeContent %}
 <!-- div for include from content folder -->
 <div id="includedContent1"></div>
-  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/about-work">Back</a>
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -15,12 +15,13 @@
     <div class="govuk-grid-column-two-thirds">
 
         <form action="/share-result-lateral-flow/{{version}}/employer-uon" method="post">
-
-        <div class="govuk-form-group">
+          <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
+
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
             </legend>
+
             <div class="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="employee-wtp-1" name="employee-wtp" type="radio" value="yes" {{ checked("employee-wtp", "yes") }}>
@@ -28,19 +29,14 @@
                   Yes
                 </label>
               </div>
+              
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="employee-wtp-2" name="employee-wtp" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("employee-wtp", "no") }}>
                 <label class="govuk-label govuk-radios__label" for="employee-wtp-2">
                   No
                 </label>
               </div>
-             <!-- <div class="govuk-radios__divider">or</div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="employee-wtp-3" name="employee-wtp" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("employee-wtp", "don't know") }}>
-                <label class="govuk-label govuk-radios__label" for="employee-wtp-3">
-                   I don't know
-                </label>
-              </div>-->
+
           </fieldset>
         </div>
 

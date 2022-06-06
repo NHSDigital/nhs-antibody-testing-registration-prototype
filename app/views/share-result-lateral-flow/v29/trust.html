@@ -6,30 +6,29 @@
 {% block beforeContent %}
 <!-- div for include from content folder -->
 <div id="includedContent1"></div>
-<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/nhs-primary">Back</a>
+<!--a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/nhs-primary">Back</a-->
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/share-result-lateral-flow/{{version}}/test-date" method="post">
-
-      <div class="govuk-form-group">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 class="govuk-fieldset__heading">
+          <h1 class="govuk-heading-l">
             {{ pageTitle }}
           </h1>
-        </legend>
-        <br>
-        <span id="nhs-number-hint" class="govuk-body">
+          <p class="govuk-body">
           Start entering the name of the NHS trust or Health Board, then choose from the options provided.
-        </span>
-        <br>
-        <div class="govuk-form-group govuk-!-margin-top-5">
+          </p>
+
+        <form action="/share-result-lateral-flow/{{version}}/test-date" method="post">
+          <div class="govuk-form-group">
+
+        <div class="govuk-form-group">
           <label id="occupation-hint" class="govuk-label" for="occupation">
             NHS trust name or Health Board
-          <!--  If you still cannot find yours, select ‘I cannot find the correct occupation’. -->
           </label>
           <div id="occupation-container" name="occupation"></div>
         </div>
@@ -44,8 +43,8 @@
         </summary>
         <div class="govuk-details__text">
           You cannot report your results if your NHS trust or Health Board is not in the list.
-          Send the name of the missing NHS trust or Health Board to: <br>
-          <br>
+          Send the name of the missing NHS trust or Health Board to:
+
           <li> England: england.covid-LFDsupport@nhs.net</li>
           <li> Northern Ireland: [email address]</li>
           <li> Wales: [email address] </li>
