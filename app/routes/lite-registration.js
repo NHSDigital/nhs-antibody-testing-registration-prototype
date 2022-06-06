@@ -1164,6 +1164,36 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
 
         })
 
+        // Version 29 - LFD Results sharing - support from social care services
+        router.post('/share-result-lateral-flow/{{version}}/action/reason-4', function (req, res) {
+          let result = req.session.data['social-care']
+
+          if (result == "I'm symptomatic and live in a social care setting"){
+            res.redirect('/share-result-lateral-flow/v29/urg-number')
+          } else if(result == "I'm being admitted to a care home") {
+            res.redirect('/share-result-lateral-flow/v29/urg-number')
+          } else if(result == "There's an outbreak of COVID-19 in my care home") {
+            res.redirect('/share-result-lateral-flow/v29/urg-number')
+          } else if(result == "Another reason") {
+            res.redirect('/share-result-lateral-flow/v29/urg-number')
+          }
+
+        })
+
+        // Version 29 - LFD Results sharing - take a test by a healthcare professional
+        router.post('/share-result-lateral-flow/{{version}}/action/reason-5', function (req, res) {
+          let result = req.session.data['health-care']
+
+          if (result == "A healthcare professional told me to get a test because I'm being admitted into hospital for a procedure or treatment"){
+            res.redirect('/share-result-lateral-flow/v29/urg-number')
+          } else if(result == "A GP or healthcare professional recently told me to get a test") {
+            res.redirect('/share-result-lateral-flow/v29/urg-number')
+          } else if(result == "I'm being discharged from hospital (going home)") {
+            res.redirect('/share-result-lateral-flow/v29/urg-number')
+          }
+
+        })
+
 
         // Version 33 - LFD Results sharing - Ethnic group route
         router.post('/share-result-lateral-flow/v33/action6/ethnic-group', function (req, res) {

@@ -1,0 +1,67 @@
+{% set version = "v29" %}
+{% set pageTitle = "Tell us why you took this test" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/about-work-4">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post" action="/share-result-lateral-flow/{{version}}/action/reason-5">
+
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="health-care">
+
+          <div class="govuk-radios" data-module="govuk-radios">
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="health-care-1" name="health-care" type="radio" value="A healthcare professional told me to get a test because I'm being admitted into hospital for a procedure or treatment"  {{ checked("health-care-1", "A healthcare professional told me to get a test because I'm being admitted into hospital for a procedure or treatment") }}>
+            <label class="govuk-label govuk-radios__label" for="health-care-1">
+            A healthcare professional told me to get a test because I'm being admitted into hospital for a procedure or treatment
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="health-care-2" name="health-care" type="radio" value="A GP or healthcare professional recently told me to get a test"  {{ checked("health-care-2", "A GP or healthcare professional recently told me to get a test") }}>
+            <label class="govuk-label govuk-radios__label" for="health-care-2">
+            A GP or healthcare professional recently told me to get a test
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="health-care-3" name="health-care" type="radio" value="I'm being discharged from hospital (going home)"  {{ checked("health-care-3", "I'm being discharged from hospital (going home)") }}>
+          <label class="govuk-label govuk-radios__label" for="health-care-3">
+            I'm being discharged from hospital (going home)
+            </label>
+          </div>
+
+            </div>
+
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+
+{% endblock %}
