@@ -14,62 +14,113 @@
     </span>
   </p>
 </div>
-  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/landline-number">Back</a>
+<a class="govuk-back-link" href="/antigen/{{version}}/global-registration/landline-number">Back</a>
 {% endblock %}
 
 {% block content %}
-  {% include "includes/gtm-noscript.html" %}
+{% include "includes/gtm-noscript.html" %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/gender" method="post">
+    {% if data['way-to-test'] == "home testing" %}
+    <h1 class="govuk-heading-l">
+      {{ pageTitle }}
+    </h1>
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
-                {{ pageTitle }}
-              </h1>
-            </legend>
+    <p class="govuk-body">We need an email address to send the test results. Use one they'll have access to later.</p>
 
-            <div id="email-address-hint">
-              <p class="govuk-body">We need an email address to send the test results. Use one they'll have access to later.</p>
+    <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
 
-              <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
+    <p class="govuk-body">If they're getting a test for a child, enter their email not the child's.</p>
 
-              <p class="govuk-body">If they're getting a test for a child, enter their email not the child's.</p>
+    <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way to get the test results.</p>
 
-              <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way to get the test results.</p>
+    <form class="form" action="/antigen/{{version}}/global-registration/gender" method="post">
 
-              <!--p class="govuk-body">If a test result is positive, the NHS may also use the details you supply for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/test-results/help-the-nhs-alert-your-close-contacts-if-you-test-positive/" target="_blank">contact tracing (opens in new tab)</a>.</p-->
+      <div class="govuk-form-group govuk-!-margin-top-7">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}'s email address?
+          </legend>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="email-address">
+              Email address
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="confirm-email-address">
+              Confirm email address
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
+          </div>
+
+      {% else %}
+          <h1 class="govuk-heading-l">
+            {{ pageTitle }}
+          </h1>
+
+
+          <p class="govuk-body">We need an email address to send the test results. Use one they'll have access to later.</p>
+
+          <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
+
+          <p class="govuk-body">If they're getting a test for a child, enter their email not the child's.</p>
+
+          <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way to get the test results.</p>
+
+          <!--p class="govuk-body">If a test result is positive, the NHS may also use the details you supply for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/test-results/help-the-nhs-alert-your-close-contacts-if-you-test-positive/" target="_blank">contact tracing (opens in new tab)</a>.</p-->
+
+          <form class="form" action="/antigen/{{version}}/global-registration/gender" method="post">
+
+            <div class="govuk-form-group govuk-!-margin-top-7">
+              <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                  Does {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }} have an email address?
+                </legend>
+
+                <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="different" data-aria-controls="conditional-email-address" {{ checked("email", "different") }}>
+                    <label class="govuk-label govuk-radios__label" for="email-1">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="email-address">
+                        Email address
+                      </label>
+                      <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="tel" value="{{ data['email-address'] }}">
+                    </div>
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="confirm-email-address">
+                        Confirm email address
+                      </label>
+                      <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="tel" value="{{ data['confirm-email-address'] }}">
+                    </div>
+                  </div>
+
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="No" {{ checked("email", "No") }}>
+                    <label class="govuk-label govuk-radios__label" for="email-2">
+                      No
+                    </label>
+                  </div>
+                </div>
+
+                {% endif %}
+
+              </fieldset>
             </div>
 
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-             What's {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }} 's email address?
-             </legend>
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
 
-                <div class="govuk-form-group govuk-!-margin-top-6">
-                  <label class="govuk-label" for="email-address">
-                    Email address
-                  </label>
-                  <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
-                </div>
-                <div class="govuk-form-group">
-                  <label class="govuk-label" for="confirm-email-address">
-                    Confirm email address
-                  </label>
-                  <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
-                </div>
+          </form>
 
-          </fieldset>
-        </div>
-
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
-
-      </form>
-
-    </div>
+      </div>
   </div>
 
-{% endblock %}
+  {% endblock %}
