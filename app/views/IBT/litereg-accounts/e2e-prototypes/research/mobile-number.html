@@ -15,76 +15,70 @@
   </p>
 </div>
 
-  <a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/email-address">Back</a>
+<a class="govuk-back-link" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/email-address">Back</a>
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      {{ pageTitle }}
+    </h1>
 
 
-              <h1 class="govuk-heading-l">
-                {{ pageTitle }}
-              </h1>
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <p class="govuk-body">We need a mobile number to send their test results.</p>
+
+    <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this number.</p>
+
+    <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way for them to get the test results.</p>
+
+    {% else %}
+    <p class="govuk-body">We need a mobile number to send your test results.</p>
+
+    <p class="govuk-body">If you're getting a test for a child, enter your number not theirs.</p>
+
+    <p class="govuk-body">If your mobile number is going to change soon, it's important you give us an email address, to make sure you get your test results.</p>
+    {% endif %}
 
 
+    <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/landline-number" method="post">
+      <div class="govuk-form-group govuk-!-margin-top-7">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have a mobile number?
+            {% else %}
+            Do you have a mobile number where you can get the test results?
+            {% endif %}
+          </legend>
 
-              {% if data['whos-taking-the-test'] == "someone-else" %}
-
-                <p class="govuk-body">We need a mobile number to send their test results.</p>
-
-                <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this number.</p>
-
-                <p class="govuk-body">If they're getting a test for a child, enter their number not the child's.</p>
-
-                <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way for them to get the test results.</p>
-
-                {% else %}
-                <p class="govuk-body">We need a mobile number to send your test results.</p>
-
-                <p class="govuk-body">If you're getting a test for a child, enter your number not theirs.</p>
-
-                <p class="govuk-body">If your mobile number is going to change soon, it's important you give us an email address, to make sure you get your test results.</p>
-              {% endif %}
-
-
-            <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/landline-number" method="post">
-              <div class="govuk-form-group">
-                <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              {% if data['whos-taking-the-test'] == "someone-else" %}
-              Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have a mobile number?
-               {% else %}
-               Do you have a mobile number where you can get the test results?
-               {% endif %}
-             </legend>
-
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-!-margin-top-3" for="mobile-phone-number">
-                    Mobile phone number
-                  </label>
-                  <div id="telephone-number-hint" class="govuk-hint">
-                    For international numbers include the country code (Eg,+33)
-                  </div>
-                  <input class="govuk-input govuk-input--width-20" id="mobile-phone-number" name="mobile-phone-number" type="tel" value="{{ data['mobile-phone-number'] }}">
-                </div>
-
-                  <div class="govuk-form-group">
-                    <label class="govuk-label" for="mobile-phone-number-confirm">
-                      Confirm mobile phone number
-                    </label>
-                    <input class="govuk-input govuk-input--width-20" id="mobile-phone-number-confirm" name="mobile-phone-number-confirm" type="tel" value="{{ data['mobile-phone-number-confirm'] }}">
-                  </div>
-
-
-            </fieldset>
+          <div class="govuk-form-group">
+            <label class="govuk-label " for="mobile-phone-number">
+              Mobile phone number
+            </label>
+            <div id="mobile-number-hint" class="govuk-hint">
+              For international numbers include the country code (Eg,+33)
             </div>
+            <input class="govuk-input govuk-input--width-20" id="mobile-phone-number" name="mobile-phone-number" type="tel" value="{{ data['mobile-phone-number'] }}" aria-describedby="mobile-number-hint">
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+            <div class="govuk-form-group govuk-!-margin-top-4">
+              <label class="govuk-label" for="mobile-phone-number-confirm">
+                Confirm mobile phone number
+              </label>
+              <input class="govuk-input govuk-input--width-20" id="mobile-phone-number-confirm" name="mobile-phone-number-confirm" type="tel" value="{{ data['mobile-phone-number-confirm'] }}">
+            </div>
+          </div>
 
-          </form>
-    </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
   </div>
+</div>
 
 {% endblock %}
