@@ -1,0 +1,154 @@
+{% set version = "live" %}
+{% set pageTitle = "Why are you asking for a test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/refer-and-triage/government-pilot">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/action3/reason-for-test" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="reason-for-test-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="reason-for-test-hint" class="govuk-body">
+              If you are getting a test for someone you live with, answer for them
+            </span>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-4" data-module="govuk-radios">
+              <div class="govuk-radios__item govuk-!-margin-bottom-2">
+                <input class="govuk-radios__input" id="reason-for-test-10" name="reason-for-test" type="radio" value="I or the person who cares for me is eligible for a Self-Isolation Support Grant (SISG)" data-aria-controls="conditional-reason-for-test-positive-contact" {{ checked("reason-for-test", "I or the person who cares for me is eligible for a Self-Isolation Support Grant (SISG)") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-10">
+                  I or the person who cares for me is eligible for a Self-Isolation Support Grant (SISG)
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-bottom-2">
+                <input class="govuk-radios__input" id="reason-for-test-1" name="reason-for-test" type="radio" value="I’ve been in contact with someone who’s tested positive for coronavirus" data-aria-controls="conditional-reason-for-test-positive-contact" {{ checked("reason-for-test", "I’ve been in contact with someone who’s tested positive for coronavirus") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-1">
+                  I’ve been in contact with someone who’s tested positive for coronavirus
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-reason-for-test-positive-contact">
+                <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-3" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="who-asked-for-test-1" name="who-asked-for-test" type="radio" value="Contact tracers told me to get a test" {{ checked("who-asked-for-test", "Contact tracers told me to get a test") }}>
+                    <label class="govuk-label govuk-radios__label" for="who-asked-for-test-1">
+                      Contact tracers told me to get a test
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="who-asked-for-test-2" name="who-asked-for-test" type="radio" value="The contact tracing app told me to get a test (the NHS COVID-19, Protect Scotland or StopCOVID NI app)" {{ checked("who-asked-for-test", "The contact tracing app told me to get a test (the NHS COVID-19, Protect Scotland or StopCOVID NI app)") }}>
+                    <label class="govuk-label govuk-radios__label" for="who-asked-for-test-2">
+                      The contact tracing app told me to get a test (the NHS COVID-19, Protect Scotland or StopCOVID NI app)
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="who-asked-for-test-3" name="who-asked-for-test" type="radio" value="I found out in another way that I’m a contact (England, Wales and Scotland only)" {{ checked("who-asked-for-test", "I found out in another way that I’m a contact (England, Wales and Scotland only)") }}>
+                    <label class="govuk-label govuk-radios__label" for="who-asked-for-test-3">
+                      I found out in another way that I’m a contact (England, Wales and Scotland only)
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-bottom-2">
+                <input class="govuk-radios__input" id="reason-for-test-2" name="reason-for-test" type="radio" value="I was asked to get a test because I visited a venue where others have since tested positive" {{ checked("reason-for-test", "I was asked to get a test because I visited a venue where others have since tested positive") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-2">
+                  I was asked to get a test because I visited a venue where others have since tested positive
+                </label>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-bottom-2">
+                <input class="govuk-radios__input" id="reason-for-test-3" name="reason-for-test" type="radio" value="I've been told to get a test by my nursery, work or place of education" data-aria-controls="conditional-reason-for-test-work" {{ checked("reason-for-test", "I've been told to get a test by my nursery, work or place of education") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-3">
+                  I've been told to get a test by my nursery, work or place of education
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-reason-for-test-work">
+                <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-3" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="who-asked-for-test-4" name="who-asked-for-test" type="radio" value="I'm in Scotland or Wales and I work in health or social care, education or in an emergency or prison service" {{ checked("who-asked-for-test", "I'm in Scotland or Wales and I work in health or social care, education or in an emergency or prison service") }}>
+                    <label class="govuk-label govuk-radios__label" for="who-asked-for-test-4">
+                      I'm in Scotland or Wales and I work in health or social care, education or in an emergency or prison service
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="who-asked-for-test-5" name="who-asked-for-test" type="radio" value="I'm a student returning to university in Wales" {{ checked("who-asked-for-test", "I'm a student returning to university in Wales") }}>
+                    <label class="govuk-label govuk-radios__label" for="who-asked-for-test-5">
+                      I'm a student returning to university in Wales
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="who-asked-for-test-6" name="who-asked-for-test" type="radio" value="I'm a student returning to university in Scotland" {{ checked("who-asked-for-test", "I'm a student returning to university in Scotland") }}>
+                    <label class="govuk-label govuk-radios__label" for="who-asked-for-test-6">
+                      I'm a student returning to university in Scotland
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="who-asked-for-test-7" name="who-asked-for-test" type="radio" value="I'm part of the National Tactical Response Group (NTRG)" {{ checked("who-asked-for-test", "I'm part of the National Tactical Response Group (NTRG)") }}>
+                    <label class="govuk-label govuk-radios__label" for="who-asked-for-test-7">
+                      I'm part of the National Tactical Response Group (NTRG)
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-bottom-2">
+                <input class="govuk-radios__input" id="reason-for-test-4" name="reason-for-test" type="radio" value="I’ve been told to get a test by my local council, health protection team or healthcare professional" data-aria-controls="conditional-reason-for-test-health" {{ checked("reason-for-test", "I’ve been told to get a test by my local council, health protection team or healthcare professional") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-4">
+                  I’ve been told to get a test by my local council, health protection team or healthcare professional
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-reason-for-test-health">
+                <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-3" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="who-asked-for-test-8" name="who-asked-for-test" type="radio" value="My local council or health protection team has asked me to get a test, even though I do not have symptoms" {{ checked("who-asked-for-test", "My local council or health protection team has asked me to get a test, even though I do not have symptoms") }}>
+                    <label class="govuk-label govuk-radios__label" for="who-asked-for-test-8">
+                      My local council or health protection team has asked me to get a test, even though I do not have symptoms
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="who-asked-for-test-9" name="who-asked-for-test" type="radio" value="A GP or other healthcare professional has asked me to get a test" {{ checked("who-asked-for-test", "A GP or other healthcare professional has asked me to get a test") }}>
+                    <label class="govuk-label govuk-radios__label" for="who-asked-for-test-9">
+                      A GP or other healthcare professional has asked me to get a test
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="govuk-radios__divider govuk-!-margin-bottom-5">or</div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-for-test-5" name="reason-for-test" type="radio" value="None of the above" {{ checked("reason-for-test", "None of the above") }}>
+                <label class="govuk-label govuk-radios__label" for="reason-for-test-5">
+                  None of the above
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
