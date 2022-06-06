@@ -1083,7 +1083,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
           if (result == "Yes"){
             res.redirect('/share-result-lateral-flow/v29/about-work-2')
           } else if(result == "No") {
-            res.redirect('/share-result-lateral-flow/v29/test-reason')
+            res.redirect('/share-result-lateral-flow/v29/about-work-4')
           } else {
             res.redirect('/share-result-lateral-flow/v29/test-for-work')
           }
@@ -1138,6 +1138,28 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
             res.redirect('/share-result-lateral-flow/v29/urg-number')
           } else {
             res.redirect('/share-result-lateral-flow/v29/where-test-from')
+          }
+
+        })
+
+        // Version 29 - LFD Results sharing - about the work
+        router.post('/share-result-lateral-flow/v29/action/about-work-4', function (req, res) {
+          let result = req.session.data['reason']
+
+          if (result == "I have symptoms and am eligible for COVID-19 treatments"){
+            res.redirect('/share-result-lateral-flow/v29/about-work-3')
+          } else if(result == "To go to a place of education") {
+            res.redirect('/share-result-lateral-flow/v29/about-work-3')
+          } else if(result == "To check if my test result is still positive") {
+            res.redirect('/share-result-lateral-flow/v29/about-work-3')
+          } else if(result == "For getting care or support from social care services") {
+            res.redirect('/share-result-lateral-flow/v29/reason-4')
+          } else if(result == "I have been asked to take a test by a healthcare professional") {
+            res.redirect('/share-result-lateral-flow/v29/reason-5')
+          } else if(result == "For getting care or support from a refuge") {
+            res.redirect('/share-result-lateral-flow/v29/about-work-3')
+          } else if(result == "Another reason") {
+            res.redirect('/share-result-lateral-flow/v29/about-work-3')
           }
 
         })
