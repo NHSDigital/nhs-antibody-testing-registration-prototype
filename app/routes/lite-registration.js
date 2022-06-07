@@ -1145,7 +1145,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
           let result = req.session.data['reason']
 
           if (result == "I have symptoms and am eligible for COVID-19 treatments"){
-            res.redirect('/share-result-lateral-flow/v29/date-of-onset')
+            res.redirect('/share-result-lateral-flow/v29/test-date')
           } else if(result == "To go to a place of education") {
             res.redirect('/share-result-lateral-flow/v29/institution-lookup')
           } else if(result == "To check if my test result is still positive") {
@@ -1163,37 +1163,37 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
         })
 
         // Version 29 - LFD Results sharing - support from social care services
-        router.post('/share-result-lateral-flow/{{version}}/action/reason-4', function (req, res) {
+        router.post('/share-result-lateral-flow/v29/action/reason-4', function (req, res) {
           let result = req.session.data['social-care']
 
           if (result == "I'm symptomatic and live in a social care setting"){
-            res.redirect('/share-result-lateral-flow/v29/urg-number')
+            res.redirect('/share-result-lateral-flow/v29/employer-uon')
           } else if(result == "I'm being admitted to a care home") {
-            res.redirect('/share-result-lateral-flow/v29/urg-number')
+            res.redirect('/share-result-lateral-flow/v29/employer-uon')
           } else if(result == "There's an outbreak of COVID-19 in my care home") {
-            res.redirect('/share-result-lateral-flow/v29/urg-number')
+            res.redirect('/share-result-lateral-flow/v29/employer-uon')
           } else if(result == "Another reason") {
-            res.redirect('/share-result-lateral-flow/v29/urg-number')
+            res.redirect('/share-result-lateral-flow/v29/employer-uon')
           }
 
         })
 
         // Version 29 - LFD Results sharing - take a test by a healthcare professional
-        router.post('/share-result-lateral-flow/{{version}}/action/reason-5', function (req, res) {
+        router.post('/share-result-lateral-flow/v29/action/reason-5', function (req, res) {
           let result = req.session.data['health-care']
 
           if (result == "A healthcare professional told me to get a test because I'm being admitted into hospital for a procedure or treatment"){
-            res.redirect('/share-result-lateral-flow/v29/urg-number')
+            res.redirect('/share-result-lateral-flow/v29/test-date')
           } else if(result == "A GP or healthcare professional recently told me to get a test") {
-            res.redirect('/share-result-lateral-flow/v29/urg-number')
+            res.redirect('/share-result-lateral-flow/v29/test-date')
           } else if(result == "I'm being discharged from hospital (going home)") {
-            res.redirect('/share-result-lateral-flow/v29/urg-number')
+            res.redirect('/share-result-lateral-flow/v29/test-date')
           }
 
         })
 
         // Version 29 - LFD Results sharing - test reason 2
-        router.post('/share-result-lateral-flow/{{version}}/action/test-reason-2', function (req, res) {
+        router.post('/share-result-lateral-flow/v29/action/test-reason-2', function (req, res) {
           let result = req.session.data['test-reason']
 
           if (result == "To check if my test result is still positive, as I am self-isolating"){
@@ -1204,6 +1204,12 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
             res.redirect('/share-result-lateral-flow/v29/social-care-uon')
           } else if(result == "For getting care or support from social care services") {
             res.redirect('/share-result-lateral-flow/v29/social-care-uon')
+          } else if(result == "I was asked to get a test because I visited a venue where others have since tested positive") {
+            res.redirect('/share-result-lateral-flow/v29/test-date')
+          } else if(result == "To go to a venue or event such as a nightclub, conference, government event, sports match or music festival") {
+            res.redirect('/share-result-lateral-flow/v29/test-date')
+          } else if(result == "  Another reason - not listed") {
+            res.redirect('/share-result-lateral-flow/v29/test-date')
           }
 
         })

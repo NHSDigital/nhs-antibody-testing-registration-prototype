@@ -1,5 +1,5 @@
 {% set version = "v29" %}
-{% set pageTitle = "Unique Organisation Number (UON)" %}
+{% set pageTitle = "Enter the unique organisation number (UON)" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -18,27 +18,24 @@
     <form action="/share-result-lateral-flow/{{version}}/social-care-uon-check" method="post">
 
       <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
               {{ pageTitle }}
             </h1>
-          </legend>
-         <span id="enter-barcode-number-hint" class="govuk-body">
-            The UON helps us to link you to your employer or organisation if you're testing for work purposes.<br><br>
-         </span>
+         <p id="enter-barcode-number-hint" class="govuk-body">
+            This is a reference number for the employer, organisation or social care service. It is 8 digits and sometimes called a “UON”.
+         </p>
 
-         <span id="enter-barcode-number-hint" class="govuk-body">
+         <!--span id="enter-barcode-number-hint" class="govuk-body">
             Your employer or organisation may have provided it with your test kit. <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/">You can also find the UON online (opens in a new tab).</a>.
-         </span>
+         </span-->
 
-         <span id="enter-barcode-number-hint" class="govuk-body">
+         <!--span id="enter-barcode-number-hint" class="govuk-body">
             If you still need help,call the contact centre:
             <li> 119 if you're in England, Wales or Northern Ireland</li>
             <li>
-         </span>
+         </span-->
 
-         <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+         <details class="govuk-details" data-module="govuk-details">
            <summary class="govuk-details__summary">
              <span class="govuk-details__summary-text">
                {% if data['whos-taking-the-test'] == "someone-else" %}
@@ -51,26 +48,26 @@
            <div class="govuk-details__text">
              <p class="govuk-body">
                {% if data['whos-taking-the-test'] == "someone-else" %}
-               Get the UON from the employer or organisation that gave them the test kit.
+               Get the UON from the social care service, employer or organisation that gave them the test kit.
                {% else %}
-               Get the UON from the employer or organisation that gave you the test kit.
+               Get the UON from the social care service, employer or organisation that gave you the test kit.
                {% endif %}
              </p>
              <p class="govuk-body">
                {% if data['whos-taking-the-test'] == "someone-else" %}
-               They can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">find the UON online (opens in a new tab)</a>.
+               They can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">find a care home’s UON online (opens in a new tab).</a>.
                {% else %}
-               You can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">find the UON online (opens in a new tab)</a>.
+               You can also <a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" target="_blank" rel="noreferrer">find a care home’s UON online (opens in a new tab).</a>.
                {% endif %}
              </p>
              <p class="govuk-body">
                {% if data['whos-taking-the-test'] == "someone-else" %}
-               If they still need help, call the contact centre:
+               If they still need help, call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.
                {% else %}
-               If you still need help, call the contact centre:
+               If you still need help, call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.
                {% endif %}
              </p>
-               <ul class="govuk-list govuk-list--bullet">
+               <!--ul class="govuk-list govuk-list--bullet">
                  {% if data['whos-taking-the-test'] == "someone-else" %}
                  <li>119 if they’re in England, Wales or Northern Ireland</li>
                  <li>0300 303 2713 if they’re in Scotland</li>
@@ -78,8 +75,8 @@
                  <li>119 if you’re in England, Wales or Northern Ireland</li>
                  <li>0300 303 2713 if you’re in Scotland</li>
                  {% endif %}
-               </ul>
-               <p class="govuk-body">Lines are open 7am to 11pm.</p>
+               </ul-->
+               <!--p class="govuk-body">Lines are open 7am to 11pm.</p-->
            </div>
          </details>
 
@@ -95,18 +92,19 @@
           </div> -->
 
           <div class="govuk-form-group">
-            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="account-number">
-                Unique organisation number (optional)
-              </label>
-            </h1>
-            <div id="account-number-hint" class="govuk-hint">
-                Must be between 6 and 8 digits long
-            </div>
-            <input class="govuk-input govuk-input--width-10" id="account-number" name="account-number" type="text" spellcheck="false" aria-describedby="account-number-hint" pattern="[0-9]*" inputmode="numeric">
-          </div>
+            <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
 
-        </fieldset>
-      </div>
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    Unique organisation number
+                  </legend>
+
+                <!--div id="account-number-hint" class="govuk-hint">
+                    Must be between 6 and 8 digits long
+                </div-->
+                <input class="govuk-input govuk-input--width-20" id="account-number" name="account-number" type="text" spellcheck="false" aria-describedby="account-number-hint" pattern="[0-9]*" inputmode="numeric">
+            </fieldset>
+          </div>
+        </div>
 
       <button class="govuk-button" data-module="govuk-button">Continue</button>
 
@@ -119,8 +117,6 @@
             {% endif %}
           </a>
       </p>
-
-
 
     </form>
 
