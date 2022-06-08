@@ -34,22 +34,25 @@
                           </h1>
                         </legend>
                         <div id="mobile-number-hint">
-                          <p class="govuk-body">We need a mobile number to send their test results.</p>
+                          <p class="govuk-body">We need a mobile number to send your test results.</p>
 
-                          <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
+                          <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this number.</p>
 
-                          <p class="govuk-body">If they're getting a test for a child, enter their number not the child's.</p>
+                          <p class="govuk-body">If you're getting a test for a child, enter your number not theirs.</p>
 
-                          <p class="govuk-body">f their mobile number is going to change soon, it's important to give us an email address, as it may be the only way for them to get the test results.</p>
+                          <p class="govuk-body">If your mobile number is going to change soon, it's important you give us an email address, to make sure you get your test results.</p>
                         </div>
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                         What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}'s mobile number?
+                           Do you have a mobile number where you can get the test results?
                          </legend>
-
                         <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
-
+                          <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="mobile-number-1" name="mobile-number" type="radio" value="Yes" data-aria-controls="conditional-mobile-number" {{ checked("mobile-number", "Yes") }}>
-
+                            <label class="govuk-label govuk-radios__label" for="mobile-number-1">
+                              Yes
+                            </label>
+                          </div>
+                          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mobile-number">
                             <div class="govuk-form-group">
                               <label class="govuk-label" for="mobile-phone-number">
                                 Mobile number
@@ -65,8 +68,13 @@
                               </label>
                               <input class="govuk-input govuk-input--width-20" id="confirm-mobile-phone-number" name="confirm-mobile-phone-number" type="tel" value="{{ data['confirm-mobile-phone-number'] }}">
                             </div>
-
-
+                          </div>
+                          <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="mobile-number-2" name="mobile-number" type="radio" value="No" {{ checked("mobile-number", "No") }}>
+                            <label class="govuk-label govuk-radios__label" for="mobile-number-2">
+                              No
+                            </label>
+                          </div>
                         </div>
                       </fieldset>
                     </div>
