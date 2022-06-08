@@ -807,7 +807,7 @@ router.post('/IBT/antigen/e2e-prototypes/research/action3/landline-number', func
 router.post('/IBT/antigen/e2e-prototypes/research/action3/landline-number-person-1', function (req, res) {
   let car = req.session.data['do-you-have-a-car']
   if (car == "No") {
-    res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/email-address-home-person-1')
+    res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/email-address-person-1')
   } else {
     res.redirect('/IBT/antigen/e2e-prototypes/research/global-registration/email-address-person-1')
   }
