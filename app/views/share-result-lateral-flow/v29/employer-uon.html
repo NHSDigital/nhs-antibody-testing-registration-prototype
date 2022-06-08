@@ -133,15 +133,25 @@
               <div id="account-number-hint" class="govuk-hint">
                 An 8 digit number like 12345678
               </div>
-              <input class="govuk-input govuk-input--width-10" id="uon-number" name="uon-number" type="text" aria-describedby="account-number-hint">
+              <input class="govuk-input govuk-input--width-20" id="uon-number" name="uon-number" type="text" aria-describedby="account-number-hint">
             </div>
 
 
         </div>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
-        <button class="govuk-button govuk-button--secondary" data-module="govuk-button"> Continue without UON</button>
+
       </form>
+
+      <p>
+          <a class="govuk-link" href="/share-result-lateral-flow/{{version}}/postcode2">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            They don't know the UON
+            {% else %}
+            I don't know the UON
+            {% endif %}
+          </a>
+      </p>
 
 
     </div>
