@@ -15,7 +15,8 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/landline-number-person-1">Back</a>
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
 {% endblock %}
 
 {% block content %}
@@ -24,126 +25,113 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/gender-person-1" method="post">
+      {% if data['way-to-test'] == "home testing" %}
+      <h1 class="govuk-heading-l">
+        {{ pageTitle }}
+      </h1>
+
+      <p class="govuk-body">We need an email address to send the test results. Use one they'll have access to later.</p>
+
+      <p class="govuk-body">If they're getting a test for a child, enter their email not the child's.</p>
+
+      <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way to get the test results.</p>
+
+      <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/gender-person-1" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
-            {% if data['way-to-test'] == "home testing" %}
-
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-              {{ pageTitle }}
-              </h1>
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              What is {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}'s email address?
             </legend>
 
-            <div id="email-address-hint">
-              <p class="govuk-body">We need an email address to send the test results. Use one they'll have access to later.</p>
-
-              <p class="govuk-body">If they're getting a test for a child, enter their email not the child's.</p>
-
-              <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way to get the test results.</p>
-
-            </div>
-
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-               Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} have an email address?
-             </legend>
-
-           <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
-             <div class="govuk-radios__item">
-               <input class="govuk-radios__input" id="email-1-person-1" name="email-person-1" type="radio" value="different" data-aria-controls="conditional-email-address" {{ checked("email-person-1", "different") }}>
-               <label class="govuk-label govuk-radios__label" for="email-1-person-1">
-                 Yes
-               </label>
-             </div>
-             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
-               <div class="govuk-form-group">
-                 <label class="govuk-label" for="email-address-person-1">
-                   Email address
-                 </label>
-                 <input class="govuk-input govuk-!-width-two-thirds" id="email-address-person-1" name="email-address-person-1" type="text" value="{{ data['email-address-person-1'] }}">
-               </div>
-               <div class="govuk-form-group">
-                 <label class="govuk-label" for="confirm-email-address-person-1">
-                   Confirm email address
-                 </label>
-                 <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address-person-1" name="confirm-email-address-person-1" type="text" value="{{ data['confirm-email-address-person-1'] }}">
-               </div>
-             </div>
-            </div>
-            <div class="govuk-body">Or</div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="email-2-person-1" name="email-person-1" type="radio" value="same" {{ checked("email-person-1", "same") }}>
-              <label class="govuk-label govuk-radios__label" for="email-2-person-1">
-                Use (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith'}})
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="email-address">
+                Email address
               </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="email-address-person-1" name="email-address-person-1" type="text" value="{{ data['email-address-person-1'] }}">
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="confirm-email-address">
+                Confirm email address
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address-person-1" name="confirm-email-address-person-1" type="text" value="{{ data['confirm-email-address-person-1'] }}">
             </div>
 
             {% else %}
 
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                  <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
-                    {{ pageTitle }}
-                  </h1>
-                </legend>
+            <h1 class="govuk-heading-l">
+              {{ pageTitle }}
+            </h1>
 
-                <div id="email-address-hint">
-                  <p class="govuk-body">We need an email address to send the test results. Use one they'll have access to later.</p>
 
-                  <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
+            <p class="govuk-body">We need an email address to send the test results. Use one they'll have access to later.</p>
 
-                  <p class="govuk-body">If they're getting a test for a child, enter their email not the child's.</p>
+            <p class="govuk-body">If they're getting a test for a child, enter their email not the child's.</p>
 
-                  <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way to get the test results.</p>
+            <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way to get the test results.</p>
 
-                  <!--p class="govuk-body">If a test result is positive, the NHS may also use the details you supply for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/test-results/help-the-nhs-alert-your-close-contacts-if-you-test-positive/" target="_blank">contact tracing (opens in new tab)</a>.</p-->
-                </div>
+            <!--p class="govuk-body">If a test result is positive, the NHS may also use the details you supply for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/test-results/help-the-nhs-alert-your-close-contacts-if-you-test-positive/" target="_blank">contact tracing (opens in new tab)</a>.</p-->
 
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                   Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} have an email address?
-                 </legend>
+            <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/gender-person-1" method="post">
 
-            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-6" data-module="govuk-radios">
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} have an email address?
+                  </legend>
 
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-1-person-1" name="email-person-1" type="radio" value="different" data-aria-controls="conditional-email-address" {{ checked("email-person-1", "different") }}>
-                <label class="govuk-label govuk-radios__label" for="email-1-person-1">
-                  Yes
-                </label>
+                  <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="email-1-person-1" name="email-1-person-1" type="radio" value="different" data-aria-controls="conditional-email-address" {{ checked("email-1-person-1", "different") }}>
+                      <label class="govuk-label govuk-radios__label" for="email-1-person-1">
+                        Yes
+                      </label>
+                    </div>
+                    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label" for="email-address-person-1">
+                          Email address
+                        </label>
+                        <input class="govuk-input govuk-!-width-two-thirds" id="email-address-person-1" name="email-address-person-1" type="email" value="{{ data['email-address-person-1'] }}">
+                      </div>
+                      <div class="govuk-form-group">
+                        <label class="govuk-label" for="confirm-email-address-person-1">
+                          Confirm email address
+                        </label>
+                        <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address-person-1" name="confirm-email-address-person-1" type="email" value="{{ data['confirm-email-address-person-1'] }}">
+                      </div>
+                    </div>
+
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="email-2" name="email-1-person-1" type="radio" value="No" {{ checked("email-2", "No") }}>
+                      <label class="govuk-label govuk-radios__label" for="email-2">
+                        No
+                      </label>
+                    </div>
+
+                    <div class="govuk-body">Or</div>
+
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="email-3" name="email-1-person-1" type="radio" value="same" {{ checked("email-3", "same") }}>
+                    <label class="govuk-label govuk-radios__label" for="email-3">
+                      Use psmith@example.co.uk  (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith'}})
+                    </label>
+                  </div>
+
+                  </div>
+
+                  {% endif %}
+
+                </fieldset>
               </div>
-              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
-                <div class="govuk-form-group">
-                  <label class="govuk-label" for="email-address-person-1">
-                    Email address
-                  </label>
-                  <input class="govuk-input govuk-!-width-two-thirds" id="email-address-person-1" name="email-address-person-1" type="tel" value="{{ data['email-address-person-1'] }}">
-                </div>
-                <div class="govuk-form-group">
-                  <label class="govuk-label" for="confirm-email-address-person-1">
-                    Confirm email address
-                  </label>
-                  <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address-person-1" name="confirm-email-address-person-1" type="tel" value="{{ data['confirm-email-address-person-1'] }}">
-                </div>
-              </div>
 
-                <div class="govuk-body">Or</div>
+              <button class="govuk-button" data-module="govuk-button">Continue</button>
 
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-2-person-1" name="email-person-1" type="radio" value="same" {{ checked("email-person-1", "same") }}>
-                <label class="govuk-label govuk-radios__label" for="email-2-person-1">
-                  Use psmith@example.co.uk  (same as {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith'}})
-                </label>
-              </div>
-            </div>
-            {% endif %}
-          </fieldset>
+            </form>
+
         </div>
-
-        <button class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">Continue</button>
-      </form>
     </div>
-
-
-  </div>
+    </div>
 
 {% endblock %}
