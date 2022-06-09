@@ -24,18 +24,14 @@
     <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds">
 
-                  <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers/mobile-number" method="post">
 
                     <div class="govuk-form-group">
-                      <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
                         {% if data['way-to-test'] == "home testing" %}
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+
                           <h1 class="govuk-heading-l">
                             {{ pageTitle }}
                           </h1>
-                        </legend>
 
-                        <div id="email-address-hint">
                           <p class="govuk-body">We need an email address to send the test results. Use one they'll have access to later.</p>
 
                           <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
@@ -44,7 +40,11 @@
 
                           <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way to get the test results.</p>
 
-                        </div>
+
+
+                        <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers/mobile-number" method="post">
+                          <fieldset class="govuk-fieldset">
+
 
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                          What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}'s email address?
@@ -56,6 +56,7 @@
                             </label>
                             <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
                           </div>
+
                           <div class="govuk-form-group">
                             <label class="govuk-label" for="confirm-email-address">
                               Confirm email address
@@ -65,13 +66,11 @@
 
                         {% else %}
 
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                           <h1 class="govuk-heading-l">
                             {{ pageTitle }}
                           </h1>
-                        </legend>
 
-                        <div id="email-address-hint">
+
                           <p class="govuk-body">We need an email address to send the test results. Use one they'll have access to later.</p>
 
                           <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
@@ -79,7 +78,7 @@
                           <p class="govuk-body">If they're getting a test for a child, enter their email not the child's.</p>
 
                           <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way to get the test results.</p>
-                        </div>
+
 
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                             Does {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }} have an email address?
@@ -118,10 +117,12 @@
                         {% endif %}
 
                       </fieldset>
+                      </form>
                     </div>
 
+
                     <button class="govuk-button" data-module="govuk-button">Continue</button>
-                  </form>
+
                 </div>
 
         </div>
