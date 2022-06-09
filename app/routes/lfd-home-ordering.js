@@ -2261,22 +2261,52 @@ router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/test-reason-wo
     if (symptoms == "Yes") {
       res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/coronavirus-account')
     } else {
-      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-test-pause')
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/more-why-test-nhs-ihp')
     }
   } else if (work == "You work for an NHS-commissioned independent healthcare provider in a patient-facing role looking after NHS patients") {
     if (symptoms == "Yes") {
       res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/healthcare-provider-name')
     } else {
-      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-test-pause')
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/more-why-test-nhs-ihp')
     }
   } else if (work == "You work in the adult social care sector") {
     if (symptoms == "Yes") {
       res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/adult-social-care-role')
     } else {
-      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-test-pause')
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/more-why-test-asc')
     }
   } else {
     res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-v2')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/more-why-test-nhs-ihp', function(req, res) {
+  let work = req.session.data['test-reason-work']
+  let reason = req.session.data['test-reason-work-asymptomatic']
+  if (reason == "Return to work" || reason == "You're extremely clinically vulnerable" || reason == "You work with extremely clinically vulnerable") {
+    if (work == "You work for the NHS") {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/coronavirus-account')
+    } else if (work == "You work for an NHS-commissioned independent healthcare provider in a patient-facing role looking after NHS patients") {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/healthcare-provider-name')
+    } else {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-test-pause')
+    }
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-test-pause')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/more-why-test-asc', function(req, res) {
+  let work = req.session.data['test-reason-work']
+  let reason = req.session.data['test-reason-work-asymptomatic']
+  if (reason == "Return to work" || reason == "Pack at home") {
+    if (work == "You work in the adult social care sector") {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/adult-social-care-role')
+    } else {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-test-pause')
+    }
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-test-pause')
   }
 })
 

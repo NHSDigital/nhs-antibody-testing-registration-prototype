@@ -1,0 +1,69 @@
+{% set version = "SAID-479" %}
+{% set pageTitle = "Tell us more about why you need a test" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-home-order/feature-design/{{version}}/action10/more-why-test-asc" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-!-margin-bottom-3" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-1" name="test-reason-work-asymptomatic" type="radio" value="Return to work" {{ checked("test-reason-work-asymptomatic", "Return to work") }} >
+                <label class="govuk-label govuk-radios__label" for="reason-1">
+                  You've been off work with COVID-19 and need a test to return to work
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-2" name="test-reason-work-asymptomatic" type="radio" value="Pack at home" {{ checked("test-reason-work-asymptomatic", "Pack at home") }} >
+                <label class="govuk-label govuk-radios__label" for="reason-2">
+                  You need one pack of tests at home in case you get COVID-19 symptoms
+                </label>
+              </div>
+              <div class="govuk-radios__divider">or</div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="reason-3" name="test-reason-work-asymptomatic" type="radio" value="Another reason" {{ checked("test-reason-work-asymptomatic", "Another reason") }} >
+                <label class="govuk-label govuk-radios__label" for="reason-3">
+                  Another reason
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
