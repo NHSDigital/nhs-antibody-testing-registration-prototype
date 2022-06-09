@@ -43,8 +43,14 @@
               Name
             </dt>
             <dd class="govuk-summary-list__value">
+              <!-- {{ data['first-name'] }} {{ data['last-name'] }}
+              Pete Boam -->
+
+              {% if data['first-name'] }} {{ data['last-name'] %}
               {{ data['first-name'] }} {{ data['last-name'] }}
+              {% else %}
               Pete Boam
+              {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/share-result-lateral-flow/{{version}}/name">
@@ -59,8 +65,14 @@
               Date of birth
             </dt>
             <dd class="govuk-summary-list__value">
+              <!-- {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+              7th February 1995 -->
+
+              {% if data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] %}
               {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+              {% else %}
               7th February 1995
+              {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/share-result-lateral-flow/{{version}}/date-of-birth">
@@ -165,8 +177,13 @@
               Mobile
             </dt>
             <dd class="govuk-summary-list__value">
+              <!-- {{ data['mobile-phone-number'] }}
+              07630946677 -->
+              {% if data['mobile-phone-number'] %}
               {{ data['mobile-phone-number'] }}
+              {% else %}
               07630946677
+              {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/share-result-lateral-flow/{{version}}/mobile">
@@ -181,8 +198,14 @@
               Email
             </dt>
             <dd class="govuk-summary-list__value">
+              <!-- {{ data['email-address'] }}
+              p.boam@gmail.com -->
+
+              {% if data['email-address'] %}
               {{ data['email-address'] }}
+              {% else %}
               p.boam@gmail.com
+              {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/share-result-lateral-flow/{{version}}/got-email"">
@@ -245,8 +268,14 @@
               NHS number
             </dt>
             <dd class="govuk-summary-list__value">
+              <!-- {{ data['nhs-number'] }}
+              943 476 5919 -->
+
+              {% if data['nhs-number'] %}
               {{ data['nhs-number'] }}
+              {% else %}
               943 476 5919
+              {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/share-result-lateral-flow/{{version}}/nhs-number">
@@ -261,8 +290,14 @@
               Confirmation type
             </dt>
             <dd class="govuk-summary-list__value">
+              <!-- {{ data['confirmations'] }}
+              Email -->
+
+              {% if data['confirmations'] %}
               {{ data['confirmations'] }}
+              {% else %}
               Email
+              {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/share-result-lateral-flow/{{version}}/confirmations">
@@ -277,8 +312,14 @@
               Confirmation in Welsh as well as English?
             </dt>
             <dd class="govuk-summary-list__value">
+              {% if data['welsh'] %}
               {{ data['welsh'] }}
+              {% else %}
               No
+              {% endif %}
+
+              <!-- {{ data['welsh'] }}
+              No -->
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/share-result-lateral-flow/{{version}}/welsh">
@@ -298,8 +339,14 @@
             Date test taken
           </dt>
           <dd class="govuk-summary-list__value">
+            <!-- {{ data['swab-test-date'] }}
+            11th June 2022 -->
+
+            {% if data['swab-test-date'] %}
             {{ data['swab-test-date'] }}
+            {% else %}
             11th June 2022
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/share-result-lateral-flow/{{version}}/test-date">
@@ -314,8 +361,14 @@
             Test strip ID number
           </dt>
           <dd class="govuk-summary-list__value">
+            <!-- {{ data['kit-barcode-reference-1'] }}
+            C70268320 -->
+
+            {% if data['kit-barcode-reference-1'] %}
             {{ data['kit-barcode-reference-1'] }}
+            {% else %}
             C70268320
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/share-result-lateral-flow/{{version}}/barcode">
@@ -330,8 +383,14 @@
             Test result
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['choose-result'] or "Positive" }}
+            <!-- {{ data['choose-result'] or "Positive" }} -->
 
+
+            {% if data['choose-result'] %}
+            {{ data['choose-result'] }}
+            {% else %}
+            Positive
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="/share-result-lateral-flow/{{version}}/choose-result">
