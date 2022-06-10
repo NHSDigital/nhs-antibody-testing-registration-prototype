@@ -1115,7 +1115,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
           } else if(result == "It’s for the NHS in England or Northern Ireland") {
             res.redirect('/share-result-lateral-flow/v29/nhs-primary')
           } else if(result == "It’s for an independent healthcare provider commissioned by the NHS") {
-            res.redirect('/share-result-lateral-flow/v29/trust')
+            res.redirect('/share-result-lateral-flow/v29/ihp')
           } else if(result == "It’s for a homeless service") {
             res.redirect('/share-result-lateral-flow/v29/employer-uon')
           } else if(result == "It’s for a domestic abuse service") {
