@@ -1161,7 +1161,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
           if (result == "I have symptoms and am eligible for COVID-19 treatments"){
             res.redirect('/share-result-lateral-flow/v29/test-date')
           } else if(result == "To go to a place of education") {
-            res.redirect('/share-result-lateral-flow/v29/institution-lookup')
+            res.redirect('/share-result-lateral-flow/v29/test-date')
           } else if(result == "To check if my test result is still positive") {
             res.redirect('/share-result-lateral-flow/v29/test-date')
           } else if(result == "For getting care or support from social care services") {
@@ -1171,7 +1171,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
           } else if(result == "For getting care or support from a refuge") {
             res.redirect('/share-result-lateral-flow/v29/employer-uon')
           } else if(result == "Another reason") {
-            res.redirect('/share-result-lateral-flow/v29/test-reason-2')
+            res.redirect('/share-result-lateral-flow/v29/test-date')
           }
 
         })
@@ -1199,8 +1199,6 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
           if (result == "A healthcare professional told me to get a test because I'm being admitted into hospital for a procedure or treatment"){
             res.redirect('/share-result-lateral-flow/v29/test-date')
           } else if(result == "A GP or healthcare professional recently told me to get a test") {
-            res.redirect('/share-result-lateral-flow/v29/test-date')
-          } else if(result == "I'm being discharged from hospital (going home)") {
             res.redirect('/share-result-lateral-flow/v29/test-date')
           }
 
