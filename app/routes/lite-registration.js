@@ -1067,7 +1067,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
           let result = req.session.data['choose-result']
 
           if (result == "Positive"){
-            res.redirect('/share-result-lateral-flow/v28/positive-result')
+            res.redirect('/share-result-lateral-flow/v28/positive-result-SR-england')
           } else if (result == "Negative") {
             res.redirect('/share-result-lateral-flow/v28/negative-result')
           } else {
