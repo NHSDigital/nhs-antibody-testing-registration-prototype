@@ -1,0 +1,67 @@
+{% set serviceName = oldElectiveCareServiceName %}
+{% set pageTitle = "Check your answers" %}
+{% set memberType = data['member-type'] %}
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+    {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+
+      <table class="govuk-table">
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Email address</th>
+            <td class="govuk-table__cell">john.smith@mail.com</td>
+            <td class="govuk-table__cell">
+              {% if memberType == 'ep' %}
+                <a href="edit-team-member-{{memberType}}-standard-v1" class="govuk-link">Change</a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Name</th>
+            <td class="govuk-table__cell">John Smith</td>
+            <td class="govuk-table__cell">
+              {% if memberType == 'ep' %}
+                <a href="edit-team-member-{{memberType}}-standard-v1" class="govuk-link">Change</a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Group(s)</th>
+            <td class="govuk-table__cell">Cardiology, Gastroenterology</td>
+            <td class="govuk-table__cell"><a href="edit-team-member-{{memberType}}-standard-v1" class="govuk-link">Change</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Signs in with</th>
+            <td class="govuk-table__cell">
+              {% if memberType == 'ep' %}
+              	Email &amp; password (Active)
+              {% else %}
+                Smartcard (Active)
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell"><a href="edit-team-member-{{memberType}}-standard-v1" class="govuk-link">Change</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <form action="./edit-team-member-confirmation-v1" method="post">
+        <button class="govuk-button govuk-!-margin-top-5" data-module="govuk-button">
+          Save and continue
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+
+
+{% endblock %}
