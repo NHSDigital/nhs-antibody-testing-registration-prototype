@@ -1,0 +1,60 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set pageHeading = "Upload patient details for PCR tests" %}
+{% set serviceName = electiveCareServiceName %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ electiveCareServiceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <div aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary" id="error-summary" class="govuk-error-summary govuk-grid-column-two-thirds" style="">
+        <h2 id="error-summary-title" class="govuk-error-summary__title"> There is a problem </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list pl-0">
+            <li>
+              <a data-v-e7eff886="" href="#upload-file" class="govuk-link"> The wrong file has been uploaded </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+      <span class="govuk-caption-xl"> Group 1 </span> {{pageHeading}} </h1>
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          You must select the test type in the spreadsheet.
+        </strong>
+      </div>
+      <p class="govuk-body">To enter and upload patient details to order tests:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="/ec/static/Register-elective-care-template.xlsx" download="" class="govuk-link"> download our test kit ordering spreadsheet </a> </li>
+        <li class="govuk-body">do not add any sheets, rows or columns</li>
+        <li class="govuk-body">enter details for up to 100 people at a time</li>
+        <li class="govuk-body">save the completed spreadsheet and then upload it</li>
+      </ul>
+      <div class="govuk-form-group govuk-form-group--error">
+        <label for="upload-file" class="govuk-label"> Upload a file </label>
+        <span id="upload-file-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> The wrong file has been uploaded </span>
+        <form><input type="file" name="upload-file" id="upload-file" accept=".xls,.xlsx,.xlsm" class="govuk-file-upload"></form>
+      </div>
+      <a href="bulk-confirm-v1" class="govuk-!-margin-top-4 govuk-button"> Continue </a>
+    </div>
+  </div>
+
+{% endblock %}
