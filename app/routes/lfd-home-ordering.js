@@ -2217,7 +2217,7 @@ router.post('/IBT/lfd-home-order/feature-design/SAID-478/action10/work-area', fu
 })
 
 
-// Asymptomatic Testing Pause //
+// Asymptomatic Testing Pause // ----------
 
 router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/country', function(req, res) {
   let country = req.session.data['country']
@@ -2505,6 +2505,296 @@ router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/work-area', fu
   }
 
 })
+
+// Asymptomatic Testing Pause - updated content for testing // ----------
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/country', function(req, res) {
+  let country = req.session.data['country']
+  if (country == "England") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/do-you-have-symptoms-england')
+  } else if (country == "Scotland") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/exit-screens/scotland-gate')
+  } else if (country == "Northern Ireland") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/exit-screens/ni-gate')
+  } else if (country == "Wales") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/exit-screens/guard-question-wales')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/error-screens/country')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/do-you-have-symptoms-england', function(req, res) {
+  let symptoms = req.session.data['do-you-have-symptoms']
+  let country = req.session.data['country']
+  if (country == "England") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/no-more-tests-available-england')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/test-reason-category-england', function(req, res) {
+  let category = req.session.data['test-reason-category']
+  if (category == "You been asked to take a test by a doctor or healthcare professional, or you have an eligible health condition") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/test-reason-health')
+  } else if (category == "You been asked to take a test for your job") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/test-reason-work')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/exit-screens/not-eligible-v2')
+  }
+})
+
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/test-reason-work', function(req, res) {
+  let work = req.session.data['test-reason-work']
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (work == "You work for the NHS") {
+    if (symptoms == "Yes") {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/coronavirus-account')
+    } else {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/more-why-test-nhs-ihp')
+    }
+  } else if (work == "You work for an NHS-commissioned independent healthcare provider in a patient-facing role looking after NHS patients") {
+    if (symptoms == "Yes") {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/healthcare-provider-name')
+    } else {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/more-why-test-nhs-ihp')
+    }
+  } else if (work == "You work in the adult social care sector") {
+    if (symptoms == "Yes") {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/adult-social-care-role')
+    } else {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/more-why-test-asc')
+    }
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/exit-screens/not-eligible-v2')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/more-why-test-nhs-ihp', function(req, res) {
+  let work = req.session.data['test-reason-work']
+  let reason = req.session.data['test-reason-work-asymptomatic']
+  if (reason == "Return to work" || reason == "You're extremely clinically vulnerable" || reason == "You work with extremely clinically vulnerable") {
+    if (work == "You work for the NHS") {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/coronavirus-account')
+    } else if (work == "You work for an NHS-commissioned independent healthcare provider in a patient-facing role looking after NHS patients") {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/healthcare-provider-name')
+    } else {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/exit-screens/not-eligible-test-pause')
+    }
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/exit-screens/not-eligible-test-pause')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/more-why-test-asc', function(req, res) {
+  let work = req.session.data['test-reason-work']
+  let reason = req.session.data['test-reason-work-asymptomatic']
+  if (reason == "Return to work" || reason == "Pack at home") {
+    if (work == "You work in the adult social care sector") {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/adult-social-care-role')
+    } else {
+      res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/exit-screens/not-eligible-test-pause')
+    }
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/exit-screens/not-eligible-test-pause')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/test-reason-health', function(req, res) {
+  let health = req.session.data['test-reason-health']
+  let symptoms = req.session.data['do-you-have-symptoms']
+  if (health == "You've been told by the NHS that you're eligible for COVID-19 treatments") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/qualifying-condition-england')
+  } else if (health == "Your doctor or healthcare professional has told you to get a test because you're being admitted into hospital for a procedure") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/hospital-name')
+  } else if (health == "You've spoken to your GP or healthcare professional recently and they asked you to get a test") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/date-asked-to-test')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/exit-screens/not-eligible-v2')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/qualifying-condition-england', function(req, res) {
+  let qualify = req.session.data['qualifying-condition']
+  if (qualify == "Yes") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/coronavirus-account')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/exit-screens/not-eligible-v2')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/qualifying-condition-scotland', function(req, res) {
+  let qualify = req.session.data['qualifying-condition']
+  if (qualify == "Yes") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/coronavirus-account')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/exit-screens/not-eligible-scotland')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479/action10/qualifying-condition-wales', function(req, res) {
+  let qualify = req.session.data['qualifying-condition']
+  if (qualify == "Yes") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/coronavirus-account')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/exit-screens/not-eligible-wales')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/qualifying-condition-ni', function(req, res) {
+  let qualify = req.session.data['qualifying-condition']
+  if (qualify == "Yes") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/coronavirus-account')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/exit-screens/not-eligible-ni')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/email-address', function(req, res) {
+  let emailAddress = req.session.data['email']
+  if (emailAddress == "No") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/call-us')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/mobile-number')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/date-of-birth', function(req, res) {
+  let country = req.session.data['country']
+  if (country == "England") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/nhs-testing-programme')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/check-your-answers')
+  }
+})
+
+// router.post('/IBT/lfd-home-order/feature-design/SAID-479/action11/contact-with-positive', function(req, res) {
+//   let contactWithPositive = req.session.data['contact-with-positive']
+//   if (contactWithPositive == "No") {
+//     res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/work-from-home')
+//   } else {
+//     res.redirect('/IBT/lfd-home-order/feature-design/SAID-479/daily-contact-testing')
+//   }
+// })
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/home-address-question', function(req, res) {
+  let deliveryAddressSame = req.session.data['delivery-address-same']
+  let country = req.session.data['country']
+  if (deliveryAddressSame == "No") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/delivery-postcode')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/confirm-email-address')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/nhs-testing-programme', function(req, res) {
+  let programme = req.session.data['nhs-testing-programme']
+  if (programme == "Yes") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/work-area')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/check-your-answers')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/nhs-staff-member', function(req, res) {
+  let nhsstaff = req.session.data['test-reason-work']
+  if (nhsstaff == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" || nhsstaff == "You work for the NHS") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/work-area')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/check-your-answers')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/enter-password', function(req, res) {
+  let country = req.session.data['country']
+  if (country == "England") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/nhs-testing-programme')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/check-your-answers')
+  }
+})
+
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/coronavirus-account', function(req, res) {
+  let signin = req.session.data['coronavirus-account']
+  if (signin == "Yes") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/user-account/login-email')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/name')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/user-account/action10/login-email', function(req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/user-account/enter-password')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/user-account/create-password')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/create-password', function(req, res) {
+  let password = req.session.data['password']
+  let confirmPassword = req.session.data['confirm-password']
+  if (password == "" || confirmPassword == "") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/user-account/create-password-error')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/user-account/check-email')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/check-mobile', function(req, res) {
+  let securityCode = req.session.data['security-code']
+  if (securityCode == "") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/user-account/check-mobile-error')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/user-account/agreement')
+  }
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/user-account/action10/home-page', function(req, res) {
+  let loginEmail = req.session.data['email-address']
+
+  if (loginEmail == "user@testing.co.uk") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/check-your-answers')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/name')
+  }
+
+})
+
+
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/contact-with-positive', function(req, res) {
+  let contactWithPositive = req.session.data['contact-with-positive']
+  if (contactWithPositive == "No") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/dct-unavailable')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/notified-how')
+  }
+
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/dct-opt-in', function(req, res) {
+  let dctOptIn = req.session.data['dct-opt-in']
+  if (dctOptIn == "No") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/self-isolate')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/name')
+  }
+
+})
+
+router.post('/IBT/lfd-home-order/feature-design/SAID-479a/action10/work-area', function(req, res) {
+  let workArea = req.session.data['work-area']
+  if (workArea == "Community pharmacy" || workArea == "Dentistry" || workArea == "General practice" || workArea == "Optometry" || workArea == "Other") {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/work-postcode')
+  } else {
+    res.redirect('/IBT/lfd-home-order/feature-design/SAID-479a/trust')
+  }
+
+})
+
 
 // VERSION Symptoms, gate and friction pages content update //
 
