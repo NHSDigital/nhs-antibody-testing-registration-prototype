@@ -1,0 +1,78 @@
+{% set version = "SAID-479a" %}
+{% set pageTitle = "When did your GP or healthcare professional ask you to get a test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-home-order/feature-design/{{version}}/coronavirus-account" method="post">
+
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="date-asked-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  {{ pageTitle }}
+                </h1>
+              </legend>
+              <div id="date-asked-hint" class="govuk-hint">
+                For example, 19 3 2022
+              </div>
+              <div class="govuk-date-input" id="date-asked">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-asked-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-asked-day" name="date-asked-day" type="text" pattern="[0-9]*" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-asked-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-asked-month" name="date-asked-month" type="text" pattern="[0-9]*" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-asked-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-asked-year" name="date-asked-year" type="text" pattern="[0-9]*" inputmode="numeric">
+                  </div>
+                </div>
+              </div>
+
+            </fieldset>
+          </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
