@@ -1935,11 +1935,11 @@ b,strong {
   padding: 16px!important
 }
 
-@media (min-width: 40.0625em) {
+/*@media (min-width: 40.0625em) {
   .nhsuk-u-padding-4 {
       padding:24px!important
   }
-}
+}*/
 
 .nhsuk-u-padding-top-4 {
   padding-top: 16px!important
@@ -9079,8 +9079,8 @@ section+section>h2 {
 }
 
 .beta-icon__chevron-right-circle {
-  position: absolute; 
-  top: 45%; 
+  position: absolute;
+  top: 45%;
   right: 16px;
 }
 
@@ -9113,21 +9113,18 @@ section+section>h2 {
   background-color: #ffdc8e;
   border-color: #b86969;
   border-bottom: 4px solid #b86969;
-  // color: #6b140e;
 }
 
 .nhsuk-card.green {
   background-color: #cce5d8;
   border-color: #4a7b48;
   border-bottom: 4px solid #4a7b48;
-  // color: #004c23;
 }
 
 .nhsuk-card.red {
   background-color: #f7d4d1;
   border-color: #b0827c;
   border-bottom: 4px solid #b0827c;
-  // color: #6b140e;
 }
 
 .nhsuk-card.white {
@@ -9146,31 +9143,70 @@ section+section>h2 {
   width: 100%;
   height: 100%;
   align-items: center;
+  flex-direction: column;
+  text-align: center;
   justify-content: space-between;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .nhsuk-card--clickable .collapsible h3 {
-  margin-bottom: 0;
+  margin-bottom: 16px;
 }
 
 .nhsuk-card--clickable {
   border-bottom-width: 4px;
 }
 
-.nhsuk-card--clickable .collapsible .nhsuk-card__description {
+.nhsuk-card--clickable .collapsible.main .nhsuk-card__description {
   display: none;
 }
 
-@media (min-width: 40.0625em) {
+@media (min-width: 20.0625em) {
   .nhsuk-card--clickable .collapsible {
-    // display: block;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-between;
+  }
+
+  .nhsuk-card--clickable .collapsible h3,
+  .nhsuk-card--clickable .collapsible span {
+    margin-bottom: 0;
+  }
+
+  .nhsuk-card--clickable {
+    border-bottom-width: 4px;
+  }
+
+  .nhsuk-card--clickable .collapsible.main .nhsuk-card__description {
+    display: none;
+  }
+
+  .nhsuk-card--clickable .collapsible.main {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+@media (min-width: 40.0625em) {
+  .nhsuk-card--clickable .collapsible,
+  .nhsuk-card--clickable .collapsible.main {
     flex-direction: column;
     text-align: center;
   }
-  .nhsuk-card--clickable .collapsible .nhsuk-card__description {
+  .nhsuk-card--clickable .collapsible.main .nhsuk-card__description {
     display: block;
     text-align: center;
   }
+
+  .separator-list.no-border .nhsuk-card__description {
+    max-width: 80%;
+  }
+
   .nhsuk-card--clickable .collapsible h3 {
     margin-bottom: 16px;
   }
@@ -9190,9 +9226,9 @@ section+section>h2 {
   border-color: #aeb7bd;
 }
 
-.nhsuk-card--clickable:hover .nhsuk-card__heading a, 
-.nhsuk-card--clickable:hover .nhsuk-card__link, 
-.nhsuk-card--clickable:active .nhsuk-card__heading a, 
+.nhsuk-card--clickable:hover .nhsuk-card__heading a,
+.nhsuk-card--clickable:hover .nhsuk-card__link,
+.nhsuk-card--clickable:active .nhsuk-card__heading a,
 .nhsuk-card--clickable:active .nhsuk-card__link {
   color: #7C2855;
   text-decoration: none;
@@ -9215,19 +9251,30 @@ section+section>h2 {
   line-height: 1;
 }
 
-.nhsuk-card .nhsuk-tag {
-  padding: .6rem;
-  text-align: center;
-  min-width: 32%;
-  margin-left: 1rem;
+.separator-list.no-border .tag-wrapper {
+  width: 120px;
 }
 
-@media (min-width: 40.0625em) {
-  .nhsuk-card .nhsuk-tag {
-    width: 120px;
-    padding: .9rem;
-  }
-}
+// .nhsuk-card .nhsuk-tag {
+//   padding: .6rem;
+//   text-align: center;
+//   min-width: 32%;
+//   margin-left: 1rem;
+// }
+
+// @media (min-width: 20.0625em) {
+//   .nhsuk-card .nhsuk-tag {
+//     margin-left: 0;
+//   }
+// }
+
+// @media (min-width: 40.0625em) {
+//   .nhsuk-card .nhsuk-tag {
+//     width: 120px;
+//     padding: .9rem;
+//     margin-left: 0;
+//   }
+// }
 
 .nhsuk-tag--orange {
   background-color: #ffdc8e;
@@ -9245,4 +9292,22 @@ section+section>h2 {
   background-color: #cce5d8;
   border-color: #004c23;
   color: #004c23;
+}
+
+.nhsuk-tag--grey {
+  background-color: #dbe0e3;
+  border-color: #354550;
+  color: #354550;
+}
+
+@media (min-width: 20.0625em) {
+  .nhsuk-card .span-heading {
+    padding-bottom: 16px;
+  }
+  .nhsuk-card .main .span-heading {
+    padding-bottom: 0;
+  }
+  .nhsuk-card .span-description {
+    padding-bottom: 24px;
+  }
 }

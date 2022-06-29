@@ -1,0 +1,64 @@
+{% set version = "SAID-478" %}
+{% set pageTitle = "Check your email address" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/IBT/lfd-home-order/feature-design/{{version}}/confirm-email-code" method="post">
+
+      <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+            {{ pageTitle }}
+          </h1>
+        </legend>
+        <span id="email-address-hint" class="govuk-body">
+          We'll send a confirmation code to this email address. You'll need to enter this code to continue.<br><br>
+          Check that you're happy for us to use this email address, or you can change it.<br><br>
+        </span>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="email-address">
+            Email address
+          </label>
+          <input class="govuk-input" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+        </div>
+      </fieldset>
+
+      <button class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
+{% block bodyEnd %}
+  <div class="proto-action big">
+    <a href="/IBT/lfd-home-order/feature-design/{{version}}/exit-screens/repeat-order">
+      <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Repeat order page</div>
+    </a>
+  </div>
+{% endblock %}

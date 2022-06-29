@@ -1,0 +1,85 @@
+{% set version = "SAID-479" %}
+{% set pageTitle = "What is your area of work?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-home-order/feature-design/{{version}}/action10/test-reason-work" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-!-margin-bottom-3" data-module="govuk-radios">
+              <!-- <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-1" name="test-reason-work" type="radio" value="You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" {{ checked("test-reason-work", "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme") }} >
+                <label class="govuk-label govuk-radios__label" for="work-1">
+                  You work for the NHS directly with patients
+                </label>
+              </div> -->
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-2" name="test-reason-work" type="radio" value="You work for the NHS" {{ checked("test-reason-work", "You work for the NHS") }} >
+                <label class="govuk-label govuk-radios__label" for="work-2">
+                  You work for the NHS
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-3" name="test-reason-work" type="radio" value="You work for an NHS-commissioned independent healthcare provider in a patient-facing role looking after NHS patients" {{ checked("test-reason-work", "You work for an NHS-commissioned independent healthcare provider in a patient-facing role looking after NHS patients") }} >
+                <label class="govuk-label govuk-radios__label" for="work-3">
+                  You work for an independent healthcare provider (IHP) commissioned by the NHS
+                </label>
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-4" name="test-reason-work" type="radio" value="You work in the adult social care sector" {{ checked("test-reason-work", "You work in the adult social care sector") }} >
+                <label class="govuk-label govuk-radios__label" for="work-4">
+                  You work in adult social care as a personal assistant, Shared Lives carer, Care Quality Commission (CQC) inspector or social worker
+                </label>
+              </div>
+              <div class="govuk-radios__divider">or</div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="work-5" name="test-reason-work" type="radio" value="Another reason" {{ checked("test-reason-work", "Another reason") }} >
+                <label class="govuk-label govuk-radios__label" for="work-5">
+                  Another kind of work
+                </label>
+              <!--  <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                  For example you work for the NHS or an NHS funded partner organisation
+                </div> -->
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

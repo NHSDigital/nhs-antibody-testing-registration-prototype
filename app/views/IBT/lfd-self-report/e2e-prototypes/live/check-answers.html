@@ -43,7 +43,7 @@
               Name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['first-name'] }} {{ data['last-name'] }}
+              {{ data['first-name'] or 'Bob' }} {{ data['last-name'] or 'Smith' }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/name">
@@ -58,7 +58,7 @@
               Date of birth
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+              {{ data['date-of-birth-day'] or '12 June 2003' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/date-of-birth">
@@ -73,7 +73,7 @@
               Medical record (male, female, other…)
             </dt>
             <dd class="govuk-summary-list__value">
-              Female
+              {{ data['gender'] or 'Male' }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/gender">
@@ -88,8 +88,8 @@
               Ethnicity
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['ethnic-group'] }}<br>
-              {% if data['ethnic-group'] !== "Prefer not to say" %}
+              {{ data['ethnic-group'] or 'Prefer not to say' }}<br>
+              {% if data['ethnic-background'] %}
               {{ data['ethnic-background'] }}
               {% endif %}
             </dd>
@@ -97,6 +97,21 @@
               <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/ethnic-group">
                 Change
                 <span class="govuk-visually-hidden"> ethnicity</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Occupation
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['occupation-autocomplete'] or 'Not applicable' }}<br>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/occupation">
+                Change
+                <span class="govuk-visually-hidden">occupation</span>
               </a>
             </dd>
           </div>
@@ -152,25 +167,11 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Mobile
+              Contact details
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['mobile-phone-number'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/mobile">
-                Change
-                <span class="govuk-visually-hidden">mobile</span>
-              </a>
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Email
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['email-address'] }}
+              {{ data['email-address'] or 'No, they do not have an email address' }}<br>
+              {{ data['mobile-phone-number'] or '+44123456789' }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/got-email"">
@@ -233,7 +234,7 @@
               NHS number
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['nhs-number'] }}
+              {{ data['nhs-number'] or '1234 5678' }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/nhs-number">
@@ -346,7 +347,7 @@
 
       </dl>
 
-      <form action="/IBT/lfd-self-report/e2e-prototypes/{{version}}/using-mobile" method="post" novalidate>
+      <form action="/IBT/lfd-self-report/e2e-prototypes/{{version}}/choose-result" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 

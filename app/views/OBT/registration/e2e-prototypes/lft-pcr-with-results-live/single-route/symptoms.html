@@ -1,7 +1,15 @@
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      John Smith
+  {% endif %}
+{% endset %}
 {% set serviceName = "Register test kits for your organisation" %}
+{% set pageHeading = "Does " + fullname | trim + " have any coronavirus symptoms?" %}
 {% set version = "organisational/ind-accounts/v3" %}
 {% extends "includes/layout.html" %}
-{% set pageTitle = "Does John Smith have any coronavirus symptoms?" %}
+
 
 {% block beforeContent %}
   <div class="govuk-phase-banner">
@@ -31,33 +39,62 @@
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
               <h1 class="govuk-fieldset__heading">
-                {{ pageTitle }}
+                {{ pageHeading }}
               </h1>
             </legend>
+            <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                 If they have a high temperature, a new continuous cough, or loss or change to your sense of smell or taste, they should try to stay at home and avoid contact with other people until they have their test result.
+                </strong>
+            </div>
+            <p class="govuk-body">Find out more about guidance across the UK. The following links open in a new tab:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li class="govuk-body"><a target="_blank" href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" rel="noopener noreferrer" class="govuk-link"> England: Stay at home guidance </a></li>
+  <li class="govuk-body"><a target="_blank" href="https://www.nhsinform.scot/isolation" rel="noopener noreferrer" class="govuk-link"> Scotland: Self-isolation guidance </a></li>
+  <li class="govuk-body"><a target="_blank" href="https://gov.wales/self-isolation" rel="noopener noreferrer" class="govuk-link"> Wales: Self-isolation guidance </a></li>
+  <li class="govuk-body"><a target="_blank" href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" rel="noopener noreferrer" class="govuk-link"> Northern Ireland: Self-isolation guidance </a></li>
+</ul>
+
+<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      If they’re worried about symptoms
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    
+    <p class="govuk-body">If their symptoms get worse or they need medical help:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li><a target="_blank" href="https://digital.nhs.uk/services/nhs-111-online" rel="noopener noreferrer" class="govuk-link">use 111 online (opens in new tab)</a></li>
+  <li>call 111 if they’re in England, Scotland or Wales</li>
+  <li>call a GP or GP out-of-hours service if they’re in Northern Ireland</li>
+  <li>call 999 if they feel very unwell or think there’s something seriously wrong</li>
+</ul>
+  </div>
+</details>
+
+<h2 class="govuk-heading-m">Does {{fullname | trim}} currently have any coronavirus symptoms?</h2>
             <div class="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="havesymptoms" name="havesymptoms" type="radio" value="yes">
                 <label class="govuk-label govuk-radios__label" for="havesymptoms">
-                  Yes, they have symptoms
+                  Yes
                 </label>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="havesymptoms-2" name="havesymptoms" type="radio" value="no">
                 <label class="govuk-label govuk-radios__label" for="havesymptoms-2">
-                  No, they do not have symptoms
+                  No
                 </label>
               </div>
             </div>
 
-<br>
+<br><br>
 
-            <div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-warning-text__assistive">Warning</span>
-     If they have a high temperature, a new continuous cough, or loss or change to your sense of smell or taste, they should try to stay at home and avoid contact with other people until they have their test result.
-    </strong>
-</div>
+
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
       </form>

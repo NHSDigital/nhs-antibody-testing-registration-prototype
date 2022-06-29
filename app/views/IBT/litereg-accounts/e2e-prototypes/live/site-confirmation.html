@@ -25,65 +25,69 @@
 
       <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/action9/site-confirmation" method="post">
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="confirm-site-1-hint confirm-site-2-hint confirm-site-3-hint">
+        <fieldset role="group" class="govuk-fieldset">
+          <h1 class="govuk-heading-xl">
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            Confirm the test site
+            {% else %}
+            {{ pageTitle }}
+            {% endif %}
+          </h1>
+
+          <h2 class="govuk-!-margin-bottom-1 govuk-heading-m"> Test site ID or event ID </h2>
+
+          <h2 class="govuk-!-margin-bottom-8 govuk-heading-m">
+            {{ data['site-id'] | default('CHE') }}
+            <a href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/site-id" class="govuk-link govuk-!-margin-left-4">
+              Change
+            </a>
+          </h2>
+
+          <div class="govuk-!-margin-bottom-8">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                Confirm the test site
-                {% else %}
-                {{ pageTitle }}
-                {% endif %}
-              </h1>
+              {% if data['site-id'] == "LEA4" %}
+              <h3 class="govuk-!-margin-bottom-1 govuk-heading-s">Leicester Students' Union</h3>
+              <p class="govuk-!-margin-bottom-1 govuk-body">Percy Gee Building</p>
+              <p class="govuk-!-margin-bottom-1 govuk-body">University of Leicester</p>
+              <p class="govuk-!-margin-bottom-1 govuk-body">University Road, Leicester</p>
+              <p class="govuk-!-margin-bottom-1 govuk-body">LE1 7RH</p>
+              {% else %}
+              <h3 class="govuk-!-margin-bottom-1 govuk-heading-s">London and Manchester Healthcare Limited</h3>
+              <p class="govuk-!-margin-bottom-1 govuk-body">Gainsborough House Nursing Home</p>
+              <p class="govuk-!-margin-bottom-1 govuk-body">Warrington</p>
+              <p class="govuk-!-margin-bottom-1 govuk-body">WA4 6BZ</p>
+              {% endif %}
             </legend>
-            <span id="confirm-site-1-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-2">
-              Test site ID or event ID
-            </span>
-            <span id="confirm-site-2-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-right-4" style="display: inline-block;">
-              {{ data['site-id'] | default('CHE') }}
-            </span>
-            <span class="govuk-body" style="display: inline-block;"><a class="govuk-link govuk-heading-m" href="/IBT/litereg-accounts/e2e-prototypes/{{version}}/site-id">Change</a></span><br><br>
+          </div>
 
-              <span id="confirm-site-3-hint" class="govuk-body">
-                {% if data['site-id'] == "LEA4" %}
-                <strong>Leicester Students' Union</strong><br>
-                Percy Gee Building<br>
-                University of Leicester<br>
-                University Road, Leicester<br>
-                LE1 7RH
-                {% else %}
-                <strong>London and Manchester Healthcare Limited</strong><br>
-                Gainsborough House Nursing Home<br>
-                Warrington<br>
-                WA4 6BZ<br>
-                {% endif %}
-              </span>
-              <div class="govuk-radios govuk-radios--conditional govuk-!-margin-bottom-5 govuk-!-margin-top-8" data-module="govuk-radios">
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="confirm-site-1" name="confirm-site" type="radio" value="Yes" {{ checked("confirm-site", "Yes") }}>
-                    <label class="govuk-label govuk-radios__label" for="confirm-site-1">
-                      {% if data['whos-taking-the-test'] == "someone-else" %}
-                      This is correct
-                      {% else %}
-                      This is correct
-                      {% endif %}
-                    </label>
-                  </div>
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="confirm-site-2" name="confirm-site" type="radio" value="No" {{ checked("confirm-site", "No") }}>
-                    <label class="govuk-label govuk-radios__label" for="confirm-site-2">
-                      {% if data['whos-taking-the-test'] == "someone-else" %}
-                      This is not correct
-                      {% else %}
-                      This is not correct
-                      {% endif %}
-                    </label>
-                  </div>
-                </div>
-          </fieldset>
-        </div>
+          <div class="govuk-form-group">
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-bottom-5 govuk-!-margin-top-8" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="confirm-site-1" name="confirm-site" type="radio" value="Yes" {{ checked("confirm-site", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="confirm-site-1">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  This is correct
+                  {% else %}
+                  This is correct
+                  {% endif %}
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="confirm-site-2" name="confirm-site" type="radio" value="No" {{ checked("confirm-site", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="confirm-site-2">
+                  {% if data['whos-taking-the-test'] == "someone-else" %}
+                  This is not correct
+                  {% else %}
+                  This is not correct
+                  {% endif %}
+                </label>
+              </div>
+            </div>
+          </div>
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        </fieldset>
+
+        <button type="submit" class="govuk-!-margin-top-4 govuk-button">Continue</button>
 
       </form>
 

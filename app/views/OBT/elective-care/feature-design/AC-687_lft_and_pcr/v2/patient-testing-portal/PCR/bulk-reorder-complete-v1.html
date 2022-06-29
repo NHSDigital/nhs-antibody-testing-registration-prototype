@@ -1,0 +1,84 @@
+{% set fullname %}
+  {% if data.cuFirstName and data.cuLastName %}
+    {{ data.cuFirstName }} {{ data.cuLastName }}
+    {% else %}
+      Pete Smith
+  {% endif %}
+{% endset %}
+
+{% set dob %}
+  {% if data["cuDOB-day"] and data["cuDOB-month"] and data["cuDOB-year"]  %}
+    {{ data["cuDOB-day"]}} {{ data["cuDOB-month"] | monthToWord }} {{ data["cuDOB-year"]}}
+  {% else %}
+    31 March 1975
+  {% endif %}
+{% endset %}
+
+{% set version = "v1" %}
+{% set pageHeading = "PCR test kit orders confirmed" %}
+{% set serviceName = electiveCareServiceName %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ electiveCareServiceName }} - GOV.UK
+{% endblock %}
+
+{% extends "includes/layout.html" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title govuk-!-margin-bottom-3">{{ pageHeading }}</h1>
+      <p class="govuk-body govuk-!-margin-bottom-0" style="color: #ffffff">31 April 2021</p>
+    </div>
+    <h2 class="govuk-heading-m govuk-!-margin-top-9">Order summary</h2>
+
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Test kit orders"
+          },
+          value: {
+            text: "0"
+          }
+        },
+        {
+          key: {
+            text: "Test kit reorders"
+          },
+          value: {
+            html: "3"
+          }
+        }
+      ]
+    }) }}
+
+    <a href="request-home-testing-v1" role="button" draggable="false" class="govuk-button govuk-!-margin-top-2" data-module="govuk-button">
+      Order more tests
+    </a>
+  </div>
+  <div class="govuk-grid-column-three-quarters">
+      <h2 class="govuk-heading-m govuk-!-margin-top-7">What happens next?</h2>
+
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-8">
+        <li>you will get an email confirming the PCR test kit orders</li>
+        <li>we'll send a text to the patient to confirm what they need to do next</li>
+      </ul>
+
+      <div class="ec__prototype-navigation">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Prototype links: </h3>
+        <ul style="list-style: none; padding-left: 0">
+          <li><a href="../homepage-v1">Home</a></li>
+          <li><a href="request-home-testing-v1">Order more tests</a></li>
+        </ul>
+      </div>
+
+  </div>
+</div>
+
+{% endblock %}

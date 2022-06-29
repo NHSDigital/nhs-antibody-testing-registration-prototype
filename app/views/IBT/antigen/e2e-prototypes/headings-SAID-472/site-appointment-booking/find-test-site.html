@@ -1,0 +1,60 @@
+{% set version = "headings-SAID-472" %}
+{% set pageTitle = "Find a PCR test site" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/action3/find-test-site" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="find-test-site-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <div id="find-test-site-hint" class="govuk-hint">
+            Enter your postcode to find a test site where you can have a coronavirus (COVID-19) test.
+          </div>
+          <div class="govuk-form-group govuk-!-margin-top-6">
+            <label class="govuk-label" for="home-postcode">
+              Postcode
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="home-postcode" name="home-postcode" type="text" autocomplete="postal-code" value="{{ data['home-postcode'] or 'N1 2US' }}">
+          </div>
+        </fieldset>
+
+        <button id="button" class="govuk-button govuk-!-margin-bottom-6 govuk-!-margin-top-4" type="submit" data-module="govuk-button">
+          Find the test site
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

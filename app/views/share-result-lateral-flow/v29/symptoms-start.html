@@ -1,0 +1,106 @@
+{% set version = "v29" %}
+{% set pageTitle = "When did these symptoms start?" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/test-reason">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/share-result-lateral-flow/{{version}}/test-date" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="symptoms-start-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+            </legend>
+
+            <div id="symptoms-start-hint" class="govuk-hint">
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+              If they cannot remember the exact date, select the date they think it was roughly.
+              {% else %}
+              If you cannot remember the exact date, select the date you think it was roughly.
+              {% endif %}
+           </div>
+
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="symptom-start-1" name="symptom-start" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("symptom-start", "Wednesday, 30 March 2022") }}>
+                <label class="govuk-label govuk-radios__label" for="symptom-start-1">
+                  Wednesday, 30 March 2022
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="symptom-start-2" name="symptom-start" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("symptom-start", "Tuesday, 29 March 2022") }}>
+                <label class="govuk-label govuk-radios__label" for="symptom-start-2">
+                  Tuesday, 29 March 2022
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="symptom-start-3" name="symptom-start" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("symptom-start", "Monday, 28 March 2022") }}>
+                <label class="govuk-label govuk-radios__label" for="symptom-start-3">
+                  Monday, 28 March 2022
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="symptom-start-4" name="symptom-start" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("symptom-start", "Sunday, 27 March 2022") }}>
+                <label class="govuk-label govuk-radios__label" for="symptom-start-4">
+                  Sunday, 27 March 2022
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="symptom-start-5" name="symptom-start" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("symptom-start", "Saturday, 26 March 2022") }}>
+                <label class="govuk-label govuk-radios__label" for="symptom-start-5">
+                  Saturday, 26 March 2022
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="symptom-start-6" name="symptom-start" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("symptom-start", "Friday 25 March 2022") }}>
+                <label class="govuk-label govuk-radios__label" for="symptom-start-6">
+                  Friday, 25 March 2022
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="symptom-start-7" name="symptom-start" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("symptom-start", "Thursday 24 March 2022") }}>
+                <label class="govuk-label govuk-radios__label" for="symptom-start-7">
+                  Thursday, 24 March 2022
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="symptom-start-8" name="symptom-start" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("symptom-start", "Wednesday 23 March 2022") }}>
+                <label class="govuk-label govuk-radios__label" for="symptom-start-8">
+                  Wednesday, 23 March 2022
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="symptom-start-9" name="symptom-start" type="radio" value="/share-result-lateral-flow/{{version}}/test-date" onclick="setLocation(this);" {{ checked("symptom-start", "Before 23 March 2022") }}>
+                <label class="govuk-label govuk-radios__label" for="symptom-start-9">
+                  Before 23 March 2022
+                </label>
+              </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+
+{% endblock %}

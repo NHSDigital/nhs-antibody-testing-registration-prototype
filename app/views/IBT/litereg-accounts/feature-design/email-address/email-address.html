@@ -22,16 +22,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/mobile-number" method="post">
-
-          <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
-
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-heading-l govuk-!-margin-bottom-8">
+              <h1 class="govuk-heading-l">
                 {{ pageTitle }}
               </h1>
-            </legend>
+
 
             <div id="email-address-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
@@ -53,6 +47,9 @@
               {% endif %}
             </div>
 
+            <form action="/IBT/litereg-accounts/e2e-prototypes/{{version}}/mobile-number" method="post">
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               {% if data['whos-taking-the-test'] == "someone-else" %}
               Does {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} have an email address?
@@ -61,48 +58,48 @@
                {% endif %}
              </legend>
 
-            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
-                <label class="govuk-label govuk-radios__label" for="email-1">
-                  {% if data['whos-taking-the-test'] == "someone-else" %}
-                  Yes
-                  {% else %}
-                  Yes
-                  {% endif %}
-                </label>
-              </div>
-              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
-                <div class="govuk-form-group">
-                  <label class="govuk-label" for="email-address">
-                    Email address
-                  </label>
-                  <input class="govuk-input govuk-input--width-20" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+                <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="email-1" name="email" type="radio" value="Yes" data-aria-controls="conditional-email-address" {{ checked("email", "Yes") }}>
+                    <label class="govuk-label govuk-radios__label" for="email-1">
+                      {% if data['whos-taking-the-test'] == "someone-else" %}
+                      Yes
+                      {% else %}
+                      Yes
+                      {% endif %}
+                    </label>
+                  </div>
+                  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-email-address">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="email-address">
+                        Email address
+                      </label>
+                      <input class="govuk-input govuk-input--width-20" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+                    </div>
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="confirm-email-address">
+                        Confirm email address
+                      </label>
+                      <input class="govuk-input govuk-input--width-20" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
+                    </div>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="No" {{ checked("email", "No") }}>
+                    <label class="govuk-label govuk-radios__label" for="email-2">
+                      {% if data['whos-taking-the-test'] == "someone-else" %}
+                      No
+                      {% else %}
+                      No
+                      {% endif %}
+                    </label>
+                  </div>
                 </div>
-                <div class="govuk-form-group">
-                  <label class="govuk-label" for="confirm-email-address">
-                    Confirm email address
-                  </label>
-                  <input class="govuk-input govuk-input--width-20" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
+                  </fieldset>
                 </div>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="email-2" name="email" type="radio" value="No" {{ checked("email", "No") }}>
-                <label class="govuk-label govuk-radios__label" for="email-2">
-                  {% if data['whos-taking-the-test'] == "someone-else" %}
-                  No
-                  {% else %}
-                  No
-                  {% endif %}
-                </label>
-              </div>
-            </div>
-          </fieldset>
-        </div>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
-      </form>
+          </form>
 
     </div>
   </div>

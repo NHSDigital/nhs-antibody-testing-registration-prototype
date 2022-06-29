@@ -26,62 +26,6 @@
 
                   <form action="/antigen/{{version}}/global-registration/edit-check-answers/landline-number" method="post">
 
-                    <!--div class="govuk-form-group">
-                      <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint">
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                          <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                            {{ pageTitle }}
-                          </h1>
-                        </legend>
-                        <div id="mobile-number-hint">
-                          <p class="govuk-body">We need a mobile number to send your test results.</p>
-
-                          <p class="govuk-body">If your mobile number is going to change soon, it's important you give us an email address, to make sure you get your test results.</p>
-
-                          <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this number.</p>
-
-                          <p class="govuk-body">If you're getting a test for a child, enter your number not theirs.</p>
-
-                          <p class="govuk-body">If a test result is positive, the NHS may also use the details you supply for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/test-results/help-the-nhs-alert-your-close-contacts-if-you-test-positive/" target="_blank">contact tracing (opens in new tab)</a>.</p>
-                        </div>
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                           Do you have a mobile number where you can get the test results?
-                         </legend>
-                        <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
-                          <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="mobile-number-1" name="mobile-number" type="radio" value="Yes" data-aria-controls="conditional-mobile-number" {{ checked("mobile-number", "Yes") }}>
-                            <label class="govuk-label govuk-radios__label" for="mobile-number-1">
-                              Yes
-                            </label>
-                          </div>
-                          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mobile-number">
-                            <div class="govuk-form-group">
-                              <label class="govuk-label" for="mobile-number">
-                                Mobile number
-                              </label>
-                              <div id="telephone-number-hint" class="govuk-hint">
-                                For international numbers include the country code (Eg,+33)
-                              </div>
-                              <input class="govuk-input govuk-input--width-20" id="mobile-number" name="mobile-number" type="tel" value="{{ data['mobile-phone-number'] }}">
-                            </div>
-                            <div class="govuk-form-group">
-                              <label class="govuk-label" for="confirm-mobile-phone-number">
-                                Confirm mobile number
-                              </label>
-                              <input class="govuk-input govuk-input--width-20" id="confirm-mobile-phone-number" name="mobile-number" type="tel" value="{{ data['confirm-mobile-phone-number'] }}">
-                            </div>
-                          </div>
-                          <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="mobile-number-2" name="mobile-number" type="radio" value="No" {{ checked("mobile-number", "No") }}>
-                            <label class="govuk-label govuk-radios__label" for="mobile-number-2">
-                              No
-                            </label>
-                          </div>
-                        </div>
-                      </fieldset>
-                    </div-->
-
-
                     <div class="govuk-form-group">
                       <fieldset class="govuk-fieldset" aria-describedby="mobile-number-hint">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -90,25 +34,22 @@
                           </h1>
                         </legend>
                         <div id="mobile-number-hint">
-                          <p class="govuk-body">We need a mobile number to send your test results.</p>
+                          <p class="govuk-body">We need a mobile number to send their test results.</p>
 
-                          <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this number.</p>
+                          <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
 
-                          <p class="govuk-body">If you're getting a test for a child, enter your number not theirs.</p>
+                          <p class="govuk-body">If they're getting a test for a child, enter their number not the child's.</p>
 
-                          <p class="govuk-body">If your mobile number is going to change soon, it's important you give us an email address, to make sure you get your test results.</p>
+                          <p class="govuk-body">f their mobile number is going to change soon, it's important to give us an email address, as it may be the only way for them to get the test results.</p>
                         </div>
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                           Do you have a mobile number where you can get the test results?
+                         What is {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}'s mobile number?
                          </legend>
+
                         <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
-                          <div class="govuk-radios__item">
+
                             <input class="govuk-radios__input" id="mobile-number-1" name="mobile-number" type="radio" value="Yes" data-aria-controls="conditional-mobile-number" {{ checked("mobile-number", "Yes") }}>
-                            <label class="govuk-label govuk-radios__label" for="mobile-number-1">
-                              Yes
-                            </label>
-                          </div>
-                          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mobile-number">
+
                             <div class="govuk-form-group">
                               <label class="govuk-label" for="mobile-phone-number">
                                 Mobile number
@@ -124,13 +65,8 @@
                               </label>
                               <input class="govuk-input govuk-input--width-20" id="confirm-mobile-phone-number" name="confirm-mobile-phone-number" type="tel" value="{{ data['confirm-mobile-phone-number'] }}">
                             </div>
-                          </div>
-                          <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="mobile-number-2" name="mobile-number" type="radio" value="No" {{ checked("mobile-number", "No") }}>
-                            <label class="govuk-label govuk-radios__label" for="mobile-number-2">
-                              No
-                            </label>
-                          </div>
+
+
                         </div>
                       </fieldset>
                     </div>

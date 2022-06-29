@@ -6,7 +6,8 @@
 {% block beforeContent %}
 <!-- div for include from content folder -->
 <div id="includedContent1"></div>
-  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/test-reason-2">Back</a>
+  <!--a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/test-reason-2">Back</a-->
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
 
 {% endblock %}
 
@@ -28,29 +29,25 @@
                 {% endif %}
               </h1>
             </legend>
-            <span id="enter-barcode-number-hint" class="govuk-body">
+            <div id="enter-barcode-number-hint" class="govuk-body">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-                The Community Number is an 8 digit reference number for the organisation they got their test from.
-              <br>
-              <br>
-                They can find the Community Number at the test collection point or on the leaflet they were given with their test.
+                <p class="govuk-body">The Community Number is an 8 digit reference number for the organisation they got their test from.</p>
+                <p class="govuk-body">They can find the Community Number at the test collection point or on the leaflet they were given with their test.</p>
               {% else %}
-                The Community Number is an 8 digit reference number for the organisation you got your test from.
-              <br>
-              <br>
-                You can find the Community Number at the test collection point or on the leaflet you were given with your test.
+                <p class="govuk-body">The Community Number is an 8 digit reference number for the organisation you got your test from.</p>
+                <p class="govuk-body">You can find the Community Number at the test collection point or on the leaflet you were given with your test.</p>
               {% endif %}
-            </span>
+            </div>
 
              <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
                <summary class="govuk-details__summary">
-                 <span class="govuk-details__summary-text">
+                 <div class="govuk-details__summary-text">
                    {% if data['whos-taking-the-test'] == "someone-else" %}
                    What to do if they do not know their Community Number
                    {% else %}
                    What to do if you do not know the Community Number
                    {% endif %}
-                 </span>
+                 </div>
                </summary>
                <div class="govuk-details__text">
                  {% if data['whos-taking-the-test'] == "someone-else" %}
@@ -62,7 +59,7 @@
                  {% endif %}
                </div>
              </details>
-            <br>
+
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="social-care-uon">

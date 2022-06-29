@@ -1,19 +1,19 @@
 
 
        <div>
-        <p class="govuk-body">The technology the service uses to check the result guarantees a high level of accuracy. It's authorised by the UK health regulator, the Medicines and Healthcare products Regulatory Agency (MHRA).</p>
+        <p class="govuk-body">The technology we use to check the result guarantees a high level of accuracy. It's authorised by the UK health regulator, the Medicines and Healthcare products Regulatory Agency (MHRA).</p>
         {% if data['whos-taking-the-test'] == "someone-else" %}
-        <p class="govuk-body">If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} thinks the service read their result incorrectly, they can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report more details about this service to the MHRA (opens in a new tab)</a>. On the homepage, they should enter ‘Lateral flow antigen test – uploaded photograph result’ in the search box and select the ‘Start report’ button.</p>
+        <p class="govuk-body">If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} thinks we got their result wrong, they can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report this to the MHRA (opens in a new tab)</a>. On the homepage, they should enter ‘Lateral flow antigen test – uploaded photograph result’ in the search box and select the ‘Start report’ button.</p>
         <p class="govuk-body">They should follow the advice below to help stop the spread of the virus.</p>
         {% else %}
-        <p class="govuk-body">If you think the service read your result incorrectly, you can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report more details about this service to the MHRA (opens in a new tab)</a>. On the homepage, enter ‘Lateral flow antigen test – uploaded photograph result’ in the search box and select the ‘Start report’ button.</p>
+        <p class="govuk-body">If you think we got your result wrong, you can <a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer"> report this to the MHRA (opens in a new tab)</a>. On the homepage, enter ‘Lateral flow antigen test – uploaded photograph result’ in the search box and select the ‘Start report’ button.</p>
         <p class="govuk-body">You should follow the advice below to help stop the spread of the virus.</p>
         {% endif %}
        </div>
 
   <div>
     {% if data['whos-taking-the-test'] == "someone-else" %}
-    <h2 class="govuk-heading-m">What {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} should do</h2>
+    <h2 class="govuk-heading-m">What they should do</h2>
     {% else %}
     <h2 class="govuk-heading-m">What you should do</h2>
     {% endif %}
@@ -51,12 +51,43 @@
   </div>
 
     <div>
-      <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
       {% if data['whos-taking-the-test'] == "someone-else" %}
-      <li>They should take another rapid lateral flow test today, or as soon as possible, and report the result</li>
-      <li>Find self-isolation guidance if they're in <a href="https://www.nhsinform.scot/isolation">Scotland</a>, <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts"> Northern Ireland </a> or <a href="https://gov.wales/self-isolation"> Wales</a></li>
+      <p>They should take another rapid lateral flow test today, or as soon as possible, and report the result.</p>
+      <p>They should assume that they have COVID-19, and follow the guidance for the country they're in until they have the new test result.</p>
+      <h3 class="govuk-heading-m">In England</h3>
+      <p> They should try to stay at home and avoid contact with other people, especially those who are at higher risk from COVID-19. <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">Find out more about when to stay at home and what to do (opens in new tab)</a>.</p>
+
+      <h3 class="govuk-heading-m">In Scotland and Wales</h3>
+      <p> They should stay at home and avoid contact with other people.</p>
+      <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+        <li>Scotland: <a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19/">find out when to stay at home and what to do (opens in new tab)</a>.</li>
+        <li>Wales: <a href="https://gov.wales/self-isolation">find out when to stay at home and what to do (opens in new tab)</a>.</li>
+      </ul>
+
+      <h3 class="govuk-heading-m">In Northern Ireland</h3>
+      <p> They should self-isolate immediately.<a href="Find out more about self-isolation and treating symptoms (opens in new tab).">Find out more about self-isolation and treating symptoms (opens in new tab)</a>.</p>
+
+      <!-- <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/">Get the latest NHS information and advice about coronavirus (COVID-19)</a></p> -->
+
+
       {% else %}
-      <li>You should take another rapid lateral flow test today, or as soon as possible, and report the result</li>
-      <li>Find self-isolation guidance if you're in <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">England</a>, <a href="https://www.nhsinform.scot/isolation">Scotland</a>, <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts"> Northern Ireland </a> or <a href="https://gov.wales/self-isolation"> Wales</a></li>
-      {% endif %}
+      <p>You should take another rapid lateral flow test today, or as soon as possible, and report the result.</p>
+      <p>You should assume that you have COVID-19, and follow the guidance for the country you're in until you have the new test result.</p>
+      <h3 class="govuk-heading-m">In England</h3>
+      <p> You should try to stay at home and avoid contact with other people, especially those who are at higher risk from COVID-19.<a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/"> Find out more about when to stay at home and what to do (opens in new tab)</a>.</p>
+
+      <h3 class="govuk-heading-m">In Scotland and Wales</h3>
+      <p> You should stay at home and avoid contact with other people.</p>
+      <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+        <li>Scotland: <a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19/">find out when to stay at home and what to do (opens in new tab)</a>.</li>
+        <li>Wales: <a href="https://gov.wales/self-isolation">find out when to stay at home and what to do (opens in new tab)</a>.</li>
+      </ul>
+
+      <h3 class="govuk-heading-m">In Northern Ireland</h3>
+      <p> You should self-isolate immediately.<a href="Find out more about self-isolation and treating symptoms (opens in new tab).">Find out more about self-isolation and treating symptoms (opens in new tab)</a>.</p>
+
+      <!-- <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/">Get the latest NHS information and advice about coronavirus (COVID-19)</a></p> -->
+{% endif %}
+
+
     </div>

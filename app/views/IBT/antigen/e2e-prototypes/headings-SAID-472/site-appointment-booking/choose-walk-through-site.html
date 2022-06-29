@@ -1,0 +1,149 @@
+{% set version = "headings-SAID-472" %}
+{% set pageTitle = "Choose a test site near you" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/site-appointment-booking/find-test-site">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/site-appointment-booking/choose-time-prev-day-walk" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="choose-site-1-hint choose-site-2-hint choose-site-3-hint choose-site-4-hint choose-site-12-hint choose-site-6-hint choose-site-7-hint choose-site-8-hint choose-site-9-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              {% if data['home-postcode'] !== "N1111" %}
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+              {% endif %}
+              {% if data['home-postcode'] == "N1111" %}
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                We did not recognise your postcode. Choose a test site
+              </h1>
+              {% endif %}
+            </legend>
+            <span id="choose-site-1-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-2">
+              Postcode
+            </span>
+            <span id="choose-site-2-hint" class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-right-4" style="display: inline-block;">
+              {{ data['home-postcode'] | default('LS1 3BE') }}
+            </span>
+            <p style="display: inline-block;"><a class="govuk-link" href="/IBT/antigen/e2e-prototypes/{{version}}/site-appointment-booking/find-test-site-walk">Change</a></p>
+            {% if data['home-postcode'] == "N1111" %}
+            <p class="govuk-body">
+              <span id="postcode-not-recognised-hint">
+                Sorry but we could not recognise your postcode. Choose a test site from the options below.
+              </span>
+            </p>
+            {% endif %}
+            <!-- <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                Some test sites are for over-18s only.
+              </strong>
+            </div> -->
+            {% if data['home-postcode'] !== "N1111" %}
+            <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
+              <strong>Your nearest test sites (by road):</strong><br>
+            </span>
+            {% endif %}
+            {% if data['home-postcode'] == "N1111" %}
+            <span id="choose-site-3-hint" class="govuk-heading-m govuk-!-margin-bottom-2">
+              <strong>Test sites:</strong><br>
+            </span>
+            {% endif %}
+            <span id="choose-site-4-hint" class="govuk-heading-m govuk-!-margin-right-4" style="display: inline-block;">
+              <strong>Walk-through</strong>
+            </span>
+
+            <span id="choose-site-12-hint" class="govuk-body"><a class="govuk-link" href="/IBT/antigen/e2e-prototypes/{{version}}/site-appointment-booking/choose-drive-through-site">Change to drive-through</a></span>
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-4">
+              <li><span id="choose-site-6-hint" class="govuk-body govuk-!-margin-bottom-0">you need to book your test as soon as possible</span></li>
+              <li><span id="choose-site-7-hint" class="govuk-body govuk-!-margin-bottom-0">you can walk or cycle to the site (do not go by public transport or taxi)</span></li>
+              <li><span id="choose-site-9-hint" class="govuk-body">site staff will tell you if an assistant does the swab test for you, or if you do it yourself</span></li>
+            </ul>
+            <div class="govuk-radios govuk-!-margin-top-7">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-site-1" name="test-site" type="radio" value="Haringey Stamford Hill" {{ checked("test-site", "Haringey Stamford Hill") }} aria-describedby="choose-site-10-hint">
+                <label class="govuk-label govuk-radios__label" for="test-site-1">
+                  <span  class="govuk-body-m">
+                    <strong>
+                      Haringey Stamford Hill - Walk through site
+                    </strong>
+                  </span>
+                </label>
+                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-10-hint" class="govuk-body-m">
+                  Stamford Hill Primary School<br>
+                  Haringey<br>
+                  N15 6HD<br>
+                  <strong>1.2 miles</strong> by road<br><br>
+                  64 appointments available.
+              </span></p>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="test-site-2" name="test-site" type="radio" value="Hackney Sandford Court" {{ checked("test-site", "Hackney Sandford Court") }} aria-describedby="choose-site-11-hint">
+                <label class="govuk-label govuk-radios__label" for="test-site-2">
+                  <span  class="govuk-body-m">
+                    <strong>
+                      Hackney Sandford Court - Walk through site
+                    </strong>
+                  </span>
+                </label>
+                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-11-hint" class="govuk-body-m">
+                  Sandford Court, Bethune Rd<br>
+                  London<br>
+                  N16 5BB<br>
+                  <strong>2.6 miles</strong> by road<br><br>
+                  16 appointments available.
+              </span></p>
+              </div>
+              <div class="govuk-radios__item govuk-!-margin-top-6">
+                <input class="govuk-radios__input" id="test-site-3" name="test-site" type="radio" value="Camden Ramsay Hall" {{ checked("test-site", "Camden Ramsay Hall") }} aria-describedby="choose-site-12-hint">
+                <label class="govuk-label govuk-radios__label" for="test-site-3">
+                  <span  class="govuk-body-m">
+                    <strong>
+                      Camden Ramsay Hall - Walk through site
+                    </strong>
+                  </span>
+                </label>
+                <p class="govuk-!-margin-left-3 govuk-!-margin-top-2"><span id="choose-site-12-hint" class="govuk-body-m">
+                  Ramsay Hall (No step free access)<br>
+                  Camden<br>
+                  W1T 5HB<br>
+                  <strong>3.8 miles</strong> by road<br><br>
+                  295 appointments available.
+              </span></p>
+              </div>
+            </div>
+            <p><a class="govuk-link" href="#">See walk-through test sites further away from you</a></p>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

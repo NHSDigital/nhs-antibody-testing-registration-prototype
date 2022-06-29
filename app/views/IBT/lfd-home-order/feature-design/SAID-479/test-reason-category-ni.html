@@ -1,0 +1,95 @@
+{% set version = "SAID-479" %}
+{% set pageTitle = "Why do you need a test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/IBT/lfd-home-order/feature-design/{{version}}/action10/test-reason-category-ni" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset aria-describedby=" country-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <div class="govuk-radios govuk-!-margin-bottom-3">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="category-1" name="test-reason-category" type="radio" value="You may be eligible for COVID-19 treatments and you need to order lateral flow tests in case you become symptomatic"
+                {{ checked("test-reason-category", "You may be eligible for COVID-19 treatments and you need to order lateral flow tests in case you become symptomatic") }}>
+              <label class="govuk-label govuk-radios__label" for="category-1">
+                You may be eligible for COVID-19 treatments and you need to order lateral flow tests in case you become symptomatic
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="category-2" name="test-reason-category" type="radio" value="Your GP or a healthcare professional asked you to take a test"
+                {{ checked("test-reason-category", "YYour GP or a healthcare professional asked you to take a test") }}>
+              <label class="govuk-label govuk-radios__label" for="category-2">
+                Your GP or a healthcare professional asked you to take a test
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="category-3" aria-describedby="category-3-hint" name="test-reason-category" type="radio" value="You're living in, working in or visiting high risk or vulnerable settings"
+                {{ checked("test-reason-category", "You're living in, working in or visiting high risk or vulnerable settings") }}>
+              <label class="govuk-label govuk-radios__label" for="category-3">
+                You're living in, working in or visiting high risk or vulnerable settings
+              </label>
+              <div id="category-3-hint" class="govuk-hint govuk-radios__hint">
+                For example, care homes and hospital environments
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="category-4" name="test-reason-category" type="radio" value="You have COVID-19 and want to check if your test result is still positive after day 5"
+                {{ checked("test-reason-category", "You have COVID-19 and want to check if your test result is still positive after day 5") }}>
+              <label class="govuk-label govuk-radios__label" for="category-4">
+                You have COVID-19 and want to check if your test result is still positive after day 5
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="category-5" name="test-reason-category" type="radio" value="You're a carer who provides close personal care for someone who is at higher risk if they contract COVID-19"
+                {{ checked("test-reason-category", "You're a carer who provides close personal care for someone who is at higher risk if they contract COVID-19") }}>
+              <label class="govuk-label govuk-radios__label" for="category-5">
+                You're a carer who provides close personal care for someone who is at higher risk if they contract COVID-19
+              </label>
+            </div>
+            <div class="govuk-radios__divider">or</div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="category-6" name="test-reason-category" type="radio" value="Another reason" {{ checked("test-reason-category", "Another reason") }}>
+              <label class="govuk-label govuk-radios__label" for="category-6">
+                Another reason
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

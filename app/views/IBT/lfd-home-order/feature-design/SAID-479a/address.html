@@ -1,0 +1,64 @@
+{% set version = "SAID-479a" %}
+{% set pageTitle = "Where do you friction?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/IBT/lfd-home-order/feature-design/{{version}}/work-from-home" method="post">
+
+      <fieldset class="govuk-fieldset" aria-describedby="home-address-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+            {{ pageTitle }}
+          </h1>
+        </legend>
+        <span id="home-address-hint" class="govuk-body">Enter the first line of your address and home postcode.</span>
+
+        <div class="govuk-form-group govuk-!-padding-top-6">
+          <label class="govuk-label" for="address-line-1">
+            First line of address
+          </label>
+          <input class="govuk-input govuk-!-width-two-thirds" id="address-line-1" name="address-line-1" type="text" autocomplete="address-line1" value="{{ data['address-line-1'] }}">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address-postcode">
+            Postcode
+          </label>
+          <input class="govuk-input govuk-!-width-one-third" id="address-postcode" name="address-postcode" type="text" value="{{ data['address-postcode'] }}">
+        </div>
+
+      </fieldset>
+
+      <button class="govuk-button" type="submit" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

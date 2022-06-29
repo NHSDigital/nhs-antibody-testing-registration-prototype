@@ -385,7 +385,7 @@ router.post('/IBT/litereg-accounts/e2e-prototypes/research/action3/do-you-have-s
     if(uniqueBarcode) {
       uniqueBarcode = req.session.data['kit-barcode-reference-1'].slice(0,2)
     }
-    
+
     if (overseasTravel == "Yes") {
       res.redirect('/IBT/litereg-accounts/e2e-prototypes/research/travel-route')
     } else if (uniqueBarcode == "LF") {
@@ -2457,5 +2457,7 @@ router.post('/share-result-lateral-flow/v19-2/action9/check-mobile', function (r
             res.redirect('/share-result-lateral-flow/v33/user-account/agreement')
           }
           })
+
+
 
 module.exports = router

@@ -1,0 +1,70 @@
+{% set version = "SAID-479" %}
+{% set pageTitle = "Do you qualify for COVID-19 treatments?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-home-order/feature-design/{{version}}/action10/qualifying-condition" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset aria-describedby="qualify-hint-1 qualify-hint-2">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div id="qualify-hint-1" class="govuk-body">The NHS is offering antibody and antiviral treatments to people with COVID-19 who are at highest risk of becoming seriously ill.</div>
+            <div id="qualify-hint-2" class="govuk-body">By selecting yes, you confirm that you have a <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-care-and-treatments-for-coronavirus/treatments-for-coronavirus/" target="_blank" rel="noreferrer">health condition which means you're eligible for COVID-19 treatments (opens in new tab).</div>
+            <div class="govuk-radios govuk-!-margin-bottom-3">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="health-1" name="qualifying-condition" type="radio" value="Yes" {{ checked("qualifying-condition", "Yes") }} >
+                <label class="govuk-label govuk-radios__label" for="health-1">
+                  Yes
+                </label>
+              <!--  <div id="condition-hint" class="govuk-hint govuk-radios__hint">
+                  For example you are eligible for COVID-19 treatments, or you are being admitted to hospital
+                </div> -->
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="health-2" name="qualifying-condition" type="radio" value="No" {{ checked("qualifying-condition", "No") }} >
+                <label class="govuk-label govuk-radios__label" for="health-2">
+                  No
+                </label>
+              <!--  <div id="work-hint" class="govuk-hint govuk-radios__hint">
+                  For example you work for the NHS or an NHS funded partner organisation
+                </div> -->
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

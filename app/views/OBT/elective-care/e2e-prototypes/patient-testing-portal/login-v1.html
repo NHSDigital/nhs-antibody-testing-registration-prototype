@@ -1,0 +1,59 @@
+{% set version = "v1" %}
+{% set serviceName = electiveCareServiceName %}
+{% set pageTitle = "Manage coronavirus (COVID-19) testing for elective care patients" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {# <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+      <span class="govuk-phase-banner__text"> This is a new service – your 
+      <a target="_blank" href="#" class="govuk-link"> feedback (opens in new tab)</a> will help us to improve it. 
+      </span>
+    </p>
+  </div> #}
+
+
+  {% include "includes/ec-beta-banner-v1.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+    <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+    <p class="govuk-body-lead">Use this service to give elective care patients a coronavirus (COVID-19) test before their hospital procedure.</p>
+    <p class="govuk-body">Use this service to:</p>
+    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+      <li>order home test kits for elective care patients</li>
+      <li>track the status of ordered test kits</li>
+      <li>manage team members and groups if you have enhanced permissions</li>
+    </ul>
+
+    <a href="homepage-block-v1" class="govuk-button" data-module="govuk-button">
+      Sign in
+    </a>
+  </div>
+        
+  <div class="ec__prototype-navigation" id="ec__prototype-navigation">
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Prototype links: </h3>
+      <ul style="list-style: none; padding-left: 0">
+          <li><a href="login-v1">Login</a></li>
+          <li><a href="old-super-user-url-v1">Old URL</a></li>
+      </ul>
+      <button class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-1" id="close_prototype_navigation">Close this nav</button>
+      <script>
+        var closenav = document.getElementById('close_prototype_navigation');
+        closenav.onclick = function () {
+          document.getElementById('ec__prototype-navigation').remove();
+        }
+      </script>
+  </div>
+</div>
+
+{% endblock %}

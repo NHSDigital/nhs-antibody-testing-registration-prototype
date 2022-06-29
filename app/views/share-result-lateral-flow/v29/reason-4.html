@@ -1,0 +1,75 @@
+{% set version = "v29" %}
+{% set pageTitle = "Tell us why you took this test" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+<!-- div for include from content folder -->
+<div id="includedContent1"></div>
+
+  <!--a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/about-work-4">Back</a-->
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <form method="post" action="/share-result-lateral-flow/{{version}}/action/reason-4">
+
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                  <h1 class="govuk-fieldset__heading">
+                    {{ pageTitle }}
+                  </h1>
+                </legend>
+                <div class="govuk-radios" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="social-care-1" name="social-care" type="radio" value="I'm symptomatic and live in a social care setting"  {{ checked("social-care-1", "I'm symptomatic and live in a social care setting") }}>
+                    <label class="govuk-label govuk-radios__label" for="social-care-1">
+                      I'm symptomatic and live in a social care setting
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="social-care-2" name="social-care" type="radio" value="I'm being admitted to a care home"  {{ checked("social-care-2", "I'm being admitted to a care home") }}>
+                    <label class="govuk-label govuk-radios__label" for="social-care-2">
+                      I'm being admitted to a care home
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="social-care-3" name="social-care" type="radio" value="There's an outbreak of COVID-19 in my care home"  {{ checked("social-care-3", "There's an outbreak of COVID-19 in my care home") }}>
+                    <label class="govuk-label govuk-radios__label" for="social-care-3">
+                    There's an outbreak of COVID-19 in my care home
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="social-care-4" name="social-care" type="radio" value="Another reason"  {{ checked("social-care-4", "Another reason") }}>
+                    <label class="govuk-label govuk-radios__label" for="social-care-4">
+                    Another reason
+                    </label>
+                  </div>
+
+                </div>
+
+              </fieldset>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">
+              Continue
+            </button>
+          </form>
+        </div>
+      </div>
+
+
+
+  <!-- corresponding html file name included from content folder -->
+  <script>
+    $(function(){
+      $("#includedContent1").load("/includes/LFD-account-menu.html");
+    });
+  </script>
+
+
+{% endblock %}

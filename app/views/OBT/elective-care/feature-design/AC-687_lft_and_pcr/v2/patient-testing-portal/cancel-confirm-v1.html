@@ -1,0 +1,68 @@
+{% extends "includes/layout.html" %}
+{% set serviceName = "Manage elective care patient COVID-19 testing" %}
+{% set pageTitle = "Confirm procedure cancellation" %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="cancel-complete-v1" method="post">
+         <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+          {{ pageTitle }}
+        </h1>
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+              Check that this procedure is cancelled on your own internal system before you continue.
+            </strong>
+        </div>
+
+        <div class="govuk-form-group">
+          <div class="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+              <label class="govuk-label govuk-checkboxes__label" for="waste">
+                  I’ve checked this procedure is cancelled on my system.
+                </label>
+            </div>
+          </div>
+        </div>
+
+        <table class="govuk-table">
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Patient</th>
+              <td class="govuk-table__cell">John Smith</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Procedure date</th>
+              <td class="govuk-table__cell">21 November 2021</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">NHS number</th>
+              <td class="govuk-table__cell">1900821117</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <a class="govuk-button govuk-!-margin-top-2" data-module="govuk-button" href="cancel-complete-v1">
+          Confirm procedure cancellation
+        </a>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

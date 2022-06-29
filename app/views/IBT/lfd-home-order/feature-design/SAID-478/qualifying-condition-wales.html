@@ -1,0 +1,73 @@
+{% set version = "SAID-478" %}
+{% set pageTitle = "Treatments for coronavirus (COVID-19)" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/IBT/lfd-home-order/feature-design/{{version}}/action10/qualifying-condition-wales" method="post">
+
+      <h1 class="govuk-heading-l">
+        {{ pageTitle }}
+      </h1>
+
+      <p class="govuk-body">
+        These treatments are for people with COVID-19 who are at highest risk of becoming seriously ill.
+      </p>
+      <p class="govuk-body">
+        Check if you have one of these <a href="https://gov.wales/covid-19-treatments" class="govuk-link" rel="noreferrer noopener"
+          target="_blank">qualifying health conditions (opens in new tab)</a>.
+      </p>
+
+      <div class="govuk-form-group govuk-!-margin-top-7">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Are you eligible for COVID-19 treatments?
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="health-1" name="qualifying-condition" type="radio" value="Yes" {{ checked("qualifying-condition", "Yes") }}>
+              <label class="govuk-label govuk-radios__label" for="health-1">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="health-2" name="qualifying-condition" type="radio" value="No" {{ checked("qualifying-condition", "No") }}>
+              <label class="govuk-label govuk-radios__label" for="health-2">
+                No
+              </label>
+            </div>
+          </div>
+
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

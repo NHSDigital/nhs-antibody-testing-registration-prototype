@@ -1,0 +1,83 @@
+{% set version = "SAID-478" %}
+{% set pageTitle = "Why do you need a test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/IBT/lfd-home-order/feature-design/{{version}}/action10/test-reason-category-wales" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset aria-describedby=" country-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <!-- <span id="country-hint" class="govuk-hint">If you're away from home, select the country where you're staying.</span> -->
+          <div class="govuk-radios govuk-!-margin-bottom-3">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="category-1" name="test-reason-category" type="radio" value="A doctor or specialist said you're eligible for antiviral or antibody treatments for coronavirus (COVID-19)" {{ checked("test-reason-category", "A doctor or specialist said you're eligible for antiviral or antibody treatments for coronavirus (COVID-19)
+") }}>
+              <label class="govuk-label govuk-radios__label" for="category-1">
+                A doctor or specialist said you're eligible for antiviral or antibody treatments for coronavirus (COVID-19)
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="category-2" name="test-reason-category" type="radio" value="You are going to visit someone eligible for new COVID-19 treatments" {{ checked("test-reason-category", "You are going to visit someone eligible for new COVID-19 treatments") }}>
+              <label class="govuk-label govuk-radios__label" for="category-2">
+                You are going to visit someone eligible for new COVID-19 treatments
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="category-3" name="test-reason-category" type="radio" value="Your GP or healthcare professional asked you to take a test" {{ checked("test-reason-category", "Your GP or healthcare professional asked you to take a test") }}>
+              <label class="govuk-label govuk-radios__label" for="category-3">
+                Your GP or healthcare professional asked you to take a test
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="category-4" name="test-reason-category" type="radio" value="You have COVID-19 and want to check if your test result is still positive after day 5" {{ checked("test-reason-category", "You have COVID-19 and want to check if your test result is still positive after day 5") }}>
+              <label class="govuk-label govuk-radios__label" for="category-4">
+                You have COVID-19 and want to check if your test result is still positive after day 5
+              </label>
+            </div>
+            <div class="govuk-radios__divider">or</div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="category-5" name="test-reason-category" type="radio" value="Another reason" {{ checked("test-reason-category", "Another reason") }}>
+              <label class="govuk-label govuk-radios__label" for="category-5">
+                Another reason
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

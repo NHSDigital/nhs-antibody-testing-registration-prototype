@@ -7,4 +7,22 @@
       <a target="_blank" href="#" class="govuk-link"> feedback (opens in new tab)</a> will help us to improve it. 
       </span>
     </p>
+
+    {# <div id="header-sign-out" class="ec__account-banner">
+      <p class="govuk-phase-banner__content">
+        Signed in as <strong>Bob S.</strong>
+      </p>
+      <a href="/OBT/elective-care/e2e-prototypes/patient-testing-portal/sign-out-v1" class="govuk-!-margin-top-0 govuk-phase-banner__content">Sign out</a>
+    </div> #}
   </div>
+
+  <script>
+    let slug = url => new URL(url).pathname.match(/[^\/]+/g);
+    let url = JSON.stringify(slug(document.URL));
+    let isLogin = url.includes("login-v1");
+    var headerSignOut = document.getElementById('header-sign-out');
+  
+    if (isLogin) {
+      headerSignOut.classList.add("ec__remove-account-banner");
+    }
+</script>

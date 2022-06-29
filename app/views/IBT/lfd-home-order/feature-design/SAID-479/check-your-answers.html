@@ -1,0 +1,459 @@
+{% set version = "SAID-479" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% if data['test-reason-work'] == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" or
+data['test-reason-work'] == "You work for the NHS and have COVID-19 symptoms" %}
+<a class="govuk-back-link" href="/IBT/lfd-home-order/feature-design/{{version}}/occupation">Back</a>
+
+{% else %}
+<a class="govuk-back-link" href="/IBT/lfd-home-order/feature-design/{{version}}/date-of-birth">Back</a>
+
+{% endif %}
+
+<!-- {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }} -->
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-8">{{ pageTitle }}</h1>
+
+    {% if data['country'] == "England" %}
+    <h2 class="govuk-heading-m">Reason for test</h2>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Reason
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <!-- You been asked to take a test by a doctor or healthcare professional, or you have an eligible health condition -->
+          {% if data['test-reason-category'] == "You been asked to take a test by a doctor or healthcare professional, or you have an eligible health condition" %}
+
+          <!-- Eligible for COVID-19 treatments -->
+          {% if data['test-reason-health'] == "You've been told by the NHS that you're eligible for COVID-19 treatments" %}
+          {% if data['qualifying-condition'] == "Yes" %}
+          Eligible for COVID-19 treatments
+          {% endif %}
+
+          <!-- Being admitted into [hospital] for a procedure or treatment -->
+          {% elseif data['test-reason-health'] == "Your doctor or healthcare professional has told you to get a test because you're being admitted into hospital for a procedure" %}
+          Being admitted into {{ data['hospital-name'] or 'Manchester Royal Infirmary' }} for a procedure or treatment
+
+          <!-- On [1 March 2022] a GP or healthcare professional asked you to get a test -->
+          {% elseif data['test-reason-health'] == "You've spoken to your GP or healthcare professional recently and they asked you to get a test" %}
+          On
+          {% if data['date-asked-month'] == "1" or data['date-asked-month'] == "01" %}
+          {{ data['date-asked-day'] }} January {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "2" or data['date-asked-month'] == "02" %}
+          {{ data['date-asked-day'] }} February {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "3" or data['date-asked-month'] == "03" %}
+          {{ data['date-asked-day'] }} March {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "4" or data['date-asked-month'] == "04" %}
+          {{ data['date-asked-day'] }} April {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "5" or data['date-asked-month'] == "05" %}
+          {{ data['date-asked-day'] }} May {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "6" or data['date-asked-month'] == "06" %}
+          {{ data['date-asked-day'] }} June {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "7" or data['date-asked-month'] == "07" %}
+          {{ data['date-asked-day'] }} July {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "8" or data['date-asked-month'] == "08" %}
+          {{ data['date-asked-day'] }} August {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "9" or data['date-asked-month'] == "09" %}
+          {{ data['date-asked-day'] }} September {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "10" %}
+          {{ data['date-asked-day'] }} October {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "11" %}
+          {{ data['date-asked-day'] }} November {{ data['date-asked-year'] }}
+          {% elseif data['date-asked-month'] == "12" %}
+          {{ data['date-asked-day'] }} December {{ data['date-asked-year'] }}
+          {% else %}
+          6 December 1976
+          {% endif %}
+          a GP or healthcare professional asked you to get a test
+
+          {% endif %}
+
+          <!-- You been asked to take a test for your job -->
+          {% elseif data['test-reason-category'] == "You been asked to take a test for your job" %}
+
+          <!-- Work for NHS in a patient-facing role and taking part in the NHS staff testing programme -->
+          {% if data['test-reason-work'] == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" %}
+          Work for NHS in a patient-facing role and taking part in the NHS staff testing programme
+
+          <!-- Work for the NHS and have COVID-19 symptoms -->
+          {% elseif data['test-reason-work'] == "You work for the NHS and have COVID-19 symptoms" %}
+          Work for the NHS and have COVID-19 symptoms
+
+          <!-- Work for NHS-commissioned independent healthcare provider -->
+          {% elseif data['test-reason-work'] == "You work for an NHS-commissioned independent healthcare provider in a patient-facing role looking after NHS patients" %}
+          Work for NHS-commissioned independent healthcare provider<br />
+          {{ data['provider-name'] or 'Nuffield Health'}}
+
+          <!-- Work in the adult social care sector-->
+          {% elseif data['test-reason-work'] == "You work in the adult social care sector" %}
+          Work in the adult social care sector<br />
+          {{ data['adult-social-role' or 'Social Worker'] }}
+
+          {% endif %}
+
+          <!-- Default fallback -->
+          {% else %}
+          Eligible for COVID-19 treatments
+
+          {% endif %}
+
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/IBT/lfd-home-order/feature-design/{{version}}/test-reason-category-england">
+            Change<span class="govuk-visually-hidden"> reason</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+    {% endif %}
+
+    {% if data['country'] == "Scotland" %}
+    <h2 class="govuk-heading-m">Reason for test</h2>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Reason
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <!-- You have a health condition which means you're eligible for antiviral or antibody
+treatments for coronavirus (COVID-19) -->
+          {% if data['test-reason-category'] == "You have a health condition which means you're eligible for antiviral or antibody
+treatments for coronavirus (COVID-19)" %}
+          Eligible for COVID-19 treatments
+
+          <!-- You're visiting someone in a hospital or care home -->
+          {% elseif data['test-reason-category'] == "You're visiting someone in a hospital or care home" %}
+          Visiting someone in a hospital or care home
+
+          <!-- You're an unpaid carer -->
+          {% elseif data['test-reason-category'] == "You're an unpaid carer" %}
+          Unpaid carer
+
+          <!-- Default fallback -->
+          {% else %}
+          Eligible for COVID-19 treatments
+
+          {% endif %}
+
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/IBT/lfd-home-order/feature-design/{{version}}/test-reason-category-scotland">
+            Change<span class="govuk-visually-hidden"> reason</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+    {% endif %}
+
+    {% if data['country'] == "Wales" and data['do-you-have-symptoms'] == 'No' %}
+    <h2 class="govuk-heading-m">Reason for test</h2>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Reason
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <!-- A doctor or specialist said you're eligible for antiviral or antibody treatments for coronavirus (COVID-19) -->
+          {% if data['test-reason-category'] == "A doctor or specialist said you're eligible for antiviral or antibody treatments for coronavirus (COVID-19)" %}
+          Eligible for COVID-19 treatments
+
+          <!-- You are going to visit someone eligible for new COVID-19 treatments -->
+          {% elseif data['test-reason-category'] == "You are going to visit someone eligible for new COVID-19 treatments" %}
+          Visiting someone who’s eligible for COVID-19 treatments
+
+          <!-- Your GP or healthcare professional asked you to take a test -->
+          {% elseif data['test-reason-category'] == "Your GP or healthcare professional asked you to take a test" %}
+          GP or healthcare professional asked you to get a test
+
+          <!-- You have COVID-19 and want to check if your test result is still positive after day 5 -->
+          {% elseif data['test-reason-category'] == "You have COVID-19 and want to check if your test result is still positive after day 5" %}
+          Checking if your test result is still positive after day 5
+
+          <!-- Default fallback -->
+          {% else %}
+          Eligible for COVID-19 treatments
+
+          {% endif %}
+
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/IBT/lfd-home-order/feature-design/{{version}}/test-reason-category-wales">
+            Change<span class="govuk-visually-hidden"> reason</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+    {% endif %}
+
+    {% if data['country'] == "Northern Ireland" and data['do-you-have-symptoms'] == 'No' %}
+    <h2 class="govuk-heading-m">Reason for test</h2>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Reason
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <!-- You may be eligible for COVID-19 treatments and you need to order lateral flow tests in case you become symptomatic) -->
+          {% if data['test-reason-category'] == "You may be eligible for COVID-19 treatments and you need to order lateral flow tests in case you become symptomatic" %}
+          Eligible for COVID-19 treatments
+
+          <!-- Your GP or a healthcare professional asked you to take a test -->
+          {% elseif data['test-reason-category'] == "Your GP or a healthcare professional asked you to take a test" %}
+          GP or healthcare professional asked me/you to get a test
+
+          <!-- You're living in, working in or visiting high risk or vulnerable settings -->
+          {% elseif data['test-reason-category'] == "You're living in, working in or visiting high risk or vulnerable settings" %}
+          In vulnerable settings
+
+          <!-- You have COVID-19 and want to check if your test result is still positive after day 5 -->
+          {% elseif data['test-reason-category'] == "You have COVID-19 and want to check if your test result is still positive after day 5" %}
+          Checking if your test result is still positive after day 5
+
+          <!-- You're a carer who provides close personal care for someone who is at higher risk if they contract COVID-19 -->
+          {% elseif data['test-reason-category'] == "You're a carer who provides close personal care for someone who is at higher risk if they contract COVID-19" %}
+          Carer for someone who is at higher risk
+
+          <!-- Default fallback -->
+          {% else %}
+          Eligible for COVID-19 treatments
+
+          {% endif %}
+
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/IBT/lfd-home-order/feature-design/{{version}}/test-reason-category-ni">
+            Change<span class="govuk-visually-hidden"> reason</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+    {% endif %}
+
+    <h2 class="govuk-heading-m">Personal details</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <!-- <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Symptoms
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['do-you-have-symptoms'] or 'No' }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/IBT/lfd-home-order/feature-design/{{version}}/do-you-have-symptoms">
+            Change
+            <span class="govuk-visually-hidden">current coronavirus symptoms</span>
+          </a>
+        </dd>
+      </div> -->
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/IBT/lfd-home-order/feature-design/{{version}}/name">
+            Change
+            <span class="govuk-visually-hidden">name</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date of birth
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['date-asked-day'] or '15 March 1988' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/IBT/lfd-home-order/feature-design/{{version}}/date-of-birth">
+            Change
+            <span class="govuk-visually-hidden">date of birth</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Contact details
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['email-address'] or 'psmith@example.co.uk' }}<br>
+          {% if data['mobile-number'] == "Yes" %}
+          {{ data['mobile-phone-number'] or '07700 900 982'}}
+          {% else %}
+          I do not have a mobile number
+          {% endif %}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/IBT/lfd-home-order/feature-design/{{version}}/email-address">
+            Change
+            <span class="govuk-visually-hidden">email address</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Country of residence
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['country'] or 'England' }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/IBT/lfd-home-order/feature-design/{{version}}/country">
+            Change
+            <span class="govuk-visually-hidden">country</span>
+          </a>
+        </dd>
+      </div>
+      {% if data['country'] == "Scotland" %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Eligible for test
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['scottish-isles'] or 'Yes' }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/IBT/lfd-home-order/feature-design/{{version}}/scottish-isles">
+            Change
+            <span class="govuk-visually-hidden">eligible for test</span>
+          </a>
+        </dd>
+      </div>
+      {% endif %}
+    </dl>
+
+    {% if data['country'] == "England" %}
+    <!-- <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Work for the NHS
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['nhs-testing-programme'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/IBT/lfd-home-order/feature-design/{{version}}/nhs-testing-programme">
+            Change
+            <span class="govuk-visually-hidden">work for the nhs</span>
+          </a>
+        </dd>
+      </div> -->
+
+    {% if data['test-reason-work'] == "You work for the NHS in a patient-facing role, and you're taking part in the NHS staff testing programme" or
+    data['test-reason-work'] == "You work for the NHS and have COVID-19 symptoms" %}
+    <h2 class="govuk-heading-m">NHS details</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Area of work
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['work-area'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/IBT/lfd-home-order/feature-design/{{version}}/work-area">
+            Change
+            <span class="govuk-visually-hidden">area of work</span>
+          </a>
+        </dd>
+      </div>
+      {% if data['work-area'] == "Community pharmacy"
+                  or data['work-area'] == "Dentistry"
+                  or data['work-area'] == "General practice"
+                  or data['work-area'] == "Optometry"
+                  or data['work-area'] == "Other" %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Work postcode
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['work-postcode'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/IBT/lfd-home-order/feature-design/{{version}}/work-postcode">
+            Change
+            <span class="govuk-visually-hidden">work postcode</span>
+          </a>
+        </dd>
+      </div>
+      {% endif %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Occupation
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['occupation-autocomplete'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/IBT/lfd-home-order/feature-design/{{version}}/occupation">
+            Change
+            <span class="govuk-visually-hidden">occupation</span>
+          </a>
+        </dd>
+      </div>
+      {% if data['work-area'] != "Community pharmacy"
+                  and data['work-area'] != "Dentistry"
+                  and data['work-area'] != "General practice"
+                  and data['work-area'] != "Optometry"
+                  and data['work-area'] != "Other" %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          NHS trust name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['trust-autocomplete'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/IBT/lfd-home-order/feature-design/{{version}}/trust">
+            Change
+            <span class="govuk-visually-hidden">nhs trust name</span>
+          </a>
+        </dd>
+      </div>
+      {% endif %}
+      {% endif %}
+      {% endif %}
+    </dl>
+
+    <form action="/IBT/lfd-home-order/feature-design/{{version}}/security-check" method="post" novalidate>
+
+      <input type="hidden" name="answers-checked" value="true">
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Save and continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}
