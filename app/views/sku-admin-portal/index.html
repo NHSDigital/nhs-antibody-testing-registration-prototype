@@ -1,3 +1,6 @@
+{% set serviceName = SKUAdminPortal %}
+{% set pageTitle = "SKU Admin Portal" %}
+{% extends "includes/layout.html" %}
 {% extends "layout.html" %}
 
 {% block pageTitle %}
@@ -15,7 +18,7 @@ Start page example
   <div class="govuk-grid-column-full">
 
     <h1 class="govuk-heading-l">
-      SKU Admin Portal
+      {{pageTitle}}
     </h1>
 
     <p>This portal can be used to update the runtime operational SKU values</p>
@@ -46,55 +49,83 @@ Start page example
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                <h3 class="govuk-heading-s">Status</h3>
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              <h3>Status</h3>
             </legend>
-            <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+            <div class="govuk-radios govuk-radios--inline govuk-radios--small" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="status" name="status-active" type="radio" value="active">
+                <input class="govuk-radios__input" id="status-active" name="status" type="radio" value="active" checked="checked">
                 <label class="govuk-label govuk-radios__label" for="status-active">
                   Active
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="status" name="status-inactive" type="radio" value="inactive">
+                <input class="govuk-radios__input" id="status-inactive" name="status" type="radio" value="inactive">
                 <label class="govuk-label govuk-radios__label" for="status-inactive">
                   Inactive
                 </label>
               </div>
 
-              <a href="#" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-      Add new SKU
-        </a>
+              <a href="#" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+                Add new SKU
+              </a>
 
             </div>
 
           </fieldset>
 
-          <h4 class="govuk-heading-m govuk-!-margin-bottom-3">CTK01-GLA</h4>
-
-          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Tenant
-        </dt>
-        <dd class="govuk-summary-list__value">
-          Public
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Total Ordered:
-        </dt>
-        <dd class="govuk-summary-list__value">
-          0
-        </dd>
-      </div>
-    </dl>
+          <table class="govuk-table govuk-!-font-size-16">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">View SKU</th>
+                <th scope="col" class="govuk-table__header">Tenant</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total Ordered</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Min Kit</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Max Kits</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Limit</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Margin</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Stock</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Buffer</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><a class="govuk-link" href="#">CTK01-GLA</a></td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Public</strong></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">1</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">4</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">10000</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">100</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">10000000</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">200</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><a class="govuk-link" href="#">CTK02-GLA</a></td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">Key Workers</strong></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">1</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">4</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">10000</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">100</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">10000000</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">200</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><a class="govuk-link" href="#">CTK03-GLA</a></td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">IBT</strong></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">1</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">4</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">10000</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">100</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">10000000</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">200</td>
+              </tr>
+            </tbody>
+          </table>
 
         </div>
-
-
 
 
       </div>
