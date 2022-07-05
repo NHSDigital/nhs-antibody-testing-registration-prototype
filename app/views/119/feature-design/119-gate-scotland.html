@@ -1,0 +1,72 @@
+{% set version = "friction" %}
+{% set pageTitle = "Check if you are eligible for a PCR test " %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {{ pageTitle }}
+      </h1>
+      <p class="govuk-body">
+        You can get a PCR test if:
+      </p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+        <li>
+          you're eligible for COVID-19 treatments and you’ve been asked to take PCR tests
+        </li>
+        <li>
+          you (or the person who cares for you) are eligible for the <a href="https://www.mygov.scot/self-isolation-grant/check-if-you-qualify-and-how-to-apply" target="_blank" rel="noopener noreferrer">Self-Isolation Support Grant</a><span class="govuk-visually-hidden">(opens in new tab)</span>
+        </li>
+      </ul>
+
+      
+      
+      <h2 class="govuk-heading-m">
+        If you're worried
+      </h2>
+      <p class="govuk-body">
+        If you have COVID-19 symptoms which are seriously affecting your everyday life, call NHS 111 or your GP. In an emergency call 999.
+      </p>
+
+      {# Size modifiers: xl, l, m #}
+      <hr class="govuk-section-break govuk-section-break--xl">
+      <h2 class="govuk-heading-m">
+        Disclaimer
+      </h2>
+      <p class="govuk-body">
+        By selecting 'Confirm and continue', I confirm I am eligible to get a PCR test.
+      </p>
+
+      <div class="govuk-button-group">
+        <a href="#" class="govuk-button" role="button" draggable="false">
+            Confirm and continue
+        </a>
+        <a class="govuk-link" href="#" draggable="false">
+          I am not eligible
+        </a>
+      </div>
+
+    </div>
+    {# end govuk-grid-column-two-thirds #}
+
+  </div>
+  {# end govuk-grid-row #}
+
+{% endblock %}
