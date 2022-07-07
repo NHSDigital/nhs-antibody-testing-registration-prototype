@@ -1,0 +1,67 @@
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+        Tell us the result
+      </h1>
+    </legend>
+      <span id="result-hint" class="govuk-body">
+      Use the test kit instructions to answer this.
+      </span>
+    <div class="govuk-radios govuk-!-margin-top-5">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="gender-1" name="gender" type="radio" value="positive-result-SR-england" onclick="setLocation(this);" {{ checked("choose-result", "Positive") }}>
+        <label class="govuk-label govuk-radios__label" for="gender-1">
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          Positive result (likely to be infectious)
+          {% else %}
+          Positive result (likely to be infectious)
+          {% endif %}
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="gender-2" name="gender" type="radio" value="negative-result" onclick="setLocation(this);" {{ checked("choose-result", "Negative") }}>
+        <label class="govuk-label govuk-radios__label" for="gender-2">
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          Negative result (not likely to be infectious)
+          {% else %}
+          Negative result (not likely to be infectious)
+          {% endif %}
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="gender-3" name="gender" type="radio" value="invalid-result" onclick="setLocation(this);" {{ checked("choose-result", "Invalid") }}>
+        <label class="govuk-label govuk-radios__label" for="gender-3">
+          Void or invalid result (the test did not work properly)
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+    <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    <details class="govuk-details govuk-!-margin-top-6" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          If they had a problem taking the test
+          {% else %}
+          If you had a problem taking the test
+          {% endif %}
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+          <!--  <p class="govuk-body"><a class="govuk-link" href="https://nhstt.fra1.qualtrics.com/jfe/form/SV_bqskiabRU9HTFkO" rel="noreferrer">Report any problems online</a> or call the contact centre:</p>            <ul class="govuk-list govuk-list--bullet">
+              <li>119 if you’re in England, Wales or Northern Ireland</li>
+              <li>0300 303 2713 if you’re in Scotland</li>
+            </ul>
+            <p class="govuk-body">Lines are open 7am to 11pm.</p> -->
+            <p><a class="govuk-link" href="https://nhstt.fra1.qualtrics.com/jfe/form/SV_bqskiabRU9HTFkO" rel="noreferrer">Report any problems online</a> or call 119 (free from mobiles and landlines). Lines are open 7am to 11pm.</p>
+      </div>
+    </details>
+
+  <!--  <br>
+    <br>
+    <h4 class="govuk-heading-s">If you have a problem with your test kit</h4>
+    <p class="govuk-body">Phone 119 or <a class="govuk-link" href="https://nhstt.fra1.qualtrics.com/jfe/form/SV_bqskiabRU9HTFkO" rel="noreferrer">report the problem online</a></p> -->
