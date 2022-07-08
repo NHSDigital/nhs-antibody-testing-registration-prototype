@@ -84,21 +84,17 @@
     </span>
   </summary>
   <div class="govuk-details__text">
-    We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post.
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+       <p class="govuk-body">If the test was negative or void, the person who took the test should take another rapid lateral flow test as soon as possible and report the result.</p>
+       <p class="govuk-body">They should use a new test kit, and not reuse anything from the first test kit.</p>
+    {% else %}
+       <p class="govuk-body">If the test was negative or void, you should take another rapid lateral flow test as soon as possible and report the result.</p>
+       <p class="govuk-body">Use a new test kit, and do not reuse anything from the first test kit.</p>
+    {% endif %}
   </div>
 </details>
 
 
-
-<div
-  {% if data['whos-taking-the-test'] == "someone-else" %}
-     <p class="govuk-body">If the test was negative or void, the person who took the test should take another rapid lateral flow test as soon as possible and report the result.</p>
-     <p class="govuk-body">They should use a new test kit, and not reuse anything from the first test kit.</p>
-  {% else %}
-     <p class="govuk-body">If the test was negative or void, you should take another rapid lateral flow test as soon as possible and report the result.</p>
-     <p class="govuk-body">Use a new test kit, and do not reuse anything from the first test kit.</p>
-  {% endif %}
-</div>
 
   <h2 class="govuk-heading-m">
     Get a new lateral flow test kit
