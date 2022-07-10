@@ -1,5 +1,5 @@
-{% set version = "v29" %}
-{% set pageTitle = "Taking a photo of your test strip" %}
+{% set version = "research" %}
+{% set pageTitle = "Take a photo of the test strip" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -15,7 +15,7 @@
   </p>
 </div>
 
-<a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/using-mobile">Back</a>
+<a class="govuk-back-link" href="/IBT/lfd-digital-reader/e2e-prototypes/{{version}}/using-mobile">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -25,49 +25,33 @@
 
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
 
-        <!-- <h2 class="govuk-heading-s">
-          {% if data['whos-taking-the-test'] == "someone-else" %}
-          Help the service by taking a clear photo, otherwise it may not be able to read {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s result.
-          {% else %}
-          Help the service by taking a clear photo, otherwise it may not be able to read your result.</h2>
-          {% endif %} -->
+        <h2 class="govuk-heading-s">Follow these rules to take a good photo. Make sure:</h2>
+        <ul class="govuk-list govuk-list--number govuk-u-margin-bottom-6">
+          <li>your phone/tablet is flat and steady, directly above the test strip</li>
+          <li>the C and T letters are the right way up and the specimen well (where you squeezed the fluid) is at the bottom</li>
+          <li>the photo is in focus with no shadows or bright lights on it</li>
+          <li>all 4 corners of the test strip fit into the rectangular outline</li>
 
-          <h2 class="govuk-heading-s">
-            {% if data['whos-taking-the-test'] == "someone-else" %}
-            Follow these rules to take a good photo.
-            {% else %}
-            Follow these rules to take a good photo.</h2>
-            {% endif %}
-
-        <ol class="govuk-list govuk-list--number govuk-u-margin-bottom-6">
-          {% if data['whos-taking-the-test'] == "someone-else" %}
-          <li>Hold the smartphone or tablet flat above the test strip and move it until all 4 corners of the test strip fit into the outline on the screen. </li>
-          <li>Make sure the letters C and T on the test strip are the right way up. The specimen well (where they dropped the test fluid) must be at the bottom of the photo.</li>
-          <li>Make sure there are no shadows or reflections on the test strip.</li>
-          <li>Make sure no personal information is in the photo, for example paperwork with {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s name, address, date of birth or bank details.</li>
-          {% else %}
-          <li>Hold the smartphone or tablet flat above the test strip and move it until all 4 corners of the test strip fit into the outline on the screen. </li>
-          <li>Make sure the letters C and T on the test strip are the right way up. The specimen well (where you dropped the test fluid) must be at the bottom of the photo.</li>
-          <li>Make sure there are no shadows or reflections on the test strip.</li>
-          <li>Make sure no personal information is in the photo, for example paperwork with your name, address, date of birth or bank details.</li>
-          {% endif %}
-        </ol>
+        </ul>
 
         <div class="permission-wrap">
-          <!-- <img class="iOS-cam-per govuk-image__img" src="/images/ios-permission.png" alt="iOS camera permission dialogue"> -->
-              <img src="/public/images/TakeAPhoto3.svg" alt="Illustration of how to take a good photo of a rapid lateral flow test strip. The image shows a pair of hands holding a smartphone over the test strip, with the test strip centred in the middle of the smartphone screen and the specimen well at the bottom of the photo." style="width: 100%">
+          <!-- <img class="iOS-cam-per govuk-image__img" src="/images/ios-permission.png" alt="iOS camera permission dialogue">
+         <a href="scan-test-result-android"> -->
+              <img src="/public/images/TakeaPhoto2.png" alt="Illustration of how to take a good photo of a test device" style="width: 100%">
+          <!-- </a> -->
         </div>
 
-        <p class="govuk-body">
+        <div class="govuk-inset-text">
           {% if data['whos-taking-the-test'] == "someone-else" %}
-          <p>On the next screen, the service may ask if it can use the camera on {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s smartphone or tablet. Choose 'yes' so the service can read their test result.</p>
+          Make sure no personal information is in the photo, for example paperwork showing a name, address, date of birth or bank details.
           {% else %}
-          <p>On the next screen, the service may ask if it can use the camera on your smartphone or tablet. Choose 'yes' so the service can read your test result.</p>
+          Make sure no personal information is in the photo, for example paperwork showing your name, address, date of birth or bank details.
           {% endif %}
+        </div>
 
-
-        <a href="/share-result-lateral-flow/v29/no-stencil-a11y" class="govuk-button govuk-u-margin-bottom-8">
-          Take Photo
+        <br>
+        <a href="photo-permissions" class="govuk-button govuk-u-margin-bottom-8">
+          Take photo
         </a>
 
     </div>

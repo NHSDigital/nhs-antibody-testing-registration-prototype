@@ -1,5 +1,5 @@
-{% set version = "v29" %}
-{% set pageTitle = "Please wait, we are reading the result" %}
+{% set version = "research" %}
+{% set pageTitle = "The service is reading the result" %}
 
 {% extends "includes/layout-LFD.html" %}
 
@@ -41,27 +41,39 @@
   }
 </style>
 
-<meta http-equiv="refresh" content="15;url=photo-confirmed-wait">
+<meta http-equiv="refresh" content="8;url=positive-result-photo">
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/share-result-lateral-flow/{{version}}/photo-confirmed-wait" method="post">
 
-            <div class="govuk-u-margin-bottom-6" id="dynamic-content" role="alert" aria-live="assertive">
-              <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
-              <p class="govuk-body">This may take up to 30 seconds.<br>
-                Do not go back, close this window or leave this service.<p>
-            </div>
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
 
-                <br>
-                  <div aria-hidden="true" style="text-align:center; margin:20px auto">
-                    <div class="ccms-loader"></div>
-                  </div>
+      <div class="govuk-u-margin-bottom-6">
+        <p>This takes a few seconds. Please wait.</p>
+        <!-- <p>Once complete you will get your confirmed result.</p> -->
+      </div>
 
-              <!--  <button class="govuk-button" type="submit" data-module="govuk-button" disabled>
-                  Continue
-                </button> -->
-       </form>
+<!--  <p class="govuk-body">Your photo is being uploaded and analysed.</p>
+  <p class="govuk-body">Your result will be confirmed and explained to you shortly.</p> -->
+
+
+              <br>
+              <br>
+              <div style="text-align:center; margin:20px auto">
+                <div class="ccms-loader"></div>
+
+              </div>
+              <br>
+              <br>
+
+          <div class="govuk-inset-text">
+              Do not close this window or leave the service.
+          </div>
+
+        <a href="positive-result-photo" class="govuk-button govuk-u-margin-bottom-8" disabled>
+          Continue
+        </a>
+
     </div>
 </div>
 
