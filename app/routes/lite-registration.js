@@ -1159,7 +1159,7 @@ router.post('/lite-registration-lateral-flow-accounts/v1/action9/landline-number
           let result = req.session.data['reason']
 
           if (result == "I have symptoms and am eligible for COVID-19 treatments"){
-            res.redirect('/share-result-lateral-flow/v29/test-date')
+            res.redirect('/share-result-lateral-flow/v29/symptoms-start')
           } else if(result == "To go to a place of education") {
             res.redirect('/share-result-lateral-flow/v29/test-date')
           } else if(result == "To check if my test result is still positive") {
