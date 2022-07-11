@@ -1,0 +1,213 @@
+
+<a href="#" class="govuk-back-link">Back</a>
+
+           <div class="govuk-panel govuk-panel--confirmation govuk-panel-lft-result">
+              <h1 class="govuk-panel__title">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                You reported {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s coronavirus test result as void
+                {% else %}
+                You reported a void coronavirus test result
+                {% endif %}
+              </h1>
+              <div class="govuk-panel__body">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                It’s not possible to say if they had coronavirus or were infectious when the test was done
+                {% else %}
+                It’s not possible to say if you had coronavirus or were infectious when the test was done
+                {% endif %}
+              </div>
+           </div>
+
+
+  <div
+  <br>
+  </br>
+
+  <!-- <p class="govuk-body">This result has been reported to the NHS.</p> -->
+
+  <div
+  <p class="govuk-body-l">
+This result has been reported to the NHS.
+  </p>
+  </div>
+
+  <h2 class="govuk-heading-m">
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    What {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}needs to do
+    {% else %}
+    What you need to do
+    {% endif %}
+  </h2>
+
+  <p class="govuk-body">
+  Take another rapid lateral flow test as soon as possible.
+  </p>
+
+  <p class="govuk-body">
+  To stay safe:
+  </p>
+
+  <div class="govuk-body">
+    <ul>
+      <li>get vaccinated</li>
+      <li>handwash regularly</li>
+      <li>open windows if meeting indoors</li>
+      <li>wear a face covering in crowded indoor settings</li>
+      <li>stay home if unwell</li>
+    </ul>
+  </div>
+
+
+<h3 class="govuk-heading-s">In Scotland, Wales and Northern Ireland</h3>
+
+<p class="govuk-body">
+  {% if data['whos-taking-the-test'] == "someone-else" %}
+  If they get symptoms, they should follow the guidance (the following links open in a new tab):
+  {% else %}
+  If you get symptoms, follow the guidance (the following links open in a new tab):
+  {% endif %}
+</p>
+
+<div class="govuk-body">
+  <ul>
+    <li><a href="#">Scotland: symptoms guidance</a></li>
+    <li><a href="#">Wales: symptoms guidance</a></li>
+    <li><a href="#">Northern Ireland: symptoms guidance</a></li>
+  </ul>
+</div>
+
+
+<h3 class="govuk-heading-s">
+  {% if data['whos-taking-the-test'] == "someone-else" %}
+  If they're worried
+  {% else %}
+  If you're worried
+  {% endif %}
+</h3>
+
+<p class="govuk-body">
+  {% if data['whos-taking-the-test'] == "someone-else" %}
+  If their symptoms get worse or they need medical help:
+  {% else %}
+  If your symptoms get worse or you need medical help:
+  {% endif %}
+</p>
+
+<div class="govuk-body">
+
+<ul>
+  <li><a href="#">use 111 online (opens in new tab)</a></li>
+  <li>in England or Wales, call 111</li>
+  <li>in Scotland, call a GP or call 111 out-of-hours</li>
+  <li>in Northern Ireland, call a GP or GP out-of-hours service</li>
+  <li>{% if data['whos-taking-the-test'] == "someone-else" %}
+  call 999 if they feel very unwell or think there's something seriously wrong
+  {% else %}
+  call 999 if you feel very unwell or think there's something seriously wrong
+  {% endif %}</li>
+</ul>
+</div>
+<br>
+<br>
+
+<button class="govuk-button" data-module="govuk-button">Report another result</button>
+
+<details class="govuk-details" data-module="govuk-details">
+ <summary class="govuk-details__summary">
+   <span class="govuk-details__summary-text">
+     The test result was reported incorrectly
+   </span>
+ </summary>
+ <div class="govuk-details__text">
+   {% if data['whos-taking-the-test'] == "someone-else" %}
+      <h2 class="govuk-heading-m">The test result was positive</h2>
+      <p class="govuk-body">If the test result was positive the person who took the test should take another rapid lateral flow test as soon as possible and report the result</p>
+      <p class="govuk-body">They should use a new test kit and not reuse anything from the first kit.</p>
+   {% else %}
+      <h2 class="govuk-heading-m">The test result was positive</h2>
+      <p class="govuk-body">If the test result was positive you should take another rapid lateral flow test as soon as possible and report the result.</p>
+      <p class="govuk-body">Use a new test kit and do not reuse anything from the first kit.</p>
+   {% endif %}
+
+
+   <div class="govuk-warning-text">
+    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+    <strong class="govuk-warning-text__text">
+      <span class="govuk-warning-text__assistive">Warning</span>
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      Follow the guidance for the country they are in
+      {% else %}
+      Follow the guidance for the country you are in
+      {% endif %}
+    </strong>
+  </div>
+
+
+   <h3 class="govuk-heading-s">In England</h3>
+   <div class="govuk-body">
+     {% if data['whos-taking-the-test'] == "someone-else" %}
+     They should try to stay at home and avoid contact with other people.<a href="" target="_blank" rel="noreferrer">Find out when to stay at home and what to do (opens in new tab)</a>.
+     {% else %}
+     You should try to stay at home and avoid contact with other people.<a href="" target="_blank" rel="noreferrer">Find out when to stay at home and what to do (opens in new tab)</a>.
+     {% endif %}
+   </div>
+
+
+   <div class="govuk-heading-s">In Scotland, Wales and Northern Ireland</div>
+   <div class="govuk-body">
+     {% if data['whos-taking-the-test'] == "someone-else" %}
+     They should stay at home and avoid contact with other people (the following links open in a new tab):
+     {% else %}
+     You should stay at home and avoid contact with other people (the following links open in a new tab):
+     {% endif %}
+   </div>
+
+   <div class="govuk-body">
+     <ul>
+       <li>Scotland:<a href="" target="_blank" rel="noreferrer"</a> find out when to stay at home and what to do</li>
+       <li>Wales:<a href="" target="_blank" rel="noreferrer"</a> find out when to stay at home and what to do</li>
+       <li>Northern Ireland:<a href="" target="_blank" rel="noreferrer"</a> find out when to stay at home and what to do</li>
+     </ul>
+   </div>
+   <br>
+   <br>
+   <h2 class="govuk-heading-m">
+     The test result was negative
+   </h2>
+
+   <div
+     <p class="govuk-body">
+       {% if data['whos-taking-the-test'] == "someone-else" %}
+       If the test result was negative, the person who took the test should take another rapid lateral flow test as soon as possible and report the result.
+         <br>
+         <br>
+         They should use a new test kit, and not reuse anything from the first test kit.
+        {% else %}
+        If the test result was negative, you should take another rapid lateral flow test as soon as possible and report the result.
+         <br>
+         <br>
+         Use a new test kit, and do not reuse anything from the first test kit.
+        {% endif %}
+     </p>
+
+   <br>
+
+     <h3 class="govuk-heading-s">Get a new lateral flow test kit
+   </h3>
+
+   <p class="govuk-body">
+     {% if data['whos-taking-the-test'] == "someone-else" %}
+       If they do not have another rapid lateral flow test available, they may be able to order a new test pack online for home delivery.
+      {% else %}
+       If you do not have another rapid lateral flow test available, you may be able to order a new test pack online for home delivery.
+      {% endif %}
+   </p>
+</details>
+   </div>
+</div>
+
+   <div>
+   <h2 class="govuk-heading-m">Help and advice</h2>
+   <p class="govuk-body"><a href="" target="_blank" rel="noreferrer"</a>Find out what support you can get if you’re affected by coronavirus (opens in a new tab)
+   </p>
+   </div>
