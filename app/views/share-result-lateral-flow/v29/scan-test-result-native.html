@@ -10,7 +10,20 @@
     <div class="govuk-grid-column-two-thirds">
 
         <div id="content-1">
-        <input type="file" name="image" accept="image/*">
+          <!-- The `label` is attached to the hidden file input -->
+          <label for="cameraFileInput">
+            <span class="govuk-button btn" role="button">Open camera</span>
+
+            <!-- The hidden file `input` for opening the native camera -->
+            <input
+              id="cameraFileInput"
+              type="file"
+              accept="image/*"
+              capture="environment"
+            />
+          </label>
+
+
         </div>
 
         <div id="content-2" style="display: none;">
@@ -23,12 +36,8 @@
             <li>the photo is in focus with no shadows or bright lights on it</li>
             <li>no personal information is in the photo, for example bank details</li>
             </ul>
-          <div style="position: relative; display: flex; justify-content: center; align-items: center;" class="camera-test-result wrapper govuk-!-margin-bottom-3">
-          <!--  <div class="camera-overlay right"></div>
-            <div class="camera-overlay left"></div>
-            <div class="camera-overlay top"></div>
-            <div class="camera-overlay bottom"></div> -->
-            <canvas id="canvas" class="camera-test-result canvas"></canvas>
+            <!-- displays the picture uploaded from the native camera -->
+            <img id="pictureFromCamera" />
           </div>
         </div>
 
@@ -50,99 +59,14 @@
     </div>
   </div>
 
-  <script type="text/javascript">
-
-submitEvent()
-
-function buttonClicked(target) {
-  setTimeout(function () {
-    document.getElementById('content-1').style.display = 'none'
-    document.getElementById('snap').style.display = 'none'
-    document.getElementById('cancel').style.display = 'none'
-    document.getElementById('snap-2').style.display = 'inline-block'
-    document.getElementById('cancel-2').style.display = 'inline-block'
-    document.getElementById('content-2').style.display = 'block'
-  }, 100)
-}
-
-function buttonClicked2(target) {
-  setTimeout(function () {
-    document.getElementById('content-1').style.display = 'block'
-    document.getElementById('snap').style.display = 'inline-block'
-    document.getElementById('cancel').style.display = 'inline-block'
-    document.getElementById('snap-2').style.display = 'none'
-    document.getElementById('cancel-2').style.display = 'none'
-    document.getElementById('content-2').style.display = 'none'
-  }, 100)
-}
-
-function submitEvent() {
-    var selects = document.getElementById('snap')
-    var selectedLink = document.getElementById('cancel-2')
-    // var selectedLink2 = document.getElementById('manual-address-2')
-    selects.addEventListener('click', function (event) {
-      event.preventDefault()
-      if (selects.getAttribute('disabled') === 'disabled') {
-      } else {
-        event.preventDefault()
-        buttonClicked(selects)
-      }
-    })
-    selectedLink.addEventListener('click', function (event) {
-      event.preventDefault()
-      if (selectedLink.getAttribute('disabled') === 'disabled') {
-      } else {
-        event.preventDefault()
-        buttonClicked2(selectedLink)
-      }
-    })
-
-  }
-
-// Put event listeners into place
-window.addEventListener("DOMContentLoaded", function() {
-  // Grab elements, create settings, etc.
-  var canvas = document.getElementById('canvas');
-  var context = canvas.getContext('2d');
-  var video = document.getElementById('video');
-  var mediaConfig =  { video: {facingMode: 'environment'} };
-  var errBack = function(e) {
-    console.log('An error has occurred!', e)
-  };
-
-  // Put video listeners into place
-  if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
-    //video.src = window.URL.createObjectURL(stream);
-    video.srcObject = stream;
-      video.play();
-    });
-  }
-  else if(navigator.getUserMedia) { // Standard
-    navigator.getUserMedia(mediaConfig, function(stream) {
-      video.src = stream;
-      video.play();
-    }, errBack);
-  } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-    navigator.webkitGetUserMedia(mediaConfig, function(stream){
-      video.src = window.webkitURL.createObjectURL(stream);
-      video.play();
-    }, errBack);
-  } else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
-    navigator.mozGetUserMedia(mediaConfig, function(stream){
-      video.src = window.URL.createObjectURL(stream);
-      video.play();
-    }, errBack);
-  }
-
-  // Trigger photo take
-  document.getElementById('snap').addEventListener('click', function() {
-    context.drawImage(video, 0, 0, 300, 150);
-  });
-
-}, false);
-
-
+  <script>
+    document
+      .getElementById("cameraFileInput")
+      .addEventListener("change", function () {
+        document
+          .getElementById("pictureFromCamera")
+          .setAttribute("src", window.URL.createObjectURL(this.files[0]));
+      });
   </script>
 
 {% endblock %}
