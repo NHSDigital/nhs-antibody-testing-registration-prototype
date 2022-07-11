@@ -12,7 +12,7 @@
         <div id="content-1">
           <!-- The `label` is attached to the hidden file input -->
           <label for="cameraFileInput">
-            <span class="govuk-button btn" role="button">Open camera</span>
+            <span class="govuk-button btn" id="native-button" role="button">Open camera</span>
 
             <!-- The hidden file `input` for opening the native camera -->
             <input
@@ -53,7 +53,9 @@
     </div>
   </div>
 
+
   <script>
+
     document
       .getElementById("cameraFileInput")
       .addEventListener("change", function () {
@@ -61,6 +63,11 @@
           .getElementById("pictureFromCamera")
           .setAttribute("src", window.URL.createObjectURL(this.files[0]));
       });
+
+      document.getElementById('native-button').click();
+
   </script>
+
+  <script>
 
 {% endblock %}
