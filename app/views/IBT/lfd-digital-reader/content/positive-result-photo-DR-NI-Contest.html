@@ -1,41 +1,19 @@
 
-           <div class="govuk-panel govuk-panel--confirmation govuk-panel-lft-result">
-              <h1 class="govuk-panel__title">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s coronavirus test result is positive
-                {% else %}
-                The coronavirus test result is positive
-                {% endif %}
-              </h1>
-              <div class="govuk-panel__body">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                It’s likely they were infectious when the test was done
-                {% else %}
-                It’s likely you were infectious when the test was done
-                {% endif %}
-              </div>
-           </div>
 
+
+           <h1 class="govuk-heading-xl">
+             {% if data['whos-taking-the-test'] == "someone-else" %}
+             If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} disagrees with the result
+             {% else %}
+             If you disagree with the result
+             {% endif %}
+           </h1>
 
   <div>
   <br>
 
-  <!-- <p class="govuk-body">This result has been reported to the NHS.</p> -->
 
-  <div class="govuk-warning-text">
-    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-    <strong class="govuk-warning-text__text">
-      <span class="govuk-warning-text__assistive">Warning</span>
-      {% if data['whos-taking-the-test'] == "someone-else" %}
-         They should stay at home and avoid contact with other people, especially those who might be at higher risk from COVID-19.
-         <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-testing-and-isolation-advice" target="_blank" rel="noreferrer">Find out more about when to stay at home and what to do (opens in new tab)</a>.
 
-       {% else %}
-         You should stay at home and avoid contact with other people, especially those who might be at higher risk from COVID-19.
-         <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-testing-and-isolation-advice" target="_blank" rel="noreferrer">Find out more about when to stay at home and what to do (opens in new tab)</a>.
-      {% endif %}
-    </strong>
-  </div>
 
   <h2 class="govuk-heading-m">
     COVID-19 treatments
@@ -44,50 +22,103 @@
   <div
     <p class="govuk-body">
       {% if data['whos-taking-the-test'] == "someone-else" %}
-          <a href="https://www.nidirect.gov.uk/articles/treatments-coronavirus-covid-19" target="_blank" rel="noreferrer">Find out what to do if they have been told that they may be eligiblefor COVID-19 treatments (opens in new tab)</a>.
+        The technology we use to check the result guarantees a high level of accuracy. It's authorised by the UK health regulator, the Medicines and Healthcare products Regulatory Agency (MHRA).
+        <br>
+        <br>
+        If {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} thinks we got your result wrong, they can <a href="">report this to the MHRA (opens in new tab)</a>. On the homepage, they should enter ‘Lateral flow antigen test – uploaded photograph result’ in the search box and select the ‘Start report’ button.
+        <br>
+        <br>
+        They should follow the advice below to help stop the spread of the virus.
 
        {% else %}
-         <a href="https://www.nidirect.gov.uk/articles/treatments-coronavirus-covid-19" target="_blank" rel="noreferrer">Find out what to do if you have been told that you may be eligible for COVID-19 treatments (opens in new tab)</a>.
+        The technology we use to check the result guarantees a high level of accuracy. It's authorised by the UK health regulator, the Medicines and Healthcare products Regulatory Agency (MHRA).
+        <br>
+        <br>
+        If you think we got your result wrong, you can <a href="">report this to the MHRA (opens in new tab)</a>. On the homepage, enter ‘Lateral flow antigen test – uploaded photograph result’ in the search box and select the ‘Start report’ button.
+        <br>
+        <br>
+        You should follow the advice below to help stop the spread of the virus.
       {% endif %}
     </p>
   </div>
 
+<br>
+<br>
 
 
   <div
     <h2 class="govuk-heading-m">
       {% if data['whos-taking-the-test'] == "someone-else" %}
-      What they need to do
+      What they should do
 
       {% else %}
-      What you need to do
+      What you should do
       {% endif %}
     </h2>
   </div>
 
-
   <div
     <p class="govuk-body">
       {% if data['whos-taking-the-test'] == "someone-else" %}
-          <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" target="_blank" rel="noreferrer">Find out what to do if they have COVID-19 (opens in new tab)</a>.
-          If they're worried, or their symptoms get worse, they should contact their GP or GP out-of-hours service. In an emergency dial 999.
+        They should take another rapid lateral flow test today, or as soon as possible, and report the result.
+        <br>
+        <br>
+        They should assume that they have COVID-19, and follow the guidance for the country they're in until they have the new test result.
+
        {% else %}
-         <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" target="_blank" rel="noreferrer">Find out what to do if you have COVID-19 (opens in new tab)</a>.
-         If you're worried, or your symptoms get worse, contact your GP or GP out-of-hours service. In an emergency dial 999.
+        You should take another rapid lateral flow test today, or as soon as possible, and report the result.
+        <br>
+        <br>
+        You should assume that you have COVID-19, and follow the guidance for the country you're in until you have the new test result.
       {% endif %}
     </p>
   </div>
 
- <button class="govuk-button" data-module="govuk-button">Report another result</button>
+<br>
+
+  <h3 class="govuk-heading-s">In England</h3>
+
+  <div
+    <p class="govuk-body">
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+        They should try to stay at home and avoid contact with other people, especially those who are at higher risk from COVID-19. <a href=""> Find out more about when to stay at home and what to do (opens in new tab)</a>.
+
+       {% else %}
+        You should try to stay at home and avoid contact with other people, especially those who are at higher risk from COVID-19. <a href=""> Find out more about when to stay at home and what to do (opens in new tab)</a>.
+
+      {% endif %}
+    </p>
+  </div>
+
+<br>
+<h3 class="govuk-heading-s">In Scotland, Wales and Northern Ireland</h3>
 
 
- <div class="govuk-inset-text">
-  <a href="#">I think the service incorrectly read the result</a>
+
+
+<div
+  <p class="govuk-body">
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    They should stay at home and avoid contact with other people (the following links open in a new tab):
+
+    {% else %}
+    You should stay at home and avoid contact with other people (the following links open in a new tab):
+
+
+    {% endif %}
+  </p>
 </div>
 
-  <h2 class="govuk-heading-m">
-    Help and advice
-  </h2>
+<div class="govuk-body">
+  <ul>
+    <li>Scotland: <a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19/">find out when to stay at home and what to do</a></li>
+    <li>Wales: <a href="">find out when to stay at home and what to do</a></li>
+    <li>Northern Ireland: <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-testing-and-isolation-advice">find out when to stay at home and what to do</a></li>
+  </ul>
+</div>
 
-  <p class="govuk-body">
-        <a href="https://www.nidirect.gov.uk/articles/treatments-coronavirus-covid-19" target="_blank" rel="noreferrer">Find out who to stay safe and help prevent the spread of COVID-19 (opens in new tab)</a>.
+<br>
+
+<div class="govuk-body">
+  <a href="">Get the latest NHS information and advice about COVID-19 (opens in a new tab)</a>
+</div>
