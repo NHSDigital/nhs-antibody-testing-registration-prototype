@@ -1,0 +1,93 @@
+
+           <div class="govuk-panel govuk-panel--confirmation govuk-panel-lft-result">
+              <h1 class="govuk-panel__title">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s coronavirus test result is positive
+                {% else %}
+                The coronavirus test result is positive
+                {% endif %}
+              </h1>
+              <div class="govuk-panel__body">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                It’s likely they were infectious when the test was done
+                {% else %}
+                It’s likely you were infectious when the test was done
+                {% endif %}
+              </div>
+           </div>
+
+
+  <div>
+  <br>
+
+  <!-- <p class="govuk-body">This result has been reported to the NHS.</p> -->
+
+  <div class="govuk-warning-text">
+    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+    <strong class="govuk-warning-text__text">
+      <span class="govuk-warning-text__assistive">Warning</span>
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+         They should stay at home and avoid contact with other people, especially those who might be at higher risk from COVID-19.
+         <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-testing-and-isolation-advice" target="_blank" rel="noreferrer">Find out more about when to stay at home and what to do (opens in new tab)</a>.
+
+       {% else %}
+         You should stay at home and avoid contact with other people, especially those who might be at higher risk from COVID-19.
+         <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-testing-and-isolation-advice" target="_blank" rel="noreferrer">Find out more about when to stay at home and what to do (opens in new tab)</a>.
+      {% endif %}
+    </strong>
+  </div>
+
+  <h2 class="govuk-heading-m">
+    COVID-19 treatments
+  </h2>
+
+  <div
+    <p class="govuk-body">
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+          <a href="https://www.nidirect.gov.uk/articles/treatments-coronavirus-covid-19" target="_blank" rel="noreferrer">Find out what to do if they have been told that they may be eligiblefor COVID-19 treatments (opens in new tab)</a>.
+
+       {% else %}
+         <a href="https://www.nidirect.gov.uk/articles/treatments-coronavirus-covid-19" target="_blank" rel="noreferrer">Find out what to do if you have been told that you may be eligible for COVID-19 treatments (opens in new tab)</a>.
+      {% endif %}
+    </p>
+  </div>
+
+
+
+  <div
+    <h2 class="govuk-heading-m">
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      What they need to do
+
+      {% else %}
+      What you need to do
+      {% endif %}
+    </h2>
+  </div>
+
+
+  <div
+    <p class="govuk-body">
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+          <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" target="_blank" rel="noreferrer">Find out what to do if they have COVID-19 (opens in new tab)</a>.
+          If they're worried, or their symptoms get worse, they should contact their GP or GP out-of-hours service. In an emergency dial 999.
+       {% else %}
+         <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" target="_blank" rel="noreferrer">Find out what to do if you have COVID-19 (opens in new tab)</a>.
+         If you're worried, or your symptoms get worse, contact your GP or GP out-of-hours service. In an emergency dial 999.
+      {% endif %}
+    </p>
+  </div>
+
+ <button class="govuk-button" data-module="govuk-button">Report another result</button>
+
+
+ <div class="govuk-inset-text">
+  <a href="#">I think the service incorrectly read the result</a>
+</div>
+
+  <h2 class="govuk-heading-m">
+    Help and advice
+  </h2>
+
+  <p class="govuk-body">
+        <a href="https://www.nidirect.gov.uk/articles/treatments-coronavirus-covid-19" target="_blank" rel="noreferrer">Find out who to stay safe and help prevent the spread of COVID-19 (opens in new tab)</a>.
