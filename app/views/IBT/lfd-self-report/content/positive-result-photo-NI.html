@@ -1,16 +1,22 @@
+<div class="govuk-panel govuk-panel--confirmation govuk-panel-lft-result">
+   <h1 class="govuk-panel__title">
+     {% if data['whos-taking-the-test'] == "someone-else" %}
+     You reported {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s coronavirus test result as negative
+     {% else %}
+     You reported a negative coronavirus test result
+     {% endif %}
+   </h1>
+   <div class="govuk-panel__body">
+     {% if data['whos-taking-the-test'] == "someone-else" %}
+     It’s likely they were not infectious when the test was done
+     {% else %}
+     It’s likely you were not infectious when the test was done
+     {% endif %}
+   </div>
+</div>
 
-           <div class="govuk-panel govuk-panel--confirmation govuk-panel-lft-result">
-              <h1 class="govuk-panel__title">
-                The coronavirus test result is positive
-              </h1>
-              <div class="govuk-panel__body">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                It’s likely {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} was infectious when the test was done
-                {% else %}
-                It’s likely you were infectious when the test was done
-                {% endif %}
-              </div>
-           </div>
+
+
 
 
   <div>
@@ -23,11 +29,11 @@
     <strong class="govuk-warning-text__text">
       <span class="govuk-warning-text__assistive">Warning</span>
       {% if data['whos-taking-the-test'] == "someone-else" %}
-         They should stay at home and avoid contact with other people. They should not visit care homes or hospitals.
+         They should stay at home and avoid contact with other people, especially those who might be at higher risk from COVID-19.
          <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-testing-and-isolation-advice" target="_blank" rel="noreferrer">Find out more about when to stay at home and what to do (opens in new tab)</a>.
 
        {% else %}
-         You should stay at home and avoid contact with other people. Do not visit care homes or hospitals.
+         You should stay at home and avoid contact with other people, especially those who might be at higher risk from COVID-19.
          <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-testing-and-isolation-advice" target="_blank" rel="noreferrer">Find out more about when to stay at home and what to do (opens in new tab)</a>.
       {% endif %}
     </strong>
@@ -65,10 +71,10 @@
   <div
     <p class="govuk-body">
       {% if data['whos-taking-the-test'] == "someone-else" %}
-          <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" target="_blank" rel="noreferrer">Find out what to do if they have COVID-19 (opens in new tab)</a>.
+          <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-testing-and-isolation-advice" target="_blank" rel="noreferrer">Find out what to do if they have COVID-19 (opens in new tab)</a>.
           If they're worried, or their symptoms get worse, they should contact their GP or GP out of hours service. In an emergency dial 999.
        {% else %}
-         <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" target="_blank" rel="noreferrer">Find out what to do if you have COVID-19 (opens in new tab)</a>.
+         <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-testing-and-isolation-advice" target="_blank" rel="noreferrer">Find out what to do if you have COVID-19 (opens in new tab)</a>.
          If you're worried, or your symptoms get worse, contact your GP or GP out of hours service. In an emergency dial 999.
       {% endif %}
     </p>
@@ -91,12 +97,9 @@
        <p class="govuk-body">If the test was negative or void, you should take another rapid lateral flow test as soon as possible and report the result.</p>
        <p class="govuk-body">Use a new test kit, and do not reuse anything from the first test kit.</p>
     {% endif %}
-  </div>
-</details>
 
 
-
-  <h2 class="govuk-heading-m">
+  <h2 class="govuk-heading-s">
     Get a new lateral flow test kit
   </h2>
 
@@ -107,10 +110,16 @@
        <p class="govuk-body">If you are eligible and do not have another rapid lateral flow test available, you can order a new test pack online for home delivery.</p>
     {% endif %}
   </div>
+  </div>
+</details>
+
+
+
+
 
   <h2 class="govuk-heading-m">
     Help and advice
   </h2>
 
   <p class="govuk-body">
-        <a href="https://www.nidirect.gov.uk/articles/treatments-coronavirus-covid-19" target="_blank" rel="noreferrer">Find out who to stay safe and help prevent the spread of COVID-19 (opens in new tab)</a>.
+        <a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-how-stay-safe-and-help-prevent-spread" target="_blank" rel="noreferrer">Find out who to stay safe and help prevent the spread of COVID-19 (opens in new tab)</a>.
