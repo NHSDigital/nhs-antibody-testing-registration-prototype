@@ -1,0 +1,124 @@
+
+<a href="#" class="govuk-back-link">Back</a>
+
+           <div class="govuk-panel govuk-panel--confirmation govuk-panel-lft-result">
+              <h1 class="govuk-panel__title">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s coronavirus test result is void
+                {% else %}
+                Your coronavirus test result is void
+                {% endif %}
+              </h1>
+              <div class="govuk-panel__body">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                It’s not possible to say if they had coronavirus or were infectious when the test was done
+                {% else %}
+                It’s not possible to say if you had coronavirus or were infectious when the test was done
+                {% endif %}
+              </div>
+           </div>
+
+
+  <div
+  <br>
+  </br>
+
+  <!-- <p class="govuk-body">This result has been reported to the NHS.</p> -->
+
+  <div
+  <p class="govuk-body-l">
+This result has been reported to the NHS.
+  </p>
+  </div>
+
+  <h2 class="govuk-heading-m">
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    What {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}needs to do
+    {% else %}
+    What you need to do
+    {% endif %}
+  </h2>
+
+  <p class="govuk-body">
+  Take another rapid lateral flow test as soon as possible.
+  </p>
+
+  <p class="govuk-body">
+  To stay safe:
+  </p>
+
+  <div class="govuk-body">
+    <ul>
+      <li>get vaccinated</li>
+      <li>handwash regularly</li>
+      <li>open windows if meeting indoors</li>
+      <li>wear a face covering in crowded indoor settings</li>
+      <li>stay home if unwell</li>
+    </ul>
+  </div>
+
+
+<h3 class="govuk-heading-s">In Scotland, Wales and Northern Ireland</h3>
+
+<p class="govuk-body">
+  {% if data['whos-taking-the-test'] == "someone-else" %}
+  If they get symptoms, they should follow the guidance (the following links open in a new tab):
+  {% else %}
+  If you get symptoms, follow the guidance (the following links open in a new tab):
+  {% endif %}
+</p>
+
+<div class="govuk-body">
+  <ul>
+    <li><a href="https://www.nhsinform.scot/covid19" target="_blank" rel="noreferrer">Scotland: symptoms guidance</a></li>
+    <li><a href="https://gov.wales/guidance-people-symptoms-respiratory-infection-including-covid-19" target="_blank" rel="noreferrer">Wales: symptoms guidance</a></li>
+    <li><a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-symptoms" target="_blank" rel="noreferrer">Northern Ireland: symptoms guidance</a></li>
+  </ul>
+</div>
+
+
+<h3 class="govuk-heading-s">
+  {% if data['whos-taking-the-test'] == "someone-else" %}
+  If they are worried
+  {% else %}
+  If you are worried
+  {% endif %}
+</h3>
+
+<p class="govuk-body">
+  {% if data['whos-taking-the-test'] == "someone-else" %}
+  If their symptoms get worse or they need medical help:
+  {% else %}
+  If your symptoms get worse or you need medical help:
+  {% endif %}
+</p>
+
+<div class="govuk-body">
+
+<ul>
+  <li><a href="https://digital.nhs.uk/services/nhs-111-online">use 111 online (opens in new tab)</a></li>
+  <li>in England or Wales, call 111</li>
+  <li>in Scotland, call a GP or call 111 out-of-hours</li>
+  <li>in Northern Ireland, call a GP or GP out-of-hours service</li>
+  <li>{% if data['whos-taking-the-test'] == "someone-else" %}
+  call 999 if they feel very unwell or think there's something seriously wrong
+  {% else %}
+  call 999 if you feel very unwell or think there's something seriously wrong
+  {% endif %}</li>
+</ul>
+</div>
+<br>
+<br>
+
+<button class="govuk-button" data-module="govuk-button">Report another result</button>
+
+<div class="govuk-inset-text">
+  <a href="https://nhsuk-antibody-testing-service.herokuapp.com/IBT/lfd-digital-reader/feature-design/LSR-348-NI-Updates/SR-NI-DR-Void-Contest">I think the service incorrectly read my result</a>
+</div>
+
+
+   <div>
+   <h2 class="govuk-heading-m">Help and advice</h2>
+   <p class="govuk-body"><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/help-and-financial-support-while-youre-self-isolating/" target="_blank" rel="noreferrer"</a>Find out what support you can get if you’re affected by coronavirus (opens in a new tab)
+   </p>
+   </div>

@@ -1,0 +1,68 @@
+
+
+       <div>
+        <p class="govuk-body">The technology the service uses to check the result guarantees a high level of accuracy and is authorised by the UK health regulator (MHRA).</p>
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        <p class="govuk-body"><a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer">More details about this service can be reported</a> to the MHRA.</p>
+        {% else %}
+        <p class="govuk-body"><a href="https://coronavirus-yellowcard.mhra.gov.uk/" target="_blank" rel="noreferrer">More details about this service can be reported</a> to the MHRA.</p>
+        {% endif %}
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        <p class="govuk-body">They must follow the advice below to help stop the spread of the virus.</p>
+        {% else %}
+        <p class="govuk-body">You must follow the advice below to help stop the spread of the virus.</p>
+        {% endif %}
+       </div>
+
+  <div>
+   {% if data['whos-taking-the-test'] == "someone-else" %}
+   <h3 class="govuk-heading-m">What {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} must do</h3>
+   {% else %}
+   <h3 class="govuk-heading-m">What you must do</h3>
+   {% endif %}
+   {% if data['whos-taking-the-test'] == "someone-else" %}
+   <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+    <li>They must take a different follow-up test as soon as possible to confirm this result</li>
+    <li>They and the people they live with must self-isolate until they get the follow-up test result</li>
+    <li>If their follow-up test is positive, they and the people they live with need to continue to self-isolate for 10 days</li>
+  </ul>
+   {% else %}
+   <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+    <li>You must take a different follow-up test as soon as possible to confirm this result</li>
+    <li>You and the people you live with must self-isolate until you get the follow-up test result</li>
+    <li>If your follow-up test is positive, you and the people you live with need to continue to self-isolate for 10 days</li>
+  </ul>
+   {% endif %}
+
+   {% if data['whos-taking-the-test'] == "someone-else" %}
+   <h5 class="govuk-heading-m">If they live in Wales</h5>
+   <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+     <li>They must take a different follow-up test within 24 hours</li>
+     <li>If they take their follow-up test after 24 hours, they and the people they live will need to continue to self-isolate for 10 days, even if the follow-up test is negative</li>
+   </ul>
+    {% else %}
+    <h5 class="govuk-heading-m">If you live in Wales</h5>
+    <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+      <li>You must take a different follow-up test within 24 hours</li>
+      <li>If you take your follow-up test after 24 hours, you and the people you live will need to continue to self-isolate for 10 days, even if the follow-up test is negative</li>
+    </ul>
+    {% endif %}
+  </div>
+
+  <div>
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    <h5 class="govuk-heading-m">Book a follow-up test to confirm the result</h5>
+    <p class="govuk-body">Choose a test site if possible as it’s faster than a home test. They can leave home for their follow-up test.</p>
+    {% else %}
+    <h5 class="govuk-heading-m">Book your follow-up test</h5>
+    <p class="govuk-body">Choose a test site if you can, it’s faster than a home test. You can leave home for your follow-up test.</p>
+    {% endif %}
+  </div>
+
+  <button class="govuk-button" data-module="govuk-button">Book a follow-up test now</button>
+
+  <br>
+  <div>
+    <h6 class="govuk-heading-s">Help and advice</h6>
+    <p><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/" target="_blank" rel="noreferrer">Self-isolation advice from the NHS</p>
+  </div>

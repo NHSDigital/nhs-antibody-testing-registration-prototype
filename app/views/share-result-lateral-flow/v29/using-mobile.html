@@ -1,4 +1,4 @@
-{% set version = "v29" %}
+{% set version = "research" %}
 {% set pageTitle = "Use a smartphone or tablet camera to read your test result" %}
 
 {% extends "includes/layout-LFD.html" %}
@@ -15,52 +15,51 @@
     </p>
   </div>
 
-  <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/welsh">Back</a>
-
+  <a class="govuk-back-link" href="#">Back</a>
 
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-      <form action="/share-result-lateral-flow/{{version}}/photo-guidance" method="post">
+    <form action="/share-result-lateral-flow/v29/photo-guidance" method="post">
 
-        <div class="govuk-form-group">
-              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
-                {% if data['whos-taking-the-test'] == "someone-else" %}
-                Use a smartphone or tablet camera to read {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s test result
-                {% else %}
-                {{ pageTitle }}
-                {% endif %}
-              </h1>
-
+      <div class="govuk-form-group">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
               {% if data['whos-taking-the-test'] == "someone-else" %}
-              <p class="govuk-body">It usually takes less than 20 seconds.</p>
-              <p class="govuk-body">We can read very faint test lines that are hard to see, so it's more accurate than if they read the result themselves.</p>
-                <p class="govuk-body">Some people may need help from another person to take a photo. If they prefer, they can <a href="https://nhsuk-antibody-testing-service.herokuapp.com/share-result-lateral-flow/v29/choose-result">tell us the result</a>.</p>
-                <p class="govuk-body">The technology we use is authorised by the UK health regulator, the Medicines and Healthcare products Regulatory Agency (MHRA)</a>.</p>
+              Use a smartphone or tablet camera to read {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s test result
               {% else %}
-              <p class="govuk-body">It usually takes less than 20 seconds.</p>
-                <p class="govuk-body">We can read very faint test lines that are hard to see, so it's more accurate than reading the result yourself.</p>
-                <p class="govuk-body">Some people may need help from another person to take a photo. If your prefer, you can <a href="https://nhsuk-antibody-testing-service.herokuapp.com/share-result-lateral-flow/v29/choose-result">tell us the result</a>.</p>
-                <p class="govuk-body">The technology we use is authorised by the UK health regulator, the Medicines and Healthcare products Regulatory Agency (MHRA)</a>.</p>
+              {{ pageTitle }}
               {% endif %}
+            </h1>
 
-          </div>
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            <p class="govuk-body">It usually takes less than 20 seconds.</p>
+            <p class="govuk-body">We can read very faint test lines that are hard to see, so it's more accurate than if they read the result themselves.</p>
+              <p class="govuk-body">Some people may need help from another person to take a photo. If they prefer, they can <a href="https://nhsuk-antibody-testing-service.herokuapp.com/share-result-lateral-flow/v28/choose-result">tell us the result</a>.</p>
+              <p class="govuk-body">The technology we use is authorised by the UK health regulator, the Medicines and Healthcare products Regulatory Agency (MHRA)</a>.</p>
+            {% else %}
+            <p class="govuk-body">It usually takes less than 20 seconds.</p>
+              <p class="govuk-body">We can read very faint test lines that are hard to see, so it's more accurate than reading the result yourself.</p>
+              <p class="govuk-body">Some people may need help from another person to take a photo. If your prefer, you can <a href="https://nhsuk-antibody-testing-service.herokuapp.com/share-result-lateral-flow/v28/choose-result">tell us the result</a>.</p>
+              <p class="govuk-body">The technology we use is authorised by the UK health regulator, the Medicines and Healthcare products Regulatory Agency (MHRA)</a>.</p>
+            {% endif %}
 
-          {% if data['whos-taking-the-test'] == "someone-else" %}
-          <p>By continuing, {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} agrees to follow the advice based on their result.</p>
-          {% else %}
-          <p>By continuing, you agree to follow the advice based on your result.</p>
-          {% endif %}
+        </div>
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        <p>By continuing, {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }} agrees to follow the advice based on their result.</p>
+        {% else %}
+        <p>By continuing, you agree to follow the advice based on your result.</p>
+        {% endif %}
 
-      </form>
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
 
-    </div>
+    </form>
+
   </div>
+</div>
 
 {% endblock %}

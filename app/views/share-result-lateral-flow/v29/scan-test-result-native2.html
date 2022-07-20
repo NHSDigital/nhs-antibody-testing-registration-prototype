@@ -1,0 +1,63 @@
+{% set version = "research" %}
+{% set pageTitle = "Take a photo of your test strip" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <div>
+          <!-- The `label` is attached to the hidden file input -->
+          <label for="cameraFileInput">
+            <span id="native-button" role="button">
+              <img src="/public/images/TakeaPhotoPerm2.png" alt="Camera permissions dialogue" style="width: 70%">
+            </span>
+
+            <!-- The hidden file `input` for opening the native camera -->
+            <input
+              id="cameraFileInput"
+              type="file"
+              accept="image/*"
+              capture="environment"
+            />
+          </label>
+        </div>
+
+        <div id="photo-playback">
+          <h1 class="govuk-heading-l govuk-!-margin-bottom-5">Check and upload your photo</h1>
+          <p class="govuk-body"><strong>To take a good photo, make sure:</strong></p>
+          <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-5">
+            <li>you hold your phone/tablet flat and steady, directly above the test strip</li>
+            <li>the photo is in focus with no shadows or bright lights on it</li>
+            <li>no personal information is in the photo, for example bank details</li>
+            </ul>
+            <!-- displays the picture uploaded from the native camera -->
+            <img id="pictureFromCamera" />
+            <br>
+            <a id="snap-2" href="photo-confirmed2" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+              Upload photo
+            </a>
+
+            <label for="cameraFileInput">
+                <a
+                role="input"
+                type="file"
+                accept="image/*"
+                capture="environment"
+                draggable="false"
+                style="text-decoration:none;"
+                class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8"
+                data-module="govuk-button">
+                  Re-take your photo
+                </a>
+            </label>
+
+          </div>
+
+    </div>
+  </div>
+
+{% endblock %}

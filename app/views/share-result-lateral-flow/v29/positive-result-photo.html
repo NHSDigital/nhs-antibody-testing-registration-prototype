@@ -1,4 +1,4 @@
-{% set version = "v29" %}
+{% set version = "research" %}
 {% set pageTitle = "You reported a positive coronavirus test result" %}
 
 {% extends "includes/layout-LFD.html" %}
@@ -15,7 +15,7 @@
     </p>
   </div>
 
-  <!-- <a class="govuk-back-link" href="/share-result-lateral-flow/{{version}}/choose-result">Back</a> -->
+  <!-- <a class="govuk-back-link" href="/IBT/lfd-self-report/e2e-prototypes/{{version}}/choose-result">Back</a> -->
 {% endblock %}
 
 {% block content %}
@@ -33,10 +33,14 @@
    </div>
 
    <!-- corresponding html file name included from content folder -->
-   <script>
+   <script type="text/javascript">
      $(function(){
        $("#includedContent").load("../content/positive-result-photo-switch-omnicron.html");
      });
+
+     if(localStorage.getItem("testStripIdData")) {
+        localStorage.removeItem("testStripIdData");
+      }
    </script>
 
 {% endblock %}
