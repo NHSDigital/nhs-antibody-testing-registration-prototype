@@ -4,18 +4,18 @@
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-  {{ pageHeading }} - COVID-19
+{{ pageHeading }} - COVID-19
 {% endblock %}
 
 {% block beforeContent %}
 <div class="">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-    {{ govukPhaseBanner({
-      tag: {
-        text: "alpha"
-      },
-      html: 'This is a new service – your <a class="govuk-link" rel="noreferrer noopener" target="_blank" href="#">feedback (opens in a new tab)</a> will help us to improve it.'
+      {{ govukPhaseBanner({
+        tag: {
+          text: "alpha"
+        },
+        html: 'This is a new service – your <a class="govuk-link" rel="noreferrer noopener" target="_blank" href="#">feedback (opens in a new tab)</a> will help us to improve it.'
       }) }}
 
       {{ govukBackLink({
@@ -35,39 +35,26 @@
 
 {% block content %}
 
-{% set hintHtml %}
-<p>It is an 8-digit number, for example 12345678. It will have been emailed to you by your organisation. Your UON is different from your usual organisation ID.</p>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="check-UON" method="get">
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-xl">
+          {{ pageHeading }}
+        </h1>
+        <label class="govuk-label" for="one-third"> It will have been emailed to you by your organisation. Your UON is different from your usual organisation ID.</label>
 
-<p><a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" class="govuk-link govuk-link--no-visited-state" target="_blank">Get help finding your UON (opens in new tab)</a>
+        <p class="govuk-body"><a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" class="govuk-link govuk-link--no-visited-state" target="_blank">Get help finding your UON (opens in new tab)</a>
+          <div id="event-name-hint" class="govuk-hint">
+            It is an 8-digit number, for example 12345678.
+          </div>
+          <input class="govuk-input govuk-!-width-one-third" id="one-third" name="one-third" type="text" aria-describedby="event-name-hint">
 
-{% endset %}
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-
-      <form action="check-UON" method="get">
-
-        {{ govukInput({
-          label: {
-            text: pageHeading,
-            isPageHeading: true,
-            classes: "govuk-label--xl"
-          },
-          hint: {
-            html: hintHtml
-          },
-          classes: "govuk-input--width-20",
-          id: "cuOrderID",
-          name: "cuOrderID"
-        }) }}
-
+        </div>
         <input class="govuk-button" type="submit" value="Continue">
-
       </form>
-
-
-
     </div>
   </div>
 
-{% endblock %}
+
+  {% endblock %}
