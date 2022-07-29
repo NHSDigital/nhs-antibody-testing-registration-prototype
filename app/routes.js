@@ -1640,6 +1640,25 @@ let ethnicGroup = req.session.data['ethnic-group']
 
 })
 
+
+router.post('/about-work-2-answer', function (req, res) {
+let workReason = req.session.data['about-work']
+
+  if (workReason == "social-care"){
+    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-background-asian')
+  } else if (workReason == "education") {
+    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-background-black')
+  } else if (workReason == "nhs") {
+    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-background-mixed')
+  } else {
+    res.redirect('/delegated-access/hauliers/register/v2/uk/check-your-answers')
+  }
+
+})
+
+
+
+
 // Run this code when a form is submitted on check UON on Organisation Accounts
 router.post('/OBT/organisation-accounts/sign-in', function (req, res) {
 
