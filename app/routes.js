@@ -1640,21 +1640,40 @@ let ethnicGroup = req.session.data['ethnic-group']
 
 })
 
+// work-2
 
 router.post('/about-work-2-answer', function (req, res) {
 let workReason = req.session.data['about-work']
 
   if (workReason == "social-care"){
-    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-background-asian')
+    res.redirect('/share-result-lateral-flow/v29/about-work-3')
   } else if (workReason == "education") {
-    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-background-black')
+    res.redirect('/share-result-lateral-flow/v29/school-name')
   } else if (workReason == "nhs") {
-    res.redirect('/delegated-access/hauliers/register/v2/uk/ethnic-background-mixed')
+    res.redirect('/share-result-lateral-flow/v29/nhs-primary')
   } else {
-    res.redirect('/delegated-access/hauliers/register/v2/uk/check-your-answers')
+    res.redirect('/share-result-lateral-flow/v29/about-work-2-continued')
   }
 
 })
+
+// work-2-continued
+
+router.post('/about-work-2-answer-continued', function (req, res) {
+let workReason = req.session.data['about-work']
+
+  if (workReason == "social-service"){
+    res.redirect('/share-result-lateral-flow/v29/ihp')
+  } else if (workReason == "homelessness") {
+    res.redirect('/share-result-lateral-flow/v29/employer-uon')
+  } else if (workReason == "domestic-abuse") {
+    res.redirect('/share-result-lateral-flow/v29/employer-uon-domestic')
+  } else {
+    res.redirect('/share-result-lateral-flow/v29/employee-wtp')
+  }
+
+})
+
 
 
 
