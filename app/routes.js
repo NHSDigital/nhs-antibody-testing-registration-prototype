@@ -1646,7 +1646,7 @@ router.post('/about-work-2-answer', function (req, res) {
 let workReason = req.session.data['about-work']
 
   if (workReason == "social-care"){
-    res.redirect('/share-result-lateral-flow/v29/about-work-3')
+    res.redirect('/share-result-lateral-flow/v29/test-date')
   } else if (workReason == "education") {
     res.redirect('/share-result-lateral-flow/v29/school-name')
   } else if (workReason == "nhs") {
