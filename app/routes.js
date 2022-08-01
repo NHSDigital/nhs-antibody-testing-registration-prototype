@@ -1640,6 +1640,44 @@ let ethnicGroup = req.session.data['ethnic-group']
 
 })
 
+// work-2
+
+router.post('/about-work-2-answer', function (req, res) {
+let workReason = req.session.data['about-work']
+
+  if (workReason == "social-care"){
+    res.redirect('/share-result-lateral-flow/v29/test-date')
+  } else if (workReason == "education") {
+    res.redirect('/share-result-lateral-flow/v29/school-name')
+  } else if (workReason == "nhs") {
+    res.redirect('/share-result-lateral-flow/v29/nhs-primary')
+  } else {
+    res.redirect('/share-result-lateral-flow/v29/about-work-2-continued')
+  }
+
+})
+
+// work-2-continued
+
+router.post('/about-work-2-answer-continued', function (req, res) {
+let workReason = req.session.data['about-work']
+
+  if (workReason == "social-service"){
+    res.redirect('/share-result-lateral-flow/v29/ihp')
+  } else if (workReason == "homelessness") {
+    res.redirect('/share-result-lateral-flow/v29/employer-uon')
+  } else if (workReason == "domestic-abuse") {
+    res.redirect('/share-result-lateral-flow/v29/employer-uon-domestic')
+  } else {
+    res.redirect('/share-result-lateral-flow/v29/employee-wtp')
+  }
+
+})
+
+
+
+
+
 // Run this code when a form is submitted on check UON on Organisation Accounts
 router.post('/OBT/organisation-accounts/standard-user/sign-in', function (req, res) {
 
