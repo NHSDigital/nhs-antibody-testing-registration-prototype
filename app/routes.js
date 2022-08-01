@@ -1641,7 +1641,7 @@ let ethnicGroup = req.session.data['ethnic-group']
 })
 
 // Run this code when a form is submitted on check UON on Organisation Accounts
-router.post('/OBT/organisation-accounts/sign-in', function (req, res) {
+router.post('/OBT/organisation-accounts/standard-user/sign-in', function (req, res) {
 
   // Make a variable and give it the value from 'how-many-balls'
   var checkUON = req.session.data['check-UON']
@@ -1649,10 +1649,9 @@ router.post('/OBT/organisation-accounts/sign-in', function (req, res) {
   // Check whether the variable matches a condition
   if (checkUON == "yes"){
     // Send user to next page
-    res.redirect('/OBT/organisation-accounts/sign-in')
+    res.redirect('/OBT/organisation-accounts/standard-user/sign-in')
   } else {
-    // Send user to ineligible page
-    res.redirect('/OBT/organisation-accounts/enter-UON')
+    res.redirect('/OBT/organisation-accounts/standard-user/enter-UON')
   }
 
 })//

@@ -1,10 +1,10 @@
 {% set serviceName = "Register test kits for your organisation" %}
-{% set pageHeading = "What is your unique organisation number (UON)?" %}
+{% set pageHeading = "Register test kits and report results for your organisation" %}
 {% set version = "organisational/lft/carehome-registration" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-{{ pageHeading }} - COVID-19
+{{ pageHeading }} - {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -33,28 +33,29 @@
 
 {% endblock %}
 
+
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form action="check-UON" method="get">
+
+    <h1 class="govuk-heading-xl">Enter your work email address</h1>
+
+    <form class="" action="create-password" method="post">
+
       <div class="govuk-form-group">
-        <h1 class="govuk-heading-xl">
-          {{ pageHeading }}
-        </h1>
-        <label class="govuk-label" for="one-third"> It will have been emailed to you by your organisation. Your UON is different from your usual organisation ID.</label>
-
-        <p class="govuk-body"><a href="https://organisation-number-lookup.test-for-coronavirus.service.gov.uk/" class="govuk-link govuk-link--no-visited-state" target="_blank">Get help finding your UON (opens in new tab)</a>
-          <div id="event-name-hint" class="govuk-hint">
-            It is an 8-digit number, for example 12345678.
-          </div>
-          <input class="govuk-input govuk-!-width-one-third" id="one-third" name="one-third" type="text" aria-describedby="event-name-hint">
-
-        </div>
-        <input class="govuk-button" type="submit" value="Continue">
-      </form>
+        <!-- <label class="govuk-label" for="address-line-1">
+        We'll use this email address if you need to recover your sign in details.
+      </label> -->
+      <input class="govuk-input govuk-!-width-one-half" id="email" name="email" type="text" autocomplete="email">
     </div>
-  </div>
+    <input class="govuk-button" type="submit" value="Continue">
+  </form>
 
 
-  {% endblock %}
+
+
+</div>
+</div>
+
+{% endblock %}
