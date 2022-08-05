@@ -1688,8 +1688,11 @@ router.post('/OBT/organisation-accounts/standard-user/sign-in', function (req, r
   if (checkUON == "yes"){
     // Send user to next page
     res.redirect('/OBT/organisation-accounts/standard-user/sign-in')
-  } else {
+  } else if (checkUON == "no"){
     res.redirect('/OBT/organisation-accounts/standard-user/enter-UON')
+  }
+  else {
+    res.redirect('check-UON')
   }
 
 })//
