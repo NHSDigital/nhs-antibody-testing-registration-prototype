@@ -1,0 +1,87 @@
+{% set version = "research" %}
+{% set pageTitle = "Does the person who needs a test currently have any coronavirus symptoms?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+{% if data['country'] == "England" %}
+<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/check-eligibility/eligibility-england">Back</a>
+{% else %}
+<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/check-eligibility/essential-worker">Back</a>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-xl">
+            Coronavirus symptoms
+          </h1>
+
+          <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                If the person who needs the test has a high temperature, a new continuous cough, or loss or change to their sense of smell or taste, they should stay at home. They can leave home to get or post a test.
+              </strong>
+            </div>
+
+          <p class="govuk-body">
+            Find out more about guidance across the UK. The following links open in a new tab:
+          </p>
+
+            <ul class="govuk-list">
+              <li><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noopener noreferrer" class="govuk-link"> England: Stay at home guidance<span class="govuk-visually-hidden"> (opens in new tab)</span></a></li>
+              <li><a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noopener noreferrer" class="govuk-link"> Scotland: Self-isolation guidance<span class="govuk-visually-hidden"> (opens in new tab)</span></a></li>
+              <li><a href="https://gov.wales/self-isolation" target="_blank" rel="noopener noreferrer" class="govuk-link"> Wales: Self-isolation guidance<span class="govuk-visually-hidden"> (opens in new tab)</span></a></li>
+              <li><a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" target="_blank" rel="noopener noreferrer" class="govuk-link"> Northern Ireland: Self-isolation guidance<span class="govuk-visually-hidden"> (opens in new tab)</span></a></li>
+            </ul>
+
+          <form action="/IBT/antigen/e2e-prototypes/{{version}}/action4/do-you-have-symptoms" method="post" novalidate>
+
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                  {{ pageTitle }}
+                </legend>
+                <div class="govuk-radios govuk-radios--conditional govuk-!-padding-top-6 govuk-!-padding-bottom-8" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="do-you-have-symptoms-1" name="do-you-have-symptoms" data-aria-controls="conditional-do-you-have-symptoms-1" type="radio" value="Yes" {{ checked("do-you-have-symptoms", "Yes") }}>
+                        <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="do-you-have-symptoms-2" name="do-you-have-symptoms" type="radio" value="No" {{ checked("do-you-have-symptoms", "No") }}>
+                        <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2">
+                            No
+                        </label>
+                    </div>
+                </div>
+              </fieldset>
+
+              <button class="govuk-button" data-module="govuk-button">
+                Continue
+              </button>
+              
+            </div>
+          </form>
+        </div>
+      </div>
+
+{% endblock %}

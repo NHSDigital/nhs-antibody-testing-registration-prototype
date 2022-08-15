@@ -1,5 +1,5 @@
 {% set version = "research" %}
-{% set pageTitle = "Does the person who needs a test currently have any coronavirus symptoms?" %}
+{% set pageTitle = "Coronavirus (COVID-19) symptoms" %}
 
 {% extends "includes/layout.html" %}
 
@@ -15,73 +15,93 @@
     </p>
   </div>
 
-{% if data['country'] == "England" %}
-<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/check-eligibility/eligibility-england">Back</a>
-{% else %}
-<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/check-eligibility/essential-worker">Back</a>
-{% endif %}
-
+<a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/date-of-birth-person-1">Back</a>
 {% endblock %}
 
 {% block content %}
   {% include "includes/gtm-noscript.html" %}
 
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-          <h1 class="govuk-heading-xl">
-            Coronavirus symptoms
+        <form action="/IBT/antigen/e2e-prototypes/{{version}}/action3/do-you-have-symptoms" method="post">
+
+          <h1 class="govuk-heading-l">
+              {{ pageTitle }}
           </h1>
 
-          <div class="govuk-warning-text">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                If the person who needs the test has a high temperature, a new continuous cough, or loss or change to their sense of smell or taste, they should stay at home. They can leave home to get or post a test.
-              </strong>
-            </div>
+          <p>Symptoms of COVID-19 can include:</p>
 
-          <p class="govuk-body">
-            Find out more about guidance across the UK. The following links open in a new tab:
+          <ul class="govuk-list govuk-list--bullet">
+              <li>
+                  a high temperature
+              </li>
+              <li>
+                  a new, continuous cough
+              </li>
+              <li>
+                  a loss or change to your sense of smell or taste
+              </li>
+              <li>
+                  shortness of breath
+              </li>
+              <li>
+                  feeling tired or exhausted
+              </li>
+              <li>
+                  an aching body
+              </li>
+              <li>
+                  a headache
+              </li>
+              <li>
+                  a sore throat
+              </li>
+              <li>
+                  a blocked or runny nose
+              </li>
+              <li>
+                  loss of appetite
+              </li>
+              <li>
+                  diarrhoea
+              </li>
+              <li>
+                  feeling sick or being sick
+              </li>
+          </ul>
+
+          <p>
+              <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/symptoms/" class="govuk-link" rel="noreferrer noopener" target="_blank">Find out more about COVID-19 symptoms (opens in new tab).</a>
           </p>
 
-            <ul class="govuk-list">
-              <li><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" target="_blank" rel="noopener noreferrer" class="govuk-link"> England: Stay at home guidance<span class="govuk-visually-hidden"> (opens in new tab)</span></a></li>
-              <li><a href="https://www.nhsinform.scot/isolation" target="_blank" rel="noopener noreferrer" class="govuk-link"> Scotland: Self-isolation guidance<span class="govuk-visually-hidden"> (opens in new tab)</span></a></li>
-              <li><a href="https://gov.wales/self-isolation" target="_blank" rel="noopener noreferrer" class="govuk-link"> Wales: Self-isolation guidance<span class="govuk-visually-hidden"> (opens in new tab)</span></a></li>
-              <li><a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-self-isolating-and-close-contacts" target="_blank" rel="noopener noreferrer" class="govuk-link"> Northern Ireland: Self-isolation guidance<span class="govuk-visually-hidden"> (opens in new tab)</span></a></li>
-            </ul>
-
-          <form action="/IBT/antigen/e2e-prototypes/{{version}}/action4/do-you-have-symptoms" method="post" novalidate>
-
-            <div class="govuk-form-group">
-              <fieldset class="govuk-fieldset">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                  {{ pageTitle }}
-                </legend>
-                <div class="govuk-radios govuk-radios--conditional govuk-!-padding-top-6 govuk-!-padding-bottom-8" data-module="govuk-radios">
-                    <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="do-you-have-symptoms-1" name="do-you-have-symptoms" data-aria-controls="conditional-do-you-have-symptoms-1" type="radio" value="Yes" {{ checked("do-you-have-symptoms", "Yes") }}>
-                        <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1">
-                            Yes
-                        </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="do-you-have-symptoms-2" name="do-you-have-symptoms" type="radio" value="No" {{ checked("do-you-have-symptoms", "No") }}>
-                        <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2">
-                            No
-                        </label>
-                    </div>
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} currently have any coronavirus symptoms?
+              </legend>
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="do-you-have-symptoms" name="do-you-have-symptoms" type="radio" value="Yes" {{ checked("do-you-have-symptoms", "Yes") }}>
+                  <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms">
+                    Yes
+                  </label>
                 </div>
-              </fieldset>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="do-you-have-symptoms-2" name="do-you-have-symptoms" type="radio" value="No" {{ checked("do-you-have-symptoms", "No") }}>
+                  <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2">
+                    No
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
 
-              <button class="govuk-button" data-module="govuk-button">
-                Continue
-              </button>
-              
-            </div>
-          </form>
-        </div>
-      </div>
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
 
 {% endblock %}

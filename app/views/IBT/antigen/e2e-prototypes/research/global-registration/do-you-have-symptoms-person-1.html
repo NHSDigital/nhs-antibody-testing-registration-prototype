@@ -1,5 +1,5 @@
 {% set version = "research" %}
-{% set pageTitle = "Does the person who needs a test currently have any coronavirus symptoms?" %}
+{% set pageTitle = "Coronavirus (COVID-19) symptoms" %}
 
 {% extends "includes/layout.html" %}
 
@@ -26,39 +26,77 @@
 
         <form action="/IBT/antigen/e2e-prototypes/{{version}}/action3/do-you-have-symptoms-person-1" method="post">
 
-            <div class="govuk-form-group">
-                <fieldset class="govuk-fieldset" aria-describedby="symptoms-hint symptoms-2-hint">
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-                          Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} currently have any coronavirus symptoms?
-                        </h1>
-                    </legend>
+          <h1 class="govuk-heading-l">
+              {{ pageTitle }}
+          </h1>
 
-                    <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+          <p>Symptoms of COVID-19 can include:</p>
 
-                        <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="do-you-have-symptoms-1-person-1" name="do-you-have-symptoms-person-1" data-aria-controls="conditional-do-you-have-symptoms-1" type="radio" value="Yes" {{ checked("do-you-have-symptoms-person-1", "Yes") }}>
-                            <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-1-person-1">
-                                Yes, they currently have symptoms
-                            </label>
-                        </div>
-                        <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="do-you-have-symptoms-2-person-1" name="do-you-have-symptoms-person-1" type="radio" value="No" {{ checked("do-you-have-symptoms-person-1", "No") }}>
-                            <label class="govuk-label govuk-radios__label" for="do-you-have-symptoms-2-person-1">
-                                No, they do not currently have symptoms
-                            </label>
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
+          <ul class="govuk-list govuk-list--bullet">
+              <li>
+                  a high temperature
+              </li>
+              <li>
+                  a new, continuous cough
+              </li>
+              <li>
+                  a loss or change to your sense of smell or taste
+              </li>
+              <li>
+                  shortness of breath
+              </li>
+              <li>
+                  feeling tired or exhausted
+              </li>
+              <li>
+                  an aching body
+              </li>
+              <li>
+                  a headache
+              </li>
+              <li>
+                  a sore throat
+              </li>
+              <li>
+                  a blocked or runny nose
+              </li>
+              <li>
+                  loss of appetite
+              </li>
+              <li>
+                  diarrhoea
+              </li>
+              <li>
+                  feeling sick or being sick
+              </li>
+          </ul>
 
-            <div class="govuk-warning-text govuk-!-margin-bottom-9">
-                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-                <strong class="govuk-warning-text__text">
-                  <span class="govuk-warning-text__assistive">Warning</span>
-                  If they have a high temperature, a new continuous cough, or loss or change to their sense of smell or taste, they should stay at home until they get their result. They can leave home to get or post a test. <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/" class="govuk-link">Check if people they live with need to self-isolate on NHS.UK.​</a>
-                </strong>
+          <p>
+              <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/symptoms/" class="govuk-link" rel="noreferrer noopener" target="_blank">Find out more about COVID-19 symptoms (opens in new tab).</a>
+          </p>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                Does {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }} currently have any coronavirus symptoms?
+              </legend>
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="interview-needs" name="interview-needs" type="radio" value="yes">
+                  <label class="govuk-label govuk-radios__label" for="interview-needs">
+                    Yes
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="interview-needs-2" name="interview-needs" type="radio" value="no">
+                  <label class="govuk-label govuk-radios__label" for="interview-needs-2">
+                    No
+                  </label>
+                </div>
               </div>
+
+            </fieldset>
+          </div>
 
             <button class="govuk-button" data-module="govuk-button">Continue</button>
 
