@@ -1,0 +1,132 @@
+{% set version = "research" %}
+{% set pageTitle = "Who would be willing to take an antibody test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/people-confirmed-person-1">Back</a>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/delivery-address-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+              There is a problem
+            </h2>
+            <span id="fingerprick-test-person-1-hint" class="govuk-body" style="font-weight: bold; color: #d4351c; text-decoration: underline;">
+            Only select "No one" if the other options are not relevent to you
+            </span>
+          </div>
+          <fieldset class="govuk-fieldset" aria-describedby="fingerprick-test-person-1-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="fingerprick-test-hint" class="govuk-body">
+              If you test positive for coronavirus, we will send you an antibody kit - a fingerprick blood test to see if you’ve had a previous infection. This will help the NHS learn more about who’s had the virus more than once, and how it has spread.<br><br>
+              You will need to do 2 tests, 3 weeks apart. You do the test at home by yourself. You can ask a friend or relative to help if you want.<br><br>
+              If you agree the antibody test kits will be sent to you automatically.<br><br>
+              Antibody tests are only available to people aged 18 and over.
+            </span><br><br><br>
+
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Video: How to collect your blood sample
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <div class="govuk-!-margin-bottom-5 govuk-!-margin-top-4 videoWrapper">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/okTozcGMDlU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+              </div>
+            </details>
+
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Video transcript: What is a fingerprick test
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body">
+                  There are a few things you need to do to prepare before doing your test, like drinking lots of water, soaking your hand in warm water and exercising if safe to do so.<br><br>
+                  Next, you'll use a lancet to prick the corner of your fingertip. It's only a small prick and you won't see any of the needle.<br><br>
+                  You'll then massage your hand, and fill your tube to the 600 line. Then you'll put the cap on and slowly turn the tube upside down.<br><br>
+                  Finally, you'll label your tube, package everything up and pop it in a postbox.
+                </p>
+              </div>
+            </details>
+
+            <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                By selecting continue you confirm that the selected household members are OK doing a fingerprick blood test and do not take anticoagulants ('blood thinning' medicines) or have a blood clotting disorder such as haemophilia.
+              </strong>
+            </div>
+
+            <div class="govuk-form-group govuk-form-group--error">
+
+              <span id="nationality-error" class="govuk-error-message ">
+                <span class="govuk-visually-hidden">Error:</span> Only select "No one" if the other options are not relevent to you
+              </span>
+              <div class="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="fingerprick-test-person-1" name="fingerprick-test-person-1" type="checkbox" value="1" {{ checked("fingerprick-test-person-1", "1") }}>
+                  <label class="govuk-label govuk-checkboxes__label" for="fingerprick-test-person-1">
+                    {{ data['first-name'] | default('Pete') }} {{ data['last-name'] | default('Smith')}}
+                    <span class="govuk-!-padding-left-3">( {{ data['date-of-birth-day'] or '6 December 1976' }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }} )</span>
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="fingerprick-test-person-1-2" name="fingerprick-test-person-1" type="checkbox" value="2" {{ checked("fingerprick-test-person-1", "2") }}>
+                  <label class="govuk-label govuk-checkboxes__label" for="fingerprick-test-person-1-2">
+                    {{ data['first-name-person-1'] | default('Jane') }} {{ data['last-name-person-1'] | default('Wilson') }}
+                    <span class="govuk-!-padding-left-3">( {{ data['date-of-birth-day-person-1'] or '15 March 2002' }} {{ data['date-of-birth-month-person-1'] }} {{ data['date-of-birth-year-person-1'] }} )</span>
+                  </label>
+                </div>
+                <div class="govuk-radios__divider">or</div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="fingerprick-test-person-1-3" name="fingerprick-test-person-1" type="checkbox" value="No one" {{ checked("fingerprick-test-person-1", "No one") }}>
+                  <label class="govuk-label govuk-checkboxes__label" for="fingerprick-test-person-1-3">
+                    No one
+                  </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <style media="screen">
+    .videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+  </style>
+
+{% endblock %}

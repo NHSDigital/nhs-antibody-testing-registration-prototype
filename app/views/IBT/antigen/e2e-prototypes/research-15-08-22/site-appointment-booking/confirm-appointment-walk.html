@@ -1,0 +1,141 @@
+{% set version = "research" %}
+{% set pageTitle = "Confirm your appointment" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/site-appointment-booking/choose-time-walk">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">{{ pageTitle }}</h1>
+
+      <p class="govuk-heading-m"><strong>Appointment details</strong></p>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Test site
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['test-site'] == "Haringey Stamford Hill" %}
+            <span id="time-1-hint" class="govuk-body govuk-!-margin-bottom-2">
+              Haringey Stamford Hill - Walk through site<br>
+              Stamford Hill Primary School<br>
+              Haringey<br>
+              N15 6HD
+            </span>
+            {% endif %}
+            {% if data['test-site'] == "Hackney Sandford Court" %}
+            <span id="time-8-hint" class="govuk-body govuk-!-margin-bottom-2">
+              Hackney Sandford Court - Walk through site<br>
+              Sandford Court, Bethune Rd<br>
+              London<br>
+              N16 5BB
+            </span>
+            {% endif %}
+            {% if data['test-site'] == "Camden Ramsay Hall" %}
+            <span id="time-9-hint" class="govuk-body govuk-!-margin-bottom-2">
+              Camden Ramsay Hall - Walk through site<br>
+              Ramsay Hall (No step free access)<br>
+              Camden<br>
+              W1T 5HB
+            </span>
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/people-confirmed-person-1">
+              Change
+              <span class="govuk-visually-hidden">test site</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date and time
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['appointment-date'] or '2 April' }} 2021<br>
+            {{ data['time'] or '9:30am to 10:00am' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/site-appointment-booking/choose-time">
+              Change
+              <span class="govuk-visually-hidden">date and time</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <p class="govuk-body govuk-!-font-size-24 govuk-!-margin-bottom-1"><strong>People confirmed for testing</strong></p>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-third" style="border: none"></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-third" style="border: none"></th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-third" style="border: none"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">{{ data['first-name'] | default('John') }} {{ data['last-name'] | default('Appleseed')}}</th>
+            <td class="govuk-table__cell">
+              {{ data['mobile-phone-number'] | default('+4463324655') }}
+            </td>
+            <td class="govuk-table__cell">
+              {{ data['email-address'] | default('john.appleseed@test.co.uk')}}
+            </td>
+          </tr>
+          {% if data['first-name-person-1'] !== undefined %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">{{ data['first-name-person-1'] }} {{ data['last-name-person-1'] }}</th>
+            <td class="govuk-table__cell">
+              {% if data['mobile-number-person-1'] == "same" %}
+              {{ data['mobile-phone-number'] or '+447782808451' }}
+              {% else %}
+              {{ data['mobile-phone-number-person-1'] or '+44663271472' }}
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell">
+              {% if data['email-person-1'] == "same" %}
+              {{ data['email-address'] or 'email@example.com' }}
+              {% else %}
+              {{ data['email-address-person-1'] or 'janewilson@email.com' }}
+              {% endif %}
+            </td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </table>
+
+      <div class="govuk-inset-text">
+        Check these details carefully before you confirm your appointment. You cannot change the appointment once it's been confirmed.
+      </div>
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/site-appointment-booking/confirmation" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

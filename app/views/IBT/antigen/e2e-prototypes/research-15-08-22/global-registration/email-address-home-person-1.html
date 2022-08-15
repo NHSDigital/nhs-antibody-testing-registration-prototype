@@ -1,0 +1,75 @@
+{% set version = "research" %}
+{% set pageTitle = "Email address" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/landline-number">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/gender-person-1" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="email-address-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+
+            <div id="email-address-hint">
+              <p class="govuk-body">We need an email address to send the test results. Use one they'll have access to later.</p>
+
+              <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this email.</p>
+
+              <p class="govuk-body">If they're getting a test for a child, enter their email not the child's.</p>
+
+              <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way to get the test results.</p>
+
+              <!--p class="govuk-body">If a test result is positive, the NHS may also use the details you supply for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/test-results/help-the-nhs-alert-your-close-contacts-if-you-test-positive/" target="_blank">contact tracing (opens in new tab)</a>.</p-->
+            </div>
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+             What's {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or 'Smith' }} 's email address?
+             </legend>
+
+                <div class="govuk-form-group govuk-!-margin-top-6">
+                  <label class="govuk-label" for="email-address">
+                    Email address
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" value="{{ data['email-address'] }}">
+                </div>
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="confirm-email-address">
+                    Confirm email address
+                  </label>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="confirm-email-address" name="confirm-email-address" type="text" value="{{ data['confirm-email-address'] }}">
+                </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

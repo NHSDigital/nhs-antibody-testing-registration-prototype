@@ -1,0 +1,57 @@
+{% set version = "research" %}
+{% set pageTitle = "We need to confirm the identity of the person needing a test" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/order-home-test-kit/confirm-email-code">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/action5/confirm-identity" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="confirm-identity-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                We need to confirm {{ data['first-name'] | default('John') }} {{ data['last-name'] | default('Appleseed') }}'s identity
+              </h1>
+            </legend>
+            <span id="confirm-identity-hint" class="govuk-body govuk-!-margin-top-3 govuk-!-margin-bottom-7">
+             To confirm the identity of the person needing a test, we need to share the information you've given us with an organisation called TransUnion.<br><br>
+             This will help prevent fraudulent use of testing services.<br><br>
+             <strong>This is not a credit check and does not affect your credit rating.</strong><br><br>
+             If you do not want us to check your details with TransUnion, you can start again and choose to get tested at a test site.
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-7">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="confirm-identity-1" name="confirm-identity" type="radio" value="Yes" {{ checked("confirm-identity", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="confirm-identity-1">
+                  Yes, go ahead
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="confirm-identity-2" name="confirm-identity" type="radio" value="No" {{ checked("confirm-identity", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="confirm-identity-2">
+                  No, let me start again and choose to visit a test site
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button govuk-!-margin-top-6" type="submit" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

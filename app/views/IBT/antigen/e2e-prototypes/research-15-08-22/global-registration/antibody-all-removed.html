@@ -1,0 +1,78 @@
+{% set version = "research" %}
+{% set pageTitle = "Confirm people for antibody testing" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.go(-1);"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/IBT/antigen/e2e-prototypes/{{version}}/action3/people-confirmed" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="antibody-test-confirmation-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <span id="antibody-test-confirmation-hint" class="govuk-body">
+              If these people test positive for coronavirus we will send out an antibody kit to them.<br><br>
+              Once you’ve confirmed who’s willing to take an antibody test, please continue to book your PCR test.
+            </span>
+
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header govuk-!-width-three-quarters"></th>
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">You have removed all people from antibody testing</th>
+                  <td class="govuk-table__cell">
+                  </td>
+                  <td class="govuk-table__cell"><p class="govuk-body-m"><a href="javascript:window.history.go(-1)" class="govuk-link">Undo</a></p></td>
+                </tr>
+              </tbody>
+            </table>
+
+
+          </fieldset>
+        </div>
+
+        <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode-antibody-placeholder" name="delivery-address-postcode-antibody-placeholder" type="text" autocomplete="postal-code" value="" style="display: none;">
+
+        <input class="govuk-input govuk-input--width-10" id="delivery-address-postcode" name="delivery-address-postcode-antibody" type="text" autocomplete="postal-code" value="" style="display: none;">
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

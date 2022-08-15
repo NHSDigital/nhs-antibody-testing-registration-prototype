@@ -1,0 +1,70 @@
+{% set version = "research" %}
+{% set pageTitle = "Do you know the NHS number of the person who needs a test?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/check-your-answers">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers/action9/nhs-number-known" method="post">
+
+        <div class="govuk-form-group">
+          <h1 class="govuk-heading-l govuk-!-margin-bottom-9">
+            NHS number
+          </h1>
+
+          <p class="govuk-body">
+            They can find it on any letter the NHS has sent them, on a prescription, or by logging in to a GP practice online service.
+          </p>
+
+          <p class="govuk-body">
+            In Scotland, it's known as CHI number. In Northern Ireland, it's known as an H&C number.
+          </p>
+
+          <p class="govuk-body">
+            It's OK if they do not have an NHS number or they do not live in the UK, they can still continue.
+          </p>
+
+          <p class="govuk-!-margin-top-5"><a href="https://www.nhs.uk/nhs-services/online-services/find-nhs-number/" target="_blank">Look up NHS number (opens in new tab)</a></p>
+          <br>
+
+          <div class="govuk-form-group govuk-!-margin-bottom-3">
+            <label class="govuk-label" for="nhs-number">
+              <strong>What is {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s NHS number?</strong>
+            </label>
+            <div id="nhs-number-hint" class="govuk-hint">
+                A 10-digit number, for example, 485 777 3456
+            </div>
+            <input class="govuk-input govuk-input--width-20" id="nhs-number" name="nhs-number" type="text" aria-describedby="nhs-number-hint" value="{{ data['nhs-number'] }}">
+          </div>
+          <br>
+
+          <button class="govuk-button" data-module="govuk-button">Continue</button>
+          <p><a class="govuk-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/check-your-answers">Continue without NHS number</a></p>
+        
+      </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% set version = "research" %}
+{% set pageTitle = "Coronavirus vaccination" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div> 
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/check-your-answers">Back</a>
+
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers/action9/coronavirus-vaccine" method="post" novalidate>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="vaccine-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                Has {{ data['first-name'] or 'Pete' }} {{ data['last-name'] or "Smith" }} had a coronavirus vaccine?
+              </h1>
+            </legend>
+            <span id="vaccine-hint" class="govuk-body">
+              We are asking this question to better understand how effective the vaccine is.
+            </span>
+            <div class="govuk-radios govuk-!-margin-top-6">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-1" name="vaccine" type="radio" value="No" {{ checked("vaccine", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-1">
+                  No
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-2" name="vaccine" type="radio" value="Yes, 1 dose" {{ checked("vaccine", "Yes, 1 dose") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-2">
+                  Yes, they've had 1 dose
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="vaccine-3" name="vaccine" type="radio" value="Yes, 2 or more doses" {{ checked("vaccine", "Yes, 2 or more doses") }}>
+                <label class="govuk-label govuk-radios__label" for="vaccine-3">
+                  Yes, they've had 2 or more doses
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+

@@ -1,0 +1,378 @@
+{% set version = "research" %}
+{% set pageTitle = "Check your answers" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.go(-1);"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+<span class="govuk-caption-l">Section 3 of 4</span>
+<h1 class="govuk-heading-l">
+ Your details
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-8">Check your answers for {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}</h1>
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-6">Personal details</h2>
+      <p class="govuk-body">Check these personal details are correct. You can change them if they are not.</p>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/name-person-1">
+              Change
+              <span class="govuk-visually-hidden">name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            GP registered address
+          </dt>
+            {% if data['gp-address-same-person-1'] !== "No" %}
+              {% if data['gp-address-same'] !== "No" %}
+              <dd class="govuk-summary-list__value">
+                {% if data['home-address'] and data['home-address'] !== "Select from 5 addresses" %}
+                  {{ data['home-address'] }}
+                {% else %}
+                  {{ data['address-line-1'] or '5 Souterhead Road'}}<br>
+                  {{ data['home-postcode'] or 'LS1 3BE' }}
+                {% endif %}
+              </dd>
+              {% else %}
+              <dd class="govuk-summary-list__value">
+                {% if data['gp-address'] and data['gp-address'] !== "Select from 5 addresses" %}
+                  {{ data['gp-address'] }}
+                {% else %}
+                  {{ data['address-line-1-gp'] or '5 Souterhead Road'}}<br>
+                  {{ data['gp-postcode'] or 'LS1 3BE' }}
+                {% endif %}
+              </dd>
+              {% endif %}
+            {% else %}
+              <dd class="govuk-summary-list__value">
+                {% if data['gp-address-person-1'] and data['gp-address-person-1'] !== "Select from 5 addresses" %}
+                  {{ data['gp-address-person-1'] }}
+                {% else %}
+                  {{ data['address-line-1-gp-person-1'] or '5 Souterhead Road'}}<br>
+                  {{ data['gp-postcode-person-1'] or 'LS1 3BE' }}
+                {% endif %}
+              </dd>
+            {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/address-person-1">
+              Change
+              <span class="govuk-visually-hidden">first line of address and postcode, registered with GP</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Country of residence
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['country-person-1'] or 'England' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/country-person-1">
+              Change
+              <span class="govuk-visually-hidden">country of residence</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Contact details
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['email-person-1'] == "same" %}
+            {{ data['email-address'] or 'psmith@example.co.uk' }}<br>
+            {% else %}
+            {{ data['email-address-person-1'] or 'jwilson@example.co.uk' }}<br>
+            {% endif %}
+            {% if data['mobile-number-person-1'] == "same" %}
+            {{ data['mobile-phone-number'] or '07771900900' }}<br>
+            {% else %}
+            {{ data['mobile-phone-number-person-1'] or '07771905678' }}<br>
+            {% endif %}
+            {% if data['landline-number-person-1'] == "same" %}
+            {{ data['landline-telephone-number'] or '077456788765' }}<br>
+            {% elseif data['landline-number-person-1'] == "different" %}
+            {{ data['landline-telephone-number-person-1'] or '1234567890'}}<br>
+            {% else %}
+            
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/email-address-person-1">
+              Change
+              <span class="govuk-visually-hidden">contact details</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['date-of-birth-person-1-day'] or '2 June 1984' }} {{ data['date-of-birth-person-1-month'] }} {{ data['date-of-birth-person-1-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/date-of-birth-person-1">
+              Change
+              <span class="govuk-visually-hidden">date of birth</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Medical record (male, female, other…)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['gender-person-1'] or 'Female' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/gender-person-1">
+              Change
+              <span class="govuk-visually-hidden">medical record</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Ethnicity
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ethnic-group-person-1'] or 'White' }}{% if data['ethnic-background-person-1'] !== 'Prefer not to say' and data['ethnic-background-person-1'] !== undefined %}{% if data['ethnic-background-person-1'] == "Another" %}, {{ data['another-ethnic-background-person-1'] or 'Irish'}}{% else %}, {{ data['ethnic-background-person-1'] or 'Irish'}}{% endif %}{% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/ethnic-group-person-1">
+              Change
+              <span class="govuk-visually-hidden">ethnicity</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            NHS number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['nhs-number-known-person-1'] == "Yes" %}
+            {{ data['nhs-number-person-1'] }}
+            {% else %}
+            Not known
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/nhs-number-known-person-1">
+              Change
+              <span class="govuk-visually-hidden">NHS number</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Vaccination and travel history</h2>
+      <p class="govuk-body">We may use this information to monitor new coronavirus variants.</p>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Positive coronavirus test
+          </dt>
+           <dd class="govuk-summary-list__value">
+            {{ data['previous-infection-person-1'] or 'No' }}
+           </dd>
+         <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/previous-infection-person-1">
+              Change
+              <span class="govuk-visually-hidden">positive coronavirus test</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Coronavirus vaccine
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['vaccine-person-1'] == "Yes" and data['vaccine-date-person-1'] == "More than 14 days ago" %}
+              {% if data['vaccine-month-person-1'] == "1" or data['vaccine-month-person-1'] == "01" %}
+              January {{ data['vaccine-year-person-1'] }}
+              {% elseif data['vaccine-month-person-1'] == "2" or data['vaccine-month-person-1'] == "02" %}
+              February {{ data['vaccine-year-person-1'] }}
+              {% elseif data['vaccine-month-person-1'] == "3" or data['vaccine-month-person-1'] == "03" %}
+              March {{ data['vaccine-year-person-1'] }}
+              {% elseif data['vaccine-month-person-1'] == "4" or data['vaccine-month-person-1'] == "04" %}
+              April {{ data['vaccine-year-person-1'] }}
+              {% elseif data['vaccine-month-person-1'] == "5" or data['vaccine-month-person-1'] == "05" %}
+              May {{ data['vaccine-year-person-1'] }}
+              {% elseif data['vaccine-month-person-1'] == "6" or data['vaccine-month-person-1'] == "06" %}
+              June {{ data['vaccine-year-person-1'] }}
+              {% elseif data['vaccine-month-person-1'] == "7" or data['vaccine-month-person-1'] == "07" %}
+              July {{ data['vaccine-year-person-1'] }}
+              {% elseif data['vaccine-month-person-1'] == "8" or data['vaccine-month-person-1'] == "08" %}
+              August {{ data['vaccine-year-person-1'] }}
+              {% elseif data['vaccine-month-person-1'] == "9" or data['vaccine-month-person-1'] == "09" %}
+              September {{ data['vaccine-year-person-1'] }}
+              {% elseif data['vaccine-month-person-1'] == "10" %}
+              October {{ data['vaccine-year-person-1'] }}
+              {% elseif data['vaccine-month-person-1'] == "11" %}
+              November {{ data['vaccine-year-person-1'] }}
+              {% elseif data['vaccine-month-person-1'] == "12" %}
+              December {{ data['vaccine-year-person-1'] }}
+              {% endif %}
+            {% else %}
+            No
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/coronavirus-vaccine-person-1">
+              Change
+              <span class="govuk-visually-hidden">Coronavirus vaccine</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Travelled overseas
+          </dt>
+          {% if data['have-you-travelled-overseas-person-1'] !== "Yes" %}
+          <dd class="govuk-summary-list__value">No
+          </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">Yes, to
+            {{ data['country-autocomplete-person-1'] or 'Ireland' }}<br>
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/have-you-travelled-overseas-person-1">
+              Change
+              <span class="govuk-visually-hidden">country visited</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Employment and education</h2>
+      <p class="govuk-body">If their test is positive, we may use this information for contact tracing.</p>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Travels to nursery, work or place of education
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['currently-in-work-person-1'] == "Yes - they travel to a workplace" %}
+            Travels to work
+            {% elseif data['currently-in-work-person-1'] == "Yes - they go to nursery, school, college or university" %}
+            Travels to nursery, school, college or university
+            {% else %}
+            {{ data['currently-in-work-person-1'] or 'No' }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/currently-in-work-person-1">
+              Change
+              <span class="govuk-visually-hidden">currently in work?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['currently-in-work-person-1'] == "Yes - they travel to a workplace" or data['currently-in-work-person-1'] == "Yes - they go to nursery, school, college or university" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {% if data['currently-in-work-person-1'] == "Yes - they travel to a workplace" %}
+            Work
+            {% elseif data['currently-in-work-person-1'] == "Yes - they go to nursery, school, college or university" %}
+            Study
+            {% endif %}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['currently-in-work-person-1'] == "Yes - they travel to a workplace" %}
+              {% if data['industry-person-1'] !== "Prefer not to say" %}
+              {{ data['industry-person-1'] or 'Heath and social care' }}<br>
+              {% endif %}
+              {{ data['occupation-autocomplete-person-1'] or 'Prefer not to say' }}<br>
+              {% if data['employer-person-1'] !== "Prefer not to say" %}
+              {{ data['employer-person-1'] }}
+              {% endif %}
+            {% elseif data['currently-in-work-person-1'] == "Yes - they go to nursery, school, college or university" %}
+            {{ data['study-grade-person-1'] or 'College' }}<br>
+              {% if data['name-person-1'] and data['town-person-1'] %}
+              {{ data['name-person-1'] or 'Prefer not to say' }}, {{ data['town-person-1'] or 'Prefer not to say' }}
+              {% endif %}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            {% if data['currently-in-work-person-1'] == "Yes - they travel to a workplace" %}
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/industry-person-1">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+            {% elseif data['currently-in-work-person-1'] == "Yes - they go to nursery, school, college or university" %}
+            <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/edit-check-answers-person-1/study-grade-person-1">
+              Change
+              <span class="govuk-visually-hidden">area of work</span>
+            </a>
+            {% endif %}
+          </dd>
+        </div>
+        {% endif %}
+        </dl>
+ 
+        <h2 class="govuk-heading-l govuk-!-margin-bottom-3">Antibody test details</h2>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Agreed to do antibody tests
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['fingerprick-test-person-1'] or 'Yes' }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/fingerprick-test-person-1">
+                Change
+                <span class="govuk-visually-hidden">antibody tests</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/people-confirmed-person-1" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

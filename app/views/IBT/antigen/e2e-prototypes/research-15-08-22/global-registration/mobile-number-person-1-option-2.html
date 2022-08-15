@@ -1,0 +1,87 @@
+{% set version = "research" %}
+{% set pageTitle = "Mobile number" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  {% if data['do-you-have-symptoms-person-1'] == "Yes" %}
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/when-did-symptoms-start-person-1">Back</a>
+  {% else %}
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/do-you-have-symptoms-person-1">Back</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/landline-number-person-1" method="post">
+          <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" aria-describedby="mobile-number-person-1-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                    {{ pageTitle }}
+                  </h1>
+                </legend>
+
+            <div id="mobile-number-person-1-hint">
+              <p class="govuk-body">We need a mobile number to send their test results.</p>
+
+              <p class="govuk-body">If the test is for someone else, make sure they're happy for their test results to go to this number.</p>
+
+              <p class="govuk-body">If they're getting a test for a child, enter their number not the child's.</p>
+
+              <p class="govuk-body">If their mobile number is going to change soon, it's important to give us an email address, as it may be the only way for them to get the test results.</p>
+
+              <!--p class="govuk-body">If a test result is positive, the NHS may also use the details you supply for <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/test-results/help-the-nhs-alert-your-close-contacts-if-you-test-positive/" target="_blank">contact tracing (opens in new tab)</a>.</p-->
+            </div>
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+               What's {{ data['first-name-person-1'] or 'Jane' }} {{ data['last-name-person-1'] or 'Wilson' }}'s mobile number?
+             </legend>
+
+            <div class="govuk-form-group govuk-!-margin-top-5">
+              <label class="govuk-label" for="mobile-phone-number-person-1">
+                Mobile phone number
+              </label>
+              <div id="telephone-number-hint" class="govuk-hint">
+                For international numbers include the country code (Eg,+33)
+              </div>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number-person-1" name="mobile-phone-number-person-1" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['mobile-phone-number-person-1'] }}">
+            </div>
+            <div class="govuk-form-group govuk-!-margin-top-2">
+              <label class="govuk-label" for="mobile-phone-number-confirm-person-1">
+                Confirm mobile phone number
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="mobile-phone-number-confirm-person-1" name="mobile-phone-number-confirm-person-1" type="text" pattern="[0-9]*" inputmode="numeric" spellcheck="false" value="{{ data['mobile-phone-number-confirm-person-1'] }}">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      </form>
+    </div>
+
+    <div class="proto-action big">
+      <a href="/IBT/antigen/e2e-prototypes/{{version}}/global-registration/mobile-number-person-1">
+        <div class="proto-action-text govuk-!-font-size-19 govuk-!-padding-2 govuk-!-margin-left-3">Go to option 1</div>
+      </a>
+    </div>
+
+  </div>
+
+{% endblock %}
