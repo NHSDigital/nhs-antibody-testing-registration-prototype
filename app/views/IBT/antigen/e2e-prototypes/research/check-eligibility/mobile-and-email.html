@@ -1,0 +1,64 @@
+{% set version = "research" %}
+{% set pageTitle = "Do you have both a mobile number and email address?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+  <a class="govuk-back-link" href="/IBT/antigen/e2e-prototypes/{{version}}/check-eligibility/index">Back</a>
+{% endblock %}
+
+{% block content %}
+  {% include "includes/gtm-noscript.html" %}
+
+  <form action="/IBT/antigen/e2e-prototypes/{{version}}/action3/mobile-number" method="post">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l  govuk-!-margin-bottom-6">
+          <h1 class="govuk-fieldset__heading">
+          {{ pageTitle }}
+          </h1>
+        </legend>
+
+        <div id="contact-hint" class="govuk-hint">
+          You need both of these to get a coronavirus test online.
+        </div>
+        <br>
+          <div class="govuk-form-group">
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mobile-number-1" name="mobile-number" type="radio" value="Yes" data-aria-controls="conditional-mobile-number" {{ checked("mobile-number", "Yes") }}>
+                <label class="govuk-label govuk-radios__label" for="mobile-number-1">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mobile-number-2" name="mobile-number" type="radio" value="No" {{ checked("mobile-number", "No") }}>
+                <label class="govuk-label govuk-radios__label" for="mobile-number-2">
+                  No
+                </label>
+              </div>
+            </div>
+        </fieldset>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </div>
+  </div>
+
+    </form>
+
+{% endblock %}
