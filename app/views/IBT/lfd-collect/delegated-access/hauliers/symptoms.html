@@ -1,0 +1,50 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set serviceName = "Manage haulier COVID-19 testing" %}
+{% set pageTitle = "Does the subject have any coronavirus symptoms?" %}
+
+{% block beforeContent %}
+  <div class="flex-container govuk-!-margin-top-2" style="display: flex; justify-content: space-between;">
+    <a class="govuk-back-link govuk-!-margin-top-0" href="javascript:window.history.go(-1);">Back</a>
+    <a href="#" class="govuk-link">Signout</a>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <form action="/share-result-lateral-flow/v20/name" method="post">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="where-do-you-live" name="where-do-you-live" type="radio" value="england">
+                <label class="govuk-label govuk-radios__label" for="where-do-you-live">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
+                <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+                  No
+                </label>
+              </div>
+            </div>
+
+          </fieldset>
+        </div>
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

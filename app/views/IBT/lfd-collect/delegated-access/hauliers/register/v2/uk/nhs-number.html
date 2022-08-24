@@ -1,0 +1,68 @@
+{% set version = "v1" %}
+{% set serviceName = "Regular COVID-19 testing for hauliers" %}
+{% set pageTitle = "What is your NHS number?" %}
+
+{% extends "includes/layout.html" %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:window.history.go(-1);">Back</a>
+<details class="govuk-details govuk-!-margin-bottom-0" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      English
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <a href="#" class="govuk-link">Polskie</a><br />
+    <a href="#" class="govuk-link">Română</a><br />
+    <a href="#" class="govuk-link">български</a><br />
+    <a href="#" class="govuk-link">čeština</a><br />
+    <a href="#" class="govuk-link">Dutch</a><br />
+    <a href="#" class="govuk-link">Français</a><br />
+    <a href="#" class="govuk-link">Deutsche</a><br />
+    <a href="#" class="govuk-link">Magyar</a><br />
+    <a href="#" class="govuk-link">Lietuvis</a><br />
+    <a href="#" class="govuk-link">русский</a><br />
+    <a href="#" class="govuk-link">Español</a><br />
+    <a href="#" class="govuk-link">Türk</a><br />
+    <a href="#" class="govuk-link">Cymraeg</a>
+  </div>
+</details>
+{% endblock %}
+
+{% block content %}
+{% include "includes/gtm-noscript.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="ethnic-group" method="post">
+
+        <fieldset class="govuk-fieldset" aria-describedby="nhs-number-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+              {{ pageTitle }}
+            </h1>
+          </legend>
+          <span id="nhs-number-hint" class="govuk-body">
+            An NHS number is 10 digits, for example 867 406 5600.<br><br>
+            Enter this number with no spaces.
+          </span>
+          <div class="govuk-form-group govuk-!-margin-top-5">
+            <label class="govuk-label" for="nhs-number">
+              NHS number
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="nhs-number" name="nhs-number" type="text" value="">
+          </div>
+        </fieldset>
+
+      </form>
+      {{ govukButton({
+        text: "Continue",
+        href: "address"
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

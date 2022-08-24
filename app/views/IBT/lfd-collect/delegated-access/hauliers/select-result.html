@@ -1,0 +1,62 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set serviceName = "Manage haulier COVID-19 testing" %}
+{% set pageTitle = "What's the test result?" %}
+
+{% block beforeContent %}
+  <div class="flex-container govuk-!-margin-top-2" style="display: flex; justify-content: space-between;">
+    <a class="govuk-back-link govuk-!-margin-top-0" href="javascript:window.history.go(-1);">Back</a>
+    <a href="#" class="govuk-link">Signout</a>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <form action="confirm-result-logged" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+                {{ pageTitle }}
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-radios--conditional govuk-!-margin-top-5" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-result-1" name="test-result" type="radio" value="Negative" {{ checked("test-result", "Negative") }}>
+                <label class="govuk-label govuk-radios__label" for="test-result-1">
+                  Negative
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-result-2" name="test-result" type="radio" value="Void" {{ checked("test-result", "Void") }}>
+                <label class="govuk-label govuk-radios__label" for="test-result-2">
+                  Void
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="test-result-3" name="test-result" type="radio" value="Positive" data-aria-controls="conditional-test-result" {{ checked("test-result", "Positive") }}>
+                <label class="govuk-label govuk-radios__label" for="test-result-3">
+                  Positive
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-test-result">
+                <p class="govuk-body">Make sure the test is positive before you proceed</p>
+              </div>
+
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

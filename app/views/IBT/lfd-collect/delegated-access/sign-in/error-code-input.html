@@ -1,0 +1,48 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set serviceName = "Test Site Results" %}
+{% set pageTitle = "Enter code" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There's a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#field-1">Code is incorrect</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ pageTitle }}</h1>
+      <p class="govuk-body">We've sent a code to your mobile.</p>
+
+      <form action="results-leaders-v1" method="post">
+
+        <div class="govuk-form-group govuk-form-group--error">
+          <label class="govuk-label" for="">
+            Code
+          </label>
+          <span id="" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Code is incorrect
+          </span>
+          <input class="govuk-input govuk-input--error govuk-!-width-two-thirds" id="" name="" type="number" pattern="[0-9]*" inputmode="numeric">
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">
+          Confirm
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

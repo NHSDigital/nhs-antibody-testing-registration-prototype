@@ -1,0 +1,47 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set serviceName = "Manage haulier COVID-19 testing" %}
+{% set pageTitle = "Enter the unique test kit barcode" %}
+
+{% block beforeContent %}
+  <div class="flex-container govuk-!-margin-top-2" style="display: flex; justify-content: space-between;">
+    <a class="govuk-back-link govuk-!-margin-top-0" href="javascript:window.history.go(-1);">Back</a>
+    <a href="#" class="govuk-link">Signout</a>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <form action="barcode-capture-manual" method="post">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+                {{pageTitle}}
+              </h1>
+            </legend>
+
+            <!-- <span id="enter-barcode-number-hint" class="govuk-body">
+              This is printed on the test pass (under the QR code).<br><br>
+              Use the camera on your device to scan the QR code on your test pass. It should look like this:
+            </span>
+            <br>
+            <br> -->
+            <div width="100%">
+              <img width="50%" style=" display: block; margin-left: auto; margin-right: auto;" src="/public/images/qr-new.png" alt="An example ID number printed on the test strip underneath a barcode">
+            </div>
+            <br>
+            <br>
+            <p><a href="scan-barcode-strategic" role="button" draggable="false" class="govuk-button" data-module="govuk-button">Scan QR code</a></p>
+            <p class="govuk-body"><a href="barcode-capture-manual">Enter barcode manually</a></p>
+          </fieldset>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+{% endblock %}

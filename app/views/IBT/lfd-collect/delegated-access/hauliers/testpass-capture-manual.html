@@ -1,0 +1,58 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set serviceName = "Manage haulier COVID-19 testing" %}
+{% set pageTitle = "Enter the test code ID" %}
+
+{% block beforeContent %}
+  <div class="flex-container govuk-!-margin-top-2" style="display: flex; justify-content: space-between;">
+    <a class="govuk-back-link govuk-!-margin-top-0" href="javascript:window.history.go(-1);">Back</a>
+    <a href="#" class="govuk-link">Signout</a>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <form action="check-testpass-details" method="post">
+        <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="enter-barcode-number-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+              {{pageTitle}}
+            </h1>
+          </legend>
+
+          <span id="enter-barcode-number-hint" class="govuk-body">
+            This is printed on the test code (under the QR code).<br><br>
+          </span>
+
+          <div width="100%">
+            <img width="50%" style=" display: block; margin-left: auto; margin-right: auto;" src="/public/images/qr-new.png" alt="An example ID number printed on the test strip underneath a barcode">
+          </div>
+
+          <br>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="kit-barcode-reference-1">
+              Test code ID
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-1" name="kit-barcode-reference-1" type="text" value="">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="kit-barcode-reference-2">
+              Confirm test code ID
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="kit-barcode-reference-2" name="kit-barcode-reference-2" type="text" value="">
+          </div>
+          </fieldset>
+        </div>
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}
