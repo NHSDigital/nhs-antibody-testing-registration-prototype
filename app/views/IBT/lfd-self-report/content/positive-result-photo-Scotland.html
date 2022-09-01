@@ -1,0 +1,157 @@
+
+           <div class="govuk-panel govuk-panel--confirmation govuk-panel-lft-result">
+              <h1 class="govuk-panel__title">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                You reported {{ data['first-name'] or "Pete" }} {{ data['last-name'] or "Smith" }}'s coronavirus test result as positive
+                {% else %}
+                You reported a positive coronavirus test
+                {% endif %}
+              </h1>
+              <div class="govuk-panel__body">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                It’s likely they were infectious when the test was done
+                {% else %}
+                It’s likely you were infectious when the test was done
+                {% endif %}
+              </div>
+           </div>
+
+
+  <div>
+  <br>
+
+  <p class="govuk-body">This result has been reported to the NHS.</p>
+
+  <div class="govuk-warning-text">
+    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+    <strong class="govuk-warning-text__text">
+      <span class="govuk-warning-text__assistive">Warning</span>
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+         They should stay at home and avoid contact with other people for at least 5 days. They should not visit care homes or hospitals.
+         <a href="https://llyw.cymru/canllawiau-i-bobl-sydd-symptomau-haint-anadlol-gan-gynnwys-covid-19" target="_blank" rel="noreferrer">Find out more about when to stay at home and what to do (opens in new tab)</a>.
+
+       {% else %}
+         You should stay at home and avoid contact with other people for at least 5 days. Do not visit care homes or hospitals.
+         <a href="https://llyw.cymru/canllawiau-i-bobl-sydd-symptomau-haint-anadlol-gan-gynnwys-covid-19" target="_blank" rel="noreferrer">Find out more about when to stay at home and what to do (opens in new tab)</a>.
+      {% endif %}
+    </strong>
+  </div>
+
+  <div
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+       <p class="govuk-body">If they're 18 or over, they should do this for 5 days after the day they took their test, or from the day their symptoms started, whichever was earlier.</p>
+       <p class="govuk-body">If they're under 18, they should do this for 3 days after the day they took the test, or from the day their symptoms started, whichever was earlier.</p>
+    {% else %}
+       <p class="govuk-body">If you're 18 or over, do this for 5 days after the day you took your test, or from the day your symptoms started, whichever was earlier.</p>
+       <p class="govuk-body">If you're under 18, do this for 3 days after the day you took the test, or from the day your symptoms started, whichever was earlier.</p>
+    {% endif %}
+  </div>
+
+
+
+  <h2 class="govuk-heading-m">
+    Tell people you have COVID-19
+  </h2>
+
+  <div
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+       <p class="govuk-body">They should tell anyone they were in close contact with in the 2 days before they had a positive test result, or got symptoms, that they've tested positive for COVID-19.</p>
+    {% else %}
+       <p class="govuk-body">You should tell anyone you were in close contact with in the 2 days before you had a positive test result, or got symptoms, that you've tested positive for COVID-19.</p>
+    {% endif %}
+  </div>
+
+
+
+  <h2 class="govuk-heading-m">
+    COVID-19 treatments
+  </h2>
+
+  <div
+    <p class="govuk-body">
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      Some people are eligible for COVID-19 treatments.
+          <a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19-treatments" target="_blank" rel="noreferrer"> Find out if they are eligible for COVID-19 treatments and how to access them (opens in new tab).</a>.
+
+       {% else %}
+      Some people are eligible for COVID-19 treatments.
+          <a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19-treatments" target="_blank" rel="noreferrer"> Find out if they are eligible for COVID-19 treatments and how to access them (opens in new tab)</a>.
+      {% endif %}
+    </p>
+  </div>
+
+
+
+  <h2 class="govuk-heading-m">
+    Follow-up tests
+  </h2>
+
+  <p class="govuk-body">Most people do not need to confirm this result with a PCR test.</p>
+
+  <div
+    <p class="govuk-body">
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      They will need to confirm a positive lateral flow test if they: 
+      <ul>
+        <li>have been asked to take a PCR test if they're eligible for COVID-19 treatments</li>
+        <li>want to apply for a Self-Isolation Support Grant (SISG). They must<a href="https://www.mygov.scot/self-isolation-grant" target="_blank" rel="noreferrer"> check they're eligible for a SISG before booking a PCR test (opens in new tab)</a></li>
+      </ul>
+
+       {% else %}
+
+       You need to confirm a positive lateral flow test if you:  
+       <ul>
+         <li>have been asked to take a PCR test if you're eligible for COVID-19 treatments</li>
+         <li>want to apply for a Self-Isolation Support Grant (SISG). You must<a href="https://www.mygov.scot/self-isolation-grant" target="_blank" rel="noreferrer"> check you're eligible for a SISG before booking a PCR test (opens in new tab)</a></li>
+       </ul>
+
+      {% endif %}
+    </p>
+  </div>
+
+  {% if data['whos-taking-the-test'] == "someone-else" %}
+     <p class="govuk-heading-m">If they're worried</p>
+  {% else %}
+     <p class="govuk-heading-m">If you're worried</p>
+  {% endif %}
+
+  <div
+    <p class="govuk-body">
+      {% if data['whos-taking-the-test'] == "someone-else" %}
+      If they have <a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19-treatments" target="_blank" rel="noreferrer">COVID-19 symptoms (opens in new tab)</a>.
+          which are seriously affecting their everyday life, they should call NHS 111 or their GP. In an emergency call 999.
+
+       {% else %}
+       If you have <a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19-treatments" target="_blank" rel="noreferrer">COVID-19 symptoms (opens in new tab)</a>.
+           which are seriously affecting your everyday life, you should call NHS 111 or their GP. In an emergency call 999.
+      {% endif %}
+    </p>
+  </div>
+
+
+<br>
+<br>
+ <button class="govuk-button" data-module="govuk-button">Report another result</button>
+
+<br>
+
+ <details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      The test result was reported incorrectly
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+       <p class="govuk-body">If the person who took the test is eligible for free rapid lateral flow tests and the test result was negative or void, they should take another one and report the result.</p>
+       <p class="govuk-body">They should use a new test kit and not reuse anything from the first test kit.</p>
+    {% else %}
+       <p class="govuk-body">If you're eligible for free rapid lateral flow tests and the test result was negative or void, you should take another one and report the result.
+       </p>
+       <p class="govuk-body">Use a new test kit and do not reuse anything from the first test kit.</p>
+    {% endif %}
+
+
+
+  </div>
+</details>
