@@ -1,10 +1,10 @@
 {% set serviceName = "Register test kits for your organisation" %}
-{% set pageHeading = "Reset your password" %}
+{% set pageHeading = "You have signed out" %}
 {% set version = "organisational/lft/carehome-registration" %}
 {% extends "includes/layout.html" %}
 
 {% block pageTitle %}
-{{ pageHeading }} - {{ serviceName }}
+{{ pageHeading }} - COVID-19
 {% endblock %}
 
 {% block beforeContent %}
@@ -22,7 +22,6 @@
         text: "Back",
         href: "javascript:window.history.go(-1);"
       }) }}
-
     </div>
   </div>
 </div>
@@ -38,24 +37,16 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">
-      {{ pageHeading }}
-    </h1>
-       <p>Enter the email address you used to create your account. We will email you instructions on how to change your password.</p>
-    <div class="govuk-form-group">
-      <label class="govuk-label" for="email-address">
-        Email address
-      </label>
-
-      <input class="govuk-input govuk-!-width-two-thirds" id="email-address" name="email-address" type="text" autocomplete="email-address">
-      <br>
-      <br>
-      <form class="form" method="post" action="check-email">
-        <button class="govuk-button govuk-!-margin-top-3" data-module="govuk-button">
-          Send email
-        </button>
+    <form action="sign-in" method="get">
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-xl">
+          {{ pageHeading }}
+        </h1>
+        <input class="govuk-button" type="submit" value="Sign in">
       </form>
-
+      <p class="govuk-body"><a href="#">What did you think of this service?</a> (takes 30 seconds)</p>
     </div>
+  </div>
 
-    {% endblock %}
+
+  {% endblock %}
