@@ -1,5 +1,5 @@
 {% set serviceName = "Register test kits for your organisation" %}
-{% set pageHeading = "You have signed out" %}
+{% set pageHeading = "Do you want this user to have enhanced permissions?" %}
 {% set version = "organisational/lft/carehome-registration" %}
 {% extends "includes/layout.html" %}
 
@@ -37,15 +37,29 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form action="timeout-error" method="get">
       <div class="govuk-form-group">
         <h1 class="govuk-heading-xl">
           {{ pageHeading }}
         </h1>
-        <p>You have been idle for sometime, for your security, we have automatically signed you out.</p>
-        <input class="govuk-button" type="submit" value="Sign in">
-      </form>
-      <p class="govuk-body"><a href="#">What did you think of this service?</a> (takes 30 seconds)</p>
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            If you continue, this user will be able to manage standard users.
+          </strong>
+        </div>
+        <div class="govuk-button-group">
+          <form class="form" method="post" action="check-permissions">
+            <button class="govuk-button" data-module="govuk-button">
+              Continue
+            </button>
+          </form>
+          <form class="form" method="post" action="manage-staff-details">
+            <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+              Cancel
+            </button>
+          </form>
+        </div>
     </div>
   </div>
 
