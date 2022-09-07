@@ -40,7 +40,11 @@ This result has been reported to the NHS.
   </h2>
 
   <p class="govuk-body">
-  Take another rapid lateral flow test as soon as possible.
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    If the person who took the test is eligible for free rapid lateral flow tests, they should take another one.
+    {% else %}
+    If you're eligible for free rapid lateral flow tests, take another one.
+    {% endif %}
   </p>
 
   <p class="govuk-body">
@@ -50,7 +54,7 @@ This result has been reported to the NHS.
   <div class="govuk-body">
     <ul>
       <li>get vaccinated</li>
-      <li>handwash regularly</li>
+      <li>wash hands regularly</li>
       <li>open windows if meeting indoors</li>
       <li>wear a face covering in crowded indoor settings</li>
       <li>stay home if unwell</li>
@@ -71,8 +75,8 @@ This result has been reported to the NHS.
 <div class="govuk-body">
   <ul>
     <li><a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19/">Scotland: symptoms guidance</a></li>
-    <li><a href="https://gov.wales/guidance-people-symptoms-respiratory-infection-including-covid-19">Wales: symptoms guidance</a></li>
-    <li><a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-symptoms">Northern Ireland: symptoms guidance</a></li>
+    <li><a href="https://llyw.cymru/canllawiau-i-bobl-sydd-symptomau-haint-anadlol-gan-gynnwys-covid-19">Wales: symptoms guidance</a></li>
+    <li><a href="https://www.nidirect.gov.uk/articles/symptoms-respiratory-infections-including-covid-19">Northern Ireland: symptoms guidance</a></li>
   </ul>
 </div>
 
@@ -121,11 +125,11 @@ This result has been reported to the NHS.
  <div class="govuk-details__text">
    {% if data['whos-taking-the-test'] == "someone-else" %}
       <h2 class="govuk-heading-m">The test result was positive</h2>
-      <p class="govuk-body">If the test result was positive the person who took the test should take another rapid lateral flow test as soon as possible and report the result</p>
+      <p class="govuk-body">If the person who took the test is eligible for free rapid lateral flow tests and the test result was positive, they should take another one as soon as possible and report the result.</p>
       <p class="govuk-body">They should use a new test kit and not reuse anything from the first kit.</p>
    {% else %}
       <h2 class="govuk-heading-m">The test result was positive</h2>
-      <p class="govuk-body">If the test result was positive you should take another rapid lateral flow test as soon as possible and report the result.</p>
+      <p class="govuk-body">If you're eligible for free rapid lateral flow tests and the test result was positive, take another one as soon as possible and report the result.</p>
       <p class="govuk-body">Use a new test kit and do not reuse anything from the first kit.</p>
    {% endif %}
 
@@ -164,9 +168,9 @@ This result has been reported to the NHS.
 
    <div class="govuk-body">
      <ul>
-       <li>Scotland:<a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19/" target="_blank" rel="noreferrer"> find out when to stay at home and what to do</a></li>
-       <li>Wales:<a href="https://gov.wales/guidance-people-symptoms-respiratory-infection-including-covid-19" target="_blank" rel="noreferrer"> find out when to stay at home and what to do</a></li>
-       <li>Northern Ireland:<a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-testing-and-isolation-advice" target="_blank" rel="noreferrer"> find out when to stay at home and what to do</a></li>
+       <li><a href="https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/coronavirus-covid-19/coronavirus-covid-19/" target="_blank" rel="noreferrer">Scotland: find out when to stay at home and what to do</a></li>
+       <li><a href="https://llyw.cymru/canllawiau-i-bobl-sydd-symptomau-haint-anadlol-gan-gynnwys-covid-19" target="_blank" rel="noreferrer">Wales: find out when to stay at home and what to do</a></li>
+       <li><a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-testing-and-stay-home-advice" target="_blank" rel="noreferrer">Northern Ireland: find out when to stay at home and what to do</a></li>
      </ul>
    </div>
    <br>
@@ -178,12 +182,12 @@ This result has been reported to the NHS.
    <div
      <p class="govuk-body">
        {% if data['whos-taking-the-test'] == "someone-else" %}
-       If the test result was negative, the person who took the test should take another rapid lateral flow test as soon as possible and report the result.
+       If the person who took the test is eligible for rapid lateral flow tests and the test result was negative, they should take another one and report the result.
          <br>
          <br>
          They should use a new test kit, and not reuse anything from the first test kit.
         {% else %}
-        If the test result was negative, you should take another rapid lateral flow test as soon as possible and report the result.
+        If you're eligible for free rapid lateral flow tests and the test result was negative, take another one and report the result.
          <br>
          <br>
          Use a new test kit, and do not reuse anything from the first test kit.

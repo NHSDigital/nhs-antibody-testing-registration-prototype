@@ -40,7 +40,11 @@ This result has been reported to the NHS.
   </h2>
 
   <p class="govuk-body">
-  Take another rapid lateral flow test as soon as possible.
+    {% if data['whos-taking-the-test'] == "someone-else" %}
+    If they're eligible for free rapid lateral flow tests, they should take another one.
+    {% else %}
+    If you're eligible for free rapid lateral flow tests, take another one.
+    {% endif %}
   </p>
 
   <p class="govuk-body">
@@ -50,7 +54,7 @@ This result has been reported to the NHS.
   <div class="govuk-body">
     <ul>
       <li>get vaccinated</li>
-      <li>handwash regularly</li>
+      <li>wash hands regularly</li>
       <li>open windows if meeting indoors</li>
       <li>wear a face covering in crowded indoor settings</li>
       <li>stay home if unwell</li>
@@ -72,7 +76,7 @@ This result has been reported to the NHS.
   <ul>
     <li><a href="https://www.nhsinform.scot/covid19" target="_blank" rel="noreferrer">Scotland: symptoms guidance</a></li>
     <li><a href="https://gov.wales/guidance-people-symptoms-respiratory-infection-including-covid-19" target="_blank" rel="noreferrer">Wales: symptoms guidance</a></li>
-    <li><a href="https://www.nidirect.gov.uk/articles/coronavirus-covid-19-symptoms" target="_blank" rel="noreferrer">Northern Ireland: symptoms guidance</a></li>
+    <li><a href="https://www.nidirect.gov.uk/articles/symptoms-respiratory-infections-including-covid-19" target="_blank" rel="noreferrer">Northern Ireland: symptoms guidance</a></li>
   </ul>
 </div>
 
@@ -110,11 +114,15 @@ This result has been reported to the NHS.
 <br>
 <br>
 
-<button class="govuk-button" data-module="govuk-button">Report another result</button>
+<div class="govuk-button-group">
+  <button class="govuk-button" data-module="govuk-button">
+    Report another result
+  </button>
 
-<div class="govuk-inset-text">
-  <a href="https://nhsuk-antibody-testing-service.herokuapp.com/IBT/lfd-digital-reader/feature-design/LSR-348-NI-Updates/SR-NI-DR-Void-Contest">I think the service incorrectly read my result</a>
+  <a class="govuk-link" href="https://nhsuk-antibody-testing-service.herokuapp.com/IBT/lfd-digital-reader/feature-design/LSR-348-NI-Updates/SR-NI-DR-Negative-Contest">I think this result is incorrect</a>
 </div>
+
+<br>
 
 
    <div>
