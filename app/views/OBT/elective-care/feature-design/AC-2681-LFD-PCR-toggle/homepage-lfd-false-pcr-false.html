@@ -1,0 +1,91 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set pageHeading = "Manage COVID-19 testing for elective care patients" %}
+{% set serviceName = electiveCareServiceName %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ electiveCareServiceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-three-quarters">
+             <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+                <div class="govuk-notification-banner__header">
+                    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                    Important
+                    </h2>
+                </div>
+                <div class="govuk-notification-banner__content">
+                    <p class="govuk-notification-banner__heading">Tests are not currently available.</p>
+                </div>
+            </div>
+            <h1 class="govuk-heading-xl"> Manage COVID-19 testing for elective care patients </h1>
+            <div style="display: flex; flex-direction: column;">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 16px;">
+                    <a class="govuk-!-padding-4 actions__card card" headingtype="m" href="#" style="position: relative; text-decoration: none; background-color: #f3f2f1; border-color: #f3f2f1; cursor:  not-allowed; width:auto">
+                        <p class="card--heading govuk-body" style="color: #505a5f;">
+                            <strong>Order rapid lateral flow tests for patients</strong>
+                        </p>
+                        <p class="govuk-body">This is not currently available.</p>
+                    </a>
+                    <a class="govuk-!-padding-4 actions__card card" headingtype="m" href="#" style="position: relative; text-decoration: none; background-color: #f3f2f1; border-color: #f3f2f1; cursor:  not-allowed; width:auto">
+                        <p class="card--heading govuk-body" style="color: #505a5f;">
+                            <strong>Order PCR tests for patients</strong>
+                        </p>
+                        <p class="govuk-body" style="color: #505a5f;">This is not currently available.</p>
+                    </a>
+                    <a href="orders-table-loading-v1" class="govuk-!-padding-4 actions__card card" headingtype="m" style="text-decoration: none; background-color: #f3f2f1; cursor: pointer; width:auto">
+                        <p class="card--heading govuk-body" style="color: #1d70b8">
+                            <strong>Check test kit orders</strong>
+                        </p>
+                        <p class="govuk-body">Find patients with a procedure coming up in the next 11 days.</p>
+                    </a>
+                </div>
+                <div class="govuk-!-margin-top-4">
+                    <h2 class="govuk-heading-m">Enhanced team member actions</h2>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 18px;">
+                        <a class="govuk-!-padding-4 actions__card card" headingtype="m"
+                        style="text-decoration: none; background-color: #f3f2f1; cursor: pointer; width: auto"
+                        href="manage-org/manage-organisation-loading-v1">
+                            <p class="card--heading govuk-body" style="color: #1d70b8">
+                                <strong>Manage organisation</strong>
+                            </p>
+                            <p class="govuk-body">Add and change groups and team members.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ec__prototype-navigation">
+            <button id="ec-prototype-navigation">X</button>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Prototype links: </h3>
+            <ul style="list-style: none; padding-left: 0">
+                <li><a href="homepage-lfd-true-pcr-false">LFD = True, PCR = False</a></li>
+                <li><a href="homepage-lfd-true-pcr-true">LFD = True, PCR = True</a></li>
+                <li><a href="homepage-lfd-false-pcr-true">LFD = False, PCR = True</a></li>
+                <li><a href="homepage-lfd-false-pcr-false">LFD = False, PCR = False</a></li>
+            </ul>
+        </div>
+
+        <script>
+            var ec_prototype_navigation = document.getElementById("ec-prototype-navigation")
+            ec_prototype_navigation.onclick = function() {myFunction()};;
+
+            function myFunction() {
+                ec_prototype_navigation.innerHTML = "hello"
+            }
+            console.log(ec_prototype_navigation);
+        </script>
+
+        <div class="govuk-grid-column-three-quarters govuk-!-margin-top-8">
+            <p class="govuk-body govuk-!-font-weight-bold"> Sign out if you’re finished. </p>
+            <a role="button" href="login-v1" draggable="false" class="govuk-!-margin-top-2 govuk-button govuk-button--start govuk-button"> Sign out </a>
+        </div>
+    </div>
+{% endblock %}
