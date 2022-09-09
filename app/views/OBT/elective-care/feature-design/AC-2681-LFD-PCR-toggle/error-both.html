@@ -1,0 +1,45 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set pageHeading = "Sorry, PCR tests are unavailable" %}
+{% set serviceName = electiveCareServiceName %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ electiveCareServiceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-three-quarters">
+            <h1 class="govuk-heading-xl"> Sorry, tests are unavailable </h1>
+        <p class="govuk-body">Test kits are unavailable at this time due to a change in Government policy.</p>
+        <p class="govuk-body">No test kits have been ordered.</p>
+        <div class="ec__prototype-navigation">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Homepages: </h3>
+            <ul style="list-style: none; padding-left: 0">
+              <li><a href="homepage-lfd-true-pcr-false">LFD = True, PCR = False</a></li>
+              <li><a href="homepage-lfd-true-pcr-true">LFD = True, PCR = True</a></li>
+              <li><a href="homepage-lfd-false-pcr-true">LFD = False, PCR = True</a></li>
+              <li><a href="homepage-lfd-false-pcr-false">LFD = False, PCR = False</a></li>
+            </ul>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Errors: </h3>
+              <ul style="list-style: none; padding-left: 0">
+              <li><a href="error-lfd">LFD error</a></li>
+              <li><a href="error-pcr">PCR error</a></li>
+              <li><a href="error-both">LFD & PCR error</a></li>
+            </ul>
+        </div>
+        <script>
+            var ec_prototype_navigation = document.getElementById("ec-prototype-navigation")
+            ec_prototype_navigation.onclick = function() {myFunction()};;
+
+            function myFunction() {
+                ec_prototype_navigation.innerHTML = "hello"
+            }
+            console.log(ec_prototype_navigation);
+        </script>
+    </div>
+{% endblock %}
