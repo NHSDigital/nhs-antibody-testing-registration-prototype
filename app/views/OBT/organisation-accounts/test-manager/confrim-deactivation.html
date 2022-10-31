@@ -1,5 +1,5 @@
 {% set serviceName = "Register test kits for your organisation" %}
-{% set pageHeading = "Account deactivated" %}
+{% set pageHeading = "Do you want to deactivate this user?" %}
 {% set version = "organisational/lft/carehome-registration" %}
 {% extends "includes/layout.html" %}
 
@@ -20,13 +20,15 @@
 
       <!-- div for include from content folder -->
       <div id="includedContent1"></div>
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
     </div>
   </div>
 </div>
 <div style="position:relative; float: right; margin-top: -90px;">
-  <div>
-    <a href="#" style="color: white;">English | Cymraeg</a>
-  </div>
+
 </div>
 
 {% endblock %}
@@ -36,41 +38,25 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
-    <div class="govuk-panel govuk-panel--confirmation">
-      <h1 class="govuk-panel__title">
-        {{ pageHeading }}
-      </h1>
-
-    </div>
-    <br>
-
-    <p class="govuk-body"><strong>What this mean:</strong></p>
+    <h1 class="govuk-panel__title">
+      {{ pageHeading }}
+    </h1>
+    
+    <p class="govuk-body"><strong>What this means:</strong></p>
     <ul class="govuk-list govuk-list--bullet">
       <li>This user will not have access to your organisation account</li>
       <li>You can reactivate their account within 60 days</li>
       <li>We'll delete their account after 60 days</li>
     </ul>
-
+   
     <br>
-
-    <div class="govuk-button-group">
-      <a class="govuk-link" href="manage-staff">
-        <button class="govuk-button" data-module="govuk-button">
-          Manage staff accounts
+    <form action="account-deactivated" method="get">
+      <div class="govuk-button-group">
+        <button class="govuk-button govuk-button--warning" data-module="govuk-button">
+          Deactivate account
         </button>
-      </a>
-
-      <a class="govuk-link" href=dashboard-manager>
-        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-          View Dashboard
-        </button>
-      </a>
-
       </div>
-    </div>
-
-  </div>
+    </form>
 </div>
 
 <!-- corresponding html file name included from content folder -->
