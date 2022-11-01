@@ -1,0 +1,87 @@
+{% set version = "v28" %}
+{% set pageTitle = "Take a photo of your test strip" %}
+
+{% extends "includes/layout-LFD.html" %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+  <a class="govuk-back-link" href="javascript:history.go(-1)">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/IBT/lfd-digital-reader/LSR-302-infographics/dr-infographics-instructions" method="post">
+
+        <div class="govuk-form-group">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+                {% if data['whos-taking-the-test'] == "someone-else" %}
+                Take a photo of the test strip
+                {% else %}
+                {{ pageTitle }}
+                {% endif %}
+              </h1>
+            </legend>
+
+            {% if data['whos-taking-the-test'] == "someone-else" %}
+            <h2 class="govuk-heading-m">The service will read the result automatically</h2>
+            {% else %}
+            <h2 class="govuk-heading-m">The service will read your result automatically</h2>
+            {% endif %}
+
+              <ul class="govuk-list govuk-list--bullet govuk-u-margin-bottom-6">
+                <li>you must be on a smartphone or tablet</li>
+                <li>it takes less than 20 seconds</li>
+                <li>it is accurate and reliable</li>
+              </ul>
+
+              {% if data['whos-taking-the-test'] == "someone-else" %}
+                <p class="govuk-body">When you take a photo of the test strip, the test result is automatically read. This technology is authorised by the UK health regulator (MHRA).</p>
+                <p class="govuk-body">It’s more reliable and accurate than manually reading a result from the test strip, and helps them to confirm the test result.</p>
+              <!--  <p class="govuk-body">By taking a photo, they agree to use the Automated Decision Making (ADM) service.</p> -->
+                <p class="govuk-body">If they prefer not to take a photo, you can <a href="/share-result-lateral-flow/{{version}}/choose-result">enter the test result manually</a>.</p>
+              {% else %}
+                <p class="govuk-body">When you take a photo of the test strip, the test result is automatically read for you. This technology is authorised by the UK health regulator (MHRA).</p>
+                <p class="govuk-body">It’s more reliable and accurate than manually reading a result from the test strip, and helps you to confirm the test result.</p>
+              <!--  <p class="govuk-body">By taking a photo, you agree to use the Automated Decision Making (ADM) service.</p> -->
+                <p class="govuk-body">If you prefer not to take a photo, you can <a href="/share-result-lateral-flow/{{version}}/choose-result">enter the test result manually</a>.</p>
+              {% endif %}
+
+          </div>
+
+          {% if data['whos-taking-the-test'] == "someone-else" %}
+          <p>By continuing, I agree to provide the person who took the test with the correct advice based on their result.</p>
+          {% else %}
+          <p>By continuing, you agree to follow the advice based on your result.</p>
+          {% endif %}
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+      <div class="govuk-inset-text">
+        {% if data['whos-taking-the-test'] == "someone-else" %}
+        <p><a class="govuk-link" href="/IBT/lfd-digital-reader/feature-design/LSR-302-infographics/choose-result">They do not want the service to read the result</a></p>
+        {% else %}
+        <p><a class="govuk-link" href="/IBT/lfd-digital-reader/feature-design/LSR-302-infographics/choose-result">I do not want the service to read my result</a></p>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

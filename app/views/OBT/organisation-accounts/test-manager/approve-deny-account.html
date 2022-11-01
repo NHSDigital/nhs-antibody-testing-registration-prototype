@@ -1,0 +1,122 @@
+{% set serviceName = "Register test kits for your organisation" %}
+{% set pageHeading = "Anita Richard" %}
+{% set version = "organisational/lft/carehome-registration" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+{{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {{ govukPhaseBanner({
+        tag: {
+          text: "alpha"
+        },
+        html: 'This is a new service – your <a class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank" href="#">feedback (opens in a new tab)</a> will help us to improve it.'
+      }) }}
+
+      <!-- div for include from content folder -->
+      <div id="includedContent1"></div>
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.go(-1);"
+      }) }}
+    </div>
+  </div>
+</div>
+<div style="position:relative; float: right; margin-top: -90px;">
+
+</div>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-panel__title">
+      {{ pageHeading }}
+    </h1>
+
+    <h2 class="govuk-heading-m">
+      Account details
+    </h2>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Account Status
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <strong class="govuk-tag govuk-tag--yellow">AWAITING APPROVAL</strong>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Created date
+        </dt>
+        <dd class="govuk-summary-list__value">
+          25 September 2022
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-m">
+      Personal Details
+    </h2>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          First Name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Anita
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Last Name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Richard
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Work Email Address
+        </dt>
+        <dd class="govuk-summary-list__value">
+          anitarichard@oakcarehome.co.uk
+        </dd>
+      </div>
+    </dl>
+
+    <br>
+    <p class="govuk-body"><b>Do you want to approve or deny this account?</p>
+    <div class="govuk-button-group">
+      <a class="govuk-link" href="approve-account-confirmation">
+        <button class="govuk-button" data-module="govuk-button">
+          Approve
+        </button>
+      </a>
+
+      <a class="govuk-link" href="deny-account-confirmation">
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Deny
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- corresponding html file name included from content folder -->
+<script>
+  $(function(){
+    $("#includedContent1").load("/OBT/organisation-accounts/test-manager/signed-in-bar-no-org.html");
+  });
+</script>
+
+{% endblock %}

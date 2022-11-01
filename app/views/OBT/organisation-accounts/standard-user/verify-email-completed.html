@@ -1,0 +1,73 @@
+{% set serviceName = "Register test kits for your organisation" %}
+{% set pageHeading = "Verify your email address" %}
+{% set version = "organisational/lft/carehome-registration" %}
+{% extends "includes/layout.html" %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    {{ govukPhaseBanner({
+      tag: {
+        text: "alpha"
+      },
+      html: 'This is a new service – your <a class="govuk-link" rel="noreferrer noopener" target="_blank" href="#">feedback (opens in a new tab)</a> will help us to improve it.'
+      }) }}
+
+
+    </div>
+  </div>
+</div>
+<div style="position:relative; float: right; margin-top: -90px;">
+  <div>
+    <a href="#" style="color: white;">English | Cymraeg</a>
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      {{ pageHeading }}
+    </h1>
+
+  <p>Enter the verification code we've sent to <strong>john.doe@oakcarehome.co.uk</strong>. </p>
+<p>It may take a few minutes to arrive. </p>
+
+<br>
+  <form class="" action="account-created" method="post">
+
+  <fieldset class="govuk-fieldset">
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="code">
+        <b>Verification code<b>
+      </label>
+      <br>
+      <input class="govuk-input govuk-!-width-two-thirds" id="code" name="code" type="text" autocomplete="code" value="HBJ4FS">
+    </div>
+
+  </fieldset>
+
+<input class="govuk-button" type="submit" value="Create account">
+<p>If you haven't received a verification code, check your spam folder or <a href="#" class="govuk-link govuk-link--no-visited-state">request a code again</a>.</p>
+
+
+</form>
+
+
+
+
+
+  </div>
+</div>
+
+{% endblock %}

@@ -37,13 +37,12 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column">
-    <form action="sign-in" method="get">
+    <form action="" method="get">
       <div class="govuk-form-group">
         <h1 class="govuk-heading-l">
-          {{ pageHeading }}
+          Manage staff accounts <!-- {{ pageHeading }} -->
         </h1>
-        <p class="govuk-body">View and manage users that have access to your organisation</p>
-        <input class="govuk-button" type="submit" value="Add staff member">
+        <p class="govuk-body">Manage account requests and update details for staff in your organisation.</p>
         <label class="govuk-label" style="color:#505a5f" for="search">
           Search by name or email address
         </label>
@@ -55,10 +54,30 @@
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Name</th>
-            <th scope="col" class="govuk-table__header">Email Address</th>
-            <th scope="col" class="govuk-table__header">Status</th>
-            <th scope="col" class="govuk-table__header">Permissions</th>
+            <th scope="col" class="govuk-table__header">
+              Name
+              <!-- Sorting icon unsorted -->
+              <svg width="14" height="22" viewBox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg" alt="Sorting Arrow">
+                <path d="M6.53501 0.308975L12.1858 10.0964H0.884234L6.53501 0.308975Z" fill="black"/>
+                <path d="M6.53501 21.5784L0.884233 11.791H12.1858L6.53501 21.5784Z" fill="black"/>
+              </svg>                
+            </th>
+            <th scope="col" class="govuk-table__header">
+              Email Address
+              <!-- Sorting icon unsorted -->
+              <svg width="14" height="22" viewBox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg" alt="Sorting Arrow">
+                <path d="M6.53501 0.308975L12.1858 10.0964H0.884234L6.53501 0.308975Z" fill="black"/>
+                <path d="M6.53501 21.5784L0.884233 11.791H12.1858L6.53501 21.5784Z" fill="black"/>
+              </svg>  
+            </th>
+            <th scope="col" class="govuk-table__header">
+              Account Status
+              <!-- Sorting icon sorted -->
+              <svg width="14" height="22" viewBox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg" alt="Sorting Arrow">
+                <path d="M6.53501 0.308975L12.1858 10.0964H0.884234L6.53501 0.308975Z" fill="black"/>
+                <path d="M6.53501 21.5784L0.884233 11.791H12.1858L6.53501 21.5784Z" fill="black"/>
+              </svg>                
+            </th>
             <th scope="col" class="govuk-table__header"></th>
           </tr>
         </thead>
@@ -67,18 +86,16 @@
             <td class="govuk-table__cell">Anita Richard</td>
             <td class="govuk-table__cell">anitarichard@oakcarehome.co.uk</td>
             <td class="govuk-table__cell">
-              <strong class="govuk-tag govuk-tag--blue">PENDING</strong>
+              <strong class="govuk-tag govuk-tag--yellow">AWAITING APPROVAL</strong>
             </td>
-            <td class="govuk-table__cell">Manager</td>
-            <td class="govuk-table__cell"><a href="manage-staff-details">Manage</a></td>
+            <td class="govuk-table__cell"><a href="approve-deny-account">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Rafa Cortes</td>
             <td class="govuk-table__cell">rafacortes@oakcarehome.co.uk</td>
             <td class="govuk-table__cell">
-              <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
+              <strong class="govuk-tag govuk-tag--yellow">AWAITING APPROVAL</strong>
             </td>
-            <td class="govuk-table__cell">Manager</td>
             <td class="govuk-table__cell"><a href="#">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
@@ -87,8 +104,7 @@
             <td class="govuk-table__cell">
               <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
             </td>
-            <td class="govuk-table__cell">Manager</td>
-            <td class="govuk-table__cell"><a href="#">Manage</a></td>
+            <td class="govuk-table__cell"><a href="manage-staff-active">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Colm Rogan</td>
@@ -96,7 +112,6 @@
             <td class="govuk-table__cell">
               <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
             </td>
-            <td class="govuk-table__cell">Standard</td>
             <td class="govuk-table__cell"><a href="#">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
@@ -105,7 +120,6 @@
             <td class="govuk-table__cell">
               <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
             </td>
-            <td class="govuk-table__cell">Standard</td>
             <td class="govuk-table__cell"><a href="#">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
@@ -114,7 +128,6 @@
             <td class="govuk-table__cell">
               <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
             </td>
-            <td class="govuk-table__cell">Standard</td>
             <td class="govuk-table__cell"><a href="#">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
@@ -123,7 +136,6 @@
             <td class="govuk-table__cell">
               <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
             </td>
-            <td class="govuk-table__cell">Standard</td>
             <td class="govuk-table__cell"><a href="#">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
@@ -132,16 +144,89 @@
             <td class="govuk-table__cell">
               <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
             </td>
-            <td class="govuk-table__cell">Standard</td>
             <td class="govuk-table__cell"><a href="#">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Amelie Felix</td>
             <td class="govuk-table__cell">ameliefelix@oakcarehome.co.uk</td>
             <td class="govuk-table__cell">
-              <strong class="govuk-tag govuk-tag--grey">INACTIVE</strong>
+              <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
             </td>
-            <td class="govuk-table__cell">Standard</td>
+            <td class="govuk-table__cell"><a href="#">Manage</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Kim Brooke</td>
+            <td class="govuk-table__cell">Kim@hello.co.uk</td>
+            <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
+            </td>
+            <td class="govuk-table__cell"><a href="#">Manage</a></td>
+          </tr>
+
+          <!-- extra users added to show pagination example -->
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Fisher Brown</td>
+            <td class="govuk-table__cell">Fish12356@oakcarehome.co.uk</td>
+            <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
+            </td>
+            <td class="govuk-table__cell"><a href="approve-deny-account">Manage</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Gaurav Bose</td>
+            <td class="govuk-table__cell">Gaurav.Bose@msn.com</td>
+            <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
+            </td>
+            <td class="govuk-table__cell"><a href="#">Manage</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Gowtham Rana</td>
+            <td class="govuk-table__cell">Gow123@hotmail.com</td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
+            </td>
+            <td class="govuk-table__cell"><a href="manage-staff-active">Manage</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Gab Shetty</td>
+            <td class="govuk-table__cell">Gab3453@yahoo.co.uk</td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
+            </td>
+            <td class="govuk-table__cell"><a href="#">Manage</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Hiraz Patt</td>
+            <td class="govuk-table__cell">Patt.H@oakcarehome.co.uk</td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
+            </td>
+            <td class="govuk-table__cell"><a href="#">Manage</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Ishant Shetty</td>
+            <td class="govuk-table__cell">Ishant@oakcarehome.co.uk</td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
+            </td>
+            <td class="govuk-table__cell"><a href="#">Manage</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Isabelle Rich</td>
+            <td class="govuk-table__cell">Isa1234@oakcarehome.co.uk</td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
+            </td>
+            <td class="govuk-table__cell"><a href="#">Manage</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Jack Moore</td>
+            <td class="govuk-table__cell">Moore.J@oakcarehome.co.uk</td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--green">ACTIVE</strong>
+            </td>
             <td class="govuk-table__cell"><a href="#">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
@@ -150,16 +235,14 @@
             <td class="govuk-table__cell">
               <strong class="govuk-tag govuk-tag--grey">INACTIVE</strong>
             </td>
-            <td class="govuk-table__cell">Standard</td>
-            <td class="govuk-table__cell"><a href="#">Manage</a></td>
+            <td class="govuk-table__cell"><a href="manage-staff-inactive">Manage</a></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Finn Taylor</td>
-            <td class="govuk-table__cell">finntaylor@oakcarehome.co.uk</td>
+            <td class="govuk-table__cell">Jade Walker</td>
+            <td class="govuk-table__cell">Jade.W@gmail.com</td>
             <td class="govuk-table__cell">
-              <strong class="govuk-tag govuk-tag--red">REJECTED</strong>
+                <strong class="govuk-tag govuk-tag--grey">INACTIVE</strong>
             </td>
-            <td class="govuk-table__cell">Standard</td>
             <td class="govuk-table__cell"><a href="#">Manage</a></td>
           </tr>
         </tbody>
