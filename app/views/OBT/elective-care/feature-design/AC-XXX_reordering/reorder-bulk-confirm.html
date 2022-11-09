@@ -1,0 +1,69 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set pageHeading = "Confirm you want to reorder these test kits" %}
+{% set serviceName = electiveCareServiceName %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ electiveCareServiceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.go(-1);"
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="5" method="post">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading govuk-!-margin-bottom-5">
+              {{ pageHeading }}
+            </h1>
+          </legend>
+
+          <div class="govuk-warning-text govuk-!-margin-top-2">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text">
+              <span class="govuk-warning-text__assistive">Warning</span>
+              If you continue, their previous orders will be marked as cancelled on the system.
+            </strong>
+          </div>
+
+          <p class="govuk-body">Providers are responsible for informing patients of any changes.</p>
+
+        </fieldset>
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button" href="reorder-bulk-complete">Confirm</button>
+          <a class="govuk-link" href="reorder-bulk-cancel">Cancel</a>
+        </div>
+
+      </form>
+
+    </div>
+    <div class="ec__prototype-navigation">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Variants: </h3>
+        <ul style="list-style: none; padding-left: 0">
+          <li><a href="reorder-bulk-exists">Bulk order experience</a></li>
+          <li><a href="reorder-one-by-one-exists">One by One order experience</a></li>
+        </ul>
+    </div>
+    <script>
+        var ec_prototype_navigation = document.getElementById("ec-prototype-navigation")
+        ec_prototype_navigation.onclick = function() {myFunction()};;
+
+        function myFunction() {
+            ec_prototype_navigation.innerHTML = "hello"
+        }
+        console.log(ec_prototype_navigation);
+    </script>
+  </div>
+
+
+{% endblock %}

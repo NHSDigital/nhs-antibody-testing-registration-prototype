@@ -1,0 +1,105 @@
+{% set version = "v1" %}
+{% extends "includes/layout.html" %}
+{% set pageHeading = "Manage COVID-19 testing for elective care patients" %}
+{% set serviceName = electiveCareServiceName %}
+
+{% block pageTitle %}
+  {{ pageHeading }} - {{ electiveCareServiceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/ec-beta-banner-v1.html" %}
+  <a class="govuk-back-link"  href="javascript:window.history.go(-1);">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+          <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+  <div class="govuk-notification-banner__header">
+    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+      Important
+    </h2>
+  </div>
+  <div class="govuk-notification-banner__content">
+    <p class="govuk-notification-banner__heading">
+      You are about to order rapid lateral flow tests for this patient.
+    </p>
+  </div>
+</div>
+    <h1 class="govuk-heading-xl">A test kit order already exists for this patient</h1>
+    <p class="govuk-body">If you need to order another test kit for this patient, their previous order will be cancelled. If they have already recieved a test kit, it will need to be thrown away. We’ll send the patient a text explaining this..</p>
+    <table class="govuk-table govuk-body govuk-!-margin-bottom-7">
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Procedure date</th>
+            <td class="govuk-table__cell">22-12-07</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Test kit type</th>
+            <td class="govuk-table__cell">PCR</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Patient</th>
+            <td class="govuk-table__cell">John Smith</td>
+          </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">NHS number</th>
+          <td class="govuk-table__cell">5555555555</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Reorder kit</th>
+          <td class="govuk-table__cell">
+            <div class="govuk-form-group">
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" checked data-aria-controls="conditional-contact">
+        <label class="govuk-label govuk-radios__label" for="contact">
+          Yes
+        </label>
+      </div>
+      <div class="govuk-radios__conditional" id="conditional-contact">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-email">
+            Why are you reordering?
+          </label>
+          <input class="govuk-input govuk-input" id="contact-by-email" name="contact-by-email" type="email" spellcheck="false" aria-describedby="contact-by-email-error" autocomplete="email">
+        </div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-2">
+        <label class="govuk-label govuk-radios__label" for="contact-2">
+         No
+        </label>
+      </div>
+
+      </div>
+    </div>
+</div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="govuk-button-group">
+      <a class="govuk-button" data-module="govuk-button" href="reorder-one-by-one-confirm">Continue</a>
+      <a class="govuk-link" href="reorder-one-by-one-cancel">Cancel</a>
+    </div>
+    <div class="ec__prototype-navigation">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Variants: </h3>
+        <ul style="list-style: none; padding-left: 0">
+          <li><a href="reorder-bulk-exists">Bulk order experience</a></li>
+          <li><a href="reorder-one-by-one-exists">One by One order experience</a></li>
+        </ul>
+    </div>
+    <script>
+        var ec_prototype_navigation = document.getElementById("ec-prototype-navigation")
+        ec_prototype_navigation.onclick = function() {myFunction()};;
+
+        function myFunction() {
+            ec_prototype_navigation.innerHTML = "hello"
+        }
+        console.log(ec_prototype_navigation);
+    </script>
+  </div>
+</div>
+{% endblock %}
