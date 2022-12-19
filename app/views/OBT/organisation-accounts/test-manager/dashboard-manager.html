@@ -39,248 +39,204 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">COVID-19 testing for Oak Care Home</h1>
-    <p class="govuk-body">Register, report and share results with your organisation, and manage your account.</p>
+    <p class="govuk-body">
+      Manage staff accounts and see testing information for your organisation.
+    </p>
+    <p class="govuk-body">
+        This does not show the personal details of individuals who were tested.
+    </p>
+    <!-- ------Notification banner ------ -->
     <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-    <div class="govuk-notification-banner__header">
+      <div class="govuk-notification-banner__header">
       <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-        Important
+          Important
       </h2>
-    </div>
-    <div class="govuk-notification-banner__content">
+      </div>
+      <div class="govuk-notification-banner__content">
       <p><b>
-        You have 5 new account requests that are awaiting your approval.
-        <a class="govuk-notification-banner__link" href="manage-staff">Manage staff accounts</a>
+          You have 5 new requests from staff who want to create an account.
+          <a class="govuk-notification-banner__link" href="manage-staff">Manage staff accounts</a>
       </b></p>
-    </div>
+      </div>
   </div>
   <br>
   
   <!-- ------------------------Compliance dashboard------------------------ -->
+  
   <h2 class="govuk-heading-m">Testing overview</h2>
+    <p class="govuk-body">
+        An overview of recorded testing so far. Choose a testing group over a date range you need.
+    </p>
 
-  <!-- ------Start filters------ -->
+    <!-- ------Start filters------ -->
 
-  <div class="filter-box-rescale" id="filter-Box" style="width: 100%; height: auto; overflow: auto; margin-top: 20px; border: 5px solid #000; display: none;">
-      <div style="padding: 15px 0 1px 0; background-color: #f3f2f1;">
-          <h2 class="govuk-heading-m govuk-!-margin-left-5">Filters</h2>
-      </div>
-      <!-- ------All filters Div------ -->
-      <div class="govuk-!-margin-5" style="display: flex;">
-          <!-- ------Group------ -->
-          <div class="govuk-form-group govuk-!-padding-right-5" style="border-right: solid; ">
-              <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
-                <legend class="govuk-fieldset__legend">
-                  <b>Group</b>
-                </legend>
-                <!-- <div id="waste-hint" class="govuk-hint">
-                  Select all that apply.
-                </div> -->
-                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-                      <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="waste" name="all-groups" type="checkbox" value="all">
-                          <label class="govuk-label govuk-checkboxes__label" for="group">
-                              All
-                          </label>
-                      </div>
-                      <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="waste-2" name="staff" type="checkbox" value="staff">
-                          <label class="govuk-label govuk-checkboxes__label" for="group-1">
-                              Staff
-                          </label>
-                      </div>
-                      <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="waste-3" name="residents" type="checkbox" value="residents">
-                          <label class="govuk-label govuk-checkboxes__label" for="group-2">
-                              Residents
-                          </label>
-                      </div>
-                      <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="waste-3" name="care-partners" type="checkbox" value="partners">
-                          <label class="govuk-label govuk-checkboxes__label" for="group-3">
-                              Care partners
-                          </label>
-                      </div>
+    <div class="filter-box-rescale" id="filter-Box" style="width: 100%; height: auto; overflow: auto; margin: 20px 0 40px 0; border: 1px solid #000;">
+        <div style="padding: 15px 0 1px 0; display: flex;  flex-wrap: wrap;  justify-content: space-between;">
+            <h2 class="govuk-heading-m govuk-!-margin-left-5">Filters</h2>
+            <button class="govuk-button govuk-!-margin-right-5 govuk-button govuk-!-margin-left-5" data-module="govuk-button" onclick="getOption()" onclick="clearFilter()">
+                Apply filters
+            </button>
+        </div>
+        <hr style="height: 1px; background-color: #0b0c0c; border: none; margin: 0 20px 20px 20px;">
+        <!-- ------All filters Div------ -->
+        <div class="govuk-!-margin-left-5" style="display: flex; flex-wrap: wrap;">
+            <!-- ------Group------ -->
+            <div class="govuk-form-group govuk-!-padding-right-7">
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="sort">
+                      <b>Group</b>
+                    </label>
+                    <select class="govuk-select" id="select1" name="sort" name="form_select">
+                      <option value="All-groups" selected>All</option>
+                      <option value="Staff">Staff</option>
+                      <option value="Residents">Residents</option>
+                    </select>
                 </div>
-              </fieldset>
+            </div>
+            <div id="line_Divide" id="custom-date-range" style="border-left: 6px solid green; height: auto; float: left; display: none;"></div>
+
+            <!-- ------Date range------ -->
+            <div style="height: auto;">
+    
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="sort">
+                      <b>Date range</b>
+                    </label>
+                    <select class="govuk-select" id="select1, showDivide"  name="sort" name="form_select" onchange="showCustom('custom-date-range', this)" for="showDivide">
+                        <option value="3 days">3 days</option>
+                        <option value="7 days" selected>7 days</option>
+                        <option value="14 days">14 days</option>
+                        <option value="1 month">1 month</option>
+                        <option value="3 months">3 months</option>
+                        <option value="custom date range">Custom date range</option>
+                    </select>
+                </div>
+
+                <!-- Custom date range entry -->
+                <div id="custom-date-range" style="display: none;">
+                    <hr class="govuk-!-margin-right-4" style="height: 3px; background-color: #f3f2f1; border: none;">
+                    <div class="govuk-!-padding-top-3" style="display: flex;  flex-wrap: wrap;">
+                        <div id="start-date">
+                            {{ govukDateInput({
+                                id: "custom-start-date",
+                                namePrefix: "custom-start-dat",
+                                fieldset: {
+                                    legend: {
+                                    text: "Enter start date"
+                                    }
+                                },
+                                hint: {
+                                    text: "For example, 04 10 2022"
+                                }
+                            }) }}
+                        </div>
+                        <div id="end-date">
+                            {{ govukDateInput({
+                                id: "custom-end-date",
+                                namePrefix: "custom-end-dat",
+                                fieldset: {
+                                    legend: {
+                                    text: "Enter end date"
+                                    }
+                                },
+                                 hint: {
+                                    text: "For example, 16 11 2022"
+                                }
+                            }) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <script>
+                    function showCustom(divId, element)
+                    {
+                        document.getElementById(divId).style.display = element.value == "custom date range" ? 'block' : 'none';
+                    }
+                </script>
+
+
+                <script>
+                    const el = document.getElementById('showDivide');
+
+                    const lineDivide = document.getElementById('line_Divide');
+
+                    el.addEventListener('change', function handleChange(event) {
+                        if (event.target.value === 'custom date range') {
+                            lineDivide.style.display = 'block';
+                        } else {
+                            lineDivide.style.display = 'none';
+                        }
+                    });
+                </script>
+        </div>
+    </div>
+
+    <!-- ------Filters End------ -->
+
+    <script type="text/javascript">
+    function getOption() {
+        selectElement = document.querySelector('#select1');
+        output = selectElement.value;
+        document.querySelector('.output').textContent = output;
+    }
+    </script>
+    
+    <!-- ------Data Start------ -->
+    
+    <div class="govuk-grid-row govuk-!-padding-left-4 govuk-!-padding-right-4" style="width: 100%; justify-content: space-around;">
+        <div class="govuk-grid-column-one-third govuk-!-padding-3 govuk-!-margin-bottom-3s" style="background-color: #f3f2f1; height: 100%; border-bottom: solid #1D70B8 4px;">
+            <h3 class="govuk-heading-s">Total tests taken</h3>
+            <h1 class="govuk-heading-xl govuk-!-font-size-80 govuk-!-margin-bottom-3">67</h1>
+            <div style="border-top: solid 1px; padding-top: 50px;"></div>
+        </div>
+        <div class="govuk-grid-column-two-thirds" style="display: flex; justify-content: space-between;">
+          <div class="govuk-!-padding-3" style="background-color: #f3f2f1; border-bottom: solid #1D70B8 4px; width: 100%;">
+            <h3 class="govuk-heading-s">Positive</h3>
+            <h1 class="govuk-heading-xl govuk-!-font-size-80 govuk-!-margin-bottom-3">20</h1>
+            <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16" style="border-top: solid 1px; padding-top: 25px;">PCR:<b>15</b> &nbsp; | &nbsp; LFD:<b>05</b></p>
+            <!-- <p class="govuk-!-font-size-16" style="margin: 0;">Confirmed cases:<b>07</b></p> -->
           </div>
-
-          <!-- ------Date range------ -->
-          <div class="govuk-!-padding-left-7"  style="height: auto;">
-  
-              <div class="govuk-form-group">
-                  <label class="govuk-label" for="sort">
-                    <b>Date range</b>
-                  </label>
-                  <select class="govuk-select" id="sort" name="sort" name="form_select" onchange="showCustom('custom-date-range', this)">
-                    <option value="7-daysd" selected>7 days</option>
-                    <option value="10-days">10 days</option>
-                    <option value="15-days">15 days</option>
-                    <option value="3-months">3 months</option>
-                    <option value="custom-range">Custom date range</option>
-                  </select>
-              </div>
-  
-              <!-- Custom date range entry -->
-              <div id="custom-date-range" style="display: none;">
-                  <hr style="height: 3px; background-color: #f3f2f1; border: none;">
-                  <div class="govuk-!-padding-top-3" style="display: flex;">
-                      <div id="start-date">
-                          {{ govukDateInput({
-                              id: "custom-start-date",
-                              namePrefix: "custom-start-dat",
-                              fieldset: {
-                                  legend: {
-                                  text: "Enter start date"
-                                  }
-                              },
-                              hint: {
-                                  text: "For example, 04 10 2022"
-                              }
-                          }) }}
-                      </div>
-                      <div id="end-date">
-                          {{ govukDateInput({
-                              id: "custom-end-date",
-                              namePrefix: "custom-end-dat",
-                              fieldset: {
-                                  legend: {
-                                  text: "Enter end date"
-                                  }
-                              },
-                               hint: {
-                                  text: "For example, 16 11 2022"
-                              }
-                          }) }}
-                      </div>
-                  </div>
-              </div>
+          <div class="govuk-!-padding-3" style="margin: 0 1em; background-color: #f3f2f1; border-bottom: solid #1D70B8 4px; width: 100%;">
+            <h3 class="govuk-heading-s">Negative</h3>
+            <h1 class="govuk-heading-xl govuk-!-font-size-80 govuk-!-margin-bottom-3">40</h1>
+            <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16" style="border-top: solid 1px; padding-top: 25px;">PCR:<b>23</b> &nbsp; | &nbsp; LFD:<b>17</b></p>
           </div>
-              <script>
-                  function showCustom(divId, element)
-                  {
-                      document.getElementById(divId).style.display = element.value == "custom-range" ? 'block' : 'none';
-                  }
-              </script>
-
-              <!-- Dimension detaction -->
-              <script>
-                  function outputsize() {
-                      width.value = filter-box-rescale.offsetWidth
-                      height.value = filter-box-rescale.offsetHeight
-                  }
-                  outputsize()
-                  new ResizeObserver(outputsize).observe(filter-box-rescale)
-              </script>
-      </div>
-
-      <button class="govuk-button govuk-!-margin-right-5" data-module="govuk-button" style="float: right;">
-          Apply filters
-      </button>
-  </div>
-
-  <!-- <div id="filters_container"></div> -->
-
-  <!-- ------Filters End------ -->
-  <hr id="filter-Box" style="height: 3px; background-color: #000; border: none;">
-  <script>
-      function myFunction() {
-        var x = document.getElementById("filter-Box");
-        if (x.style.display === "none") {
-          x.style.display = "block";
-        } else {
-          x.style.display = "none";
-        }
-      }
-  </script>
-
-  <!-- ------Selected Filters Start------ -->
-
-  <div class="selected_filters" style="justify-content: space-between; display: flex; margin: auto 2%;">
-      <div style="display: flex;" >
-          <div id="filteres_selected_group" style="margin-right: 20px;">
-              <p><b>Group</b></p>
-              <p>All</p>
+          <div class="govuk-!-padding-3" style="background-color: #f3f2f1; border-bottom: solid #1D70B8 4px; width: 100%;">
+            <h3 class="govuk-heading-s">Void</h3>
+            <h1 class="govuk-heading-xl govuk-!-font-size-80 govuk-!-margin-bottom-3">07</h1>
+            <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16" style="border-top: solid 1px; padding-top: 25px;">PCR:<b>0</b> &nbsp; | &nbsp; LFD:<b>07</b></p>
           </div>
-          <div id="filteres_selected_date-range">
-              <p><b>Date range</b></p>
-              <p>7 days</p>
-          </div> 
-      </div>
-      <div style="padding: 20px 0;">
-          <a onclick="myFunction()" class="govuk-link" style="color: #1d70b8;"><b>Show filters</b></a>
-      </div>
-  </div>
-
-  <!-- ------Data Start------ -->
-
-  <hr style="height: 3px; background-color: #000; border: none;">
-  
-  <div class="govuk-grid-row">
-      <div class="govuk-grid-column-one-third" style="border-right: solid;">
-          <h3 class="govuk-heading-s">Total tests taken</h3>
-          <h1 class="govuk-heading-xl govuk-!-font-size-80 govuk-!-margin-bottom-3">98</h1>
         </div>
-      <div class="govuk-grid-column-two-thirds" style="display: flex;">
-        <div>
-          <h3 class="govuk-heading-s">Positive test results</h3>
-          <h1 class="govuk-heading-xl govuk-!-font-size-80 govuk-!-margin-bottom-3">47</h1>
-          <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">PCR:<b>26</b> &nbsp; | &nbsp; LFD:<b>21</b></p>
-          <p class="govuk-!-font-size-16">Confirmed cases:<b>07</b></p>
-        </div>
-        <div style="margin: 0 1em;">
-          <h3 class="govuk-heading-s">Negative test results</h3>
-          <h1 class="govuk-heading-xl govuk-!-font-size-80 govuk-!-margin-bottom-3">45</h1>
-          <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">PCR:<b>12</b> &nbsp; | &nbsp; LFD:<b>33</b></p>
-        </div>
-        <div>
-          <h3 class="govuk-heading-s">Void test results</h3>
-          <h1 class="govuk-heading-xl govuk-!-font-size-80 govuk-!-margin-bottom-3">06</h1>
-          <p class="govuk-!-margin-bottom-1 govuk-!-font-size-16">PCR:<b>0</b> &nbsp; | &nbsp; LFD:<b>06</b></p>
-        </div>
-      </div>
-  </div>
+    </div>
 
 
-  <!-- ------Data discreption------ -->
-  <hr style="border: 1px dashed #000;" color="#FFFFFF">
-  <details class="govuk-details" data-module="govuk-details">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">
-          What do these number mean?
-        </span>
-      </summary>
-      <div class="govuk-details__text">
-          <b>Total tests taken</b>
-          <br>
-          The total number of tests taken at your organisation over the selected time period
-      </div>
-      <div class="govuk-details__text">
-          <b>Test results</b>
-          <br>
-          Positive: total positive tests recorded at your organisation
-          <br>
-          Negative: total negative tests recorded at your organisation
-          <br>
-          Void: a test sample could not be read, so it is not possible to say if it is positive or negative
-          <br>
-          PCR: Polymerase Chain Reaction tests
-          <br>
-          LFD: Lateral Flow Device tests
-      </div>
-      <div class="govuk-details__text">
-          <b>Confirmed Cases</b>
-          <br>
-          The number of confirmed coronavirus (COVID-19) cases at your organisation.
+    <!-- ------Data discreption------ -->
+    <hr class="govuk-!-margin-top-4" style="border: 1px dashed #000;" color="#FFFFFF">
+    <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            What do these number mean?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+            <b>Total tests taken</b>
+            <br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, assumenda ea unde excepturi.
         </div>
-  </details>
+        <div class="govuk-details__text">
+            <b>Confirmed Cases</b>
+            <br>
+            If the individual has tested popsitive for either PCR or LFD. It differs from the rest of the figures as they take into account people testing positive multiple times.
+        </div>
+    </details>
 
-  <!-- ------End data------ -->
-  <hr style="height: 3px; background-color: #000; border: none;">
+    <!-- ------End data------ -->
+    <hr style="height: 3px; background-color: #000; border: none;">
 
   <!-- ------------------------Compliance dashboard END------------------------ -->
 
 
-<h2 class="govuk-heading-m">Manage Testing</h2>
+<h2 class="govuk-heading-m">Manage residents</h2>
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
 <div style="display: flex; flex-direction: column;">
@@ -290,9 +246,6 @@
                 <strong><u>Register test kits and report test results</u></strong>
             </p>
             <p class="govuk-body">Register tests and report test results for your organisation.</p>
-            <!-- <p class="card--heading govuk-body" style="color: #1d70b8">
-              <u>Register and report test results</u>
-            </p> -->
         </a>
         <a href="" class="govuk-!-padding-4 actions__card card" headingtype="m" style="text-decoration: none; background-color: #f3f2f1; cursor: pointer; width:auto">
             <p class="card--heading govuk-body" style="color: #1d70b8">
@@ -305,15 +258,15 @@
 <br>
 <br>
 
-<h2 class="govuk-heading-m">Manage Oak Care Home</h2>
+<h2 class="govuk-heading-m">Manage account</h2>
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 <div style="display: flex; flex-direction: column;">
     <div style="display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 16px;">
         <a href="manage-staff" class="govuk-!-padding-4 actions__card card" headingtype="m" style="text-decoration: none; background-color: #f3f2f1; cursor: pointer; width:auto">
             <p class="card--heading govuk-body" style="color: #1d70b8">
-                <strong><u>Manage staff accounts</u></strong>
+                <strong><u>Staff accounts</u></strong>
             </p>
-            <p class="govuk-body">View and manage staff member accounts.</p>
+            <p class="govuk-body">View and manage staff members.</p>
         </a>
     </div>
 </div>
